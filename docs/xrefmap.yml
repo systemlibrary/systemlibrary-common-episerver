@@ -11512,6 +11512,12 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Services.Remove(Of T)()
   nameWithType: Services.Remove<T>()
   nameWithType.vb: Services.Remove(Of T)()
+- uid: SystemLibrary.Common.Episerver.Setup
+  name: Setup
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Setup.html
+  commentId: T:SystemLibrary.Common.Episerver.Setup
+  fullName: SystemLibrary.Common.Episerver.Setup
+  nameWithType: Setup
 - uid: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions
   name: SystemLibraryCommonEpiserverOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.html
