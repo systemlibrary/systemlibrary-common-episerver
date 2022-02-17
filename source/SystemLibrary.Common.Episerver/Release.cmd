@@ -1,0 +1,1 @@
+nuget pack SystemLibrary.Common.Episerver.csproj -p Configuration=Release

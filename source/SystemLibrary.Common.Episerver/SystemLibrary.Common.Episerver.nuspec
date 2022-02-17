@@ -1,0 +1,62 @@
+﻿<?xml version = "1.0" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>SystemLibrary.Common.Episerver</id>
+
+		<version>2.0.0.1</version>
+
+		<authors>System Library</authors>
+
+		<owners>System Library</owners>
+
+		<projectUrl>https://systemlibrary.com/package/SystemLibrary.Common.Episerver</projectUrl>
+
+		<license type="expression">Apache-2.0</license>
+
+		<icon>nuget-icon.png</icon>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+		<releaseNotes>
+			Latest version:
+			https://github.com/systemlibrary/systemlibrary-common-episerver#latest-version
+		</releaseNotes>
+
+		<description>
+			A common library for all .NET &gt;= 5 episerver applications - various reusable extensions and classes
+
+			Selling points:
+			* Extensions for XhtmlString, ContentReference, ContentArea, ...
+			* Initialize your application through two methods for Episerver 12, in &gt;= .NET 5: app.CommonEpiserverInitialization(); and services.CommonEpiserverServices&lt;CurrentUser&gt;(options);
+			* A log builder which builds a string with all needed information about current error and request, which you control where to log to (slack, cloud watch, sentry, firebase, ...)
+			* Cache class that creates a unique key based on current user roles, with option add additional predicates, and also a flag to cache or not for CmsUsers
+			* Contains a 'CurrentUser' that you can either inherit or just inject yourself in any service/controller
+			* Contains Enum attributes, ContentIcon from FontAwesome, ColorPicker, and much, much more!
+
+			Documentation:
+			https://systemlibrary.github.io/systemlibrary-common-episerver/
+
+			Source code:
+			https://github.com/systemlibrary/systemlibrary-common-episerver/
+		</description>
+
+		<copyright>Copyright © System Library</copyright>
+
+		<tags>C# .NET 5.0 Episerver Optimizely Library</tags>
+
+		<dependencies>
+			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.3.0" />
+			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.3.1" />
+			<dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.7" />
+			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
+			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
+			<dependency id="SystemLibrary.Common.Net.Json" version="2.0.0.8" />
+			<dependency id="SystemLibrary.Common.Web" version="2.0.0.8" />
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="nuget-icon.png" target="" />
+	</files>
+</package>
+<!-- Command: nuget pack SystemLibrary.Common.Net.csproj -p Configuration=Release -->

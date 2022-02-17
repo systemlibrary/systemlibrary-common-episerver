@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Configurations>Release</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Attributes\ContentIconAttribute\FontAwesome\Css\fontawesome-bundled.min.css" />
+		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
+		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
+		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Css\fontawesome-bundled.min.css" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Regular\*.svg" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Solid\*.svg" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Brands\*.svg" />
+	</ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.3.0" />
+		<PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.3.1" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
+		<PackageReference Include="SystemLibrary.Common.Net" Version="2.0.0.14" />
+		<PackageReference Include="SystemLibrary.Common.Net.Json" Version="2.0.0.8" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="2.0.0.6" />
+	</ItemGroup>
+
+</Project>
