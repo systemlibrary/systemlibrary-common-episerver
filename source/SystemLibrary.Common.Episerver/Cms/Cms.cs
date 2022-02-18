@@ -11,6 +11,29 @@ using SystemLibrary.Common.Episerver.Extensions;
 
 namespace SystemLibrary.Common.Episerver
 {
+    /// <summary>
+    /// Base Cms functions to use anywhere within your application
+    /// - No more injecting things that you always need 
+    /// - No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// //Use the BaseCms directly without inheriting it yourself:
+    /// 
+    /// var startPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
+    /// //'startPage' is null if current page is not start page, else it returns the startpage
+    /// 
+    /// //Extend the BaseCms class with your own Cms functions that are common within your application:
+    /// public class Cms : BaseCms
+    /// {
+    ///     public ContentType GetFirstContentType() 
+    ///     {
+    ///         // Use the ContentTypeRepository, or the ContentRepository or the ContentModelUsage static members
+    ///         return ContentTypeRepository.Load(1);
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     public abstract class BaseCms
     {
         static IContentRepository _ContentRepository;
@@ -30,6 +53,7 @@ namespace SystemLibrary.Common.Episerver
         /// </summary>
         public static T Get<T>(ContentReference contentReference) where T : ContentData
         {
+
             ContentRepository.TryGet(contentReference, out T content);
             return content;
         }

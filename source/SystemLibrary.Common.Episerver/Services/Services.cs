@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace SystemLibrary.Common.Episerver
 {
+    /// <summary>
+    /// A static class to get any service ("service locator pattern") instead of injecting everything everywhere
+    /// </summary>
     public static class Services
     {
         //NOTE: Might use 'static Injected<LocalizationService> Services' - if 'Injected' actually also triggers through 'static ctor' calls

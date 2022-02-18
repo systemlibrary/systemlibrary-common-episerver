@@ -11,19 +11,19 @@ namespace SystemLibrary.Common.Episerver
     /// <summary>
     /// Cache
     /// 
-    /// Skip: 'true' means that 'getItem' is always invoked, no cache occurs within this class
+    /// Default duration is 60 seconds
     /// 
-    /// Cache is always skipped:
-    /// - if cacheKey is null or empty
-    /// - if HttpContext.Current is null
-    /// - if PageIsInEditMode is true
+    /// Required skip cache scenarios:
+    /// - If cachekey is null or empty
+    /// - If not in a web context
+    /// - If PageIsInEditMode is true
     /// 
-    /// Optional to also skip for:
-    /// - authenticated visitors
-    /// - authenticated cms users
+    /// Optional skip cache scenarios by parameters to Cache.Get():
+    /// - authenticated visitors, every user that is signed, but is not part of Roles.CmsRoles, default to false
+    /// - authenticated cms users, defaults to true, so logged in cms users do not get cached content at all
     /// 
-    /// Implement your own custom skip logic that will trigger after the required skip conditions:
-    /// - skipCacheFor parameter upon "Get()"
+    /// Can implement your own custom skip logic, additional to the ones that are required:
+    /// - pass in 'skipCacheFor' parameter in Cache.Get() function
     /// </summary>
     public static class Cache
     {
@@ -54,6 +54,27 @@ namespace SystemLibrary.Common.Episerver
         /// <summary>
         /// Return the items from getItem() or from cache based
         /// </summary>
+        /// <example>
+        /// <code class="language-csharp hljs">
+        /// var cacheKey = "hello-world-key";
+        /// var data = Cache.Get(cacheKey, () => {
+        ///     return "hello world";
+        /// });
+        /// //'data' is now 'hello world', if called multiple times within the cache duration, default 60s, "hello world" is returned from the cache
+        /// 
+        /// //Another example with more options: 
+        /// var cacheKey = "hello-world-key";
+        /// var data = Cache.Get(cacheKey, () => {
+        ///         return "hello world";
+        ///     }, 
+        ///     duration: TimeSpan.FromSeconds(1),
+        ///     condition: x => x != "hello world",
+        ///     skipCacheForCmsUsers: false);
+        ///     
+        /// //'data' is equal to 'hello world', cache duration is 1 second, but it only adds the result to cache, if it is not equal to "hello world"
+        /// //So in this scenario - "hello world" is never added to cache, and our function that returns "hello world" is always invoked
+        /// </code>
+        /// </example>
         /// <param name="condition">Add to cache only if condition is met, for instance: data != null</param>
         /// <param name="skipCacheForAuthenticatedVisitors">Skip cache for logged in non-cms users</param>
         /// <param name="skipCacheForCmsUsers">Skip cache for Cms Users when they visit a page outside Edit Mode</param>
@@ -94,6 +115,11 @@ namespace SystemLibrary.Common.Episerver
             }
         }
 
+        /// <summary>
+        /// Remove a single item from cache based on cacheKey
+        /// - If it does not exist, it does nothing
+        /// - If context is not web, it does nothing
+        /// </summary>
         public static void Remove(string cacheKey)
         {
             if (cacheKey.IsNot()) return;
@@ -103,6 +129,9 @@ namespace SystemLibrary.Common.Episerver
             cache.Remove(cacheKey);
         }
 
+        /// <summary>
+        /// Clear everything found in cache
+        /// </summary>
         public static void Clear()
         {
             if (!IsWebContext) return;

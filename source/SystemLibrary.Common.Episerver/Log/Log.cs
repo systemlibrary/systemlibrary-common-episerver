@@ -2,6 +2,12 @@
 
 namespace SystemLibrary.Common.Episerver
 {
+    /// <summary>
+    /// One log class for your whole application
+    /// 
+    /// - Destination of where the log-message is saved is up to you to implement by implementing the interface ILogWriter in your application
+    /// - After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter
+    /// </summary>
     public static partial class Log
     {
         static ILogWriter _LogWriter;

@@ -8,6 +8,13 @@ namespace SystemLibrary.Common.Episerver.Extensions
 {
     public static class ViewContextExtensions
     {
+        /// <summary>
+        /// Returns true if current view context is inside a block editing view, else falseQ
+        /// 
+        /// //Credit to: https://marisks.net/2016/07/21/simple-check-if-block-is-in-edit-mode/
+        /// 
+        /// //TODO: Update to remove the need of an input param
+        /// </summary>
         public static bool BlockIsInEditMode(this ViewContext viewContext)
         {
             //Credit to: https://marisks.net/2016/07/21/simple-check-if-block-is-in-edit-mode/

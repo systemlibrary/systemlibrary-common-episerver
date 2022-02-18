@@ -17,6 +17,7 @@ namespace SystemLibrary.Common.Episerver
     /// Remember to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself
     /// </summary>
     /// <example>
+    /// <code class="language-csharp hljs">
     /// // Implement your own CurrentUser object by inheriting 'CurrentUser'
     /// 
     /// public class AppUser : CurrentUser 
@@ -29,7 +30,12 @@ namespace SystemLibrary.Common.Episerver
     ///     }
     /// }
     /// 
-    /// // Remember to pass 'AppUser' in your call to: CommonEpiserverServices&lt;AppUser&gt;(...);
+    /// // Remember to register your new user inside ConfigureServices() at startup of your app:
+    /// public void ConfigureServices(IServiceCollection services)
+    /// {
+    ///     services.CommonEpiserverServices&lt;AppUser&gt;(...);
+    /// }
+    /// </code>
     /// </example>
     public class CurrentUser : ApplicationUser
     {
@@ -39,14 +45,31 @@ namespace SystemLibrary.Common.Episerver
 
         public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
 
+        /// <summary>
+        /// Returns true if current user is logged in and is in any of the roles within: Roles.CmsRoles, else false
+        /// </summary>
+        /// <returns></returns>
         public bool IsCmsUser() => IsAuthenticated && Principal.IsInAnyRole(Roles.CmsRoles);
 
+        /// <summary>
+        /// Returns true if current user is logged in and is in the role specified
+        /// - Checking for an 'unauthenticated role' does not work
+        /// </summary>
         public bool IsInRole(string roleName) => IsAuthenticated && Principal.IsInAnyRole(roleName);
 
+        /// <summary>
+        /// Name of the Principal Identity
+        /// </summary>
         public string Name => Principal?.Identity?.Name;
 
+        /// <summary>
+        /// First name taken from claim 'GivenName'
+        /// </summary>
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// Last name taken from claim 'Surname'
+        /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
@@ -60,11 +83,15 @@ namespace SystemLibrary.Common.Episerver
             claimsIdentity.AddClaim(new Claim(ClaimTypes.MobilePhone, PhoneNumber));
         }
 
+        /// <summary>
+        /// //TODO: Implement so this is in use and works like planned
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <returns></returns>
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<CurrentUser> manager)
         {
-            //TODO: Implement so this is in use and works like planned
             var userIdentity = await manager.CreateAsync(this);
-        
+
             var claimsIdentity = userIdentity.Identity as ClaimsIdentity;
 
             if (claimsIdentity == null) return null;

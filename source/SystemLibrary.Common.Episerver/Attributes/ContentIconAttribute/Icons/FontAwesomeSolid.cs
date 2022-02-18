@@ -2,9 +2,16 @@
 {
     partial class ContentIconAttribute
     {
-        //Taken from: https://fontawesome.com/v5.15/icons?d=listing&p=2&s=solid&m=free
-        //Note: List is of version 5, but v6 icons has been included, just need to update this list...
-        //but cannot copy paste in 'list view' from version 6...
+        /// <summary>
+        /// List of font icons inside 'font awesome solid' package
+        /// </summary>
+        /// <example>
+        /// <code class="language-csharp hljs">
+        /// [ContentIcon(ContentIconAttribute.FontAwesomeSolid.address_card)]
+        /// public class ArticlePage : PageData {
+        /// }
+        /// </code>
+        /// </example>
         public enum FontAwesomeSolid
         {
             ___0,

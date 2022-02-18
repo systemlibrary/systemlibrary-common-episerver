@@ -1,5 +1,8 @@
 ﻿namespace SystemLibrary.Common.Episerver
 {
+    /// <summary>
+    /// Various default Cms Roles
+    /// </summary>
     public static class Roles
     {
         public static string Administrators => EPiServer.Authorization.Roles.Administrators;

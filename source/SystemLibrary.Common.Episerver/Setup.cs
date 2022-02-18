@@ -8,7 +8,7 @@
     /// <example>
     /// Setup XML and JSON configurations:
     /// 
-    /// // Configure module.config to load common CSS stylesheets when in Edit Mode
+    /// // Create or modify ~/module.config at root, to load common CSS stylesheets when in Edit Mode
     /// <code class="language-csharp hljs">
     /// &lt;?xml version="1.0" encoding="utf-8"?&gt;
     /// &lt;module&gt;
@@ -19,7 +19,7 @@
     /// &lt;/example&gt;
     /// </code>
     /// 
-    /// // Configure 'appSettings.json'
+    /// // Create or modify ~/appSettings.json, to target a EpiDb as normal, but can also configure settings for the SystemLibrary packages
     /// <code class="language-csharp hljs">
     /// {
     ///     "ConnectionStrings": {
@@ -46,16 +46,10 @@
     ///         "writeIndented": false
     ///     },
     ///     "systemLibraryCommonWebHttpBaseClient": {
-    ///         "timeoutMilliseconds": 30000,
-    ///         "retryOnceOnCancelled": true,
-    ///         "ignoreSslErrors": true
+    ///         "retryRequestTimeoutSeconds": 30000,
+    ///         "cacheClientConnectionInSeconds": 300
     ///     },
     ///     "systemLibraryCommonEpiserver": {
-    ///         "applicationBuilder": {
-    ///             "registerDisplayChannels": true,
-    ///             "registerApplicationCookie": true,
-    ///             "registerViewLocations": true
-    ///         },
     ///         "iLogWriter": {
     ///             "appendLoggedInState": false,
     ///             "appendCurrentPage": false,
