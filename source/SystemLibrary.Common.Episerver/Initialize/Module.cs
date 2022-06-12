@@ -1,10 +1,19 @@
-﻿using EPiServer.Framework;
-using EPiServer.Framework.Initialization;
+﻿using EPiServer.Framework.Initialization;
+using EPiServer.ServiceLocation;
 
 namespace SystemLibrary.Common.Episerver.Initialize
 {
-    public abstract class InitModule : IInitializableModule
+    /// <summary>
+    /// Create your own InitializableModule by inheriting InitModule
+    /// - No need to create both Initialize and Uninitialize as they come with a default empty implementation
+    /// - Override the method(s) you need to use in your InitializableModule
+    /// </summary>
+    public abstract class InitModule : IConfigurableModule
     {
+        public virtual void ConfigureContainer(ServiceConfigurationContext context)
+        {
+        }
+
         public virtual void Initialize(InitializationEngine context)
         {
         }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
-using EPiServer.Core;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
@@ -17,21 +13,23 @@ namespace SystemLibrary.Common.Episerver.Attributes
     {
         [InitializableModule]
         [ModuleDependency(typeof(EPiServer.Cms.Shell.InitializableModule))]
-        internal class ContentIconRouteModule : InitModule
+        internal partial class ContentIconRouteModule : InitModule
         {
             static bool IsInitialized;
 
             public override void Initialize(InitializationEngine context)
             {
                 if (IsInitialized || context.HostType != HostType.WebApplication) return;
+
                 IsInitialized = true;
 
-                //TODO: Method is too long, too... 
-                //make the module partial and split the functions out...
                 var uiDescriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
 
                 try
                 {
+                    //NOTE: On rare occasions this throws
+                    //- side effect that icons will not be loaded
+                    //- swallow error, as we do not want app to crash for this
                     if (uiDescriptorRegistry?.UIDescriptors == null) return;
                 }
                 catch (Exception ex)
@@ -40,9 +38,14 @@ namespace SystemLibrary.Common.Episerver.Attributes
                     return;
                 }
 
+                SetUIDescriptorCssClass(uiDescriptorRegistry);
+            }
+
+            static void SetUIDescriptorCssClass(UIDescriptorRegistry uiDescriptorRegistry)
+            {
                 foreach (var uiDescriptor in uiDescriptorRegistry.UIDescriptors)
                 {
-                    if (uiDescriptor == null) continue;
+                    if (uiDescriptor == null || uiDescriptor.ForType == null) continue;
 
                     var contentIconAttribute = GetContentIconAttribute(uiDescriptor.ForType.Name);
 
@@ -56,51 +59,22 @@ namespace SystemLibrary.Common.Episerver.Attributes
 
                     var fontawesomeIcon = iconName.Replace("_", "-");
 
+                    uiDescriptor.IconClass = "dijitIcon dijitTreeIcon epi-iconObjectPage ";
+
                     if (fontAwesomeIconName == typeof(FontAwesomeSolid))
                     {
-                        uiDescriptor.IconClass = "dijitIcon dijitTreeIcon epi-iconObjectPage fas fa-" + fontawesomeIcon;
+                        uiDescriptor.IconClass += "fas fa-" + fontawesomeIcon;
                     }
                     else if (fontAwesomeIconName == typeof(FontAwesomeBrands))
                     {
-                        uiDescriptor.IconClass = "dijitIcon dijitTreeIcon epi-iconObjectPage fab fa-" + fontawesomeIcon;
+                        uiDescriptor.IconClass += "fab fa-" + fontawesomeIcon;
                     }
                     else
                     {
-                        uiDescriptor.IconClass = "dijitIcon dijitTreeIcon epi-iconObjectPage far fa-" + fontawesomeIcon;
+                        uiDescriptor.IconClass += "far fa-" + fontawesomeIcon;
                     }
                 }
             }
-
-            static ContentIconAttribute GetContentIconAttribute(string name)
-            {
-                if (!ContentTypesWithContentIconAttribute.ContainsKey(name)) return null;
-
-                return ContentTypesWithContentIconAttribute.FirstOrDefault(x => x.Key == name).Value;
-            }
-
-            static Dictionary<string, ContentIconAttribute> GetPagesWithContentTypeIcons()
-            {
-                var pageTypes = GetContentTypesWithContentIconAttribute();
-
-                if (pageTypes == null) return new Dictionary<string, ContentIconAttribute>();
-
-                return (from pageType in pageTypes
-                        select new
-                        {
-                            pageType.Name,
-                            ContentIcon = pageType.GetCustomAttribute<ContentIconAttribute>()
-                        }).ToDictionary(key => key.Name, value => value.ContentIcon);
-            }
-
-            static IEnumerable<Type> GetContentTypesWithContentIconAttribute()
-            {
-                return Net.Assemblies.FindAllTypesInheritingWithAttribute<PageData, ContentIconAttribute>();
-            }
-
-            static Dictionary<string, ContentIconAttribute> _ContentTypesWithContentIconAttribute;
-            static Dictionary<string, ContentIconAttribute> ContentTypesWithContentIconAttribute =>
-                _ContentTypesWithContentIconAttribute != null ? _ContentTypesWithContentIconAttribute :
-                (_ContentTypesWithContentIconAttribute = GetPagesWithContentTypeIcons());
         }
     }
 }

@@ -30,21 +30,14 @@ namespace SystemLibrary.Common.Episerver.Initialize
         {
             try
             {
-                RegisterInitialSiteDefinitions(httpContext);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                Dump.Write(ex);
-            }
-            try
-            {
-                if (await IsAdminUserAlreadyRegistered())
+                if (!RegisterInitialSiteDefinitions(httpContext))
                 {
-                    return;
+                    if (await IsAdminUserAlreadyRegistered().ConfigureAwait(false))
+                    {
+                        return;
+                    }
+                    await CreateAdminUser().ConfigureAwait(false);
                 }
-
-                await CreateAdminUser();
             }
             catch (Exception ex)
             {
@@ -61,6 +54,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
             var userName = email.Substring(0, email.IndexOf('@'));
             var roles = Roles.CmsRoles;
             var result = await _uIUserProvider.CreateUserAsync(userName, password, email, null, null, true);
+
             if (result.Status == UIUserCreateStatus.Success)
             {
                 foreach (var role in roles)
@@ -71,12 +65,18 @@ namespace SystemLibrary.Common.Episerver.Initialize
                 }
 
                 await _uIRoleProvider.AddUserToRolesAsync(result.User.Username, roles);
+            } 
+            else
+            {
+                Log.Error("Result creating admin was: " + result.Status);
+                Dump.Write("Result creating admin was: " + result.Status);
             }
         }
 
         async Task<bool> IsAdminUserAlreadyRegistered()
         {
             var email = ServiceCollectionExtensions.Options.DefaultAdminEmail;
+
             var userName = email.Substring(0, email.IndexOf('@'));
 
             var res = await _uIUserProvider.GetUserAsync(userName);
@@ -84,28 +84,30 @@ namespace SystemLibrary.Common.Episerver.Initialize
             return res?.Username != null;
         }
 
-        void RegisterInitialSiteDefinitions(HttpContext context)
+        bool RegisterInitialSiteDefinitions(HttpContext context)
         {
             if (_siteDefinitionRepository?.List()?.Any() == true)
-                return;
+                return true;
 
-            var request = context.Request;
+            var request = context?.Request;
 
-            var host = request.Host;
+            var host = request?.Host ?? new HostString("http://localhost", 80);
 
             var site = new SiteDefinition
             {
                 Id = Guid.NewGuid(),
                 Name = host.Host,
                 SiteUrl = new Uri(request.Scheme + "://" + host.Host + ":" + host.Port)
-            };
+            }; 
 
             if (site.Hosts == null)
                 site.Hosts = new List<HostDefinition>();
 
+            var primaryHostName = host.Host.GetPrimaryDomain();
+
             site.Hosts.Add(new HostDefinition()
             {
-                Name = request.Host.Host + ":" + request.Host.Port,
+                Name = primaryHostName + ":" + host.Port,
                 Type = HostDefinitionType.Primary
             });
 
@@ -118,6 +120,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
             site.StartPage = ContentReference.RootPage;
 
             _siteDefinitionRepository.Save(site);
+
+            return false;
         }
     }
 }

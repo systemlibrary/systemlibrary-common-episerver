@@ -10,6 +10,9 @@ using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Initialize
 {
+    /// <summary>
+    /// Extension method on IApplicationBuilder to initialize Exception Handler, Static File Handler, Routing, Authorization and Authentication and more...
+    /// </summary>
     public static class IApplicationBuilder
     {
         /// <summary>
@@ -21,32 +24,42 @@ namespace SystemLibrary.Common.Episerver.Initialize
             if(appBuilderOptions == null)
                 appBuilderOptions = new ApplicationBuilderOptions();
 
-            if (appBuilderOptions.UseExceptionHandler)
-            {
-                app.UseExceptionHandler(appError =>
-                {
-                    appError.Run(context =>
-                    {
-                        try
-                        {
-                            var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
+            //if (appBuilderOptions.UseExceptionHandler)
+            //{
+            //    app.UseExceptionHandler(appError =>
+            //    {
+            //        appError.Run(context =>
+            //        {
+            //            Dump.Write("ERRORO CCUUUUUUUUUUUURSED");
+            //            try
+            //            {
+            //                var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                            Log.Error(contextFeature?.Error);
+            //                var logwriter = Services.Get<ILogWriter>();
+            //                if(logwriter == null)
+            //                {
+            //                    Dump.Write(contextFeature?.Error);
+            //                }
+            //                else
+            //                {
+            //                    Log.Error(contextFeature?.Error);
+            //                }
+            //                if (context?.Response != null)
+            //                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //            }
+            //            catch
+            //            {
+            //                Dump.Write("Error occured " + context?.Request?.Path.ToString());
+            //                Log.Error("Error occured " + context?.Request?.Path.ToString());
+            //            }
+                        
 
-                            if (context?.Response != null)
-                                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        }
-                        catch
-                        {
-                            Log.Error("Error occured " + context?.Request?.Path.ToString());
-                        }
-
-                        return null;
-                    });
-                });
-            }
+            //            return null;
+            //        });
+            //    });
+            //}
             
-            if (appBuilderOptions.UseEpiserverRewriteToEpiserverCms)
+            if (appBuilderOptions.UseRewriteEpiserverPathToEpiserverCms)
             {
                 var options = new RewriteOptions()
                 .AddRedirect("episerver$", "episerver/cms/")
@@ -62,7 +75,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
             {
                 endpoints.MapAreaControllerRoute("SystemLibrary",
                      "SystemLibrary",
-                     pattern: "SystemLibrary/{controller=Home}/{action=Index}/{id?}"
+                     pattern: "SystemLibrary/{controller}/{action}/{id?}"
+                    //was: pattern: "SystemLibrary/{controller=Home}/{action=Index}/{id?}"
                     );
             });
 

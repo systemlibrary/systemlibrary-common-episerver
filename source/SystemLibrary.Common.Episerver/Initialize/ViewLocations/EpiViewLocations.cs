@@ -24,6 +24,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
             "~/Content/Blocks/{0}/{0}.cshtml",
             "~/Content/Blocks/{1}/Views/{0}.cshtml",
             "~/Content/Blocks/{1}/Views/Index.cshtml",
+            "~/Views/Blocks/{0}/{1}.cshtml",
             "~/Views/Blocks/{0}.cshtml"
         };
 
@@ -33,7 +34,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
 
         static string[] _AllViews;
 
-        static string[] AllViews = (_AllViews != null) ? _AllViews :
+        internal static string[] AllViews = (_AllViews != null) ? _AllViews :
             (_AllViews = GetViewsForComponents()
             .Concat(GetViewsForPages())
             .Concat(GetViewsForBlocks())

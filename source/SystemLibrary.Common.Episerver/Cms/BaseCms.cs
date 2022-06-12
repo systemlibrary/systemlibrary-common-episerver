@@ -7,7 +7,12 @@ using EPiServer.DataAbstraction;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+
 using SystemLibrary.Common.Episerver.Extensions;
+using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver
 {
@@ -53,7 +58,6 @@ namespace SystemLibrary.Common.Episerver
         /// </summary>
         public static T Get<T>(ContentReference contentReference) where T : ContentData
         {
-
             ContentRepository.TryGet(contentReference, out T content);
             return content;
         }
@@ -75,7 +79,7 @@ namespace SystemLibrary.Common.Episerver
         /// </summary>
         public static IEnumerable<T> GetItems<T>(IEnumerable<ContentReference> contentReferences) where T : IContentData
         {
-            if (contentReferences == null) return new List<T>();
+            if (contentReferences.IsNot()) return new List<T>();
 
             return ContentRepository.GetItems(contentReferences, new LoaderOptions()).Cast<T>();
         }
@@ -110,6 +114,19 @@ namespace SystemLibrary.Common.Episerver
             var mode = Services.Get<IContextModeResolver>();
 
             return mode.CurrentMode == ContextMode.Preview;
+        }
+
+        public static IHostBuilder CreateCmsHostBuilder<T>(string[] args, string environment = "Dev", string appSettingsPath = null) where T : class
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsPath))
+                .ConfigureWebHostDefaults(
+                config =>
+                {
+                    config.UseEnvironment(environment);
+                    config.UseStartup<T>();
+                })
+                .ConfigureCmsDefaults();
         }
     }
 }

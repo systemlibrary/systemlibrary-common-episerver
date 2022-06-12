@@ -7,15 +7,11 @@ namespace SystemLibrary.Common.Episerver.Initialize
 {
     [InitializableModule]
     [ModuleDependency(typeof(ServiceContainerInitialization))]
-    public class ServiceCollectionModule : IInitializableModule
+    public class ServiceCollectionModule : InitModule
     {
-        public void Initialize(InitializationEngine context)
+        public override void Initialize(InitializationEngine context)
         {
             Services.Instance = context.Locate.Advanced;
         }
-
-        public void Preload(string[] parameters) { }
-
-        public void Uninitialize(InitializationEngine context) { }
     }
 }

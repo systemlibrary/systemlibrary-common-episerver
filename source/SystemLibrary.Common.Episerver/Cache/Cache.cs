@@ -46,7 +46,7 @@ namespace SystemLibrary.Common.Episerver
         {
             MemoryCacheOptions options = new MemoryCacheOptions();
             options.CompactionPercentage = 25;
-            options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
+            options.ExpirationScanFrequency = TimeSpan.FromSeconds(180);
             options.SizeLimit = 200000;
             cache = new MemoryCache(options);
         }

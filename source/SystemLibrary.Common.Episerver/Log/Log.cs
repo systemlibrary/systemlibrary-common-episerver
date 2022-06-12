@@ -41,7 +41,7 @@ namespace SystemLibrary.Common.Episerver
             var message = LogMessageBuilder.Get(obj, level);
 
             if (LogWriter == null)
-                throw new System.Exception("You are calling Common.Episerver.Log which is not registered. Register a 'LogWriter' that implements SystemLibrary.Common.Episerver.ILogWriter, then pass the Type of your new class and pass it to the method 'AddCommonEpiserver', inside your 'Startup.ConfigureServices'");
+                throw new System.Exception("You are calling Common.Episerver.Log which do not have a LogWriter registered. Register a 'LogWriter' that implements SystemLibrary.Common.Episerver.ILogWriter. For instance inside your ConfigureServices(... services) { services.AddSingleton(typeof(ILogWriter), typeof('YourLogWriterClass'));");
 
             switch (level)
             {

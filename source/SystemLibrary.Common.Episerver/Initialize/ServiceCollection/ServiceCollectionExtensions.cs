@@ -28,21 +28,17 @@ namespace SystemLibrary.Common.Episerver.Initialize
         /// services.AddTinyMce();
         /// services.AddFind();
         /// </summary>
-        public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options)
+        public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options = null)
         {
             try
             {
                 Services.Collection = services;
+                
+                SetOptions(options);
 
-                Options = options ?? new ServiceCollectionOptions();
-
-                if (Options.ViewLocations == null)
-                    Options.ViewLocations = new EpiViewLocations();
+                Dump.Write(Options);
 
                 services.CommonServices(Options);
-
-                if (Options.LogType != null)
-                    services.AddSingleton(typeof(ILogWriter), Options.LogType);
 
                 if (Options.RegisterDisplays)
                 {
@@ -62,7 +58,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
                     services.ConfigureApplicationCookie(o =>
                     {
                         o.LoginPath = "/util/login";
-                        o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUsersSessionDurationMinutes);
+                        o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUserSessionDurationMinutes);
                         o.SlidingExpiration = Options.CmsUsersSlidingExpiration;
                     });
                 }
@@ -79,6 +75,27 @@ namespace SystemLibrary.Common.Episerver.Initialize
             }
 
             return services;
+        }
+
+        static void SetOptions(ServiceCollectionOptions options)
+        {
+            var fallback = new ServiceCollectionOptions();
+
+            Options = options ?? fallback;
+
+            if (options == null) return;
+
+            if (Options.ViewLocations == null)
+                Options.ViewLocations = new EpiViewLocations();
+
+            if(Options.CmsUserSessionDurationMinutes == 0)
+                Options.CmsUserSessionDurationMinutes = fallback.CmsUserSessionDurationMinutes;
+
+            if (options.DefaultAdminEmail.IsNot())
+                Options.DefaultAdminEmail = fallback.DefaultAdminEmail;
+
+            if(options.DefaultAdminPassword.IsNot())
+                Options.DefaultAdminPassword = fallback.DefaultAdminPassword;    
         }
 
         /// <summary>

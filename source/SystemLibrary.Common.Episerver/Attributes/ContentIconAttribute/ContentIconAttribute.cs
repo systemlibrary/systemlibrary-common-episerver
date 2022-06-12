@@ -32,7 +32,11 @@ namespace SystemLibrary.Common.Episerver.Attributes
             FontAwesomeRegular.hand_scissors
         };
 
-        public Enum Value { get; }
+        public Enum Value { get; set; }
+
+        public ContentIconAttribute(string imageRelativeUrl) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/CustomIcon/", imageRelativeUrl))
+        {
+        }
 
         public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/RegularIcon/", regular))
         {
@@ -44,13 +48,31 @@ namespace SystemLibrary.Common.Episerver.Attributes
             Value = solid;
         }
 
+        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/BrandsIcon/", brand))
+        {
+            Value = brand;
+        }
+
         static string GetEmbeddedSvgName(string requestUrl, Enum icon)
         {
-            var iconName = icon.ToString();
-            //Some svg's have a digit as first letter of the filename
-            //enums cannot start with digits, hence those are manually prefixed with ___
-            if(iconName.StartsWith("___"))
-                iconName = iconName.Substring(3);   
+            return GetEmbeddedSvgName(requestUrl, icon.ToString());
+        }
+
+        static string GetEmbeddedSvgName(string requestUrl, string iconName)
+        {
+            if (iconName.EndsWithAny(".svg", ".jpg", ".png"))
+            {
+                if(iconName.StartsWith("~"))
+                    iconName = iconName.Substring(1);
+                iconName = iconName.Replace("/", "___");
+
+                return requestUrl + iconName;
+            }
+
+            //SVG's might have a digit as first character
+            //Enum cannot start with a digit, hence swapping it with '___'
+            if (iconName.StartsWith("___"))
+                iconName = iconName.Substring(3);
 
             return requestUrl + iconName.Replace("_", "-") + ".svg";
         }

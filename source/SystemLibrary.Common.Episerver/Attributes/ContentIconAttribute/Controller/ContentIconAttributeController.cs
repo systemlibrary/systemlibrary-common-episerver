@@ -35,6 +35,14 @@ namespace SystemLibrary.Common.Episerver.Attributes
             return new FileContentResult(bytes, "text/css");
         }
 
+        [Route("SystemLibrary/ContentIcons/CustomIcon/{iconPath}")]
+        public ActionResult CustomIcon(string iconPath)
+        {
+            iconPath = iconPath.Replace("___", "/");
+
+            return Redirect(iconPath);
+        }
+
         [Route("SystemLibrary/ContentIcons/RegularIcon/{name}")]
         public ActionResult RegularIcon(string name)
         {
@@ -82,7 +90,6 @@ namespace SystemLibrary.Common.Episerver.Attributes
                 IconCache.TryAdd(cacheKey, bytes);
 
                 return bytes;
-                
             }
             catch (Exception ex)
             {
