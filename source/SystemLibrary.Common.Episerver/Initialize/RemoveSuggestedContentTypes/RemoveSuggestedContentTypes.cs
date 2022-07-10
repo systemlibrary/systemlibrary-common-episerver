@@ -2,17 +2,19 @@
 using EPiServer.Framework;
 using EPiServer.ServiceLocation;
 
-namespace SystemLibrary.Common.Episerver.Initialize
+namespace SystemLibrary.Common.Episerver.Initialize;
+
+
+[InitializableModule]
+[ModuleDependency(typeof(FrameworkInitialization))]
+public class RemoveSuggestedContentTypes : InitModule
 {
-    [InitializableModule]
-    [ModuleDependency(typeof(FrameworkInitialization))]
-    [ModuleDependency(typeof(ServiceContainerInitialization))]
-    public class RemoveSuggestedContentTypes : InitModule
+    public override void ConfigureContainer(ServiceConfigurationContext context)
     {
-        public override void ConfigureContainer(ServiceConfigurationContext context)
-        {
-            if (ServiceCollectionExtensions.Options.RemoveSuggestedContentTypes)
-                Services.Remove<IContentTypeAdvisor>();
-        }
+        if (ServiceCollectionExtensions.Options == null)
+            Log.Error("Error: You've not called on extension for IServiceCollection named: CommonEpiserverServices()");
+
+        if (ServiceCollectionExtensions.Options?.RemoveSuggestedContentTypes == true)
+            Services.Remove<IContentTypeAdvisor>();
     }
 }

@@ -1,0 +1,17 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Rewrite;
+
+namespace SystemLibrary.Common.Episerver.Initialize;
+
+partial class IApplicationBuilderExtensions
+{
+    static void ApplicationBuilderRedirects(IApplicationBuilder app, IApplicationBuilderOptions options)
+    {
+        if (!options.UseRewriteEpiserverPathToEpiserverCms) return;
+        
+        app.UseRewriter(new RewriteOptions()
+            .AddRedirect("episerver$", "episerver/cms/")
+            .AddRedirect("EPiServer$", "episerver/cms/")
+            .AddRedirect("episerver/$", "episerver/cms/"));
+    }
+}

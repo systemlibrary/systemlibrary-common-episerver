@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using EPiServer;
@@ -14,119 +15,124 @@ using Microsoft.Extensions.Hosting;
 using SystemLibrary.Common.Episerver.Extensions;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver
+namespace SystemLibrary.Common.Episerver;
+
+/// <summary>
+/// Base Cms functions to use anywhere within your application
+/// - No more injecting things that you always need 
+/// - No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class
+/// </summary>
+/// <example>
+/// <code class="language-csharp hljs">
+/// //Use the BaseCms directly without inheriting it yourself:
+/// 
+/// var startPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
+/// //'startPage' is null if current page is not start page, else it returns the startpage
+/// 
+/// //Extend the BaseCms class with your own Cms functions that are common within your application:
+/// public class Cms : BaseCms
+/// {
+///     public ContentType GetFirstContentType() 
+///     {
+///         // Use the ContentTypeRepository, or the ContentRepository or the ContentModelUsage static members that you get when inheriting BaseCms
+///         return ContentTypeRepository.Load(1);
+///     }
+/// }
+/// </code>
+/// </example>
+public abstract class BaseCms
 {
+    static IContentRepository _ContentRepository;
+    protected static IContentRepository ContentRepository =>
+        _ContentRepository != null ? _ContentRepository :
+        (_ContentRepository = Services.Get<IContentRepository>());
+
+    static ILanguageBranchRepository _LanguageBranchRepository;
+    protected static ILanguageBranchRepository LanguageBranchRepository => _LanguageBranchRepository != null ? _LanguageBranchRepository :
+        (_LanguageBranchRepository = Services.Get<ILanguageBranchRepository>());
+
+    static IContentTypeRepository _ContentTypeRepository;
+    protected static IContentTypeRepository ContentTypeRepository =>
+        _ContentTypeRepository != null ? _ContentTypeRepository :
+        (_ContentTypeRepository = Services.Get<IContentTypeRepository>());
+
+    protected static IContentModelUsage ContentModelUsage => Services.Get<IContentModelUsage>();
+
     /// <summary>
-    /// Base Cms functions to use anywhere within your application
-    /// - No more injecting things that you always need 
-    /// - No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class
+    /// Returns content or null if not found
     /// </summary>
-    /// <example>
-    /// <code class="language-csharp hljs">
-    /// //Use the BaseCms directly without inheriting it yourself:
-    /// 
-    /// var startPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
-    /// //'startPage' is null if current page is not start page, else it returns the startpage
-    /// 
-    /// //Extend the BaseCms class with your own Cms functions that are common within your application:
-    /// public class Cms : BaseCms
-    /// {
-    ///     public ContentType GetFirstContentType() 
-    ///     {
-    ///         // Use the ContentTypeRepository, or the ContentRepository or the ContentModelUsage static members
-    ///         return ContentTypeRepository.Load(1);
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
-    public abstract class BaseCms
+    public static T Get<T>(ContentReference contentReference) where T : ContentData
     {
-        static IContentRepository _ContentRepository;
-        protected static IContentRepository ContentRepository =>
-            _ContentRepository != null ? _ContentRepository :
-            (_ContentRepository = Services.Get<IContentRepository>());
+        ContentRepository.TryGet(contentReference, out T content);
+        return content;
+    }
 
-        static IContentTypeRepository _ContentTypeRepository;
-        protected static IContentTypeRepository ContentTypeRepository =>
-            _ContentTypeRepository != null ? _ContentTypeRepository :
-            (_ContentTypeRepository = Services.Get<IContentTypeRepository>());
+    /// <summary>
+    /// Returns content area items filtered by published, permission and personalized items for the current user
+    /// </summary>
+    public static IEnumerable<T> GetItems<T>(ContentArea contentArea) where T : IContentData
+    {
+        if (contentArea.IsNot()) return default;
 
-        protected static IContentModelUsage ContentModelUsage => Services.Get<IContentModelUsage>();
+        var contentReferences = contentArea.FilteredItems.Select(x => x.ContentLink);
 
-        /// <summary>
-        /// Returns content or null if not found
-        /// </summary>
-        public static T Get<T>(ContentReference contentReference) where T : ContentData
-        {
-            ContentRepository.TryGet(contentReference, out T content);
-            return content;
-        }
+        return GetItems<T>(contentReferences);
+    }
 
-        /// <summary>
-        /// Returns content area items filtered by published, permission and personalized items for the current user
-        /// </summary>
-        public static IEnumerable<T> GetItems<T>(ContentArea contentArea) where T : IContentData
-        {
-            if (contentArea.IsNot()) return default;
+    /// <summary>
+    /// Returns all content references as a list of T
+    /// </summary>
+    public static IEnumerable<T> GetItems<T>(IEnumerable<ContentReference> contentReferences) where T : IContentData
+    {
+        if (contentReferences.IsNot()) return new List<T>();
 
-            var contentReferences = contentArea.FilteredItems.Select(x => x.ContentLink);
+        return ContentRepository.GetItems(contentReferences, new LoaderOptions()).Cast<T>();
+    }
 
-            return GetItems<T>(contentReferences);
-        }
+    /// <summary>
+    /// Returns current page as T based on current request, or null
+    /// </summary>
+    public static T GetCurrentPage<T>() where T : ContentData
+    {
+        var pageRouteHelper = Services.Get<IPageRouteHelper>();
 
-        /// <summary>
-        /// Returns all content references as a list of T
-        /// </summary>
-        public static IEnumerable<T> GetItems<T>(IEnumerable<ContentReference> contentReferences) where T : IContentData
-        {
-            if (contentReferences.IsNot()) return new List<T>();
+        return pageRouteHelper?.Content as T;
+    }
 
-            return ContentRepository.GetItems(contentReferences, new LoaderOptions()).Cast<T>();
-        }
+    /// <summary>
+    /// Returns current block as T based on current request, or null
+    /// </summary>
+    public static T GetCurrentBlock<T>() where T : ContentData
+    {
+        throw new System.Exception("Not yet implemented");
+    }
 
-        /// <summary>
-        /// Returns current page as T based on current request, or null
-        /// </summary>
-        public static T GetCurrentPage<T>() where T : ContentData
-        {
-            var pageRouteHelper = Services.Get<IPageRouteHelper>();
+    public static bool IsInEditMode()
+    {
+        var mode = Services.Get<IContextModeResolver>();
 
-            return pageRouteHelper?.Content as T;
-        }
+        return mode.CurrentMode == ContextMode.Edit;
+    }
 
-        /// <summary>
-        /// Returns current block as T based on current request, or null
-        /// </summary>
-        public static T GetCurrentBlock<T>() where T : ContentData
-        {
-            throw new System.Exception("Not yet implemented");
-        }
+    public static bool IsInPreviewMode()
+    {
+        var mode = Services.Get<IContextModeResolver>();
 
-        public static bool IsInEditMode()
-        {
-            var mode = Services.Get<IContextModeResolver>();
+        return mode.CurrentMode == ContextMode.Preview;
+    }
 
-            return mode.CurrentMode == ContextMode.Edit;
-        }
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsPath = null) where T : class
+    {
+        if(appSettingsPath.IsNot())
+            appSettingsPath = AppContext.BaseDirectory + "\\appSettings.json";
 
-        public static bool IsInPreviewMode()
-        {
-            var mode = Services.Get<IContextModeResolver>();
-
-            return mode.CurrentMode == ContextMode.Preview;
-        }
-
-        public static IHostBuilder CreateCmsHostBuilder<T>(string[] args, string environment = "Dev", string appSettingsPath = null) where T : class
-        {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsPath))
-                .ConfigureWebHostDefaults(
-                config =>
-                {
-                    config.UseEnvironment(environment);
-                    config.UseStartup<T>();
-                })
-                .ConfigureCmsDefaults();
-        }
+        return Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsPath))
+            .ConfigureWebHostDefaults(config => {
+                //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
+                //config.UseEnvironment(environment);
+                config.UseStartup<T>();
+            })
+            .ConfigureCmsDefaults();
     }
 }

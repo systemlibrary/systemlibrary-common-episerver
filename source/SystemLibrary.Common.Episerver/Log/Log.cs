@@ -7,7 +7,20 @@ namespace SystemLibrary.Common.Episerver
     /// 
     /// - Destination of where the log-message is saved is up to you to implement by implementing the interface ILogWriter in your application
     /// - After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter
+    /// 
     /// </summary>
+    /// <example>
+    /// Configure the log level by configuring episervers logging settings, usually in appSettings.json 
+    /// <code class="language-csharp hljs">
+    /// {  
+    ///     "Logging" { 
+    ///         "LogLevel" { 
+    ///             "Default": "Error" 
+    ///         }
+    ///     } 
+    /// }
+    /// </code>
+    /// </example>
     public static partial class Log
     {
         static ILogWriter _LogWriter;
@@ -41,7 +54,10 @@ namespace SystemLibrary.Common.Episerver
             var message = LogMessageBuilder.Get(obj, level);
 
             if (LogWriter == null)
-                throw new System.Exception("You are calling Common.Episerver.Log which do not have a LogWriter registered. Register a 'LogWriter' that implements SystemLibrary.Common.Episerver.ILogWriter. For instance inside your ConfigureServices(... services) { services.AddSingleton(typeof(ILogWriter), typeof('YourLogWriterClass'));");
+            {
+                Dump.Write("Common.Episerver.Log has been invoked due to an exception has been thrown or a call to Log.Error for example. Without you having registered an implementation of ILogWriter. Please implement 'SystemLibrary.Common.Episerver.ILogWriter' and register it in ConfigureServices(... services) { services.AddSingleton(typeof(ILogWriter), typeof('YourLogWriterClass')); Message was: " + message);
+                return;
+            }
 
             switch (level)
             {

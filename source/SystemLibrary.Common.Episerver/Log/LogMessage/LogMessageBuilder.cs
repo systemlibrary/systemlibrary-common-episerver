@@ -9,12 +9,24 @@ using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
+using SystemLibrary.Common.Net;
+
+using static SystemLibrary.Common.Episerver.AppSettings.Configuration;
+
 namespace SystemLibrary.Common.Episerver
 {
     partial class Log
     {
         static class LogMessageBuilder
         {
+            static bool IsLocal;
+            static ILogWriterConfiguration LogWriterOptions;
+            static LogMessageBuilder()
+            {
+                IsLocal = EnvironmentConfig.Current.IsLocal;
+                LogWriterOptions = AppSettings.Current.SystemLibraryCommonEpiserver.ILogWriter;
+            }
+
             static IPageRouteHelper _PageRouteHelper;
             static IPageRouteHelper PageRouteHelper => _PageRouteHelper != null ?
                 _PageRouteHelper :
@@ -29,18 +41,26 @@ namespace SystemLibrary.Common.Episerver
 
                 var context = GetHttpContext();
 
-                //TODO: Refactor to give "consumer" a few options to add/remove appending of Cookies/Browser/UserIp (rest are required)
                 AppendMessage(obj, message);
                 AppendRequestPath(message, context?.Request);
 
-                //TODO: if(!EnvironmentConfig.IsLocal)
-                //{
-                AppendCurrentPage(message);
-                AppendLoggedInState(message, context);
-                AppendBrowser(message, context?.Request);
-                AppendUserIp(message, context);
-                AppendCookieData(message, context?.Request);
-                //}
+                if (!IsLocal)
+                {
+                    if(LogWriterOptions.AppendCurrentPage)
+                        AppendCurrentPage(message);
+
+                    if(LogWriterOptions.AppendLoggedInState)
+                        AppendLoggedInState(message, context);
+
+                    if (LogWriterOptions.AppendBrowser)
+                        AppendBrowser(message, context?.Request);
+
+                    if (LogWriterOptions.AppendIp)
+                        AppendUserIp(message, context);
+
+                    if (LogWriterOptions.AppendCookieInfo)
+                        AppendCookieInfo(message, context?.Request);
+                }
 
                 return message.ToString();
             }
@@ -78,7 +98,7 @@ namespace SystemLibrary.Common.Episerver
                 message.Append("\nIsLoggedIn: " + isAuthenticated);
             }
 
-            static void AppendCookieData(StringBuilder message, HttpRequest request)
+            static void AppendCookieInfo(StringBuilder message, HttpRequest request)
             {
                 if(request?.Cookies?.Keys != null)
                 {

@@ -1,5 +1,4 @@
-﻿
-using SystemLibrary.Common.Net;
+﻿using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Episerver
 {
@@ -25,11 +24,17 @@ namespace SystemLibrary.Common.Episerver
     /// }
     /// </code>
     /// </example>
-    internal class AppSettingsConfig : Config<AppSettingsConfig>
+    internal class AppSettings : Config<AppSettings>
     {
-        public AppSettingsConfig()
+        public AppSettings()
         {
             SystemLibraryCommonEpiserver = new Configuration();
+            ConnectionStrings = new ConnectionStringsConfiguration();
+        }
+
+        public class ConnectionStringsConfiguration
+        {
+            public string EPiServerDB { get; set; }
         }
 
         public class Configuration
@@ -37,6 +42,7 @@ namespace SystemLibrary.Common.Episerver
             public Configuration()
             {
                 ILogWriter = new ILogWriterConfiguration();
+                Cache = new CacheConfiguration();
             }
 
             public class ILogWriterConfiguration
@@ -48,9 +54,17 @@ namespace SystemLibrary.Common.Episerver
                 public bool AppendBrowser { get; set; } = false;
                 public bool AppendCookieInfo { get; set; } = false;
             }
+
+            public class CacheConfiguration
+            {
+                public int DefaultDuration { get; set; } = 180;
+            }
+
+            public CacheConfiguration Cache { get; set; }
             public ILogWriterConfiguration ILogWriter { get; set; }
         }
 
+        public ConnectionStringsConfiguration ConnectionStrings { get; set; }
         public Configuration SystemLibraryCommonEpiserver { get; set; }
     }
 }

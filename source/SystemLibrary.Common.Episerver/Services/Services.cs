@@ -16,10 +16,10 @@ namespace SystemLibrary.Common.Episerver
 
         public static T Get<T>() where T : class
         {
-                //..GetService<T>();
+            //..GetService<T>();
 
             if (Instance == null)
-                throw new Exception("ServiceProvider instance is null. You either are using Services.Get() too early or you are not initializing it: within your 'startup.cs' and inside 'ConfigureServices(IServiceCollection s)' call on the extension method 's.CommonEpiserverServices()'");
+                throw new Exception("ServiceProvider instance is null. You either are using Services.Get() too early or you are not initializing it: within your 'startup.cs' and inside 'ConfigureServices(IServiceCollection s)', please call on the extension method 's.CommonEpiserverServices()'");
 
             return Instance.GetService(typeof(T)) as T;
         }
@@ -28,14 +28,13 @@ namespace SystemLibrary.Common.Episerver
         {
             if (Collection == null)
             {
-                Log.Warning("Services.Collection is null - cannot remove " + typeof(T).Name);
+                Log.Warning("Services.Collection is null, you invoked Remove() too early - cannot remove " + typeof(T).Name);
                 return;
             }
 
             var type = typeof(T);
             if(type.IsClass || type.IsInterface)
             {
-                Log.Warning("Removed " + type.Name);
                 Collection.RemoveAll<T>();
             }
             else

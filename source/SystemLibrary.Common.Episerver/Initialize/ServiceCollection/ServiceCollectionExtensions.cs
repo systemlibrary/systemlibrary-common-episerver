@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
@@ -7,114 +6,89 @@ using EPiServer.Web.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-using SystemLibrary.Common.Episerver.Display;
+using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Initialize
+namespace SystemLibrary.Common.Episerver.Initialize;
+
+public static partial class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    internal static ServiceCollectionOptions Options;
+
+    /// <summary>
+    /// This method registers default web-application settings:
+    /// - Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
+    /// 
+    /// Additional notes: 
+    /// This does not register a Cms Identity, use the Generic method CommonEpiserverServices&lt;T&gt;() to register the Identity
+    /// This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
+    /// The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable
+    /// 
+    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
+    /// services.CommonEpiserverServices();
+    /// services.AddCms();
+    /// services.AddTinyMce();
+    /// services.AddFind();
+    /// </summary>
+    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options = null)
     {
-        internal static ServiceCollectionOptions Options;
+        Services.Collection = services;
 
-        /// <summary>
-        /// This method registers default web-application settings:
-        /// - Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
-        /// 
-        /// Note: This does not register a Cms Identity, use the Generic method CommonEpiserverServices&lt;T&gt;() to register the Identity
-        /// 
-        /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-        /// services.CommonEpiserverServices();
-        /// services.AddCms();
-        /// services.AddTinyMce();
-        /// services.AddFind();
-        /// </summary>
-        public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options = null)
-        {
-            try
-            {
-                Services.Collection = services;
-                
-                SetOptions(options);
+        SetOptions(options);
 
-                Dump.Write(Options);
+        services.CommonWebApplicationServices(Options);
 
-                services.CommonServices(Options);
+        ServiceCollectionDisplays(services, options);
 
-                if (Options.RegisterDisplays)
-                {
-                    services.Configure<DisplayOptions>(displayOption =>
-                    {
-                        displayOption.Add("desktop", "Desktop", "col-12", "", "epi-icon__layout--full");
-                        displayOption.Add("tablet", "Tablet", "col-8", "", "epi-icon__layout--two-thirds");
-                        displayOption.Add("mobile", "Mobile", "col-4", "", "epi-icon__layout--one-third");
-                    });
-                    services.AddSingleton<DesktopResolution>();
-                    services.AddSingleton<TabletResolution>();
-                    services.AddSingleton<MobileResolution>();
-                }
+        ServiceCollectionCookies(services, options);
 
-                if (Options.ConfigureApplicationCookie)
-                {
-                    services.ConfigureApplicationCookie(o =>
-                    {
-                        o.LoginPath = "/util/login";
-                        o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUserSessionDurationMinutes);
-                        o.SlidingExpiration = Options.CmsUsersSlidingExpiration;
-                    });
-                }
+        ServiceCollectionCaching(services, options);
 
-                services.TryAddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
+        ServiceCollectionCompression(services, options);
 
-                services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(SiteInitialization)));
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                Dump.Write(ex);
-                throw;
-            }
+        ServiceCollectionFirstTime(services, options);
 
-            return services;
-        }
+        return services;
+    }
 
-        static void SetOptions(ServiceCollectionOptions options)
-        {
-            var fallback = new ServiceCollectionOptions();
+    /// <summary>
+    /// This method registers default web-application settings:
+    /// - Controllers, Mvc, RazorPages, Default View Locations, CurrentUser, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
+    /// 
+    /// Note: 
+    /// This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
+    /// The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable
+    /// 
+    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
+    /// services.CommonEpiserverServices();
+    /// services.AddCms();
+    /// services.AddTinyMce();
+    /// services.AddFind();
+    /// </summary>
+    public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, ServiceCollectionOptions options = null) where T : CurrentUser, new()
+    {
+        services.AddCmsAspNetIdentity<T>();
 
-            Options = options ?? fallback;
+        services.AddScoped<T, T>(); //Can this be ignored due to AspnetIdentity above?
 
-            if (options == null) return;
+        return CommonEpiserverServices(services, options);
+    }
 
-            if (Options.ViewLocations == null)
-                Options.ViewLocations = new EpiViewLocations();
+    static void SetOptions(ServiceCollectionOptions options)
+    {
+        var fallback = new ServiceCollectionOptions();
 
-            if(Options.CmsUserSessionDurationMinutes == 0)
-                Options.CmsUserSessionDurationMinutes = fallback.CmsUserSessionDurationMinutes;
+        Options = options ?? fallback;
 
-            if (options.DefaultAdminEmail.IsNot())
-                Options.DefaultAdminEmail = fallback.DefaultAdminEmail;
+        Options.ViewLocations = Options.ViewLocations.Add(ViewLocations.AllViews);
 
-            if(options.DefaultAdminPassword.IsNot())
-                Options.DefaultAdminPassword = fallback.DefaultAdminPassword;    
-        }
+        if (Options.CmsUserSessionDurationMinutes == 0)
+            Options.CmsUserSessionDurationMinutes = fallback.CmsUserSessionDurationMinutes;
 
-        /// <summary>
-        /// This method registers default web-application settings:
-        /// - Controllers, Mvc, RazorPages, Default View Locations, CurrentUser, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
-        /// 
-        /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-        /// services.CommonEpiserverServices();
-        /// services.AddCms();
-        /// services.AddTinyMce();
-        /// services.AddFind();
-        /// </summary>
-        public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, ServiceCollectionOptions options = null) where T : CurrentUser, new()
-        {
-            services.AddCmsAspNetIdentity<T>();
+        if (Options.DefaultAdminEmail.IsNot())
+            Options.DefaultAdminEmail = fallback.DefaultAdminEmail;
 
-            services.AddScoped<T, T>(); //Can this be ignored due to AspnetIdentity above?
-
-            return CommonEpiserverServices(services, options);
-        }
+        if (Options.DefaultAdminPassword.IsNot())
+            Options.DefaultAdminPassword = fallback.DefaultAdminPassword;
     }
 }
