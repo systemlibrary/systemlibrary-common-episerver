@@ -1,0 +1,251 @@
+﻿/* Display 'descriptions' for each property in 'Properties Edit Mode' */
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row > label[title]:after {
+    display: block;
+    content: " " attr(title);
+    font-size: 0.84em;
+    font-style: italic;
+    position: relative;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+    padding-left: 2px;
+    width: 200px;
+    color: #676767;
+    margin-top: 3px;
+}
+
+/* Display 'descriptions' for each property in 'On Create New Block in Content Area' view */
+.epi-containerLayout.clearfix.dijitLayoutContainer.dijitContainer > ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
+    display: block;
+    content: " " attr(title);
+    font-size: 10.75px;
+    font-style: italic;
+    position: relative;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+    padding-left: 2px;
+    width: 158px;
+    color: #676767;
+    margin-top: 3px;
+}
+
+/* Hide the 'header' that says 'Optional Properties' when creating a new block in a Content Area */
+li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.clearfix.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
+    visibility: hidden;
+    display: none;
+}
+
+.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused .epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
+    display: block;
+    content: " " attr(title);
+    font-size: 11.5px;
+    font-style: italic;
+    background: #f5f5f5;
+    width: 454px;
+    color: #444;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.epi-dialogPaneContent .dijitDialogPaneContentArea.epi-firstVisible.dijitDialogSingleChild {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused .dijitDialogPaneActionBar {
+    padding-top: 8px;
+}
+
+.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused ul.epi-form-container__section > li.epi-form-container__section__row > label {
+    width: 200px;
+}
+
+.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused.dijitDialog.dijitDialogFocused.dijitFocused {
+    top: 160px !important;
+}
+
+/* LAST TWO PROPERTIES IN 'SETTINGS' TAB - ARE CUSTOM ONES, NOT EPISERVERS, HENCE WE SHOW DESC*/
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > .epi-form-container__section__row > label[title]:after {
+    content: none;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row:nth-last-child(-n+2) > label[title]:after {
+    display: block;
+    content: " " attr(title);
+    font-size: 0.84em;
+    font-style: italic;
+    position: relative;
+    background-color: #F6F6F6;
+    border-radius: 4px;
+    padding-left: 2px;
+    width: 200px;
+    color: #676767;
+    margin-top: 3px;
+}
+
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > li.epi-form-container__section__row:last-of-type > label[title]:after {
+    content: " " attr(title) !important;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > li.epi-form-container__section__row:last-of-type {
+    display: flex;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label[title] {
+    margin-left: 12px;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label[title] {
+    width: 228px;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row > label {
+    box-sizing: unset;
+    width: 200px;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox label {
+    box-sizing: unset;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijitInputField.dijitInputContainer {
+    min-width: 25%;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox {
+    padding-left: 0;
+    margin-left: 0px;
+    overflow: hidden;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitValidationTextBox {
+    min-width: 235px;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijitReset.dijitTextBox.dijitNumberTextBox.dijitValidationTextBox {
+    width: 100px !important;
+}
+
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-previewableTextBox-text {
+    max-width: none;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label {
+    position: relative !important;
+    margin-left: 220px !important;
+    margin-top: -20px !important;
+    position: unset !important;
+    margin-left: unset !important;
+}
+
+.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
+    position: relative !important;
+    margin-left: 200px !important;
+    float: right !important;
+    margin-right: 100% !important;
+    left: 210px !important;
+    position: relative !important;
+    margin-left: 12px !important;
+    float: left !important;
+}
+
+
+/* Hide "language" in version gadget as we only have NO */
+.Sleek .dgrid-row-table .dgrid-column-language:first-child {
+    width: 0px;
+}
+
+.epi-dialog-landscape.epi-collection-editor--dialog.dijitDialog .epi-form-container.dijitLayoutContainer.dijitContainer li.epi-form-container__section__row--field {
+    overflow-x: hidden !important;
+}
+
+.epi-editContainer .full-width-table:before,
+.epi-editContainer .full-width-table:after {
+    /*Border on top and on bottom of table body*/
+    left: 0;
+    right: 0;
+}
+
+.epi-editContainer .full-width-table__header:before,
+.epi-editContainer .full-width-table thead:before {
+    /*Border on top of table*/
+    left: 0;
+    right: 0;
+}
+
+
+.epi-editContainer .full-width-table__row,
+.epi-editContainer .full-width-table tr {
+    margin: 0;
+    /* add back negative margin value */
+    padding: 0;
+}
+
+.dijitReset .accordion__panel {
+    display: block;
+}
+
+/* CONTENT AREA DIALOG */
+.Sleek .large-dialogue .dijitDialogPaneContentArea {
+    height: 650px;
+}
+
+.Sleek .large-dialogue {
+    width: auto;
+}
+
+/* NEW CONTENT WINDOW */
+.epi-listingContainer ul.epi-advancedListing li div.epi-browserWindow {
+    background-color: COMPANYCOLOR !important;
+}
+
+img, video {
+    max-height: 900px;
+}
+
+/*  PAGE TREE ICONS */
+.sleek-page-tree__icon {
+    background-position: center !important;
+    background-size: cover !important;
+    width: 16px !important;
+    height: 16px !important;
+    /*margin-top: 5px !important;*/
+}
+
+.Sleek .dijitTreeRow.dijitTreeRowSelected {
+    border-bottom: 1px solid COMPANYCOLOR;
+}
+
+.Sleek .epi-breadCrumbs-title-wrapper .epi-breadCrumbsCurrentItem-icon {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.Sleek .epi-toolbarLeading h1 {
+    margin-top: 6px;
+    color: COMPANYCOLOR;
+}
+
+.Sleek .epi-thumbnailContentList.dgrid .dgrid-row .epi-thumbnail {
+    width: 56px !important;
+    height: 56px !important;
+    margin-top: -3px;
+}
+
+.Sleek .dijitTreeIcon .sleek-page-tree__icon-FolderPage {
+    height: 19px !important;
+}
+
+
+li.epi-form-container__section__row > div.dijit.dijitNumberTextBox {
+    height: fit-content;
+    min-width: 204px !important;
+}
+
+.Sleek div.epi-browserWindowContent > img.epi-preview {
+    height: calc(100% - 1em);
+    width: calc(100% - 1em);
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+}

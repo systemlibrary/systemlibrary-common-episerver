@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Formatters;
-
-namespace SystemLibrary.Common.Episerver.Initialize
+﻿namespace SystemLibrary.Common.Episerver.Initialize
 {
     public class ServiceCollectionOptions : Web.Extensions.ServiceCollectionOptions
     {
@@ -10,11 +8,11 @@ namespace SystemLibrary.Common.Episerver.Initialize
 
         public bool ConfigureApplicationCookie = true;
 
-        public string DefaultAdminEmail = "admin@example.com";
-        public string DefaultAdminPassword = "Admin123!";
+        public string DefaultAdminEmail = "demo@systemlibrary.com";
+        public string DefaultAdminPassword = "Demo123!";
 
         /// <summary>
-        /// A comma seperated list of languageId's that comes with Episerver
+        /// A comma separated list of languageId's that comes with Episerver
         /// 
         /// Set to null or blank, if you do not want to do anything with languages, so the default that you were used to (15 default languages added, while sv and en is enabled, will then be the result)
         /// 
@@ -23,19 +21,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
         /// </summary>
         public string InitialLanguagesEnabled = "sv,en";
 
-        public bool RemoveSuggestedContentTypes = true;
-
-        public ServiceCollectionOptions()
-        {
-            this.StringOutputFormatter = new StringOutputFormatter();
-        }
-    }
-
-    public class StringOutputFormatterCustom : StringOutputFormatter
-    {
-        public StringOutputFormatterCustom()
-        {
-            SupportedMediaTypes.Add("application/octet-stream");
-        }
+        public bool HideSuggestedContentTypes = true;
+        public bool HidePropertyCategoryList = true;
     }
 }

@@ -9,18 +9,19 @@ namespace SystemLibrary.Common.Episerver.Attributes
 {
     public class ContentIconAttributeController : Controller
     {
-        static int ClientCacheLifespanSeconds = 7200;
+        static int ClientCacheLifespanSeconds = 14400;
+        const string CacheKeyPrefix = "SystemLibrary.Common.Episerver.ContentIconAttributeController";
 
         static Assembly _CurrentAssembly;
 
         static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
             (_CurrentAssembly = Assembly.GetExecutingAssembly());
 
-        static IDictionary<string, byte[]> IconCache;
+        static IDictionary<string, ActionResult> CacheResults;
 
         static ContentIconAttributeController()
         {
-            IconCache = new Dictionary<string, byte[]>();
+            CacheResults = new Dictionary<string, ActionResult>();
         }
 
         public ActionResult FontAwesome()
@@ -29,67 +30,65 @@ namespace SystemLibrary.Common.Episerver.Attributes
 
             Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheLifespanSeconds);
 
-            var bundledCss = ContentIconAttribute.FontAwesomeIconsLoader.FontAwesomeBundledMinCss;
-            var bytes = Encoding.UTF8.GetBytes(bundledCss);
+            var embeddedCss = ContentIconAttribute.FontAwesomeIconsLoader.FontAwesomeBundledMinCss;
+            var bytes = Encoding.UTF8.GetBytes(embeddedCss);
 
             return new FileContentResult(bytes, "text/css");
         }
 
-        [Route("SystemLibrary/ContentIcons/CustomIcon/{iconPath}")]
+        [Route("SystemLibrary/Common/Episerver/ContentIcons/CustomIcon/{iconPath}")]
         public ActionResult CustomIcon(string iconPath)
         {
+            Dump.Write("Custom icon??? " + iconPath);
             iconPath = iconPath.Replace("___", "/");
 
             return Redirect(iconPath);
         }
 
-        [Route("SystemLibrary/ContentIcons/RegularIcon/{name}")]
-        public ActionResult RegularIcon(string name)
+        [Route("SystemLibrary/Common/Episerver/ContentIcons/RegularIcon/{icon}")]
+        public ActionResult RegularIcon(string icon)
         {
-            var bytes = GetEmbeddedIcon("Regular", name);
-
-            if (bytes == null) return new EmptyResult();
-
-            return new FileContentResult(bytes, "image/svg+xml");
+            return GetActionResult("Regular", icon);
         }
 
-        [Route("SystemLibrary/ContentIcons/SolidIcon/{name}")]
-        public ActionResult SolidIcon(string name)
+        [Route("SystemLibrary/Common/Episerver/ContentIcons/SolidIcon/{icon}")]
+        public ActionResult SolidIcon(string icon)
         {
-            var bytes = GetEmbeddedIcon("Solid", name);
-
-            if (bytes == null) return new EmptyResult();
-
-            return new FileContentResult(bytes, "image/svg+xml");
+            return GetActionResult("Solid", icon);
         }
 
-        [Route("SystemLibrary/ContentIcons/BrandsIcon/{name}")]
-        public ActionResult BrandsIcon(string name)
+        [Route("SystemLibrary/Common/Episerver/ContentIcons/BrandsIcon/{icon}")]
+        public ActionResult BrandsIcon(string icon)
         {
-            var bytes = GetEmbeddedIcon("Brands", name);
+            return GetActionResult("Brands", icon);
+        }
 
-            if(bytes == null) return new EmptyResult();
+        static ActionResult GetActionResult(string folder, string icon)
+        {
+            var cacheKey = CacheKeyPrefix + folder + icon;
+            if (CacheResults.TryGetValue(cacheKey, out ActionResult cached))
+                return cached;
 
-            return new FileContentResult(bytes, "image/svg+xml");
+            var bytes = GetEmbeddedIcon(folder, icon);
+
+            if(bytes == null)
+                cached = new EmptyResult();
+            else
+                cached = new FileContentResult(bytes, "image/svg+xml");
+
+            CacheResults.TryAdd(CacheKeyPrefix + folder + icon, cached);
+            return cached;
         }
 
         static byte[] GetEmbeddedIcon(string iconsFolder, string name)
         {
             if (name.IsNot()) return null;
 
-            var cacheKey = iconsFolder + name;
-            if (IconCache.TryGetValue(cacheKey, out var icon))
-                return icon;
-
             try
             {
                 var image = Net.Assemblies.GetEmbeddedResource("Attributes/ContentIconAttribute/Icons/" + iconsFolder, name, CurrentAssembly);
 
-                var bytes = Encoding.UTF8.GetBytes(image);
-
-                IconCache.TryAdd(cacheKey, bytes);
-
-                return bytes;
+                return Encoding.UTF8.GetBytes(image);
             }
             catch (Exception ex)
             {
@@ -98,7 +97,7 @@ namespace SystemLibrary.Common.Episerver.Attributes
             }
         }
 
-        [Route("SystemLibrary/WebFonts/{filePath?}")]
+        [Route("SystemLibrary/Common/Episerver/WebFonts/{filePath?}")]
         public ActionResult WebFonts(string filePath)
         {
             if (filePath.IsNot()) return new EmptyResult();

@@ -4,7 +4,6 @@ using EPiServer.ServiceLocation;
 
 namespace SystemLibrary.Common.Episerver.Initialize;
 
-
 [InitializableModule]
 [ModuleDependency(typeof(FrameworkInitialization))]
 public class RemoveSuggestedContentTypes : InitModule
@@ -14,7 +13,7 @@ public class RemoveSuggestedContentTypes : InitModule
         if (ServiceCollectionExtensions.Options == null)
             Log.Error("Error: You've not called on extension for IServiceCollection named: CommonEpiserverServices()");
 
-        if (ServiceCollectionExtensions.Options?.RemoveSuggestedContentTypes == true)
+        if (ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
             Services.Remove<IContentTypeAdvisor>();
     }
 }

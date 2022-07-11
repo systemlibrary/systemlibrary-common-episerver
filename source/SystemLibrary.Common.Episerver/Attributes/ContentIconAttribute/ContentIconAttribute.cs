@@ -13,8 +13,6 @@ namespace SystemLibrary.Common.Episerver.Attributes
         static string FolderForegroundColor = "#FFA000";
         static string SettingsForegroundColor = "#C7C7C7";
 
-        static int FontSize = 55;
-
         static Enum[] FolderIcons => new Enum[] {
             FontAwesomeRegular.folder,
             FontAwesomeRegular.folder_open,
@@ -34,21 +32,21 @@ namespace SystemLibrary.Common.Episerver.Attributes
 
         public Enum Value { get; set; }
 
-        public ContentIconAttribute(string imageRelativeUrl) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/CustomIcon/", imageRelativeUrl))
+        public ContentIconAttribute(string imageRelativeUrl) : base(imageRelativeUrl)
         {
         }
 
-        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/RegularIcon/", regular))
+        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/RegularIcon/", regular))
         {
             Value = regular;
         }
 
-        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/SolidIcon/", solid))
+        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/SolidIcon/", solid))
         {
             Value = solid;
         }
 
-        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/ContentIcons/BrandsIcon/", brand))
+        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/BrandsIcon/", brand))
         {
             Value = brand;
         }
@@ -57,7 +55,7 @@ namespace SystemLibrary.Common.Episerver.Attributes
         {
             return GetEmbeddedSvgName(requestUrl, icon.ToString());
         }
-
+        
         static string GetEmbeddedSvgName(string requestUrl, string iconName)
         {
             if (iconName.EndsWithAny(".svg", ".jpg", ".png"))

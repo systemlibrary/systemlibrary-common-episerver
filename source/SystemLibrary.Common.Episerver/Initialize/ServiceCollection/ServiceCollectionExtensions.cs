@@ -1,7 +1,4 @@
-﻿
-using EPiServer.ServiceLocation;
-using EPiServer.Web;
-using EPiServer.Web.Routing;
+﻿using EPiServer.ServiceLocation;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

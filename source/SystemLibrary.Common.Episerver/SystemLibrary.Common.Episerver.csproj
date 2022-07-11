@@ -11,6 +11,7 @@
 		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
 		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
 		<None Remove="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+		<None Remove="Cms\Editor\Css\editor.min.css" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -18,6 +19,7 @@
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+		<EmbeddedResource Include="Cms\Editor\Css\editor.min.css" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\Icons\Brands\*.svg" />

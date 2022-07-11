@@ -10,7 +10,8 @@ partial class ServiceCollectionExtensions
 {
     static void ServiceCollectionCompression(IServiceCollection services, ServiceCollectionOptions options)
     {
-        services.AddResponseCompression(compression => {
+        services.AddResponseCompression(compression =>
+        {
             compression.EnableForHttps = true;
             compression.MimeTypes = CompressMimeTypes;
             compression.Providers.Add<BrotliCompressionProvider>();
@@ -29,7 +30,7 @@ partial class ServiceCollectionExtensions
     }
 
     static string[] CompressMimeTypes = new string[]
-   {
+    {
         "text/html",
         "text/html; charset=utf-8",
         "text/css",

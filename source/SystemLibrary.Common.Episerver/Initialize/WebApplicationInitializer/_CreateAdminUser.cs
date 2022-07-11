@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using EPiServer.Shell.Security;
-
-using Microsoft.Data.SqlClient;
 
 namespace SystemLibrary.Common.Episerver.Initialize
 {
@@ -57,30 +54,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
         {
             var q = "SELECT TOP (1) 1 FROM AspNetUsers;";
 
-            try
-            {
-                var constring = AppSettings.Current.ConnectionStrings.EPiServerDB;
-                int result = 0;
-                using (var sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    using (var sqlcmd = new SqlCommand(q, sqlcon))
-                    {
-                        using (var sqlReader = sqlcmd.ExecuteReader())
-                        {
-                            if (sqlReader.HasRows)
-                                result = 1;
-                        }
-                    }
-                    sqlcon.Close();
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                return -1;
-            }
+            return ExecuteQuery(q);
         }
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
-using EPiServer.DataAccess.Internal;
-using EPiServer.Shell.Security;
 using EPiServer.Web;
 
 using Microsoft.AspNetCore.Http;

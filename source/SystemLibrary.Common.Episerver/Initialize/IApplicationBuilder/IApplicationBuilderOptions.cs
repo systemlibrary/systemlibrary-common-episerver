@@ -7,5 +7,5 @@ public class IApplicationBuilderOptions : Web.Extensions.ApplicationBuilderOptio
 {
     public bool UseExceptionLogging = true;
     public bool UseRewriteEpiserverPathToEpiserverCms = true;
-    public bool UseEpiserverEndpoints = true;
+    public bool UseEpiserverMapContentEndpoints = true;
 }

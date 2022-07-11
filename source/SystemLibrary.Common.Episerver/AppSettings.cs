@@ -43,6 +43,12 @@ namespace SystemLibrary.Common.Episerver
             {
                 ILogWriter = new ILogWriterConfiguration();
                 Cache = new CacheConfiguration();
+                EditMode = new EditModeConfiguration();
+            }
+
+            public class EditModeConfiguration
+            {
+                public string CompanyColor { get; set; }
             }
 
             public class ILogWriterConfiguration
@@ -60,6 +66,7 @@ namespace SystemLibrary.Common.Episerver
                 public int DefaultDuration { get; set; } = 180;
             }
 
+            public EditModeConfiguration EditMode { get; set; }
             public CacheConfiguration Cache { get; set; }
             public ILogWriterConfiguration ILogWriter { get; set; }
         }

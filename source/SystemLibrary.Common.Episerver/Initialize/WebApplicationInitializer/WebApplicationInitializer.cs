@@ -27,12 +27,14 @@ namespace SystemLibrary.Common.Episerver.Initialize
         {
             try
             {
-                InitializedSiteDefinitions(httpContext);
-
                 if (IsAnyUserOrAdminAlreadyRegistered())
                 {
                     return;
                 }
+
+                InitializedSiteDefinitions(httpContext);
+
+                InitializeSystemPropertiesSortIndex();
 
                 InitializeLanguages();
 

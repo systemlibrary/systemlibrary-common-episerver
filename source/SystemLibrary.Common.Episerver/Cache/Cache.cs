@@ -16,7 +16,6 @@ namespace SystemLibrary.Common.Episerver;
 /// Required skip cache scenarios:
 /// - If cachekey is null or empty
 /// - If not in a web context
-/// - If PageIsInEditMode is true
 /// 
 /// Optional skip cache scenarios by parameters to Cache.Get():
 /// - authenticated visitors, every user that is signed, but is not part of Roles.CmsRoles, default to false
@@ -192,7 +191,7 @@ public static class Cache
 
     static bool SkipCacheForVisitors(CurrentUser user)
     {
-        return user.IsAuthenticated && !user.IsCmsUser();
+        return !user.IsCmsUser();
     }
 
     static bool SkipCacheForCmsUsers(CurrentUser user)

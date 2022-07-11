@@ -10,18 +10,24 @@ partial class IApplicationBuilderExtensions
     {
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapAreaControllerRoute("SystemLibrary",
-                 "SystemLibrary",
-                 pattern: "SystemLibrary/{controller}/{action}/{id?}"
+            endpoints.MapAreaControllerRoute(
+                name: "SystemLibrary/Common/Episerver/{controller}/{action}/{id?}",
+                areaName: "SystemLibrary",
+                pattern: "SystemLibrary/Common/Episerver/{controller}/{action}/{id?}"
                 //was: pattern: "SystemLibrary/{controller=Home}/{action=Index}/{id?}"
                 );
         });
 
-        if (!options.UseEpiserverEndpoints) return;
-
-        app.UseEndpoints(endpoints =>
+        if (options.UseEpiserverMapContentEndpoints)
         {
-            endpoints.MapContent();
-        });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapContent();
+            });
+        }
+
+
+
+
     }
 }
