@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="SystemLibrary.Common.Episerver.Initialize
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
     <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
@@ -52,9 +52,10 @@
               
               <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
                 <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
+                <span class="navbar-title">System Library Common Episerver</span>
               </a>
               
-              <span class="navbar-title">System Library Common Episerver</span>    </div>
+            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
@@ -106,23 +107,24 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.html">ApplicationBuilderOptions</a></h4>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html">IApplicationBuilderExtensions</a></h4>
       <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.html">IApplicationBuilder</a></h4>
-      <section></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html">IApplicationBuilderOptions</a></h4>
+      <section><p>Contains application builder options that you can override if you want to</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html">InitModule</a></h4>
-      <section></section>
+      <section><p>Create your own InitializableModule by inheriting InitModule</p>
+<ul>
+<li>No need to create both Initialize and Uninitialize as they come with a default empty implementation</li>
+<li>Override the method(s) you need to use in your InitializableModule</li>
+</ul>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html">RemoveSuggestedContentTypes</a></h4>
-      <section></section>
+      <section><p>An initialization module that removes 'Suggested Types' if configured in ServiceCollectionOptions, which you passed to CommonEpiserverServices()</p>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html">ServiceCollectionExtensions</a></h4>
       <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html">ServiceCollectionModule</a></h4>
-      <section></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html">ServiceCollectionOptions</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html">SiteInitialization</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.html">StringOutputFormatterCustom</a></h4>
       <section></section>
 </article>
           </div>

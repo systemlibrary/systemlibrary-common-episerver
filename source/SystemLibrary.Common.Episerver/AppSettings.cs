@@ -11,14 +11,20 @@ namespace SystemLibrary.Common.Episerver
     /// {
     ///     ...,
     ///     "systemLibraryCommonEpiserver": {
-    ///         "iLogWriter": {
+    ///         "logMessageBuilder": {
     ///             "appendLoggedInState": false,
     ///             "appendCurrentPage": false,
     ///             "appendCurrentUrl": false,
     ///             "appendIp": false,
     ///             "appendBrowser": false,
     ///             "appendCookieInfo": false
-    ///        }
+    ///        },
+    ///        "cache": {
+    ///             "defaultDuration": 180
+    ///         },
+    ///         "editMode": {
+    ///             "companyColor": "#B84D94" //Can be a css color or a css hex color
+    ///         }
     ///      }
     ///     ...
     /// }
@@ -41,7 +47,7 @@ namespace SystemLibrary.Common.Episerver
         {
             public Configuration()
             {
-                ILogWriter = new ILogWriterConfiguration();
+                LogMessageBuilder = new LogMessageBuilderOptions();
                 Cache = new CacheConfiguration();
                 EditMode = new EditModeConfiguration();
             }
@@ -51,7 +57,7 @@ namespace SystemLibrary.Common.Episerver
                 public string CompanyColor { get; set; }
             }
 
-            public class ILogWriterConfiguration
+            public class LogMessageBuilderOptions
             {
                 public bool AppendLoggedInState { get; set; } = true;
                 public bool AppendCurrentPage { get; set; } = true;
@@ -68,7 +74,7 @@ namespace SystemLibrary.Common.Episerver
 
             public EditModeConfiguration EditMode { get; set; }
             public CacheConfiguration Cache { get; set; }
-            public ILogWriterConfiguration ILogWriter { get; set; }
+            public LogMessageBuilderOptions LogMessageBuilder { get; set; }
         }
 
         public ConnectionStringsConfiguration ConnectionStrings { get; set; }

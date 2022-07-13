@@ -1,8 +1,9 @@
 ﻿using EPiServer.Core;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
+
+using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -20,7 +21,7 @@ public static class ViewContextExtensions
         //Credit to: https://marisks.net/2016/07/21/simple-check-if-block-is-in-edit-mode/
         var routeData = viewContext?.RouteData;
         if (routeData == null)
-            routeData = Services.Get<IHttpContextAccessor>()?.HttpContext?.GetRouteData();
+            routeData = HttpContextInstance.Current?.GetRouteData();
 
         if (routeData == null) return false;
         

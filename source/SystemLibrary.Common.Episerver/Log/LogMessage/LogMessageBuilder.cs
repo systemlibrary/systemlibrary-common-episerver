@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 
 using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Web;
 
 using static SystemLibrary.Common.Episerver.AppSettings.Configuration;
 
@@ -20,45 +21,45 @@ namespace SystemLibrary.Common.Episerver
         static class LogMessageBuilder
         {
             static bool IsLocal;
-            static ILogWriterConfiguration LogWriterOptions;
+            static LogMessageBuilderOptions LogMessageBuilderOptions;
             static LogMessageBuilder()
             {
                 IsLocal = EnvironmentConfig.Current.IsLocal;
-                LogWriterOptions = AppSettings.Current.SystemLibraryCommonEpiserver.ILogWriter;
+                LogMessageBuilderOptions = AppSettings.Current.SystemLibraryCommonEpiserver.LogMessageBuilder;
             }
-
+             
             static IPageRouteHelper _PageRouteHelper;
             static IPageRouteHelper PageRouteHelper => _PageRouteHelper != null ?
                 _PageRouteHelper :
                 (_PageRouteHelper = Services.Get<IPageRouteHelper>());
 
-            public static string Get(object obj, Level level)
+            internal static string Get(object obj, Level level)
             {
                 var message = new StringBuilder("");
 
                 if (level != (Level)1000)
                     message.Append(level.ToString() + ": ");
 
-                var context = GetHttpContext();
+                var context = HttpContextInstance.Current;
 
                 AppendMessage(obj, message);
                 AppendRequestPath(message, context?.Request);
 
                 if (!IsLocal)
                 {
-                    if(LogWriterOptions.AppendCurrentPage)
+                    if(LogMessageBuilderOptions.AppendCurrentPage)
                         AppendCurrentPage(message);
 
-                    if(LogWriterOptions.AppendLoggedInState)
+                    if(LogMessageBuilderOptions.AppendLoggedInState)
                         AppendLoggedInState(message, context);
 
-                    if (LogWriterOptions.AppendBrowser)
+                    if (LogMessageBuilderOptions.AppendBrowser)
                         AppendBrowser(message, context?.Request);
 
-                    if (LogWriterOptions.AppendIp)
+                    if (LogMessageBuilderOptions.AppendIp)
                         AppendUserIp(message, context);
 
-                    if (LogWriterOptions.AppendCookieInfo)
+                    if (LogMessageBuilderOptions.AppendCookieInfo)
                         AppendCookieInfo(message, context?.Request);
                 }
 
@@ -184,11 +185,6 @@ namespace SystemLibrary.Common.Episerver
                     message.Append("\nPage: " + content.Name + " (id, " + content.ContentLink?.ID + ")");
                 else
                     message.Append("\nPage: <none>");
-            }
-
-            static HttpContext GetHttpContext()
-            {
-                return Services.Get<IHttpContextAccessor>()?.HttpContext;
             }
         }
     }

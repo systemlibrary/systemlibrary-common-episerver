@@ -19,6 +19,18 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute
   fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute
   nameWithType: ContentIconAttribute
+- uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(System.String)
+  name: ContentIconAttribute(String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(System.String)
+  fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.ContentIconAttribute(System.String)
+  nameWithType: ContentIconAttribute.ContentIconAttribute(String)
+- uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands)
+  name: ContentIconAttribute(ContentIconAttribute.FontAwesomeBrands)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute_FontAwesomeBrands_
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands)
+  fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.ContentIconAttribute(SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands)
+  nameWithType: ContentIconAttribute.ContentIconAttribute(ContentIconAttribute.FontAwesomeBrands)
 - uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular)
   name: ContentIconAttribute(ContentIconAttribute.FontAwesomeRegular)
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute_FontAwesomeRegular_
@@ -10492,6 +10504,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.BrandsIcon
   nameWithType: ContentIconAttributeController.BrandsIcon
+- uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon(System.String)
+  name: CustomIcon(String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttributeController_CustomIcon_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon(System.String)
+  fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon(System.String)
+  nameWithType: ContentIconAttributeController.CustomIcon(String)
+- uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon*
+  name: CustomIcon
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttributeController_CustomIcon_
+  commentId: Overload:SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.CustomIcon
+  nameWithType: ContentIconAttributeController.CustomIcon
 - uid: SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.FontAwesome
   name: FontAwesome()
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.html#SystemLibrary_Common_Episerver_Attributes_ContentIconAttributeController_FontAwesome
@@ -10589,6 +10614,22 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.BaseCms.ContentTypeRepository
   nameWithType: BaseCms.ContentTypeRepository
+- uid: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder*
+  name: CreateHostBuilder
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder_
+  commentId: Overload:SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder
+  nameWithType: BaseCms.CreateHostBuilder
+- uid: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)
+  name: CreateHostBuilder<T>(String[], String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_
+  commentId: M:SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)
+  name.vb: CreateHostBuilder(Of T)(String(), String)
+  fullName: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder<T>(System.String[], System.String)
+  fullName.vb: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder(Of T)(System.String(), System.String)
+  nameWithType: BaseCms.CreateHostBuilder<T>(String[], String)
+  nameWithType.vb: BaseCms.CreateHostBuilder(Of T)(String(), String)
 - uid: SystemLibrary.Common.Episerver.BaseCms.Get*
   name: Get
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_Get_
@@ -10688,6 +10729,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode
   nameWithType: BaseCms.IsInPreviewMode
+- uid: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
+  name: LanguageBranchRepository
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository
+  commentId: P:SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
+  fullName: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
+  nameWithType: BaseCms.LanguageBranchRepository
+- uid: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository*
+  name: LanguageBranchRepository
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository_
+  commentId: Overload:SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
+  nameWithType: BaseCms.LanguageBranchRepository
 - uid: SystemLibrary.Common.Episerver.Cache
   name: Cache
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html
@@ -10736,6 +10790,59 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cache.Remove
   nameWithType: Cache.Remove
+- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
+  name: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.html
+  commentId: N:SystemLibrary.Common.Episerver.Cms.Editor.Controllers
+  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
+  nameWithType: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
+- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
+  name: CmsEditorController
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
+  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
+  nameWithType: CmsEditorController
+- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
+  name: Styles()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html#SystemLibrary_Common_Episerver_Cms_Editor_Controllers_CmsEditorController_Styles
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
+  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles()
+  nameWithType: CmsEditorController.Styles()
+- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles*
+  name: Styles
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html#SystemLibrary_Common_Episerver_Cms_Editor_Controllers_CmsEditorController_Styles_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
+  nameWithType: CmsEditorController.Styles
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
+  name: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.html
+  commentId: N:SystemLibrary.Common.Episerver.Cms.EditorDescriptors
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
+  nameWithType: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
+  name: HideCategoryListDescriptor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
+  nameWithType: HideCategoryListDescriptor
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+  name: ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryListDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__
+  commentId: M:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+  name.vb: ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable<System.Attribute>)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable(Of System.Attribute))
+  nameWithType: HideCategoryListDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
+  nameWithType.vb: HideCategoryListDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata*
+  name: ModifyMetadata
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryListDescriptor_ModifyMetadata_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata
+  nameWithType: HideCategoryListDescriptor.ModifyMetadata
 - uid: SystemLibrary.Common.Episerver.CurrentUser
   name: CurrentUser
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html
@@ -11018,55 +11125,68 @@ references:
   commentId: N:SystemLibrary.Common.Episerver.Initialize
   fullName: SystemLibrary.Common.Episerver.Initialize
   nameWithType: SystemLibrary.Common.Episerver.Initialize
-- uid: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions
-  name: ApplicationBuilderOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions
-  fullName: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions
-  nameWithType: ApplicationBuilderOptions
-- uid: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverEndspoints
-  name: UseEpiserverEndspoints
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_ApplicationBuilderOptions_UseEpiserverEndspoints
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverEndspoints
-  fullName: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverEndspoints
-  nameWithType: ApplicationBuilderOptions.UseEpiserverEndspoints
-- uid: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverRewriteToEpiserverCms
-  name: UseEpiserverRewriteToEpiserverCms
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_ApplicationBuilderOptions_UseEpiserverRewriteToEpiserverCms
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverRewriteToEpiserverCms
-  fullName: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseEpiserverRewriteToEpiserverCms
-  nameWithType: ApplicationBuilderOptions.UseEpiserverRewriteToEpiserverCms
-- uid: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseExceptionHandler
-  name: UseExceptionHandler
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_ApplicationBuilderOptions_UseExceptionHandler
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseExceptionHandler
-  fullName: SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions.UseExceptionHandler
-  nameWithType: ApplicationBuilderOptions.UseExceptionHandler
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder
-  name: IApplicationBuilder
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder
-  nameWithType: IApplicationBuilder
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions)
-  name: CommonEpiserverAppBuilder(IApplicationBuilder, ApplicationBuilderOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilder_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Initialize_ApplicationBuilderOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions)
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Episerver.Initialize.ApplicationBuilderOptions)
-  nameWithType: IApplicationBuilder.CommonEpiserverAppBuilder(IApplicationBuilder, ApplicationBuilderOptions)
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder*
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
+  name: IApplicationBuilderExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
+  nameWithType: IApplicationBuilderExtensions
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
+  name: CommonEpiserverAppBuilder(IApplicationBuilder, IApplicationBuilderOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
+  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder(IApplicationBuilder, IApplicationBuilderOptions)
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder*
   name: CommonEpiserverAppBuilder
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilder_CommonEpiserverAppBuilder_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_
+  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilder.CommonEpiserverAppBuilder
-  nameWithType: IApplicationBuilder.CommonEpiserverAppBuilder
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
+  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
+  name: IApplicationBuilderOptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html
+  commentId: T:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
+  nameWithType: IApplicationBuilderOptions
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
+  name: UseEpiserverMapContentEndpoints
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseEpiserverMapContentEndpoints
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
+  nameWithType: IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
+  name: UseExceptionLogging
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseExceptionLogging
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
+  nameWithType: IApplicationBuilderOptions.UseExceptionLogging
+- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  name: UseRewriteEpiserverPathToEpiserverCms
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseRewriteEpiserverPathToEpiserverCms
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  nameWithType: IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
 - uid: SystemLibrary.Common.Episerver.Initialize.InitModule
   name: InitModule
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html
   commentId: T:SystemLibrary.Common.Episerver.Initialize.InitModule
   fullName: SystemLibrary.Common.Episerver.Initialize.InitModule
   nameWithType: InitModule
+- uid: SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer(EPiServer.ServiceLocation.ServiceConfigurationContext)
+  name: ConfigureContainer(ServiceConfigurationContext)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_
+  commentId: M:SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer(EPiServer.ServiceLocation.ServiceConfigurationContext)
+  fullName: SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer(EPiServer.ServiceLocation.ServiceConfigurationContext)
+  nameWithType: InitModule.ConfigureContainer(ServiceConfigurationContext)
+- uid: SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer*
+  name: ConfigureContainer
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_
+  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer
+  nameWithType: InitModule.ConfigureContainer
 - uid: SystemLibrary.Common.Episerver.Initialize.InitModule.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
   name: Initialize(InitializationEngine)
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_
@@ -11112,32 +11232,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer
   nameWithType: RemoveSuggestedContentTypes.ConfigureContainer
-- uid: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  name: Initialize(InitializationEngine)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html#SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_Initialize_EPiServer_Framework_Initialization_InitializationEngine_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  nameWithType: RemoveSuggestedContentTypes.Initialize(InitializationEngine)
-- uid: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize*
-  name: Initialize
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html#SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_Initialize_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Initialize
-  nameWithType: RemoveSuggestedContentTypes.Initialize
-- uid: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  name: Uninitialize(InitializationEngine)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html#SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  nameWithType: RemoveSuggestedContentTypes.Uninitialize(InitializationEngine)
-- uid: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize*
-  name: Uninitialize
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html#SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_Uninitialize_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.Uninitialize
-  nameWithType: RemoveSuggestedContentTypes.Uninitialize
 - uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions
   name: ServiceCollectionExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html
@@ -11166,79 +11260,18 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
   nameWithType: ServiceCollectionExtensions.CommonEpiserverServices<T>(IServiceCollection, ServiceCollectionOptions)
   nameWithType.vb: ServiceCollectionExtensions.CommonEpiserverServices(Of T)(IServiceCollection, ServiceCollectionOptions)
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule
-  name: ServiceCollectionModule
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule
-  nameWithType: ServiceCollectionModule
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  name: Initialize(InitializationEngine)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
-  nameWithType: ServiceCollectionModule.Initialize(InitializationEngine)
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize*
-  name: Initialize
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Initialize_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Initialize
-  nameWithType: ServiceCollectionModule.Initialize
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload(System.String[])
-  name: Preload(String[])
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Preload_System_String___
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload(System.String[])
-  name.vb: Preload(String())
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload(System.String[])
-  fullName.vb: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload(System.String())
-  nameWithType: ServiceCollectionModule.Preload(String[])
-  nameWithType.vb: ServiceCollectionModule.Preload(String())
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload*
-  name: Preload
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Preload_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Preload
-  nameWithType: ServiceCollectionModule.Preload
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  name: Uninitialize(InitializationEngine)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
-  nameWithType: ServiceCollectionModule.Uninitialize(InitializationEngine)
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize*
-  name: Uninitialize
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionModule_Uninitialize_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionModule.Uninitialize
-  nameWithType: ServiceCollectionModule.Uninitialize
 - uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
   name: ServiceCollectionOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html
   commentId: T:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
   fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
   nameWithType: ServiceCollectionOptions
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.#ctor
-  name: ServiceCollectionOptions()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions__ctor
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.#ctor
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.ServiceCollectionOptions()
-  nameWithType: ServiceCollectionOptions.ServiceCollectionOptions()
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.#ctor*
-  name: ServiceCollectionOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions__ctor_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.ServiceCollectionOptions
-  nameWithType: ServiceCollectionOptions.ServiceCollectionOptions
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSessionDurationMinutes
-  name: CmsUsersSessionDurationMinutes
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_CmsUsersSessionDurationMinutes
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSessionDurationMinutes
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSessionDurationMinutes
-  nameWithType: ServiceCollectionOptions.CmsUsersSessionDurationMinutes
+- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
+  name: CmsUserSessionDurationMinutes
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_CmsUserSessionDurationMinutes
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
+  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
+  nameWithType: ServiceCollectionOptions.CmsUserSessionDurationMinutes
 - uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSlidingExpiration
   name: CmsUsersSlidingExpiration
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_CmsUsersSlidingExpiration
@@ -11263,88 +11296,30 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminPassword
   fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminPassword
   nameWithType: ServiceCollectionOptions.DefaultAdminPassword
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.LogType
-  name: LogType
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_LogType
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.LogType
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.LogType
-  nameWithType: ServiceCollectionOptions.LogType
+- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
+  name: HidePropertyCategoryList
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_HidePropertyCategoryList
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
+  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
+  nameWithType: ServiceCollectionOptions.HidePropertyCategoryList
+- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
+  name: HideSuggestedContentTypes
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_HideSuggestedContentTypes
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
+  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
+  nameWithType: ServiceCollectionOptions.HideSuggestedContentTypes
+- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
+  name: InitialLanguagesEnabled
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_InitialLanguagesEnabled
+  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
+  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
+  nameWithType: ServiceCollectionOptions.InitialLanguagesEnabled
 - uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
   name: RegisterDisplays
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_RegisterDisplays
   commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
   fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
   nameWithType: ServiceCollectionOptions.RegisterDisplays
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RemoveSuggestedContentTypes
-  name: RemoveSuggestedContentTypes
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_RemoveSuggestedContentTypes
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RemoveSuggestedContentTypes
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RemoveSuggestedContentTypes
-  nameWithType: ServiceCollectionOptions.RemoveSuggestedContentTypes
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization
-  name: SiteInitialization
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.SiteInitialization
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization
-  nameWithType: SiteInitialization
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.#ctor(EPiServer.Shell.Security.UIUserProvider,EPiServer.Shell.Security.UIRoleProvider,EPiServer.Web.ISiteDefinitionRepository)
-  name: SiteInitialization(UIUserProvider, UIRoleProvider, ISiteDefinitionRepository)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization__ctor_EPiServer_Shell_Security_UIUserProvider_EPiServer_Shell_Security_UIRoleProvider_EPiServer_Web_ISiteDefinitionRepository_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.#ctor(EPiServer.Shell.Security.UIUserProvider,EPiServer.Shell.Security.UIRoleProvider,EPiServer.Web.ISiteDefinitionRepository)
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.SiteInitialization(EPiServer.Shell.Security.UIUserProvider, EPiServer.Shell.Security.UIRoleProvider, EPiServer.Web.ISiteDefinitionRepository)
-  nameWithType: SiteInitialization.SiteInitialization(UIUserProvider, UIRoleProvider, ISiteDefinitionRepository)
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.#ctor*
-  name: SiteInitialization
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization__ctor_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.SiteInitialization
-  nameWithType: SiteInitialization.SiteInitialization
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel
-  name: CanRunInParallel
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization_CanRunInParallel
-  commentId: P:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel
-  nameWithType: SiteInitialization.CanRunInParallel
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel*
-  name: CanRunInParallel
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization_CanRunInParallel_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.CanRunInParallel
-  nameWithType: SiteInitialization.CanRunInParallel
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync(Microsoft.AspNetCore.Http.HttpContext)
-  name: InitializeAsync(HttpContext)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization_InitializeAsync_Microsoft_AspNetCore_Http_HttpContext_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync(Microsoft.AspNetCore.Http.HttpContext)
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync(Microsoft.AspNetCore.Http.HttpContext)
-  nameWithType: SiteInitialization.InitializeAsync(HttpContext)
-- uid: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync*
-  name: InitializeAsync
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.SiteInitialization.html#SystemLibrary_Common_Episerver_Initialize_SiteInitialization_InitializeAsync_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.SiteInitialization.InitializeAsync
-  nameWithType: SiteInitialization.InitializeAsync
-- uid: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom
-  name: StringOutputFormatterCustom
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom
-  fullName: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom
-  nameWithType: StringOutputFormatterCustom
-- uid: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.#ctor
-  name: StringOutputFormatterCustom()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.html#SystemLibrary_Common_Episerver_Initialize_StringOutputFormatterCustom__ctor
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.#ctor
-  fullName: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.StringOutputFormatterCustom()
-  nameWithType: StringOutputFormatterCustom.StringOutputFormatterCustom()
-- uid: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.#ctor*
-  name: StringOutputFormatterCustom
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.html#SystemLibrary_Common_Episerver_Initialize_StringOutputFormatterCustom__ctor_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.StringOutputFormatterCustom.StringOutputFormatterCustom
-  nameWithType: StringOutputFormatterCustom.StringOutputFormatterCustom
 - uid: SystemLibrary.Common.Episerver.Log
   name: Log
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html
@@ -11396,45 +11371,6 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Roles
   fullName: SystemLibrary.Common.Episerver.Roles
   nameWithType: Roles
-- uid: SystemLibrary.Common.Episerver.Roles.Administrators
-  name: Administrators
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_Administrators
-  commentId: P:SystemLibrary.Common.Episerver.Roles.Administrators
-  fullName: SystemLibrary.Common.Episerver.Roles.Administrators
-  nameWithType: Roles.Administrators
-- uid: SystemLibrary.Common.Episerver.Roles.Administrators*
-  name: Administrators
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_Administrators_
-  commentId: Overload:SystemLibrary.Common.Episerver.Roles.Administrators
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Roles.Administrators
-  nameWithType: Roles.Administrators
-- uid: SystemLibrary.Common.Episerver.Roles.CmsAdmins
-  name: CmsAdmins
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsAdmins
-  commentId: P:SystemLibrary.Common.Episerver.Roles.CmsAdmins
-  fullName: SystemLibrary.Common.Episerver.Roles.CmsAdmins
-  nameWithType: Roles.CmsAdmins
-- uid: SystemLibrary.Common.Episerver.Roles.CmsAdmins*
-  name: CmsAdmins
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsAdmins_
-  commentId: Overload:SystemLibrary.Common.Episerver.Roles.CmsAdmins
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Roles.CmsAdmins
-  nameWithType: Roles.CmsAdmins
-- uid: SystemLibrary.Common.Episerver.Roles.CmsEditors
-  name: CmsEditors
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsEditors
-  commentId: P:SystemLibrary.Common.Episerver.Roles.CmsEditors
-  fullName: SystemLibrary.Common.Episerver.Roles.CmsEditors
-  nameWithType: Roles.CmsEditors
-- uid: SystemLibrary.Common.Episerver.Roles.CmsEditors*
-  name: CmsEditors
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsEditors_
-  commentId: Overload:SystemLibrary.Common.Episerver.Roles.CmsEditors
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Roles.CmsEditors
-  nameWithType: Roles.CmsEditors
 - uid: SystemLibrary.Common.Episerver.Roles.CmsRoles
   name: CmsRoles
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsRoles
@@ -11448,32 +11384,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Roles.CmsRoles
   nameWithType: Roles.CmsRoles
-- uid: SystemLibrary.Common.Episerver.Roles.WebAdmins
-  name: WebAdmins
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_WebAdmins
-  commentId: P:SystemLibrary.Common.Episerver.Roles.WebAdmins
-  fullName: SystemLibrary.Common.Episerver.Roles.WebAdmins
-  nameWithType: Roles.WebAdmins
-- uid: SystemLibrary.Common.Episerver.Roles.WebAdmins*
-  name: WebAdmins
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_WebAdmins_
-  commentId: Overload:SystemLibrary.Common.Episerver.Roles.WebAdmins
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Roles.WebAdmins
-  nameWithType: Roles.WebAdmins
-- uid: SystemLibrary.Common.Episerver.Roles.WebEditors
-  name: WebEditors
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_WebEditors
-  commentId: P:SystemLibrary.Common.Episerver.Roles.WebEditors
-  fullName: SystemLibrary.Common.Episerver.Roles.WebEditors
-  nameWithType: Roles.WebEditors
-- uid: SystemLibrary.Common.Episerver.Roles.WebEditors*
-  name: WebEditors
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_WebEditors_
-  commentId: Overload:SystemLibrary.Common.Episerver.Roles.WebEditors
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Roles.WebEditors
-  nameWithType: Roles.WebEditors
 - uid: SystemLibrary.Common.Episerver.Services
   name: Services
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Services.html
@@ -11512,28 +11422,3 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Services.Remove(Of T)()
   nameWithType: Services.Remove<T>()
   nameWithType.vb: Services.Remove(Of T)()
-- uid: SystemLibrary.Common.Episerver.Setup
-  name: Setup
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Setup.html
-  commentId: T:SystemLibrary.Common.Episerver.Setup
-  fullName: SystemLibrary.Common.Episerver.Setup
-  nameWithType: Setup
-- uid: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions
-  name: SystemLibraryCommonEpiserverOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.html
-  commentId: T:SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions
-  fullName: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions
-  nameWithType: SystemLibraryCommonEpiserverOptions
-- uid: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-  name: ContentCreationBorderColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.html#SystemLibrary_Common_Episerver_SystemLibraryCommonEpiserverOptions_ContentCreationBorderColor
-  commentId: P:SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-  fullName: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-  nameWithType: SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-- uid: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor*
-  name: ContentCreationBorderColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.html#SystemLibrary_Common_Episerver_SystemLibraryCommonEpiserverOptions_ContentCreationBorderColor_
-  commentId: Overload:SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor
-  nameWithType: SystemLibraryCommonEpiserverOptions.ContentCreationBorderColor

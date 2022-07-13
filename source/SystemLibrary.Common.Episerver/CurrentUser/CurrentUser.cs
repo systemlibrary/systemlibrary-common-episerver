@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 using EPiServer.Cms.UI.AspNetIdentity;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
+using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver;
@@ -41,7 +41,7 @@ public class CurrentUser : ApplicationUser
 {
     IPrincipal _Principal;
     IPrincipal Principal => _Principal != null ? _Principal :
-        (_Principal = Services.Get<IHttpContextAccessor>()?.HttpContext?.User);
+        (_Principal = HttpContextInstance.Current?.User);
 
     public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
 

@@ -8,15 +8,35 @@
 
 ## First time usage
 
-- Classes and methods can be used out of the box by including the namespace they live in
-
-- Sample:
+- Configure services:
 ```csharp  
 	public void ConfigureServices(IServiceCollection services)
 	{
 		services.CommonEpiServices(); //Extension method is inside this package
 	}
 ```
+- Configure app middleware:
+```csharp  
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.CommonEpiserverAppBuilder();
+        //app.UseResponseCompression();
+    }
+```
+
+- Create module.config at root if not existing, and add endpoints:
+```csharp  
+    <?xml version="1.0" encoding="utf-8"?>
+    <module>
+        <clientResources>
+            <add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style"/>
+		    <add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEditor/Styles" resourceType="Style"/>
+        </clientResources>
+    </module>
+```
+
+After setup now classes and methods can be used by including their namespace.
+
 
 ## Package Configurations
 * Default (and modifiable) configurations in this package:
@@ -24,7 +44,23 @@
 appSettings.json:
 ```json  
 	{
-		"systemLibraryCommonEpiserver": {
-		}
-	}
+        ...,
+        "systemLibraryCommonEpiserver": {
+            "logMessageBuilder": {
+                "appendLoggedInState": true,
+                "appendCurrentPage": true,
+                "appendCurrentUrl": true,
+                "appendIp": true,
+                "appendBrowser": true,
+                "appendCookieInfo": true
+            },
+            "cache": {
+                "defaultDuration": 180
+            },
+            "editMode": {
+                "companyColor": "#B84D94" //A css color or hex
+            }
+        }
+        ...
+    }
 ```  

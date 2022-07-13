@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace SystemLibrary.Common.Episerver.Initialize
 {
-    public partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
+    internal partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
     {
         UIUserProvider _uIUserProvider;
         UIRoleProvider _uIRoleProvider;

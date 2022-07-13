@@ -18,10 +18,6 @@ namespace SystemLibrary.Common.Episerver.Attributes
                 var cssFolder = "Attributes/ContentIconAttribute/FontAwesome/Css";
                 FontAwesomeBundledMinCss = Net.Assemblies.GetEmbeddedResource(cssFolder, "fontawesome-bundled.min.css", currentAssembly);
 
-                var options = new SystemLibraryCommonEpiserverOptions();
-                if (options.ContentCreationBorderColor.Is())
-                    FontAwesomeBundledMinCss = FontAwesomeBundledMinCss.Replace(nameof(options.ContentCreationBorderColor), options.ContentCreationBorderColor);
-
                 var webFontsFolder = "Attributes/ContentIconAttribute/FontAwesome/WebFonts";
                 Brands400Woff2 = Net.Assemblies.GetEmbeddedResourceAsBytes(webFontsFolder, "fa-brands-400.woff2", currentAssembly);
                 Regular400Woff2 = Net.Assemblies.GetEmbeddedResourceAsBytes(webFontsFolder, "fa-regular-400.woff2", currentAssembly);

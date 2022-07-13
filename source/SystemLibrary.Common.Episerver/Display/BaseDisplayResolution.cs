@@ -27,10 +27,10 @@ namespace SystemLibrary.Common.Episerver.Display
 
         public int Height { get; protected set; }
 
-        string Translate(string resurceKey)
+        string Translate(string resourceKey)
         {
-            if (!LocalizationService.Service.TryGetString(resurceKey, out var value))
-                value = resurceKey;
+            if (!LocalizationService.Service.TryGetString(resourceKey, out var value))
+                value = resourceKey;
 
             return value;
         }

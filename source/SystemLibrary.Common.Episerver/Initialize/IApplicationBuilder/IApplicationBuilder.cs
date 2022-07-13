@@ -10,14 +10,15 @@ public static partial class IApplicationBuilderExtensions
 {
     public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, IApplicationBuilderOptions options = null)
     {
-        if(!System.IO.File.Exists("module.config"))
-        {
-            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization");
-        }
         if (options == null)
             options = new IApplicationBuilderOptions();
 
         ApplicationBuilderLogging(app, options);
+
+        if (!System.IO.File.Exists("module.config"))
+        {
+            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the Installation instructions. Install instructions are within the documentation for this nuget package");
+        }
 
         ApplicationBuilderCompression(app, options);
 

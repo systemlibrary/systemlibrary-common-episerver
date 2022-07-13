@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemLibrary.Common.Episerver", "SystemLibrary.Common.Episerver\SystemLibrary.Common.Episerver.csproj", "{66C8939B-B970-4B28-98A4-AA8519FF27EA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemLibrary.Common.Episerver.Tests", "SystemLibrary.Common.Episerver.Tests\SystemLibrary.Common.Episerver.Tests.csproj", "{06DD4274-704A-44E2-ABA1-38EB3DDA246C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Any CPU = Release|Any CPU
@@ -12,6 +14,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{66C8939B-B970-4B28-98A4-AA8519FF27EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C8939B-B970-4B28-98A4-AA8519FF27EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06DD4274-704A-44E2-ABA1-38EB3DDA246C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06DD4274-704A-44E2-ABA1-38EB3DDA246C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

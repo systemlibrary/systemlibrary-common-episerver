@@ -1,7 +1,7 @@
 ﻿namespace SystemLibrary.Common.Episerver
 {
     /// <summary>
-    /// Various default Cms Roles
+    /// All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not
     /// </summary>
     public static class Roles
     {

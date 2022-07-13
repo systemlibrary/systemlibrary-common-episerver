@@ -6,6 +6,8 @@ using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 
+using SystemLibrary.Common.Web;
+
 namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
@@ -32,7 +34,7 @@ public static class Cache
         get
         {
             if (_IsWebContext == null)
-                _IsWebContext = Services.Get<IHttpContextAccessor>()?.HttpContext != null;
+                _IsWebContext = HttpContextInstance.Current != null;
 
             return _IsWebContext.Value;
         }
@@ -49,6 +51,10 @@ public static class Cache
             if(_DefaultDuration == -1)
             {
                 _DefaultDuration = AppSettings.Current.SystemLibraryCommonEpiserver.Cache.DefaultDuration;
+                if(_DefaultDuration <= 0)
+                {
+                    _DefaultDuration = 180;
+                }
             }
             return _DefaultDuration;
         }
@@ -57,14 +63,14 @@ public static class Cache
     static Cache()
     {
         MemoryCacheOptions options = new MemoryCacheOptions();
-        options.CompactionPercentage = 25;
-        options.ExpirationScanFrequency = TimeSpan.FromSeconds(180);
-        options.SizeLimit = 200000;
+        options.ExpirationScanFrequency = TimeSpan.FromSeconds(120);
         cache = new MemoryCache(options);
     }
 
     /// <summary>
     /// Get data from cache, or add it to cache before it is returned
+    /// 
+    /// Note: null is never added to cache
     /// </summary>
     /// <example>
     /// <code class="language-csharp hljs">

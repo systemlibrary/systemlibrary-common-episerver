@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Episerver.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public partial class ContentIconAttribute : ImageUrlAttribute
     {
-        static string BackgroundColor = "#FAFAFA";
+        //static string BackgroundColor = "#FAFAFA";
         static string ForegroundColor = "#000000";
         static string FolderForegroundColor = "#FFA000";
         static string SettingsForegroundColor = "#C7C7C7";

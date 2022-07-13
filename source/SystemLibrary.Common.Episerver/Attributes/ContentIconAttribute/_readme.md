@@ -22,3 +22,9 @@
 - For instance, updating Enum 'FontAwesomeBrands', then open the folder where all its icons exists
 - Then open 'cmd' and print out all files in current folder: 'dir /s' on windows
 - Use notepad++ to replace .svg with commas, etc... to make it C# Enum friendly...
+
+
+### Future:
+Support a way to add custom images also to the "Page tree"
+Support also a way to custom background color of the image, which is now white with a black svg
+Support a way of setting custom color to the SVG that are black, inside "img" tag, like so: img {invert(1) sepia(1) saturate(25) hue-rotate(230deg) }

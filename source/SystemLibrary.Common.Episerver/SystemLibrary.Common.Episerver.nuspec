@@ -3,7 +3,7 @@
 	<metadata>
 		<id>SystemLibrary.Common.Episerver</id>
 
-		<version>2.0.0.2</version>
+		<version>3.0.0.1</version>
 
 		<authors>System Library</authors>
 
@@ -23,13 +23,13 @@
 		</releaseNotes>
 
 		<description>
-			A common library for all .NET &gt;= 5 episerver applications - various reusable extensions and classes
+			A common library for all .NET &gt;= 6 episerver applications - various reusable extensions and classes
 
 			Selling points:
 			* Extensions for XhtmlString, ContentReference, ContentArea, ...
-			* Initialize your application through two methods for Episerver 12, in &gt;= .NET 5: app.CommonEpiserverInitialization(); and services.CommonEpiserverServices&lt;CurrentUser&gt;(options);
+			* Initialize your application through two methods for Episerver 12, in &gt;= .NET 6: app.CommonEpiserverInitialization(); and services.CommonEpiserverServices&lt;CurrentUser&gt;(options);
 			* A log builder which builds a string with all needed information about current error and request, which you control where to log to (slack, cloud watch, sentry, firebase, ...)
-			* Cache class that creates a unique key based on current user roles, with option add additional predicates, and also a flag to cache or not for CmsUsers
+			* Cache class, with option to add an additional predicate, and control cache for Cms Users with a bool
 			* Contains a 'CurrentUser' that you can either inherit or just inject yourself in any service/controller
 			* Contains Enum attributes, ContentIcon from FontAwesome, ColorPicker, and much, much more!
 
@@ -42,16 +42,17 @@
 
 		<copyright>Copyright © System Library</copyright>
 
-		<tags>C# .NET 5.0 Episerver Optimizely Library</tags>
+		<tags>C# .NET 6.0 Episerver Optimizely Library</tags>
 
 		<dependencies>
-			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.3.0" />
-			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.3.1" />
-			<dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.7" />
+			<dependency id="EPiServer.Hosting" version="12.8.0" />
+			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.8.0" />
+			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.8.0" />
 			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
 			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
-			<dependency id="SystemLibrary.Common.Net.Json" version="2.0.0.8" />
-			<dependency id="SystemLibrary.Common.Web" version="2.0.0.8" />
+			<dependency id="System.Security.Cryptography.Xml" version="6.0.0" />
+			<dependency id="SystemLibrary.Common.Web" version="3.0.0.14" />
+			<dependency id="SystemLibrary.Common.Net" version="3.0.0.2" />
 		</dependencies>
 	</metadata>
 

@@ -4,6 +4,9 @@ using EPiServer.ServiceLocation;
 
 namespace SystemLibrary.Common.Episerver.Initialize;
 
+/// <summary>
+/// An initialization module that removes 'Suggested Types' if configured in ServiceCollectionOptions, which you passed to CommonEpiserverServices()
+/// </summary>
 [InitializableModule]
 [ModuleDependency(typeof(FrameworkInitialization))]
 public class RemoveSuggestedContentTypes : InitModule

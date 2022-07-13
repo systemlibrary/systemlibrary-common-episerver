@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="SystemLibrary.Common.Episerver
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
     <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
@@ -52,9 +52,10 @@
               
               <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
                 <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
+                <span class="navbar-title">System Library Common Episerver</span>
               </a>
               
-              <span class="navbar-title">System Library Common Episerver</span>    </div>
+            </div>
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
@@ -107,46 +108,60 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.BaseCms.html">BaseCms</a></h4>
-      <section></section>
+      <section><p>Base Cms functions to use anywhere within your application</p>
+<ul>
+<li>No more injecting things that you always need</li>
+<li>No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class</li>
+</ul>
+</section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cache.html">Cache</a></h4>
       <section><p>Cache</p>
-<p>Skip: 'true' means that 'getItem' is always invoked, no cache occurs within this class</p>
-<p>Cache is always skipped:</p>
+<p>Default duration is 180 seconds</p>
+<p>Required skip cache scenarios:</p>
 <ul>
-<li>if cacheKey is null or empty</li>
-<li>if HttpContext.Current is null</li>
-<li>if PageIsInEditMode is true</li>
+<li>If cachekey is null or empty</li>
+<li>If not in a web context</li>
 </ul>
-<p>Optional to also skip for:</p>
+<p>Optional skip cache scenarios by parameters to Cache.Get():</p>
 <ul>
-<li>authenticated visitors</li>
-<li>authenticated cms users</li>
+<li>authenticated visitors, every user that is signed, but is not part of Roles.CmsRoles, default to false</li>
+<li>authenticated cms users, defaults to true, so logged in cms users do not get cached content at all</li>
 </ul>
-<p>Implement your own custom skip logic that will trigger after the required skip conditions:</p>
+<p>Can implement your own custom skip logic, additional to the ones that are required:</p>
 <ul>
-<li>skipCacheFor parameter upon &quot;Get()&quot;</li>
+<li>pass in 'skipCacheFor' parameter in Cache.Get() function</li>
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.CurrentUser.html">CurrentUser</a></h4>
       <section><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
-<p>Remember to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
+<p>Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Log.html">Log</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Roles.html">Roles</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Services.html">Services</a></h4>
-      <section></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Setup.html">Setup</a></h4>
-      <section><p>This class has a good example on how to setup 'SystemLibrary.Common.Episerver' in your application</p>
-<p>Click the 'Examples' button to view all the info you need to get going</p>
+      <section><p>One log class for your whole application</p>
+<ul>
+<li><p>Destination of where the log-message is saved is up to you to implement by implementing the interface ILogWriter in your application</p>
+</li>
+<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
+</li>
+<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
+</li>
+</ul>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.SystemLibraryCommonEpiserverOptions.html">SystemLibraryCommonEpiserverOptions</a></h4>
-      <section></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Roles.html">Roles</a></h4>
+      <section><p>All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Services.html">Services</a></h4>
+      <section><p>Dependency injection registry with all services</p>
+<ul>
+<li>Look at it as ServiceLocator</li>
+</ul>
+</section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.ILogWriter.html">ILogWriter</a></h4>
-      <section></section>
+      <section><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
+<p>Your logwriter will then be used whenever you use the static logger: Log.Errror(), Log.Warning(), Log.Write()</p>
+</section>
 </article>
           </div>
           
