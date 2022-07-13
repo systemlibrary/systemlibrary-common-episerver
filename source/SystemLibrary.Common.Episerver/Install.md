@@ -12,27 +12,26 @@
 ```csharp  
 	public void ConfigureServices(IServiceCollection services)
 	{
-		services.CommonEpiServices(); //Extension method is inside this package
+		services.CommonEpiServices();
 	}
 ```
 - Configure app middleware:
 ```csharp  
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        app.CommonEpiserverAppBuilder();
-        //app.UseResponseCompression();
-    }
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+	{
+		app.CommonEpiserverAppBuilder();
+	}
 ```
 
 - Create module.config at root if not existing, and add endpoints:
 ```csharp  
-    <?xml version="1.0" encoding="utf-8"?>
-    <module>
-        <clientResources>
-            <add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style"/>
-		    <add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEditor/Styles" resourceType="Style"/>
-        </clientResources>
-    </module>
+	<?xml version="1.0" encoding="utf-8"?>
+	<module>
+		<clientResources>
+			<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style"/>
+			<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEditor/Styles" resourceType="Style"/>
+			</clientResources>
+	</module>
 ```
 
 After setup now classes and methods can be used by including their namespace.
@@ -44,23 +43,23 @@ After setup now classes and methods can be used by including their namespace.
 appSettings.json:
 ```json  
 	{
-        ...,
-        "systemLibraryCommonEpiserver": {
-            "logMessageBuilder": {
-                "appendLoggedInState": true,
-                "appendCurrentPage": true,
-                "appendCurrentUrl": true,
-                "appendIp": true,
-                "appendBrowser": true,
-                "appendCookieInfo": true
-            },
-            "cache": {
-                "defaultDuration": 180
-            },
-            "editMode": {
-                "companyColor": "#B84D94" //A css color or hex
-            }
-        }
-        ...
-    }
+		...,
+		"systemLibraryCommonEpiserver": {
+			"logMessageBuilder": {
+				"appendLoggedInState": true,
+				"appendCurrentPage": true,
+				"appendCurrentUrl": true,
+				"appendIp": true,
+				"appendBrowser": true,
+				"appendCookieInfo": true
+			},
+			"cache": {
+				"defaultDuration": 180
+			},
+			"editMode": {
+				"companyColor": "#B84D94" //A css color or hex
+			}
+		},
+		...
+	}
 ```  
