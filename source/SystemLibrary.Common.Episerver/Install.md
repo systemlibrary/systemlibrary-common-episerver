@@ -8,33 +8,64 @@
 
 ## First time usage
 
-- Configure services:
-```csharp  
-	public void ConfigureServices(IServiceCollection services)
-	{
-		services.CommonEpiServices();
-	}
-```
-- Configure app middleware:
-```csharp  
+- Initialize your episerver application with a default set of services (classes, injectable) and middlewares (pipeline, classes runs in order they are registered):
+ 
+```csharp 
+using SystemLibrary.Common.Episerver.Extensions;
+
+public class Initialize 
+{
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		app.CommonEpiserverAppBuilder();
+		var options = new EpiserverWebApplicationOptions();
+		app.CommonEpiserverAppBuilder(options);
 	}
+	
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var options = new ServiceCollectionEpiserverOptions();
+		services.CommonEpiserverServices(options);
+	}
+}
+```
+
+Then inside your program.cs (main method) use the 'Initialize' class
+```csharp 
+static void main(string[] args) {
+	Host.CreateDefaultBuilder(args)
+		.ConfigureWebHostDefaults(config =>
+		{
+			config.UseStartup<Initialize>();
+		})
+		//other options...
+		.Build()
+		.Run();
+}
 ```
 
 - Create module.config at root if not existing, and add endpoints:
 ```csharp  
-	<?xml version="1.0" encoding="utf-8"?>
-	<module>
-		<clientResources>
-			<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style"/>
-			<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEditor/Styles" resourceType="Style"/>
-			</clientResources>
-	</module>
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+	<clientResources>
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style"/>
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEditor/Styles" resourceType="Style"/>
+	</clientResources>
+</module>
 ```
 
-After setup now classes and methods can be used by including their namespace.
+- Remember to add EpiserverDb into your appSettings.json:
+```json 
+{
+	...,
+	"ConnectionStrings": {
+		"EPiServerDB": "Data Source=..."
+	},
+	...
+}
+```
+
+- If you now run your .NET 6 Web Application against an empty database, it should create all Episerver DB tables, create a 'demo' administrator with password 'Demo123!', so visit http://yoursite:yourPort/episerver
 
 
 ## Package Configurations

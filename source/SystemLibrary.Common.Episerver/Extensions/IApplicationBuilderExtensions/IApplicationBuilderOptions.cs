@@ -1,9 +1,9 @@
-﻿namespace SystemLibrary.Common.Episerver.Initialize;
+﻿namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
 /// Contains application builder options that you can override if you want to
 /// </summary>
-public class IApplicationBuilderOptions : Web.Extensions.ApplicationBuilderOptions
+public class EpiserverWebApplicationOptions : Web.Extensions.WebApplicationBuilderOptions
 {
     public bool UseExceptionLogging = true;
     public bool UseRewriteEpiserverPathToEpiserverCms = true;

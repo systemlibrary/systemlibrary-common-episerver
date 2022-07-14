@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
     {
         static void InitializeLanguages()
         {
-            var initialLanguagesEnabled = ServiceCollectionExtensions.Options.InitialLanguagesEnabled;
+            var initialLanguagesEnabled = Extensions.ServiceCollectionExtensions.Options.InitialLanguagesEnabled;
 
             if (initialLanguagesEnabled.IsNot()) return;
             var initialLanguages = initialLanguagesEnabled.Split(',').Select(x => x.Replace(" ", "")).ToArray();

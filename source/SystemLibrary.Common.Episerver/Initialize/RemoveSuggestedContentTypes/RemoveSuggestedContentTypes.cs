@@ -13,10 +13,10 @@ public class RemoveSuggestedContentTypes : InitModule
 {
     public override void ConfigureContainer(ServiceConfigurationContext context)
     {
-        if (ServiceCollectionExtensions.Options == null)
+        if (Extensions.ServiceCollectionExtensions.Options == null)
             Log.Error("Error: You've not called on extension for IServiceCollection named: CommonEpiserverServices()");
 
-        if (ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
+        if (Extensions.ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
             Services.Remove<IContentTypeAdvisor>();
     }
 }

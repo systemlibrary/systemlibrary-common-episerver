@@ -1,11 +1,12 @@
 ﻿using System;
+
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionCookies(IServiceCollection services, ServiceCollectionOptions options)
+    static void ServiceCollectionCookies(IServiceCollection services, ServiceCollectionEpiserverOptions options)
     {
         if (!Options.ConfigureApplicationCookie) return;
      

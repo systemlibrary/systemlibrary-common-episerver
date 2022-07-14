@@ -2,11 +2,11 @@
 
 using Microsoft.AspNetCore.Builder;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderEndpoints(IApplicationBuilder app, IApplicationBuilderOptions options)
+    static void ApplicationBuilderEndpoints(IApplicationBuilder app, EpiserverWebApplicationOptions options)
     {
         app.UseEndpoints(endpoints =>
         {

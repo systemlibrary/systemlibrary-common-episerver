@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 using SystemLibrary.Common.Episerver.Display;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionDisplays(IServiceCollection services, ServiceCollectionOptions options)
+    static void ServiceCollectionDisplays(IServiceCollection services, ServiceCollectionEpiserverOptions options)
     {
         if (!Options.RegisterDisplays) return;
 

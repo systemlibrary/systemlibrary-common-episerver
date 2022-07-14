@@ -5,11 +5,13 @@ using EPiServer.Web.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+using SystemLibrary.Common.Episerver.Initialize;
+
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionFirstTime(IServiceCollection services, ServiceCollectionOptions options)
+    static void ServiceCollectionFirstTime(IServiceCollection services, ServiceCollectionEpiserverOptions options)
     {
         services.TryAddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
 

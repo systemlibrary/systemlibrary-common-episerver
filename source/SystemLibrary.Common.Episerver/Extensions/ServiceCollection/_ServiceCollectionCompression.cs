@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionCompression(IServiceCollection services, ServiceCollectionOptions options)
+    static void ServiceCollectionCompression(IServiceCollection services, ServiceCollectionEpiserverOptions options)
     {
         services.AddResponseCompression(compression =>
         {

@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Builder;
 
 using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class IApplicationBuilderExtensions
 {
-    public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, IApplicationBuilderOptions options = null)
+    public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, EpiserverWebApplicationOptions options = null)
     {
         if (options == null)
-            options = new IApplicationBuilderOptions();
+            options = new EpiserverWebApplicationOptions();
 
         ApplicationBuilderLogging(app, options);
 

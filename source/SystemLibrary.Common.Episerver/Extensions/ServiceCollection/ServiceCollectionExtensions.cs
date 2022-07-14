@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
-    internal static ServiceCollectionOptions Options;
+    internal static ServiceCollectionEpiserverOptions Options;
 
     /// <summary>
     /// This method registers default web-application settings:
@@ -27,7 +27,7 @@ public static partial class ServiceCollectionExtensions
     /// services.AddTinyMce();
     /// services.AddFind();
     /// </summary>
-    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options = null)
+    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionEpiserverOptions options = null)
     {
         Services.Collection = services;
 
@@ -62,7 +62,7 @@ public static partial class ServiceCollectionExtensions
     /// services.AddTinyMce();
     /// services.AddFind();
     /// </summary>
-    public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, ServiceCollectionOptions options = null) where T : CurrentUser, new()
+    public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, ServiceCollectionEpiserverOptions options = null) where T : CurrentUser, new()
     {
         services.AddCmsAspNetIdentity<T>();
 
@@ -71,13 +71,11 @@ public static partial class ServiceCollectionExtensions
         return CommonEpiserverServices(services, options);
     }
 
-    static void SetOptions(ServiceCollectionOptions options)
+    static void SetOptions(ServiceCollectionEpiserverOptions options)
     {
-        var fallback = new ServiceCollectionOptions();
+        var fallback = new ServiceCollectionEpiserverOptions();
 
         Options = options ?? fallback;
-
-        Options.ViewLocations = Options.ViewLocations.Add(ViewLocations.AllViews);
 
         if (Options.CmsUserSessionDurationMinutes == 0)
             Options.CmsUserSessionDurationMinutes = fallback.CmsUserSessionDurationMinutes;

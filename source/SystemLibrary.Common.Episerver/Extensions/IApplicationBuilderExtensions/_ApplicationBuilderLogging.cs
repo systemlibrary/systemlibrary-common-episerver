@@ -4,11 +4,11 @@ using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace SystemLibrary.Common.Episerver.Initialize;
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderLogging(IApplicationBuilder app, IApplicationBuilderOptions options)
+    static void ApplicationBuilderLogging(IApplicationBuilder app, EpiserverWebApplicationOptions options)
     {
         if (!options.UseExceptionLogging) return;
 

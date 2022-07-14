@@ -67,6 +67,16 @@ public static class Cache
         cache = new MemoryCache(options);
     }
 
+    /*TODO: Get<T> without a cacheKey to ease the pain of creating cacheKeys if you simply want to store or not store  some things for N minutes?
+     * 
+     * T Get<T>(Func<T> action)
+            var method = action.Method;
+            var user = new CurrentUser();
+            var cacheKey = method.Name + method.DeclaringType?.Namespace + user.Roles;
+     * Here cacheKey is "fine" for the current method inside current type and namespace
+     * Optional to also "divide" based on current user roles... which is empty if not auth'd...
+     * */
+
     /// <summary>
     /// Get data from cache, or add it to cache before it is returned
     /// 
