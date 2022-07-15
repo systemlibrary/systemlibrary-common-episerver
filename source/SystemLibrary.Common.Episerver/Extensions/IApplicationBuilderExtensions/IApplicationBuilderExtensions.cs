@@ -8,6 +8,18 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class IApplicationBuilderExtensions
 {
+    /// <summary>
+    /// Initialize middleware for your Episerver Application in one line
+    /// - Pass in 'EpiserverAppBuilderOptions' if you want to control which middleware to load
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    /// {
+    ///     app.CommonEpiserverAppBuilder();
+    /// }
+    /// </code>
+    /// </example>
     public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, EpiserverAppBuilderOptions options = null)
     {
         if (options == null)
