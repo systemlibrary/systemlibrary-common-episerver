@@ -5,6 +5,17 @@ using EPiServer.DataAnnotations;
 
 namespace SystemLibrary.Common.Episerver.Attributes
 {
+    /// <summary>
+    /// Chose one of Font Awesome v. 6's free icons for your Blocks and Pages
+    /// - Font Awesome Icons will also display in Page Tree
+    /// - You can pass a custom path to your own image, but that wont, per now, show up in Page Tree
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// [ContentIcon(ContentIconAttribute.FontAwesomeRegular.credit_card)]
+    /// public class StartPage : PageData
+    /// </code>
+    /// </example>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public partial class ContentIconAttribute : ImageUrlAttribute
     {
@@ -55,12 +66,12 @@ namespace SystemLibrary.Common.Episerver.Attributes
         {
             return GetEmbeddedSvgName(requestUrl, icon.ToString());
         }
-        
+
         static string GetEmbeddedSvgName(string requestUrl, string iconName)
         {
             if (iconName.EndsWithAny(".svg", ".jpg", ".png"))
             {
-                if(iconName.StartsWith("~"))
+                if (iconName.StartsWith("~"))
                     iconName = iconName.Substring(1);
                 iconName = iconName.Replace("/", "___");
 
