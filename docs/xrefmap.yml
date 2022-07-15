@@ -11055,6 +11055,137 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl
   nameWithType: ContentReferenceExtensions.ToFriendlyUrl
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions
+  name: EpiserverAppBuilderOptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions
+  nameWithType: EpiserverAppBuilderOptions
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints
+  name: UseEpiserverMapContentEndpoints
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseEpiserverMapContentEndpoints
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints
+  nameWithType: EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseExceptionLogging
+  name: UseExceptionLogging
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseExceptionLogging
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseExceptionLogging
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseExceptionLogging
+  nameWithType: EpiserverAppBuilderOptions.UseExceptionLogging
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  name: UseRewriteEpiserverPathToEpiserverCms
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseRewriteEpiserverPathToEpiserverCms
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+  nameWithType: EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions
+  name: EpiserverServiceCollectionOptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions
+  nameWithType: EpiserverServiceCollectionOptions
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUserSessionDurationMinutes
+  name: CmsUserSessionDurationMinutes
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUserSessionDurationMinutes
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUserSessionDurationMinutes
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUserSessionDurationMinutes
+  nameWithType: EpiserverServiceCollectionOptions.CmsUserSessionDurationMinutes
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUsersSlidingExpiration
+  name: CmsUsersSlidingExpiration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUsersSlidingExpiration
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUsersSlidingExpiration
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUsersSlidingExpiration
+  nameWithType: EpiserverServiceCollectionOptions.CmsUsersSlidingExpiration
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.ConfigureApplicationCookie
+  name: ConfigureApplicationCookie
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_ConfigureApplicationCookie
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.ConfigureApplicationCookie
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.ConfigureApplicationCookie
+  nameWithType: EpiserverServiceCollectionOptions.ConfigureApplicationCookie
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminEmail
+  name: DefaultAdminEmail
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminEmail
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminEmail
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminEmail
+  nameWithType: EpiserverServiceCollectionOptions.DefaultAdminEmail
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminPassword
+  name: DefaultAdminPassword
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminPassword
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminPassword
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminPassword
+  nameWithType: EpiserverServiceCollectionOptions.DefaultAdminPassword
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HidePropertyCategoryList
+  name: HidePropertyCategoryList
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HidePropertyCategoryList
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HidePropertyCategoryList
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HidePropertyCategoryList
+  nameWithType: EpiserverServiceCollectionOptions.HidePropertyCategoryList
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HideSuggestedContentTypes
+  name: HideSuggestedContentTypes
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HideSuggestedContentTypes
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HideSuggestedContentTypes
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HideSuggestedContentTypes
+  nameWithType: EpiserverServiceCollectionOptions.HideSuggestedContentTypes
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.InitialLanguagesEnabled
+  name: InitialLanguagesEnabled
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_InitialLanguagesEnabled
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.InitialLanguagesEnabled
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.InitialLanguagesEnabled
+  nameWithType: EpiserverServiceCollectionOptions.InitialLanguagesEnabled
+- uid: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.RegisterDisplays
+  name: RegisterDisplays
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_RegisterDisplays
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.RegisterDisplays
+  fullName: SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.RegisterDisplays
+  nameWithType: EpiserverServiceCollectionOptions.RegisterDisplays
+- uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
+  name: IApplicationBuilderExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
+  nameWithType: IApplicationBuilderExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions)
+  name: CommonEpiserverAppBuilder(IApplicationBuilder, EpiserverAppBuilderOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Extensions_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions)
+  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder(IApplicationBuilder, EpiserverAppBuilderOptions)
+- uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder*
+  name: CommonEpiserverAppBuilder
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Extensions_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
+  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder
+- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
+  name: ServiceCollectionExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
+  nameWithType: ServiceCollectionExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  name: CommonEpiserverServices(IServiceCollection, EpiserverServiceCollectionOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices(IServiceCollection, EpiserverServiceCollectionOptions)
+- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices*
+  name: CommonEpiserverServices
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverServices_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices
+  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices
+- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  name: CommonEpiserverServices<T>(IServiceCollection, EpiserverServiceCollectionOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  name.vb: CommonEpiserverServices(Of T)(IServiceCollection, EpiserverServiceCollectionOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices<T>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)
+  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices<T>(IServiceCollection, EpiserverServiceCollectionOptions)
+  nameWithType.vb: ServiceCollectionExtensions.CommonEpiserverServices(Of T)(IServiceCollection, EpiserverServiceCollectionOptions)
 - uid: SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions
   name: ViewContextExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.html
@@ -11125,49 +11256,6 @@ references:
   commentId: N:SystemLibrary.Common.Episerver.Initialize
   fullName: SystemLibrary.Common.Episerver.Initialize
   nameWithType: SystemLibrary.Common.Episerver.Initialize
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
-  name: IApplicationBuilderExtensions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions
-  nameWithType: IApplicationBuilderExtensions
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
-  name: CommonEpiserverAppBuilder(IApplicationBuilder, IApplicationBuilderOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)
-  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder(IApplicationBuilder, IApplicationBuilderOptions)
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder*
-  name: CommonEpiserverAppBuilder
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder
-  nameWithType: IApplicationBuilderExtensions.CommonEpiserverAppBuilder
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
-  name: IApplicationBuilderOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions
-  nameWithType: IApplicationBuilderOptions
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  name: UseEpiserverMapContentEndpoints
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseEpiserverMapContentEndpoints
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  nameWithType: IApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
-  name: UseExceptionLogging
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseExceptionLogging
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging
-  nameWithType: IApplicationBuilderOptions.UseExceptionLogging
-- uid: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  name: UseRewriteEpiserverPathToEpiserverCms
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseRewriteEpiserverPathToEpiserverCms
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  fullName: SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  nameWithType: IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
 - uid: SystemLibrary.Common.Episerver.Initialize.InitModule
   name: InitModule
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html
@@ -11232,94 +11320,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer
   nameWithType: RemoveSuggestedContentTypes.ConfigureContainer
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions
-  name: ServiceCollectionExtensions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions
-  nameWithType: ServiceCollectionExtensions
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  name: CommonEpiserverServices(IServiceCollection, ServiceCollectionOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices(IServiceCollection, ServiceCollectionOptions)
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices*
-  name: CommonEpiserverServices
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_
-  commentId: Overload:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  name: CommonEpiserverServices<T>(IServiceCollection, ServiceCollectionOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  name.vb: CommonEpiserverServices(Of T)(IServiceCollection, ServiceCollectionOptions)
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices<T>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  fullName.vb: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverServices<T>(IServiceCollection, ServiceCollectionOptions)
-  nameWithType.vb: ServiceCollectionExtensions.CommonEpiserverServices(Of T)(IServiceCollection, ServiceCollectionOptions)
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
-  name: ServiceCollectionOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html
-  commentId: T:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions
-  nameWithType: ServiceCollectionOptions
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
-  name: CmsUserSessionDurationMinutes
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_CmsUserSessionDurationMinutes
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUserSessionDurationMinutes
-  nameWithType: ServiceCollectionOptions.CmsUserSessionDurationMinutes
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSlidingExpiration
-  name: CmsUsersSlidingExpiration
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_CmsUsersSlidingExpiration
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSlidingExpiration
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.CmsUsersSlidingExpiration
-  nameWithType: ServiceCollectionOptions.CmsUsersSlidingExpiration
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.ConfigureApplicationCookie
-  name: ConfigureApplicationCookie
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_ConfigureApplicationCookie
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.ConfigureApplicationCookie
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.ConfigureApplicationCookie
-  nameWithType: ServiceCollectionOptions.ConfigureApplicationCookie
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminEmail
-  name: DefaultAdminEmail
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_DefaultAdminEmail
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminEmail
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminEmail
-  nameWithType: ServiceCollectionOptions.DefaultAdminEmail
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminPassword
-  name: DefaultAdminPassword
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_DefaultAdminPassword
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminPassword
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.DefaultAdminPassword
-  nameWithType: ServiceCollectionOptions.DefaultAdminPassword
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
-  name: HidePropertyCategoryList
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_HidePropertyCategoryList
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HidePropertyCategoryList
-  nameWithType: ServiceCollectionOptions.HidePropertyCategoryList
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
-  name: HideSuggestedContentTypes
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_HideSuggestedContentTypes
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.HideSuggestedContentTypes
-  nameWithType: ServiceCollectionOptions.HideSuggestedContentTypes
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
-  name: InitialLanguagesEnabled
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_InitialLanguagesEnabled
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.InitialLanguagesEnabled
-  nameWithType: ServiceCollectionOptions.InitialLanguagesEnabled
-- uid: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
-  name: RegisterDisplays
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html#SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_RegisterDisplays
-  commentId: F:SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
-  fullName: SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.RegisterDisplays
-  nameWithType: ServiceCollectionOptions.RegisterDisplays
 - uid: SystemLibrary.Common.Episerver.Log
   name: Log
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html

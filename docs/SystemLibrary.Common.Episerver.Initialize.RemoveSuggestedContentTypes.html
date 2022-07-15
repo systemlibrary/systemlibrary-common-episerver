@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IApplicationBuilderExtensions
+    <title>RemoveSuggestedContentTypes
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IApplicationBuilderExtensions
+    <meta name="title" content="RemoveSuggestedContentTypes
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -87,8 +87,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        SystemLibrary.Common.Episerver.Attributes,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute,SystemLibrary.Common.Episerver.Cms.Editor.Controllers,SystemLibrary.Common.Episerver.Cms.EditorDescriptors</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -97,38 +97,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -141,22 +157,14 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container">
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.html">SystemLibrary.Common.Episerver.Initialize</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
@@ -164,22 +172,40 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"></div>
+    <div class="markdown level0 summary h1-class-summary"><p>An initialization module that removes 'Suggested Types' if configured in ServiceCollectionOptions, which you passed to CommonEpiserverServices()</p>
+</div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions" class="text-break h1-class-header">IApplicationBuilderExtensions
+  <h1 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes" class="text-break h1-class-header">RemoveSuggestedContentTypes
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions" class="h1-custom-display className">public static class IApplicationBuilderExtensions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes" class="h1-custom-display className">[InitializableModule]
+[ModuleDependency(typeof(FrameworkInitialization))]
+public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IInitializableModule</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">IApplicationBuilderExtensions</span></div>
+    <div class="level1"><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html">InitModule</a></div>
+    <div class="level2"><span class="xref">RemoveSuggestedContentTypes</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">EPiServer.ServiceLocation.IConfigurableModule</span></div>
+    <div class="implements-content"><span class="xref">EPiServer.Framework.IInitializableModule</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_">InitModule.Initialize(InitializationEngine)</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_">InitModule.Uninitialize(InitializationEngine)</a>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -187,7 +213,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -204,15 +230,15 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/IApplicationBuilder.cs/#L11">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L14">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder*"></a>
+  <a id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_ConfigureContainer_" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderExtensions_CommonEpiserverAppBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderExtensions.CommonEpiserverAppBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions)" class="h4-custom-functionName">public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, IApplicationBuilderOptions options = null)</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer(EPiServer.ServiceLocation.ServiceConfigurationContext)" class="h4-custom-functionName">public override void ConfigureContainer(ServiceConfigurationContext context)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -229,42 +255,30 @@
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Builder.IApplicationBuilder</span></td>
-  						<td><span class="parametername">app</span></td>
-  						<td></td>
-  					</tr>
-  					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.html">IApplicationBuilderOptions</a></td>
-  						<td><span class="parametername">options</span></td>
+  						<td><span class="xref">EPiServer.ServiceLocation.ServiceConfigurationContext</span></td>
+  						<td><span class="parametername">context</span></td>
   						<td></td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Builder.IApplicationBuilder</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
   	</div>
   </div>
   </div>
   
   
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">InitModule.ConfigureContainer(ServiceConfigurationContext)</a>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.ServiceLocation.IConfigurableModule</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Framework.IInitializableModule</span>
+  </div>
   
   
   <script>
@@ -911,7 +925,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/_ApplicationBuilderRedirects.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -929,16 +943,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

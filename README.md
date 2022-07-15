@@ -6,7 +6,12 @@
 
 
 ## Latest Version
-- Initial version
+- 3.1.0.1
+- Updated latest dependencies
+- Added unit tests for a few of the extension methods
+- AppBuilderOptions renamed to EpiserverAppBuilderOptions (Breaking Change)
+- Renamed ServiceCollectionOptions to EpiserverServiceCollectionOptions (Breaking change)
+- EpiserverServiceCollectionOptions moved to new namespace (Breaking Change)
 
 ## Description
 A common library for all .NET &gt;= 6 episerver applications - various reusable extensions and classes

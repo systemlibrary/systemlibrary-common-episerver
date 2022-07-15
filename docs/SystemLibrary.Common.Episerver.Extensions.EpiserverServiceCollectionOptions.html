@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ServiceCollectionExtensions
+    <title>EpiserverServiceCollectionOptions
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ServiceCollectionExtensions
+    <meta name="title" content="EpiserverServiceCollectionOptions
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -87,8 +87,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        SystemLibrary.Common.Episerver.Attributes,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute,SystemLibrary.Common.Episerver.Cms.Editor.Controllers,SystemLibrary.Common.Episerver.Cms.EditorDescriptors</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -97,38 +97,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -141,25 +157,17 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container">
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.html">SystemLibrary.Common.Episerver.Initialize</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.html">SystemLibrary.Common.Episerver.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -167,19 +175,47 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions" class="text-break h1-class-header">ServiceCollectionExtensions
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions" class="text-break h1-class-header">EpiserverServiceCollectionOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions" class="h1-custom-display className">public static class ServiceCollectionExtensions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions" class="h1-custom-display className">public class EpiserverServiceCollectionOptions : ServiceCollectionCommonWebOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ServiceCollectionExtensions</span></div>
+    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions</span></div>
+    <div class="level2"><span class="xref">EpiserverServiceCollectionOptions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations</span>
+    </div>
+    <div>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -187,7 +223,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -199,186 +235,358 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="methods">Methods
+  <h3 id="fields">Fields
   </h3>
   
   <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>This method registers default web-application settings:</p>
-<ul>
-<li>Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...</li>
-</ul>
-<p>Additional notes:
-This does not register a Cms Identity, use the Generic method CommonEpiserverServices&lt;T&gt;() to register the Identity
-This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
-The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable</p>
-<p>You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-services.CommonEpiserverServices();
-services.AddCms();
-services.AddTinyMce();
-services.AddFind();</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUserSessionDurationMinutes">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/ServiceCollection/ServiceCollectionExtensions.cs/#L30">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L7">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionOptions options = null)</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUserSessionDurationMinutes" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUserSessionDurationMinutes" class="h4-custom-functionName">public int CmsUserSessionDurationMinutes</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  						<td><span class="parametername">services</span></td>
-  						<td></td>
-  					</tr>
-  					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html">ServiceCollectionOptions</a></td>
-  						<td><span class="parametername">options</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
   	</div>
   </div>
   </div>
   
   
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUsersSlidingExpiration">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L6">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_CmsUsersSlidingExpiration" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.CmsUsersSlidingExpiration" class="h4-custom-functionName">public bool CmsUsersSlidingExpiration</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_ConfigureApplicationCookie">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L9">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_ConfigureApplicationCookie" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.ConfigureApplicationCookie" class="h4-custom-functionName">public bool ConfigureApplicationCookie</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminEmail">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L11">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminEmail" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminEmail" class="h4-custom-functionName">public string DefaultAdminEmail</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminPassword">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L12">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_DefaultAdminPassword" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.DefaultAdminPassword" class="h4-custom-functionName">public string DefaultAdminPassword</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HidePropertyCategoryList">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L25">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HidePropertyCategoryList" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HidePropertyCategoryList" class="h4-custom-functionName">public bool HidePropertyCategoryList</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HideSuggestedContentTypes">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L24">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_HideSuggestedContentTypes" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.HideSuggestedContentTypes" class="h4-custom-functionName">public bool HideSuggestedContentTypes</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>This method registers default web-application settings:</p>
-<ul>
-<li>Controllers, Mvc, RazorPages, Default View Locations, CurrentUser, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...</li>
-</ul>
-<p>Note:
-This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
-The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable</p>
-<p>You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-services.CommonEpiserverServices();
-services.AddCms();
-services.AddTinyMce();
-services.AddFind();</p>
+  	<div class="markdown level1 summary member-summary"><p>A comma separated list of languageId's that comes with Episerver</p>
+<p>Set to null or blank, if you do not want to do anything with languages, so the default that you were used to (15 default languages added, while sv and en is enabled, will then be the result)</p>
+<p>Example of language id's:
+sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT</p>
 </div>
   	<div class="markdown level1 conceptual member-summary-conceptual"></div>
   </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_InitialLanguagesEnabled">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/ServiceCollection/ServiceCollectionExtensions.cs/#L65">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L22">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices_" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_ServiceCollectionExtensions_CommonEpiserverServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Initialize_ServiceCollectionOptions_" data-uid="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection CommonEpiserverServices&lt;T&gt;(this IServiceCollection services, ServiceCollectionOptions options = null)
-
-    where T : CurrentUser, new()</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_InitialLanguagesEnabled" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.InitialLanguagesEnabled" class="h4-custom-functionName">public string InitialLanguagesEnabled</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  			<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  				<thead>
-  					<tr>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="parametername">T</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  						<td><span class="parametername">services</span></td>
-  						<td></td>
-  					</tr>
-  					<tr>
-  						<td><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.ServiceCollectionOptions.html">ServiceCollectionOptions</a></td>
-  						<td><span class="parametername">options</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.Extensions.DependencyInjection.IServiceCollection</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
   	</div>
   </div>
   </div>
   
   
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_RegisterDisplays">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L5">View Source</a>
+  	</span>
+  </div>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_RegisterDisplays" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.RegisterDisplays" class="h4-custom-functionName">public bool RegisterDisplays</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   <script>
@@ -1025,7 +1233,7 @@ services.AddFind();</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/ServiceCollection/_ServiceCollectionFirstTime.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ServiceCollection/ServiceCollectionEpiserverOptions.cs/#L3" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

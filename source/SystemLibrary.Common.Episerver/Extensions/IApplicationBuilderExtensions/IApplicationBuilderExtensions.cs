@@ -8,10 +8,10 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class IApplicationBuilderExtensions
 {
-    public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, EpiserverWebApplicationOptions options = null)
+    public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, EpiserverAppBuilderOptions options = null)
     {
         if (options == null)
-            options = new EpiserverWebApplicationOptions();
+            options = new EpiserverAppBuilderOptions();
 
         ApplicationBuilderLogging(app, options);
 

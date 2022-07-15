@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IApplicationBuilderOptions
+    <title>EpiserverAppBuilderOptions
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IApplicationBuilderOptions
+    <meta name="title" content="EpiserverAppBuilderOptions
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -87,8 +87,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        SystemLibrary.Common.Episerver.Attributes,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute,SystemLibrary.Common.Episerver.Cms.Editor.Controllers,SystemLibrary.Common.Episerver.Cms.EditorDescriptors</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -97,38 +97,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -141,25 +157,17 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container">
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.html">SystemLibrary.Common.Episerver.Initialize</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.html">SystemLibrary.Common.Episerver.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -168,47 +176,47 @@
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions" class="text-break h1-class-header">IApplicationBuilderOptions
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="text-break h1-class-header">EpiserverAppBuilderOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions" class="h1-custom-display className">public class IApplicationBuilderOptions : ApplicationBuilderOptions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="h1-custom-display className">public class EpiserverAppBuilderOptions : WebApplicationBuilderOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions</span></div>
-    <div class="level2"><span class="xref">IApplicationBuilderOptions</span></div>
+    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions</span></div>
+    <div class="level2"><span class="xref">EpiserverAppBuilderOptions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpRedirectionAndHsts</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseHttpRedirectionAndHsts</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseDefaultRouting</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseDefaultRouting</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseAuthenticationAndAuthorization</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseAuthenticationAndAuthorization</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseControllerEndpoints</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseControllerEndpoints</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseRazorPagesEndpoints</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseRazorPagesEndpoints</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseStaticFiles</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseStaticFiles</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseExceptionPageInTestAndDev</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseExceptionPageInTestAndDev</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy</span>
     </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -216,7 +224,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -233,14 +241,14 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseEpiserverMapContentEndpoints">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseEpiserverMapContentEndpoints">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/IApplicationBuilderOptions.cs/#L10">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L10">View Source</a>
   	</span>
   </div>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseEpiserverMapContentEndpoints" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseEpiserverMapContentEndpoints" class="h4-custom-functionName">public bool UseEpiserverMapContentEndpoints</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseEpiserverMapContentEndpoints" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints" class="h4-custom-functionName">public bool UseEpiserverMapContentEndpoints</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -271,14 +279,14 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseExceptionLogging">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseExceptionLogging">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/IApplicationBuilderOptions.cs/#L8">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L8">View Source</a>
   	</span>
   </div>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseExceptionLogging" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseExceptionLogging" class="h4-custom-functionName">public bool UseExceptionLogging</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseExceptionLogging" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseExceptionLogging" class="h4-custom-functionName">public bool UseExceptionLogging</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -309,14 +317,14 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseRewriteEpiserverPathToEpiserverCms">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseRewriteEpiserverPathToEpiserverCms">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/IApplicationBuilderOptions.cs/#L9">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L9">View Source</a>
   	</span>
   </div>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Initialize_IApplicationBuilderOptions_UseRewriteEpiserverPathToEpiserverCms" data-uid="SystemLibrary.Common.Episerver.Initialize.IApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms" class="h4-custom-functionName">public bool UseRewriteEpiserverPathToEpiserverCms</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseRewriteEpiserverPathToEpiserverCms" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms" class="h4-custom-functionName">public bool UseRewriteEpiserverPathToEpiserverCms</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -990,7 +998,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/IApplicationBuilder/IApplicationBuilderOptions.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

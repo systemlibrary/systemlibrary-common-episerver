@@ -1,6 +1,6 @@
 ﻿namespace SystemLibrary.Common.Episerver.Extensions;
 
-public class ServiceCollectionEpiserverOptions : Web.Extensions.ServiceCollectionCommonWebOptions
+public class EpiserverServiceCollectionOptions : Web.Extensions.ServiceCollectionCommonWebOptions
 {
     public bool RegisterDisplays = true;
     public bool CmsUsersSlidingExpiration = true;

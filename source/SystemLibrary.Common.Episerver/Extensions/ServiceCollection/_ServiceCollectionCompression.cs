@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionCompression(IServiceCollection services, ServiceCollectionEpiserverOptions options)
+    static void ServiceCollectionCompression(IServiceCollection services, EpiserverServiceCollectionOptions options)
     {
         services.AddResponseCompression(compression =>
         {

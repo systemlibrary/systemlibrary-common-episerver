@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
-    internal static ServiceCollectionEpiserverOptions Options;
+    internal static EpiserverServiceCollectionOptions Options;
 
     /// <summary>
     /// This method registers default web-application settings:
@@ -27,7 +27,7 @@ public static partial class ServiceCollectionExtensions
     /// services.AddTinyMce();
     /// services.AddFind();
     /// </summary>
-    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, ServiceCollectionEpiserverOptions options = null)
+    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, EpiserverServiceCollectionOptions options = null)
     {
         Services.Collection = services;
 
@@ -62,7 +62,7 @@ public static partial class ServiceCollectionExtensions
     /// services.AddTinyMce();
     /// services.AddFind();
     /// </summary>
-    public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, ServiceCollectionEpiserverOptions options = null) where T : CurrentUser, new()
+    public static IServiceCollection CommonEpiserverServices<T>(this IServiceCollection services, EpiserverServiceCollectionOptions options = null) where T : CurrentUser, new()
     {
         services.AddCmsAspNetIdentity<T>();
 
@@ -71,9 +71,9 @@ public static partial class ServiceCollectionExtensions
         return CommonEpiserverServices(services, options);
     }
 
-    static void SetOptions(ServiceCollectionEpiserverOptions options)
+    static void SetOptions(EpiserverServiceCollectionOptions options)
     {
-        var fallback = new ServiceCollectionEpiserverOptions();
+        var fallback = new EpiserverServiceCollectionOptions();
 
         Options = options ?? fallback;
 

@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionDisplays(IServiceCollection services, ServiceCollectionEpiserverOptions options)
+    static void ServiceCollectionDisplays(IServiceCollection services, EpiserverServiceCollectionOptions options)
     {
         if (!Options.RegisterDisplays) return;
 

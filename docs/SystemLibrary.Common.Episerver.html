@@ -87,8 +87,8 @@
       <div role="main" class="container body-content hide-when-search">
 
       
-      <div id="custom-empty-namespaces" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        SystemLibrary.Common.Episerver.Attributes,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute,SystemLibrary.Common.Episerver.Cms.Editor.Controllers,SystemLibrary.Common.Episerver.Cms.EditorDescriptors</div>
+      <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -97,38 +97,54 @@
       </div>
       
       <script>
-        var customEmptyNamespacesContainerCompleted = false;
-      
         function sideTocShowOnLoad() {
           var sidetoc = document.getElementById('sidetoc');
           sidetoc.classList.remove('hideonload');
         }
       
-        function hideNamespacesInTocOnLoad() {
-          if (customEmptyNamespacesContainerCompleted == true) {
-            return;
-          }
-          var customEmptyNamespacesContainer = document.getElementById('custom-empty-namespaces');
-          if (customEmptyNamespacesContainer) {
-            var innerHtml = customEmptyNamespacesContainer.innerHTML;
+        function hideLinksQueryBasedInToc() {
+          var skipDocumentationForContainer = document.getElementById('custom-skipDocumentationFor');
+          if (skipDocumentationForContainer) {
+      
+            var innerHtml = skipDocumentationForContainer.innerHTML;
             if (innerHtml && innerHtml.length > 1) {
       
               var toc = document.getElementById('toc');
-      
               if (toc && toc.querySelector) {
-                customEmptyNamespacesContainerCompleted = true;
-                var namespaces = innerHtml.split(',');
-                if (namespaces && namespaces.length > 0) {
-                  for (var i = 0; i < namespaces.length; i++) {
-                    var namespace = namespaces[i].replace(/(\r\n|\n|\r)/gm, "");
-                    if (namespace && namespace.length > 1) {
-                      namespace = namespace.replace(/ /g, '');
-                      var q = '[title="' + namespace + '"]';
-                      var href = toc.querySelector(q);
-                      if (typeof (href) !== 'undefined' && href && href.classList) {
-                        var parent = href.parentNode;
-                        if (parent && parent.remove) {
-                          parent.remove();
+      
+                var queries = innerHtml.split(',');
+                if (queries && queries.length > 0) {
+      
+                  for (var i = 0; i < queries.length; i++) {
+                    var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+                    if (query && query.length > 1) {
+                      query = query.replace(/ /g, '');
+      
+                      if (query.includes('.')) {
+                        var links = toc.getElementsByTagName('a');
+      
+                        if (links) {
+                          var queryLowered = query.toLowerCase();
+                          for (var j = 0; j < links.length; j++) {
+                            var link = links[j];
+      
+                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                              var parent = link.parentNode;
+                              if (parent && parent.remove) {
+                                parent.remove();
+                              }
+                            }
+                          }
+                        }
+                      }
+                      else {
+                        var q = '[title="' + query + '"]';
+                        var href = toc.querySelector(q);
+                        if (typeof (href) !== 'undefined' && href && href.classList) {
+                          var parent = href.parentNode;
+                          if (parent && parent.remove) {
+                            parent.remove();
+                          }
                         }
                       }
                     }
@@ -141,15 +157,7 @@
           }
         }
       
-      
-        setTimeout(() => sideTocShowOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 225);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 188);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 155);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 132);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 99);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 66);
-        setTimeout(() => hideNamespacesInTocOnLoad(), 33);
+        setTimeout(() => sideTocShowOnLoad(), 500);
       
       </script>
       <div class="article-row-container">
@@ -166,14 +174,14 @@
     <h3 id="classes">Classes
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.BaseCms.html">BaseCms</a></h4>
-      <section><p>Base Cms functions to use anywhere within your application</p>
+      <section id="SystemLibrary.Common.Episerver.BaseCms--description"><p>Base Cms functions to use anywhere within your application</p>
 <ul>
 <li>No more injecting things that you always need</li>
 <li>No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class</li>
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cache.html">Cache</a></h4>
-      <section><p>Cache</p>
+      <section id="SystemLibrary.Common.Episerver.Cache--description"><p>Cache</p>
 <p>Default duration is 180 seconds</p>
 <p>Required skip cache scenarios:</p>
 <ul>
@@ -191,11 +199,11 @@
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.CurrentUser.html">CurrentUser</a></h4>
-      <section><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
+      <section id="SystemLibrary.Common.Episerver.CurrentUser--description"><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
 <p>Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Log.html">Log</a></h4>
-      <section><p>One log class for your whole application</p>
+      <section id="SystemLibrary.Common.Episerver.Log--description"><p>One log class for your whole application</p>
 <ul>
 <li><p>Destination of where the log-message is saved is up to you to implement by implementing the interface ILogWriter in your application</p>
 </li>
@@ -206,10 +214,10 @@
 </ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Roles.html">Roles</a></h4>
-      <section><p>All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not</p>
+      <section id="SystemLibrary.Common.Episerver.Roles--description"><p>All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Services.html">Services</a></h4>
-      <section><p>Dependency injection registry with all services</p>
+      <section id="SystemLibrary.Common.Episerver.Services--description"><p>Dependency injection registry with all services</p>
 <ul>
 <li>Look at it as ServiceLocator</li>
 </ul>
@@ -217,7 +225,7 @@
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.ILogWriter.html">ILogWriter</a></h4>
-      <section><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
+      <section id="SystemLibrary.Common.Episerver.ILogWriter--description"><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
 <p>Your logwriter will then be used whenever you use the static logger: Log.Errror(), Log.Warning(), Log.Write()</p>
 </section>
 </article>

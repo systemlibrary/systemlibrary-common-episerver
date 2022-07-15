@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionCookies(IServiceCollection services, ServiceCollectionEpiserverOptions options)
+    static void ServiceCollectionCookies(IServiceCollection services, EpiserverServiceCollectionOptions options)
     {
         if (!Options.ConfigureApplicationCookie) return;
      

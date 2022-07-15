@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class ServiceCollectionExtensions
 {
-    static void ServiceCollectionFirstTime(IServiceCollection services, ServiceCollectionEpiserverOptions options)
+    static void ServiceCollectionFirstTime(IServiceCollection services, EpiserverServiceCollectionOptions options)
     {
         services.TryAddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
 

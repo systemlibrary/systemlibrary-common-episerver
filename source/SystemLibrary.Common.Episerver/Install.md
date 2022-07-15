@@ -8,6 +8,8 @@
 
 ## First time usage
 
+- This assumes you know how to host a .NET Core Web Application and run it just fine...
+
 - Initialize your episerver application with a default set of services (classes, injectable) and middlewares (pipeline, classes runs in order they are registered):
  
 ```csharp 

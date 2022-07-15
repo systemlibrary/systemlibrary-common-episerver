@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderLogging(IApplicationBuilder app, EpiserverWebApplicationOptions options)
+    static void ApplicationBuilderLogging(IApplicationBuilder app, EpiserverAppBuilderOptions options)
     {
         if (!options.UseExceptionLogging) return;
 
