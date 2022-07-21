@@ -46,10 +46,14 @@ public class CurrentUser : ApplicationUser
     public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
 
     /// <summary>
-    /// Returns true if current user is logged in and is in any of the roles within: Roles.CmsRoles, else false
+    /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
     /// </summary>
-    /// <returns></returns>
     public bool IsCmsUser() => IsAuthenticated && Principal.IsInAnyRole(Roles.CmsRoles);
+
+    /// <summary>
+    /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
+    /// </summary>
+    public bool IsAdministrator() => IsAuthenticated && Principal.IsInAnyRole(Roles.AdminRoles);
 
     /// <summary>
     /// Returns true if current user is logged in and is in the role specified

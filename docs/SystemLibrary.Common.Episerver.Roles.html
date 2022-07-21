@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -210,6 +218,45 @@
   <div class='custom-class-content-inline'>
   <h3 id="properties">Properties
   </h3>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Roles_AdminRoles">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Roles/Roles.cs/#L19">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Roles_AdminRoles_" data-uid="SystemLibrary.Common.Episerver.Roles.AdminRoles*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Roles_AdminRoles" data-uid="SystemLibrary.Common.Episerver.Roles.AdminRoles" class="h4-custom-functionName">public static string[] AdminRoles { get; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span>[]</td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   <div class="custom-container">
   

@@ -11,19 +11,19 @@ namespace SystemLibrary.Common.Episerver
     /// {
     ///     ...,
     ///     "systemLibraryCommonEpiserver": {
-    ///         "logMessageBuilder": {
+    ///         "logMessageBuilderOptions": {
     ///             "appendLoggedInState": false,
-    ///             "appendCurrentPage": false,
     ///             "appendCurrentUrl": false,
     ///             "appendIp": false,
     ///             "appendBrowser": false,
     ///             "appendCookieInfo": false
     ///        },
-    ///        "cache": {
-    ///             "defaultDuration": 180
-    ///         },
     ///         "editMode": {
-    ///             "companyColor": "#B84D94" //Can be a css color or a css hex color
+    ///             "hideLanguageColumnInVersionGadget": true,
+    ///             "contentCreationBorderColor": "#B84D94",
+    ///             "pageTreeSelectedContentBorderColor": "#B84D94",
+    ///             "contentTitleColor": "#B84D94",
+    ///             "activeProjectBarBackgroundColor": "#B84D94"
     ///         }
     ///      }
     ///     ...
@@ -47,34 +47,20 @@ namespace SystemLibrary.Common.Episerver
         {
             public Configuration()
             {
-                LogMessageBuilder = new LogMessageBuilderOptions();
-                Cache = new CacheConfiguration();
-                EditMode = new EditModeConfiguration();
+                CmsEdit = new CmsEditConfiguration();
             }
 
-            public class EditModeConfiguration
+            public class CmsEditConfiguration
             {
-                public string CompanyColor { get; set; }
+                public bool HideLanguageColumnInVersionGadget { get; set; } = false;
+                public string ContentCreationBackgroundColor { get; set; } = "";
+                public string ContentCreationBorderColor { get; set; } = "";
+                public string PageTreeSelectedContentBorderColor { get; set; } = "";
+                public string ContentTitleColor { get; set; } = "";
+                public string ActiveProjectBarBackgroundColor { get; set; } = "";
             }
-
-            public class LogMessageBuilderOptions
-            {
-                public bool AppendLoggedInState { get; set; } = true;
-                public bool AppendCurrentPage { get; set; } = true;
-                public bool AppendCurrentUrl { get; set; } = true;
-                public bool AppendIp { get; set; } = false;
-                public bool AppendBrowser { get; set; } = false;
-                public bool AppendCookieInfo { get; set; } = false;
-            }
-
-            public class CacheConfiguration
-            {
-                public int DefaultDuration { get; set; } = 180;
-            }
-
-            public EditModeConfiguration EditMode { get; set; }
-            public CacheConfiguration Cache { get; set; }
-            public LogMessageBuilderOptions LogMessageBuilder { get; set; }
+           
+            public CmsEditConfiguration CmsEdit { get; set; }
         }
 
         public ConnectionStringsConfiguration ConnectionStrings { get; set; }

@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Episerver.Initialize;
 /// </summary>
 [InitializableModule]
 [ModuleDependency(typeof(FrameworkInitialization))]
-public class RemoveSuggestedContentTypes : InitModule
+public class RemoveSuggestedContentTypes : StartupModule
 {
     public override void ConfigureContainer(ServiceConfigurationContext context)
     {

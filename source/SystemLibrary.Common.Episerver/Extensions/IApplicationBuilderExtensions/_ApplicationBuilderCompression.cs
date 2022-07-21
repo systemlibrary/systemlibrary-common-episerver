@@ -4,7 +4,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderCompression(IApplicationBuilder app, EpiserverAppBuilderOptions options)
+    static void ApplicationBuilderCompression(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
     {
         app.UseResponseCompression();
     }

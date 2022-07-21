@@ -27,7 +27,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
         {
             try
             {
-                if (IsAnyUserOrAdminAlreadyRegistered())
+                if (IsAnyUserAlreadyRegisteredInDatabase())
                 {
                     return;
                 }

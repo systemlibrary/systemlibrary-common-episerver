@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands.html",
-          "hash": "fiP+3knvtB6N2hTbHDV+1efRd60GGaI4H3XXDWWR32w="
+          "hash": "5O4tkiP9x0nqPjBg/i6F1BWVQtpmR4sMCpYPwqt6S0w="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular.html",
-          "hash": "Kx/v3yJYkX7LxQusr5VJNBFedEqWmWXOnPh1UlEboaM="
+          "hash": "CDz9GHbB39nj692q3psc9l2wfHbiyfz02heAR8o+7IQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid.html",
-          "hash": "W2WnoyWucjyA4leonkZHAriGsFCaJ6qhZVdA0f/BXPc="
+          "hash": "gGT1mFeVFl0xzi3rONFYoGRVpgMSjKIqmoMkA3vr6MQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.html",
-          "hash": "XkVLtYd+yRnLgVCgmB5bm7g4pAoo2hoidD4QHimwFuU="
+          "hash": "eqWyQFh3vUr5rFWsQTCs3qd5FqzyLDll7BeN+/R/qx8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttributeController.html",
-          "hash": "Z2+aPh07d56H5bH3fLaxydVnceA9oJLnsrMVB4XNBk0="
+          "hash": "Eckvtp1Q1WT0V20MLysnYwS7TcuKj8poTxS2MnBVl/4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.html",
-          "hash": "YekjH5/SY3ukIYXkqPDtqFFrZeYMCQj4tZ7KSqj6SH8="
+          "hash": "pBA/7o3841/pvHoEJz7Mq2eurIdeNqTIv1nXUsMhJjg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,70 +81,58 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html",
-          "hash": "u5LTM1ZYn8MAmxNduC8h6cha8AJK0bnHYhiCOXaPUrc="
+          "hash": "kuTKpYOgigxGApptHCLmiy4oOok+H9gqKm9G5dRblzU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.yml",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html",
-          "hash": "OpGIQ3s8l1LimOQa/9vyF6u5vVPAR1h5KpB+lp5sTvE="
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.html",
+          "hash": "9hnOa8//TQhiVzourpX4teZozPEkbmjk/CK1gINLxsQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.yml",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html",
-          "hash": "yg3p7e13skxz1s6gG30HDpMp55Rv6nROzMVu1eFVakI="
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.html",
+          "hash": "R4qKPaKLuLGyPpNANNilfXQEU7E6DeeNsheNTPyqhcI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.yml",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.html",
-          "hash": "6Cxb5n4B/Mf8NdPTh/oYHT0hwsgMqVyR9kv79/A6weU="
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.html",
+          "hash": "pC/q8Rg9MKaHGlDdnP4ZSgbtPw6UriVrsJ0Y/66FIis="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.yml",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.yml",
       "output": {
         ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html",
-          "hash": "tY0jfgg184qIXgXKj+BTB4SMf4/NpKh1d4e6IP9JabA="
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.html",
+          "hash": "Yo3Hc8anfBjELNXLOTXLDIRfIIdUsiEBrKGrFu+fcMg="
         }
       },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.yml",
-      "output": {
-        ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.html",
-          "hash": "wZOWXhsFTC6iej4KTSs2Eg9QFGZlIvm+/12duDV9AXI="
-        }
-      },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html",
-          "hash": "j6MbVNU0NTTuvI2tvny18FH07Mq72vhM8pz/Il9So+c="
+          "hash": "m1GsFVErxRAIZhlTurf0wG367s+4wn9otmsIRStcLmg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html",
-          "hash": "CMd4GYGqgFQdQNIrCrF6c78xDA4wxDNZpxXYw1EWGtE="
+          "hash": "4yRoxTM76hiUah3sn2EJpfSxJaGeHGUAhwb/TEYNkVg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html",
-          "hash": "8YBleteqzX+HIOv8gYtpRoflKLbZ1MoRBGK9JkRwFdA="
+          "hash": "jAmtaUID5bmvk8A/3LNPSHJTW1b61DOuncUUd/xlh0E="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html",
-          "hash": "N2L66ncUpImMtiUlYBKqZnDw9BZ0rD/INvKRBBw0Y3g="
+          "hash": "xLgXu5oSrh3hiVhfei3n3WoOtxUP6NJ8XICJkbbxgUk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html",
-          "hash": "NQmacUzzmZnhV1NjVhmar02NM+mOQtqKq+oLfI62F7U="
+          "hash": "waQs2qy+1o8/IGM6W/BsX5U0mQlymTgyZFBL1vBbruo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -213,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html",
-          "hash": "S01gLiKH4t7gbK5+x+fnfib2PHy8X6i9rF0q/jbyO/0="
+          "hash": "e/aG0iFUo7ncFa8/DVWvOGVICLMa1aiL7vSe3xcV4mw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -225,10 +213,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html",
-          "hash": "9T4RHr5m4rf9lPjWteLAYlH/Sx8ao0ad/brwvqlNyiE="
+          "hash": "i51k0D3//AJ3f6YQ1TyGwxhtU534CRH3UMV8zY2EDY0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +225,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.html",
-          "hash": "Q2MbRfNi5nCvpeT2Mj+tyYfukDV9a9xg8F1ZlvlYyWE="
+          "hash": "VQETNtvx8ANqkSILlwHXiwFzfk+tjKRA30ArPM+t8B0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,22 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.html",
-          "hash": "v4Oh0n4MW4bHpQnVjyIKjYviNcipYBNB9nRjvtmDHyo="
+          "hash": "5TcX6bmibNE1CtqE80ciIIZABkpErcdhC8D2bTFOdOA="
         }
       },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html",
-          "hash": "tAYmr26FoWjhRlB7Fvv9W0B/OEI8bQsgZShSh7329uU="
-        }
-      },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -273,10 +249,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.InitModule.html",
-          "hash": "2XjyZphJBj4+SzA6gCTHndMBk0AGyOnuVvTmquaVx2k="
+          "hash": "/v5vQKnQZM79BvocwuwxOviKq8PPegwHVpMNey4KJkk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -285,10 +261,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html",
-          "hash": "lc8n++jE1IEW6xmjfzagIikmpr+04XaTwQYh66742xE="
+          "hash": "eBVCcMEzp+2PpUXpdbBSNN9YKc8TNyA8+3puEitrEWQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -297,22 +273,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.html",
-          "hash": "8hVekeJA63ja27F7x/RfEnllliB7H/eXkJs04nJdQz4="
+          "hash": "48PSYVNHRaknn3LIm+4eplEt98wtDEzWGKiS+NaGsv4="
         }
       },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.yml",
-      "output": {
-        ".html": {
-          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html",
-          "hash": "956yRuJazL0Lfi9O0VpreVOqIc/N1L4oxfNvvz4+3vk="
-        }
-      },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -321,10 +285,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html",
-          "hash": "MhSNVqJYsjiU5R9nuDQTEsL64HoJ7pfSC2C8BQiTWHE="
+          "hash": "GrCSZVH8bphNUr4r8agKxktX69ZE+SIW1vLN5EtRwS4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -333,10 +297,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Services.html",
-          "hash": "nc/n+kaN3fKCnz+O2qWawlRdyH1zEkx5AMYE1O1OjSc="
+          "hash": "uDaSEprQqKfALsltbPopcEHSQYHKXWjEsFTL6l2eNGw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -345,10 +309,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.html",
-          "hash": "p4+/iBVh/WjOOEOdZpDQwhbqRlnJTmkG4apAiwNDK08="
+          "hash": "Iu1+5H+3BFH420HE031hLkDb3PcJf/hx6+i0ak1n1t0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -357,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/toc.html",
-          "hash": "WnIJVCJSCAc8axZIzpwIscMsYZYfOazPo80mnpfV9Gw="
+          "hash": "A0E6XR0cJGKSA2PBkB04oe+97un4w5xZmXuACCn1B0I="
         }
       },
       "is_incremental": false,
@@ -369,33 +333,35 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver_index.html",
-          "hash": "6XL9nMs/oRMro/CmWvP+yZQvR9di4Mn3b5idb+KP/PE="
+          "hash": "wm0mOIE+t6ZNC47byY6gRGwtxDSkyP9MQOW8+vPwdRA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     }
   ],
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 29,
-          "skipped_file_count": 29
+          "total_file_count": 26,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -408,8 +374,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

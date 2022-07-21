@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -180,38 +188,9 @@
 <li>No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class</li>
 </ul>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cache.html">Cache</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Cache--description"><p>Cache</p>
-<p>Default duration is 180 seconds</p>
-<p>Required skip cache scenarios:</p>
-<ul>
-<li>If cachekey is null or empty</li>
-<li>If not in a web context</li>
-</ul>
-<p>Optional skip cache scenarios by parameters to Cache.Get():</p>
-<ul>
-<li>authenticated visitors, every user that is signed, but is not part of Roles.CmsRoles, default to false</li>
-<li>authenticated cms users, defaults to true, so logged in cms users do not get cached content at all</li>
-</ul>
-<p>Can implement your own custom skip logic, additional to the ones that are required:</p>
-<ul>
-<li>pass in 'skipCacheFor' parameter in Cache.Get() function</li>
-</ul>
-</section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.CurrentUser.html">CurrentUser</a></h4>
       <section id="SystemLibrary.Common.Episerver.CurrentUser--description"><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
 <p>Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Log.html">Log</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Log--description"><p>One log class for your whole application</p>
-<ul>
-<li><p>Destination of where the log-message is saved is up to you to implement by implementing the interface ILogWriter in your application</p>
-</li>
-<li><p>After implementing ILogWriter, simply call Log.Error, Log.Warning or Log.Write to create a log message and it will passed to your implementation of ILogWriter</p>
-</li>
-<li><p>If you have not registered an ILogWriter interface this simply calls on Dump.Write() with the message</p>
-</li>
-</ul>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Roles.html">Roles</a></h4>
       <section id="SystemLibrary.Common.Episerver.Roles--description"><p>All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not</p>
@@ -221,12 +200,6 @@
 <ul>
 <li>Look at it as ServiceLocator</li>
 </ul>
-</section>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.ILogWriter.html">ILogWriter</a></h4>
-      <section id="SystemLibrary.Common.Episerver.ILogWriter--description"><p>Implement ILogWriter in your application and register it as a Service in Startup.cs</p>
-<p>Your logwriter will then be used whenever you use the static logger: Log.Errror(), Log.Warning(), Log.Write()</p>
 </section>
 </article>
           </div>

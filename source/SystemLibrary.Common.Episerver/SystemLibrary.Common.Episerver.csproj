@@ -4,27 +4,41 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>3.1.0.1</Version>
+		<Version>6.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Attributes\ContentIconAttribute\FontAwesome\Css\fontawesome-bundled.min.css" />
-		<None Remove="Cms\Editor\Css\editor.min.css" />
-		<None Remove="SystemLibrary.Common.Episerver.3.0.0.1.nupkg" />
-		<None Remove="SystemLibrary.Common.Episerver.3.0.0.2.nupkg" />
+		<None Remove="Cms\CmsEdit\CmsEditScript.js" />
+		<None Remove="Cms\ParentLinkReference\ParentLinkReference.html" />
+		<None Remove="Cms\ParentLinkReference\ParentLinkReference.js" />
+		<None Remove="Release.cmd" />
+		<None Remove="nuget-icon.png" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Css\fontawesome-bundled.min.css" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+		<EmbeddedResource Include="Cms\CmsEdit\CmsEditScript.js" />
+		<EmbeddedResource Include="Cms\CmsEdit\CmsEditStylesheet.css" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Regular\*.svg" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Solid\*.svg" />
+		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Brands\*.svg" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="Cms\ParentLinkReference\ParentLinkReference.html" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="Cms\ParentLinkReference\ParentLinkReference.js" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="%2a%2a\**" />
-	  <Compile Remove="Initialize\IApplicationBuilder\**" />
-	  <EmbeddedResource Remove="%2a%2a\**" />
-	  <EmbeddedResource Remove="Initialize\IApplicationBuilder\**" />
-	  <None Remove="%2a%2a\**" />
-	  <None Remove="Initialize\IApplicationBuilder\**" />
-	</ItemGroup>
-	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.8.0" />
 		<PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.8.0" />
@@ -33,7 +47,7 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
-		<PackageReference Include="SystemLibrary.Common.Web" Version="3.2.0.2" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.3" />
 	</ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@ namespace SystemLibrary.Common.Episerver;
 /// //Use the BaseCms directly without inheriting it yourself:
 /// 
 /// var startPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
-/// //'startPage' is null if current page is not start page, else it returns the startpage
+/// //'startPage' is null if current page is not start page or null if you are inside a block request, else it returns the startpage
 /// 
 /// //Extend the BaseCms class with your own Cms functions that are common within your application:
 /// public class Cms : BaseCms
@@ -56,12 +56,17 @@ public abstract class BaseCms
         _ContentTypeRepository != null ? _ContentTypeRepository :
         (_ContentTypeRepository = Services.Get<IContentTypeRepository>());
 
+    static ProjectRepository _ProjectRepository;
+    protected static ProjectRepository ProjectRepository =>
+        _ProjectRepository != null ? _ProjectRepository :
+        (_ProjectRepository = Services.Get<ProjectRepository>());
+
     protected static IContentModelUsage ContentModelUsage => Services.Get<IContentModelUsage>();
 
     /// <summary>
     /// Returns content or null if not found
     /// </summary>
-    public static T Get<T>(ContentReference contentReference) where T : ContentData
+    public static T Get<T>(ContentReference contentReference) where T : IContentData
     {
         ContentRepository.TryGet(contentReference, out T content);
         return content;
@@ -92,45 +97,52 @@ public abstract class BaseCms
     /// <summary>
     /// Returns current page as T based on current request, or null
     /// </summary>
-    public static T GetCurrentPage<T>() where T : ContentData
+    public static T GetCurrentPage<T>() where T : IContentData
     {
         var pageRouteHelper = Services.Get<IPageRouteHelper>();
 
-        return pageRouteHelper?.Content as T;
+        return (T)pageRouteHelper?.Content;
     }
 
     /// <summary>
     /// Returns current block as T based on current request, or null
     /// </summary>
-    public static T GetCurrentBlock<T>() where T : ContentData
+    public static T GetCurrentBlock<T>() where T : IContentData
     {
-        throw new System.Exception("Not yet implemented");
+        throw new Exception("Not yet implemented");
     }
 
-    public static bool IsInEditMode()
+    public static bool IsInEditMode 
     {
-        var mode = Services.Get<IContextModeResolver>();
+        get
+        {
+            var mode = Services.Get<IContextModeResolver>();
 
-        return mode.CurrentMode == ContextMode.Edit;
+            return mode.CurrentMode == ContextMode.Edit;
+        }
     }
 
-    public static bool IsInPreviewMode()
+    public static bool IsInPreviewMode
     {
-        var mode = Services.Get<IContextModeResolver>();
+        get
+        {
+            var mode = Services.Get<IContextModeResolver>();
 
-        return mode.CurrentMode == ContextMode.Preview;
+            return mode.CurrentMode == ContextMode.Preview;
+        }
     }
 
-    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsPath = null) where T : class
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null) where T : class
     {
-        if(appSettingsPath.IsNot())
-            appSettingsPath = AppContext.BaseDirectory + "\\appSettings.json";
+        if(appSettingsFullPath.IsNot())
+            appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
 
         return Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsPath))
-            .ConfigureWebHostDefaults(config => {
-                //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
-                //config.UseEnvironment(environment);
+            .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsFullPath))
+            .ConfigureWebHostDefaults(config =>
+            {
+                    //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
+                    //config.UseEnvironment(environment);
                 config.UseStartup<T>();
             })
             .ConfigureCmsDefaults();

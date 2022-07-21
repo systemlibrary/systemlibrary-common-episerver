@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -200,7 +208,7 @@
         <div class="codewrapper"><pre><code>//Use the BaseCms directly without inheriting it yourself:
 
 var startPage = BaseCms.GetCurrentPage&lt;StartPage>();
-//&apos;startPage&apos; is null if current page is not start page, else it returns the startpage
+//&apos;startPage&apos; is null if current page is not start page or null if you are inside a block request, else it returns the startpage
 
 //Extend the BaseCms class with your own Cms functions that are common within your application:
 public class Cms : BaseCms
@@ -403,7 +411,6 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)" class="h4-custom-functionName">public static IHostBuilder CreateHostBuilder&lt;T&gt;(string[] args, string appSettingsPath = null)
-
     where T : class</h4>
   	<div class="custom-menu-data-container">
   
@@ -489,8 +496,7 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_Get__1_EPiServer_Core_ContentReference_" data-uid="SystemLibrary.Common.Episerver.BaseCms.Get``1(EPiServer.Core.ContentReference)" class="h4-custom-functionName">public static T Get&lt;T&gt;(ContentReference contentReference)
-
-    where T : ContentData</h4>
+    where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -570,8 +576,7 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentBlock``1" class="h4-custom-functionName">public static T GetCurrentBlock&lt;T&gt;()
-
-    where T : ContentData</h4>
+    where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -634,8 +639,7 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentPage``1" class="h4-custom-functionName">public static T GetCurrentPage&lt;T&gt;()
-
-    where T : ContentData</h4>
+    where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -698,7 +702,6 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_EPiServer_Core_ContentArea_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(EPiServer.Core.ContentArea)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(ContentArea contentArea)
-
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -779,7 +782,6 @@ public class Cms : BaseCms
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_System_Collections_Generic_IEnumerable_EPiServer_Core_ContentReference__" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(System.Collections.Generic.IEnumerable{EPiServer.Core.ContentReference})" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(IEnumerable&lt;ContentReference&gt; contentReferences)
-
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   

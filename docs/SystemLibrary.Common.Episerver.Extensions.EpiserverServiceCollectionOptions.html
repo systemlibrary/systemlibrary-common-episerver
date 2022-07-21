@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -177,39 +185,39 @@
   
   <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions" class="text-break h1-class-header">EpiserverServiceCollectionOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions" class="h1-custom-display className">public class EpiserverServiceCollectionOptions : ServiceCollectionCommonWebOptions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions" class="h1-custom-display className">public class EpiserverServiceCollectionOptions : CommonWebApplicationServicesOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions</span></div>
+    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions</span></div>
     <div class="level2"><span class="xref">EpiserverServiceCollectionOptions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddControllers</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddMvcPages</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddMvcPages</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorPages</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorPages</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddControllers</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddHttpsAndSecureCookiePolicy</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddHttpsAndSecureCookiePolicy</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.AddRazorRuntimeCompilation</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.AddRazorRuntimeReCompilationOnViewChanged</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocationExpander</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocationExpander</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.ViewLocations</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.ViewLocations</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.ServiceCollectionCommonWebOptions.SupportedMediaTypes</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationServicesOptions.SupportedMediaTypes</span>
     </div>
   </div>
   

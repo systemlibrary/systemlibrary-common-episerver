@@ -1,4 +1,6 @@
-﻿using EPiServer.Core;
+﻿using System;
+
+using EPiServer.Core;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

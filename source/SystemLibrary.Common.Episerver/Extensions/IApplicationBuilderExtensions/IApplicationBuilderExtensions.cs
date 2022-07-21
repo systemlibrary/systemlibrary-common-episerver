@@ -20,10 +20,10 @@ public static partial class IApplicationBuilderExtensions
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonEpiserverAppBuilder(this IApplicationBuilder app, EpiserverAppBuilderOptions options = null)
+    public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options = null)
     {
         if (options == null)
-            options = new EpiserverAppBuilderOptions();
+            options = new CommonEpiserverApplicationBuilderOptions();
 
         ApplicationBuilderLogging(app, options);
 
@@ -42,6 +42,8 @@ public static partial class IApplicationBuilderExtensions
         ApplicationBuilderEndpoints(app, options);
 
         ApplicationBuilderRedirects(app, options);
+
+       
 
         return app;
     }

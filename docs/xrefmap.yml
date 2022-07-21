@@ -10742,106 +10742,58 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
   nameWithType: BaseCms.LanguageBranchRepository
-- uid: SystemLibrary.Common.Episerver.Cache
-  name: Cache
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html
-  commentId: T:SystemLibrary.Common.Episerver.Cache
-  fullName: SystemLibrary.Common.Episerver.Cache
-  nameWithType: Cache
-- uid: SystemLibrary.Common.Episerver.Cache.Clear
-  name: Clear()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Clear
-  commentId: M:SystemLibrary.Common.Episerver.Cache.Clear
-  fullName: SystemLibrary.Common.Episerver.Cache.Clear()
-  nameWithType: Cache.Clear()
-- uid: SystemLibrary.Common.Episerver.Cache.Clear*
-  name: Clear
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Clear_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cache.Clear
+- uid: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController
+  name: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.html
+  commentId: N:SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController
+  fullName: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController
+  nameWithType: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController
+- uid: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController
+  name: CmsEditController
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController
+  fullName: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController
+  nameWithType: CmsEditController
+- uid: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles
+  name: GetStyles()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.html#SystemLibrary_Common_Episerver_Cms_Controllers_CmsEditController_CmsEditController_GetStyles
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles
+  fullName: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles()
+  nameWithType: CmsEditController.GetStyles()
+- uid: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles*
+  name: GetStyles
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.html#SystemLibrary_Common_Episerver_Cms_Controllers_CmsEditController_CmsEditController_GetStyles_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cache.Clear
-  nameWithType: Cache.Clear
-- uid: SystemLibrary.Common.Episerver.Cache.Get*
-  name: Get
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Get_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cache.Get
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cache.Get
-  nameWithType: Cache.Get
-- uid: SystemLibrary.Common.Episerver.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
-  name: Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Get__1_System_Func___0__System_String_System_TimeSpan_System_Func___0_System_Boolean__System_Boolean_System_Boolean_System_Func_System_Boolean__
-  commentId: M:SystemLibrary.Common.Episerver.Cache.Get``1(System.Func{``0},System.String,System.TimeSpan,System.Func{``0,System.Boolean},System.Boolean,System.Boolean,System.Func{System.Boolean})
-  name.vb: Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
-  fullName: SystemLibrary.Common.Episerver.Cache.Get<T>(System.Func<T>, System.String, System.TimeSpan, System.Func<T, System.Boolean>, System.Boolean, System.Boolean, System.Func<System.Boolean>)
-  fullName.vb: SystemLibrary.Common.Episerver.Cache.Get(Of T)(System.Func(Of T), System.String, System.TimeSpan, System.Func(Of T, System.Boolean), System.Boolean, System.Boolean, System.Func(Of System.Boolean))
-  nameWithType: Cache.Get<T>(Func<T>, String, TimeSpan, Func<T, Boolean>, Boolean, Boolean, Func<Boolean>)
-  nameWithType.vb: Cache.Get(Of T)(Func(Of T), String, TimeSpan, Func(Of T, Boolean), Boolean, Boolean, Func(Of Boolean))
-- uid: SystemLibrary.Common.Episerver.Cache.Remove(System.String)
-  name: Remove(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Remove_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.Cache.Remove(System.String)
-  fullName: SystemLibrary.Common.Episerver.Cache.Remove(System.String)
-  nameWithType: Cache.Remove(String)
-- uid: SystemLibrary.Common.Episerver.Cache.Remove*
-  name: Remove
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cache.html#SystemLibrary_Common_Episerver_Cache_Remove_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cache.Remove
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cache.Remove
-  nameWithType: Cache.Remove
-- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
-  name: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.html
-  commentId: N:SystemLibrary.Common.Episerver.Cms.Editor.Controllers
-  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
-  nameWithType: SystemLibrary.Common.Episerver.Cms.Editor.Controllers
-- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
-  name: CmsEditorController
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html
-  commentId: T:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
-  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController
-  nameWithType: CmsEditorController
-- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
-  name: Styles()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html#SystemLibrary_Common_Episerver_Cms_Editor_Controllers_CmsEditorController_Styles
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
-  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles()
-  nameWithType: CmsEditorController.Styles()
-- uid: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles*
-  name: Styles
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.html#SystemLibrary_Common_Episerver_Cms_Editor_Controllers_CmsEditorController_Styles_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Editor.Controllers.CmsEditorController.Styles
-  nameWithType: CmsEditorController.Styles
-- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
-  name: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.html
-  commentId: N:SystemLibrary.Common.Episerver.Cms.EditorDescriptors
-  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
-  nameWithType: SystemLibrary.Common.Episerver.Cms.EditorDescriptors
-- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
+  fullName: SystemLibrary.Common.Episerver.Cms.Controllers.CmsEditController.CmsEditController.GetStyles
+  nameWithType: CmsEditController.GetStyles
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList
+  name: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.html
+  commentId: N:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList
+  nameWithType: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor
   name: HideCategoryListDescriptor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html
-  commentId: T:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
-  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor
   nameWithType: HideCategoryListDescriptor
-- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
   name: ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryListDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__
-  commentId: M:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryList_HideCategoryListDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__
+  commentId: M:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
   name.vb: ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
-  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable<System.Attribute>)
-  fullName.vb: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable(Of System.Attribute))
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable<System.Attribute>)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable(Of System.Attribute))
   nameWithType: HideCategoryListDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
   nameWithType.vb: HideCategoryListDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
-- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata*
+- uid: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata*
   name: ModifyMetadata
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryListDescriptor_ModifyMetadata_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.html#SystemLibrary_Common_Episerver_Cms_EditorDescriptors_HideCategoryList_HideCategoryListDescriptor_ModifyMetadata_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryListDescriptor.ModifyMetadata
+  fullName: SystemLibrary.Common.Episerver.Cms.EditorDescriptors.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata
   nameWithType: HideCategoryListDescriptor.ModifyMetadata
 - uid: SystemLibrary.Common.Episerver.CurrentUser
   name: CurrentUser
@@ -10878,6 +10830,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync
   nameWithType: CurrentUser.GenerateUserIdentityAsync
+- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
+  name: IsAdministrator()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator
+  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator()
+  nameWithType: CurrentUser.IsAdministrator()
+- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator*
+  name: IsAdministrator
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator_
+  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
+  nameWithType: CurrentUser.IsAdministrator
 - uid: SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
   name: IsAuthenticated
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAuthenticated
@@ -11205,51 +11170,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.BlockIsInEditMode
   nameWithType: ViewContextExtensions.BlockIsInEditMode
-- uid: SystemLibrary.Common.Episerver.ILogWriter
-  name: ILogWriter
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html
-  commentId: T:SystemLibrary.Common.Episerver.ILogWriter
-  fullName: SystemLibrary.Common.Episerver.ILogWriter
-  nameWithType: ILogWriter
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Error(System.String)
-  name: Error(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Error_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.ILogWriter.Error(System.String)
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Error(System.String)
-  nameWithType: ILogWriter.Error(String)
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Error*
-  name: Error
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Error_
-  commentId: Overload:SystemLibrary.Common.Episerver.ILogWriter.Error
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Error
-  nameWithType: ILogWriter.Error
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Warning(System.String)
-  name: Warning(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Warning_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.ILogWriter.Warning(System.String)
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Warning(System.String)
-  nameWithType: ILogWriter.Warning(String)
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Warning*
-  name: Warning
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Warning_
-  commentId: Overload:SystemLibrary.Common.Episerver.ILogWriter.Warning
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Warning
-  nameWithType: ILogWriter.Warning
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Write(System.String)
-  name: Write(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Write_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.ILogWriter.Write(System.String)
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Write(System.String)
-  nameWithType: ILogWriter.Write(String)
-- uid: SystemLibrary.Common.Episerver.ILogWriter.Write*
-  name: Write
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ILogWriter.html#SystemLibrary_Common_Episerver_ILogWriter_Write_
-  commentId: Overload:SystemLibrary.Common.Episerver.ILogWriter.Write
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.ILogWriter.Write
-  nameWithType: ILogWriter.Write
 - uid: SystemLibrary.Common.Episerver.Initialize
   name: SystemLibrary.Common.Episerver.Initialize
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.html
@@ -11320,57 +11240,25 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer
   nameWithType: RemoveSuggestedContentTypes.ConfigureContainer
-- uid: SystemLibrary.Common.Episerver.Log
-  name: Log
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html
-  commentId: T:SystemLibrary.Common.Episerver.Log
-  fullName: SystemLibrary.Common.Episerver.Log
-  nameWithType: Log
-- uid: SystemLibrary.Common.Episerver.Log.Error(System.Object)
-  name: Error(Object)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Error_System_Object_
-  commentId: M:SystemLibrary.Common.Episerver.Log.Error(System.Object)
-  fullName: SystemLibrary.Common.Episerver.Log.Error(System.Object)
-  nameWithType: Log.Error(Object)
-- uid: SystemLibrary.Common.Episerver.Log.Error*
-  name: Error
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Error_
-  commentId: Overload:SystemLibrary.Common.Episerver.Log.Error
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Log.Error
-  nameWithType: Log.Error
-- uid: SystemLibrary.Common.Episerver.Log.Warning(System.Object)
-  name: Warning(Object)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Warning_System_Object_
-  commentId: M:SystemLibrary.Common.Episerver.Log.Warning(System.Object)
-  fullName: SystemLibrary.Common.Episerver.Log.Warning(System.Object)
-  nameWithType: Log.Warning(Object)
-- uid: SystemLibrary.Common.Episerver.Log.Warning*
-  name: Warning
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Warning_
-  commentId: Overload:SystemLibrary.Common.Episerver.Log.Warning
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Log.Warning
-  nameWithType: Log.Warning
-- uid: SystemLibrary.Common.Episerver.Log.Write(System.Object)
-  name: Write(Object)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Write_System_Object_
-  commentId: M:SystemLibrary.Common.Episerver.Log.Write(System.Object)
-  fullName: SystemLibrary.Common.Episerver.Log.Write(System.Object)
-  nameWithType: Log.Write(Object)
-- uid: SystemLibrary.Common.Episerver.Log.Write*
-  name: Write
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Log.html#SystemLibrary_Common_Episerver_Log_Write_
-  commentId: Overload:SystemLibrary.Common.Episerver.Log.Write
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Log.Write
-  nameWithType: Log.Write
 - uid: SystemLibrary.Common.Episerver.Roles
   name: Roles
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html
   commentId: T:SystemLibrary.Common.Episerver.Roles
   fullName: SystemLibrary.Common.Episerver.Roles
   nameWithType: Roles
+- uid: SystemLibrary.Common.Episerver.Roles.AdminRoles
+  name: AdminRoles
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_AdminRoles
+  commentId: P:SystemLibrary.Common.Episerver.Roles.AdminRoles
+  fullName: SystemLibrary.Common.Episerver.Roles.AdminRoles
+  nameWithType: Roles.AdminRoles
+- uid: SystemLibrary.Common.Episerver.Roles.AdminRoles*
+  name: AdminRoles
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_AdminRoles_
+  commentId: Overload:SystemLibrary.Common.Episerver.Roles.AdminRoles
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Roles.AdminRoles
+  nameWithType: Roles.AdminRoles
 - uid: SystemLibrary.Common.Episerver.Roles.CmsRoles
   name: CmsRoles
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Roles.html#SystemLibrary_Common_Episerver_Roles_CmsRoles

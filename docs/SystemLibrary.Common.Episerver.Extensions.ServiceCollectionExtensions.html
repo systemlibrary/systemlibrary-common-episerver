@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -318,7 +326,6 @@ services.AddFind();</p>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_EpiserverServiceCollectionOptions_" data-uid="SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection CommonEpiserverServices&lt;T&gt;(this IServiceCollection services, EpiserverServiceCollectionOptions options = null)
-
     where T : CurrentUser, new()</h4>
   	<div class="custom-menu-data-container">
   

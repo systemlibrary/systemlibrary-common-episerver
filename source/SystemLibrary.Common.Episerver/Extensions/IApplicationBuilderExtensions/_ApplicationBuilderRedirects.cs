@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderRedirects(IApplicationBuilder app, EpiserverAppBuilderOptions options)
+    static void ApplicationBuilderRedirects(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
     {
         if (!options.UseRewriteEpiserverPathToEpiserverCms) return;
         

@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -225,7 +233,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L13">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L15">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_" data-uid="SystemLibrary.Common.Episerver.Initialize.InitModule.ConfigureContainer*"></a>
@@ -266,7 +274,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_InitModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L17">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L19">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Initialize_InitModule_Initialize_" data-uid="SystemLibrary.Common.Episerver.Initialize.InitModule.Initialize*"></a>
@@ -307,7 +315,7 @@
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_InitModule_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L21">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/InitModule/InitModule.cs/#L23">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Initialize_InitModule_Uninitialize_" data-uid="SystemLibrary.Common.Episerver.Initialize.InitModule.Uninitialize*"></a>

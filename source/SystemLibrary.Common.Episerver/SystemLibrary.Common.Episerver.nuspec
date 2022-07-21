@@ -3,7 +3,7 @@
 	<metadata>
 		<id>SystemLibrary.Common.Episerver</id>
 
-		<version>3.1.0.1</version>
+		<version>6.0.0.1</version>
 
 		<authors>System Library</authors>
 
@@ -52,7 +52,7 @@
 			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
 			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
 			<dependency id="System.Security.Cryptography.Xml" version="6.0.0" />
-			<dependency id="SystemLibrary.Common.Web" version="3.2.0.2" />
+			<dependency id="SystemLibrary.Common.Web" version="6.0.0.1" />
 		</dependencies>
 	</metadata>
 

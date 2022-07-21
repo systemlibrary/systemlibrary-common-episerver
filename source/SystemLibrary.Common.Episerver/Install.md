@@ -75,24 +75,17 @@ static void main(string[] args) {
 
 appSettings.json:
 ```json  
-	{
-		...,
-		"systemLibraryCommonEpiserver": {
-			"logMessageBuilder": {
-				"appendLoggedInState": true,
-				"appendCurrentPage": true,
-				"appendCurrentUrl": true,
-				"appendIp": true,
-				"appendBrowser": true,
-				"appendCookieInfo": true
-			},
-			"cache": {
-				"defaultDuration": 180
-			},
-			"editMode": {
-				"companyColor": "#B84D94" //A css color or hex
-			}
-		},
-		...
-	}
+{
+	...,
+	"systemLibraryCommonEpiserver": {
+		"cmsEdit": {
+			"contentCreationBackgroundColor": "#F9F9AA",
+			"contentCreationBorderColor": "#B84D94",
+			"pageTreeSelectedContentBorderColor": "#B84D94",
+			"contentTitleColor": "#B84D94",
+			"activeProjectBarBackgroundColor": "#B84D94"
+		}
+	},
+	...
+}
 ```  

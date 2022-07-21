@@ -19,45 +19,48 @@ namespace SystemLibrary.Common.Episerver.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public partial class ContentIconAttribute : ImageUrlAttribute
     {
-        //static string BackgroundColor = "#FAFAFA";
-        static string ForegroundColor = "#000000";
+        //Note: These colors are manually written into the SVG files themselves
+        //because the "New content dialog" loads the SVG's inside an img tag
+        //while we also need to apply a separate css class for these icons, for the colors to be added in page tree
         static string FolderForegroundColor = "#FFA000";
         static string SettingsForegroundColor = "#C7C7C7";
 
         static Enum[] FolderIcons => new Enum[] {
             FontAwesomeRegular.folder,
             FontAwesomeRegular.folder_open,
-            FontAwesomeRegular.address_book,
             FontAwesomeSolid.folder,
             FontAwesomeSolid.folder_minus,
             FontAwesomeSolid.folder_open,
-            FontAwesomeSolid.folder_plus
+            FontAwesomeSolid.folder_plus,
+            FontAwesomeSolid.folder_tree
         };
 
         static Enum[] SettingIcons => new Enum[]
         {
             FontAwesomeSolid.screwdriver,
-            FontAwesomeSolid.screwdriver_wrench,
-            FontAwesomeRegular.hand_scissors
+            FontAwesomeSolid.screwdriver_wrench
         };
 
         public Enum Value { get; set; }
 
-        public ContentIconAttribute(string imageRelativeUrl) : base(imageRelativeUrl)
+        internal string IconRelativeUrl;
+
+        public ContentIconAttribute(string iconRelativeUrl) : base(iconRelativeUrl)
         {
+            IconRelativeUrl = iconRelativeUrl;
         }
 
-        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/RegularIcon/", regular))
+        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/RegularIcon/", regular))
         {
             Value = regular;
         }
 
-        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/SolidIcon/", solid))
+        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/SolidIcon/", solid))
         {
             Value = solid;
         }
 
-        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIcons/BrandsIcon/", brand))
+        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/BrandsIcon/", brand))
         {
             Value = brand;
         }
@@ -85,17 +88,19 @@ namespace SystemLibrary.Common.Episerver.Attributes
 
             return requestUrl + iconName.Replace("_", "-") + ".svg";
         }
-
-        static string GetForegroundColor(Enum icon)
+        
+        internal bool IsFolder()
         {
-            if (FolderIcons.Contains(icon))
-                return FolderForegroundColor;
+            if (Value == null) return false;
 
+            return FolderIcons.Contains(Value);
+        }
 
-            if (SettingIcons.Contains(icon))
-                return SettingsForegroundColor;
+        internal bool IsSettings()
+        {
+            if (Value == null) return false;
 
-            return ForegroundColor;
+            return SettingIcons.Contains(Value);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
             }
         }
 
-        bool IsAnyUserOrAdminAlreadyRegistered()
+        bool IsAnyUserAlreadyRegisteredInDatabase()
         {
             if(NoUsersExistsInDb() > 0)
                 return true;

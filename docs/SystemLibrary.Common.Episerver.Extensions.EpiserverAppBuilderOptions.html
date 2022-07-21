@@ -117,8 +117,16 @@
       
                   for (var i = 0; i < queries.length; i++) {
                     var query = queries[i].replace(/(\r\n|\n|\r)/gm, "");
+      
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
+      
+                      console.log(query);
+      
+                      query = query.replace('__-1_', '<');
+                      query = query.replace('__-2_', '>');
+                      
+                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -178,39 +186,39 @@
   
   <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="text-break h1-class-header">EpiserverAppBuilderOptions
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="h1-custom-display className">public class EpiserverAppBuilderOptions : WebApplicationBuilderOptions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="h1-custom-display className">public class EpiserverAppBuilderOptions : CommonWebApplicationBuilderOptions</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions</span></div>
+    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions</span></div>
     <div class="level2"><span class="xref">EpiserverAppBuilderOptions</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseHttpRedirectionAndHsts</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseDefaultRouting</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseAuthenticationAndAuthorization</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseControllerEndpoints</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseControllerEndpoints</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseRazorPagesEndpoints</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseStaticFiles</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseStaticFiles</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseExceptionPageInTestAndDev</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.WebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy</span>
+      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy</span>
     </div>
   </div>
   
