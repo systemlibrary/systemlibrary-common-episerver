@@ -20,6 +20,7 @@ namespace SystemLibrary.Common.Episerver
     ///        },
     ///         "editMode": {
     ///             "hideLanguageColumnInVersionGadget": true,
+    ///             "contentCreationBackgroundColor": "#B84D94",
     ///             "contentCreationBorderColor": "#B84D94",
     ///             "pageTreeSelectedContentBorderColor": "#B84D94",
     ///             "contentTitleColor": "#B84D94",

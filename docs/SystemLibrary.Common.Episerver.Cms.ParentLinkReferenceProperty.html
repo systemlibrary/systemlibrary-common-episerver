@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>EpiserverAppBuilderOptions
+    <title>ParentLinkReferenceProperty
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="EpiserverAppBuilderOptions
+    <meta name="title" content="ParentLinkReferenceProperty
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -172,59 +168,168 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.html">SystemLibrary.Common.Episerver.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.html">SystemLibrary.Common.Episerver.Cms</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Contains application builder options that you can override if you want to</p>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="text-break h1-class-header">EpiserverAppBuilderOptions
+  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty" class="text-break h1-class-header">ParentLinkReferenceProperty
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions" class="h1-custom-display className">public class EpiserverAppBuilderOptions : CommonWebApplicationBuilderOptions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty" class="h1-custom-display className">[PropertyDefinitionTypePlugIn(DisplayName = &quot;[SystemLibrary] Parent Link Reference&quot;, Description = &quot;This property is a simple link to the parent content&quot;, GUID = &quot;CBE9E1B9-89AC-41A2-9A8F-47B21F5849D4&quot;)]
+public class ParentLinkReferenceProperty : PropertyLongString, IReadOnly&lt;PropertyData&gt;, IReadOnly, ILazyProperty</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions</span></div>
-    <div class="level2"><span class="xref">EpiserverAppBuilderOptions</span></div>
+    <div class="level1"><span class="xref">EPiServer.Core.PropertyData</span></div>
+    <div class="level2"><span class="xref">EPiServer.Core.PropertyLongString</span></div>
+    <div class="level3"><span class="xref">ParentLinkReferenceProperty</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">EPiServer.Data.Entity.IReadOnly</span>&lt;<span class="xref">EPiServer.Core.PropertyData</span>&gt;</div>
+    <div class="implements-content"><span class="xref">EPiServer.Data.Entity.IReadOnly</span></div>
+    <div class="implements-content"><span class="xref">EPiServer.Core.Internal.ILazyProperty</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpRedirectionAndHsts</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.IsEmptyValue(System.Object)</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseDefaultRouting</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.SetDefaultValue()</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseAuthenticationAndAuthorization</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.Parse(System.String)</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseControllerEndpoints</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.ParseToSelf(System.String)</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseRazorPagesEndpoints</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.EPiServer.Core.Internal.ILazyProperty.AssignValueFactory(System.Func&lt;System.Object&gt;)</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseStaticFiles</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.IsNull</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseExceptionPageInTestAndDev</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.Type</span>
     </div>
     <div>
-      <span class="xref">SystemLibrary.Common.Web.Extensions.CommonWebApplicationBuilderOptions.UseHttpsAndSecureCookiePolicy</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.EPiServer.Core.Internal.ILazyProperty.HasLazyValue</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyLongString.LongString</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyLongString.PageLink</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Copy()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Modified()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.ModifiedNoCheck()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Clear()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.SetPropertyValue(System.Object, EPiServer.Core.SetPropertyValueDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.ToString(System.Globalization.CultureInfo)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.ToWebString()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.EncodeForWebString(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.BuildRegularExpression(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.InitializeData(EPiServer.Core.PropertyDataCollection)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.LoadData(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.QualifyAsNullString(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Translate(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.MakeReadOnly()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.EPiServer.Data.Entity.IReadOnly.CreateWritableClone()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.CreateWritableClone()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.ThrowIfReadOnly()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Locate</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Parent</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.Name</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.PropertyDefinitionID</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsMetaData</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsPropertyData</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsDynamicProperty</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsLanguageSpecific</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.DisplayEditUI</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.OwnerTab</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.FieldOrder</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsModified</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsRequired</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsReadOnly</span>
     </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -232,7 +337,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -244,19 +349,20 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
   </h3>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseEpiserverMapContentEndpoints">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_PropertyValueType">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L10">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/ParentLinkReference/ParentLinkReferenceProperty.cs/#L14">View Source</a>
   	</span>
   </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_PropertyValueType_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.PropertyValueType*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseEpiserverMapContentEndpoints" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseEpiserverMapContentEndpoints" class="h4-custom-functionName">public bool UseEpiserverMapContentEndpoints</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_PropertyValueType" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.PropertyValueType" class="h4-custom-functionName">public override Type PropertyValueType { get; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -269,8 +375,8 @@
   </div>
   
   
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
   	<thead>
   		<tr>
   			<th>Type</th>
@@ -279,22 +385,27 @@
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
+  			<td><span class="xref">System.Type</span></td>
   			<td></td>
   		</tr>
   	</tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyLongString.PropertyValueType</span>
+  </div>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseExceptionLogging">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_Value">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L8">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/ParentLinkReference/ParentLinkReferenceProperty.cs/#L22">View Source</a>
   	</span>
   </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_Value_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.Value*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseExceptionLogging" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseExceptionLogging" class="h4-custom-functionName">public bool UseExceptionLogging</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_Value" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.Value" class="h4-custom-functionName">public override object Value { get; set; }</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -307,8 +418,8 @@
   </div>
   
   
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
   	<thead>
   		<tr>
   			<th>Type</th>
@@ -317,49 +428,90 @@
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
+  			<td><span class="xref">System.Object</span></td>
   			<td></td>
   		</tr>
   	</tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyLongString.Value</span>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseRewriteEpiserverPathToEpiserverCms">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_SaveData_EPiServer_Core_PropertyDataCollection_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L9">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/ParentLinkReference/ParentLinkReferenceProperty.cs/#L34">View Source</a>
   	</span>
   </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_SaveData_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.SaveData*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Extensions_EpiserverAppBuilderOptions_UseRewriteEpiserverPathToEpiserverCms" data-uid="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.UseRewriteEpiserverPathToEpiserverCms" class="h4-custom-functionName">public bool UseRewriteEpiserverPathToEpiserverCms</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceProperty_SaveData_EPiServer_Core_PropertyDataCollection_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceProperty.SaveData(EPiServer.Core.PropertyDataCollection)" class="h4-custom-functionName">public override object SaveData(PropertyDataCollection properties)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">EPiServer.Core.PropertyDataCollection</span></td>
+  						<td><span class="parametername">properties</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
   		</div>
   
+  		<div class="custom-menu-data-returntype" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<table class="table table-bordered table-striped table-condensed table-return">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
   	</div>
   </div>
   </div>
   
   
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed fieldValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyData.SaveData(EPiServer.Core.PropertyDataCollection)</span>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Data.Entity.IReadOnly&lt;T&gt;</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Data.Entity.IReadOnly</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Core.Internal.ILazyProperty</span>
+  </div>
   
   
   <script>
@@ -1006,7 +1158,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/EpiserverAppBuilderOptions.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/ParentLinkReference/ParentLinkReferenceProperty.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1024,16 +1176,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');

@@ -66,7 +66,6 @@ namespace SystemLibrary.Common.Episerver.Attributes
         [Route("SystemLibrary/Common/Episerver/WebFonts/{filePath?}")]
         public ActionResult WebFonts(string filePath)
         {
-            Dump.Write("WebFonts is invoked!");
             if (filePath.IsNot()) return new EmptyResult();
 
             if (filePath.Contains("olid"))

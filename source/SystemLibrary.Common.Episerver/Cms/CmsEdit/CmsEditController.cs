@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +19,6 @@ namespace SystemLibrary.Common.Episerver.Cms
             (_CurrentAssembly = Assembly.GetExecutingAssembly());
 
         static FileContentResult StylesheetCache;
-        static FileContentResult ScriptCache;
 
         public ActionResult Stylesheet()
         {
@@ -33,12 +34,25 @@ namespace SystemLibrary.Common.Episerver.Cms
             StringBuilder sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(CmsEditFolder, "CmsEditStylesheet.css", CurrentAssembly));
 
             var hideLanguageColumnInVersionGadget = cmsEdit.HideLanguageColumnInVersionGadget ? "0px" : "";
+            var hideLanguageColumnInVersionGadgetVisibility = cmsEdit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
+            sb.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
             sb.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
             sb.Replace(nameof(cmsEdit.ContentTitleColor), cmsEdit.ContentTitleColor);
             sb.Replace(nameof(cmsEdit.ContentCreationBorderColor), cmsEdit.ContentCreationBorderColor);
             sb.Replace(nameof(cmsEdit.ContentCreationBackgroundColor), cmsEdit.ContentCreationBackgroundColor);
             sb.Replace(nameof(cmsEdit.PageTreeSelectedContentBorderColor), cmsEdit.PageTreeSelectedContentBorderColor);
-            sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
+            if (cmsEdit.ActiveProjectBarBackgroundColor.Is())
+            {
+                try
+                {
+                    sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", Darken(cmsEdit.ActiveProjectBarBackgroundColor));
+                }
+                catch
+                {
+                }
+                sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
+
+            }
 
             AppendCustomPageTreeIcons(sb);
 
@@ -49,29 +63,30 @@ namespace SystemLibrary.Common.Episerver.Cms
             return StylesheetCache;
         }
 
-        public ActionResult Script()
+        static string Darken(string hex)
         {
-            if (Response.Headers.ContainsKey("Cache-Control"))
-                Response.Headers.Remove("Cache-Control");
+            if (hex.StartsWith("#"))
+                hex = hex.Substring(1);
 
-            Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
+            int partLength = hex.Length == 6 ? 2 : 1;
 
-            if (ScriptCache != null) return ScriptCache;
+            var parts = SplitHex(hex, partLength);
 
-            var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
-
-            var sb = new StringBuilder("");
-
-            if (cmsEdit.ActiveProjectBarBackgroundColor.Is())
+            var darkenedColor = "";
+            var factor = 0.31;
+            foreach (var part in parts)
             {
-                sb.Append(Net.Assemblies.GetEmbeddedResource(CmsEditFolder, "CmsEditScript.js", CurrentAssembly));
+                var color = Convert.ToInt32(part, 16);
+                darkenedColor += Convert.ToInt32(color * factor).ToString("X");
             }
 
-            var bytes = Encoding.UTF8.GetBytes(sb.ToString());
+            return "#" + darkenedColor;
+        }
 
-            ScriptCache = new FileContentResult(bytes, "text/javascript");
-
-            return ScriptCache;
+        static IEnumerable<string> SplitHex(string hex, int partLength)
+        {
+            for (var i = 0; i < hex.Length; i += partLength)
+                yield return hex.Substring(i, Math.Min(partLength, hex.Length - i));
         }
     }
 }

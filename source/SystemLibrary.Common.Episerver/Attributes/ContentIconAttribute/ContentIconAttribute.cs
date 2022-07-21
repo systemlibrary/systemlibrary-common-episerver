@@ -23,7 +23,7 @@ namespace SystemLibrary.Common.Episerver.Attributes
         //because the "New content dialog" loads the SVG's inside an img tag
         //while we also need to apply a separate css class for these icons, for the colors to be added in page tree
         static string FolderForegroundColor = "#FFA000";
-        static string SettingsForegroundColor = "#C7C7C7";
+        static string SettingsForegroundColor = "#414141";
 
         static Enum[] FolderIcons => new Enum[] {
             FontAwesomeRegular.folder,

@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -188,12 +184,12 @@
   </h1>
   <h1 id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes" class="h1-custom-display className">[InitializableModule]
 [ModuleDependency(typeof(FrameworkInitialization))]
-public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IInitializableModule</h1>
+public class RemoveSuggestedContentTypes : StartupModule, IConfigurableModule, IInitializableModule</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html">InitModule</a></div>
+    <div class="level1"><a class="xref" href="SystemLibrary.Common.Episerver.Initialize.StartupModule.html">StartupModule</a></div>
     <div class="level2"><span class="xref">RemoveSuggestedContentTypes</span></div>
   </div>
   <div class="implements">
@@ -204,10 +200,10 @@ public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IIni
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_">InitModule.Initialize(InitializationEngine)</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.StartupModule.html#SystemLibrary_Common_Episerver_Initialize_StartupModule_Initialize_EPiServer_Framework_Initialization_InitializationEngine_">StartupModule.Initialize(InitializationEngine)</a>
     </div>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_">InitModule.Uninitialize(InitializationEngine)</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Initialize.StartupModule.html#SystemLibrary_Common_Episerver_Initialize_StartupModule_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_">StartupModule.Uninitialize(InitializationEngine)</a>
     </div>
   </div>
   
@@ -240,7 +236,7 @@ public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IIni
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L14">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L16">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Initialize_RemoveSuggestedContentTypes_ConfigureContainer_" data-uid="SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.ConfigureContainer*"></a>
@@ -278,7 +274,7 @@ public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IIni
   
   <h5 class="overrides">Overrides</h5>
   <div class="overrides-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Initialize.InitModule.html#SystemLibrary_Common_Episerver_Initialize_InitModule_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">InitModule.ConfigureContainer(ServiceConfigurationContext)</a>
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Initialize.StartupModule.html#SystemLibrary_Common_Episerver_Initialize_StartupModule_ConfigureContainer_EPiServer_ServiceLocation_ServiceConfigurationContext_">StartupModule.ConfigureContainer(ServiceConfigurationContext)</a>
   </div>
   <h3 id="implements">Implements</h3>
   <div class="implements-content">
@@ -933,7 +929,7 @@ public class RemoveSuggestedContentTypes : InitModule, IConfigurableModule, IIni
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Initialize/RemoveSuggestedContentTypes/RemoveSuggestedContentTypes.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

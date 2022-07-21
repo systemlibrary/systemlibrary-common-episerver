@@ -8,7 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Cms\CmsEdit\CmsEditScript.js" />
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.html" />
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.js" />
 		<None Remove="Release.cmd" />
@@ -20,7 +19,6 @@
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
-		<EmbeddedResource Include="Cms\CmsEdit\CmsEditScript.js" />
 		<EmbeddedResource Include="Cms\CmsEdit\CmsEditStylesheet.css" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Solid\*.svg" />

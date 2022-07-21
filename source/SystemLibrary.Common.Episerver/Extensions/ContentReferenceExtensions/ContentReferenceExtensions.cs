@@ -2,6 +2,8 @@
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 
+using SystemLibrary.Common.Web;
+
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ContentReferenceExtensions

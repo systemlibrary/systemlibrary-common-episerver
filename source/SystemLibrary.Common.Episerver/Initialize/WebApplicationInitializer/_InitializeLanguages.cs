@@ -3,6 +3,8 @@ using System.Linq;
 
 using EPiServer.DataAbstraction;
 
+using SystemLibrary.Common.Web;
+
 namespace SystemLibrary.Common.Episerver.Initialize
 {
     partial class WebApplicationInitializer

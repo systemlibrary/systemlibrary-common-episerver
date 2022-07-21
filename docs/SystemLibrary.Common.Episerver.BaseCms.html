@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -246,7 +242,7 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentModelUsage">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L59">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L65">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_ContentModelUsage_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentModelUsage*"></a>
@@ -285,7 +281,7 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentRepository">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L46">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L47">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_ContentRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentRepository*"></a>
@@ -324,7 +320,7 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentTypeRepository">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L55">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L56">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_ContentTypeRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentTypeRepository*"></a>
@@ -361,9 +357,87 @@ public class Cms : BaseCms
   
   <div class="custom-container">
   
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInEditMode">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L116">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode" class="h4-custom-functionName">public static bool IsInEditMode { get; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L126">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode" class="h4-custom-functionName">public static bool IsInPreviewMode { get; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L51">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L52">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository*"></a>
@@ -397,6 +471,45 @@ public class Cms : BaseCms
   		</tr>
   	</tbody>
   </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ProjectRepository">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L61">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_BaseCms_ProjectRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ProjectRepository*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_ProjectRepository" data-uid="SystemLibrary.Common.Episerver.BaseCms.ProjectRepository" class="h4-custom-functionName">protected static ProjectRepository ProjectRepository { get; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">EPiServer.DataAbstraction.ProjectRepository</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   
@@ -404,13 +517,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L124">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L136">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)" class="h4-custom-functionName">public static IHostBuilder CreateHostBuilder&lt;T&gt;(string[] args, string appSettingsPath = null)
+  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)" class="h4-custom-functionName">public static IHostBuilder CreateHostBuilder&lt;T&gt;(string[] args, string appSettingsFullPath = null)
+
     where T : class</h4>
   	<div class="custom-menu-data-container">
   
@@ -449,7 +563,7 @@ public class Cms : BaseCms
   					</tr>
   					<tr>
   						<td><span class="xref">System.String</span></td>
-  						<td><span class="parametername">appSettingsPath</span></td>
+  						<td><span class="parametername">appSettingsFullPath</span></td>
   						<td></td>
   					</tr>
   				</tbody>
@@ -489,13 +603,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_Get__1_EPiServer_Core_ContentReference_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L64">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L70">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_Get_" data-uid="SystemLibrary.Common.Episerver.BaseCms.Get*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_Get__1_EPiServer_Core_ContentReference_" data-uid="SystemLibrary.Common.Episerver.BaseCms.Get``1(EPiServer.Core.ContentReference)" class="h4-custom-functionName">public static T Get&lt;T&gt;(ContentReference contentReference)
+
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -569,13 +684,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock__1">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L105">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L111">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentBlock*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentBlock``1" class="h4-custom-functionName">public static T GetCurrentBlock&lt;T&gt;()
+
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -632,13 +748,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage__1">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L95">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L101">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentPage*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentPage``1" class="h4-custom-functionName">public static T GetCurrentPage&lt;T&gt;()
+
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -695,13 +812,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetItems__1_EPiServer_Core_ContentArea_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L73">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L79">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_GetItems_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_EPiServer_Core_ContentArea_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(EPiServer.Core.ContentArea)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(ContentArea contentArea)
+
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -775,13 +893,14 @@ public class Cms : BaseCms
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetItems__1_System_Collections_Generic_IEnumerable_EPiServer_Core_ContentReference__">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L85">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L91">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_BaseCms_GetItems_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems*"></a>
   
   <div class="custom-menu-data">
   	<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_System_Collections_Generic_IEnumerable_EPiServer_Core_ContentReference__" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(System.Collections.Generic.IEnumerable{EPiServer.Core.ContentReference})" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(IEnumerable&lt;ContentReference&gt; contentReferences)
+
     where T : IContentData</h4>
   	<div class="custom-menu-data-container">
   
@@ -835,90 +954,6 @@ public class Cms : BaseCms
   				<tbody>
   					<tr>
   						<td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
-  	</div>
-  </div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInEditMode">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L110">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode" class="h4-custom-functionName">public static bool IsInEditMode()</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Boolean</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
-  	</div>
-  </div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L117">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode" class="h4-custom-functionName">public static bool IsInPreviewMode()</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Boolean</span></td>
   						<td></td>
   					</tr>
   				</tbody>
@@ -1575,7 +1610,7 @@ public class Cms : BaseCms
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L44" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ViewContextExtensions
+    <title>HideCategoryListDescriptor
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ViewContextExtensions
+    <meta name="title" content="HideCategoryListDescriptor
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -168,10 +168,10 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.html">SystemLibrary.Common.Episerver.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.HideCategoryList.html">SystemLibrary.Common.Episerver.Cms.HideCategoryList</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -179,19 +179,68 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions" class="text-break h1-class-header">ViewContextExtensions
+  <h1 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor" class="text-break h1-class-header">HideCategoryListDescriptor
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions" class="h1-custom-display className">public static class ViewContextExtensions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor" class="h1-custom-display className">[EditorDescriptorRegistration(TargetType = typeof(CategoryList))]
+public class HideCategoryListDescriptor : EditorDescriptor, IMetadataExtender, IMetadataHandler</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ViewContextExtensions</span></div>
+    <div class="level1"><span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor</span></div>
+    <div class="level2"><span class="xref">HideCategoryListDescriptor</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">EPiServer.Shell.ObjectEditing.IMetadataExtender</span></div>
+    <div class="implements-content"><span class="xref">EPiServer.Shell.ObjectEditing.IMetadataHandler</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.SetEditorConfiguration(EPiServer.Shell.ObjectEditing.ExtendedMetadata)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.SetOverlayConfiguration(EPiServer.Shell.ObjectEditing.ExtendedMetadata)</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.AllowedTypes</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.AllowedTypesFormatSuffix</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.DndSourcePropertyName</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.DndTargetPropertyName</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.ClientEditingClass</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.ClientEditingPackage</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.LayoutClass</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.DefaultValue</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.EditorConfiguration</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.OverlayConfiguration</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.SelectionFactoryType</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -199,7 +248,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -215,23 +264,16 @@
   </h3>
   
   <div class="custom-container">
-  <div class="custom-menu-summary-data">
-  	<div class="markdown level1 summary member-summary"><p>Returns true if current view context is inside a block editing view, else falseQ</p>
-<p>//Credit to: <a href="https://marisks.net/2016/07/21/simple-check-if-block-is-in-edit-mode/">https://marisks.net/2016/07/21/simple-check-if-block-is-in-edit-mode/</a></p>
-<p>//TODO: Update to remove the need of viewContext as input param</p>
-</div>
-  	<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  </div>
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions_BlockIsInEditMode_Microsoft_AspNetCore_Mvc_Rendering_ViewContext_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/VIewContextExtensions/ViewContextExtensions.cs/#L19">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/HideCategoryList/HideCategoryListDescriptor.cs/#L15">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions_BlockIsInEditMode_" data-uid="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.BlockIsInEditMode*"></a>
+  <a id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor_ModifyMetadata_" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Extensions_ViewContextExtensions_BlockIsInEditMode_Microsoft_AspNetCore_Mvc_Rendering_ViewContext_" data-uid="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.BlockIsInEditMode(Microsoft.AspNetCore.Mvc.Rendering.ViewContext)" class="h4-custom-functionName">public static bool BlockIsInEditMode(this ViewContext viewContext)</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList_HideCategoryListDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})" class="h4-custom-functionName">public override void ModifyMetadata(ExtendedMetadata metadata, IEnumerable&lt;Attribute&gt; attributes)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -248,37 +290,35 @@
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.Rendering.ViewContext</span></td>
-  						<td><span class="parametername">viewContext</span></td>
+  						<td><span class="xref">EPiServer.Shell.ObjectEditing.ExtendedMetadata</span></td>
+  						<td><span class="parametername">metadata</span></td>
+  						<td></td>
+  					</tr>
+  					<tr>
+  						<td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Attribute</span>&gt;</td>
+  						<td><span class="parametername">attributes</span></td>
   						<td></td>
   					</tr>
   				</tbody>
   			</table>
   		</div>
   
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Boolean</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
   	</div>
   </div>
   </div>
   
   
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Shell.ObjectEditing.EditorDescriptors.EditorDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable&lt;System.Attribute&gt;)</span>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Shell.ObjectEditing.IMetadataExtender</span>
+  </div>
+  <div class="implements-content">
+  	<span class="xref">EPiServer.Shell.ObjectEditing.IMetadataHandler</span>
+  </div>
   
   
   <script>
@@ -925,7 +965,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/VIewContextExtensions/ViewContextExtensions.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/HideCategoryList/HideCategoryListDescriptor.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -943,16 +983,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

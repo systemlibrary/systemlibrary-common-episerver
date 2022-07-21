@@ -2,6 +2,8 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
+using SystemLibrary.Common.Episerver.Initialize;
+using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -27,7 +29,7 @@ public static partial class ServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
     {
-        Services.Collection = services;
+        //Services.Collection = services;
 
         SetOptions(options);
 
@@ -83,5 +85,7 @@ public static partial class ServiceCollectionExtensions
 
         if (Options.DefaultAdminPassword.IsNot())
             Options.DefaultAdminPassword = fallback.DefaultAdminPassword;
+
+        Options.ViewLocations = ViewLocations.AllViews.Add(Options.ViewLocations);
     }
 }

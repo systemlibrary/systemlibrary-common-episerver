@@ -6,24 +6,45 @@
 
 
 ## Latest Version
-- 3.1.0.1
+- 6.0.0.1
 - Updated latest dependencies
-- Added unit tests for a few of the extension methods
-- AppBuilderOptions renamed to EpiserverAppBuilderOptions (Breaking Change)
-- Renamed ServiceCollectionOptions to EpiserverServiceCollectionOptions (Breaking change)
-- EpiserverServiceCollectionOptions moved to new namespace (Breaking Change)
+- Bumped version to reflect we are on .NET 6
+- FontAwesome Solid Icons now works in ContentIcon attribute
+- ContentIcon attribute bug where Solid Icons from FontAwesome not displaying fixed
+- ContentIcon attribute with a custom relative icon path, now also shows the icon in the page tree
+- Added "PageDataExtensions" such as Is() IsNot() and ToFriendlyUrl()
+- Renamed ServiceCollectionEpiserverOptions to CommonEpiserverApplicationServicesOptions (Breaking Change)
+- Renamed EpiserverApPBuilderOptions to CommonEpiserverApplicationBuilderOptions (Breaking Change)
+- Default password for demo user is now Demo123! instead of Admin123!
+- ViewLocations now actually registered - they were never invoked in previous version iirc
+- ParentLinkReference a new custom property: public virtual ParentLinkReference LinkRef { get;set;} on any block or page, try it!
+- Two new configurations: activeProjectBarBackgroundColor and hideLanguageColumnInVersionGadget, available in appSettings.json
 
 ## Description
-A common library for all .NET &gt;= 6 episerver applications - various reusable extensions and classes
-			
-Selling points:
-  * Extensions for XhtmlString, ContentReference, ContentArea, ...
-  * Initialize your application through CommonEpiserverInitialization(options); and services.CommonEpiserverServices&lt;CurrentUser&gt;(options);
-  * A log builder which builds a string with all needed information about current error and request, which you control where to log to (slack, cloud watch, sentry, firebase, ...)
-  * Cache class that creates a unique key based on current user roles, with option add additional predicates, and also a flag to cache or not for CmsUsers
-  * Contains a 'CurrentUser' that you can either inherit or just inject yourself in any service/controller
+A library of classes and methods for any .NET &gt;= 6 episerver web application
 
-## Docs			
+* Setup IApplicationBuilder in one line: app.CommonEpiserverApplicationBuilder();
+* Setup IServiceCollection in one line: services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
+
+The two methods in short enables:
+* serving of static common file types (css, js, png, jpg, ...)
+* routing requests to controllers
+* registers services for AspNet.Mvc
+* registers and enabled Authorization and Authentication
+* registers and initializes Episerver Cms
+* registers a new "demo/Demo123!" user if there's no user in the DB
+* registers a few view locations, and you can add more when calling CommonEpiserverApplicationServices()
+* enables the login screen on "https://domain.com/episerver"
+
+Contains other modules such as:
+- ContentIcon, custom icon for blocks and pages with over several thousand to pick from (FontAwesome Free Icons v6), and PageTree is also using the icons
+- Extensions like Is() and IsNot() for XhtmlString, ContentReference and ContentArea
+- New property types, such as: ParentLinkReference, which creates a Link in "Property Mode" to its parent, no more 'Where is this content stored'
+- Contains a "CurrentUser" you can inject or new up
+
+Multiple dijit widgets coming soon, like colorpicker and much much more!
+
+## Docs
 Documentation with samples:
 https://systemlibrary.github.io/systemlibrary-common-episerver/
 

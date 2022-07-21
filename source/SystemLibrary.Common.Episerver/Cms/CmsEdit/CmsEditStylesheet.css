@@ -153,6 +153,7 @@ li.epi-form-container__section__row.epi-form-container__section__row--group > di
 /* Hide "language" in version gadget as we only have NO */
 .Sleek .dgrid-row-table .dgrid-column-language:first-child {
     width: HideLanguageColumnInVersionGadget;
+    visibility: HideLanguageColumnInVersionGadgetVisibility;
 }
 
 /* NEW CONTENT WINDOW - BORDER AROUND EACH CONTENT TO SELECT FROM */
@@ -214,6 +215,8 @@ li.epi-form-container__section__row > div.dijit.dijitNumberTextBox {
 }
 
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
-.epi-project-mode-toolbar.dijitLayoutContainer.dijitContainer.custom-common-episerver-active-project-bar-background-color {
-    background-color: ActiveProjectBarBackgroundColor;
+.Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
+    background-color: ActiveProjectBarBackgroundColor !important;
+    border-color: ActiveProjectBarBackgroundColorBorder !important;
 }
+

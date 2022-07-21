@@ -86,17 +86,14 @@ partial class ContentIconAttribute
             if (fontAwesomeIconName == typeof(FontAwesomeSolid))
             {
                 descriptor.IconClass += "fas fa-" + fontawesomeIcon;
-                return;
             }
             else if (fontAwesomeIconName == typeof(FontAwesomeBrands))
             {
                 descriptor.IconClass += "fab fa-" + fontawesomeIcon;
-                return;
             }
-            else if(fontAwesomeIconName == typeof(FontAwesomeRegular))
+            else
             {
                 descriptor.IconClass += "far fa-" + fontawesomeIcon;
-                return;
             }
 
             var isFolder = contentType.Item2.IsFolder();

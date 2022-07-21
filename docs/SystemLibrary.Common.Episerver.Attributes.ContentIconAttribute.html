@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -243,13 +239,13 @@ public class StartPage : PageData</code></pre>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_System_String_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L46">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L48">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_System_String_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(System.String)" class="h4-custom-functionName">public ContentIconAttribute(string imageRelativeUrl)</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_System_String_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor(System.String)" class="h4-custom-functionName">public ContentIconAttribute(string iconRelativeUrl)</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -267,7 +263,7 @@ public class StartPage : PageData</code></pre>
   				<tbody>
   					<tr>
   						<td><span class="xref">System.String</span></td>
-  						<td><span class="parametername">imageRelativeUrl</span></td>
+  						<td><span class="parametername">iconRelativeUrl</span></td>
   						<td></td>
   					</tr>
   				</tbody>
@@ -284,7 +280,7 @@ public class StartPage : PageData</code></pre>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute_FontAwesomeBrands_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L60">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L63">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor*"></a>
@@ -325,7 +321,7 @@ public class StartPage : PageData</code></pre>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute_FontAwesomeRegular_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L50">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L53">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor*"></a>
@@ -366,7 +362,7 @@ public class StartPage : PageData</code></pre>
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute_FontAwesomeSolid_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L55">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/ContentIconAttribute.cs/#L58">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Attributes_ContentIconAttribute__ctor_" data-uid="SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.#ctor*"></a>
@@ -1089,7 +1085,7 @@ public class StartPage : PageData</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/Icons/FontAwesomeSolid.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Attributes/ContentIconAttribute/InitModule/_LoadPageTypesWithIconAttribute.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

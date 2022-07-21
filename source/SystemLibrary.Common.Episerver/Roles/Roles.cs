@@ -18,9 +18,6 @@
         static string[] _AdminRoles;
         public static string[] AdminRoles => _AdminRoles != null ? _AdminRoles :
             (_AdminRoles = new[] {
-                "Admin", 
-                "Admins", 
-                "Administrator",
                 EPiServer.Authorization.Roles.Administrators,
                 EPiServer.Authorization.Roles.WebAdmins,
                 EPiServer.Authorization.Roles.CmsAdmins,

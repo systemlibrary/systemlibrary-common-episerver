@@ -23,22 +23,34 @@
 		</releaseNotes>
 
 		<description>
-			A common library for all .NET &gt;= 6 episerver applications - various reusable extensions and classes
+A library of classes and methods for any .NET &gt;= 6 episerver web application
 
-			Selling points:
-			* Extensions for XhtmlString, ContentReference, ContentArea, ...
-			* Initialize your application through two methods for Episerver 12, in &gt;= .NET 6: app.CommonEpiserverInitialization(); and services.CommonEpiserverServices&lt;CurrentUser&gt;(options);
-			* A log builder which builds a string with all needed information about current error and request, which you control where to log to (slack, cloud watch, sentry, firebase, ...)
-			* Cache class, with flags (bools) to wether or not cache for CmsUsers
-			* Contains a 'CurrentUser' that you can either inherit, inject yourself in any service/controller or simply new it up
-			* Contains Enum attributes, ContentIcon from FontAwesome so all Blocks/Pages gets Icons in PageTree and when 'Create New' dialog appears
-			* (is coming soon...) Various dojo's/widget/dijits, like ColorPicker and many more!
+* Setup IApplicationBuilder in one line: app.CommonEpiserverApplicationBuilder();
+* Setup IServiceCollection in one line: services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
 
-			Documentation:
-			https://systemlibrary.github.io/systemlibrary-common-episerver/
+The two methods in short enables:
+* serving of static common file types (css, js, png, jpg, ...)
+* routing requests to controllers
+* registers services for AspNet.Mvc
+* registers and enabled Authorization and Authentication
+* registers and initializes Episerver Cms
+* registers a new "demo/Demo123!" user if there's no user in the DB
+* registers a few view locations, and you can add more when calling CommonEpiserverApplicationServices()
+* enables the login screen on "https://domain.com/episerver"
 
-			Source code:
-			https://github.com/systemlibrary/systemlibrary-common-episerver/
+Contains other modules such as:
+- ContentIcon, custom icon for blocks and pages with over several thousand to pick from (FontAwesome Free Icons v6), and PageTree is also using the icons
+- Extensions like Is() and IsNot() for XhtmlString, ContentReference and ContentArea
+- New property types, such as: ParentLinkReference, which creates a Link in "Property Mode" to its parent, no more 'Where is this content stored'
+- Contains a "CurrentUser" you can inject or new up
+
+Multiple dijit widgets coming soon, like colorpicker and much much more!
+			
+Documentation:
+https://systemlibrary.github.io/systemlibrary-common-episerver/
+
+Source code:
+https://github.com/systemlibrary/systemlibrary-common-episerver/
 		</description>
 
 		<copyright>Copyright © System Library</copyright>
@@ -52,7 +64,7 @@
 			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
 			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
 			<dependency id="System.Security.Cryptography.Xml" version="6.0.0" />
-			<dependency id="SystemLibrary.Common.Web" version="6.0.0.1" />
+			<dependency id="SystemLibrary.Common.Web" version="6.0.0.3" />
 		</dependencies>
 	</metadata>
 

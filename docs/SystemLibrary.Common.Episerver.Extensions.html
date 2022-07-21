@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,SystemLibrary.Common.Episerver.Cms.Editor.Controller,SystemLibrary.Common.Episerver.Cms.EditorDescriptor,RemoveSuggestedContentTypes,HideCategoryListDescriptor,ContentIconAttributeController,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFxHide,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -121,12 +121,8 @@
                     if (query && query.length > 1) {
                       query = query.replace(/ /g, '');
       
-                      console.log(query);
-      
                       query = query.replace('__-1_', '<');
                       query = query.replace('__-2_', '>');
-                      
-                      console.log(query);
       
                       if (query.includes('.')) {
                         var links = toc.getElementsByTagName('a');
@@ -181,17 +177,19 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html">CommonEpiserverApplicationBuilderOptions</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions--description"><p>Contains application builder options that you can override if you want to</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html">CommonEpiserverApplicationServicesOptions</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html">ContentAreaExtensions</a></h4>
       <section id="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html">ContentReferenceExtensions</a></h4>
       <section id="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions--description"></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions.html">EpiserverAppBuilderOptions</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Extensions.EpiserverAppBuilderOptions--description"><p>Contains application builder options that you can override if you want to</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions.html">EpiserverServiceCollectionOptions</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Extensions.EpiserverServiceCollectionOptions--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html">IApplicationBuilderExtensions</a></h4>
       <section id="SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.html">PageDataExtensions</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Extensions.PageDataExtensions--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html">ServiceCollectionExtensions</a></h4>
       <section id="SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions--description"></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.html">ViewContextExtensions</a></h4>
