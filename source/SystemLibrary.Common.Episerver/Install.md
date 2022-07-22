@@ -9,18 +9,30 @@
 ## First time usage
 - Setup your episerver web application with the most common settings targetting .NET >= 6
 
-1. Create a new empty .NET 6 project
-2. Add Episerver.Cms >= 12.8.0
-3. Add EPiServer.CMS.AspNetCore.Routing >= 12.8.0
-4. Add EPiServer.CMS.UI.AspNetIdentity >= 12.8.0
-5. Add EPiServer.Hosting >= 12.8.0
-6. Add EPiServer.Framework >= 12.8.0
-7. Add Microsoft.AspnetCore.Mvc.Core >= 2.2.5
-5. Add SystemLibrary.Common.Episerver
-6. Create Startup.cs at root in your web project
-7. Create module.config at root in your web project
-8. Create appSettings.json  at root in your web project
-9. Copy paste core blow into their corresponding file
+0. Create new empty database named "Demo" on your local SQL instance
+1. Create a new project "AspNet Core Empty" for .NET 6 project
+2. Add EPiServer.Framework >= 12.8.0
+3. Add Episerver.Cms >= 12.8.0
+4. Add EPiServer.CMS.AspNetCore.Routing >= 12.8.0
+8. Add SystemLibrary.Common.Episerver >= 6.0.0.2
+9. Rename "Program.cs" to "Startup.cs"
+10. Create module.config at root in your web project, make sure its build is set to "Content" in your project
+11. Create appSettings.json  at root in your web project, make sure its build is set to  "Content" in your project
+12. Create Cms/Cms.cs where "Cms/" is a folder at root in your project
+13. If "Properties/launchSettings.json" do not exist, create it
+14. Copy paste code below, into their respective files
+15. Note: You might need to change EpiserverDb connection string, if youre not running "SqlExpress" as instance name
+
+Cms/Cms.cs
+```csharp 
+using SystemLibrary.Common.Episerver;
+
+namespace Demo;
+
+public class Cms : BaseCms
+{
+}
+```
 
 module.config:
 ```xml 
@@ -35,7 +47,6 @@ module.config:
  
 Startup.cs
 ```csharp 
-
 using EPiServer.Cms.TinyMce;
 
 using SystemLibrary.Common.Episerver;
@@ -47,7 +58,7 @@ public class Startup
 {
 	public static void Main(string[] args)
 	{
-		var appSettingsPath = AppContext.BaseDirectory + "Configs\\AppSettings\\appSettings.json";
+		var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
 		try
 		{
 			Cms.CreateHostBuilder<Startup>(args, appSettingsPath)
@@ -59,21 +70,22 @@ public class Startup
 			Dump.Write(ex);
 		}
 	}
-	
+
 	public void ConfigureServices(IServiceCollection services)
 	{
 		var options = new CommonEpiserverApplicationServicesOptions();
-		
+
 		options.InitialLanguagesEnabled = "no";
-		
+
 		services.CommonEpiserverApplicationServices<CurrentUser>(options)
 			.AddCms()
 			.AddTinyMce();
 	}
-	
+
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		app.CommonEpiserverApplicationBuilder();
+		var options = new CommonEpiserverApplicationBuilderOptions();
+		app.CommonEpiserverApplicationBuilder(options);
 	}
 }
 ```
@@ -82,23 +94,23 @@ appSettings.json:
 ```json 
 {
 	"ConnectionStrings": {
-		"EPiServerDB": "Data Source=..."
+		"EPiServerDB": "Data Source=.\\sqlexpress;Initial Catalog=Demo;Connection Timeout=10;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=true;"
 	},
 	"systemLibraryCommonWeb": {
 		"log": {
-			"isEnabled": true,
-			"level": "Info"
-		},
-	}
+		"isEnabled": true,
+		"level": "Info"
+		}
+	},
 
 	"systemLibraryCommonEpiserver": {
 		"cmsEdit": {
 			"hideLanguageColumnInVersionGadget": false,
-			"contentCreationBackgroundColor": "#B84D94",
-			"contentCreationBorderColor": "#B84D94",
-			"pageTreeSelectedContentBorderColor": "#B84D94",
-			"contentTitleColor": "#B84D94",
-			"activeProjectBarBackgroundColor": "#B84D94"
+			"contentCreationBackgroundColor": "",
+			"contentCreationBorderColor": "",
+			"pageTreeSelectedContentBorderColor": "",
+			"contentTitleColor": "",
+			"activeProjectBarBackgroundColor": ""
 		}
 	}
 }
@@ -113,10 +125,11 @@ appSettings.json:
 		"windowsAuthentication": false,
 		"anonymousAuthentication": true,
 		"iisExpress": {
-			"applicationUrl": "http://episerver.demo:51010/",
+			"applicationUrl": "http://localhost:51010/",
 			"sslPort": 0
 		}
 	},
+	
 	"profiles": {
 		"Demo (local IISExpress)": {
 			"commandName": "IISExpress",

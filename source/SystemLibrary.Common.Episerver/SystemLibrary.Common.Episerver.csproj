@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.0.0.1</Version>
+		<Version>6.0.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -45,7 +45,7 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
-		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.3" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.5" />
 	</ItemGroup>
 
 </Project>
