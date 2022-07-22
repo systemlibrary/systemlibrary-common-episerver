@@ -1,4 +1,5 @@
 ﻿# Installation
+* Create a new Episerver Web Application and have it running on your local machine in no time with .NET 6!
 
 ## Install nuget package
 
@@ -7,7 +8,6 @@
 * Search and install SystemLibrary.Common.Episerver
 
 ## First time usage
-- Setup your episerver web application with the most common settings targetting .NET >= 6
 
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6 project

@@ -6,7 +6,7 @@
 
 
 ## Latest Version
-- 6.0.0.1
+- 6.0.0.2
 - Updated latest dependencies
 - Bumped version to reflect we are on .NET 6
 - FontAwesome Solid Icons now works in ContentIcon attribute
