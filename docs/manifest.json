@@ -48,7 +48,7 @@
           "hash": "ehEvslNQneDuTGCeLQ1Ah6X4KR8vsRbIfbAilOih9Q4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -60,7 +60,7 @@
           "hash": "SfJbxFll7a+EXeTmwH+3xzZVZGAB8V9+vqHhb52bOSw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "tgTLfue/raGrNNIHWPEEdKfycV25JQG6pEmvfZZBeyE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html",
-          "hash": "1o3fKmco9Y+KkXoEwYcB/cnvpxVQOWMO9QGp9PCa+DE="
+          "hash": "wRXwupWx9VW0HcN4PAlQvNCI4HoIfe+UESwTPqjA6sg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -96,7 +96,7 @@
           "hash": "sQuOjvAqHjDxl/tju+UWh9++wN4SGSp93KEoypD/+j4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "hTlL3Y4m3zZL8GlRMRtNELhidZnqv23FAjePhNJGiTM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "TNWCIOIuBsgw3dZYigYjmuL085cGO/gY5PKJWZii4wQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "OegUGO2P5B8VR7K2tJWWOQqX+5XWx9NzoKvoVGc99IM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -156,7 +156,7 @@
           "hash": "erXeX4ANl7ohCpPbS17ymTTdBH4389ogbl30uJEYgNA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -168,7 +168,7 @@
           "hash": "ArS8LIg1XXYwduvhjZZCvMMGaZaZRGzdEPQy2jsCOKM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -180,7 +180,7 @@
           "hash": "HL6l26eBLgRQwZ/wmMhf27RSEAzB/jOzLo+3ioSQi6k="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -192,7 +192,7 @@
           "hash": "lZTCXWejS4xH94U4Jbcc75M9uH5PUHMEmPmwS5QgEyE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -204,7 +204,7 @@
           "hash": "wRo0aBYAmZV8f9Lqx0o3o4jRWNs9w6JC55yM42vtNww="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -216,7 +216,7 @@
           "hash": "yKejkib6LALKk4LFMWUgqRIbUD6jdCyM9q5WxH6NOew="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html",
-          "hash": "XGJe6fZTUpsSIdi4WTuSfxBKufyGjKWOlUxGxuzdAjE="
+          "hash": "eCjz0JdxspVW2bLLQyX+uXDxL9uPiRv6A+1QK4QvQ4c="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -252,7 +252,7 @@
           "hash": "f49G5RdckSmSUuF0b0Et7I7ArWOrUl7YhFv2M72NmMM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -273,10 +273,10 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html",
-          "hash": "Kg8zZr1iJ12IfD/3uetXhSFWBXu2+78LV+oDmXDT7p0="
+          "hash": "X70nCULv/2e5zKAhZikBgnz/d0BaI6QmzO7lSrI78jg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -300,7 +300,7 @@
           "hash": "UvCymmKZcYAYvZ0gMPrKh4nQ30YAy713ERdCvEh/Qo4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -312,7 +312,7 @@
           "hash": "VeeCcE/He6l+5UO+/pJPRIBNjlXuxtbNweh73G3AsSg="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -324,7 +324,7 @@
           "hash": "/Q9FUZHr4vYsH46jFbd+xmbsXr13YBtz2Yj+miLymWY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -336,7 +336,7 @@
           "hash": "S8V4+KSbtVf6wgnmbyRjS411lTf8Gco1n5AkcQQ0KD0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -360,7 +360,7 @@
           "hash": "vgEcqJuEj28jnGqbkCBDX+KTAw8NVQ0HugneCKCQ+cQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -407,7 +407,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 30,
-          "skipped_file_count": 30
+          "skipped_file_count": 15
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

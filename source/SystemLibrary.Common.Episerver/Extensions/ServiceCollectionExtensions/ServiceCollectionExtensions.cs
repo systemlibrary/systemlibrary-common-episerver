@@ -27,7 +27,7 @@ public static partial class ServiceCollectionExtensions
     /// services.AddTinyMce();
     /// services.AddFind();
     /// </summary>
-    public static IServiceCollection CommonEpiserverServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
+    public static IServiceCollection CommonEpiserverApplicationServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
     {
         //Services.Collection = services;
 
@@ -68,7 +68,7 @@ public static partial class ServiceCollectionExtensions
 
         services.AddScoped<T, T>(); //Can this be ignored due to AspnetIdentity above?
 
-        return CommonEpiserverServices(services, options);
+        return CommonEpiserverApplicationServices(services, options);
     }
 
     static void SetOptions(CommonEpiserverApplicationServicesOptions options)

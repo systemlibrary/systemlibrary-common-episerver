@@ -399,7 +399,7 @@
 ## First time usage
 
 0. Create new empty database named !????!Demo!????! on your local SQL instance
-1. Create a new project !????!AspNet Core Empty!????! for .NET 6 project
+1. Create a new project !????!AspNet Core Empty!????! for .NET 6
 2. Add EPiServer.Framework &gt;= 12.8.0
 3. Add Episerver.Cms &gt;= 12.8.0
 4. Add EPiServer.CMS.AspNetCore.Routing &gt;= 12.8.0
@@ -409,8 +409,11 @@
 8. Create appSettings.json at root in your web project, make sure its build is set to !????!Content!????! in your project
 9. Create Cms/Cms.cs where !????!Cms/!????! is a folder at root in your project
 10. If !????!Properties/launchSettings.json!????! do not exist, create it
-11. Copy paste code below, into their respective files
-12. Note: You might need to change EpiserverDb connection string, if youre not running !????!SqlExpress!????! as instance name
+11. Create Content/Pages/StartPage/StartPage.cs
+12. Create Content/Pages/StartPage/StartPageController.cs
+13. Create Content/Pages/StartPage/Index.cshtml
+14. Copy paste code below, into their respective files
+15. Note: You might need to change EpiserverDb connection string, if youre not running !????!SqlExpress!????! as instance name
 
 Cms/Cms.cs
 !====!!====!!====!csharp 
@@ -422,6 +425,44 @@ public class Cms : BaseCms
 {
 }
 !====!!====!!====!
+
+Content/Pages/StartPage/StartPage.cs
+!====!!====!!====!csharp 
+using EPiServer.Core;
+using EPiServer.DataAnnotations;
+
+using SystemLibrary.Common.Episerver.Attributes;
+
+namespace Demo;
+
+[ContentType(DisplayName = !????!Start Page!????!, GUID = !????!7C3BBD03-5D83-4E75-A1E9-BCF5DF5F99B2!????!)]
+[ContentIcon(ContentIconAttribute.FontAwesomeSolid.house)]
+public class StartPage : PageData { }
+!====!!====!!====!
+
+Content/Pages/StartPage/StartPageController.cs
+!====!!====!!====!csharp 
+using EPiServer.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace Demo;
+
+public class StartPageController : PageController&lt;StartPage&gt;
+{
+    public ActionResult Index(StartPage currentContent)
+    {
+        return View();
+    }
+}
+!====!!====!!====!
+
+Content/Pages/StartPage/Index.cshtml
+!====!!====!!====!csharp 
+@model object
+Startpage
+!====!!====!!====!
+
 
 module.config:
 !====!!====!!====!xml 
