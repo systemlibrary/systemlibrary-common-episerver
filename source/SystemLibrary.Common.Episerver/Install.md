@@ -181,7 +181,7 @@ Properties/launchSettings.json
 - EpiserverDb connection string targets SqlExpress instance with db name "Demo" with your "Windows Credentials"
 - Episerver database tables is only created if the database is empty
 - Episerver is only initialized with languages, sites and a new admin user, if there's no users already existing in the DB
-- If you run this without updated launchSettings "localhost" to your domain, like "local.company.com", then sites in Admin is configured against localhost
+- If you run this without changing domain "localhost" in launchSettings, then sites in Admin is of course configured against localhost
 
 #### Run application
 - Ctrl + F5 in Visual Studio, start site in IIS Express
