@@ -403,14 +403,14 @@
 2. Add EPiServer.Framework &gt;= 12.8.0
 3. Add Episerver.Cms &gt;= 12.8.0
 4. Add EPiServer.CMS.AspNetCore.Routing &gt;= 12.8.0
-8. Add SystemLibrary.Common.Episerver &gt;= 6.0.0.2
-9. Rename !????!Program.cs!????! to !????!Startup.cs!????!
-10. Create module.config at root in your web project, make sure its build is set to !????!Content!????! in your project
-11. Create appSettings.json  at root in your web project, make sure its build is set to  !????!Content!????! in your project
-12. Create Cms/Cms.cs where !????!Cms/!????! is a folder at root in your project
-13. If !????!Properties/launchSettings.json!????! do not exist, create it
-14. Copy paste code below, into their respective files
-15. Note: You might need to change EpiserverDb connection string, if youre not running !????!SqlExpress!????! as instance name
+5. Add SystemLibrary.Common.Episerver &gt;= 6.0.0.2
+6. Rename !????!Program.cs!????! to !????!Startup.cs!????! 
+7. Create module.config at root in your web project, make sure its build is set to !????!Content!????! in your project
+8. Create appSettings.json at root in your web project, make sure its build is set to !????!Content!????! in your project
+9. Create Cms/Cms.cs where !????!Cms/!????! is a folder at root in your project
+10. If !????!Properties/launchSettings.json!????! do not exist, create it
+11. Copy paste code below, into their respective files
+12. Note: You might need to change EpiserverDb connection string, if youre not running !????!SqlExpress!????! as instance name
 
 Cms/Cms.cs
 !====!!====!!====!csharp 
@@ -505,9 +505,7 @@ appSettings.json:
 }
 !====!!====!!====!
 
-#### Initialize standard IIS settings
-- Update the EpiserverDb connection string in appSettings.json
-- Create !????!Properties\launchSettings.json!????! - folder must be !????!Properties!????!
+Properties/launchSettings.json
 !====!!====!!====!json 
 {
 	!????!iisSettings!????!: {
@@ -531,7 +529,7 @@ appSettings.json:
 #### Run application
 - Ctrl + F5 inside Visual Studio, should now run your application in IIS express and initialize the database with all episerver tables and a new user: demo/Demo123!
 - Note: Initialization of Epi only occurs if the database is empty, and initialization of user, site and languages,  only occurs if there!@@@@!s no user already existing in the DB (aspnetuser db-table)
-- Visit http://episerver.demo:51010/episerver and login screen appears
+- Visit http://localhost:51010/episerver and login screen appears
 - Note: !????!episerver.demo!????! requires hosts file change on Windows
 - Note2: !????!episerver.demo!????! is defined in !????!Properties\launchSettings!????! if you want to change it
 
