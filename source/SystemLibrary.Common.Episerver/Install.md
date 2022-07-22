@@ -24,7 +24,6 @@
 12. Create Content/Pages/StartPage/StartPageController.cs
 13. Create Content/Pages/StartPage/Index.cshtml
 14. Copy paste code below, into their respective files
-15. Note: You might need to change EpiserverDb connection string, if youre not running "SqlExpress" as instance name
 
 Cms/Cms.cs
 ```csharp 
@@ -61,10 +60,10 @@ namespace Demo;
 
 public class StartPageController : PageController<StartPage>
 {
-    public ActionResult Index(StartPage currentContent)
-    {
-        return View();
-    }
+	public ActionResult Index(StartPage currentContent)
+	{
+		return View();
+	}
 }
 ```
 
@@ -178,12 +177,15 @@ Properties/launchSettings.json
 }
 ```
 
+#### Final Notes Before Running Application
+- EpiserverDb connection string targets SqlExpress instance with db name "Demo" with your "Windows Credentials"
+- Episerver database tables is only created if the database is empty
+- Episerver is only initialized with languages, sites and a new admin user, if there's no users already existing in the DB
+- If you run this without updated launchSettings "localhost" to your domain, like "local.company.com", then sites in Admin is configured against localhost
+
 #### Run application
-- Ctrl + F5 inside Visual Studio, should now run your application in IIS express and initialize the database with all episerver tables and a new user: demo/Demo123!
-- Note: Initialization of Epi only occurs if the database is empty, and initialization of user, site and languages,  only occurs if there's no user already existing in the DB (aspnetuser db-table)
-- Visit http://localhost:51010/episerver and login screen appears
-- Note: "episerver.demo" requires hosts file change on Windows
-- Note2: "episerver.demo" is defined in "Properties\launchSettings" if you want to change it
+- Ctrl + F5 in Visual Studio, start site in IIS Express
+- Visit http://localhost:51010/episerver
 
 ## Package Configurations
 * Default (and modifiable) configurations in this package:
@@ -194,7 +196,7 @@ appSettings.json:
 	...,
 	"systemLibraryCommonEpiserver": {
 		"cmsEdit": {
-			"hideLanguageColumnInVersionGadget": true,
+			"hideLanguageColumnInVersionGadget": false,
 			"contentCreationBackgroundColor": "",
 			"contentCreationBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",

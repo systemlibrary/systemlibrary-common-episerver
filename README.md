@@ -19,6 +19,7 @@
 - ViewLocations now actually registered - they were never invoked in previous version iirc
 - ParentLinkReference a new custom property: public virtual ParentLinkReference LinkRef { get;set;} on any block or page, try it!
 - Two new configurations: activeProjectBarBackgroundColor and hideLanguageColumnInVersionGadget, available in appSettings.json
+- Install documentation is completely rewritten
 
 ## Description
 A library of classes and methods for any .NET &gt;= 6 episerver web application
