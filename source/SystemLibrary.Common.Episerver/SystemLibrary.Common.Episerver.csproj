@@ -10,6 +10,8 @@
 	<ItemGroup>
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.html" />
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.js" />
+		<None Remove="Cms\SelectionPicker\SelectionPicker.css" />
+		<None Remove="Cms\SelectionPicker\SelectionPicker.js" />
 		<None Remove="Release.cmd" />
 		<None Remove="nuget-icon.png" />
 	</ItemGroup>
@@ -23,6 +25,11 @@
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Brands\*.svg" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="Cms\SelectionPicker\SelectionPicker.css" />
+	  <EmbeddedResource Include="Cms\SelectionPicker\SelectionPicker.js" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -46,6 +53,10 @@
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
 		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.5" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Cms\SelectionPicker\NewFolder\" />
 	</ItemGroup>
 
 </Project>
