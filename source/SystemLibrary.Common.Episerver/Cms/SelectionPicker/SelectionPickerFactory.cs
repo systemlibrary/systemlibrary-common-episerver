@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -47,8 +48,16 @@ public class SelectionPickerFactory : ISelectionFactory
             
             if(genericType == null)
             {
+                if(!type.IsEnum)
+                    type = options.Type;
+
+                if (type == null)
+                    throw new Exception("Property " + metadata.PropertyName + " of type " + metadata.ContainerType.Name + " must set the Type of an Enum, in the " + nameof(SelectionPickerAttribute));
+
                 if (!type.IsEnum)
-                    throw new Exception("Property " + metadata.PropertyName + " of type " + type.Name + " must be an Enum or a String in ");
+                    throw new Exception("Property " + metadata.PropertyName + " of type " + type.Name + " must be an Enum or a String!");
+
+                metadata.EditorConfiguration.Add("isMultiSelect", false);
             }
             else
             {
@@ -60,8 +69,11 @@ public class SelectionPickerFactory : ISelectionFactory
                 if (!type.IsEnum)
                     throw new Exception("Property " + metadata.PropertyName + " has an invalid generic type: " + type.Name + ". It must be an Enum or a String");
 
-                metadata.AdditionalValues.Add("multiselect", true);
+                metadata.EditorConfiguration.Add("isMultiSelect", true);
             }
+
+            //NOTE: EditorConfiguration is used as AdditionalValues is not sent in "simple properties" like string/int...
+            metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
             //NOTE: Hide & Show supports "javascript array or 1 item setter"
             //You can use either:
@@ -118,7 +130,7 @@ public class SelectionPickerFactory : ISelectionFactory
                     }
 
                     if (!skip)
-                        items.Add(GetSelectItem(key, type));
+                        items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
                 }
                 else if (Show != null)
                 {
@@ -133,24 +145,23 @@ public class SelectionPickerFactory : ISelectionFactory
                     }
 
                     if (!skip)
-                        items.Add(GetSelectItem(key, type));
+                        items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
                 }
                 else
-                    items.Add(GetSelectItem(key, type));
+                    items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
             }
 
             if (options.ShowExpiredItems && metadata.InitialValue != null && metadata.InitialValue != "" && metadata.InitialValue + "" != "0")
             {
-                Dump.Write("Current stored vlaue " + metadata.InitialValue);
                 if (genericType == null)
                 {
                     var found = false;
                     foreach (var item in items)
                     {
                         var val = item.Value + "";
-                        if(val.Contains("___"))
+                        if(val.Contains("__d_"))
                         {
-                            val = val.Split("___")[0];
+                            val = val.Split("__d_")[0];
                         }
 
                         if (val == metadata.InitialValue + "")
@@ -159,6 +170,7 @@ public class SelectionPickerFactory : ISelectionFactory
                             break;
                         }
                     }
+
                     if (!found)
                     {
                         items.Insert(0, new SelectItem { Text = "Expired: " + metadata.InitialValue, Value = metadata.InitialValue });
@@ -166,6 +178,34 @@ public class SelectionPickerFactory : ISelectionFactory
                 }
                 else
                 {
+                    var selected = metadata.InitialValue as IList;
+
+                    if(selected != null && selected.Count > 0)
+                    {
+                        foreach (var selection in selected)
+                        {
+                            var found = false;
+                            var selectedValue = selection + "";
+                            foreach (var item in items)
+                            {
+                                var val = item.Value + "";
+                                if (val.Contains("__d_"))
+                                {
+                                    val = val.Split("__d_")[0];
+                                }
+                                if (val == selectedValue)
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if (!found)
+                            {
+                                items.Insert(0, new SelectItem { Text = "Expired: " + selectedValue, Value = selectedValue });
+                            }
+                        }
+                    }
                     //Loop over all items in the selection that are selected, its a List of strings...
                     //all the strings must be within the Enum Names.. else they are expired
                 }
@@ -178,13 +218,13 @@ public class SelectionPickerFactory : ISelectionFactory
         return items;
     }
 
-    static SelectItem GetSelectItem(string key, Type type)
+    static SelectItem GetSelectItem(string key, Type type, bool storedAsString)
     {
         var e = AsEnum(key, type);
 
-        if (type == SystemType.StringType)
+        if (storedAsString)
             return new SelectItem { Text = e.ToText(), Value = e.ToValue() };
         else
-            return new SelectItem { Text = e.ToText(), Value = Convert.ToInt32(e).ToString() + "___" + e.ToValue() };
+            return new SelectItem { Text = e.ToText(), Value = Convert.ToInt32(e).ToString() + "__d_" + e.ToValue() };
     }
 }

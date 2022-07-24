@@ -54,9 +54,5 @@
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
 		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.5" />
 	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Cms\SelectionPicker\NewFolder\" />
-	</ItemGroup>
 
 </Project>

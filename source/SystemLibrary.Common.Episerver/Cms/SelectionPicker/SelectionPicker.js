@@ -43,36 +43,138 @@
             return link;
         }
 
-        function cleanInput(data) {
+        function getCssClassName(data) {
             if (typeof (data) === 'undefined' || !data || data === '') {
-                return '';
+                return null;
             }
-            return data.toString().toLowerCase().replace('#', '');
+            if (data.includes(".gif") || data.includes(".png") || data.includes(".jpg") ||
+                data.includes("/") || data.includes("\\")) {
+                return null;
+            }
+            if (data.includes('!') || data.includes('(') || data.includes(',') || data.includes('#')) {
+                return null;
+            }
+
+            return data.toString().toLowerCase().replaceAll(' ', '-');
         }
 
-        function getItemClass(text, value) {
-            text = cleanInput(text);
-            value = cleanInput(value);
+        function getItemClass(text, value, additional) {
+            let textCssName = getCssClassName(text);
+            let valueCssName = getCssClassName(value);
+            let additionalCssName = getCssClassName(additional);
 
-            //Supports both class and inline styling, RGB/className can be in either 'value' or the 'text' variable of a selection
-            let classes = dojoAttachPointName + '-item ' +
-                dojoAttachPointName + '-item--' + text + ' ' +
-                dojoAttachPointName + '-item--' + value +
-                ' background-color--' + value +
-                ' background-color--' + text;
+            let classes = dojoAttachPointName + '-item';
+
+            if (textCssName !== null && textCssName.length > 1) {
+                classes += ' ' + dojoAttachPointName + '-item--' + textCssName + ' background-color--' + textCssName;
+            }
+            if (valueCssName !== null && valueCssName.length > 1) {
+                classes += ' ' + dojoAttachPointName + '-item--' + valueCssName + ' background-color--' + valueCssName;
+            }
+            if (additionalCssName !== null && additionalCssName.length > 1) {
+                classes += ' ' + dojoAttachPointName + '-item--' + additionalCssName + ' background-color--' + additionalCssName;
+            }
 
             return classes;
         }
 
-        function getItemStyle(text, value) {
-            if (text && text.toString().includes('#')) {
-                return 'background-color:' + text + ';';
+        function getInlineCssBackgroundColorValue(data) {
+            if (typeof (data) === 'undefined' || !data || data === '') {
+                return null;
             }
 
-            if (value && value.toString().includes('#')) {
-                return 'background-color:' + value + ';';
+            let txt = data.toString();
+
+            if (txt.includes("/") || txt.includes("\\")) {
+                return null;
             }
-            return '';
+
+            if (txt.includes(".gif") || txt.includes(".jpg") || txt.includes(".png")) {
+                return null;
+            }
+
+            if (txt.includes('#')) {
+                return txt;
+            }
+            if (txt.includes('(') && txt.includes(')') && txt.includes(',')) {
+                if (txt.includes('rgb')) {
+                    return txt;
+                } else {
+                    return "rgba" + txt;
+                }
+            }
+            if (txt.includes(',') && txt.length >= 5 && txt.length <= 11) {
+                if (txt.includes('rgb')) {
+                    return txt;
+                } else {
+                    return "rgba(" + txt + ")";
+                }
+            }
+            return null;
+        }
+
+        function getItemStyle(text, value, additional) {
+            let textBackgroundCss = getInlineCssBackgroundColorValue(text);
+            let valueBackgroundCss = getInlineCssBackgroundColorValue(value);
+            let additionalBackgroundCss = getInlineCssBackgroundColorValue(additional);
+
+            let styles = '';
+
+            if (textBackgroundCss !== null) {
+                styles += 'background-color:' + textBackgroundCss + ';';
+            }
+            if (valueBackgroundCss !== null) {
+                styles += 'background-color:' + valueBackgroundCss + ';';
+            }
+            if (additionalBackgroundCss !== null) {
+                styles += 'background-color:' + additionalBackgroundCss + ';';
+            }
+
+            let foundImage = false;
+            if (typeof (additional) !== 'undefined' && additional && additional !== "" && additional.length > 1) {
+                let temp = additional.toLowerCase();
+                if (temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
+                    if (!temp.includes('#') && !temp.includes(',')) {
+                        foundImage = true;
+                        styles = styles + ' background-image: url(' + additional + ');';
+                    }
+                }
+            }
+
+            if (foundImage === false) {
+                if (typeof (value) !== 'undefined' && value !== null && value.length > 3) {
+                    let temp = value.toLowerCase();
+                    console.log("YES");
+                    if (temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
+                        console.log("YES!!!");
+                        if (!temp.includes('#') && !temp.includes(',')) {
+                            console.log("YES22222");
+                            styles = styles + ' background-image: url(' + value + ');';
+                        }
+                    }
+                }
+            }
+
+            return styles;
+        }
+
+        function isReallyEqual(value1, value2) {
+            if (typeof (value1) === 'undefined') {
+                value1 = null;
+            }
+            if (typeof (value2) === 'undefined') {
+                value2 = null;
+            }
+            if (value1 === value2) {
+                return true;
+            }
+            if (epi.areEqual(value1, value2)) {
+                return true;
+            }
+            if (value1 !== null && value2 !== null) {
+                return value1.toString() === value2.toString();
+            }
+            return false;
         }
 
         return declare(moduleFullName, [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin, _CssStateMixin, _ValueRequiredMixin], {
@@ -80,17 +182,28 @@
 
             intermediateChanges: false,
             value: null,
-            isMultiSelect: false,
-
-            onChange: function (value) {
-            },
 
             postCreate: function () {
                 this._loadCssFile();
-                this._initColors();
-                //this.inherited(arguments);
+                this._initWidgetProperties();
                 this._bindEvents(this);
+                this.inherited(arguments);
             },
+
+            //always invoked on initial load by Epi, value is true if 'readonly' attribute has been added to the property
+            _setReadOnlyAttr: function (value) {
+                this._set("readOnly", value);
+            },
+
+            //always invoked on initial load by Epi, value is current value from the database
+            _setValueAttr: function (value) {
+                this._setValue(value, true);
+            },
+
+            //Commented out: never invoked it seems
+            // _setIntermediateChangesAttr: function (value) {
+            //     this._set("intermediateChanges", value);
+            // },
 
             isValid: function () {
                 return !this.required ||
@@ -98,26 +211,22 @@
                     (typeof (this.value) !== 'undefined' && this.value !== "" && this.value.length > 0)
             },
 
-            _setValueAttr: function (value) {
-                //setValueAttr occurs on load, once
-                if (!value) {
-                    return;
-                }
-
-                this._setValue(value, true);
-            },
-
-            _setValue: function (value, updateTextbox) {
+            _setValue: function (value, initialLoad) {
                 try {
-                    if (this._started && epi.areEqual(this.value, value)) {
+                    if (!this._started) {
                         return;
                     }
 
+                    if (typeof (value) === 'undefined') {
+                        value = null;
+                    }
+
                     if (this.isMultiSelect) {
+                        console.log("isMultiSelect");
                         let selected = this.value;
 
                         if (selected === null) {
-                            if (Array.isArray(value)) {
+                            if (value !== null && Array.isArray(value)) {
                                 selected = value;
                             }
                             else {
@@ -127,40 +236,61 @@
                         } else {
                             if (Array.isArray(value)) {
                                 console.warn("Value is an array from an onClick event from a box, this should never happen");
+                                return;
                             } else {
                                 if (selected.includes(value)) {
-                                    selected = selected.filter(e => e !== value)
+                                    if (this.allowUnselection) {
+                                        selected = selected.filter(e => e !== value)
+                                    } else {
+                                        if (selected.length === 1) {
+                                            console.log("allowUnselection is false: cannot unselect the value leaving the list empty");
+                                            return;
+                                        }
+                                        selected = selected.filter(e => e !== value)
+                                    }
                                 } else {
                                     selected.push(value);
                                 }
                             }
                         }
                         this._set('value', selected);
+
                     } else {
-                        this._set('value', value);
+                        if (initialLoad) {
+                            this._set('value', value);
+                        }
+                        else {
+                            if (this.allowUnselection !== true) {
+                                if (isReallyEqual(this.value, value)) {
+                                    console.log("allowUnselection is false: cannot unselect the value");
+                                    return;
+                                } else {
+                                    this._set('value', value);
+                                }
+                            } else {
+                                if (isReallyEqual(this.value, value)) {
+                                    this._set('value', null);
+                                } else {
+                                    this._set('value', value);
+                                }
+                            }
+                        }
                     }
 
-                    if (updateTextbox) {
-                        this._selectBoxes();
+                    this._selectBoxes();
+
+                    if (initialLoad) {
+                        return;
                     }
 
                     if (this._started && this.validate()) {
-                        if (this.value !== null) {
-                            this.onChange(this.value);
-                        }
+                        //invoke built-in onChange method to trigger epi events
+                        this.onChange(this.value);
                     }
                 }
                 catch (e) {
                     console.error(e);
                 }
-            },
-
-            _setReadOnlyAttr: function (value) {
-                //this._set("readOnly", value);
-            },
-
-            _setIntermediateChangesAttr: function (value) {
-                this._set("intermediateChanges", value);
             },
 
             _selectBoxes: function () {
@@ -172,10 +302,6 @@
                     }
 
                     let selected = this.value;
-
-                    if (selected === null) {
-                        return;
-                    }
 
                     for (var i = 0; i < colors.length; i++) {
                         color = colors[i];
@@ -190,24 +316,19 @@
 
                         let value = color.getAttribute('data-value');
                         let text = color.getAttribute('data-text');
-                        let img = color.getAttribute('data-img');
+                        let additional = color.getAttribute('data-additional');
 
-                        let classes = getItemClass(text, value);
-                        let styles = getItemStyle(text, value);
-
-                        if (img !== null && img !== "" && img.length > 3 &&
-                            (img.includes('.jpg') || img.includes('.gif') || img.includes('.png'))) {
-                            styles = styles + ' background-image: url(' + img + ');';
-                        }
+                        let classes = getItemClass(text, value, additional);
+                        let styles = getItemStyle(text, value, additional);
 
                         if (this.isMultiSelect) {
                             if (selected.includes(value.toString())) {
                                 classes = classes + ' ' + dojoAttachPointName + '--item-selected';
                             } else {
-                                console.warn("SelectionPicker: multiselect deselecting a value");
+                                //console.warn("SelectionPicker: multiselect deselecting a value");
                             }
                         } else {
-                            if (selected && value.toString() === selected.toString()) {
+                            if (isReallyEqual(value, selected)) {
                                 classes = classes + ' ' + dojoAttachPointName + '--item-selected';
                             }
                         }
@@ -218,30 +339,23 @@
                         color.appendChild(div);
                     }
                 }
-                catch {
-                    console.warn("Error failed in mark chosen color in list");
+                catch (e) {
+                    console.error(e);
+                    console.error("Error failed in mark chosen color in list");
                 }
             },
 
             _bindEvents: function (myself) {
                 on(query(this.SystemLibraryCommonEpiserverSelectionPicker).query("a"), "click", function (e) {
-                    try {
-                        myself._setValue(e.currentTarget.getAttribute("data-value"), true);
-
-                        e.preventDefault();
-                    }
-                    catch (e) {
-                        console.error(e);
-                    }
+                    myself._setValue(e.currentTarget.getAttribute("data-value"));
+                    e.preventDefault();
                 });
-
             },
 
             _loadCssFile: function () {
                 try {
                     var cssPrefixId = 'systemLibraryCommonEpiserverSelectionPickerCss';
                     if (!document.getElementById(cssPrefixId + '1')) {
-                        //var head = document.getElementsByTagName('head')[0];
                         var head = document.getElementsByTagName('body')[0];
 
                         var css1 = getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/SelectionPicker/Style');
@@ -254,42 +368,40 @@
                 }
             },
 
-            _initColors: function () {
+            _initWidgetProperties: function () {
                 try {
                     const list = this.SystemLibraryCommonEpiserverSelectionPicker;
                     const colors = this.selections;
 
-                    if (this.metadata && this.metadata.additionalValues &&
-                        this.metadata.additionalValues["multiselect"] === true) {
-                        this.isMultiSelect = true;
-                    }
-
                     colors.forEach(color => {
                         let text = color.text;
                         let value = color.value;
-                        let img = null;
+                        let additional = null;
                         if (text.startsWith("ERROR:")) {
                             console.error(text);
                         }
 
-                        if (typeof (value) !== 'undefined' && value && value.toString().includes('___')) {
-                            let tmp = value.split('___');
+                        if (typeof (value) !== 'undefined' && value && value.toString().includes('__d_')) {
+                            let tmp = value.split('__d_');
                             value = tmp[0];
                             if (tmp.length > 1) {
-                                img = tmp[1];
+                                additional = tmp[1];
                             }
                         }
 
-                        let classes = getItemClass(text, value);
-                        let styles = getItemStyle(text, value);
+                        let classes = getItemClass(text, value, additional);
+
+                        let styles = getItemStyle(text, value, additional);
 
                         let div = document.createElement('div');
                         div.setAttribute('class', classes);
                         div.setAttribute('style', styles);
 
                         let textLowered = text.toString().toLowerCase();
-                        if (textLowered !== 'unset') {
-                            div.innerText = color.text;
+                        if (textLowered !== 'unset' && textLowered !== 'none' && textLowered !== 'no') {
+                            if (textLowered !== 'yes' && textLowered !== 'checked' && textLowered !== 'enabled') {
+                                div.innerText = color.text;
+                            }
                         }
 
                         if (text === '') {
@@ -299,7 +411,7 @@
                         let a = document.createElement('a');
                         a.href = '#';
                         a.title = text;
-                        a.setAttribute('data-img', img);
+                        a.setAttribute('data-additional', additional);
                         a.setAttribute('data-text', text);
                         a.setAttribute('data-value', value);
 
