@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SystemLibrary.Common.Episerver.Cms;
 
-public partial class SelectionPickerController : Controller
+public partial class BoxSelectionController : Controller
 {
-    const string CurrentFolder = "Cms/SelectionPicker";
+    const string CurrentFolder = "Cms/BoxSelection";
 
     static int ClientCacheSeconds = 43200;
 
@@ -32,7 +32,7 @@ public partial class SelectionPickerController : Controller
 
         var sb = new StringBuilder("");
 
-        sb.Append(Net.Assemblies.GetEmbeddedResource(CurrentFolder, "SelectionPicker.css", CurrentAssembly));
+        sb.Append(Net.Assemblies.GetEmbeddedResource(CurrentFolder, "BoxSelection.css", CurrentAssembly));
 
         var bytes = Encoding.UTF8.GetBytes(sb.ToString());
 
@@ -54,7 +54,7 @@ public partial class SelectionPickerController : Controller
 
         var sb = new StringBuilder("");
 
-        sb.Append(Net.Assemblies.GetEmbeddedResource(CurrentFolder, "SelectionPicker.js", CurrentAssembly));
+        sb.Append(Net.Assemblies.GetEmbeddedResource(CurrentFolder, "BoxSelection.js", CurrentAssembly));
 
         var bytes = Encoding.UTF8.GetBytes(sb.ToString());
 

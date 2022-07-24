@@ -9,7 +9,7 @@ using SystemLibrary.Common.Net.Extensions;
 namespace SystemLibrary.Common.Episerver.Cms;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public class SelectionPickerAttribute : Attribute, IDisplayMetadataProvider
+public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
     public virtual Type SelectionFactoryType { get; set; }
 
@@ -89,9 +89,8 @@ public class SelectionPickerAttribute : Attribute, IDisplayMetadataProvider
             {
                 if (data.Value is ExtendedMetadata extendedMetadata)
                 {
-                    extendedMetadata.SelectionFactoryType = typeof(SelectionPickerFactory);
-                    extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/UiHint/SelectionPicker/" + nameof(SelectionPickerController.Script);
-                    //extendedMetadata.UIHint = "SystemLibrary.Common.Episerver.SelectionPicker.SelectionPickerEditor";
+                    extendedMetadata.SelectionFactoryType = typeof(BoxSelectionFactory);
+                    extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/UiHint/BoxSelection/" + nameof(BoxSelectionController.Script);
                     break;
                 }
             }

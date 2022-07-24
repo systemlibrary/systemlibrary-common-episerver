@@ -10,8 +10,8 @@
 	<ItemGroup>
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.html" />
 		<None Remove="Cms\ParentLinkReference\ParentLinkReference.js" />
-		<None Remove="Cms\SelectionPicker\SelectionPicker.css" />
-		<None Remove="Cms\SelectionPicker\SelectionPicker.js" />
+		<None Remove="Cms\BoxSelection\BoxSelection.css" />
+		<None Remove="Cms\BoxSelection\BoxSelection.js" />
 		<None Remove="Release.cmd" />
 		<None Remove="nuget-icon.png" />
 	</ItemGroup>
@@ -28,8 +28,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <EmbeddedResource Include="Cms\SelectionPicker\SelectionPicker.css" />
-	  <EmbeddedResource Include="Cms\SelectionPicker\SelectionPicker.js" />
+	  <EmbeddedResource Include="Cms\BoxSelection\BoxSelection.css" />
+	  <EmbeddedResource Include="Cms\BoxSelection\BoxSelection.js" />
 	</ItemGroup>
 	
 	<ItemGroup>

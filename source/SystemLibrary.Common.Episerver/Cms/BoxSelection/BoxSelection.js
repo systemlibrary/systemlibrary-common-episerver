@@ -30,8 +30,8 @@
         epi,
         _ValueRequiredMixin
     ) {
-        const moduleFullName = "SystemLibraryCommonEpiserverSelectionPickerWidget";
-        const dojoAttachPointName = "SystemLibraryCommonEpiserverSelectionPicker";
+        const moduleFullName = "systemLibraryCommonEpiserverBoxSelectionWidget";
+        const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
         function getStylesheetLink(id, path) {
             var link = document.createElement('link');
@@ -144,11 +144,8 @@
             if (foundImage === false) {
                 if (typeof (value) !== 'undefined' && value !== null && value.length > 3) {
                     let temp = value.toLowerCase();
-                    console.log("YES");
                     if (temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
-                        console.log("YES!!!");
                         if (!temp.includes('#') && !temp.includes(',')) {
-                            console.log("YES22222");
                             styles = styles + ' background-image: url(' + value + ');';
                         }
                     }
@@ -222,7 +219,6 @@
                     }
 
                     if (this.isMultiSelect) {
-                        console.log("isMultiSelect");
                         let selected = this.value;
 
                         if (selected === null) {
@@ -243,7 +239,7 @@
                                         selected = selected.filter(e => e !== value)
                                     } else {
                                         if (selected.length === 1) {
-                                            console.log("allowUnselection is false: cannot unselect the value leaving the list empty");
+                                            console.warn("allowUnselection is false: cannot unselect the value leaving the list empty");
                                             return;
                                         }
                                         selected = selected.filter(e => e !== value)
@@ -262,7 +258,7 @@
                         else {
                             if (this.allowUnselection !== true) {
                                 if (isReallyEqual(this.value, value)) {
-                                    console.log("allowUnselection is false: cannot unselect the value");
+                                    console.warn("allowUnselection is false: cannot unselect the value");
                                     return;
                                 } else {
                                     this._set('value', value);
@@ -295,7 +291,7 @@
 
             _selectBoxes: function () {
                 try {
-                    let colors = this.SystemLibraryCommonEpiserverSelectionPicker.getElementsByTagName('a');
+                    let colors = this.systemLibraryCommonEpiserverBoxSelection.getElementsByTagName('a');
 
                     if (!colors || !colors.length) {
                         return;
@@ -325,7 +321,7 @@
                             if (selected.includes(value.toString())) {
                                 classes = classes + ' ' + dojoAttachPointName + '--item-selected';
                             } else {
-                                //console.warn("SelectionPicker: multiselect deselecting a value");
+                                //console.warn("BoxSelection: multiselect deselecting a value");
                             }
                         } else {
                             if (isReallyEqual(value, selected)) {
@@ -346,7 +342,7 @@
             },
 
             _bindEvents: function (myself) {
-                on(query(this.SystemLibraryCommonEpiserverSelectionPicker).query("a"), "click", function (e) {
+                on(query(this.systemLibraryCommonEpiserverBoxSelection).query("a"), "click", function (e) {
                     myself._setValue(e.currentTarget.getAttribute("data-value"));
                     e.preventDefault();
                 });
@@ -354,11 +350,11 @@
 
             _loadCssFile: function () {
                 try {
-                    var cssPrefixId = 'systemLibraryCommonEpiserverSelectionPickerCss';
+                    var cssPrefixId = 'systemLibraryCommonEpiserverBoxSelectionCss';
                     if (!document.getElementById(cssPrefixId + '1')) {
                         var head = document.getElementsByTagName('body')[0];
 
-                        var css1 = getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/SelectionPicker/Style');
+                        var css1 = getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/BoxSelection/Style');
 
                         head.appendChild(css1);
                     }
@@ -370,7 +366,7 @@
 
             _initWidgetProperties: function () {
                 try {
-                    const list = this.SystemLibraryCommonEpiserverSelectionPicker;
+                    const list = this.systemLibraryCommonEpiserverBoxSelection;
                     const colors = this.selections;
 
                     colors.forEach(color => {

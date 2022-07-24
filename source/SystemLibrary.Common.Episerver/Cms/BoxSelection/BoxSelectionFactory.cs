@@ -13,7 +13,7 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms;
 
-public class SelectionPickerFactory : ISelectionFactory
+public class BoxSelectionFactory : ISelectionFactory
 {
     Type GetGenericType(Type type)
     {
@@ -37,10 +37,10 @@ public class SelectionPickerFactory : ISelectionFactory
 
         try
         {
-            var options = metadata.GetAttribute<SelectionPickerAttribute>();
+            var options = metadata.GetAttribute<BoxSelectionAttribute>();
 
             if (options == null)
-                throw new Exception(nameof(SelectionPickerAttribute) + " can only be used by adding the attribute to the property: " + metadata.PropertyName);
+                throw new Exception(nameof(BoxSelectionAttribute) + " can only be used by adding the attribute to the property: " + metadata.PropertyName);
 
             var type = metadata.ContainerType;
 
@@ -52,7 +52,7 @@ public class SelectionPickerFactory : ISelectionFactory
                     type = options.Type;
 
                 if (type == null)
-                    throw new Exception("Property " + metadata.PropertyName + " of type " + metadata.ContainerType.Name + " must set the Type of an Enum, in the " + nameof(SelectionPickerAttribute));
+                    throw new Exception("Property " + metadata.PropertyName + " of type " + metadata.ContainerType.Name + " must set the Type of an Enum, in the " + nameof(BoxSelectionAttribute));
 
                 if (!type.IsEnum)
                     throw new Exception("Property " + metadata.PropertyName + " of type " + type.Name + " must be an Enum or a String!");
