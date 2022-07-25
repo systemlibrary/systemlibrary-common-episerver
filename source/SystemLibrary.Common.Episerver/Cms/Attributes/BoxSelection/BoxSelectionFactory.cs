@@ -8,6 +8,7 @@ using Castle.Core.Internal;
 using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Extensions;
+using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
@@ -45,10 +46,10 @@ public class BoxSelectionFactory : ISelectionFactory
             var type = metadata.ContainerType;
 
             var genericType = GetGenericType(type);
-            
-            if(genericType == null)
+
+            if (genericType == null)
             {
-                if(!type.IsEnum)
+                if (!type.IsEnum)
                     type = options.Type;
 
                 if (type == null)
@@ -159,7 +160,7 @@ public class BoxSelectionFactory : ISelectionFactory
                     foreach (var item in items)
                     {
                         var val = item.Value + "";
-                        if(val.Contains("__d_"))
+                        if (val.Contains("__d_"))
                         {
                             val = val.Split("__d_")[0];
                         }
@@ -180,7 +181,7 @@ public class BoxSelectionFactory : ISelectionFactory
                 {
                     var selected = metadata.InitialValue as IList;
 
-                    if(selected != null && selected.Count > 0)
+                    if (selected != null && selected.Count > 0)
                     {
                         foreach (var selection in selected)
                         {
@@ -220,11 +221,38 @@ public class BoxSelectionFactory : ISelectionFactory
 
     static SelectItem GetSelectItem(string key, Type type, bool storedAsString)
     {
+        string value = null;
+
         var e = AsEnum(key, type);
 
-        if (storedAsString)
-            return new SelectItem { Text = e.ToText(), Value = e.ToValue() };
+        var enumValue = e.ToObjectValue();
+
+        if (enumValue is FontAwesomeSolid solid)
+        {
+            value = FontAwesomeLoader.GetFontAwesomeIconRequestUrl(solid);
+        }
+        else if (enumValue is FontAwesomeRegular regular)
+        {
+            value = FontAwesomeLoader.GetFontAwesomeIconRequestUrl(regular);
+        }
+        else if (enumValue is FontAwesomeBrands brands)
+        {
+            value = FontAwesomeLoader.GetFontAwesomeIconRequestUrl(brands);
+        }
+
+        if(value == null)
+        {
+            if (storedAsString)
+                value = e.ToValue();
+            else
+                value = Convert.ToInt32(e) + "__d_" + e.ToValue();
+        }
         else
-            return new SelectItem { Text = e.ToText(), Value = Convert.ToInt32(e).ToString() + "__d_" + e.ToValue() };
+        {
+            if (!storedAsString)
+                value = Convert.ToInt32(e) + "__d_" + value;
+        }
+
+        return new SelectItem { Text = e.ToText(), Value = value };
     }
 }

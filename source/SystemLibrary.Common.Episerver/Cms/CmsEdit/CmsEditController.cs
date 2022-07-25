@@ -3,7 +3,7 @@ using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute;
+using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
 
 namespace SystemLibrary.Common.Episerver;
 

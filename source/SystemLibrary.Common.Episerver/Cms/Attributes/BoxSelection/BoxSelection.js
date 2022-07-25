@@ -47,7 +47,11 @@
             if (typeof (data) === 'undefined' || !data || data === '') {
                 return null;
             }
-            if (data.includes(".gif") || data.includes(".png") || data.includes(".jpg") ||
+            if (data.startsWith("~/")) {
+                return null;
+            }
+
+            if (data.includes(".svg") || data.includes(".gif") || data.includes(".png") || data.includes(".jpg") ||
                 data.includes("/") || data.includes("\\")) {
                 return null;
             }
@@ -89,7 +93,11 @@
                 return null;
             }
 
-            if (txt.includes(".gif") || txt.includes(".jpg") || txt.includes(".png")) {
+            if (txt.startsWith("~/")) {
+                return null;
+            }
+
+            if (txt.includes(".svg") || txt.includes(".gif") || txt.includes(".jpg") || txt.includes(".png")) {
                 return null;
             }
 
@@ -133,10 +141,17 @@
             let foundImage = false;
             if (typeof (additional) !== 'undefined' && additional && additional !== "" && additional.length > 1) {
                 let temp = additional.toLowerCase();
-                if (temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
+                if (temp.includes('.svg') || temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
                     if (!temp.includes('#') && !temp.includes(',')) {
                         foundImage = true;
+                        if(additional.startsWith("~")) {
+                            additional = additional.substring(1);
+                        }
                         styles = styles + ' background-image: url(' + additional + ');';
+
+                        if(temp.includes('.svg')) {
+                            styles = styles + 'background-size:75% 75%;';
+                        }
                     }
                 }
             }

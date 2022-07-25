@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
+using EPiServer.Core;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
@@ -7,15 +11,43 @@ using EPiServer.Shell;
 
 using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Episerver.Initialize;
+using SystemLibrary.Common.Net;
 
-namespace SystemLibrary.Common.Episerver.Attributes;
+namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
 partial class ContentIconAttribute
 {
     [InitializableModule]
     internal partial class ContentIconEditorDescriptorModule : StartupModule
     {
+        //Item1: Type is "StartPage"
+        //Item2: ContentIcon is the attribute "on type"
+        //Item3: string 1 is the css class for pagetree icons
+        //Item4: string 2 is the custom relative icon url, as in: not using a FontAwesome Icon
+        static internal List<Tuple<Type, ContentIconAttribute, string, string>> ContentDescriptorSettings = new List<Tuple<Type, ContentIconAttribute, string, string>>();
+
         static bool IsInitialized;
+
+        static ContentIconEditorDescriptorModule()
+        {
+            var types = Assemblies.FindAllTypesInheritingWithAttribute<PageData, ContentIconAttribute>();
+
+            if (types == null || types.Count() == 0) return;
+
+            var options = from type in types
+                          select new
+                          {
+                              Type = type,
+                              Attribute = type.GetCustomAttribute<ContentIconAttribute>(),
+                              CssClass = "custom-common-episerver-page-tree-icon custom-common-episerver-page-tree-icon--" + type.Name.ToLower(),
+                              IconRelativeUrl = type.GetCustomAttribute<ContentIconAttribute>()?.IconRelativeUrl
+                          };
+
+            if (options == null) return;
+
+            foreach (var o in options)
+                ContentDescriptorSettings.Add(Tuple.Create(o.Type, o.Attribute, o.CssClass, o.IconRelativeUrl));
+        }
 
         public override void Initialize(InitializationEngine context)
         {
@@ -38,8 +70,6 @@ partial class ContentIconAttribute
                 Log.Error(ex);
                 return;
             }
-
-            LoadPageTypesWithIconAttribute();
 
             if (ContentDescriptorSettings.Count == 0) return;
 
