@@ -18,7 +18,8 @@ namespace SystemLibrary.Common.Episerver
     ///             "appendBrowser": false,
     ///             "appendCookieInfo": false
     ///        },
-    ///         "editMode": {
+    ///         "enabled": {
+    ///             "enabled": true,
     ///             "hideLanguageColumnInVersionGadget": true,
     ///             "contentCreationBackgroundColor": "#B84D94",
     ///             "contentCreationBorderColor": "#B84D94",
@@ -53,6 +54,7 @@ namespace SystemLibrary.Common.Episerver
 
             public class CmsEditConfiguration
             {
+                public bool Enabled { get; set; } = true;
                 public bool HideLanguageColumnInVersionGadget { get; set; } = false;
                 public string ContentCreationBackgroundColor { get; set; } = "";
                 public string ContentCreationBorderColor { get; set; } = "";

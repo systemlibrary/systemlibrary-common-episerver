@@ -8,36 +8,36 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Cms\ParentLinkReference\ParentLinkReference.html" />
-		<None Remove="Cms\ParentLinkReference\ParentLinkReference.js" />
-		<None Remove="Cms\BoxSelection\BoxSelection.css" />
-		<None Remove="Cms\BoxSelection\BoxSelection.js" />
+		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
+		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
+		<None Remove="Cms\Attributes\BoxSelection\BoxSelection.css" />
+		<None Remove="Cms\Attributes\BoxSelection\BoxSelection.js" />
 		<None Remove="Release.cmd" />
 		<None Remove="nuget-icon.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Css\fontawesome-bundled.min.css" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-brands-400.woff2" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-regular-400.woff2" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\WebFonts\fa-solid-900.woff2" />
+		<EmbeddedResource Include="FontAwesome\Css\fontawesome-bundled.css" />
+		<EmbeddedResource Include="FontAwesome\Fonts\fa-brands-400.woff2" />
+		<EmbeddedResource Include="FontAwesome\Fonts\fa-regular-400.woff2" />
+		<EmbeddedResource Include="FontAwesome\Fonts\fa-solid-900.woff2" />
 		<EmbeddedResource Include="Cms\CmsEdit\CmsEditStylesheet.css" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Regular\*.svg" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Solid\*.svg" />
-		<EmbeddedResource Include="Attributes\ContentIconAttribute\FontAwesome\Icons\Brands\*.svg" />
+		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
+		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
+		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <EmbeddedResource Include="Cms\BoxSelection\BoxSelection.css" />
-	  <EmbeddedResource Include="Cms\BoxSelection\BoxSelection.js" />
+	  <EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.css" />
+	  <EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.js" />
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <EmbeddedResource Include="Cms\ParentLinkReference\ParentLinkReference.html" />
+	  <EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <EmbeddedResource Include="Cms\ParentLinkReference\ParentLinkReference.js" />
+	  <EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -52,7 +52,7 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
-		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.5" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.6" />
 	</ItemGroup>
 
 </Project>

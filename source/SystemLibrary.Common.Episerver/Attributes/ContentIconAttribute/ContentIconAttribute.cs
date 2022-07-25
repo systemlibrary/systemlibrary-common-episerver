@@ -3,6 +3,8 @@ using System.Linq;
 
 using EPiServer.DataAnnotations;
 
+using SystemLibrary.Common.Episerver.FontAwesome;
+
 namespace SystemLibrary.Common.Episerver.Attributes
 {
     /// <summary>
@@ -12,7 +14,7 @@ namespace SystemLibrary.Common.Episerver.Attributes
     /// </summary>
     /// <example>
     /// <code class="language-csharp hljs">
-    /// [ContentIcon(ContentIconAttribute.FontAwesomeRegular.credit_card)]
+    /// [ContentIcon(FontAwesomeRegular.credit_card)]
     /// public class StartPage : PageData
     /// </code>
     /// </example>
@@ -50,17 +52,17 @@ namespace SystemLibrary.Common.Episerver.Attributes
             IconRelativeUrl = iconRelativeUrl;
         }
 
-        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/RegularIcon/", regular))
+        public ContentIconAttribute(FontAwesomeRegular regular) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/FontAwesome/RegularIcon/", regular))
         {
             Value = regular;
         }
 
-        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/SolidIcon/", solid))
+        public ContentIconAttribute(FontAwesomeSolid solid) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/", solid))
         {
             Value = solid;
         }
 
-        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/ContentIconAttribute/BrandsIcon/", brand))
+        public ContentIconAttribute(FontAwesomeBrands brand) : base(GetEmbeddedSvgName("~/SystemLibrary/Common/Episerver/FontAwesome/BrandsIcon/", brand))
         {
             Value = brand;
         }
@@ -76,14 +78,14 @@ namespace SystemLibrary.Common.Episerver.Attributes
             {
                 if (iconName.StartsWith("~"))
                     iconName = iconName.Substring(1);
-                iconName = iconName.Replace("/", "___");
+                iconName = iconName.Replace("/", "__enum_");
 
                 return requestUrl + iconName;
             }
 
             //SVG's might have a digit as first character
-            //Enum cannot start with a digit, hence swapping it with '___'
-            if (iconName.StartsWith("___"))
+            //Enum cannot start with a digit, hence swapping it with '__enum_'
+            if (iconName.StartsWith("__enum_"))
                 iconName = iconName.Substring(3);
 
             return requestUrl + iconName.Replace("_", "-") + ".svg";

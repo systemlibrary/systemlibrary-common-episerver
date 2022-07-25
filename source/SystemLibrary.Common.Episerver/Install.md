@@ -46,7 +46,7 @@ using SystemLibrary.Common.Episerver.Attributes;
 namespace Demo;
 
 [ContentType(DisplayName = "Start Page", GUID = "7C3BBD03-5D83-4E75-A1E9-BCF5DF5F99B2")]
-[ContentIcon(ContentIconAttribute.FontAwesomeSolid.house)]
+[ContentIcon(FontAwesomeSolid.house)]
 public class StartPage : PageData { }
 ```
 
@@ -79,7 +79,7 @@ module.config:
 <?xml version="1.0" encoding="utf-8"?>
 <module>
 	<clientResources>
-		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/ContentIconAttribute/FontAwesome" resourceType="Style" />
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/FontAwesome/Stylesheet" resourceType="Style" />
 		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEdit/Stylesheet" resourceType="Style" /> 
 	</clientResources>
 </module>

@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 
 partial class ContentIconAttribute
 {
-    partial class ContentIconRouteModule
+    partial class ContentIconEditorDescriptorModule
     {
         //Item1: Type is "StartPage"
         //Item2: ContentIcon is the attribute "on type"

@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace SystemLibrary.Common.Episerver.Cms
+using static SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute;
+
+namespace SystemLibrary.Common.Episerver;
+
+public partial class CmsEditController : Controller
 {
-    public partial class CmsEditController : Controller
+    const string CmsEditFolder = "Cms/CmsEdit";
+
+    static int ClientCacheSeconds = 43200;
+
+    static Assembly _CurrentAssembly;
+
+    static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
+        (_CurrentAssembly = Assembly.GetExecutingAssembly());
+
+    static FileContentResult StylesheetCache;
+
+    public ActionResult Stylesheet()
     {
-        const string CmsEditFolder = "Cms/CmsEdit";
+        if (Response.Headers.ContainsKey("Cache-Control"))
+            Response.Headers.Remove("Cache-Control");
 
-        static int ClientCacheSeconds = 43200;
+        Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
 
-        static Assembly _CurrentAssembly;
+        if (StylesheetCache != null) return StylesheetCache;
 
-        static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
-            (_CurrentAssembly = Assembly.GetExecutingAssembly());
+        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
 
-        static FileContentResult StylesheetCache;
-
-        public ActionResult Stylesheet()
+        var sb = new StringBuilder("");
+        if (cmsEdit.Enabled)
         {
-            if (Response.Headers.ContainsKey("Cache-Control"))
-                Response.Headers.Remove("Cache-Control");
-
-            Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
-
-            if (StylesheetCache != null) return StylesheetCache;
-
-            var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
-
-            StringBuilder sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(CmsEditFolder, "CmsEditStylesheet.css", CurrentAssembly));
+            sb.Append(Net.Assemblies.GetEmbeddedResource(CmsEditFolder, "CmsEditStylesheet.css", CurrentAssembly));
 
             var hideLanguageColumnInVersionGadget = cmsEdit.HideLanguageColumnInVersionGadget ? "0px" : "";
             var hideLanguageColumnInVersionGadgetVisibility = cmsEdit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
@@ -45,7 +48,7 @@ namespace SystemLibrary.Common.Episerver.Cms
             {
                 try
                 {
-                    sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", Darken(cmsEdit.ActiveProjectBarBackgroundColor));
+                    sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", cmsEdit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
                 }
                 catch
                 {
@@ -53,40 +56,35 @@ namespace SystemLibrary.Common.Episerver.Cms
                 sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
 
             }
-
             AppendCustomPageTreeIcons(sb);
-
-            var bytes = Encoding.UTF8.GetBytes(sb.ToString());
-
-            StylesheetCache = new FileContentResult(bytes, "text/css");
-
-            return StylesheetCache;
         }
 
-        static string Darken(string hex)
+        var bytes = Encoding.UTF8.GetBytes(sb.ToString());
+
+        StylesheetCache = new FileContentResult(bytes, "text/css");
+
+        return StylesheetCache;
+    }
+
+    static void AppendCustomPageTreeIcons(StringBuilder sb)
+    {
+        if (ContentIconEditorDescriptorModule.ContentDescriptorSettings == null) return;
+
+        foreach (var setting in ContentIconEditorDescriptorModule.ContentDescriptorSettings)
         {
-            if (hex.StartsWith("#"))
-                hex = hex.Substring(1);
-
-            int partLength = hex.Length == 6 ? 2 : 1;
-
-            var parts = SplitHex(hex, partLength);
-
-            var darkenedColor = "";
-            var factor = 0.31;
-            foreach (var part in parts)
+            if (setting.Item4.Is())
             {
-                var color = Convert.ToInt32(part, 16);
-                darkenedColor += Convert.ToInt32(color * factor).ToString("X");
+                sb.Append("." + setting.Item3.Replace(" ", "."));
+
+                var url = setting.Item4;
+
+                if (url.StartsWith("~"))
+                    url = url.Substring(1);
+                if (!url.StartsWith("/"))
+                    url = "/" + url;
+
+                sb.Append("{background-image: url(" + url + ");}");
             }
-
-            return "#" + darkenedColor;
-        }
-
-        static IEnumerable<string> SplitHex(string hex, int partLength)
-        {
-            for (var i = 0; i < hex.Length; i += partLength)
-                yield return hex.Substring(i, Math.Min(partLength, hex.Length - i));
         }
     }
 }
