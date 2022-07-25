@@ -50,7 +50,7 @@ public class BoxSelectionFactory : ISelectionFactory
             if (genericType == null)
             {
                 if (!type.IsEnum)
-                    type = options.Type;
+                    type = options.EnumType;
 
                 if (type == null)
                     throw new Exception("Property " + metadata.PropertyName + " of type " + metadata.ContainerType.Name + " must set the Type of an Enum, in the " + nameof(BoxSelectionAttribute));
@@ -62,10 +62,10 @@ public class BoxSelectionFactory : ISelectionFactory
             }
             else
             {
-                if (options.Type == null)
+                if (options.EnumType == null)
                     type = genericType;
                 else
-                    type = options.Type;
+                    type = options.EnumType;
 
                 if (!type.IsEnum)
                     throw new Exception("Property " + metadata.PropertyName + " has an invalid generic type: " + type.Name + ". It must be an Enum or a String");

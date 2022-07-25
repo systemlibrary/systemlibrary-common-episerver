@@ -72,7 +72,7 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
     public virtual Type SelectionFactoryType { get; set; }
 
-    public Type Type { get; set; }
+    public Type EnumType { get; set; }
 
     /// <summary>
     /// Hide a range of items

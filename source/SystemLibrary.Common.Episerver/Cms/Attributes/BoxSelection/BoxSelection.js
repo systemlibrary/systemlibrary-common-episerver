@@ -144,12 +144,12 @@
                 if (temp.includes('.svg') || temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
                     if (!temp.includes('#') && !temp.includes(',')) {
                         foundImage = true;
-                        if(additional.startsWith("~")) {
+                        if (additional.startsWith("~")) {
                             additional = additional.substring(1);
                         }
                         styles = styles + ' background-image: url(' + additional + ');';
 
-                        if(temp.includes('.svg')) {
+                        if (temp.includes('.svg')) {
                             styles = styles + 'background-size:75% 75%;';
                         }
                     }
@@ -392,11 +392,23 @@
                             console.error(text);
                         }
 
-                        if (typeof (value) !== 'undefined' && value && value.toString().includes('__d_')) {
-                            let tmp = value.split('__d_');
-                            value = tmp[0];
-                            if (tmp.length > 1) {
-                                additional = tmp[1];
+                        if (typeof (value) !== 'undefined' && value) {
+                            if (value.includes('__d_')) {
+                                let tmp = value.split('__d_');
+                                value = tmp[0];
+                                if (tmp.length > 1) {
+                                    additional = tmp[1];
+                                }
+                            }
+                            else {
+                                if (value.length > 4) {
+                                    if (value.startsWith("~/") ||
+                                        value.includes('.jpg') || value.includes('.svg') || value.includes('.png') || value.includes('.gif')) {
+                                        if (value.includes('/') || value.includes('\\')) {
+                                            additional = value;
+                                        }
+                                    }
+                                }
                             }
                         }
 
