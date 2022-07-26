@@ -33,6 +33,72 @@
         const moduleFullName = "systemLibraryCommonEpiserverBoxSelectionWidget";
         const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
+        function is(data) {
+            if (typeof (data) === 'undefined' || data === null || data === "" || (data.length && data.length === 0)) {
+                return false;
+            }
+            return true;
+        }
+
+        function isImageUrl(url) {
+            if (!is(url)) {
+                return false;
+            }
+            if (url.startsWith("~/") && url.includes('.')) {
+                return true;
+            }
+
+            if (url.includes(".svg") || url.includes(".gif") || url.includes(".png") || url.includes(".jpg")) {
+                return url.includes("/") || url.includes("\\");
+            }
+            return false;
+        }
+
+        function isHex(data) {
+            if (!is(data)) {
+                return false;
+            }
+            return data.length && data.length <= 7 && data.startsWith('#') && !data.includes(' ');
+        }
+
+        function isRgbColor(data) {
+            if (!is(data)) {
+                return false;
+            }
+
+            if (data.length && data.length > 22) {
+                return false;
+            }
+
+            if (data.includes('.') || data.includes('/') || data.includes('\\')) {
+                return false;
+            }
+
+            if (data.includes('(') && data.includes(')') && data.includes(',')) {
+                let temp = data.toLowerCase();
+                return temp.includes('rgb');
+            }
+            return false;
+        }
+
+        function isColorValue(data) {
+            if (!is(data)) {
+                return false;
+            }
+            if (data.length) {
+                if (data.length > 16 || data.length < 5) {
+                    return false;
+                }
+            }
+            if (data.includes('.') || data.includes('/') || data.includes('\\')) {
+                return false;
+            }
+            if (data.includes(',')) {
+                return !(/[a-zæøåÆØÅ!?.]+$/i.test(data));
+            }
+            return false;
+        }
+
         function getStylesheetLink(id, path) {
             var link = document.createElement('link');
             link.id = id;
@@ -43,134 +109,123 @@
             return link;
         }
 
-        function getCssClassName(data) {
-            if (typeof (data) === 'undefined' || !data || data === '') {
-                return null;
-            }
-            if (data.startsWith("~/")) {
+        function getCssName(data) {
+            if (!is(data) || isImageUrl(data) || isHex(data) || isColorValue(data) || isRgbColor(data)) {
                 return null;
             }
 
-            if (data.includes(".svg") || data.includes(".gif") || data.includes(".png") || data.includes(".jpg") ||
-                data.includes("/") || data.includes("\\")) {
-                return null;
-            }
-            if (data.includes('!') || data.includes('(') || data.includes(',') || data.includes('#')) {
+            if (data.includes('[') || data.includes('(') || data.includes('#')) {
                 return null;
             }
 
-            return data.toString().toLowerCase().replaceAll(' ', '-');
+            return data.toString().toLowerCase().replaceAll(' ', '-').replaceAll('!', '-').replaceAll(',', '-').replaceAll('.', '-');
         }
 
-        function getItemClass(text, value, additional) {
-            let textCssName = getCssClassName(text);
-            let valueCssName = getCssClassName(value);
-            let additionalCssName = getCssClassName(additional);
-
-            let classes = dojoAttachPointName + '-item';
-
-            if (textCssName !== null && textCssName.length > 1) {
-                classes += ' ' + dojoAttachPointName + '-item--' + textCssName + ' background-color--' + textCssName;
+        function appendCssClass(data) {
+            var cssName = getCssName(data);
+            if (cssName !== null) {
+                return ' ' + dojoAttachPointName + '-item--' + cssName + ' background-color--' + cssName;
             }
-            if (valueCssName !== null && valueCssName.length > 1) {
-                classes += ' ' + dojoAttachPointName + '-item--' + valueCssName + ' background-color--' + valueCssName;
-            }
-            if (additionalCssName !== null && additionalCssName.length > 1) {
-                classes += ' ' + dojoAttachPointName + '-item--' + additionalCssName + ' background-color--' + additionalCssName;
-            }
-
-            return classes;
+            return '';
         }
 
-        function getInlineCssBackgroundColorValue(data) {
-            if (typeof (data) === 'undefined' || !data || data === '') {
+
+        function getBackgroundColorValue(data) {
+            if (!is(data)) {
                 return null;
             }
 
-            let txt = data.toString();
-
-            if (txt.includes("/") || txt.includes("\\")) {
+            if (isImageUrl(data)) {
                 return null;
             }
 
-            if (txt.startsWith("~/")) {
-                return null;
+            if (isHex(data)) {
+                return data;
             }
 
-            if (txt.includes(".svg") || txt.includes(".gif") || txt.includes(".jpg") || txt.includes(".png")) {
-                return null;
+            if (isRgbColor(data)) {
+                return data;
             }
 
-            if (txt.includes('#')) {
-                return txt;
-            }
-            if (txt.includes('(') && txt.includes(')') && txt.includes(',')) {
-                if (txt.includes('rgb')) {
-                    return txt;
-                } else {
-                    return "rgba" + txt;
+            if (isColorValue(data)) {
+                if (data.includes('(')) {
+                    return "rgb" + data;
                 }
+                return "rgb(" + data + ")";
             }
-            if (txt.includes(',') && txt.length >= 5 && txt.length <= 11) {
-                if (txt.includes('rgb')) {
-                    return txt;
-                } else {
-                    return "rgba(" + txt + ")";
-                }
-            }
+
             return null;
         }
 
-        function getItemStyle(text, value, additional) {
-            let textBackgroundCss = getInlineCssBackgroundColorValue(text);
-            let valueBackgroundCss = getInlineCssBackgroundColorValue(value);
-            let additionalBackgroundCss = getInlineCssBackgroundColorValue(additional);
+        function getContainerCssClass(text, value, additional) {
+            let css = dojoAttachPointName + '-item';
 
-            let styles = '';
+            css += appendCssClass(text);
+            css += appendCssClass(value);
+            css += appendCssClass(additional);
 
-            if (textBackgroundCss !== null) {
-                styles += 'background-color:' + textBackgroundCss + ';';
+
+            if (is(text) && (isImageUrl(value) || isImageUrl(additional))) {
+                css += ' systemLibraryCommonEpiserverBoxSelection--item-image';
             }
-            if (valueBackgroundCss !== null) {
-                styles += 'background-color:' + valueBackgroundCss + ';';
+
+            return css;
+        }
+
+        function appendContainerInlineBackground(data) {
+            let backgroundValue = getBackgroundColorValue(data);
+            if (backgroundValue !== null) {
+                return 'background-color:' + backgroundValue;
             }
-            if (additionalBackgroundCss !== null) {
-                styles += 'background-color:' + additionalBackgroundCss + ';';
-            }
+            return "";
+        }
+
+        function getContainerInlineStyle(text, value, additional) {
+            let inline = '';
+
+            inline += appendContainerInlineBackground(text);
+            inline += appendContainerInlineBackground(value);
+            inline += appendContainerInlineBackground(additional);
 
             let foundImage = false;
-            if (typeof (additional) !== 'undefined' && additional && additional !== "" && additional.length > 1) {
-                let temp = additional.toLowerCase();
-                if (temp.includes('.svg') || temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
-                    if (!temp.includes('#') && !temp.includes(',')) {
-                        foundImage = true;
-                        if (additional.startsWith("~")) {
-                            additional = additional.substring(1);
-                        }
-                        styles = styles + ' background-image: url(' + additional + ');';
 
-                        if (temp.includes('.svg')) {
-                            styles = styles + 'background-size:75% 75%;';
-                        }
+            if (is(additional)) {
+                let temp = additional.toLowerCase();
+                if (isImageUrl(temp)) {
+                    foundImage = true;
+
+                    if (additional.startsWith('~')) {
+                        additional = additional.substring(1);
+                    }
+
+                    inline += ' background-image:url(' + additional + ');background-size: 42%;';
+
+                    if (is(text)) {
+                        inline += 'background-position-y: 2px;align-items:end;';
                     }
                 }
             }
 
             if (foundImage === false) {
-                if (typeof (value) !== 'undefined' && value !== null && value.length > 3) {
+                if (is(value)) {
                     let temp = value.toLowerCase();
-                    if (temp.includes('.jpg') || temp.includes('.gif') || temp.includes('.png')) {
-                        if (!temp.includes('#') && !temp.includes(',')) {
-                            styles = styles + ' background-image: url(' + value + ');';
-                        }
+
+                    if (value.startsWith('~')) {
+                        value = value.substring(1);
+                    }
+
+                    if (isImageUrl(temp)) {
+                        inline += ' background-image:url(' + value + ');';
                     }
                 }
             }
 
-            return styles;
+            //NOTE: Not supporting 'EnumText()' in backend with an image url per now, it can only be "display name" or "blank"
+
+            return inline;
         }
 
-        function isReallyEqual(value1, value2) {
+        function isEqual(value1, value2) {
             if (typeof (value1) === 'undefined') {
                 value1 = null;
             }
@@ -272,14 +327,14 @@
                         }
                         else {
                             if (this.allowUnselection !== true) {
-                                if (isReallyEqual(this.value, value)) {
+                                if (isEqual(this.value, value)) {
                                     console.warn("allowUnselection is false: cannot unselect the value");
                                     return;
                                 } else {
                                     this._set('value', value);
                                 }
                             } else {
-                                if (isReallyEqual(this.value, value)) {
+                                if (isEqual(this.value, value)) {
                                     this._set('value', null);
                                 } else {
                                     this._set('value', value);
@@ -306,53 +361,55 @@
 
             _selectBoxes: function () {
                 try {
-                    let colors = this.systemLibraryCommonEpiserverBoxSelection.getElementsByTagName('a');
+                    let boxes = this.systemLibraryCommonEpiserverBoxSelection.getElementsByTagName('a');
 
-                    if (!colors || !colors.length) {
+                    if (!is(boxes)) {
+                        console.warn("BoxSelection: no items returned from the backend to select from");
                         return;
                     }
 
                     let selected = this.value;
 
-                    for (var i = 0; i < colors.length; i++) {
-                        color = colors[i];
-                        if (!color) {
+                    for (var i = 0; i < boxes.length; i++) {
+                        let box = boxes[i];
+
+                        if (!is(box)) {
                             continue;
                         }
 
-                        let div = color.getElementsByTagName('div')[0];
-                        if (!div) {
+                        let div = box.getElementsByTagName('div')[0];
+                        if (!is(div)) {
                             continue;
                         }
 
-                        let value = color.getAttribute('data-value');
-                        let text = color.getAttribute('data-text');
-                        let additional = color.getAttribute('data-additional');
+                        let value = box.getAttribute('data-value');
+                        let text = box.getAttribute('data-text');
+                        let additional = box.getAttribute('data-additional');
 
-                        let classes = getItemClass(text, value, additional);
-                        let styles = getItemStyle(text, value, additional);
+                        let css = getContainerCssClass(text, value, additional);
+                        let inline = getContainerInlineStyle(text, value, additional);
 
                         if (this.isMultiSelect) {
                             if (selected.includes(value.toString())) {
-                                classes = classes + ' ' + dojoAttachPointName + '--item-selected';
+                                css = css + ' ' + dojoAttachPointName + '--item-selected';
                             } else {
                                 //console.warn("BoxSelection: multiselect deselecting a value");
                             }
                         } else {
-                            if (isReallyEqual(value, selected)) {
-                                classes = classes + ' ' + dojoAttachPointName + '--item-selected';
+                            if (isEqual(value, selected)) {
+                                css = css + ' ' + dojoAttachPointName + '--item-selected';
                             }
                         }
 
-                        div.setAttribute('class', classes);
-                        div.setAttribute('style', styles);
+                        div.setAttribute('class', css);
+                        div.setAttribute('style', inline);
 
-                        color.appendChild(div);
+                        box.appendChild(div);
                     }
                 }
                 catch (e) {
                     console.error(e);
-                    console.error("Error failed in mark chosen color in list");
+                    console.error("Error marking clicked box in the list");
                 }
             },
 
@@ -382,53 +439,51 @@
             _initWidgetProperties: function () {
                 try {
                     const list = this.systemLibraryCommonEpiserverBoxSelection;
-                    const colors = this.selections;
+                    const boxes = this.selections;
 
-                    colors.forEach(color => {
-                        let text = color.text;
-                        let value = color.value;
+                    if (!is(boxes)) {
+                        console.warn("Warning: No boxes from the backend");
+                        return;
+                    }
+                    boxes.forEach(box => {
+                        let text = box.text;
+                        let value = box.value;
                         let additional = null;
-                        if (text.startsWith("ERROR:")) {
+
+                        if (is(text) && text.startsWith("ERROR: ")) {
                             console.error(text);
                         }
-
-                        if (typeof (value) !== 'undefined' && value) {
-                            if (value.includes('__d_')) {
-                                let tmp = value.split('__d_');
-                                value = tmp[0];
-                                if (tmp.length > 1) {
-                                    additional = tmp[1];
-                                }
-                            }
-                            else {
-                                if (value.length > 4) {
-                                    if (value.startsWith("~/") ||
-                                        value.includes('.jpg') || value.includes('.svg') || value.includes('.png') || value.includes('.gif')) {
-                                        if (value.includes('/') || value.includes('\\')) {
-                                            additional = value;
-                                        }
-                                    }
-                                }
-                            }
+                        if (!is(text)) {
+                            text = "";
+                        }
+                        if (!is(value)) {
+                            value = "";
                         }
 
-                        let classes = getItemClass(text, value, additional);
+                        if (value.includes('__d_')) {
+                            let tmp = value.split('__d_');
+                            value = tmp[0];
+                            if (tmp.length > 1) {
+                                additional = tmp[1];
+                            }
+                        }
+                        else if (isImageUrl(value)) {
+                            additional = value;
+                        }
 
-                        let styles = getItemStyle(text, value, additional);
+                        let css = getContainerCssClass(text, value, additional);
+
+                        let inline = getContainerInlineStyle(text, value, additional);
 
                         let div = document.createElement('div');
-                        div.setAttribute('class', classes);
-                        div.setAttribute('style', styles);
+                        div.setAttribute('class', css);
+                        div.setAttribute('style', inline);
 
                         let textLowered = text.toString().toLowerCase();
                         if (textLowered !== 'unset' && textLowered !== 'none' && textLowered !== 'no') {
                             if (textLowered !== 'yes' && textLowered !== 'checked' && textLowered !== 'enabled') {
-                                div.innerText = color.text;
+                                div.innerHTML = '<span>' + box.text + '</span>';
                             }
-                        }
-
-                        if (text === '') {
-                            text = " ";
                         }
 
                         let a = document.createElement('a');

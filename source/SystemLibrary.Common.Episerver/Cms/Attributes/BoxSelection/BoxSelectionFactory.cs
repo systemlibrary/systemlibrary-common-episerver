@@ -76,7 +76,7 @@ public class BoxSelectionFactory : ISelectionFactory
             //NOTE: EditorConfiguration is used as AdditionalValues is not sent in "simple properties" like string/int...
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
-            //NOTE: Hide & Show supports "javascript array or 1 item setter"
+            //NOTE: Hide & Show supports "javascript way", array or 1 item setter
             //You can use either:
             //a) Show = Color.White
             //b) Show = new object[] { Color.White, Color.Black }
@@ -207,8 +207,6 @@ public class BoxSelectionFactory : ISelectionFactory
                             }
                         }
                     }
-                    //Loop over all items in the selection that are selected, its a List of strings...
-                    //all the strings must be within the Enum Names.. else they are expired
                 }
             }
         }
@@ -222,6 +220,7 @@ public class BoxSelectionFactory : ISelectionFactory
     static SelectItem GetSelectItem(string key, Type type, bool storedAsString)
     {
         string value = null;
+        string text = null;
 
         var e = AsEnum(key, type);
 
@@ -246,6 +245,8 @@ public class BoxSelectionFactory : ISelectionFactory
                 value = e.ToValue();
             else
                 value = Convert.ToInt32(e) + "__d_" + e.ToValue();
+
+            text = e.ToText();
         }
         else
         {
@@ -253,6 +254,6 @@ public class BoxSelectionFactory : ISelectionFactory
                 value = Convert.ToInt32(e) + "__d_" + value;
         }
 
-        return new SelectItem { Text = e.ToText(), Value = value };
+        return new SelectItem { Text = text, Value = value };
     }
 }

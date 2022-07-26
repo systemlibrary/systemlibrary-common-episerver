@@ -11,15 +11,24 @@
   border: 8px solid transparent;
 }
 
-.systemLibraryCommonEpiserverBoxSelection li a {
+.systemLibraryCommonEpiserverBoxSelection li > a {
   display: block;
   height: 48px;
   width: 80px;
 }
 
-.systemLibraryCommonEpiserverBoxSelection li a span {
+.systemLibraryCommonEpiserverBoxSelection li > a > span {
   position: absolute;
   margin: -100000px;
+}
+
+.systemLibraryCommonEpiserverBoxSelection li > a > div > span {
+  line-height: 1.24;
+}
+
+.systemLibraryCommonEpiserverBoxSelection li > a > div.systemLibraryCommonEpiserverBoxSelection--item-image > span {
+  position: relative;
+  top: 2px;
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item {
@@ -28,7 +37,7 @@
   border: 4px;
   border-style: solid;
   border-color: rgba(240, 240, 240, 1);
-  font-size: 10.5px;
+  font-size: 11px;
   text-align: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -46,8 +55,8 @@
 }
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected:hover {
-    border: 2px solid #b5bcc7;
-  }
+  border: 2px solid #b5bcc7;
+}
 
 .systemLibraryCommonEpiserverBoxSelection-item--black,
 .systemLibraryCommonEpiserverBoxSelection-item--light-black,
@@ -81,7 +90,7 @@
   //border: 2px solid #7cb5ec;
   border: 2px solid transparent;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   border-bottom: solid 2px #b84d94;
   min-height: 48px;
   min-width: 80px;
