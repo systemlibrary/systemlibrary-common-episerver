@@ -61,6 +61,7 @@ namespace SystemLibrary.Common.Episerver
                 public string PageTreeSelectedContentBorderColor { get; set; } = "";
                 public string ContentTitleColor { get; set; } = "";
                 public string ActiveProjectBarBackgroundColor { get; set; } = "";
+                public string MessagePropertyBackgroundColor { get; set; } = "";
             }
            
             public CmsEditConfiguration CmsEdit { get; set; }

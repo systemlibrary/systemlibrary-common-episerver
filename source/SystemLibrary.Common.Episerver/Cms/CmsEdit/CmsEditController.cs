@@ -54,7 +54,6 @@ public partial class CmsEditController : Controller
                 {
                 }
                 sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
-
             }
             AppendCustomPageTreeIcons(sb);
         }
