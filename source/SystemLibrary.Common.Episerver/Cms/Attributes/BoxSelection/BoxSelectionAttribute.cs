@@ -163,7 +163,7 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
         }
         catch (Exception ex)
         {
-            Log.Warning(ex);
+            Log.Error(ex);
         }
     }
 }

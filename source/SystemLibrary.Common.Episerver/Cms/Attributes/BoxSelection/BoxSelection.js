@@ -129,7 +129,6 @@
             return '';
         }
 
-
         function getBackgroundColorValue(data) {
             if (!is(data)) {
                 return null;
@@ -163,7 +162,6 @@
             css += appendCssClass(text);
             css += appendCssClass(value);
             css += appendCssClass(additional);
-
 
             if (is(text) && (isImageUrl(value) || isImageUrl(additional))) {
                 css += ' systemLibraryCommonEpiserverBoxSelection--item-image';

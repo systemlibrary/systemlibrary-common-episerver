@@ -2,7 +2,7 @@
     "dojo/_base/declare",
     "dijit/_Widget",
     "dijit/_TemplatedMixin",
-    'dojo/text!./Html',
+    'dojo/text!./Html'
 ],
     function (
         declare,

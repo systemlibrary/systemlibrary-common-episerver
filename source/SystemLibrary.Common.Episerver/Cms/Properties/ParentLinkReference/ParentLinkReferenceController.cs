@@ -1,64 +1,35 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using Microsoft.AspNetCore.Mvc;
 
-using Microsoft.AspNetCore.Mvc;
+using SystemLibrary.Common.Episerver.Cms.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Cms;
 
-public partial class ParentLinkReferenceController : Controller
+public partial class ParentLinkReferenceController : BaseCmsController
 {
     const string CurrentFolder = "Cms/Properties/ParentLinkReference";
 
-    static int ClientCacheSeconds = 43200;
-
-    static Assembly _CurrentAssembly;
-
-    static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
-        (_CurrentAssembly = Assembly.GetExecutingAssembly());
-
     static ActionResult ScriptCache;
     static ActionResult HtmlCache;
-
+    
     public ActionResult Html()
     {
-        if (Response.Headers.ContainsKey("Cache-Control"))
-            Response.Headers.Remove("Cache-Control");
-
-        Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
+        AddCacheHeaders();
 
         if (HtmlCache != null) return HtmlCache;
 
-        var html = Net.Assemblies.GetEmbeddedResource(CurrentFolder, "ParentLinkReference.html", CurrentAssembly);
+        var html = GetEmbeddedResource(CurrentFolder, "ParentLinkReference.html");
 
-        if (html.IsNot())
-            Log.Error(this.GetType().Name + " could not read html from folder " + CurrentFolder);
-
-        var bytes = Encoding.UTF8.GetBytes(html);
-
-        HtmlCache = new FileContentResult(bytes, "text/html");
-
-        return HtmlCache;
+        return (HtmlCache = GetFileContentResult(html, "text/html"));
     }
 
     public ActionResult Script()
     {
-        if (Response.Headers.ContainsKey("Cache-Control"))
-            Response.Headers.Remove("Cache-Control");
+        AddCacheHeaders();
 
-        Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
+        if (ScriptCache != null) return ScriptCache;
 
-        if (ScriptCache != null)
-            return ScriptCache;
+        var script = GetEmbeddedResource(CurrentFolder, "ParentLinkReference.js");
 
-        var script = Net.Assemblies.GetEmbeddedResource(CurrentFolder, "ParentLinkReference.js", CurrentAssembly);
-
-        if (script.IsNot())
-            Log.Error(this.GetType().Name + " could not read script from folder " + CurrentFolder);
-
-        var bytes = Encoding.UTF8.GetBytes(script);
-
-        ScriptCache = new FileContentResult(bytes, "text/javascript");
-
-        return ScriptCache;
+        return (ScriptCache = GetFileContentResult(script, "text/javascript"));
     }
 }

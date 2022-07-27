@@ -1,0 +1,38 @@
+﻿<head>
+    <meta charset="utf-8">
+    <title>Json Edit</title>
+</head>
+
+<body>
+    <div
+        style="position: absolute; text-align: center; left: 0px; vertical-align: top; top: 91%; margin-top: 0; border: 0; background-color: #e1e1e1; width: 100%; height: 7%; overflow:hidden; padding-top: 20px;">
+        <button id="btnSaveAndClose">Save</button>
+        <button id="btnClose">Cancel</button>
+    </div>
+</body>
+
+<script>
+    function onSaveAndClose(e) {
+
+        var data = "{}";
+        window.onSave(data);
+
+        return onClose(e);
+    }
+
+    function onClose(e) {
+        window.close();
+        return true;
+    }
+
+    var btnClose = document.getElementById('btnClose');
+    btnClose.onclick = onClose;
+
+    var btnSave = document.getElementById('btnSaveAndClose');
+    btnSave.onclick = onSaveAndClose;
+
+    setTimeout(50, () => {
+        console.log("Current data");
+        console.log(window.json);
+    });
+</script>

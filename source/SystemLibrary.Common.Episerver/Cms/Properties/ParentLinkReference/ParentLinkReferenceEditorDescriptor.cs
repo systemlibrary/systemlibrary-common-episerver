@@ -2,7 +2,6 @@
 
 namespace SystemLibrary.Common.Episerver.Cms;
 
-//[EditorDescriptorRegistration(TargetType = typeof(ParentLinkReference), UIHint = ParentLinkReferenceUiHint.UiHint)]
 [EditorDescriptorRegistration(TargetType = typeof(ParentLinkReference))]
 public class ParentLinkReferenceEditorDescriptor : EditorDescriptor
 {

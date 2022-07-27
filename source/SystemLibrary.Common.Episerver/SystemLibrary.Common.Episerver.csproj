@@ -8,8 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Cms\Properties\JsonEdit\JsonEdit.html" />
-		<None Remove="Cms\Properties\JsonEdit\JsonEdit.js" />
+		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.html" />
+		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.js" />
+		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.html" />
 		<None Remove="Cms\Properties\Message\Message.html" />
 		<None Remove="Cms\Properties\Message\Message.js" />
 		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
@@ -21,15 +22,16 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<EmbeddedResource Include="Cms\Properties\JsonEdit\JsonEdit.html" />
-		<EmbeddedResource Include="Cms\Properties\JsonEdit\JsonEdit.js" />
+		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.html" />
+		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEdit.html" />
+		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEdit.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
 		<EmbeddedResource Include="FontAwesome\Css\fontawesome-bundled.css" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-solid-900.woff2" />
-		<EmbeddedResource Include="Cms\CmsEdit\CmsEditStylesheet.css" />
+		<EmbeddedResource Include="Cms\CmsEdit\CmsEdit.css" />
 		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />

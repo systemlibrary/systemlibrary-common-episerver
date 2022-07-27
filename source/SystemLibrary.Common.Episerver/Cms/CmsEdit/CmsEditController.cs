@@ -1,68 +1,58 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
+
+using SystemLibrary.Common.Episerver.Cms.Abstract;
 
 using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
 
 namespace SystemLibrary.Common.Episerver;
 
-public partial class CmsEditController : Controller
+public partial class CmsEditController : BaseCmsController
 {
     const string CmsEditFolder = "Cms/CmsEdit";
 
-    static int ClientCacheSeconds = 43200;
-
-    static Assembly _CurrentAssembly;
-
-    static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
-        (_CurrentAssembly = Assembly.GetExecutingAssembly());
-
-    static FileContentResult StylesheetCache;
+    static FileContentResult CssCache;
 
     public ActionResult Stylesheet()
     {
-        if (Response.Headers.ContainsKey("Cache-Control"))
-            Response.Headers.Remove("Cache-Control");
+        AddCacheHeaders();
 
-        Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
-
-        if (StylesheetCache != null) return StylesheetCache;
+        if (CssCache != null) return CssCache;
 
         var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
 
-        var sb = new StringBuilder("");
+        var css = new StringBuilder("");
         if (cmsEdit.Enabled)
         {
-            sb.Append(Net.Assemblies.GetEmbeddedResource(CmsEditFolder, "CmsEditStylesheet.css", CurrentAssembly));
+            css = GetEmbeddedResource(CmsEditFolder, "CmsEdit.css");
 
             var hideLanguageColumnInVersionGadget = cmsEdit.HideLanguageColumnInVersionGadget ? "0px" : "";
             var hideLanguageColumnInVersionGadgetVisibility = cmsEdit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
-            sb.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
-            sb.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
-            sb.Replace(nameof(cmsEdit.ContentTitleColor), cmsEdit.ContentTitleColor);
-            sb.Replace(nameof(cmsEdit.ContentCreationBorderColor), cmsEdit.ContentCreationBorderColor);
-            sb.Replace(nameof(cmsEdit.ContentCreationBackgroundColor), cmsEdit.ContentCreationBackgroundColor);
-            sb.Replace(nameof(cmsEdit.PageTreeSelectedContentBorderColor), cmsEdit.PageTreeSelectedContentBorderColor);
+
+            css.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
+            css.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
+            css.Replace(nameof(cmsEdit.ContentTitleColor), cmsEdit.ContentTitleColor);
+            css.Replace(nameof(cmsEdit.ContentCreationBorderColor), cmsEdit.ContentCreationBorderColor);
+            css.Replace(nameof(cmsEdit.ContentCreationBackgroundColor), cmsEdit.ContentCreationBackgroundColor);
+            css.Replace(nameof(cmsEdit.PageTreeSelectedContentBorderColor), cmsEdit.PageTreeSelectedContentBorderColor);
+            
             if (cmsEdit.ActiveProjectBarBackgroundColor.Is())
             {
                 try
                 {
-                    sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", cmsEdit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
+                    css.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", cmsEdit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
                 }
                 catch
                 {
                 }
-                sb.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
+                css.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
             }
-            AppendCustomPageTreeIcons(sb);
+
+            AppendCustomPageTreeIcons(css);
         }
 
-        var bytes = Encoding.UTF8.GetBytes(sb.ToString());
-
-        StylesheetCache = new FileContentResult(bytes, "text/css");
-
-        return StylesheetCache;
+        return (CssCache = GetFileContentResult(css, "text/css"));
     }
 
     static void AppendCustomPageTreeIcons(StringBuilder sb)
@@ -82,7 +72,7 @@ public partial class CmsEditController : Controller
                 if (!url.StartsWith("/"))
                     url = "/" + url;
 
-                sb.Append("{background-image: url(" + url + ");}");
+                sb.Append("{background-size: 100%;background-image: url(" + url + ");}");
             }
         }
     }

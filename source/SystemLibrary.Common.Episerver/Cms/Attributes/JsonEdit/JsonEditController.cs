@@ -2,14 +2,15 @@
 
 using SystemLibrary.Common.Episerver.Cms.Abstract;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
-public partial class MessageController : BaseCmsController
+public partial class JsonEditController : BaseCmsController
 {
-    const string CurrentFolder = "Cms/Properties/Message";
+    const string CurrentFolder = "Cms/Attributes/JsonEdit";
 
-    static FileContentResult HtmlCache;
-    static FileContentResult ScriptCache;
+    static ActionResult ScriptCache;
+    static ActionResult HtmlCache;
+    static ActionResult EditorCache;
 
     public ActionResult Html()
     {
@@ -17,16 +18,20 @@ public partial class MessageController : BaseCmsController
 
         if (HtmlCache != null) return HtmlCache;
 
-        var html = GetEmbeddedResource(CurrentFolder, "Message.html");
-
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
-
-        if (cmsEdit.Enabled)
-        {
-            html.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor), cmsEdit.MessagePropertyBackgroundColor);
-        }
+        var html = GetEmbeddedResource(CurrentFolder, "JsonEdit.html");
 
         return (HtmlCache = GetFileContentResult(html, "text/html"));
+    }
+
+    public ActionResult Editor()
+    {
+        AddCacheHeaders();
+
+        if (EditorCache != null) return EditorCache;
+
+        var editor = GetEmbeddedResource(CurrentFolder, "JsonEditor.html");
+
+        return (EditorCache = GetFileContentResult(editor, "text/html"));
     }
 
     public ActionResult Script()
@@ -35,7 +40,7 @@ public partial class MessageController : BaseCmsController
 
         if (ScriptCache != null) return ScriptCache;
 
-        var script = GetEmbeddedResource(CurrentFolder, "Message.js");
+        var script = GetEmbeddedResource(CurrentFolder, "JsonEdit.js");
 
         var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
 
