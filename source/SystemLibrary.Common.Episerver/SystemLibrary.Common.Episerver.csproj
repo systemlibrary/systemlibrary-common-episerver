@@ -8,6 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Cms\Properties\JsonEdit\JsonEdit.html" />
+		<None Remove="Cms\Properties\JsonEdit\JsonEdit.js" />
 		<None Remove="Cms\Properties\Message\Message.html" />
 		<None Remove="Cms\Properties\Message\Message.js" />
 		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
@@ -19,6 +21,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<EmbeddedResource Include="Cms\Properties\JsonEdit\JsonEdit.html" />
+		<EmbeddedResource Include="Cms\Properties\JsonEdit\JsonEdit.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
 		<EmbeddedResource Include="FontAwesome\Css\fontawesome-bundled.css" />
@@ -57,10 +61,6 @@
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
 		<PackageReference Include="SystemLibrary.Common.Web" Version="6.0.0.7" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Cms\Properties\Message\NewFolder\" />
 	</ItemGroup>
 
 </Project>
