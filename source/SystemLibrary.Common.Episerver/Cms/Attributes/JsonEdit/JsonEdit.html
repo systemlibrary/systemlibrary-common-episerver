@@ -1,13 +1,17 @@
 ﻿<div style="display: inline-block;">
 
-    <button class="epi-content-selector-plugnplay-actionsContainer" data-dojo-attach-point="editButton"
-        data-dojo-type="dijit/form/Button">
-        <span class="dijitInline dijitButtonNode dijitButtonText">Edit</span>
+    <button style='background: white; border: 0; padding: 0; margin: 0;' class="epi-content-selector-plugnplay-actionsContainer"
+        data-dojo-attach-point="editButton" data-dojo-type="dijit/form/Button">
+        <span class="dijitInline dijitButtonNode dijitButtonText" style="min-width: 200px;">Edit</span>
     </button>
+    <span data-dojo-attach-point="jsonTextErrorMessage"
+        style='color: #e20000;font-size: 14px;line-height: 1;border-bottom: 1px solid;'></span>
 
-    <textarea style="height: 60px; width: 420px;" data-dojo-attach-point="jsonTextArea"
+    <br />
+    <textarea style="font-size: 11px;line-height: 1.12;font-style: italic;height: 30px; width: 585px;" data-dojo-attach-point="jsonTextArea"
         data-dojo-type="dijit/form/SimpleTextarea">
     </textarea>
+
 
     <div id="currentJsonEdit" style="max-height: 480px;max-width:480px;"></div>
 </div>

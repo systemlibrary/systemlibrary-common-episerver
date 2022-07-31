@@ -224,7 +224,7 @@ public class BoxSelectionFactory : ISelectionFactory
 
         var e = AsEnum(key, type);
 
-        var enumValue = e.ToObjectValue();
+        var enumValue = e.GetEnumValue();
 
         if (enumValue is FontAwesomeSolid solid)
         {

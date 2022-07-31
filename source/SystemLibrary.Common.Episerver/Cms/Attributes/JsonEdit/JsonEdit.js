@@ -61,9 +61,46 @@
                 return false;
             },
 
-            _onEditJsonClick: function (jsonEditorUrl) {
+            setError: function (message) {
+                this.jsonTextErrorMessage.innerHTML = message;
+            },
+
+            _onEditJsonClick: function (jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl) {
                 try {
-                    const json = this.jsonTextArea.value;
+                    if (!this.is(jsonEditTitle)) {
+                        jsonEditTitle = 'Editor';
+                    }
+
+                    const jsonEditValue = this.jsonTextArea.value;
+                    if (!this.is(jsonEditValue)) {
+                        jsonEditValue = '[]';
+                    }
+                    if (!jsonEditValue.startsWith('[')) {
+                        console.warn(jsonEditValue);
+                        throw "Error: Json Value is not an array, must start and end with []";
+                    }
+                    const jsonEditValueArray = JSON.parse(jsonEditValue);
+
+                    if (!Array.isArray(jsonEditValueArray)) {
+                        console.warn(jsonEditValue);
+                        throw "Error: Json Value is not an array";
+                    }
+                    if (!this.is(jsonEditProperties)) {
+                        jsonEditProperties = '';
+                    }
+                    const jsonEditPropertiesObject = JSON.parse('{' + jsonEditProperties + '}');
+
+                    if (Array.isArray(jsonEditPropertiesObject)) {
+                        console.warn(jsonEditProperties);
+                        throw "Error: schema properties is an array, it should be an object with 'required' and 'properties' variables";
+                    }
+
+                    if (!this.is(jsonEditSortByPropertyName1)) {
+                        jsonEditSortByPropertyName1 = null;
+                    }
+                    if (!this.is(jsonEditSortByPropertyName2)) {
+                        jsonEditSortByPropertyName2 = null;
+                    }
 
                     const width = screen.availWidth - 30;
                     const height = screen.availHeight - 30;
@@ -76,14 +113,22 @@
 
                     if (!w) {
                         alert("Error: could not open the window for unknown reason. Try disabling ad-blockers? Try disabling other blocking extensions? Try in normal chrome, not inkognito or vice versa?");
+                        return;
                     }
+                    w.jsonEditTitle = jsonEditTitle;
+                    w.jsonEditValue = jsonEditValueArray;
+                    w.jsonEditPropertiesObject = jsonEditPropertiesObject;
 
-                    w.json = json;
+                    w.jsonEditSortByPropertyName1 = jsonEditSortByPropertyName1;
+                    w.jsonEditSortByPropertyName2 = jsonEditSortByPropertyName2;
 
                     w.onSave = lang.hitch(this, function (newJson) {
                         this.onFocus();
 
                         let jsonText = JSON.stringify(newJson);
+
+                        console.log("SAVING");
+                        console.log(jsonText);
 
                         this._setValueAttr(jsonText);       //This should be "setValue()"?
 
@@ -97,7 +142,9 @@
                     }
 
                     this.isShowingEditorWindow = true;
+
                 } catch (e) {
+                    this.setError("Error occured: " + e.toString());
                     console.error(e);
                 }
             },
@@ -113,6 +160,7 @@
 
             //always invoked on initial load by Epi, value is current value from the database
             _setValueAttr: function (value) {
+                console.log("VAlue from EPI " + value);
                 this._setValue(value, true);
             },
 
@@ -130,14 +178,17 @@
                         return;
                     }
 
+                    console.log("setting new value" + value);
                     this._set('value', value);
 
-                    this.jsonTextArea.value = value;
+                    if (this.jsonTextArea.value !== value) {
+                        this.jsonTextArea.value = value;
+                    }
 
                     if (initialLoad) {
                         return;
                     }
-                    if (this._started && this.validate()) {
+                    if (this._started && this.isValid()) {
                         //invoke built-in onChange method to trigger epi events
                         this.onChange(this.value);
                     }
@@ -153,16 +204,15 @@
 
             postCreate: function () {
                 try {
-                    let typeName = this.typeName;
-                    let jsonSchema = this.jsonSchema;
+                    let jsonEditTitle = this.jsonEditTitle;
+                    let jsonEditSortByPropertyName1 = this.jsonEditSortByPropertyName1;
+                    let jsonEditSortByPropertyName2 = this.jsonEditSortByPropertyName2;
+                    let jsonEditProperties = this.jsonEditProperties;
                     let jsonEditorUrl = this.jsonEditorUrl;
 
-                    console.log("VALUES FROM C#");
-                    console.log(typeName);
-                    console.log(jsonSchema);
-                    console.log(jsonEditorUrl);
-
-                    this._bindEvents(this, () => this._onEditJsonClick(jsonEditorUrl), () => this._onTextAreaChanged);
+                    this._bindEvents(this,
+                        () => this._onEditJsonClick(jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl),
+                        (v) => this._onTextAreaChanged(v));
                 }
                 catch (e) {
                     console.error(e);
@@ -175,10 +225,13 @@
                     e.preventDefault();
                 });
 
-                on(myself.jsonTextArea, "onchange", function (e) {
-                    textAreaOnChange();
-                    e.preventDefault();
+                on(myself.jsonTextArea, "keyup", function (e) {
+                    textAreaOnChange(e.target.value);
+                    ///   e.preventDefault();
                 });
+
+                on(myself.jsonTextErrorMessage, 'onset', function (e) {
+                })
             },
         }
         );

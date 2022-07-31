@@ -1,0 +1,366 @@
+﻿.j-container {
+    width: 100%;
+    border-collapse: collapse;
+    border-width: 0px;
+    font-family: "consolas";
+}
+
+    .j-container td {
+        padding: 0px;
+    }
+
+.j-title-col {
+    width: 200px;
+}
+
+.j-sep-col {
+    width: 1px;
+    background-color: #414141 !important;
+}
+
+.j-input-text,
+.j-input-select,
+.j-input-textarea,
+.j-input-date,
+.j-input-number,
+.j-input-html,
+.j-input-email,
+.j-input-tel {
+    width: 100%;
+    border-width: 0px;
+    padding: 8px;
+}
+
+.j-input-radio-label,
+.j-input-radio {
+    margin-top: 6px;
+}
+
+.j-input-text::placeholder {
+    color: silver;
+}
+
+.j-input-html-div {
+    padding: 8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.j-input-html {
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    border-width: 0px;
+}
+
+.j-input-textarea {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+    .j-input-text:focus,
+    .j-input-select:focus,
+    .j-input-textarea:focus,
+    .j-input-date:focus,
+    .j-input-number:focus,
+    .j-input-html-div:focus {
+        outline: 0px solid gainsboro;
+    }
+
+.j-input-select {
+    color: #414141;
+    cursor: pointer;
+}
+
+    .j-input-select:hover {
+        background-color: #fafafa;
+    }
+
+.j-array-title-row,
+.j-object-title-row {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1.4;
+    margin-left: 0.33em;
+}
+
+.j-object-value-row td {
+    font-size: 14px;
+}
+
+.j-object-value-row .j-title-col {
+    padding: 8px !important;
+    font-size: 16px;
+}
+
+.j-add-array-item {
+    cursor: pointer;
+    color: #086307;
+    background: 0;
+    border: 0;
+    font-size: 42px;
+    line-height: 1;
+}
+
+    .j-add-array-item:hover {
+        color: #48a947;
+    }
+
+.j-remove-array-item {
+    font-family: "consolas";
+    color: rgb(222, 27, 27);
+    cursor: pointer;
+    font-weight: bold;
+    background: unset;
+    border: 0;
+    font-size: 20px;
+    margin-top: -4px;
+}
+
+.j-ec {
+    width: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.j-collapsed {
+    display: none;
+}
+
+.j-body-col {
+}
+
+.j-inline-help {
+    margin-top: 7px !important;
+    margin-bottom: 5px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    color: gray;
+}
+
+.j-validation-help {
+    margin-top: 7px !important;
+    margin-bottom: 5px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    color: orange;
+}
+
+.j-input[data-is-valid="false"] {
+    outline: 1px solid rgb(222, 27, 27) !important;
+    outline-offset: -2px;
+}
+
+.j-input[data-is-valid="true"].j-validation-help {
+    display: none;
+}
+
+.j-required-star {
+    color: rgb(222, 27, 27);
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+* {
+    font-family: consolas, monospace;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+}
+
+td.j-title-col {
+    font-size: 20px;
+}
+
+td.j-title-col {
+    width: 220px;
+}
+
+.j-node-title {
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#jsonEditor > .j-container .j-object-title-row > .j-sep-col {
+    display: none;
+    visibility: hidden;
+    width: 0;
+}
+
+#jsonEditor > .j-container .j-object-title-row .j-title-col {
+    width: auto;
+}
+
+#jsonEditor > .j-container .j-object-title-row {
+    background: #f1f1f1;
+    color: #414141;
+}
+
+    #jsonEditor > .j-container .j-object-title-row > td:first-child {
+        padding-top: 0.2em;
+        padding-bottom: 0em;
+        background: white;
+    }
+
+tr.j-object-properties > td > table.j-container {
+    border-bottom: thin solid #0f70af !important;
+}
+
+.j-input {
+    background: transparent;
+    font-size: 16px;
+}
+
+    .j-input::placeholder {
+        color: #777;
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .j-input.j-input-date {
+        max-width: 220px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .j-input.j-input-checkbox {
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .j-input.j-input-select {
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .j-input.j-input-select > option {
+            cursor: pointer;
+            background-color: #fafafa;
+            font-size: 16px;
+        }
+
+#jsonEditor > .j-container .j-object-title-row.j-object-title-row-ec {
+    cursor: pointer;
+}
+
+    #jsonEditor > .j-container .j-object-title-row.j-object-title-row-ec:hover {
+        cursor: pointer;
+    }
+
+.j-remove-array-item {
+    position: absolute;
+    right: 0;
+    margin-right: 1em;
+}
+
+input {
+    font-size: 16px;
+    font-family: consolas, monospace;
+}
+
+.j-validation-help {
+    font-size: 13.25px;
+    font-style: italic;
+    top: 0;
+    margin: 0 !important;
+    top: 38px;
+    margin-top: 4px !important;
+    line-height: 1;
+    color: rgb(233, 133, 33);
+}
+
+.j-required-star {
+    font-size: 20px;
+}
+
+td.j-array-items > table.j-container {
+    margin-bottom: 16px;
+}
+
+tr.j-object-title-row.j-object-title-row-ec.collapsed {
+    box-shadow: 0px 1px 1px #0f70af !important;
+}
+
+tr.j-object-title-row.j-object-title-row-ec.expanded {
+    /* box-shadow: 0px 0px 2px #0f70af !important; */
+    border-bottom: 2px solid black;
+}
+
+/* tr.j-object-title-row.j-object-title-row-ec:hover {
+  box-shadow: 0px 1px 3px #0f70af !important;
+} */
+
+#jsonEditor {
+    padding: 0.5em;
+}
+
+thead tr {
+    background-color: red;
+    color: #ffffff;
+    text-align: left;
+}
+
+.jsonEditor-container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    /* background-image: url('http://episerver.demo:51010/Util/images/login/login-background-image.png');  */
+}
+
+.jsonEditor-menu {
+    width: 100%;
+    margin: 1em;
+}
+
+    .jsonEditor-menu button {
+        padding: 0.5em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+        background: hsl(227, 100%, 50%);
+        border: 0 solid;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+#previewModal {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 70px;
+    border: 0;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.68);
+}
+
+.previewModal-container {
+    position: relative;
+    background: white;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+    border: 3px solid #414141;
+}
+
+#previewModalClose {
+    display: block;
+    width: 100%;
+    font-size: 22px;
+    line-height: 1;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    background: hsl(227, 100%, 50%);
+    color: white;
+    border: 0 solid;
+    border-radius: 4px;
+    cursor: pointer;
+}

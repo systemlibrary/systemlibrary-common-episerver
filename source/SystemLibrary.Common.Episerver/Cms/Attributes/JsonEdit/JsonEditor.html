@@ -1,38 +1,233 @@
-﻿<head>
+﻿<html>
+
+<head>
     <meta charset="utf-8">
-    <title>Json Edit</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="jsonedit/json-edit.js"></script>
+    <link href="jsonedit/json-edit.css" rel="stylesheet" type="text/css" />
+    -->
+
+    <!--
+    <script src="jsonedit/json-edit.min.js"></script>
+    <link href="jsonedit/json-edit.min.css" rel="stylesheet" type="text/css" />
+    -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="EditorScript"></script>
+    <link href="EditorStyle" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    <div
-        style="position: absolute; text-align: center; left: 0px; vertical-align: top; top: 91%; margin-top: 0; border: 0; background-color: #e1e1e1; width: 100%; height: 7%; overflow:hidden; padding-top: 20px;">
-        <button id="btnSaveAndClose">Save</button>
-        <button id="btnClose">Cancel</button>
+    <div class="jsonEditor-container">
+        <div class="jsonEditor-menu">
+            <button id="jsonEditSortByPropertyName1">Sort</button>
+            <button id="jsonEditSortByPropertyName2">Sort2</button>
+            <button id="preview">Preview Json</button>
+            <button id="collapseExpandAll">Collapse/Expand All</button>
+            <button id="btnSaveAndClose">Save</button>
+            <button id="btnClose">Cancel</button>
+        </div>
+        <div>
+            <div id="jsonEditor"></div>
+        </div>
     </div>
+
+    <div id="previewModal">
+        <div class="previewModal-container">
+            <button id="previewModalClose">Close</button>
+            <p>Json validated: <span id="jsonValidity">true</span></p>
+            <b>Data:</b>
+            <pre id="jsonValue"></pre>
+        </div>
+    </div>
+
+    <script>
+        var v = {};
+        var s = {};
+        var je;
+        $(document).ready(function () {
+            s = {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "title": window.jsonEditTitle,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/datatype"
+                        }
+                    }
+                },
+                "required": [],
+                "definitions": {
+                    "datatype": {
+                        "type": "object",
+                        "properties": jsonEditPropertiesObject.properties,
+                        "required": jsonEditPropertiesObject.required
+                    }
+                }
+            };
+
+            v = {
+                "ascendingOrder": true,
+                "data": jsonEditValue
+            };
+
+            je = $("#jsonEditor").jsonEdit({
+                "treeExpandCollapseButton": "true",
+                "schema": s,
+                "value": v,
+                "afterValueChanged": function (newValue, newSchema) {
+                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    setValidity();
+                },
+                "afterWidgetCreated": function (newValue, newSchema) {
+                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    setValidity();
+                }
+            });
+
+            if (jsonEditSortByPropertyName1 && jsonEditSortByPropertyName1.length > 0) {
+                $("#jsonEditSortByPropertyName1").text('Sort: ' + jsonEditSortByPropertyName1);
+            } else {
+                $("#jsonEditSortByPropertyName1").hide();
+            }
+            if (jsonEditSortByPropertyName2 && jsonEditSortByPropertyName2.length > 0) {
+                $("#jsonEditSortByPropertyName2").text('Sort: ' + jsonEditSortByPropertyName2);
+            } else {
+                $("#jsonEditSortByPropertyName2").hide();
+            }
+
+
+        });
+
+        function sortByProperty(propertyName) {
+            function sortByPropertyName(prop, isAscending) {
+                return function (a, b) {
+                    if (typeof (a) === 'undefined' || typeof (b) === 'undefined' || a === null || b === null) {
+                        if (isAscending) {
+                            return -1;
+                        }
+                        else {
+                            return 1;
+                        }
+                    }
+                    if (isAscending) {
+                        if (a[prop] > b[prop]) {
+                            return 1;
+                        } else if (a[prop] < b[prop]) {
+                            return -1;
+                        }
+
+                        if (a.prop > b.prop) {
+                            return 1;
+                        } else {
+                            if (a.prop < b.prop) {
+                                return -1;
+                            }
+                        }
+                        return 0;
+                    }
+                    else {
+                        if (a[prop] > b[prop]) {
+                            return -1;
+                        } else if (a[prop] < b[prop]) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                }
+            }
+
+            var temp = v.data;
+            var result = temp.sort(sortByPropertyName(propertyName, v.ascendingOrder));
+            v.ascendingOrder = !v.ascendingOrder;
+            v.data = result;
+
+            je = $("#jsonEditor").jsonEdit({
+                "treeExpandCollapseButton": "true",
+                "schema": s,
+                "value": v,
+                "afterValueChanged": function (newValue, newSchema) {
+                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    setValidity();
+                },
+                "afterWidgetCreated": function (newValue, newSchema) {
+                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    setValidity();
+                }
+            });
+        }
+
+        function setValidity() {
+            if (je) $("#jsonValidity").html(JSON.stringify(je.isValid()));
+        }
+
+        function showPreviewModal() {
+            $("#previewModal").show();
+        }
+
+        function showPreviewModalClose() {
+            $("#previewModal").hide();
+        }
+
+        function collapseExpandAll() {
+            let i = 0;
+            let collapse = true;
+            $('.j-title-col div.j-ec').each(function () {
+                var n = $(this)[0];
+                if (i === 0) {
+                    if (n.innerHTML.includes('↓')) {
+                        collapse = false;
+                    }
+                }
+
+                if (n.innerHTML.includes('↓') && !collapse) {
+                    $(this).click();
+                }
+                if (!n.innerHTML.includes('↓') && collapse) {
+                    $(this).click();
+                }
+                i++;
+            });
+        }
+
+        $(document).ready(function () {
+            $("#jsonEditSortByPropertyName1").on('click', () => sortByProperty(jsonEditSortByPropertyName1));
+            $("#jsonEditSortByPropertyName2").on('click', () => sortByProperty(jsonEditSortByPropertyName2));
+            $("#preview").on('click', showPreviewModal);
+            $("#previewModalClose").on('click', showPreviewModalClose);
+            $('#collapseExpandAll').on('click', collapseExpandAll);
+            $("#previewModal").hide();
+        })
+    </script>
+
+    <script>
+        function onSaveAndClose(e) {
+            const jsonValueObject = JSON.parse($("#jsonValue").html());
+
+            window.onSave(jsonValueObject.data);
+
+            return onClose(e);
+        }
+
+        function onClose(e) {
+            window.close();
+            return true;
+        }
+
+        var btnClose = document.getElementById('btnClose');
+        btnClose.onclick = onClose;
+
+        var btnSave = document.getElementById('btnSaveAndClose');
+        btnSave.onclick = onSaveAndClose;
+
+        // setTimeout(50, () => {
+        //     console.log("Current data");
+        //     console.log(window.json);
+        // });
+    </script>
 </body>
 
-<script>
-    function onSaveAndClose(e) {
-
-        var data = "{}";
-        window.onSave(data);
-
-        return onClose(e);
-    }
-
-    function onClose(e) {
-        window.close();
-        return true;
-    }
-
-    var btnClose = document.getElementById('btnClose');
-    btnClose.onclick = onClose;
-
-    var btnSave = document.getElementById('btnSaveAndClose');
-    btnSave.onclick = onSaveAndClose;
-
-    setTimeout(50, () => {
-        console.log("Current data");
-        console.log(window.json);
-    });
-</script>
+</html>

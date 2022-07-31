@@ -16,6 +16,9 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 
     public Type Type { get; set; }
 
+    public string SortByPropertyName1 { get; set; }
+    public string SortByPropertyName2 { get; set; }
+
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
         var additionalMetadata = context?.DisplayMetadata?.AdditionalValues;

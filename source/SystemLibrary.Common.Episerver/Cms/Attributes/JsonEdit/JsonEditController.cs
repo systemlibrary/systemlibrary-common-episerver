@@ -23,15 +23,31 @@ public partial class JsonEditController : BaseCmsController
         return (HtmlCache = GetFileContentResult(html, "text/html"));
     }
 
-    public ActionResult Editor()
+    public ActionResult Editor([FromQuery] string jsonEditProperties)
     {
         AddCacheHeaders();
 
-        if (EditorCache != null) return EditorCache;
+        //if (EditorCache != null) return EditorCache;
 
         var editor = GetEmbeddedResource(CurrentFolder, "JsonEditor.html");
 
+        editor.Replace("$" + nameof(jsonEditProperties) + "$", jsonEditProperties);
+
         return (EditorCache = GetFileContentResult(editor, "text/html"));
+    }
+
+    public ActionResult EditorScript()
+    {
+        var editorScript = GetEmbeddedResource(CurrentFolder, "JsonEditor.js");
+
+        return GetFileContentResult(editorScript, "text/javascript");
+    }
+
+    public ActionResult EditorStyle()
+    {
+        var editorStyle = GetEmbeddedResource(CurrentFolder, "JsonEditor.css");
+
+        return GetFileContentResult(editorStyle, "text/css");
     }
 
     public ActionResult Script()

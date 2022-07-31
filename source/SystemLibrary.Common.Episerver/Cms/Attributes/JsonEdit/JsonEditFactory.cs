@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using Castle.Core.Internal;
 
@@ -19,13 +20,21 @@ public class JsonEditFactory : ISelectionFactory
         {
             var options = metadata.GetAttribute<JsonEditAttribute>();
 
-            if (options == null)
-                throw new Exception(nameof(JsonEditAttribute) + " can only be used by adding the attribute to the property: " + metadata.PropertyName);
+            if (options?.Type == null)
+                throw new Exception(nameof(JsonEditAttribute) + " can only be used by adding the attribute to the property: " + metadata.PropertyName + ", and you must set the Type property of the attribute");
 
             var type = metadata.ContainerType;
 
-            metadata.EditorConfiguration.Add("typeName", options.Type.Name);
-            metadata.EditorConfiguration.Add("jsonSchema", "");
+            var title = type.Name;
+            var displayName = options.Type.GetAttribute<DisplayAttribute>();
+            if (displayName?.Name.Is() == true)
+                title = displayName.Name;
+
+            metadata.EditorConfiguration.Add("jsonEditTitle", title);
+            metadata.EditorConfiguration.Add("jsonEditProperties", JsonEditPropertiesLoader.GetProperties(options.Type));
+            metadata.EditorConfiguration.Add("jsonEditSortByPropertyName1", options.SortByPropertyName1);
+            metadata.EditorConfiguration.Add("jsonEditSortByPropertyName2", options.SortByPropertyName2);
+
             metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/Common/Episerver/UiHint/JsonEdit/" + nameof(JsonEditController.Editor));
         }
         catch (Exception ex)
