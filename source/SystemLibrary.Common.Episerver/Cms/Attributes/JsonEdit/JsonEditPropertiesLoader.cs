@@ -58,23 +58,35 @@ internal static class JsonEditPropertiesLoader
     static string AddProperty(PropertyInfo property)
     {
         var type = property.PropertyType;
-        if (!IsValidDefinitionType(type))
+        if (!IsValidVariableType(type))
         {
-            Dump.Write("Unsupported type: " + type.Name + ", for property: " + property.Name);
-            return null;
+            if (IsSimpleClassObject(type))
+            {
+                var child = new StringBuilder("\"" + property.Name + "\": {");
+                child.Append("\"type\": \"object\",");
+                child.Append(GetProperties(type));
+
+                child.Append("},");
+                return child.ToString();
+            }
+            else
+            {
+                Log.Error("Unsupported type: " + type.Name + ", for property: " + property.Name + ". The Json Editor supports only simple types: string, int, double, datetime, datetimeoffset, bool, Enum or a  Class variable with those variables inside");
+                return null;
+            }
         }
 
-        var jsonProperty = GetDefinitionName(property, type);
+        var jsonProperty = new StringBuilder(GetDefinitionName(property, type));
 
         if (type.IsEnum)
-            jsonProperty += GetDefinitionEnumSelections(type);
+            jsonProperty.Append(GetDefinitionEnumSelections(type));
         else
-            jsonProperty += GetDefinitionUiHints(property, type);
+            jsonProperty.Append(GetDefinitionUiHints(property, type));
 
-        jsonProperty += Environment.NewLine + "},";
-        return jsonProperty;
+        jsonProperty.Append(Environment.NewLine + "},");
+
+        return jsonProperty.ToString();
     }
-
 
     //"name": { "type": "string",
     static string GetDefinitionName(PropertyInfo property, Type type)
@@ -137,7 +149,7 @@ internal static class JsonEditPropertiesLoader
         return ui + "}";
     }
 
-    static bool IsValidDefinitionType(Type type)
+    static bool IsValidVariableType(Type type)
     {
         return type == SystemType.StringType ||
             type == SystemType.IntType ||
@@ -146,6 +158,28 @@ internal static class JsonEditPropertiesLoader
             type == SystemType.DateTimeType ||
             type == typeof(double) ||
             type.IsEnum;
+    }
+
+    static bool IsSimpleClassObject(Type type)
+    {
+        if (!type.IsClass ||
+            type.IsValueType ||
+            type.IsPrimitive ||
+            type.IsGenericType ||
+            type.IsGenericParameter ||
+            type.IsGenericTypeDefinition ||
+            type.IsByRef ||
+            type.IsMarshalByRef ||
+            type.IsListOrArray() ||
+            type.IsDictionary() ||
+            type.IsPointer ||
+            type.IsAbstract ||
+            !type.IsTypeDefinition ||
+            type.IsVariableBoundArray ||
+            type.IsInterface)
+            return false;
+
+        return true;
     }
 
     static string AddRequiredPropertyName(PropertyInfo property)

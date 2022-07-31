@@ -186,10 +186,15 @@
             if (changedObject.prop("tagName").toLowerCase() == "input" && changedObject.prop("type").toLowerCase() == "checkbox") {
                 p = p + "=" + (changedObject.prop("checked") == true ? "true" : "false") + ";";
             } else {
-                p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
+                if (changedObject.prop("type") === "number" || changedObject.prop("type") === "select-one") {
+                    p = p + "=" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + ";";
+                } else {
+                    p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
+                }
             }
             eval(p);
             validateInput(changedObject);
+
             if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
         }
 
@@ -275,7 +280,7 @@
                     if (editor == "select") {
                         if (!isRequired) inputBody = '<option selected="true">' + options["selectNullCaption"] + '</option>';
                         jQuery.each(schemaNode["enum"], function (index) {
-                            inputBody += '<option value="' + schemaNode["enum"][index] + '">' + schemaNode["enum"][index] + '</option>';
+                            inputBody += '<option value="' + index + '">' + schemaNode["enum"][index] + '</option>';
                         });
                         inputBody = '<select ' + classAtt + dataValueNameAtt + requiredAtt + '>' + inputBody + "</select>";
                     }
@@ -411,7 +416,9 @@
                 } else {
                     if (options["autoTrimValues"] == "true") {
                         var _temp = V(v, $(this).attr("data-path"));
-                        if (_temp) _temp = _temp.trim();
+
+                        if (_temp && _temp.trim) _temp = _temp.trim();
+
                         $(this).val(_temp);
                         // if (typeof (_temp) !== 'undefined' && isNaN(_temp)) {
                         //     let titleRow = $(this).parents('.j-container').parents('.j-container').find('.j-node-title:first');
@@ -422,7 +429,6 @@
                         // }
                     } else {
                         $(this).val(V(v, $(this).attr("data-path")));
-                        console.log("NOPE");
                     }
                     if ($(this).hasClass("j-input-html")) {
                         $(this).parents(":first").find(".j-input-html-div:first").html($(this).val());

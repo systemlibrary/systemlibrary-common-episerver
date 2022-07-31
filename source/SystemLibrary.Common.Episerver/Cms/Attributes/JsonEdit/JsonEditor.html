@@ -207,7 +207,9 @@
         function onSaveAndClose(e) {
             const jsonValueObject = JSON.parse($("#jsonValue").html());
 
-            window.onSave(jsonValueObject.data);
+            const data = jsonValueObject.data.filter(x => x);
+
+            window.onSave(data);
 
             return onClose(e);
         }

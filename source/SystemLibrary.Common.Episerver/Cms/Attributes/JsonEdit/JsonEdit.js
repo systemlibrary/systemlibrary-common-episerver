@@ -90,6 +90,11 @@
                     }
                     const jsonEditPropertiesObject = JSON.parse('{' + jsonEditProperties + '}');
 
+                    if (jsonEditPropertiesObject === null || jsonEditPropertiesObject.required === null ||
+                        typeof (jsonEditPropertiesObject.required) === 'undefined') {
+                        throw "Error: Fields from backend was not loaded properly, try refresh";
+                    }
+
                     if (Array.isArray(jsonEditPropertiesObject)) {
                         console.warn(jsonEditProperties);
                         throw "Error: schema properties is an array, it should be an object with 'required' and 'properties' variables";
@@ -127,9 +132,6 @@
 
                         let jsonText = JSON.stringify(newJson);
 
-                        console.log("SAVING");
-                        console.log(jsonText);
-
                         this._setValueAttr(jsonText);       //This should be "setValue()"?
 
                         this.onChange(jsonText);            //OnChange is sufficient, why setValueAttr?
@@ -160,7 +162,6 @@
 
             //always invoked on initial load by Epi, value is current value from the database
             _setValueAttr: function (value) {
-                console.log("VAlue from EPI " + value);
                 this._setValue(value, true);
             },
 
@@ -178,7 +179,6 @@
                         return;
                     }
 
-                    console.log("setting new value" + value);
                     this._set('value', value);
 
                     if (this.jsonTextArea.value !== value) {
