@@ -1,7 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SystemLibrary.Common.Episerver.Tests.Models;
+
+public class JsonEditCarInvalid
+{
+    [Required(ErrorMessage = "Must have larger text than 0")]
+    [Display(Name = "Fornavn her", Description = "Her kan du fylle inn fornavn")]
+    public string Name { get; set; }
+
+    [Required(AllowEmptyStrings = true)]
+    [Display(Name = "Mellomnavn", Description = "Mellomnavn her...")]
+    public string MiddleName { get; set; }
+
+    public string lastName { get; set; }
+
+    public List<int> PhoneNumbers { get; set; }
+
+    public int[] PhoneNumberArray { get; set; }
+}
 
 public class JsonEditCar
 {

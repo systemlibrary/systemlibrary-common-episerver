@@ -13,9 +13,12 @@ namespace SystemLibrary.Common.Episerver.Tests;
 public class JsonEditClassConverterTests
 {
     [TestMethod]
-    public void Is_And_IsNot_Success()
+    public void Convert_Class_To_JsonEdit_Json_Data()
     {
         var result = InvokeTestMethod(typeof(JsonEditCar));
+
+
+        Assert.IsTrue(result != null && result.Length > 100);
 
         Assert.IsFalse(result.StartsWith("{"));
         Assert.IsFalse(result.StartsWith("["));
@@ -29,6 +32,20 @@ public class JsonEditClassConverterTests
         Assert.IsFalse(result.Contains("A2"));
 
         var res = JsonDocument.Parse("{" + result + "}");
+
+        Assert.IsTrue(res != null);
+    }
+
+    [TestMethod]
+    public void Convert_Class_To_JsonEdit_Json_Data_Fails()
+    {
+        var result = InvokeTestMethod(typeof(JsonEditCarInvalid));
+
+        Assert.IsTrue(result != null && result.Length > 100);
+        var res = JsonDocument.Parse("{" + result + "}");
+
+        Assert.IsFalse(result.Contains("PhoneNumbers"));
+        Assert.IsFalse(result.Contains("PhoneNumberArray"));
 
         Assert.IsTrue(res != null);
     }
