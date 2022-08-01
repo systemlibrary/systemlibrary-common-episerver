@@ -21,10 +21,19 @@ A library of classes and methods for any .NET &gt;= 6 episerver web application
 ### New Custom Dojo/Dijits
 - Parent Link Reference
 ![Parent Link Reference Preview](assets/images/cms-property-parentlinkreference.png?raw=true "Parent Link Reference Preview")
+
 - BoxSelection
+![Box Selection Preview](assets/images/cms-property-boxselection.png?raw=true "Box Selection Preview")
+
 - Message
+![Message Preview](assets/images/cms-property-message.png?raw=true "Message Preview")
+
 - JsonEdit
+![Json Edit Preview](assets/images/cms-property-jsonedit1.png?raw=true "Json Edit Preview")
+![Json Edit Preview](assets/images/cms-property-jsonedit2.png?raw=true "Json Edit Preview")
+
 - ContentIcon
+![Content Icon Preview](assets/images/cms-property-contenticon.png?raw=true "Content Icon Preview")
 
 ### Details
 
