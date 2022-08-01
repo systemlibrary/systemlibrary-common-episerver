@@ -10,7 +10,10 @@ public partial class JsonEditController : BaseCmsController
 
     static ActionResult ScriptCache;
     static ActionResult HtmlCache;
-    static ActionResult EditorCache;
+    static ActionResult EditorHtmlCache;
+
+    static ActionResult EditorScriptCache;
+    static ActionResult EditorStyleCache;
 
     public ActionResult Html()
     {
@@ -22,35 +25,7 @@ public partial class JsonEditController : BaseCmsController
 
         return (HtmlCache = GetFileContentResult(html, "text/html"));
     }
-
-    public ActionResult Editor([FromQuery] string jsonEditProperties)
-    {
-        AddCacheHeaders();
-
-        //if (EditorCache != null) return EditorCache;
-
-        var editor = GetEmbeddedResource(CurrentFolder, "JsonEditor.html");
-
-        editor.Replace("$" + nameof(jsonEditProperties) + "$", jsonEditProperties);
-
-        return (EditorCache = GetFileContentResult(editor, "text/html"));
-    }
-
-    public ActionResult EditorScript()
-    {
-        var editorScript = GetEmbeddedResource(CurrentFolder, "JsonEditor.js");
-
-        return GetFileContentResult(editorScript, "text/javascript");
-    }
-
-    public ActionResult EditorStyle()
-    {
-        var editorStyle = GetEmbeddedResource(CurrentFolder, "JsonEditor.css");
-
-        return GetFileContentResult(editorStyle, "text/css");
-    }
-
-    public ActionResult Script()
+     public ActionResult Script()
     {
         AddCacheHeaders();
 
@@ -58,14 +33,41 @@ public partial class JsonEditController : BaseCmsController
 
         var script = GetEmbeddedResource(CurrentFolder, "JsonEdit.js");
 
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
-
-        if (cmsEdit.Enabled)
-        {
-            script.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor) + "Darkened", cmsEdit.MessagePropertyBackgroundColor.HexDarkenOrLighten(0.41, false));
-            script.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor), cmsEdit.MessagePropertyBackgroundColor);
-        }
-
         return (ScriptCache = GetFileContentResult(script, "text/javascript"));
     }
+
+    public ActionResult EditorHtml()
+    {
+        AddCacheHeaders();
+
+        if (EditorHtmlCache != null) return EditorHtmlCache;
+
+        var editor = GetEmbeddedResource(CurrentFolder, "JsonEditor.html");
+
+        return (EditorHtmlCache = GetFileContentResult(editor, "text/html"));
+    }
+
+    public ActionResult EditorScript()
+    {
+        AddCacheHeaders();
+
+        if (EditorScriptCache != null) return EditorScriptCache;
+
+        var editorScript = GetEmbeddedResource(CurrentFolder, "JsonEditor.js");
+
+        return (EditorScriptCache = GetFileContentResult(editorScript, "text/javascript"));
+    }
+
+    public ActionResult EditorStyle()
+    {
+        AddCacheHeaders();
+
+        if (EditorStyleCache != null) return EditorStyleCache;
+
+        var editorStyle = GetEmbeddedResource(CurrentFolder, "JsonEditor.css");
+
+        return (EditorStyleCache = GetFileContentResult(editorStyle, "text/css"));
+    }
+
+   
 }

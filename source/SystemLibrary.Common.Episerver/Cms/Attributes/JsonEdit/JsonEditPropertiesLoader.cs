@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
 internal static class JsonEditPropertiesLoader
 {
-    internal static string GetProperties(Type type)
+    internal static string GetPropertySchema(Type type)
     {
         if (!type.IsClass)
             throw new Exception("Type " + type.Name + " is not a class, cannot continue loading the jsonedit editor");
@@ -64,7 +64,7 @@ internal static class JsonEditPropertiesLoader
             {
                 var child = new StringBuilder("\"" + property.Name + "\": {");
                 child.Append("\"type\": \"object\",");
-                child.Append(GetProperties(type));
+                child.Append(GetPropertySchema(type));
 
                 child.Append("},");
                 return child.ToString();

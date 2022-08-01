@@ -17,7 +17,6 @@ public class JsonEditClassConverterTests
     {
         var result = InvokeTestMethod(typeof(JsonEditCar));
 
-
         Assert.IsTrue(result != null && result.Length > 100);
 
         Assert.IsFalse(result.StartsWith("{"));

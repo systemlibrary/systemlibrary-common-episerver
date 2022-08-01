@@ -8,7 +8,6 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
-//This should be an EditorDescriptor as it needs to vary based on type AND uihint...?
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 {

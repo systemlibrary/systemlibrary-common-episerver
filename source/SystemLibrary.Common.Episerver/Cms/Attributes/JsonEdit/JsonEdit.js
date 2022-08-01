@@ -146,7 +146,7 @@
                     this.isShowingEditorWindow = true;
 
                 } catch (e) {
-                    this.setError("Error occured: " + e.toString());
+                    this.setError(e.toString());
                     console.error(e);
                 }
             },
@@ -209,6 +209,17 @@
                     let jsonEditSortByPropertyName2 = this.jsonEditSortByPropertyName2;
                     let jsonEditProperties = this.jsonEditProperties;
                     let jsonEditorUrl = this.jsonEditorUrl;
+
+                    const selections = this.selections;
+                    if (this.is(selections)) {
+                        selections.forEach(selection => {
+                            let text = selection.text;
+                            if (this.is(text) && text.startsWith("ERROR: ")) {
+                                console.error(text);
+                                this.setError(text);
+                            }
+                        });
+                    }
 
                     this._bindEvents(this,
                         () => this._onEditJsonClick(jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl),

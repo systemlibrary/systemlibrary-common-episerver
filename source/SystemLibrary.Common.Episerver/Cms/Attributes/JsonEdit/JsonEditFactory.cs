@@ -7,6 +7,7 @@ using Castle.Core.Internal;
 using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Extensions;
+using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
@@ -25,17 +26,19 @@ public class JsonEditFactory : ISelectionFactory
 
             var type = metadata.ContainerType;
 
+            if(type != SystemType.StringType)
+                throw new Exception("Cannot add 'JsonEdit' attribute on property of type " + type.Name + ". Change it to a string");
+
             var title = type.Name;
             var displayName = options.Type.GetAttribute<DisplayAttribute>();
             if (displayName?.Name.Is() == true)
                 title = displayName.Name;
 
             metadata.EditorConfiguration.Add("jsonEditTitle", title);
-            metadata.EditorConfiguration.Add("jsonEditProperties", JsonEditPropertiesLoader.GetProperties(options.Type));
+            metadata.EditorConfiguration.Add("jsonEditProperties", JsonEditPropertiesLoader.GetPropertySchema(options.Type));
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName1", options.SortByPropertyName1);
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName2", options.SortByPropertyName2);
-
-            metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/Common/Episerver/UiHint/JsonEdit/" + nameof(JsonEditController.Editor));
+            metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/Common/Episerver/UiHint/JsonEdit/" + nameof(JsonEditController.EditorHtml));
         }
         catch (Exception ex)
         {
