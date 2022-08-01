@@ -6,44 +6,53 @@
 
 
 ## Latest Version
-- 6.0.0.2
+- 6.1.0.1
+- New custom dijits: Message, BoxSelection and JsonEdit
+- New property list of T? Simply create a new [PropertyDefinitionTypePlugIn(Description = "...", GUID = "...")] class TProperty : IListProperty&lt;Car&gt;
 - Updated latest dependencies
-- Bumped version to reflect we are on .NET 6
-- FontAwesome Solid Icons now works in ContentIcon attribute
-- ContentIcon attribute bug where Solid Icons from FontAwesome not displaying fixed
-- ContentIcon attribute with a custom relative icon path, now also shows the icon in the page tree
-- Added "PageDataExtensions" such as Is() IsNot() and ToFriendlyUrl()
-- Renamed ServiceCollectionEpiserverOptions to CommonEpiserverApplicationServicesOptions (Breaking Change)
-- Renamed EpiserverApPBuilderOptions to CommonEpiserverApplicationBuilderOptions (Breaking Change)
-- Default password for demo user is now Demo123! instead of Admin123!
-- ViewLocations now actually registered - they were never invoked in previous version iirc
-- ParentLinkReference a new custom property: public virtual ParentLinkReference LinkRef { get;set;} on any block or page, try it!
-- Two new configurations: activeProjectBarBackgroundColor and hideLanguageColumnInVersionGadget, available in appSettings.json
-- Install documentation is completely rewritten
 
 ## Description
 A library of classes and methods for any .NET &gt;= 6 episerver web application
 
+### Initialize App In One Line
 * Setup IApplicationBuilder in one line: app.CommonEpiserverApplicationBuilder();
 * Setup IServiceCollection in one line: services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
 
-The two methods in short enables:
-* serving of static common file types (css, js, png, jpg, ...)
-* routing requests to controllers
-* registers services for AspNet.Mvc
-* registers and enabled Authorization and Authentication
-* registers and initializes Episerver Cms
-* registers a new "demo/Demo123!" user if there's no user in the DB
-* registers a few view locations, and you can add more when calling CommonEpiserverApplicationServices()
-* enables the login screen on "https://domain.com/episerver"
+### New Custom Dojo/Dijits
+- Parent Link Reference
+![Parent Link Reference Preview](assets/images/cms-property-parentlinkreference.png?raw=true "Parent Link Reference Preview")
+- BoxSelection
+- Message
+- JsonEdit
+- ContentIcon
 
-Contains other modules such as:
-- ContentIcon, custom icon for blocks and pages with over several thousand to pick from (FontAwesome Free Icons v6), and PageTree is also using the icons
+### Details
+
+####
+The two one-liners enables:
+* AspNet.Mvc
+* Serving of static file types such as css, js, png, jpg, ...
+* Routing requests to controllers
+* Authorization and Authentication attributes
+* Episerver Cms
+* A new user "demo/Demo123!" if no user exists already
+* View locations, which you add more through the one-liner: CommonEpiserverApplicationServices()
+* Enables login on url https://domain.com/episerver
+
+#### Custom Dojo/Dijits
+- Parent Link Reference, a link to where the "current content" is stored, so no more "where is this content stored?"
+
+- BoxSelection, an "advanced" checkbox/radio list, with options to display background colors, or images from FontAwesome package
+
+- Message, a custom message rendered as a property in "Settings View", does not store anything, just a "ui help text"
+
+- JsonEdit, a simple editor to edit json formatted data that is stored in a string property, which you easily just call "nameOfProperty".ToJson&lt;List&lt;Car&gt;&gt;(); to get the data as a list of some C# object
+
+- ContentIcon, pick a content icon for your types either from FontAwesome or add your own custom image by a relative path. The page icon also shows up in the page tree
+
 - Extensions like Is() and IsNot() for XhtmlString, ContentReference and ContentArea
-- New property types, such as: ParentLinkReference, which creates a Link in "Property Mode" to its parent, no more 'Where is this content stored'
-- Contains a "CurrentUser" you can inject or new up
 
-Multiple dijit widgets coming soon, like colorpicker and much much more!
+- Contains a "CurrentUser" which you can simply "var user = new CurrentUser()" anywhere, or inject it
 
 ## Docs
 Documentation with samples:
