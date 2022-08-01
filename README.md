@@ -19,20 +19,21 @@ A library of classes and methods for any .NET &gt;= 6 episerver web application
 * Setup IServiceCollection in one line: services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
 
 ### New Custom Dojo/Dijits
-- Parent Link Reference
+
+##### Parent Link Reference
 ![Parent Link Reference Preview](assets/images/cms-property-parentlinkreference.png?raw=true "Parent Link Reference Preview")
 
-- BoxSelection
+##### BoxSelection
 ![Box Selection Preview](assets/images/cms-property-boxselection.png?raw=true "Box Selection Preview")
 
-- Message
+##### Message
 ![Message Preview](assets/images/cms-property-message.png?raw=true "Message Preview")
 
-- JsonEdit
+##### JsonEdit
 ![Json Edit Preview](assets/images/cms-property-jsonedit1.png?raw=true "Json Edit Preview")
 ![Json Edit Preview](assets/images/cms-property-jsonedit2.png?raw=true "Json Edit Preview")
 
-- ContentIcon
+##### ContentIcon
 ![Content Icon Preview](assets/images/cms-property-contenticon.png?raw=true "Content Icon Preview")
 
 ### Details
