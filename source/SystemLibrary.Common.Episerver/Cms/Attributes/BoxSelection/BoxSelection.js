@@ -196,7 +196,7 @@
                         additional = additional.substring(1);
                     }
 
-                    inline += ' background-image:url(' + additional + ');background-size: 42%;';
+                    inline += ' background-image:url(' + additional + ');background-size: 36%;';
 
                     if (is(text)) {
                         inline += 'background-position-y: 2px;align-items:end;';
@@ -299,7 +299,7 @@
                             }
                         } else {
                             if (Array.isArray(value)) {
-                                console.warn("Value is an array from an onClick event from a box, this should never happen");
+                                console.warn("BoxSelection: value is an array from an onClick event from a box, this should never happen");
                                 return;
                             } else {
                                 if (selected.includes(value)) {
@@ -307,7 +307,7 @@
                                         selected = selected.filter(e => e !== value)
                                     } else {
                                         if (selected.length === 1) {
-                                            console.warn("allowUnselection is false: cannot unselect the value leaving the list empty");
+                                            console.warn("BoxSelection: allowUnselection is false, cannot unselect the value leaving the list empty");
                                             return;
                                         }
                                         selected = selected.filter(e => e !== value)
@@ -326,7 +326,7 @@
                         else {
                             if (this.allowUnselection !== true) {
                                 if (isEqual(this.value, value)) {
-                                    console.warn("allowUnselection is false: cannot unselect the value");
+                                    console.warn("BoxSelection: allowUnselection is false, cannot unselect the value");
                                     return;
                                 } else {
                                     this._set('value', value);
@@ -407,7 +407,7 @@
                 }
                 catch (e) {
                     console.error(e);
-                    console.error("Error marking clicked box in the list");
+                    console.error("BoxSelection: Error marking clicked box in the list");
                 }
             },
 
@@ -440,7 +440,7 @@
                     const boxes = this.selections;
 
                     if (!is(boxes)) {
-                        console.warn("Warning: No boxes from the backend");
+                        console.warn("BoxSelection: No boxes from the backend");
                         return;
                     }
                     boxes.forEach(box => {

@@ -1,4 +1,4 @@
-﻿namespace SystemLibrary.Common.Episerver.Cms;
+﻿namespace SystemLibrary.Common.Episerver.Cms.Properties;
 
 /// <summary>
 /// Property type to display 'parent link' inside the CMS

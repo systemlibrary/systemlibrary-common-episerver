@@ -7,7 +7,7 @@ using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 
 using SystemLibrary.Common.Episerver.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.HideCategoryList;
+namespace SystemLibrary.Common.Episerver.Cms.Descriptors;
 
 [EditorDescriptorRegistration(TargetType = typeof(CategoryList))]
 public class HideCategoryListDescriptor : EditorDescriptor

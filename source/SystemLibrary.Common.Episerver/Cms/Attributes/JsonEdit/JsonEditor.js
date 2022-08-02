@@ -16,8 +16,17 @@
         };
         return output;
 
+        function setLocalStorageData(name, value) {
+            localStorage.setItem(name, JSON.stringify(value));
+        }
+
+        function getLocalStorageData(name) {
+            return localStorage.getItem(name);
+        }
+
         function initOptions() {
             options = options || {};
+            options["storageDataName"] = options["storageDataName"] || 'systemLibraryCommonEpiserverJsonEditStorageDataName';
             options["expandingLevel"] = (options["expandingLevel"] == null ? -1 : options["expandingLevel"]) // -1:expand all
             options["value"] = options["value"] || {};
             options["schema"] = options["schema"] || {};
@@ -27,6 +36,29 @@
             options["radioNullCaption"] = options["radioNullCaption"] || 'null';
             options["selectNullCaption"] = options["selectNullCaption"] || '';
             options["treeExpandCollapseButton"] = options["treeExpandCollapseButton"] || 'true';
+
+            try {
+                var currentStoredData = getLocalStorageData(options["storageDataName"]);
+                if (currentStoredData) {
+                    if (options["value"].data) {
+                        var currentValue = JSON.stringify(options["value"].data);
+                        var storedLength = currentStoredData.length;
+                        if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
+                            if (prompt("Found data in local storage in your browser from previous time you were editing this data\n\nIf you want to load these values, input 1 in the textfield and click OK.\n\nReasons you see this:\n You've clicked 'X' instead of Save or Cancel\nSession might've expired while you edited\nBrowser crashed last time you edited\n\nRemember: You can write 1 then click OK, just to view the data, and if you dont want them click 'Cancel' which then removes the 'temporary data stored in your browser's cache', then simply click 'Edit' again") === "1") {
+                                options["value"].data = JSON.parse(currentStoredData);
+                            }
+                        }
+                        else {
+                            console.warn("JsonEdit: found previous temp data, its equal to current loaded, continue as normal...");
+                        }
+                    }
+                }
+                else {
+                    console.warn("JsonEdit: no previous temp data stored");
+                }
+            } catch {
+                console.error("JsonEdit: Error reading from localStorage, continue as normal...");
+            }
         }
 
         function initNodeTitle() {
@@ -130,6 +162,7 @@
         function initEvents() {
             renderPlace.find(".j-ec").off("click").on("click", function (e) { toggleSubTree(this); e.preventDefault(); return true; });
             renderPlace.find(".j-object-title-row-ec").off("click").on("click", function (e) { toggleSubTree(this); e.preventDefault(); return true; });
+            // renderPlace.find(".j-title-col").off("click").on("click", function (e) { alert('nice'); e.preventDefault(); return true; });
 
             renderPlace.find(".j-add-array-item").off("click").on("click", function () { addArrayItem($(this), true, null); });
             renderPlace.find(".j-remove-array-item").off("click").on("click", function (e) { onRemoveArrayItemClicked(e, $(this)); });
@@ -152,7 +185,11 @@
             eval('options["value"]' + p + "[" + itemIndex + "] = null;");
             //eval('options["value"]' + p + '.splice(' + itemIndex + ',1);');
             nodeToRemove.remove();
+
             setValue(options["value"]);
+
+            setLocalStorageData(options["storageDataName"], options["value"].data, 14);
+
             if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
         }
 
@@ -180,6 +217,8 @@
             }
         }
 
+
+
         function valueChanged(changedObject) {
             ensureDataPath(changedObject.attr("data-path"));
             var p = 'options["value"]' + changedObject.attr("data-path");
@@ -193,7 +232,10 @@
                 }
             }
             eval(p);
+
             validateInput(changedObject);
+
+            setLocalStorageData(options["storageDataName"], options["value"].data, 14);
 
             if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
         }
@@ -298,7 +340,7 @@
 
         function renderObjectNode(schemaNode, schemaName) {
             var ContainerT = '<table class="j-container">$$$</table>';
-            var TitleT = '<tr class="j-object-title-row j-object-title-row-ec collapsed"><td class="j-title-col">$$$</td><td class="j-body-col">$inlinehint$</td></tr>';
+            var TitleT = '<tr class="j-object-title-row j-object-title-row-ec collapsed" tabindex="0"><td class="j-title-col">$$$</td><td class="j-body-col">$inlinehint$</td></tr>';
             var childClass = ((options["expandingLevel"] != -1 && level + 1 > options["expandingLevel"]) ? "j-collapsed" : "");
             if (level > 0) {
                 childClass = 'j-collapsed';
@@ -346,7 +388,7 @@
                 if (arrSchema["title"] && arrSchema["title"].length > 0) {
                     space = " ";
                 }
-                arrSchema["title"] = arrSchema["title"] + space + '[$index$] <button class="j-remove-array-item" data-index="$index$">&#10006;</button>';
+                arrSchema["title"] = arrSchema["title"] + space + '[$index$] <button class="j-remove-array-item" tabindex="-1" data-index="$index$">&#10006;</button>';
                 itemContainerT = renderSimpleNode(arrSchema, "$index$");
             }
 
@@ -358,7 +400,7 @@
                 }
 
                 arrSchema = JSON.parse(JSON.stringify(V(options["schema"], r)));
-                arrSchema["title"] = fixNU(arrSchema["title"], "") + '[$index$] <span class="j-node-title"></span> <button class="j-remove-array-item" data-index="$index$">&#10006;</button>';
+                arrSchema["title"] = fixNU(arrSchema["title"], "") + '[$index$] <span class="j-node-title"></span> <button class="j-remove-array-item" tabindex="-1" data-index="$index$">&#10006;</button>';
                 itemContainerT = renderSchemaNode(arrSchema, "$index$");
             }
             level--;
@@ -437,7 +479,6 @@
 
             });
             options["value"] = v;
-            window.systemLibraryCommonEpiserverJsonEditValue = v;
         }
 
         function addArrayItemsToTheDOM() {

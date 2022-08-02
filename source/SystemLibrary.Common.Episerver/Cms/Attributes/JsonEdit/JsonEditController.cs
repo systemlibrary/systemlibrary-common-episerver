@@ -4,7 +4,7 @@ using SystemLibrary.Common.Episerver.Cms.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
-public partial class JsonEditController : BaseCmsController
+public partial class JsonEditController : BaseController
 {
     const string CurrentFolder = "Cms/Attributes/JsonEdit";
 

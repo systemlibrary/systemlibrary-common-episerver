@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.CmsEditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -225,7 +246,7 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider, IMetadataD
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_UiHint">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L15">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L14">View Source</a>
   	</span>
   </div>
   
@@ -263,9 +284,126 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider, IMetadataD
   
   <div class="custom-container">
   
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName1">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L20">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName1_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.SortByPropertyName1*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName1" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.SortByPropertyName1" class="h4-custom-functionName">public string SortByPropertyName1 { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName2">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L21">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName2_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.SortByPropertyName2*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_SortByPropertyName2" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.SortByPropertyName2" class="h4-custom-functionName">public string SortByPropertyName2 { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_Title">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L18">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_Title_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.Title*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_Title" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.Title" class="h4-custom-functionName">public string Title { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.String</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_Type">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L17">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L16">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_Type_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.Type*"></a>
@@ -306,7 +444,7 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider, IMetadataD
   
   <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L19">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L23">View Source</a>
   	</span>
   </div>
   <a id="SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_CreateDisplayMetadata_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.CreateDisplayMetadata*"></a>
@@ -995,7 +1133,7 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider, IMetadataD
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

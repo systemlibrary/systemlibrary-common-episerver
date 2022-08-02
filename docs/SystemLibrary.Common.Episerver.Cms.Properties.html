@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SystemLibrary.Common.Episerver.Cms.Properties.IListProperty
+    <title>SystemLibrary.Common.Episerver.Cms.Properties
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty
+    <meta name="title" content="SystemLibrary.Common.Episerver.Cms.Properties
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.CmsEditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,17 +189,35 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties">
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_IListProperty" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty" class="text-break">SystemLibrary.Common.Episerver.Cms.Properties.IListProperty
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties" data-uid="SystemLibrary.Common.Episerver.Cms.Properties" class="text-break">SystemLibrary.Common.Episerver.Cms.Properties
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.IListProperty-1.html">IListProperty&lt;T&gt;</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.IListProperty`1--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty-1.html">IListProperty&lt;T&gt;</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty`1--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.Message.html">Message</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.Message--description"><p>Property type to display 'message' inside the CMS's property view</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.MessageController.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.MessageController--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReference.html">ParentLinkReference</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReference--description"><p>Property type to display 'parent link' inside the CMS</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty--description" class='docfxhide-attribute'></section>
 </article>
           </div>
           

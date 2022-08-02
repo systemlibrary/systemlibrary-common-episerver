@@ -13,20 +13,26 @@ public static partial class ServiceCollectionExtensions
     internal static CommonEpiserverApplicationServicesOptions Options;
 
     /// <summary>
-    /// This method registers default web-application settings:
+    /// Registers default web-application settings:
     /// - Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
     /// 
-    /// Additional notes: 
-    /// This does not register a Cms Identity, use the Generic method CommonEpiserverServices&lt;T&gt;() to register the Identity
-    /// This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
-    /// The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable
-    /// 
-    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-    /// services.CommonEpiserverServices();
-    /// services.AddCms();
-    /// services.AddTinyMce();
-    /// services.AddFind();
+    /// Note: 
+    /// This does not register an Identity (user), if you want that use the generic method  CommonEpiserverServices&lt;T&gt;()
+    /// This creates an admin user if there's no users existing in the DB: demo/Demo123!
+    /// Admin user's email and password can be changed by passing the option object
     /// </summary>
+    /// <example>
+    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
+    /// <code>
+    /// public void ConfigureServices(IServiceCollection services) 
+    /// {
+    ///     services.CommonEpiserverApplicationServices()
+    ///         .AddCms()
+    ///         .AddTinyMce()
+    ///         .AddFind();
+    /// }
+    /// </code>
+    /// </example>
     public static IServiceCollection CommonEpiserverApplicationServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
     {
         //Services.Collection = services;
@@ -49,19 +55,25 @@ public static partial class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// This method registers default web-application settings:
-    /// - Controllers, Mvc, RazorPages, Default View Locations, CurrentUser, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
+    /// Register default web-application settings:
+    /// - Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...
     /// 
     /// Note: 
-    /// This creates an admin user if the user do not exists, by default its admin@example.com/Admin123!
-    /// The administrators email and password can be changed by passing in the 'ServiceCollectionOptions' variable
-    /// 
-    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
-    /// services.CommonEpiserverServices();
-    /// services.AddCms();
-    /// services.AddTinyMce();
-    /// services.AddFind();
+    /// This creates an admin user if there's no users existing in the DB: demo/Demo123!
+    /// Admin user's email and password can be changed by passing the option object
     /// </summary>
+    /// <example>
+    /// You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)
+    /// <code>
+    /// public void ConfigureServices(IServiceCollection services) 
+    /// {
+    ///     services.CommonEpiserverApplicationServices()
+    ///         .AddCms()
+    ///         .AddTinyMce()
+    ///         .AddFind();
+    /// }
+    /// </code>
+    /// </example>
     public static IServiceCollection CommonEpiserverApplicationServices<T>(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null) where T : CurrentUser, new()
     {
         services.AddCmsAspNetIdentity<T>();

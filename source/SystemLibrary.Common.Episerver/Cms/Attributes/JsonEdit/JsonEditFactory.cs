@@ -29,10 +29,13 @@ public class JsonEditFactory : ISelectionFactory
             if(type != SystemType.StringType)
                 throw new Exception("Cannot add 'JsonEdit' attribute on property of type " + type.Name + ". Change it to a string");
 
-            var title = type.Name;
+            var title = options.Type.Name;
             var displayName = options.Type.GetAttribute<DisplayAttribute>();
             if (displayName?.Name.Is() == true)
                 title = displayName.Name;
+
+            if (options.Title.Is())
+                title = options.Title;
 
             metadata.EditorConfiguration.Add("jsonEditTitle", title);
             metadata.EditorConfiguration.Add("jsonEditProperties", JsonEditPropertiesLoader.GetPropertySchema(options.Type));

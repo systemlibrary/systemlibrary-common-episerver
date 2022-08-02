@@ -2,9 +2,9 @@
 
 using SystemLibrary.Common.Episerver.Cms.Abstract;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver.Cms.Properties;
 
-public partial class MessageController : BaseCmsController
+public partial class MessageController : BaseController
 {
     const string CurrentFolder = "Cms/Properties/Message";
 

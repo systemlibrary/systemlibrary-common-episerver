@@ -4,7 +4,7 @@ using SystemLibrary.Common.Episerver.Cms.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
-public partial class BoxSelectionController : BaseCmsController
+public partial class BoxSelectionController : BaseController
 {
     const string CurrentFolder = "Cms/Attributes/BoxSelection";
 

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ParentLinkReferenceController
+    <title>CmsEditController
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ParentLinkReferenceController
+    <meta name="title" content="CmsEditController
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.CmsEditController">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.html">SystemLibrary.Common.Episerver.Cms</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
@@ -179,17 +200,17 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController" class="text-break h1-class-header">ParentLinkReferenceController
+  <h1 id="SystemLibrary_Common_Episerver_Cms_CmsEditController" data-uid="SystemLibrary.Common.Episerver.Cms.CmsEditController" class="text-break h1-class-header">CmsEditController
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController" class="h1-custom-display className">public class ParentLinkReferenceController : BaseCmsController, IActionFilter, IAsyncActionFilter, IFilterMetadata, IDisposable</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_CmsEditController" data-uid="SystemLibrary.Common.Episerver.Cms.CmsEditController" class="h1-custom-display className">public class CmsEditController : BaseController, IActionFilter, IAsyncActionFilter, IFilterMetadata, IDisposable</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase</span></div>
     <div class="level2"><span class="xref">Microsoft.AspNetCore.Mvc.Controller</span></div>
-    <div class="level3"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html">BaseCmsController</a></div>
-    <div class="level4"><span class="xref">ParentLinkReferenceController</span></div>
+    <div class="level3"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html">BaseController</a></div>
+    <div class="level4"><span class="xref">CmsEditController</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -201,16 +222,16 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_CurrentAssembly">BaseCmsController.CurrentAssembly</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_CurrentAssembly">BaseController.CurrentAssembly</a>
     </div>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_AddCacheHeaders">BaseCmsController.AddCacheHeaders()</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_AddCacheHeaders">BaseController.AddCacheHeaders()</a>
     </div>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetEmbeddedResource_System_String_System_String_">BaseCmsController.GetEmbeddedResource(String, String)</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_GetEmbeddedResource_System_String_System_String_">BaseController.GetEmbeddedResource(String, String)</a>
     </div>
     <div>
-      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetFileContentResult_System_Text_StringBuilder_System_String_">BaseCmsController.GetFileContentResult(StringBuilder, String)</a>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_GetFileContentResult_System_Text_StringBuilder_System_String_">BaseController.GetFileContentResult(StringBuilder, String)</a>
     </div>
     <div>
       <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View()</span>
@@ -795,7 +816,7 @@
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_CmsEditController_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -803,7 +824,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_CmsEditController_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -820,57 +841,15 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Html">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_CmsEditController_Stylesheet">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceController.cs/#L14">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/CmsEdit/CmsEditController.cs/#L17">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Html_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController.Html*"></a>
+  <a id="SystemLibrary_Common_Episerver_Cms_CmsEditController_Stylesheet_" data-uid="SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Html" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController.Html" class="h4-custom-functionName">public ActionResult Html()</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  		<div class="custom-menu-data-returntype" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<table class="table table-bordered table-striped table-condensed table-return">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
-  		</div>
-  	</div>
-  </div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Script">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceController.cs/#L25">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Script_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController.Script*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceController_Script" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController.Script" class="h4-custom-functionName">public ActionResult Script()</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_CmsEditController_Stylesheet" data-uid="SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet" class="h4-custom-functionName">public ActionResult Stylesheet()</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
@@ -1560,7 +1539,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceController.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/CmsEdit/CmsEditController.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

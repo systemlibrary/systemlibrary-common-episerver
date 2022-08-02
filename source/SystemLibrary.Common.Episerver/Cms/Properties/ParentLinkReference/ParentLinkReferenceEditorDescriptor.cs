@@ -1,6 +1,6 @@
 ﻿using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver.Cms.Properties;
 
 [EditorDescriptorRegistration(TargetType = typeof(ParentLinkReference))]
 public class ParentLinkReferenceEditorDescriptor : EditorDescriptor

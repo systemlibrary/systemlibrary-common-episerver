@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>SystemLibrary.Common.Episerver.Cms.HideCategoryList
+    <title>SystemLibrary.Common.Episerver.Cms.Descriptors
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="SystemLibrary.Common.Episerver.Cms.HideCategoryList
+    <meta name="title" content="SystemLibrary.Common.Episerver.Cms.Descriptors
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,17 +189,17 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Descriptors">
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_HideCategoryList" data-uid="SystemLibrary.Common.Episerver.Cms.HideCategoryList" class="text-break">SystemLibrary.Common.Episerver.Cms.HideCategoryList
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Descriptors" data-uid="SystemLibrary.Common.Episerver.Cms.Descriptors" class="text-break">SystemLibrary.Common.Episerver.Cms.Descriptors
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor.html">HideCategoryListDescriptor</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Cms.HideCategoryList.HideCategoryListDescriptor--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor.html">HideCategoryListDescriptor</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor--description"></section>
 </article>
           </div>
           

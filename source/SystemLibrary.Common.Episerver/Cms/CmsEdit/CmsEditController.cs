@@ -6,9 +6,9 @@ using SystemLibrary.Common.Episerver.Cms.Abstract;
 
 using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
 
-namespace SystemLibrary.Common.Episerver;
+namespace SystemLibrary.Common.Episerver.Cms;
 
-public partial class CmsEditController : BaseCmsController
+public partial class CmsEditController : BaseController
 {
     const string CmsEditFolder = "Cms/CmsEdit";
 

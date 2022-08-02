@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.CmsEditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -181,13 +202,13 @@
       <section id="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController--description"></section>
     <h3 id="enums">Enums
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeBrands.html"></a></h4>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeBrands.html">FontAwesomeBrands</a></h4>
       <section id="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeBrands--description"><p>List of font icons inside 'font awesome brands' package</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular.html"></a></h4>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular.html">FontAwesomeRegular</a></h4>
       <section id="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular--description"><p>List of font icons inside 'font awesome regular' package</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.html"></a></h4>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.html">FontAwesomeSolid</a></h4>
       <section id="SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid--description"><p>List of font icons inside 'font awesome solid' package</p>
 </section>
 </article>

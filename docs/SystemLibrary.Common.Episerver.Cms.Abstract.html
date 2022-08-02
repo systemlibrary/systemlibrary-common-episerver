@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
@@ -12,11 +12,11 @@
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -177,8 +198,8 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.html">BaseCmsController</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController--description"></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html">BaseController</a></h4>
+      <section id="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController--description"></section>
 </article>
           </div>
           
@@ -202,16 +223,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </div></body>
 </html>

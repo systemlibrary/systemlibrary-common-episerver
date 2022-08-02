@@ -19,7 +19,6 @@ public class LogTests
         }
         catch(Exception ex)
         {
-            Dump.Write(ex);
             Assert.IsTrue(false, "Error occured: " + ex.Message);
             return;
         }

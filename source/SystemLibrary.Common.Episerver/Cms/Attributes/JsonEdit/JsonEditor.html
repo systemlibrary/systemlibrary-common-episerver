@@ -4,16 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="jsonedit/json-edit.js"></script>
-    <link href="jsonedit/json-edit.css" rel="stylesheet" type="text/css" />
-    -->
 
-    <!--
-    <script src="jsonedit/json-edit.min.js"></script>
-    <link href="jsonedit/json-edit.min.css" rel="stylesheet" type="text/css" />
-    -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="EditorScript"></script>
     <link href="EditorStyle" rel="stylesheet" type="text/css" />
@@ -21,13 +12,22 @@
 
 <body>
     <div class="jsonEditor-container">
-        <div class="jsonEditor-menu">
-            <button id="jsonEditSortByPropertyName1">Sort</button>
-            <button id="jsonEditSortByPropertyName2">Sort2</button>
-            <button id="preview">Preview Json</button>
-            <button id="collapseExpandAll">Collapse/Expand All</button>
-            <button id="btnSaveAndClose">Save</button>
-            <button id="btnClose">Cancel</button>
+        <div class="jsonEditor-menu" style="padding-left: 0.5em;">
+            <button tabindex="-1" id="jsonEditSortByPropertyName1" style='min-width: 125px'
+                title="Sort all items by this field">Sort</button>
+            <button tabindex="-1" id="jsonEditSortByPropertyName2" style='min-width: 125px'
+                title="Sort all items by this field">Sort2</button>
+            <button tabindex="-1" id="preview" style='min-width: 125px'
+                title="Preview my current json data if you want to copy paste it or similar">Preview Json</button>
+            <button tabindex="-1" id="collapseExpandAll" style='min-width: 125px'
+                title="Collapse/Expand all items based on the state of the first item">Collapse/Expand</button>
+            <button tabindex="-1" id="btnSaveAndClose" style='min-width: 125px'
+                title="Save and close this editor">Save</button>
+            <button tabindex="-1" id="btnClose" style='min-width: 125px; float:right; margin-right: 28px;'
+                title="Cancel all my changes and close this editor">Cancel</button>
+
+            <span id="infoModal"
+                style='background-image:url(/SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/circle-info.svg);background-repeat: no-repeat; cursor:pointer;display:inline-block; width: 68px; height:21px; margin-left: 0.5em; top:5px; position:relative;'></span>
         </div>
         <div>
             <div id="jsonEditor"></div>
@@ -47,7 +47,26 @@
         var v = {};
         var s = {};
         var je;
+        var storageDataName = 'systemLibraryCommonEpiserver-JsonEdit-';
         $(document).ready(function () {
+
+            if (typeof (jsonEditPropertiesObject) === 'undefined' || jsonEditPropertiesObject === null) {
+                alert("Error: No data was found\n\nDid you refresh this tab alone? Then the data is gone\n\nClose this tab by clicking 'X' or the 'Cancel' button, then reopen the Json Editor by clicking the 'Edit' button again inside the CMS");
+                return;
+            }
+
+            if (window.jsonEditTitle) {
+                storageDataName = storageDataName + window.jsonEditTitle;
+            }
+
+            if (window.jsonEditSortByPropertyName1) {
+                storageDataName = storageDataName + window.jsonEditSortByPropertyName1;
+            }
+            if (window.jsonEditSortByPropertyName2) {
+                storageDataName = storageDataName + window.jsonEditSortByPropertyName2;
+            }
+            storageDataName = storageDataName.replaceAll(' ', '').replaceAll(',', '').replaceAll('.', '').replaceAll('?', '').replaceAll('!', '').replaceAll(':', '');
+
             s = {
                 "type": "object",
                 "properties": {
@@ -75,6 +94,7 @@
             };
 
             je = $("#jsonEditor").jsonEdit({
+                "storageDataName": storageDataName,
                 "treeExpandCollapseButton": "true",
                 "schema": s,
                 "value": v,
@@ -88,19 +108,18 @@
                 }
             });
 
-            if (jsonEditSortByPropertyName1 && jsonEditSortByPropertyName1.length > 0) {
-                $("#jsonEditSortByPropertyName1").text('Sort: ' + jsonEditSortByPropertyName1);
+            if (window.jsonEditSortByPropertyName1 && window.jsonEditSortByPropertyName1.length > 0) {
+                $("#jsonEditSortByPropertyName1").text('Sort: ' + window.jsonEditSortByPropertyName1);
             } else {
                 $("#jsonEditSortByPropertyName1").hide();
             }
-            if (jsonEditSortByPropertyName2 && jsonEditSortByPropertyName2.length > 0) {
-                $("#jsonEditSortByPropertyName2").text('Sort: ' + jsonEditSortByPropertyName2);
+            if (window.jsonEditSortByPropertyName2 && window.jsonEditSortByPropertyName2.length > 0) {
+                $("#jsonEditSortByPropertyName2").text('Sort: ' + window.jsonEditSortByPropertyName2);
             } else {
                 $("#jsonEditSortByPropertyName2").hide();
             }
-
-
         });
+
 
         function sortByProperty(propertyName) {
             function sortByPropertyName(prop, isAscending) {
@@ -146,6 +165,7 @@
             v.data = result;
 
             je = $("#jsonEditor").jsonEdit({
+                "storageDataName": storageDataName,
                 "treeExpandCollapseButton": "true",
                 "schema": s,
                 "value": v,
@@ -211,12 +231,44 @@
 
             window.onSave(data);
 
+            try {
+                localStorage.removeItem(storageDataName);
+            }
+            catch {
+            }
             return onClose(e);
         }
 
         function onClose(e) {
+            try {
+                localStorage.removeItem(storageDataName);
+            }
+            catch {
+            }
             window.close();
             return true;
+        }
+
+        function hotkeySave(e) {
+            if (e) {
+                if (e.ctrlKey) {
+                    if (e.key === 's') {
+                        onSaveAndClose();
+                    }
+                }
+            }
+        }
+
+        function hotkeyCancel(e) {
+            if (e) {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            }
+        }
+
+        function infoModalClicked() {
+            alert("Info:\n\nHotkeys:\n Ctrl + s to save and close\nEscape to close")
         }
 
         var btnClose = document.getElementById('btnClose');
@@ -225,10 +277,11 @@
         var btnSave = document.getElementById('btnSaveAndClose');
         btnSave.onclick = onSaveAndClose;
 
-        // setTimeout(50, () => {
-        //     console.log("Current data");
-        //     console.log(window.json);
-        // });
+        var infoModal = document.getElementById('infoModal');
+        infoModal.onclick = infoModalClicked;
+
+        document.addEventListener('keyup', hotkeySave, false);
+        document.addEventListener('keyup', hotkeyCancel, false);
     </script>
 </body>
 

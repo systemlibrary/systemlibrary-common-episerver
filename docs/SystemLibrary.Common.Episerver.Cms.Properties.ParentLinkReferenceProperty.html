@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IListProperty&lt;T&gt;
+    <title>ParentLinkReferenceProperty
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IListProperty&lt;T&gt;
+    <meta name="title" content="ParentLinkReferenceProperty
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,10 +189,10 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.IListProperty`1">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.html">SystemLibrary.Common.Episerver.Cms.Properties.IListProperty</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.html">SystemLibrary.Common.Episerver.Cms.Properties</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -179,18 +200,17 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_IListProperty_IListProperty_1" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.IListProperty`1" class="text-break h1-class-header">IListProperty&lt;T&gt;
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty" class="text-break h1-class-header">ParentLinkReferenceProperty
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_IListProperty_IListProperty_1" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.IListProperty.IListProperty`1" class="h1-custom-display className">public abstract class IListProperty&lt;T&gt; : PropertyList&lt;T&gt;, IReadOnly&lt;PropertyData&gt;, IReadOnly, ILazyProperty</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty" class="h1-custom-display className">[PropertyDefinitionTypePlugIn(DisplayName = &quot;[SystemLibrary] Parent Link Reference&quot;, Description = &quot;This property is a simple link to the parent content&quot;, GUID = &quot;CBE9E1B9-89AC-41A2-9A8F-47B21F5849D4&quot;)]
+public class ParentLinkReferenceProperty : PropertyLongString, IReadOnly&lt;PropertyData&gt;, IReadOnly, ILazyProperty</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">EPiServer.Core.PropertyData</span></div>
-    <div class="level2"><span class="xref">EPiServer.Core.PropertyJson</span></div>
-    <div class="level3"><span class="xref">EPiServer.Core.PropertyList</span></div>
-    <div class="level4"><span class="xref">EPiServer.Core.PropertyList</span>&lt;T&gt;</div>
-    <div class="level5"><span class="xref">IListProperty&lt;T&gt;</span></div>
+    <div class="level2"><span class="xref">EPiServer.Core.PropertyLongString</span></div>
+    <div class="level3"><span class="xref">ParentLinkReferenceProperty</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -201,55 +221,37 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.MakeReadOnly()</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.IsEmptyValue(System.Object)</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.ToString()</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.SetDefaultValue()</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.ParseToSelf(System.String)</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.Parse(System.String)</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.CreateWritableClone()</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.ParseToSelf(System.String)</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.Copy()</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.EPiServer.Core.Internal.ILazyProperty.AssignValueFactory(System.Func&lt;System.Object&gt;)</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.SetDefaultValue()</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.IsNull</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.ParseItem(System.String)</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.Type</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.EPiServer.Core.Internal.ILazyProperty.AssignValueFactory(System.Func&lt;System.Object&gt;)</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.EPiServer.Core.Internal.ILazyProperty.HasLazyValue</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.Value</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.LongString</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.IsNull</span>
+      <span class="xref">EPiServer.Core.PropertyLongString.PageLink</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.PropertyValueType</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.IsModified</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.List</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.EPiServer.Core.Internal.ILazyProperty.HasLazyValue</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.StringRepresentationSeparator</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyList&lt;T&gt;.ItemComparer</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyJson.Type</span>
+      <span class="xref">EPiServer.Core.PropertyData.Copy()</span>
     </div>
     <div>
       <span class="xref">EPiServer.Core.PropertyData.Modified()</span>
@@ -264,6 +266,9 @@
       <span class="xref">EPiServer.Core.PropertyData.SetPropertyValue(System.Object, EPiServer.Core.SetPropertyValueDelegate)</span>
     </div>
     <div>
+      <span class="xref">EPiServer.Core.PropertyData.ToString()</span>
+    </div>
+    <div>
       <span class="xref">EPiServer.Core.PropertyData.ToString(System.Globalization.CultureInfo)</span>
     </div>
     <div>
@@ -273,16 +278,10 @@
       <span class="xref">EPiServer.Core.PropertyData.EncodeForWebString(System.String)</span>
     </div>
     <div>
-      <span class="xref">EPiServer.Core.PropertyData.IsEmptyValue(System.Object)</span>
-    </div>
-    <div>
       <span class="xref">EPiServer.Core.PropertyData.BuildRegularExpression(System.String[])</span>
     </div>
     <div>
       <span class="xref">EPiServer.Core.PropertyData.InitializeData(EPiServer.Core.PropertyDataCollection)</span>
-    </div>
-    <div>
-      <span class="xref">EPiServer.Core.PropertyData.SaveData(EPiServer.Core.PropertyDataCollection)</span>
     </div>
     <div>
       <span class="xref">EPiServer.Core.PropertyData.LoadData(System.Object)</span>
@@ -294,7 +293,13 @@
       <span class="xref">EPiServer.Core.PropertyData.Translate(System.String)</span>
     </div>
     <div>
+      <span class="xref">EPiServer.Core.PropertyData.MakeReadOnly()</span>
+    </div>
+    <div>
       <span class="xref">EPiServer.Core.PropertyData.EPiServer.Data.Entity.IReadOnly.CreateWritableClone()</span>
+    </div>
+    <div>
+      <span class="xref">EPiServer.Core.PropertyData.CreateWritableClone()</span>
     </div>
     <div>
       <span class="xref">EPiServer.Core.PropertyData.ThrowIfReadOnly()</span>
@@ -333,31 +338,19 @@
       <span class="xref">EPiServer.Core.PropertyData.FieldOrder</span>
     </div>
     <div>
+      <span class="xref">EPiServer.Core.PropertyData.IsModified</span>
+    </div>
+    <div>
       <span class="xref">EPiServer.Core.PropertyData.IsRequired</span>
     </div>
     <div>
       <span class="xref">EPiServer.Core.PropertyData.IsReadOnly</span>
     </div>
   </div>
-  <h5 class="typeParameters class-header-tmpl-partial-typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed class-header-tmpl-partial-typeParameters">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_IListProperty_IListProperty_1_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -365,26 +358,11 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_IListProperty_IListProperty_1_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
         <div class="syslib-tab-menu-data--close">X</div>
-          <h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-          <table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="parametername">T</span></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
   
       </div>
   
@@ -392,6 +370,159 @@
   </div>
   
   <div class='custom-class-content-inline'>
+  <h3 id="properties">Properties
+  </h3>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_PropertyValueType">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceProperty.cs/#L14">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_PropertyValueType_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.PropertyValueType*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_PropertyValueType" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.PropertyValueType" class="h4-custom-functionName">public override Type PropertyValueType { get; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Type</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyLongString.PropertyValueType</span>
+  </div>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_Value">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceProperty.cs/#L22">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_Value_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.Value*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_Value" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.Value" class="h4-custom-functionName">public override object Value { get; set; }</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  		</div>
+  
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Object</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyLongString.Value</span>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  <div class="custom-container">
+  
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_SaveData_EPiServer_Core_PropertyDataCollection_">
+  	<span class="small pull-right mobile-hide">
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceProperty.cs/#L34">View Source</a>
+  	</span>
+  </div>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_SaveData_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.SaveData*"></a>
+  
+  <div class="custom-menu-data">
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceProperty_SaveData_EPiServer_Core_PropertyDataCollection_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.SaveData(EPiServer.Core.PropertyDataCollection)" class="h4-custom-functionName">public override object SaveData(PropertyDataCollection properties)</h4>
+  	<div class="custom-menu-data-container">
+  
+  		<div class="custom-menu-data-arguments" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  			<table class="table table-bordered table-striped table-condensed">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Name</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">EPiServer.Core.PropertyDataCollection</span></td>
+  						<td><span class="parametername">properties</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  
+  		<div class="custom-menu-data-returntype" style="display: none;">
+  			<div class="syslib-tab-menu-data--close">X</div>
+  
+  			<table class="table table-bordered table-striped table-condensed table-return">
+  				<thead>
+  					<tr>
+  						<th>Type</th>
+  						<th>Description</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<tr>
+  						<td><span class="xref">System.Object</span></td>
+  						<td></td>
+  					</tr>
+  				</tbody>
+  			</table>
+  		</div>
+  	</div>
+  </div>
+  </div>
+  
+  
+  <h5 class="overrides">Overrides</h5>
+  <div class="overrides-content">
+  	<span class="xref">EPiServer.Core.PropertyData.SaveData(EPiServer.Core.PropertyDataCollection)</span>
+  </div>
   <h3 id="implements">Implements</h3>
   <div class="implements-content">
   	<span class="xref">EPiServer.Data.Entity.IReadOnly&lt;T&gt;</span>
@@ -1048,7 +1179,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/IListProperty/IListProperty.cs/#L5" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceProperty.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1066,16 +1197,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

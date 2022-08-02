@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
-public abstract class BaseCmsController : Controller
+public abstract class BaseController : Controller
 {
     static int ClientCacheSeconds = 43200;
 

@@ -40,22 +40,31 @@ public class JsonEditClassConverterTests
     {
         var result = InvokeTestMethod(typeof(JsonEditCarInvalid));
 
-        Assert.IsTrue(result != null && result.Length > 100);
+        Assert.IsTrue(result != null, "Result is null");
+        Assert.IsTrue(result.Length > 100, "Result is too short: " + result.Length);
+
         var res = JsonDocument.Parse("{" + result + "}");
 
-        Assert.IsFalse(result.Contains("PhoneNumbers"));
-        Assert.IsFalse(result.Contains("PhoneNumberArray"));
+        Assert.IsTrue(res != null, "Error parsing result to json document");
 
-        Assert.IsTrue(res != null);
+        Assert.IsFalse(result.Contains("PhoneNumbers"), "Does contain PhoneNumbers, which it shouldnt");
+        Assert.IsFalse(result.Contains("PhoneNumberArray"), "Does contain PhoneNumberArray, which it shouldnt");
+
     }
 
     static string InvokeTestMethod(Type type)
     {
-        var testType = Type.GetType("SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditPropertiesLoader, SystemLibrary.Common.Episerver");
+        var testType = Type.GetType(typeName: "SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditPropertiesLoader, SystemLibrary.Common.Episerver");
+
+        if (testType == null)
+            throw new Exception("SystemLibrary.Common.Episerver is not loaded or type is renamed");
 
         var method = testType.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
-           .Where(x => x.Name == "GetProperties")
+           .Where(x => x.Name == "GetPropertySchema")
            .FirstOrDefault();
+
+        if (method == null)
+            throw new Exception("Method 'GetProperties' is renamed or do not exist");
 
         return method.Invoke(null, new object[] { type }) + "";
     } 

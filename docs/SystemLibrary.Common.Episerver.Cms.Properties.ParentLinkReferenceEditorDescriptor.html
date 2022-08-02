@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,10 +189,10 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceEditorDescriptor">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.html">SystemLibrary.Common.Episerver.Cms</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.html">SystemLibrary.Common.Episerver.Cms.Properties</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -179,9 +200,9 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceEditorDescriptor" class="text-break h1-class-header">ParentLinkReferenceEditorDescriptor
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor" class="text-break h1-class-header">ParentLinkReferenceEditorDescriptor
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceEditorDescriptor" class="h1-custom-display className">[EditorDescriptorRegistration(TargetType = typeof(ParentLinkReference))]
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor" class="h1-custom-display className">[EditorDescriptorRegistration(TargetType = typeof(ParentLinkReference))]
 public class ParentLinkReferenceEditorDescriptor : EditorDescriptor, IMetadataExtender, IMetadataHandler</h1>
   
   <div class="inheritance">
@@ -243,7 +264,7 @@ public class ParentLinkReferenceEditorDescriptor : EditorDescriptor, IMetadataEx
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -251,7 +272,7 @@ public class ParentLinkReferenceEditorDescriptor : EditorDescriptor, IMetadataEx
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -268,15 +289,15 @@ public class ParentLinkReferenceEditorDescriptor : EditorDescriptor, IMetadataEx
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor__ctor">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor__ctor">
   	<span class="small pull-right mobile-hide">
   		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/ParentLinkReference/ParentLinkReferenceEditorDescriptor.cs/#L8">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor__ctor_" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceEditorDescriptor.#ctor*"></a>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor__ctor_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.#ctor*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_ParentLinkReferenceEditorDescriptor__ctor" data-uid="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceEditorDescriptor.#ctor" class="h4-custom-functionName">public ParentLinkReferenceEditorDescriptor()</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor__ctor" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.#ctor" class="h4-custom-functionName">public ParentLinkReferenceEditorDescriptor()</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">

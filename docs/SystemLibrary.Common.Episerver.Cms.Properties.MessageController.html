@@ -1,22 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>BaseCmsController
+    <title>MessageController
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="BaseCmsController
+    <meta name="title" content="MessageController
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
-    <link rel="shortcut icon" href="/systemlibrary-common-episerver/favicon.ico">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.vendor.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/docfx.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/main.css">
-    <link rel="stylesheet" href="/systemlibrary-common-episerver/styles/custom.css">
+    <link rel="shortcut icon" href="[%relativeHostingPath%]favicon.ico">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.vendor.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/docfx.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/main.css">
+    <link rel="stylesheet" href="[%relativeHostingPath%]styles/custom.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
@@ -50,9 +50,9 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="..//systemlibrary-common-episerver/index.html">
-                <img id="logo" class="svg" src="..//systemlibrary-common-episerver/logo.png" alt="">
-                <span class="navbar-title">System Library Common Episerver</span>
+              <a class="navbar-brand" href="../[%relativeHostingPath%]index.html">
+                <img id="logo" class="svg" src="../[%relativeHostingPath%]logo.png" alt="">
+                <span class="navbar-title">[%siteTitle%]</span>
               </a>
               
             </div>
@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFxHide,BoxSelectionFactory,BoxSelectionController,SystemLibrary.Common.Episerver.Cms.HideCategoryList,CmsEditController,ContentIconAttributeController,ParentLinkReferenceController,RemoveSuggestedContentTypes,HideCategoryListDescriptor,HideCategoryList,ParentLinkReferenceEditorDescriptor,ParentLinkReferenceProperty,CmsEditorController,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeSolid,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeBrands,SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.FontAwesomeRegular</div>
+        [%custom-skipDocumentationFor%]</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -130,13 +130,34 @@
                         if (links) {
                           var queryLowered = query.toLowerCase();
                           for (var j = 0; j < links.length; j++) {
-                            var link = links[j];
+                            try {
+                              var link = links[j];
       
-                            if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
-                              var parent = link.parentNode;
-                              if (parent && parent.remove) {
-                                parent.remove();
+                              if (link && link.pathname && link.pathname.toLowerCase().includes(queryLowered)) {
+                                var parent = link.parentNode;
+                                if (parent && parent.remove) {
+                                  var namespaceParent = parent.parentNode;
+      
+                                  parent.remove();
+      
+                                  if (namespaceParent && namespaceParent.parentNode) {
+                                    if (namespaceParent.classList.contains('level2')) {
+                                      var namespaceRemainingListItems = namespaceParent.children;
+                                      if (namespaceRemainingListItems && namespaceRemainingListItems.length
+                                        && namespaceRemainingListItems.length > 1) {
+                                      } else {
+                                        var namespaceLink = namespaceParent.parentNode;
+                                        if (namespaceLink && namespaceLink.remove) {
+                                          namespaceLink.remove();
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
+                            }
+                            catch (e) {
+                              console.warn("Error cleaning a link in sidetoc, continuing...");
                             }
                           }
                         }
@@ -168,10 +189,10 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.html">SystemLibrary.Common.Episerver.Cms.Abstract</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Properties.html">SystemLibrary.Common.Episerver.Cms.Properties</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
@@ -179,21 +200,17 @@
     <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController" class="text-break h1-class-header">BaseCmsController
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController" class="text-break h1-class-header">MessageController
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController" class="h1-custom-display className">public abstract class BaseCmsController : Controller, IActionFilter, IAsyncActionFilter, IFilterMetadata, IDisposable</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController" class="h1-custom-display className">public class MessageController : BaseController, IActionFilter, IAsyncActionFilter, IFilterMetadata, IDisposable</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase</span></div>
     <div class="level2"><span class="xref">Microsoft.AspNetCore.Mvc.Controller</span></div>
-    <div class="level3"><span class="xref">BaseCmsController</span></div>
-      <div class="level4"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController.html"></a></div>
-      <div class="level4"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController.html">JsonEditController</a></div>
-      <div class="level4"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.MessageController.html">MessageController</a></div>
-      <div class="level4"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.ParentLinkReferenceController.html"></a></div>
-      <div class="level4"><a class="xref" href="SystemLibrary.Common.Episerver.CmsEditController.html"></a></div>
+    <div class="level3"><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html">BaseController</a></div>
+    <div class="level4"><span class="xref">MessageController</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -204,6 +221,18 @@
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_CurrentAssembly">BaseController.CurrentAssembly</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_AddCacheHeaders">BaseController.AddCacheHeaders()</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_GetEmbeddedResource_System_String_System_String_">BaseController.GetEmbeddedResource(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseController_GetFileContentResult_System_Text_StringBuilder_System_String_">BaseController.GetFileContentResult(StringBuilder, String)</a>
+    </div>
     <div>
       <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View()</span>
     </div>
@@ -787,7 +816,7 @@
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
     </div>
@@ -795,7 +824,7 @@
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -807,112 +836,25 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
-  </h3>
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_CurrentAssembly">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/_Abstract/BasePropertyController.cs/#L13">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_CurrentAssembly_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.CurrentAssembly*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_CurrentAssembly" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.CurrentAssembly" class="h4-custom-functionName">protected Assembly CurrentAssembly { get; }</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Reflection.Assembly</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_AddCacheHeaders">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Html">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/_Abstract/BasePropertyController.cs/#L16">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/Message/MessageController.cs/#L14">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_AddCacheHeaders_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.AddCacheHeaders*"></a>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Html_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Html*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_AddCacheHeaders" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.AddCacheHeaders" class="h4-custom-functionName">protected void AddCacheHeaders()</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Html" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Html" class="h4-custom-functionName">public ActionResult Html()</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  		</div>
-  
-  	</div>
-  </div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetEmbeddedResource_System_String_System_String_">
-  	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/_Abstract/BasePropertyController.cs/#L24">View Source</a>
-  	</span>
-  </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetEmbeddedResource_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.GetEmbeddedResource*"></a>
-  
-  <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetEmbeddedResource_System_String_System_String_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.GetEmbeddedResource(System.String,System.String)" class="h4-custom-functionName">protected StringBuilder GetEmbeddedResource(string resourceFolder, string resourceName)</h4>
-  	<div class="custom-menu-data-container">
-  
-  		<div class="custom-menu-data-arguments" style="display: none;">
-  			<div class="syslib-tab-menu-data--close">X</div>
-  
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.String</span></td>
-  						<td><span class="parametername">resourceFolder</span></td>
-  						<td></td>
-  					</tr>
-  					<tr>
-  						<td><span class="xref">System.String</span></td>
-  						<td><span class="parametername">resourceName</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   		<div class="custom-menu-data-returntype" style="display: none;">
@@ -927,7 +869,7 @@
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">System.Text.StringBuilder</span></td>
+  						<td><span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span></td>
   						<td></td>
   					</tr>
   				</tbody>
@@ -941,42 +883,20 @@
   
   <div class="custom-container">
   
-  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetFileContentResult_System_Text_StringBuilder_System_String_">
+  <div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Script">
   	<span class="small pull-right mobile-hide">
-  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/_Abstract/BasePropertyController.cs/#L34">View Source</a>
+  		<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/Message/MessageController.cs/#L32">View Source</a>
   	</span>
   </div>
-  <a id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetFileContentResult_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.GetFileContentResult*"></a>
+  <a id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Script_" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Script*"></a>
   
   <div class="custom-menu-data">
-  	<h4 id="SystemLibrary_Common_Episerver_Cms_Abstract_BaseCmsController_GetFileContentResult_System_Text_StringBuilder_System_String_" data-uid="SystemLibrary.Common.Episerver.Cms.Abstract.BaseCmsController.GetFileContentResult(System.Text.StringBuilder,System.String)" class="h4-custom-functionName">protected FileContentResult GetFileContentResult(StringBuilder content, string contentType)</h4>
+  	<h4 id="SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Script" data-uid="SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Script" class="h4-custom-functionName">public ActionResult Script()</h4>
   	<div class="custom-menu-data-container">
   
   		<div class="custom-menu-data-arguments" style="display: none;">
   			<div class="syslib-tab-menu-data--close">X</div>
   
-  			<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  			<table class="table table-bordered table-striped table-condensed">
-  				<thead>
-  					<tr>
-  						<th>Type</th>
-  						<th>Name</th>
-  						<th>Description</th>
-  					</tr>
-  				</thead>
-  				<tbody>
-  					<tr>
-  						<td><span class="xref">System.Text.StringBuilder</span></td>
-  						<td><span class="parametername">content</span></td>
-  						<td></td>
-  					</tr>
-  					<tr>
-  						<td><span class="xref">System.String</span></td>
-  						<td><span class="parametername">contentType</span></td>
-  						<td></td>
-  					</tr>
-  				</tbody>
-  			</table>
   		</div>
   
   		<div class="custom-menu-data-returntype" style="display: none;">
@@ -991,7 +911,7 @@
   				</thead>
   				<tbody>
   					<tr>
-  						<td><span class="xref">Microsoft.AspNetCore.Mvc.FileContentResult</span></td>
+  						<td><span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span></td>
   						<td></td>
   					</tr>
   				</tbody>
@@ -1661,7 +1581,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/_Abstract/BasePropertyController.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Properties/Message/MessageController.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1679,16 +1599,16 @@
         <div class="grad-bottom"></div>
         <div class="footer">
           <div class="container">
-            <span>Package: <a href="https://www.nuget.org/packages/SystemLibrary.Common.Episerver/">nuget</a></span><br>
-            <span>Source: <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/">github</a></span><br>
-            <span>Website: <a href="https://www.systemlibrary.com/">System Library Common Episerver</a></span>
+            <span>Package: <a href="[%footerNugetUrl%]">nuget</a></span><br>
+            <span>Source: <a href="[%footerGithubUrl%]">github</a></span><br>
+            <span>Website: <a href="[%footerWebsiteUrl%]">[%footerSiteTitle%]</a></span>
           </div>
         </div>
       </footer>
     </div>
     
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/docfx.js"></script>
-    <script type="text/javascript" src="..//systemlibrary-common-episerver/styles/main.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/docfx.js"></script>
+    <script type="text/javascript" src="../[%relativeHostingPath%]styles/main.js"></script>
   </body>
 </html>

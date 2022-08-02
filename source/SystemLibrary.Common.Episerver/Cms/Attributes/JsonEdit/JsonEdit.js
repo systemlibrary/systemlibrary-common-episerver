@@ -90,8 +90,7 @@
                     }
                     const jsonEditPropertiesObject = JSON.parse('{' + jsonEditProperties + '}');
 
-                    if (jsonEditPropertiesObject === null || jsonEditPropertiesObject.required === null ||
-                        typeof (jsonEditPropertiesObject.required) === 'undefined') {
+                    if (!this.is(jsonEditPropertiesObject) || !this.is(jsonEditPropertiesObject.required)) {
                         throw "Error: Fields from backend was not loaded properly, try refresh";
                     }
 
@@ -107,13 +106,15 @@
                         jsonEditSortByPropertyName2 = null;
                     }
 
-                    const width = screen.availWidth - 30;
-                    const height = screen.availHeight - 30;
+                    const width = (screen.availWidth / 2) + 60;
+                    const height = (screen.availHeight / 1.5) + 33;
+
+                    const left = (screen.availWidth - width)/2;
 
                     const d = new Date();
                     const skipCacheParam = 'skipCache=' + d.getHours().toString() + d.getMinutes().toString() + d.getMilliseconds().toString();
 
-                    const windowFeatures = "left=100,top=100,width=" + width + ",height=" + height;
+                    const windowFeatures = "left=" + left + ",top=166,width=" + width + ",height=" + height;
                     const w = window.open(jsonEditorUrl + '?' + skipCacheParam, "Editor", windowFeatures);
 
                     if (!w) {
@@ -189,7 +190,6 @@
                         return;
                     }
                     if (this._started && this.isValid()) {
-                        //invoke built-in onChange method to trigger epi events
                         this.onChange(this.value);
                     }
                 }
@@ -238,7 +238,6 @@
 
                 on(myself.jsonTextArea, "keyup", function (e) {
                     textAreaOnChange(e.target.value);
-                    ///   e.preventDefault();
                 });
 
                 on(myself.jsonTextErrorMessage, 'onset', function (e) {

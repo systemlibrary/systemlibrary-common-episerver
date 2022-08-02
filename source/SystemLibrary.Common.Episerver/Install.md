@@ -145,12 +145,14 @@ appSettings.json:
 
 	"systemLibraryCommonEpiserver": {
 		"cmsEdit": {
+			"enabled": true,
 			"hideLanguageColumnInVersionGadget": false,
 			"contentCreationBackgroundColor": "",
 			"contentCreationBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
 			"contentTitleColor": "",
-			"activeProjectBarBackgroundColor": ""
+			"activeProjectBarBackgroundColor": "",
+			"messagePropertyBackgroundColor": ""
 		}
 	}
 }
@@ -196,12 +198,14 @@ appSettings.json:
 	...,
 	"systemLibraryCommonEpiserver": {
 		"cmsEdit": {
+			"enabled": true,
 			"hideLanguageColumnInVersionGadget": false,
 			"contentCreationBackgroundColor": "",
 			"contentCreationBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
 			"contentTitleColor": "",
-			"activeProjectBarBackgroundColor": ""
+			"activeProjectBarBackgroundColor": "",
+			"messagePropertyBackgroundColor": ""
 		}
 	},
 	...
