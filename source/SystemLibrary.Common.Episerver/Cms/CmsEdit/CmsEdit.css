@@ -150,17 +150,14 @@
 .Sleek .dijitTreeRow.dijitTreeRowSelected {
     border-bottom: 1px solid PageTreeSelectedContentBorderColor;
 }
-/*
-.Sleek .epi-breadCrumbs-title-wrapper .epi-breadCrumbsCurrentItem-icon {
-    width: 18px !important;
-    height: 18px !important;
-}
 
-.Sleek .epi-toolbarLeading h1 {
+/* Title of 'Current Content' in h1 in the breadcrumb */
+.Sleek .epi-toolbarLeading .epi-breadCrumbs-title-wrapper h1.epi-breadcrumbContentItem {
     margin-top: 6px;
     color: ContentTitleColor;
 }
 
+/*
 .Sleek .epi-thumbnailContentList.dgrid .dgrid-row .epi-thumbnail {
     width: 56px !important;
     height: 56px !important;
