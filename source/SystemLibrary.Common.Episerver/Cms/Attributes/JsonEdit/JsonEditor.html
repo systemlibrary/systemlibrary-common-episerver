@@ -229,12 +229,12 @@
 
             const data = jsonValueObject.data.filter(x => x);
 
-            window.onSave(data);
-
-            try {
-                localStorage.removeItem(storageDataName);
-            }
-            catch {
+            if (window.onSave(data)) {
+                try {
+                    localStorage.removeItem(storageDataName);
+                }
+                catch {
+                }
             }
             return onClose(e);
         }

@@ -39,6 +39,9 @@
                 if (typeof (data) === 'undefined' || data === null || data === "" || (data.length && data.length === 0)) {
                     return false;
                 }
+                if(data === " " || data === "  " || data === "    ") {
+                    return false;
+                }
                 return true;
             },
 
@@ -71,14 +74,16 @@
                         jsonEditTitle = 'Editor';
                     }
 
-                    const jsonEditValue = this.jsonTextArea.value;
+                    let jsonEditValue = this.jsonTextArea.value;
                     if (!this.is(jsonEditValue)) {
                         jsonEditValue = '[]';
                     }
+
                     if (!jsonEditValue.startsWith('[')) {
                         console.warn(jsonEditValue);
                         throw "Error: Json Value is not an array, must start and end with []";
                     }
+                    
                     const jsonEditValueArray = JSON.parse(jsonEditValue);
 
                     if (!Array.isArray(jsonEditValueArray)) {
@@ -109,7 +114,7 @@
                     const width = (screen.availWidth / 2) + 60;
                     const height = (screen.availHeight / 1.5) + 33;
 
-                    const left = (screen.availWidth - width)/2;
+                    const left = (screen.availWidth - width) / 2;
 
                     const d = new Date();
                     const skipCacheParam = 'skipCache=' + d.getHours().toString() + d.getMinutes().toString() + d.getMilliseconds().toString();
@@ -138,6 +143,8 @@
                         this.onChange(jsonText);            //OnChange is sufficient, why setValueAttr?
 
                         this.isShowingEditorWindow = false;
+
+                        return true;
                     });
 
                     if (!w.focus) {

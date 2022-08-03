@@ -1,163 +1,146 @@
-﻿/* Display 'descriptions' for each property in 'Properties Edit Mode' */
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row > label[title]:after {
+﻿/* Display 'descriptions' for each property in 'Properties View' */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label[title]:after {
     display: block;
     content: " " attr(title);
-    font-size: 0.84em;
+    font-size: 13.5px;
     font-style: italic;
     position: relative;
-    background-color: #F6F6F6;
-    border-radius: 4px;
-    padding-left: 2px;
-    width: 200px;
-    color: #676767;
+    background-color: #efefef;
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: #626262;
     margin-top: 3px;
+    position: relative;
+    width: 212px;
+    line-height: 1.31;
 }
+
+/* Display 'descriptions' for each property in 'PropertyList Dialog View' */
+/* The 'descriptions' are not currently part of the 'PropertyList Dialog View' */
 
 /* Display 'descriptions' for each property in 'On Create New Block in Content Area' view */
-.epi-containerLayout.clearfix.dijitLayoutContainer.dijitContainer > ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
+.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
     display: block;
     content: " " attr(title);
-    font-size: 10.75px;
+    font-size: 12px;
     font-style: italic;
     position: relative;
-    background-color: #F6F6F6;
-    border-radius: 4px;
+    background-color: #efefef;
+    border-radius: 2px;
     padding-left: 2px;
-    width: 158px;
-    color: #676767;
-    margin-top: 3px;
+    padding-right: 2px;
+    color: #626262;
+    margin-top: 2px;
+    position: relative;
+    width: 212px;
+    line-height: 1.31;
 }
 
-/* Hide the 'header' that says 'Optional Properties' when creating a new block in a Content Area */
-li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.clearfix.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
+/* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after
+{
+    content: none;
+}
+
+/* Show 'Descriptions' in the last tab, 'SETTINGS', but only the none-top-4 */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row:nth-child(n+8) > label[title]:after {
+    display: block;
+    content: " " attr(title) !important;
+    font-size: 13.5px;
+    font-style: italic;
+    position: relative;
+    background-color: #efefef;
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: #626262;
+    margin-top: 3px;
+    position: relative;
+    width: 212px;
+    line-height: 1.31;
+}
+
+/* Show 'Descriptions' always in the last property on all tabs, even 'Settings' tab */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section > li.epi-form-container__section__row:last-of-type > label[title]:after {
+    display: block;
+    content: " " attr(title) !important;
+    font-size: 13.5px;
+    font-style: italic;
+    position: relative;
+    background-color: #efefef;
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: #626262;
+    margin-top: 3px;
+    position: relative;
+    width: 212px;
+    line-height: 1.31;
+}
+
+/* Set 'Label' width for all properties on all tabs */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row > label {
+    width: 220px;
+    /* box-sizing: unset; */
+}
+
+/* Hide the title saying 'Required Properties' during new block dialog */
+.Sleek .epi-newContentContainer li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
     visibility: hidden;
     display: none;
 }
 
-.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused .epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
-    display: block;
-    content: " " attr(title);
-    font-size: 11.5px;
-    font-style: italic;
-    background: #f5f5f5;
-    width: 454px;
-    color: #444;
-    margin-top: 8px;
-    margin-bottom: 4px;
-}
 
-.epi-dialogPaneContent .dijitDialogPaneContentArea.epi-firstVisible.dijitDialogSingleChild {
-    padding-top: 4px;
-    padding-bottom: 4px;
+/* Set checkboxes "label" on left, checkbox on right, and adjust sizes */
+/*
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.epi-form-container__section__row--checkbox > label[title] {
+   min-width: 240px;
 }
-
-.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused .dijitDialogPaneActionBar {
-    padding-top: 8px;
-}
-
-.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused ul.epi-form-container__section > li.epi-form-container__section__row > label {
-    width: 200px;
-}
-
-.epi-dialog-landscape.epi-collection-editor--dialog.epi-focused.dijitDialog.dijitDialogFocused.dijitFocused {
-    top: 160px !important;
-}
-
-/* HIDE 'DESCRIPTIONS' FOR PROPERTIES IN 'SETTINGS TAB' WHICH IS EPISERVERS 'ONLY' */
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > .epi-form-container__section__row > label[title]:after {
-    content: none;
-}
-
-/* LAST TWO PROPERTIES IN 'SETTINGS' TAB - ARE CUSTOM ONES, NOT EPISERVERS, HENCE WE SHOW DESC*/
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row:nth-last-child(-n+2) > label[title]:after {
-    display: block;
-    content: " " attr(title);
-    font-size: 0.84em;
-    font-style: italic;
-    position: relative;
-    background-color: #F6F6F6;
-    border-radius: 4px;
-    padding-left: 2px;
-    width: 200px;
-    color: #676767;
-    margin-top: 3px;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > li.epi-form-container__section__row:last-of-type > label[title]:after {
-    content: " " attr(title) !important;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper ul.epi-form-container__section:last-child > li.epi-form-container__section__row:last-of-type {
-    display: flex;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label[title] {
-    margin-left: 12px;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label[title] {
-   min-width: 228px;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row > label {
+*/
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.epi-form-container__section__row--checkbox > label {
     box-sizing: unset;
-    min-width: 200px;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox label {
-    box-sizing: unset;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijitInputField.dijitInputContainer {
     min-width: 25%;
+    cursor: pointer !important;
 }
 
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox {
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox {
     padding-left: 0;
     margin-left: 0px;
     overflow: hidden;
 }
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitValidationTextBox {
-    min-width: 235px;
+    
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitValidationTextBox {
+    min-width: 244px !important;
 }
 
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .dijitReset.dijitTextBox.dijitNumberTextBox.dijitValidationTextBox {
-    min-width: 100px !important;
-}
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-previewableTextBox-text {
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-previewableTextBox-text {
     max-width: none;
 }
 
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label {
-    position: relative !important;
-    margin-left: 220px !important;
-    margin-top: -20px !important;
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label {
     position: unset !important;
+    margin-top: -20px !important;
     margin-left: unset !important;
 }
-
-.epi-cardContainer.dijitLayoutContainer .epi-form-container .dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
-    position: relative !important;
-    margin-left: 200px !important;
-    float: right !important;
-    margin-right: 100% !important;
-    left: 210px !important;
-    position: relative !important;
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
     margin-left: 12px !important;
+    margin-right: 100% !important;
+    left: 214px !important;
+    top: 2px !important;
+    position: relative !important;
     float: left !important;
 }
+/*End checkbox adjustments */
 
-
-/* Hide "language" in version gadget as we only have NO */
+    /* Hide "language" in version gadget as we only have NO */
 .Sleek .dgrid-row-table .dgrid-column-language:first-child {
     width: HideLanguageColumnInVersionGadget;
     visibility: HideLanguageColumnInVersionGadgetVisibility;
 }
 
 /* NEW CONTENT WINDOW - BORDER AROUND EACH CONTENT TO SELECT FROM */
-.epi-listingContainer ul.epi-advancedListing li div.epi-browserWindow {
+.Sleek .epi-listingContainer ul.epi-advancedListing li div.epi-browserWindow {
     background-color: ContentCreationBorderColor !important;
 }
 
@@ -165,7 +148,7 @@ li.epi-form-container__section__row.epi-form-container__section__row--group > di
 .Sleek .dijitTreeRow.dijitTreeRowSelected {
     border-bottom: 1px solid PageTreeSelectedContentBorderColor;
 }
-
+/*
 .Sleek .epi-breadCrumbs-title-wrapper .epi-breadCrumbsCurrentItem-icon {
     width: 18px !important;
     height: 18px !important;
@@ -196,7 +179,7 @@ li.epi-form-container__section__row > div.dijit.dijitNumberTextBox {
     width: calc(100% - 1em);
     padding-top: 0.5em;
     padding-left: 0.5em;
-}
+}*/
 
 /* PAGE TREE ICON */
 .Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage.custom-common-episerver-page-tree-icon {
