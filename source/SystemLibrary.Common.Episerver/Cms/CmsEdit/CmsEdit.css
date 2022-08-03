@@ -100,8 +100,7 @@
 */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.epi-form-container__section__row--checkbox > label {
     box-sizing: unset;
-    min-width: 25%;
-    cursor: pointer !important;
+    width: 242px !important;
 }
 
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox {
@@ -122,7 +121,9 @@
     position: unset !important;
     margin-top: -20px !important;
     margin-left: unset !important;
+    cursor: pointer;
 }
+
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
     margin-left: 12px !important;
     margin-right: 100% !important;
@@ -130,10 +131,11 @@
     top: 2px !important;
     position: relative !important;
     float: left !important;
+    cursor: pointer;
 }
 /*End checkbox adjustments */
 
-    /* Hide "language" in version gadget as we only have NO */
+/* Hide "language" in version gadget as we only have NO */
 .Sleek .dgrid-row-table .dgrid-column-language:first-child {
     width: HideLanguageColumnInVersionGadget;
     visibility: HideLanguageColumnInVersionGadgetVisibility;
