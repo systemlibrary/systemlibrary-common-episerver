@@ -241,7 +241,8 @@
 
         function onClose(e) {
             try {
-                localStorage.removeItem(storageDataName);
+                //Commented out: If one clicks cancel, keep whatever is in the localstorage
+               // localStorage.removeItem(storageDataName);
             }
             catch {
             }
