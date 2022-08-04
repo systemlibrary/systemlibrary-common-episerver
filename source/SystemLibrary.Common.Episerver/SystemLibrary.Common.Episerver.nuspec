@@ -23,35 +23,16 @@
 		</releaseNotes>
 
 		<description>
-A library of classes and methods for any .NET &gt;= 6 episerver web application
+## Description
+A library of classes, methods and dijits for every .NET &gt;= 6 episerver web application
+https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
 
-* Setup IApplicationBuilder in one line: app.CommonEpiserverApplicationBuilder();
-* Setup IServiceCollection in one line: services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
+## Installation
+https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
 
-The two methods in short enables:
-* serving of static common file types (css, js, png, jpg, ...)
-* routing requests to controllers
-* registers services for AspNet.Mvc
-* registers and enabled Authorization and Authentication
-* registers and initializes Episerver Cms
-* registers a new "demo/Demo123!" user if there's no user in the DB
-* registers a few view locations, and you can add more when calling CommonEpiserverApplicationServices()
-* enables the login screen on "https://domain.com/episerver"
-
-Contains other modules such as:
-- ContentIcon, custom icon for blocks and pages with over several thousand to pick from (FontAwesome Free Icons v6), and PageTree is also using the icons
-- Extensions like Is() and IsNot() for XhtmlString, ContentReference and ContentArea
-- New property types, such as: ParentLinkReference, which creates a Link in "Property Mode" to its parent, no more 'Where is this content stored'
-- Contains a "CurrentUser" you can inject or new up
-
-Multiple dijit widgets coming soon, like colorpicker and much much more!
-			
-Documentation:
+## Documentation with samples
 https://systemlibrary.github.io/systemlibrary-common-episerver/
-
-Source code:
-https://github.com/systemlibrary/systemlibrary-common-episerver/
-		</description>
+</description>
 
 		<copyright>Copyright © System Library</copyright>
 
