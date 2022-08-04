@@ -1,5 +1,7 @@
-﻿/* Display 'descriptions' for each property in 'Properties View' */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label[title]:after {
+﻿/* Display 'descriptions' for each property in 'Properties View' and in 'On Create New Page Required Properties View' */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label[title]:after,
+/* Display 'descriptions' for each property in 'On Create New Block Properties View' */
+.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
     display: block;
     content: " " attr(title);
     font-size: 13.5px;
@@ -12,30 +14,12 @@
     color: #626262;
     margin-top: 3px;
     position: relative;
-    width: 212px;
+    width: 228px;
     line-height: 1.31;
 }
 
 /* Display 'descriptions' for each property in 'PropertyList Dialog View' */
 /* The 'descriptions' are not currently part of the 'PropertyList Dialog View' */
-
-/* Display 'descriptions' for each property in 'On Create New Block in Content Area' view */
-.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label[title]:after {
-    display: block;
-    content: " " attr(title);
-    font-size: 12px;
-    font-style: italic;
-    position: relative;
-    background-color: #efefef;
-    border-radius: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: #626262;
-    margin-top: 2px;
-    position: relative;
-    width: 212px;
-    line-height: 1.31;
-}
 
 /* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after
@@ -45,45 +29,22 @@
 
 /* Show 'Descriptions' in the last tab, 'SETTINGS', but only the none-top-4 */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row:nth-child(n+8) > label[title]:after {
-    display: block;
     content: " " attr(title) !important;
-    font-size: 13.5px;
-    font-style: italic;
-    position: relative;
-    background-color: #efefef;
-    border-radius: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    color: #626262;
-    margin-top: 3px;
-    position: relative;
-    width: 212px;
-    line-height: 1.31;
 }
 
 /* Show 'Descriptions' always in the last property on all tabs, even 'Settings' tab */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section > li.epi-form-container__section__row:last-of-type > label[title]:after {
-    display: block;
     content: " " attr(title) !important;
-    font-size: 13.5px;
-    font-style: italic;
-    position: relative;
-    background-color: #efefef;
-    border-radius: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    color: #626262;
-    margin-top: 3px;
-    position: relative;
-    width: 212px;
-    line-height: 1.31;
 }
 
-/* Set 'Label' width for all properties on all tabs */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row > label {
-    width: 220px;
+/* Set label width on all properties in 'Properties View' and in 'On Create New Page Required Properties View' */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,
+/* Set label width on all properties in 'On Create New Block Properties View' */
+.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
+    width: 236px;
     /* box-sizing: unset; */
 }
+
 
 /* Hide the title saying 'Required Properties' during new block dialog */
 .Sleek .epi-newContentContainer li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
@@ -98,9 +59,10 @@
    min-width: 240px;
 }
 */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.epi-form-container__section__row--checkbox > label {
+
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox > label {
     box-sizing: unset;
-    width: 242px !important;
+    width: 234px !important;
 }
 
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox {
@@ -110,7 +72,7 @@
 }
     
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitValidationTextBox {
-    min-width: 244px !important;
+    min-width: 250px !important;
 }
 
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-previewableTextBox-text {
@@ -127,12 +89,28 @@
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
     margin-left: 12px !important;
     margin-right: 100% !important;
-    left: 214px !important;
+    left: 228px !important;
     top: 2px !important;
     position: relative !important;
     float: left !important;
     cursor: pointer;
 }
+
+/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox {
+    overflow: hidden;
+}
+
+/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
+    margin-left: 12px !important;
+    margin-right: 100% !important;
+    position: absolute !important;
+    float: left !important;
+    cursor: pointer;
+    left: 252px !important;
+}
+
 /*End checkbox adjustments */
 
 /* Hide "language" in version gadget as we only have NO */
@@ -156,23 +134,6 @@
     margin-top: 6px;
     color: ContentTitleColor;
 }
-
-/*
-.Sleek .dijitTreeIcon .sleek-page-tree__icon-FolderPage {
-    height: 19px !important;
-}
-
-li.epi-form-container__section__row > div.dijit.dijitNumberTextBox {
-    height: fit-content;
-    min-width: 204px !important;
-}
-
-.Sleek div.epi-browserWindowContent > img.epi-preview {
-    height: calc(100% - 1em);
-    width: calc(100% - 1em);
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-}*/
 
 /* PAGE TREE ICON */
 .Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage.custom-common-episerver-page-tree-icon {
