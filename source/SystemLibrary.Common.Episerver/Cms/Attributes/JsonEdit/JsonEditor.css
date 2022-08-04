@@ -2,7 +2,7 @@
   width: 100%;
   border-collapse: collapse;
   border-width: 0px;
-  font-family: "sans-serif", "consolas";
+  font-family: "inter", "consolas";
 }
 
 .j-container td {
@@ -109,7 +109,7 @@
 }
 
 .j-remove-array-item {
-  font-family: "sans-serif", "consolas";
+  font-family: "inter", "consolas";
   color: rgb(222, 27, 27);
   cursor: pointer;
   font-weight: bold;
@@ -171,7 +171,7 @@
 }
 
 * {
-  font-family: "sans-serif", consolas, monospace;
+  font-family: "inter", "consolas" !important;
 }
 
 body {
@@ -217,6 +217,10 @@ td.j-title-col {
 
 tr.j-object-properties > td > table.j-container {
   border-bottom: thin solid #0f70af !important;
+}
+
+tr.j-object-properties > td > table.j-container > tbody > tr.j-object-title-row > td.j-title-col {
+  background-color: #f3f3f3 !important;
 }
 
 .j-input {
@@ -268,7 +272,7 @@ tr.j-object-properties > td > table.j-container {
 
 input {
   font-size: 16px;
-  font-family: "sans-serif", consolas, monospace;
+  font-family: "inter", "consolas" !important;
 }
 
 .j-validation-help {
@@ -335,6 +339,7 @@ thead tr {
   padding-left: 0.75em;
   padding-right: 0.75em;
   background: hsl(227, 100%, 50%);
+  background: #080736;
   border: 0 solid;
   border-radius: 4px;
   color: #fff;
@@ -369,6 +374,7 @@ thead tr {
   padding-top: 0.4em;
   padding-bottom: 0.4em;
   background: hsl(227, 100%, 50%);
+  background: #080736;
   color: white;
   border: 0 solid;
   border-radius: 4px;

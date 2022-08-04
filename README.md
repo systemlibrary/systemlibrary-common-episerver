@@ -5,10 +5,11 @@
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.1.0.1
-- New custom dijits: Message, BoxSelection and JsonEdit
-- New property list of T? Simply create a new [PropertyDefinitionTypePlugIn(Description = "...", GUID = "...")] class TProperty : IListProperty&lt;Car&gt;
+- 6.1.0.3
+- New dijits: Message, BoxSelection, JsonEdit
+- Cleaned up the "built-in" css file that loads in "Edit Mode"
 - Updated latest dependencies
+- Updated documentations and sample code for most public methods and properties and classes
 
 ## Description
 A library of classes, methods and dijits for every .NET &gt;= 6 episerver web application
@@ -64,7 +65,7 @@ The two one-liners enables:
 - Has a "CurrentUser" you can either "new CurrentUser()" anywhere or inject it
 
 ## Docs
-Documentation with samples and installation instructions:
+Documentation with samples and installation instructions:  
 https://systemlibrary.github.io/systemlibrary-common-episerver/
 
 ## Nuget
