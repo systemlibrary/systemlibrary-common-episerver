@@ -14,7 +14,7 @@
 2. Add EPiServer.Framework >= 12.8.0
 3. Add Episerver.Cms >= 12.8.0
 4. Add EPiServer.CMS.AspNetCore.Routing >= 12.8.0
-5. Add SystemLibrary.Common.Episerver >= 6.0.0.2
+5. Add latest version of SystemLibrary.Common.Episerver
 6. Rename "Program.cs" to "Startup.cs" 
 7. Create module.config at root in your web project, make sure its build is set to "Content" in your project
 8. Create appSettings.json at root in your web project, make sure its build is set to "Content" in your project
@@ -22,7 +22,7 @@
 10. If "Properties/launchSettings.json" do not exist, create it
 11. Create Content/Pages/StartPage/StartPage.cs
 12. Create Content/Pages/StartPage/StartPageController.cs
-13. Create Content/Pages/StartPage/Index.cshtml
+13. Create Content/Pages/StartPage/Index.cshtml, make sure its build is set to "Content" in your project
 14. Copy paste code below, into their respective files
 
 Cms/Cms.cs
@@ -41,7 +41,8 @@ Content/Pages/StartPage/StartPage.cs
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 
-using SystemLibrary.Common.Episerver.Attributes;
+using SystemLibrary.Common.Episerver.Cms.Attributes;
+using SystemLibrary.Common.Episerver.FontAwesome;
 
 namespace Demo;
 
@@ -179,15 +180,21 @@ Properties/launchSettings.json
 }
 ```
 
-#### Final Notes Before Running Application
-- EpiserverDb connection string targets SqlExpress instance with db name "Demo" with your "Windows Credentials"
-- Episerver database tables is only created if the database is empty
-- Episerver is only initialized with languages, sites and a new admin user, if there's no users already existing in the DB
-- If you run this without changing domain "localhost" in launchSettings, then sites in Admin is of course configured against localhost
+#### Pit falls
+- EpiserverDb connection string targets SqlExpress instance and the database named "Demo" with your "Windows Credentials"
+- SystemLibrary.Common.Episerver initializes langauges and sites also, but only if user count is 0
+- SystemLibrary.Common.Episerver only creates the "demo" user if the database do not have a user already, user count must be 0
+- SystemLibrary.Common.Episerver registers "default site" as the domain in "launchSettings" file, which is "localhost"
+- Index.cshtml not found - typos in your paths/files and folders are most likely the cause or you've forgotten to copy paste something
+
 
 #### Run application
-- Ctrl + F5 in Visual Studio, start site in IIS Express
+- Ctrl + F5 in Visual Studio, should start IIS Express and display an error on our startpage, as we have not created one yet
 - Visit http://localhost:51010/episerver
+- Log in with demo/Demo123!
+- Create a StartPage in Edit Mode
+- Register StartPage as the start for your site (Admin > Config > Manage Websites)
+- Visit http://localhost:51010 should now give 200 OK status code
 
 ## Package Configurations
 * Default (and modifiable) configurations in this package:
