@@ -1359,6 +1359,38 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.BlockIsInEditMode
   nameWithType: ViewContextExtensions.BlockIsInEditMode
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions
+  name: XhtmlStringExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions
+  nameWithType: XhtmlStringExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is(EPiServer.Core.XhtmlString)
+  name: Is(XhtmlString)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Is_EPiServer_Core_XhtmlString_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is(EPiServer.Core.XhtmlString)
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is(EPiServer.Core.XhtmlString)
+  nameWithType: XhtmlStringExtensions.Is(XhtmlString)
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is*
+  name: Is
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Is_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Is
+  nameWithType: XhtmlStringExtensions.Is
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot(EPiServer.Core.XhtmlString)
+  name: IsNot(XhtmlString)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_IsNot_EPiServer_Core_XhtmlString_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot(EPiServer.Core.XhtmlString)
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot(EPiServer.Core.XhtmlString)
+  nameWithType: XhtmlStringExtensions.IsNot(XhtmlString)
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot*
+  name: IsNot
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_IsNot_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot
+  nameWithType: XhtmlStringExtensions.IsNot
 - uid: SystemLibrary.Common.Episerver.FontAwesome
   name: SystemLibrary.Common.Episerver.FontAwesome
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.html
@@ -11960,3 +11992,114 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Roles.CmsRoles
   nameWithType: Roles.CmsRoles
+- uid: SystemLibrary.Common.Episerver.Validator`1
+  name: Validator<T>
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html
+  commentId: T:SystemLibrary.Common.Episerver.Validator`1
+  name.vb: Validator(Of T)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T)
+  nameWithType: Validator<T>
+  nameWithType.vb: Validator(Of T)
+- uid: SystemLibrary.Common.Episerver.Validator`1.Error(System.String,System.String)
+  name: Error(String, String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Error_System_String_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.Error(System.String,System.String)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Error(System.String, System.String)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Error(System.String, System.String)
+  nameWithType: Validator<T>.Error(String, String)
+  nameWithType.vb: Validator(Of T).Error(String, String)
+- uid: SystemLibrary.Common.Episerver.Validator`1.Error*
+  name: Error
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Error_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.Error
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Error
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Error
+  nameWithType: Validator<T>.Error
+  nameWithType.vb: Validator(Of T).Error
+- uid: SystemLibrary.Common.Episerver.Validator`1.Info(System.String,System.String)
+  name: Info(String, String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Info_System_String_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.Info(System.String,System.String)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Info(System.String, System.String)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Info(System.String, System.String)
+  nameWithType: Validator<T>.Info(String, String)
+  nameWithType.vb: Validator(Of T).Info(String, String)
+- uid: SystemLibrary.Common.Episerver.Validator`1.Info*
+  name: Info
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Info_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.Info
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Info
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Info
+  nameWithType: Validator<T>.Info
+  nameWithType.vb: Validator(Of T).Info
+- uid: SystemLibrary.Common.Episerver.Validator`1.IsValid(System.Object)
+  name: IsValid(Object)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_IsValid_System_Object_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.IsValid(System.Object)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.IsValid(System.Object)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).IsValid(System.Object)
+  nameWithType: Validator<T>.IsValid(Object)
+  nameWithType.vb: Validator(Of T).IsValid(Object)
+- uid: SystemLibrary.Common.Episerver.Validator`1.IsValid*
+  name: IsValid
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_IsValid_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.IsValid
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.IsValid
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).IsValid
+  nameWithType: Validator<T>.IsValid
+  nameWithType.vb: Validator(Of T).IsValid
+- uid: SystemLibrary.Common.Episerver.Validator`1.OnValidate(`0)
+  name: OnValidate(T)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_OnValidate__0_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.OnValidate(`0)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.OnValidate(T)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).OnValidate(T)
+  nameWithType: Validator<T>.OnValidate(T)
+  nameWithType.vb: Validator(Of T).OnValidate(T)
+- uid: SystemLibrary.Common.Episerver.Validator`1.OnValidate*
+  name: OnValidate
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_OnValidate_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.OnValidate
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.OnValidate
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).OnValidate
+  nameWithType: Validator<T>.OnValidate
+  nameWithType.vb: Validator(Of T).OnValidate
+- uid: SystemLibrary.Common.Episerver.Validator`1.Validate(`0)
+  name: Validate(T)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Validate__0_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.Validate(`0)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Validate(T)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Validate(T)
+  nameWithType: Validator<T>.Validate(T)
+  nameWithType.vb: Validator(Of T).Validate(T)
+- uid: SystemLibrary.Common.Episerver.Validator`1.Validate*
+  name: Validate
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Validate_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.Validate
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Validate
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Validate
+  nameWithType: Validator<T>.Validate
+  nameWithType.vb: Validator(Of T).Validate
+- uid: SystemLibrary.Common.Episerver.Validator`1.Warning(System.String,System.String)
+  name: Warning(String, String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Warning_System_String_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Validator`1.Warning(System.String,System.String)
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Warning(System.String, System.String)
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Warning(System.String, System.String)
+  nameWithType: Validator<T>.Warning(String, String)
+  nameWithType.vb: Validator(Of T).Warning(String, String)
+- uid: SystemLibrary.Common.Episerver.Validator`1.Warning*
+  name: Warning
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html#SystemLibrary_Common_Episerver_Validator_1_Warning_
+  commentId: Overload:SystemLibrary.Common.Episerver.Validator`1.Warning
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Validator<T>.Warning
+  fullName.vb: SystemLibrary.Common.Episerver.Validator(Of T).Warning
+  nameWithType: Validator<T>.Warning
+  nameWithType.vb: Validator(Of T).Warning
