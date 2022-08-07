@@ -11,21 +11,20 @@
 
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6
-2. Add EPiServer.Framework >= 12.8.0
-3. Add Episerver.Cms >= 12.8.0
-4. Add EPiServer.CMS.AspNetCore.Routing >= 12.8.0
-5. Add latest version of SystemLibrary.Common.Episerver
-6. Rename "Program.cs" to "Startup.cs" 
-7. Create module.config at root in your web project, make sure its build is set to "Content" in your project
-8. Create appSettings.json at root in your web project, make sure its build is set to "Content" in your project
-9. Create Cms/Cms.cs where "Cms/" is a folder at root in your project
-10. If "Properties/launchSettings.json" do not exist, create it
-11. Create Content/Pages/StartPage/StartPage.cs
-12. Create Content/Pages/StartPage/StartPageController.cs
-13. Create Content/Pages/StartPage/Index.cshtml, make sure its build is set to "Content" in your project
-14. Copy paste code below, into their respective files
+2. Add nuget package EPiServer.Framework >= 12.8.0 
+3. Add nuget package Episerver.Cms >= 12.8.0
+4. Add nuget package EPiServer.CMS.AspNetCore.Routing >= 12.8.0
+5. Add nuget package SystemLibrary.Common.Episerver >= 12.2.0.1
+6. Create '~/module.config', set its build to 'Content' 
+7. Create '~/Cms/Cms.cs'
+8. Create '~/Properties/launchSettings.json'
+9. Create '~/Content/Pages/StartPage/StartPage.cs'
+10. Create '~/Content/Pages/StartPage/StartPageController.cs'
+11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
+12. Create '~/appSettings.json', set its build to 'Content'
+13. Copy paste code below, into their respective files
 
-Cms/Cms.cs
+~/Cms/Cms.cs:
 ```csharp 
 using SystemLibrary.Common.Episerver;
 
@@ -36,7 +35,7 @@ public class Cms : BaseCms
 }
 ```
 
-Content/Pages/StartPage/StartPage.cs
+~/Content/Pages/StartPage/StartPage.cs
 ```csharp 
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
@@ -51,7 +50,7 @@ namespace Demo;
 public class StartPage : PageData { }
 ```
 
-Content/Pages/StartPage/StartPageController.cs
+~/Content/Pages/StartPage/StartPageController.cs
 ```csharp 
 using EPiServer.Web.Mvc;
 
@@ -68,14 +67,14 @@ public class StartPageController : PageController<StartPage>
 }
 ```
 
-Content/Pages/StartPage/Index.cshtml
+~/Content/Pages/StartPage/Index.cshtml
 ```csharp 
 @model object
 Startpage
 ```
 
 
-module.config:
+~/module.config:
 ```xml 
 <?xml version="1.0" encoding="utf-8"?>
 <module>
@@ -86,7 +85,7 @@ module.config:
 </module>
 ```
  
-Startup.cs
+~/Program.cs
 ```csharp 
 using EPiServer.Cms.TinyMce;
 
@@ -95,14 +94,14 @@ using SystemLibrary.Common.Episerver.Extensions;
 
 namespace Demo;
 
-public class Startup
+public class Program
 {
 	public static void Main(string[] args)
 	{
 		var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
 		try
 		{
-			Cms.CreateHostBuilder<Startup>(args, appSettingsPath)
+			Cms.CreateHostBuilder<Program>(args, appSettingsPath)
 				.Build()
 				.Run();
 		}
@@ -131,7 +130,7 @@ public class Startup
 }
 ```
 
-appSettings.json:
+~/appSettings.json:
 ```json 
 {
 	"ConnectionStrings": {
@@ -159,7 +158,7 @@ appSettings.json:
 }
 ```
 
-Properties/launchSettings.json
+~/Properties/launchSettings.json
 ```json 
 {
 	"iisSettings": {

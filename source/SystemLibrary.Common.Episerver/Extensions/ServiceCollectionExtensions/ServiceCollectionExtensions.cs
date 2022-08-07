@@ -8,6 +8,9 @@ using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Service collection extensions
+/// </summary>
 public static partial class ServiceCollectionExtensions
 {
     internal static CommonEpiserverApplicationServicesOptions Options;

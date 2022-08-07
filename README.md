@@ -58,12 +58,14 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.1.0.3
-- New dijits: Message, BoxSelection, JsonEdit
-- Built-in css adjustments
-- Updated deps
+- 6.2.0.1
 - Updated docs
-- Added readme.md to nupkg
+- Updated deps
+- New: validator class, for validation messages before publishing content
+- BoxSelection: max width set so 6 boxes shows per row
+- Message: info button on right side, and its clickable
+- /Components/ is no longer a default view location (breaking change)
+- A web-option variable was renamed: HttpRediretionAndHsts to HttpToHttpsRedirectionAndHsts (breaking change)
 
 #### Version history
 - View git history of this file if interested

@@ -2,6 +2,9 @@
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Common page data extensions
+/// </summary>
 public static class PageDataExtensions
 {
     /// <summary>

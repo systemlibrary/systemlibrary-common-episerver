@@ -4,6 +4,9 @@ using EPiServer.Core;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Common content area extensions
+/// </summary>
 public static class ContentAreaExtensions
 {
     /// <summary>

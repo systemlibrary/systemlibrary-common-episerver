@@ -538,12 +538,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.Type
   nameWithType: JsonEditAttribute.Type
-- uid: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.UiHint
-  name: UiHint
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_JsonEditAttribute_UiHint
-  commentId: F:SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.UiHint
-  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.UiHint
-  nameWithType: JsonEditAttribute.UiHint
 - uid: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController
   name: JsonEditController
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController.html

@@ -28,7 +28,7 @@ namespace SystemLibrary.Common.Episerver;
 /// //Use the BaseCms directly without inheriting it yourself:
 /// 
 /// var startPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
-/// //'startPage' is null if current page is not start page or null if you are inside a block request, else it returns the startpage
+/// //'startPage' is 'StartPage' is current request is of type 'StartPage', return null else (if you are on an article or inside a block...)
 /// 
 /// //Extend the BaseCms class with your own Cms functions that are common within your application:
 /// public class Cms : BaseCms
@@ -43,30 +43,53 @@ namespace SystemLibrary.Common.Episerver;
 /// </example>
 public abstract class BaseCms
 {
-    static IContentRepository _ContentRepository;
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected static IContentRepository ContentRepository =>
         _ContentRepository != null ? _ContentRepository :
         (_ContentRepository = Services.Get<IContentRepository>());
+    static IContentRepository _ContentRepository;
 
-    static ILanguageBranchRepository _LanguageBranchRepository;
+
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected static ILanguageBranchRepository LanguageBranchRepository => _LanguageBranchRepository != null ? _LanguageBranchRepository :
         (_LanguageBranchRepository = Services.Get<ILanguageBranchRepository>());
+    static ILanguageBranchRepository _LanguageBranchRepository;
 
-    static IContentTypeRepository _ContentTypeRepository;
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected static IContentTypeRepository ContentTypeRepository =>
         _ContentTypeRepository != null ? _ContentTypeRepository :
         (_ContentTypeRepository = Services.Get<IContentTypeRepository>());
+    static IContentTypeRepository _ContentTypeRepository;
 
-    static ProjectRepository _ProjectRepository;
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected static ProjectRepository ProjectRepository =>
         _ProjectRepository != null ? _ProjectRepository :
         (_ProjectRepository = Services.Get<ProjectRepository>());
+    static ProjectRepository _ProjectRepository;
 
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected static IContentModelUsage ContentModelUsage => Services.Get<IContentModelUsage>();
 
     /// <summary>
     /// Returns content or null if not found
     /// </summary>
+    /// <example>
+    /// <code>
+    /// var page = BaseCms.Get&lt;StartPage&gt;(ContentReference.StartPage);
+    /// //page should now be 'StartPage', as ContentReference.StartPage is a PageReference, which inherits 'ContentReference'
+    /// //and in most solutions a 'StartPage' always exists
+    /// </code>
+    /// </example>
     public static T Get<T>(ContentReference contentReference) where T : IContentData
     {
         ContentRepository.TryGet(contentReference, out T content);
@@ -76,6 +99,11 @@ public abstract class BaseCms
     /// <summary>
     /// Returns content area items filtered by published, permission and personalized items for the current user
     /// </summary>
+    /// <example>
+    /// <code>
+    /// var pages = BaseCms.GetItems&lt;PageData&gt;(startPage.ContentArea);
+    /// </code>
+    /// </example>
     public static IEnumerable<T> GetItems<T>(ContentArea contentArea) where T : IContentData
     {
         if (contentArea.IsNot()) return default;
@@ -88,6 +116,15 @@ public abstract class BaseCms
     /// <summary>
     /// Returns all content references as a list of T
     /// </summary>
+    /// <example>
+    /// <code>
+    /// var contentReferences = new List&lt;ContentReference&gt;();
+    /// contentReferences.Add(new ContentReference(5));
+    /// 
+    /// var pages = BaseCms.GetItems&lt;PageData&gt;(contentReferences);
+    /// //pages[0] should be start page in most solutions, as thats the ID 5 in the DB
+    /// </code>
+    /// </example>
     public static IEnumerable<T> GetItems<T>(IEnumerable<ContentReference> contentReferences) where T : IContentData
     {
         if (contentReferences.IsNot()) return new List<T>();
@@ -98,6 +135,12 @@ public abstract class BaseCms
     /// <summary>
     /// Returns current page as T based on current request, or null
     /// </summary>
+    /// <example>
+    /// <code>
+    /// var currentPageAsStartPage = BaseCms.GetCurrentPage&lt;StartPage&gt;();
+    /// //null if current request is not StartPage
+    /// </code>
+    /// </example>
     public static T GetCurrentPage<T>() where T : IContentData
     {
         var pageRouteHelper = Services.Get<IPageRouteHelper>();
@@ -108,11 +151,24 @@ public abstract class BaseCms
     /// <summary>
     /// Returns current block as T based on current request, or null
     /// </summary>
+    /// <example>
+    /// <code>
+    /// var currentBlockAsButtonBlock = BaseCms.GetCurrentBlock&lt;ButtonBlock&gt;();
+    /// </code>
+    /// </example>
     public static T GetCurrentBlock<T>() where T : IContentData
     {
         throw new Exception("Not yet implemented");
     }
 
+    /// <summary>
+    /// Returns true if curent request is inside edit mode, else false
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// var isInPreviewMode = BaseCms.IsInPreviewMode;
+    /// </code>
+    /// </example>
     public static bool IsInEditMode 
     {
         get
@@ -123,6 +179,14 @@ public abstract class BaseCms
         }
     }
 
+    /// <summary>
+    /// Returns true if curent request is inside preview mode, else false
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// var isInPreviewMode = BaseCms.IsInPreviewMode;
+    /// </code>
+    /// </example>
     public static bool IsInPreviewMode
     {
         get
@@ -133,6 +197,30 @@ public abstract class BaseCms
         }
     }
 
+    /// <summary>
+    /// CreateHostBuilder()
+    /// Creates a default CMS host builder
+    /// - the 'T' is usually your 'Program.cs' or 'Startup.cs'
+    /// </summary>
+    /// <example>
+    /// Program.cs/Startup.cs
+    /// <code>
+    /// public static void Main(string[] args)
+    /// {
+    ///     var appSettingsPath = AppContext.BaseDirectory + "Configs\\AppSettings\\appSettings.json";
+    ///     try
+    ///     {
+    ///         Cms.CreateHostBuilder&lt;Program&gt;(args, appSettingsPath)
+    ///             .Build()
+    ///             .Run();
+    ///     }
+    ///     catch (Exception ex)
+    ///     {
+    ///         Dump.Write(ex);
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null) where T : class
     {
         if(appSettingsFullPath.IsNot())

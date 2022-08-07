@@ -6,6 +6,9 @@ using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Common content reference extensions
+/// </summary>
 public static class ContentReferenceExtensions
 {
     static IUrlResolver _IUrlResolver;

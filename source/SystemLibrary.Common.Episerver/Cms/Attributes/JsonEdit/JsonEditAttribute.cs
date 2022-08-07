@@ -46,13 +46,66 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 {
-    public const string UiHint = "SystemLibrary.Common.Episerver.UiHint.JsonEdit";
+    const string UiHint = "SystemLibrary.Common.Episerver.UiHint.JsonEdit";
 
+    /// <summary>
+    /// The c# class that is stored as a json string, and all its properties is editable through the Json Editor
+    /// </summary>
     public Type Type { get; set; }
 
+    /// <summary>
+    /// Optional: Give the Json Editor Window a simple title so its more editor friendly
+    /// 
+    /// If not filled out - the 'Type.Name' will be used as the title of the Json Editor Window
+    /// </summary>
     public string Title { get; set; }
 
+    /// <summary>
+    /// Optional: Set to name of a property that the Editor can sort by
+    /// 
+    /// If empty: the sort button 1 is hidden inside the 'Json Editor Window'
+    /// </summary>
+    /// <example>
+    /// Sorting by 'Age' the C# property name, and the friendly name "First Name":
+    /// <code>
+    /// public class Car
+    /// {
+    ///     [Display(Name = "First Name")]
+    ///     public string FirstName { get; set; }
+    ///     public int Age { get; set; }
+    /// }
+    /// 
+    /// public class StartPage : PageData
+    /// {
+    ///     [JsonEdit(Type = typeof(Car), SortByPropertyName1 = "First Name", SortByPropertyName2 = nameof(Car.Age))]
+    ///     public virtual string Cars { get; set ; }
+    /// }
+    /// </code>
+    /// </example>
     public string SortByPropertyName1 { get; set; }
+
+    /// <summary>
+    /// Optional: Set to name of a property that the Editor can sort by
+    /// 
+    /// If empty: the sort button 2 is hidden inside the 'Json Editor Window'
+    /// </summary>
+    /// <example>
+    /// Sorting by 'Age' the C# property name, and the friendly name "First Name":
+    /// <code>
+    /// public class Car
+    /// {
+    ///     [Display(Name = "First Name")]
+    ///     public string FirstName { get; set; }
+    ///     public int Age { get; set; }
+    /// }
+    /// 
+    /// public class StartPage : PageData
+    /// {
+    ///     [JsonEdit(Type = typeof(Car), SortByPropertyName1 = "First Name", SortByPropertyName2 = nameof(Car.Age))]
+    ///     public virtual string Cars { get; set ; }
+    /// }
+    /// </code>
+    /// </example>
     public string SortByPropertyName2 { get; set; }
 
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)

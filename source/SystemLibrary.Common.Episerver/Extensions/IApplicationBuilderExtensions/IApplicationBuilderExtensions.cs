@@ -6,6 +6,9 @@ using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Application Builder Extensions
+/// </summary>
 public static partial class IApplicationBuilderExtensions
 {
     /// <summary>

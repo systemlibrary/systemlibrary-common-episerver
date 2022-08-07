@@ -16,6 +16,15 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 /// <code class="language-csharp hljs">
 /// [ContentIcon(FontAwesomeRegular.credit_card)]
 /// public class StartPage : PageData
+/// {
+/// }
+/// </code>
+/// 
+/// <code>
+/// [ContentIcon("~/Static/Images/article-image.png")]
+/// public class ArticlePage : PageData
+/// {
+/// }
 /// </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]

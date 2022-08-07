@@ -3,12 +3,12 @@
 namespace SystemLibrary.Common.Episerver.Cms.Properties;
 
 /// <summary>
-/// Enable your custom C# class to be stored as JSON in the DB through 'IList&gt;T&lt;'
+/// Enable your custom C# class to be stored as JSON in the DB through IList&lt;T&gt;
 /// </summary>
 /// <example>
 /// <code>
 /// [PropertyDefinitionTypePlugIn(Description = "List of cars", GUID = "...")]
-/// public class CarProperty : IListProperty&gt;Car&lt;
+/// public class CarProperty : IListProperty&lt;Car&gt; // 'CarProperty' enables 'Car' to be used as 'virtual IList...'
 /// {
 /// }
 /// 
@@ -20,21 +20,20 @@ namespace SystemLibrary.Common.Episerver.Cms.Properties;
 /// 
 /// public class ArticlePage : PageData
 /// {
-///     [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<Car>))]
-///     public virtual IList&gt;Car&lt; Cars { get;set; }       //'CarProperty' enables 'Car' to be used in the IList
+///     [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor&lt;Car&gt;))]
+///     public virtual IList&lt;Car&gt; Cars { get;set; } 
 /// }
 /// </code>
 /// </example>
 public abstract class IListProperty<T> : PropertyList<T>
 {
-
     /// <summary>
     /// Enable your custom C# class to be stored as JSON in the DB through 'IList&gt;T&lt;'
     /// </summary>
     /// <example>
     /// <code>
     /// [PropertyDefinitionTypePlugIn(Description = "List of cars", GUID = "...")]
-    /// public class CarProperty : IListProperty&gt;Car&lt;
+    /// public class CarProperty : IListProperty&lt;Car&gt;  // 'CarProperty' enables 'Car' to be used as 'virtual IList...'
     /// {
     /// }
     /// 
@@ -46,8 +45,8 @@ public abstract class IListProperty<T> : PropertyList<T>
     /// 
     /// public class ArticlePage : PageData
     /// {
-    ///     [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<Car>))]
-    ///     public virtual IList&gt;Car&lt; Cars { get;set; }       //'CarProperty' enables 'Car' to be used in the IList
+    ///     [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor&lt;Car&gt;))]
+    ///     public virtual IList&lt;Car&gt; Cars { get;set; } 
     /// }
     /// </code>
     /// </example>

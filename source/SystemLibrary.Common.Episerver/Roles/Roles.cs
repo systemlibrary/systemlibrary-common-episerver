@@ -6,6 +6,8 @@
     public static class Roles
     {
         static string[] _CmsRoles;
+
+
         public static string[] CmsRoles => _CmsRoles != null ? _CmsRoles :
             (_CmsRoles = new[] {
             EPiServer.Authorization.Roles.Administrators,

@@ -29,11 +29,11 @@ namespace SystemLibrary.Common.Episerver;
 /// {
 ///     public override void OnValidate(StartPage instance) 
 ///     {
-///         if(!IsValid(instance.Title)) 
+///         if(!IsValid(instance.Title)) //Inherited method
 ///         {
-///             Error(nameof(instance.Title));
-///             Info(nameof(instance.Title));
-///             Warning(nameof(instance.Title));
+///             Error(nameof(instance.Title)); //Inherited method, has built-in message as: 'Property: must be set'
+///             Info(nameof(instance.Title)); //Inherited method, has built-in message as: 'Property: should be set'
+///             Warning(nameof(instance.Title)); //Inherited method, has built-in message as: 'Property: can be set'
 ///             
 ///             //Pass a custom message?
 ///             //Note: the 'Title', property name, will be prefixed with the message automatically, if message does not contain it already
@@ -61,11 +61,11 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     /// {
     ///     public override void OnValidate(StartPage instance) 
     ///     {
-    ///         if(!IsValid(instance.Title)) 
+    ///         if(!IsValid(instance.Title))  //Inherited method
     ///         {
-    ///             Error(nameof(instance.Title));
-    ///             Info(nameof(instance.Title));
-    ///             Warning(nameof(instance.Title));
+    ///             Error(nameof(instance.Title)); //Inherited method
+    ///             Info(nameof(instance.Title)); //Inherited method
+    ///             Warning(nameof(instance.Title)); //Inherited method
     ///             
     ///             //Pass a custom message?
     ///             //Note: the 'Title', property name, will be prefixed with the message automatically, if message does not contain it already
@@ -78,7 +78,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     public abstract void OnValidate(T content);
 
     /// <summary>
-    /// The internal Validate method that the CMS invokes, we never call it
+    /// Internal method: CMS invokes this
     /// </summary>
     public IEnumerable<ValidationError> Validate(T instance)
     {
@@ -90,16 +90,20 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
         }
         catch (Exception ex)
         {
+            Log.Error(ex);
             Add(null, "Exception occured, let your developers know: " + ex.Message + ". The publishing continues as normal...", ValidationErrorSeverity.Warning);
         }
         return Validations;
     }
 
     /// <summary>
-    /// Display a 'red error message' during 'OnPublish' button clicked
+    /// Display 'red error message' on publishing content
     /// - This prevents the content from being published
     /// 
-    /// Do not pass a message, to get either 'must be set' or 'should be set' depending on the severity level
+    /// Default 'message' is set to "must be set"
+    /// 
+    /// Note:
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
     /// <example>
     /// <code>
@@ -107,21 +111,24 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     /// {
     ///     Error(nameof(instance.Title));
     ///     
-    ///     //Custom message: if message does not contain 'Title' (property name), it will be prefixed automatically with it
+    ///     //Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     ///     Error(nameof(instance.Title), "must be between 1-255 chars long");
     /// }
     /// </code>
     /// </example>
-    public void Error(string propertyName, string message = null)
+    public void Error(string propertyName, string message = "must be set")
     {
         Add(propertyName, message, ValidationErrorSeverity.Error);
     }
 
     /// <summary>
-    /// Display a 'orange warning message' during 'OnPublish' button clicked
+    /// Display 'orange warning message' on publishing content
     /// - This does not prevent the content from being published
-    ///
-    /// Do not pass a message, to get either 'must be set' or 'should be set' depending on the severity level
+    /// 
+    /// Default 'message' is set to "should be set"
+    /// 
+    /// Note:
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
     ///   /// <example>
     /// <code>
@@ -129,21 +136,24 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     /// {
     ///     Warning(nameof(instance.Title));
     ///     
-    ///     //Custom message: if message does not contain 'Title' (property name), it will be prefixed automatically with it
+    ///     //Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     ///     Warning(nameof(instance.Title), "must be between 1-255 chars long");
     /// }
     /// </code>
     /// </example>
-    public void Warning(string propertyName, string message = null)
+    public void Warning(string propertyName, string message = "should be set")
     {
         Add(propertyName, message, ValidationErrorSeverity.Warning);
     }
 
     /// <summary>
-    /// Display a 'info message' during 'OnPublish' button clicked
+    /// Display 'blue info message' on publishing content
     /// - This does not prevent the content from being published
     /// 
-    /// Do not pass a message, to get either 'must be set' or 'should be set' depending on the severity level
+    /// Default 'message' is set to "can be set"
+    /// 
+    /// Note:
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
     /// <example>
     /// <code>
@@ -151,12 +161,12 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     /// {
     ///     Info(nameof(instance.Title));
     ///     
-    ///     //Custom message: if message does not contain 'Title' (property name), it will be prefixed automatically with it
+    ///     //Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     ///     Info(nameof(instance.Title), "must be between 1-255 chars long");
     /// }
     /// </code>
     /// </example>
-    public void Info(string propertyName, string message = null)
+    public void Info(string propertyName, string message = "can be set")
     {
         Add(propertyName, message, ValidationErrorSeverity.Info);
     }
@@ -208,15 +218,6 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
     {
         string propertyDisplayName = GetPropertyDisplayName(propertyName);
 
-        if (message.IsNot())
-        {
-            if (severity == ValidationErrorSeverity.Error)
-                message = "must be set";
-            else if (severity == ValidationErrorSeverity.Info)
-                message = "can be set";
-            else
-                message = "should be set";
-        }
         for (int i = 0; i < Validations.Count; i++)
         {
             if (Validations[i].ErrorMessage == message)
@@ -229,10 +230,8 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
             }
         }
 
-        if (!message.Contains(propertyName) && !message.Contains(propertyDisplayName))
-        {
+        if (!message.Contains(propertyDisplayName))
             message = propertyDisplayName + ": " + message;
-        }
 
         Validations.Add(new ValidationError
         {
@@ -249,11 +248,11 @@ public abstract class Validator<T> : IValidate<T> where T : IContent
 
         var property = typeof(T).GetProperty(propertyName);
 
-        var display = property.GetCustomAttribute<DisplayAttribute>();
+        var display = property?.GetCustomAttribute<DisplayAttribute>();
 
         if (display?.Name != null)
             return display.Name;
 
-        return property.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyName;
+        return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyName;
     }
 }
