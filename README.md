@@ -46,7 +46,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
     services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
     - Register AspNet.Mvc services
     - Routing requests to controllers
-    - ViewLocations which you add more of by passing in params to CommonEpiserverApplicationServices()
+    - Add view locations or area view locations by setting them in the options sent to: CommonEpiserverApplicationServices()
     - Register service for serving static files such as css, js, png, jpg, ...
   
 #### Additionally
