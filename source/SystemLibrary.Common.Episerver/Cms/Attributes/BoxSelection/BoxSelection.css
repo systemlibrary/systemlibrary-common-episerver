@@ -1,9 +1,11 @@
 ﻿.systemLibraryCommonEpiserverBoxSelection {
   list-style-type: none;
   border: 1px solid #b5bcc7;
-  padding: 10px;
+  padding: 4px;
   overflow: hidden;
-  max-width: 486px;
+  max-width: 581px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .systemLibraryCommonEpiserverBoxSelection li {
@@ -26,7 +28,11 @@
   line-height: 1.24;
 }
 
-.systemLibraryCommonEpiserverBoxSelection li > a > div.systemLibraryCommonEpiserverBoxSelection--item-image > span {
+.systemLibraryCommonEpiserverBoxSelection
+  li
+  > a
+  > div.systemLibraryCommonEpiserverBoxSelection--item-image
+  > span {
   position: relative;
   top: 2px;
 }

@@ -11,7 +11,7 @@
         return declare("systemLibrary.Common.Episerver.Message", [
             _Widget,
             _TemplatedMixin], {
-            templateString: "<div class='dijitInline' style='position:relative;font-size:14px;line-height:1.36;color:#414141;border:1px solid #b5bcc7;padding:1em;min-width:585px;max-width: 1024px;background-color:MessagePropertyBackgroundColor'></div>",
+            templateString: "<div class='dijitInline' style='position:relative;font-size:14px;line-height:1.36;color:#414141;border:1px solid #b5bcc7;padding:1em;min-width:585px;max-width: 1200px;background-color:MessagePropertyBackgroundColor'></div>",
 
             isToggleable: false,
 
@@ -22,11 +22,14 @@
             onToggleDescription: function (tooltipNode, hide) {
                 try {
                     if (tooltipNode && tooltipNode.firstChild) {
-                        var textContainer = tooltipNode.firstChild;
+                        var textContainer = tooltipNode.firstChild; //parentElement
+
                         var aHtml = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
                         if (typeof (hide) !== 'undefined' && hide !== null) {
                             if (hide === true) {
                                 textContainer.classList.add('dijitHidden');
+                            } else {
+                                textContainer.clazssList.remove('dijitHidden');
                             }
                         } else {
                             textContainer.classList.toggle('dijitHidden');
@@ -101,15 +104,34 @@
                     return true;
                 }
 
+                function addInfoIcon(label, self, canToggle) {
+                    var a = document.createElement('a');
+
+                    a.href = "#";
+                    a.innerHTML = '<i style="padding-left: 6px; font-size: 18px;" class="fa fa-info-circle" aria-hidden="true"></i>';
+                    if (canToggle === true) {
+                        a.onclick = function () {
+                            self.onToggleDescription(self.domNode);
+                        };
+                        a.style = 'cursor:pointer;';
+                    } else {
+                        a.style = 'cursor:default;';
+                    }
+                    
+                    label.appendChild(a);
+                }
+
+
                 try {
                     if (is(this.domNode.previousElementSibling)) {
                         var label = this.domNode.previousElementSibling;
-                        label.innerHTML = '<i style="padding-right: 2px;" class="fa fa-info-circle" aria-hidden="true"></i><span style="color: MessagePropertyBackgroundColorDarkened;">' + label.innerHTML + "</span>";
+                        label.innerHTML = '<span style="color: MessagePropertyBackgroundColorDarkened;">' + label.innerHTML + '</span>';
                         label.style = 'border-bottom:1px solid #b5bcc7;';
 
                         if (this.isToggleable) {
-                            this.onToggleDescription(this.domNode, true);
+                            this.onToggleDescription(this.domNode, true, label);
                         }
+                        addInfoIcon(label, this, this.isToggleable);
                     }
                 }
                 catch (e) {
