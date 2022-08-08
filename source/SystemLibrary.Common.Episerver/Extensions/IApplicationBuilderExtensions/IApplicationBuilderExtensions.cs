@@ -46,8 +46,6 @@ public static partial class IApplicationBuilderExtensions
 
         ApplicationBuilderRedirects(app, options);
 
-       
-
         return app;
     }
 }

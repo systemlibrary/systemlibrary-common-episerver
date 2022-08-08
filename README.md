@@ -58,16 +58,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.2
-- Updated docs
-- Updated deps
-- Updated install doc
-- Fix: Swallow an exception with "uidescriptors" upon first startup when Initialization is being done
-- New: validator class, for validation messages before publishing content
-- BoxSelection: max width set so 6 boxes shows per row
-- Message: info button on right side, and its clickable
-- /Components/ is no longer a default view location (breaking change)
-- A web-option variable was renamed: HttpRediretionAndHsts to HttpToHttpsRedirectionAndHsts (breaking change)
+- 6.2.0.4
+- Initialization did not run in 6.2.0.3 as 'TryAddSingleton' for a interface that is already registered, does nothing
 
 #### Version history
 - View git history of this file if interested

@@ -44,6 +44,8 @@ public static partial class ServiceCollectionExtensions
 
         services.CommonWebApplicationServices(Options);
 
+        ServiceCollectionFirstTime(services, options);
+
         ServiceCollectionDisplays(services, options);
 
         ServiceCollectionCookies(services, options);
@@ -51,8 +53,6 @@ public static partial class ServiceCollectionExtensions
         ServiceCollectionCaching(services, options);
 
         ServiceCollectionCompression(services, options);
-
-        ServiceCollectionFirstTime(services, options);
 
         return services;
     }

@@ -18,6 +18,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 partial class ContentIconAttribute
 {
     [InitializableModule]
+    [ModuleDependency(typeof(ServiceContainerInitialization))]
     internal partial class ContentIconEditorDescriptorModule : StartupModule
     {
         //Item1: Type is "StartPage"
@@ -55,14 +56,12 @@ partial class ContentIconAttribute
 
             IsInitialized = true;
 
-
             try
             {
-                var descriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
-
-                //NOTE: On rare occasions this throws
-                //- side effect that icons will not be loaded
+                //Note: on a rare occasion this has thrown an exception in a production environment, try catching it
                 //- swallow error, as we do not want app to crash for this
+                var descriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
+                
                 if (descriptorRegistry?.UIDescriptors == null) return;
 
                 if (ContentDescriptorSettings.Count == 0) return;
