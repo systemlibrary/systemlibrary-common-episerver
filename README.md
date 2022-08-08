@@ -58,9 +58,11 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.1
+- 6.2.0.2
 - Updated docs
 - Updated deps
+- Updated install doc
+- Fix: Swallow an exception with "uidescriptors" upon first startup when Initialization is being done
 - New: validator class, for validation messages before publishing content
 - BoxSelection: max width set so 6 boxes shows per row
 - Message: info button on right side, and its clickable

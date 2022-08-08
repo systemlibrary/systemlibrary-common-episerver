@@ -55,25 +55,25 @@ partial class ContentIconAttribute
 
             IsInitialized = true;
 
-            var descriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
 
             try
             {
+                var descriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
+
                 //NOTE: On rare occasions this throws
                 //- side effect that icons will not be loaded
                 //- swallow error, as we do not want app to crash for this
                 if (descriptorRegistry?.UIDescriptors == null) return;
+
+                if (ContentDescriptorSettings.Count == 0) return;
+
+                SetUiDescriptors(descriptorRegistry);
             }
             catch (Exception ex)
             {
                 IsInitialized = false;
                 Log.Error(ex);
-                return;
             }
-
-            if (ContentDescriptorSettings.Count == 0) return;
-
-            SetUiDescriptors(descriptorRegistry);
         }
 
         static void SetUiDescriptors(UIDescriptorRegistry descriptorRegistry)

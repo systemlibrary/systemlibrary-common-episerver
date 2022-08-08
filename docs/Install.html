@@ -572,17 +572,20 @@ public class Program
 
 #### Pit falls
 - EpiserverDb connection string targets SqlExpress instance and the database named !????!Demo!????! with your !????!Windows Credentials!????!
-- SystemLibrary.Common.Episerver initializes langauges and sites also, but only if user count is 0
-- SystemLibrary.Common.Episerver only creates the !????!demo!????! user if the database do not have a user already, user count must be 0
-- SystemLibrary.Common.Episerver registers !????!default site!????! as the domain in !????!launchSettings!????! file, which is !????!localhost!????!
 - Index.cshtml not found - typos in your paths/files and folders are most likely the cause or you!@@@@!ve forgotten to copy paste something
+- SystemLibrary.Common.Episerver runs its initialization if, and only if, there are 0 users in the DB:
+  - Creates a user !????!demo/Demo123!!????! as administrator
+  - Creates a new website with !????!domain!????! from launchSettings.json
+  - Disables all languages except the enabled ones based on your startup configuration (Program.cs)
+  - Adjusts all System Tabs, like !????!Settings!????! for properties, to be order !????!9000 + current!????!, so !@@@@!Settings!@@@@! is number 9030, instead of 30
+    - Resulting in all our tabs are !????!left sided!????!, and all episerver tabs are !????!on the far right!????!
 
 
 #### Run application
 - Ctrl + F5 in Visual Studio, should start IIS Express and display an error on our startpage, as we have not created one yet
 - Visit http://localhost:51010/episerver
 - Log in with demo/Demo123!
-- Create a StartPage in Edit Mode
+- Create a StartPage in Edit Mode and publish it
 - Register StartPage as the start for your site (Admin &gt; Config &gt; Manage Websites)
 - Visit http://localhost:51010 should now give 200 OK status code
 
