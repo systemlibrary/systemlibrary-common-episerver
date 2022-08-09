@@ -58,7 +58,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.4
+- 6.2.0.5
+- Installation docs updated, no need to install Epi.Routing and Epi.Framework separately if one install 12.9.0
 - Initialization did not run in 6.2.0.3 as 'TryAddSingleton' for a interface that is already registered, does nothing
 
 #### Version history
