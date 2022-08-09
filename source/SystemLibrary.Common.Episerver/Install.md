@@ -180,12 +180,13 @@ public class Program
 #### Pit falls
 - EpiserverDb connection string targets SqlExpress instance and the database named "Demo" with your "Windows Credentials"
 - Index.cshtml not found - typos in your paths/files and folders are most likely the cause or you've forgotten to copy paste something
-- SystemLibrary.Common.Episerver runs its initialization if, and only if, there are 0 users in the DB:
+- Forgotten to set 'build' as 'Content' on module.config/Index.cshtml
+- SystemLibrary.Common.Episerver runs its initialization if, and only if, there are 0 users in the DB
   - Creates a user "demo/Demo123!" as administrator
   - Creates a new website with "domain" from launchSettings.json
   - Disables all languages except the enabled ones based on your startup configuration (Program.cs)
   - Adjusts all System Tabs, like "Settings" for properties, to be order "9000 + current", so 'Settings' is number 9030, instead of 30
-    - Resulting in all our tabs are "left sided", and all episerver tabs are "on the far right"
+    - Resulting in all our tabs are "left sided", and all episerver tabs are "on the far right" 
     - Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
 
 

@@ -58,9 +58,9 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.5
-- Installation docs updated, no need to install Epi.Routing and Epi.Framework separately if one install 12.9.0
-- Initialization did not run in 6.2.0.3 as 'TryAddSingleton' for a interface that is already registered, does nothing
+- 6.2.0.6
+- Installation docs - added a pitfall with setting build to 'content'
+- Episerver.CMS 12.9.0 - css classes were changed, so border now shows correctly on dijitRowTreeSelected::before
 
 #### Version history
 - View git history of this file if interested

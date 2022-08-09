@@ -119,14 +119,15 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     visibility: HideLanguageColumnInVersionGadgetVisibility;
 }
 
-/* NEW CONTENT WINDOW - BORDER AROUND EACH CONTENT TO SELECT FROM */
+/* NEW CONTENT WINDOW - BORDER AROUND EACH CONTENT TYPE (BLOCK/PAGE) TO SELECT FROM */
 .Sleek .epi-listingContainer ul.epi-advancedListing li div.epi-browserWindow {
     background-color: ContentCreationBorderColor !important;
 }
 
 /* PAGE TREE AND BLOCK TREE GETS A BORDER BOTTOM FOR SELECTED ITEM */
-.Sleek .dijitTreeRow.dijitTreeRowSelected {
+.Sleek .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected::before {
     border-bottom: 1px solid PageTreeSelectedContentBorderColor;
+    height: 31px;
 }
 
 /* Title of 'Current Content' in h1 in the breadcrumb */
