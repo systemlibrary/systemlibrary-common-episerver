@@ -1,6 +1,8 @@
 # SystemLibrary Common Episerver
 
 ## Description
+Setup new empty episerver website - in 5 min!
+
 Library with classes, methods and dijits for every .NET &gt;= 6 episerver web application
 
 ### Features
@@ -58,9 +60,10 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.7
-- Installation docs - added a pitfall with setting build to 'content'
-- Episerver.CMS 12.9.0 - css classes were changed, so border now shows correctly on dijitRowTreeSelected::before
+- 6.2.0.8
+- Updated deps
+- Added more example code for JsonEditAttribute and BoxSelectionAttribute
+- Updated docs
 
 #### Version history
 - View git history of this file if interested

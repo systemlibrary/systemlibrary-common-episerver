@@ -7,7 +7,7 @@
 * Open Nuget Project Manager
 * Search and install SystemLibrary.Common.Episerver
 
-## Setup new empty site - in 5 min!
+## Setup new episerver website - in 5 min!
 
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6
