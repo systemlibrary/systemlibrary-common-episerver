@@ -58,7 +58,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.6
+- 6.2.0.7
 - Installation docs - added a pitfall with setting build to 'content'
 - Episerver.CMS 12.9.0 - css classes were changed, so border now shows correctly on dijitRowTreeSelected::before
 

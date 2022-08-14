@@ -247,7 +247,7 @@ public class Car
     public DateTime Created { get; set; }
 }</code></pre>
 <p>Index.cshtml</p>
-<pre><code>var cars = @Model.CurrentPage.Cars.ToJson&lt;Car>();
+<pre><code>var cars = @Model.CurrentPage.Cars.ToJson&lt;List&lt;Car>>();
 
 &lt;Car count: @cars.Count></code></pre>
 </div>

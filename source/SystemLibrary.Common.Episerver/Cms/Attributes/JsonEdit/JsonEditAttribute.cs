@@ -38,7 +38,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 /// 
 /// Index.cshtml
 /// <code>
-/// var cars = @Model.CurrentPage.Cars.ToJson&lt;Car&gt;();
+/// var cars = @Model.CurrentPage.Cars.ToJson&lt;List&lt;Car&gt;&gt;();
 /// 
 /// &lt;Car count: @cars.Count&gt;
 /// </code>

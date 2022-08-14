@@ -66,6 +66,42 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 /// 
 /// //Note: Property is now a list of strings, so to get the Enum simply call Colors[0].ToEnum&lt;ColorSelection&gt;()
 /// </code> 
+/// 
+/// Example with built-in FontAwesome Icons:
+/// <code>
+/// enum ProductSelection 
+/// {
+///   [EnumValue(FontAwesomeSolid.hourglass)]
+///   Product1,
+///   [EnumValue(FontAwesomeSolid.house)]
+///   Product2
+/// }
+/// 
+/// [BoxSelection()]
+/// public virtual ProductSelection Product { get; set; }
+/// </code>
+/// 
+/// Example with custom images:
+/// <code>
+/// enum ImageSelection 
+/// {
+///  [EnumValue("")]
+///  Unset,
+/// 
+///  [EnumValue("/static/images/blog-image.png")]
+///  [EnumText("")]
+///  Image1,
+/// 
+///  [EnumValue("/static/images/article-image.png")]
+///  [EnumText("Optional: Text above image")]
+///  Image2
+/// }
+/// 
+/// [BoxSelection(EnumType = typeof(ImageSelection))]
+/// public virtual string ImagePath { get; set; }
+/// //Optional: public virtual ImageSelection ImageSelected { get; set; }
+/// //If you are interested in the 'EnumValue' (url path) then chose 'string'
+/// </code>
 /// </example>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
