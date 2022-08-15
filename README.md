@@ -60,7 +60,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.8
+- 6.2.0.9
 - Updated deps
 - Added more example code for JsonEditAttribute and BoxSelectionAttribute
 - Updated docs
