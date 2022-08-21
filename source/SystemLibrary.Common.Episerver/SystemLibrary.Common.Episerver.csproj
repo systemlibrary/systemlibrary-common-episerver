@@ -13,6 +13,9 @@
 		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.css" />
 		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.html" />
 		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.js" />
+		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
+		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
+		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<None Remove="Cms\Properties\Message\Message.html" />
 		<None Remove="Cms\Properties\Message\Message.js" />
 		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
@@ -29,6 +32,9 @@
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.html" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEdit.html" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEdit.js" />
+		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
+		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
+		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
 		<EmbeddedResource Include="FontAwesome\Css\fontawesome-bundled.css" />
@@ -65,8 +71,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="6.0.1" />
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.0" />
-		<PackageReference Include="SystemLibrary.Common.Web" Version="6.1.0.3" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.1" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="6.2.0.3" />
 	</ItemGroup>
 
 </Project>

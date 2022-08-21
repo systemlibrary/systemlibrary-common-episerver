@@ -1,0 +1,14 @@
+﻿<div class="dijit dijitReset dijitInline dijitLeft stringListEditor">
+
+    <!-- Select control used if values are provided through a selection factory -->
+    <select name="stringSelector" data-dojo-type="dijit/form/Select" data-dojo-props="maxHeight:'-1'" data-dojo-attach-point="stringSelector" data-dojo-attach-event="onChange:_selectedStringChanged"></select>
+
+    <!-- Standard textbox used if no values are provided through selection factory (i.e. if it's a standard string list without predefined options)-->
+    <input name="stringTextbox" type="text" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="stringTextbox" data-dojo-attach-event="onKeyUp:_onTextboxKeyUp,onKeyDown:_onTextboxKeyDown" placeholder="${labels.textboxWatermark}" />
+    
+    <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="addButton" data-dojo-attach-event="onClick:_onAddButtonClick" title="${labels.clickToAdd}">+</button>
+    <div class="epi-resourceInputContainer epi-categorySelector stringListEditor-values" data-dojo-attach-point="valuesContainer">
+
+    </div>
+    <span data-dojo-attach-point="helpText" class="help">${labels.helpText}</span>
+</div>

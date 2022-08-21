@@ -1,0 +1,11 @@
+﻿.systemLibraryCommonEpiserverMultiDropdownSelection {
+    display: inline;
+}
+
+.systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton {
+    padding: 0 5px 4px 0;
+}
+
+.systemLibraryCommonEpiserverMultiDropdownSelection .help {
+    color: #666;
+}
