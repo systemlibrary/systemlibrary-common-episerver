@@ -50,7 +50,7 @@ define([
                 clickToAdd: 'Click to add',
                 clickToRemove: 'Click to remove',
 
-                helpText: 'List is currently empty.'
+                helpText: 'No items are selected'
             },
 
             value: null,
@@ -68,6 +68,8 @@ define([
 
             postCreate: function () {
                 this.inherited(arguments);
+
+                this._loadCssFile();
 
                 // summary: Populates the dropdown (if selection factory options are available), otherwise the textbox is displayed
 
@@ -98,6 +100,32 @@ define([
                 this.stringSelector.setDisabled(this.readOnly);
                 this.stringTextbox.setDisabled(this.readOnly);
                 this.addButton.setDisabled(true); // Disable add button by default, until string is selected or entered
+            },
+
+            _getStylesheetLink(id, path) {
+                var link = document.createElement('link');
+                link.id = id;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.media = 'all';
+                link.href = path;
+                return link;
+            },
+
+            _loadCssFile: function () {
+                try {
+                    var cssPrefixId = 'systemLibraryCommonEpiserverMultiDropdownSelectionStyle';
+                    if (!document.getElementById(cssPrefixId + '1')) {
+                        var head = document.getElementsByTagName('body')[0];
+
+                        var css1 = this._getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/MultiDropdownSelection/Style');
+
+                        head.appendChild(css1);
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                }
             },
 
             onChange: function (value) {
@@ -271,7 +299,7 @@ define([
 
                 domConstruct.place(buttonWrapperDiv, containerDiv);
 
-                var removeButtonDiv = domConstruct.create('div', { 'class': 'epi-removeButton', innerHTML: '&nbsp;', title: 'Click to remove' });
+                var removeButtonDiv = domConstruct.create('div', { 'class': this.readOnly ? 'epi-removeButton' : '', innerHTML: '&nbsp;', title: 'Click to remove' });
 
                 var eventName = removeButtonDiv.onClick ? 'onClick' : 'onclick';
 
@@ -283,7 +311,9 @@ define([
                     this.connect(removeButtonDiv, eventName, lang.hitch(this, this._onRemoveClick));
                     domConstruct.place(removeButtonDiv, buttonWrapperDiv);
                 } else {
-                    domConstruct.place(domConstruct.create("span", { innerHTML: "&nbsp;" }), buttonWrapperDiv);
+                    //this.connect(removeButtonDiv, eventName, lang.hitch(this, this._onRemoveClick));
+                    domConstruct.place(removeButtonDiv, buttonWrapperDiv);
+                    //domConstruct.place(domConstruct.create("span", { innerHTML: "&nbsp;" }), buttonWrapperDiv);
                 }
 
                 domConstruct.place(containerDiv, this.valuesContainer);

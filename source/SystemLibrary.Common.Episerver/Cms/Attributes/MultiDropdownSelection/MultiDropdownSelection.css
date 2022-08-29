@@ -1,11 +1,35 @@
 ﻿.systemLibraryCommonEpiserverMultiDropdownSelection {
-    display: inline;
+    display: inline-block;
+    min-heigth: 24px;
 }
 
 .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton {
-    padding: 0 5px 4px 0;
+    padding: 0.4em;
+}
+
+.systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton .dijitInline.epi-resourceName {
+    border-radius: 10px;
 }
 
 .systemLibraryCommonEpiserverMultiDropdownSelection .help {
+    display: inline-block;
+    min-height: 35.2px;
     color: #666;
+    padding: 0.4em;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection span.dijitButton .dijitStretch.dijitButtonContents .dijitButtonText {
+    font-size: 22px;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .multidropdownselection__selector {
+    min-width: 200px;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton {
+    cursor: pointer;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .multidropdownselection__values {
+    max-width: 585px;
 }
