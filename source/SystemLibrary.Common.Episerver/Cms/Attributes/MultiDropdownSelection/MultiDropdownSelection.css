@@ -33,3 +33,11 @@
 .Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .multidropdownselection__values {
     max-width: 585px;
 }
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton--hidden {
+    cursor: default;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton--hidden::before {
+    content: ' ';
+}

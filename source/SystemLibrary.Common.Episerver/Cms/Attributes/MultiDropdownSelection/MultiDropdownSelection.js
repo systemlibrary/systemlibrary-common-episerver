@@ -63,6 +63,7 @@ define([
                 // When the property value is set, we refresh the DOM elements representing the strings in the list
                 aspect.after(this, '_set', lang.hitch(this, function () {
                     this._refreshStringElements(this.value);
+                    
                 }));
             },
 
@@ -175,9 +176,9 @@ define([
             },
 
             _onTextboxKeyUp: function (e) {
-                var value = e.target.value.trim();
+                var value = e.target.value.toString().trim();
 
-                this.addButton.setDisabled(value.trim() === '');
+                this.addButton.setDisabled(value.toString().trim() === '');
             },
 
             _onTextboxKeyDown: function (e) {
@@ -185,7 +186,7 @@ define([
                 {
                     e.target.blur();
 
-                    this._addString(e.target.value.trim());
+                    this._addString(e.target.value.toString().trim());
                 }
             },
 
@@ -196,7 +197,7 @@ define([
             },
 
             _onRemoveClick: function (e) {
-                var stringValue = domAttr.get(e.srcElement, "data-value").trim();
+                var stringValue = domAttr.get(e.srcElement, "data-value").toString().trim();
 
                 this._removeStringElement(stringValue);
 
@@ -207,10 +208,14 @@ define([
                 if (this._hasSelectionFactory) { // Add string selected in dropdown
                     var selectedValue = this.stringSelector.value;
                     var displayName = this.stringSelector.focusNode.innerText;
-
+                    console.log("ADD SELECTED VALUE");
+                    console.log(selectedValue);
+                    console.log(displayName);
                     if (!selectedValue) {
                         return;
                     }
+
+              
 
                     this._addString(selectedValue, displayName);
                 } else { // Add string from textbox
@@ -251,7 +256,7 @@ define([
 
                 // summary: Adds a string to the list and updates the property value
 
-                value = value.trim();
+                value = value.toString().trim();
 
                 if (!value) {
                     return;
@@ -276,14 +281,15 @@ define([
                     return;
                 }
 
-                value = value.trim();
+                value = value.toString().trim();
 
                 if (value === '') {
                     return;
                 }
 
                 if (!displayName) {
-                    displayName = value;
+                    displayName = this._getStringDisplayName(value);
+                    //displayName = value;
                 }
 
                 // Don't add if it's already added
@@ -299,7 +305,7 @@ define([
 
                 domConstruct.place(buttonWrapperDiv, containerDiv);
 
-                var removeButtonDiv = domConstruct.create('div', { 'class': this.readOnly ? 'epi-removeButton' : '', innerHTML: '&nbsp;', title: 'Click to remove' });
+                var removeButtonDiv = domConstruct.create('div', { 'class': 'epi-removeButton', innerHTML: '&nbsp;', title: 'Click to remove' });
 
                 var eventName = removeButtonDiv.onClick ? 'onClick' : 'onclick';
 
@@ -311,9 +317,10 @@ define([
                     this.connect(removeButtonDiv, eventName, lang.hitch(this, this._onRemoveClick));
                     domConstruct.place(removeButtonDiv, buttonWrapperDiv);
                 } else {
-                    //this.connect(removeButtonDiv, eventName, lang.hitch(this, this._onRemoveClick));
+                    var removeButtonDiv = domConstruct.create('div', { 'class': 'epi-removeButton epi-removeButton--hidden', innerHTML: '&nbsp;', title: 'Click to remove' });
+                    this.connect(removeButtonDiv, eventName, lang.hitch(this, this._onRemoveClick));
                     domConstruct.place(removeButtonDiv, buttonWrapperDiv);
-                    //domConstruct.place(domConstruct.create("span", { innerHTML: "&nbsp;" }), buttonWrapperDiv);
+                    // domConstruct.place(domConstruct.create("span", { innerHTML: "&nbsp;" }), buttonWrapperDiv);
                 }
 
                 domConstruct.place(containerDiv, this.valuesContainer);
@@ -323,7 +330,9 @@ define([
 
                 // summary: Removes the DOM element, if any, representing a string in the list
 
-                if (value.trim() === '') {
+                if (!value) return;
+
+                if (value.toString().trim() === '') {
                     return;
                 }
 
@@ -334,26 +343,31 @@ define([
                 }
             },
 
-            _getStringDisplayName: function (string) {
+            _getStringDisplayName: function (text) {
 
                 // summary: Looks up a string value among the selection factory options, returning the corresponding display name if found
 
                 if (!this._hasSelectionFactory) {
-                    return string;
+                    return text;
                 }
+                var displayName = text;
 
-                var displayName = string;
-
-                this.selections.some(function (selection) {
-                    if (selection.value === string) {
-                        if (selection.text) {
-                            displayName = selection.text;
-                        }
-
-                        return true; // Break
+                if (typeof text === 'number' || !isNaN(text)) {
+                    if (this.selections && this.selections.length > text) {
+                        const selection = this.selections[text];
+                        displayName = selection.text;
                     }
-                });
-
+                }
+                else {
+                    this.selections.some(function (selection) {
+                        if (selection.value === text) {
+                            if (selection.text) {
+                                displayName = selection.text;
+                            }
+                            return true; // Break
+                        }
+                    });
+                }
                 return displayName;
             }
         });

@@ -85,16 +85,14 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
         return items;
     }
 
-
     static SelectItem GetSelectItemFromEnumType(string key, Type type)
     {
         var e = AsEnum(key, type);
 
-        var value = e.ToValue();
+        var value = e.ToString();
         var text = e.ToText();
 
-        //Does not support showing "images" through "EnumValue", if so, one need to check FontAwesome, if E is fontawesome, get the url of icon and store it after a delimiter "__d_"
-
+        //Does not support showing "images" through "EnumText", but can be expanded to do so for visual
         return new SelectItem { Text = text, Value = value };
     }
 }

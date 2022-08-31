@@ -124,6 +124,14 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     background-color: ContentCreationBorderColor !important;
 }
 
+/* NEW CONTENT WINDOW - TEXT SIZES */
+.Sleek .epi-listingContainer .epi-advancedListing li h3 {
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    line-height: 1.8;
+}
+
 /* PAGE TREE AND BLOCK TREE GETS A BORDER BOTTOM FOR SELECTED ITEM */
 .Sleek .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected::before {
     border-bottom: 1px solid PageTreeSelectedContentBorderColor;
@@ -150,6 +158,16 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 /* BORDER ON CONTENT TYPES WHEN CLICKING ON 'NEW PAGE' OR 'NEW BLOCK' */
 .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent {
     background-color: ContentCreationBackgroundColor;
+}
+
+/* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
+.Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
+    min-height: 25%;
+    min-width: 25%;
+    max-height: 80%;
+    max-width: 80%;
+    margin: 0 auto;
+    padding-top: 7%;
 }
 
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
