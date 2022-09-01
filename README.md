@@ -13,6 +13,11 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - Supports showing your own custom images
 - Supports setting background color, to be used as a color picker  
 
+#### MultidropdownSelection
+![Box Selection Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-multidropdownselection.png "")
+- Supports adding one or more items from a dropdownlist (enum)
+- Optionally supports adding free text to an IList of strings
+
 #### Message
 ![Message Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-message.png "")
 - Display a simple help text to the editors
@@ -60,9 +65,9 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12
 
 ## Latest Version
-- 6.2.0.9
+- 6.2.0.10
+- Added MultiDropdownSelection to select 'custom texts' and a different way of selecting than the 'Items' from Enums, than BoxSelection
 - Updated deps
-- Added more example code for JsonEditAttribute and BoxSelectionAttribute
 - Updated docs
 
 #### Version history

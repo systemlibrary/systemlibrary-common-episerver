@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>BaseCms
+    <title>MultiDropdownSelectionAttribute
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="BaseCms
+    <meta name="title" content="MultiDropdownSelectionAttribute
    ">
     <meta name="generator" content="docfx 2.59.3.0">
     
@@ -189,62 +189,45 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.BaseCms">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.html">SystemLibrary.Common.Episerver</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Cms.Attributes.html">SystemLibrary.Common.Episerver.Cms.Attributes</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Base Cms functions to use anywhere within your application</p>
-<ul>
-<li>No more injecting things that you always need</li>
-<li>No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class</li>
-</ul>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_BaseCms" data-uid="SystemLibrary.Common.Episerver.BaseCms" class="text-break h1-class-header">BaseCms
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute" class="text-break h1-class-header">MultiDropdownSelectionAttribute
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_BaseCms" data-uid="SystemLibrary.Common.Episerver.BaseCms" class="h1-custom-display className">public abstract class BaseCms</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute" class="h1-custom-display className">[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvider, IMetadataDetailsProvider</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">BaseCms</span></div>
+    <div class="level1"><span class="xref">System.Attribute</span></div>
+    <div class="level2"><span class="xref">MultiDropdownSelectionAttribute</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider</span></div>
+    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_BaseCms_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
-      <div class="custom-menu-data-class-example" style="display: none;">
-        <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><pre><code>//Use the BaseCms directly without inheriting it yourself:
-
-var startPage = BaseCms.GetCurrentPage&lt;StartPage>();
-//&apos;startPage&apos; is &apos;StartPage&apos; is current request is of type &apos;StartPage&apos;, return null else (if you are on an article or inside a block...)
-
-//Extend the BaseCms class with your own Cms functions that are common within your application:
-public class Cms : BaseCms
-{
-    public ContentType GetFirstContentType() 
-    {
-        // Use the ContentTypeRepository, or the ContentRepository or the ContentModelUsage static members that you get when inheriting BaseCms
-        return ContentTypeRepository.Load(1);
-    }
-}</code></pre>
-</div>
-        <div class="comment-examples-container-bottom"></div>
-      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_BaseCms_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -260,21 +243,16 @@ public class Cms : BaseCms
   </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Protected member you can reuse if you inherit BaseCms</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentModelUsage">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_EnumType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L81">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L54">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_ContentModelUsage_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentModelUsage*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_EnumType_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_ContentModelUsage" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentModelUsage" class="h4-custom-functionName">protected static IContentModelUsage ContentModelUsage { get; }</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_EnumType" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType" class="h4-custom-functionName">public Type EnumType { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -297,28 +275,23 @@ public class Cms : BaseCms
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">EPiServer.Core.IContentModelUsage</span></td>
+  			<td><span class="xref">System.Type</span></td>
   			<td></td>
   		</tr>
   	</tbody>
   </table>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Protected member you can reuse if you inherit BaseCms</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentRepository">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Hide">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L49">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L56">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_ContentRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentRepository*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Hide_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_ContentRepository" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentRepository" class="h4-custom-functionName">protected static IContentRepository ContentRepository { get; }</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Hide" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide" class="h4-custom-functionName">public object Hide { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -341,28 +314,23 @@ public class Cms : BaseCms
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">EPiServer.IContentRepository</span></td>
+  			<td><span class="xref">System.Object</span></td>
   			<td></td>
   		</tr>
   	</tbody>
   </table>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Protected member you can reuse if you inherit BaseCms</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ContentTypeRepository">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L65">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L52">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_ContentTypeRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentTypeRepository*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_ContentTypeRepository" data-uid="SystemLibrary.Common.Episerver.BaseCms.ContentTypeRepository" class="h4-custom-functionName">protected static IContentTypeRepository ContentTypeRepository { get; }</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType" class="h4-custom-functionName">public virtual Type SelectionFactoryType { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -385,35 +353,63 @@ public class Cms : BaseCms
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">EPiServer.DataAbstraction.IContentTypeRepository</span></td>
+  			<td><span class="xref">System.Type</span></td>
   			<td></td>
   		</tr>
   	</tbody>
   </table>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if curent request is inside edit mode, else false</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInEditMode">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Show">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L172">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L58">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Show_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInEditMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInEditMode" class="h4-custom-functionName">public static bool IsInEditMode { get; }</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Show" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show" class="h4-custom-functionName">public object Show { get; set; }</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var isInPreviewMode = BaseCms.IsInPreviewMode;</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
+  
   			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Object</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L60">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems" class="h4-custom-functionName">public bool ShowExpiredItems { get; set; }</h4>
+  		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -436,144 +432,6 @@ public class Cms : BaseCms
   	<tbody>
   		<tr>
   			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if curent request is inside preview mode, else false</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L190">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode_" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_IsInPreviewMode" data-uid="SystemLibrary.Common.Episerver.BaseCms.IsInPreviewMode" class="h4-custom-functionName">public static bool IsInPreviewMode { get; }</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var isInPreviewMode = BaseCms.IsInPreviewMode;</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Protected member you can reuse if you inherit BaseCms</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L58">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_LanguageBranchRepository" data-uid="SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository" class="h4-custom-functionName">protected static ILanguageBranchRepository LanguageBranchRepository { get; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">EPiServer.DataAbstraction.ILanguageBranchRepository</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Protected member you can reuse if you inherit BaseCms</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_ProjectRepository">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L73">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_ProjectRepository_" data-uid="SystemLibrary.Common.Episerver.BaseCms.ProjectRepository*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_ProjectRepository" data-uid="SystemLibrary.Common.Episerver.BaseCms.ProjectRepository" class="h4-custom-functionName">protected static ProjectRepository ProjectRepository { get; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">EPiServer.DataAbstraction.ProjectRepository</span></td>
   			<td></td>
   		</tr>
   	</tbody>
@@ -582,65 +440,20 @@ public class Cms : BaseCms
   </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>CreateHostBuilder()
-Creates a default CMS host builder</p>
-<ul>
-<li>the 'T' is usually your 'Program.cs' or 'Startup.cs'</li>
-</ul>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L224">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L62">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_" data-uid="SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)" class="h4-custom-functionName">public static IHostBuilder CreateHostBuilder&lt;T&gt;(string[] args, string appSettingsFullPath = null)
-    where T : class</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_" data-uid="SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)" class="h4-custom-functionName">public void CreateDisplayMetadata(DisplayMetadataProviderContext context)</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Program.cs/Startup.cs</p>
-<pre><code>public static void Main(string[] args)
-{
-    var appSettingsPath = AppContext.BaseDirectory + &quot;Configs\\AppSettings\\appSettings.json&quot;;
-    try
-    {
-        Cms.CreateHostBuilder&lt;Program>(args, appSettingsPath)
-            .Build()
-            .Run();
-    }
-    catch (Exception ex)
-    {
-        Dump.Write(ex);
-    }
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   
   				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
   				<table class="table table-bordered table-striped table-condensed">
@@ -653,445 +466,26 @@ Creates a default CMS host builder</p>
   					</thead>
   					<tbody>
   						<tr>
-  							<td><span class="xref">System.String</span>[]</td>
-  							<td><span class="parametername">args</span></td>
-  							<td></td>
-  						</tr>
-  						<tr>
-  							<td><span class="xref">System.String</span></td>
-  							<td><span class="parametername">appSettingsFullPath</span></td>
+  							<td><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext</span></td>
+  							<td><span class="parametername">context</span></td>
   							<td></td>
   						</tr>
   					</tbody>
   				</table>
   			</div>
   
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">Microsoft.Extensions.Hosting.IHostBuilder</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
   		</div>
   	</div>
   </div>
   
   
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns content or null if not found</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_Get__1_EPiServer_Core_ContentReference_">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L93">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_Get_" data-uid="SystemLibrary.Common.Episerver.BaseCms.Get*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_Get__1_EPiServer_Core_ContentReference_" data-uid="SystemLibrary.Common.Episerver.BaseCms.Get``1(EPiServer.Core.ContentReference)" class="h4-custom-functionName">public static T Get&lt;T&gt;(ContentReference contentReference)
-    where T : IContentData</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var page = BaseCms.Get&lt;StartPage>(ContentReference.StartPage);
-//page should now be &apos;StartPage&apos;, as ContentReference.StartPage is a PageReference, which inherits &apos;ContentReference&apos;
-//and in most solutions a &apos;StartPage&apos; always exists</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">EPiServer.Core.ContentReference</span></td>
-  							<td><span class="parametername">contentReference</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
+  <h3 id="implements">Implements</h3>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider</span>
   </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns current block as T based on current request, or null</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock__1">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L159">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentBlock*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentBlock__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentBlock``1" class="h4-custom-functionName">public static T GetCurrentBlock&lt;T&gt;()
-    where T : IContentData</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var currentBlockAsButtonBlock = BaseCms.GetCurrentBlock&lt;ButtonBlock>();</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
+  <div class="implements-content">
+  	<span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider</span>
   </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns current page as T based on current request, or null</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage__1">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L144">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentPage*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetCurrentPage__1" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetCurrentPage``1" class="h4-custom-functionName">public static T GetCurrentPage&lt;T&gt;()
-    where T : IContentData</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var currentPageAsStartPage = BaseCms.GetCurrentPage&lt;StartPage>();
-//null if current request is not StartPage</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns content area items filtered by published, permission and personalized items for the current user</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetItems__1_EPiServer_Core_ContentArea_">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L107">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_GetItems_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_EPiServer_Core_ContentArea_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(EPiServer.Core.ContentArea)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(ContentArea contentArea)
-    where T : IContentData</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var pages = BaseCms.GetItems&lt;PageData>(startPage.ContentArea);</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">EPiServer.Core.ContentArea</span></td>
-  							<td><span class="parametername">contentArea</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns all content references as a list of T</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_BaseCms_GetItems__1_System_Collections_Generic_IEnumerable_EPiServer_Core_ContentReference__">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L128">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_BaseCms_GetItems_" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_BaseCms_GetItems__1_System_Collections_Generic_IEnumerable_EPiServer_Core_ContentReference__" data-uid="SystemLibrary.Common.Episerver.BaseCms.GetItems``1(System.Collections.Generic.IEnumerable{EPiServer.Core.ContentReference})" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; GetItems&lt;T&gt;(IEnumerable&lt;ContentReference&gt; contentReferences)
-    where T : IContentData</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><pre><code>var contentReferences = new List&lt;ContentReference>();
-contentReferences.Add(new ContentReference(5));
-
-var pages = BaseCms.GetItems&lt;PageData>(contentReferences);
-//pages[0] should be start page in most solutions, as thats the ID 5 in the DB</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
-  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
-  					<thead>
-  						<tr>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="parametername">T</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">EPiServer.Core.ContentReference</span>&gt;</td>
-  							<td><span class="parametername">contentReferences</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T&gt;</td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
   
   
   <script>
@@ -1732,7 +1126,7 @@ var pages = BaseCms.GetItems&lt;PageData>(contentReferences);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/BaseCms.cs/#L44" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L49" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -3,7 +3,7 @@
 	<metadata>
 		<id>SystemLibrary.Common.Episerver</id>
 
-		<version>6.2.0.9</version>
+		<version>6.2.0.10</version>
 
 		<authors>System Library</authors>
 
@@ -46,7 +46,7 @@ https://systemlibrary.github.io/systemlibrary-common-episerver/
 			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
 			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
 			<dependency id="System.Security.Cryptography.Xml" version="6.0.0" />
-			<dependency id="SystemLibrary.Common.Web" version="6.1.0.3" />
+			<dependency id="SystemLibrary.Common.Web" version="6.2.0.3" />
 		</dependencies>
 	</metadata>
 

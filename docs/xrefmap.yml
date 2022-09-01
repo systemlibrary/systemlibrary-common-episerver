@@ -263,6 +263,99 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.GetFileContentResult
   nameWithType: BaseController.GetFileContentResult
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory
+  name: BaseMultiSelectionFactory
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory
+  nameWithType: BaseMultiSelectionFactory
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum(System.String,System.Type)
+  name: AsEnum(String, Type)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_AsEnum_System_String_System_Type_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum(System.String,System.Type)
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum(System.String, System.Type)
+  nameWithType: BaseMultiSelectionFactory.AsEnum(String, Type)
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum*
+  name: AsEnum
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_AsEnum_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum
+  nameWithType: BaseMultiSelectionFactory.AsEnum
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
+  name: GetGenericType(Type)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericType_System_Type_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
+  nameWithType: BaseMultiSelectionFactory.GetGenericType(Type)
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType*
+  name: GetGenericType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericType_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType
+  nameWithType: BaseMultiSelectionFactory.GetGenericType
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions*
+  name: GetOptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetOptions_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions
+  nameWithType: BaseMultiSelectionFactory.GetOptions
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions``1(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  name: GetOptions<T>(ExtendedMetadata)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetOptions__1_EPiServer_Shell_ObjectEditing_ExtendedMetadata_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions``1(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  name.vb: GetOptions(Of T)(ExtendedMetadata)
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions<T>(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions(Of T)(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  nameWithType: BaseMultiSelectionFactory.GetOptions<T>(ExtendedMetadata)
+  nameWithType.vb: BaseMultiSelectionFactory.GetOptions(Of T)(ExtendedMetadata)
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute,System.String)
+  name: GetShowHideOptions(Attribute, String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetShowHideOptions_System_Attribute_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute,System.String)
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute, System.String)
+  nameWithType: BaseMultiSelectionFactory.GetShowHideOptions(Attribute, String)
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions*
+  name: GetShowHideOptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetShowHideOptions_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions
+  nameWithType: BaseMultiSelectionFactory.GetShowHideOptions
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[],System.Object[],System.Object[])
+  name: KeysFiltered(String[], Object[], Object[])
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_KeysFiltered_System_String___System_Object___System_Object___
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[],System.Object[],System.Object[])
+  name.vb: KeysFiltered(String(), Object(), Object())
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[], System.Object[], System.Object[])
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String(), System.Object(), System.Object())
+  nameWithType: BaseMultiSelectionFactory.KeysFiltered(String[], Object[], Object[])
+  nameWithType.vb: BaseMultiSelectionFactory.KeysFiltered(String(), Object(), Object())
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered*
+  name: KeysFiltered
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_KeysFiltered_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered
+  nameWithType: BaseMultiSelectionFactory.KeysFiltered
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean,EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.List{EPiServer.Shell.ObjectEditing.ISelectItem})
+  name: ShowExpiredItems(Boolean, ExtendedMetadata, List<ISelectItem>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_ShowExpiredItems_System_Boolean_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_List_EPiServer_Shell_ObjectEditing_ISelectItem__
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean,EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.List{EPiServer.Shell.ObjectEditing.ISelectItem})
+  name.vb: ShowExpiredItems(Boolean, ExtendedMetadata, List(Of ISelectItem))
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean, EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.List<EPiServer.Shell.ObjectEditing.ISelectItem>)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean, EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.List(Of EPiServer.Shell.ObjectEditing.ISelectItem))
+  nameWithType: BaseMultiSelectionFactory.ShowExpiredItems(Boolean, ExtendedMetadata, List<ISelectItem>)
+  nameWithType.vb: BaseMultiSelectionFactory.ShowExpiredItems(Boolean, ExtendedMetadata, List(Of ISelectItem))
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems*
+  name: ShowExpiredItems
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_ShowExpiredItems_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems
+  nameWithType: BaseMultiSelectionFactory.ShowExpiredItems
 - uid: SystemLibrary.Common.Episerver.Cms.Attributes
   name: SystemLibrary.Common.Episerver.Cms.Attributes
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.html
@@ -628,6 +721,154 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory.GetSelections
   nameWithType: JsonEditFactory.GetSelections
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute
+  name: MultiDropdownSelectionAttribute
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute
+  nameWithType: MultiDropdownSelectionAttribute
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  name: CreateDisplayMetadata(DisplayMetadataProviderContext)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  nameWithType: MultiDropdownSelectionAttribute.CreateDisplayMetadata(DisplayMetadataProviderContext)
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata*
+  name: CreateDisplayMetadata
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata
+  nameWithType: MultiDropdownSelectionAttribute.CreateDisplayMetadata
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType
+  name: EnumType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_EnumType
+  commentId: P:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType
+  nameWithType: MultiDropdownSelectionAttribute.EnumType
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType*
+  name: EnumType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_EnumType_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.EnumType
+  nameWithType: MultiDropdownSelectionAttribute.EnumType
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide
+  name: Hide
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Hide
+  commentId: P:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide
+  nameWithType: MultiDropdownSelectionAttribute.Hide
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide*
+  name: Hide
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Hide_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Hide
+  nameWithType: MultiDropdownSelectionAttribute.Hide
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType
+  name: SelectionFactoryType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType
+  commentId: P:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType
+  nameWithType: MultiDropdownSelectionAttribute.SelectionFactoryType
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType*
+  name: SelectionFactoryType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType
+  nameWithType: MultiDropdownSelectionAttribute.SelectionFactoryType
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show
+  name: Show
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Show
+  commentId: P:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show
+  nameWithType: MultiDropdownSelectionAttribute.Show
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show*
+  name: Show
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_Show_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.Show
+  nameWithType: MultiDropdownSelectionAttribute.Show
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems
+  name: ShowExpiredItems
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems
+  commentId: P:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems
+  nameWithType: MultiDropdownSelectionAttribute.ShowExpiredItems
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems*
+  name: ShowExpiredItems
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems
+  nameWithType: MultiDropdownSelectionAttribute.ShowExpiredItems
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController
+  name: MultiDropdownSelectionController
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController
+  nameWithType: MultiDropdownSelectionController
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html
+  name: Html()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Html
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html()
+  nameWithType: MultiDropdownSelectionController.Html()
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html*
+  name: Html
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Html_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Html
+  nameWithType: MultiDropdownSelectionController.Html
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script
+  name: Script()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Script
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script()
+  nameWithType: MultiDropdownSelectionController.Script()
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script*
+  name: Script
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Script_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Script
+  nameWithType: MultiDropdownSelectionController.Script
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style
+  name: Style()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Style
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style()
+  nameWithType: MultiDropdownSelectionController.Style()
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style*
+  name: Style
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionController_Style_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.Style
+  nameWithType: MultiDropdownSelectionController.Style
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory
+  name: MultiDropdownSelectionFactory
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory
+  nameWithType: MultiDropdownSelectionFactory
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  name: GetSelections(ExtendedMetadata)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionFactory_GetSelections_EPiServer_Shell_ObjectEditing_ExtendedMetadata_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  nameWithType: MultiDropdownSelectionFactory.GetSelections(ExtendedMetadata)
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections*
+  name: GetSelections
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Attributes_MultiDropdownSelectionFactory_GetSelections_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections
+  nameWithType: MultiDropdownSelectionFactory.GetSelections
 - uid: SystemLibrary.Common.Episerver.Cms.CmsEditController
   name: CmsEditController
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.CmsEditController.html

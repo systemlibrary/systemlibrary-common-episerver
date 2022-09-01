@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html",
-          "hash": "Z2l/ExibtMoxg+x0UXTbBAntAZYQASsxAle7nsRxU+Y="
+          "hash": "VAfA51pK6WJsGezGJUNToHilCkNzj0kjtYQP62hLNQc="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,19 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseController.html",
-          "hash": "tbZtZTTh3X/pJn+iu75FyEuUHa+4MK2xtGAAyeDKPrc="
+          "hash": "ObBocy6xcQok4cay0F4Vsapsch30xkanmBUOPscpmTY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html",
+          "hash": "n+pHd/o02VS84oD8leOc5Oqk8twhgRd/0AN6czCqeLQ="
         }
       },
       "is_incremental": false,
@@ -33,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.html",
-          "hash": "b3XReMB0RV+cpIUZv91BWZJ8DJsnZCYT0tx1JS0rM3w="
+          "hash": "DCnjPRrlFLhZdpfzyim2GUK24PbNXByYW4bexmGMM4I="
         }
       },
       "is_incremental": false,
@@ -69,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory.html",
-          "hash": "hDR+ois+71XJH+LCUYUPVPedfnWcVieipc1Tj2hrDU0="
+          "hash": "9gmzdEdBLKYlu3obRCQ28X8wI+ebshq2u/77M+J+D+k="
         }
       },
       "is_incremental": false,
@@ -81,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute.html",
-          "hash": "L9N0e1xj1FQtXvUincR/3XSLi7CP+9vdCSMg0U7onj8="
+          "hash": "dd5iIjEpPj94cryKQHAKTsGMwwbGUMbzsKxNpCTWQwk="
         }
       },
       "is_incremental": false,
@@ -125,11 +137,47 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionAttribute.html",
+          "hash": "hV/H8kFJ/RBTHCJknGeNQgk1xuEMRIxIAFEsGJ/6M0s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController.html",
+          "hash": "l64L2AlMSNYjw8ZSTBIF7dB0+b4jNdpb3/yRhMhYMPs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.html",
+          "hash": "S+QLUjPjhU6y7to6bhhryZnEcpFR24zGDcovRjV6LOQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.yml",
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.html",
-          "hash": "MnNMi8MXP3tVyq7YSaTRNXtVWxoLo/5MfoDzMTsfpTI="
+          "hash": "XZ0Qow+utB96tZFFhaDDOt5altRpCCy44mmz25C93hk="
         }
       },
       "is_incremental": false,
@@ -357,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html",
-          "hash": "14//vFIaO+QAcmt2E+cqmQeNqX47tuBkC1u8s8X+dHs="
+          "hash": "aQIEUgbumpkn2fzgNbTOzf1Xp6ncMMs0ri6GWb6LcbA="
         }
       },
       "is_incremental": false,
@@ -369,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ExtendedMetadataExtensions.html",
-          "hash": "CSYTNR2DfggiU7/7qoZE3nJaEl2ILue1/t9XvLMhwz0="
+          "hash": "uEQ/Amk8ZANedkKZrJD2hFVvKGvX8M9BLBvi0nJO1Eo="
         }
       },
       "is_incremental": false,
@@ -405,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html",
-          "hash": "g9c9cf1AG5d/u+X7XeCVzqsR9tWJBMMkI7dn+reHI4c="
+          "hash": "ga5yac+6qlDNNGFqfInfbSTwaqiPuc8NejtKGCdXNdU="
         }
       },
       "is_incremental": false,
@@ -585,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/toc.html",
-          "hash": "Aa3S91I2DLk+nmpJ5d8vlXexsQuRuQXARjv7lZ3Y6EQ="
+          "hash": "EXBEnT688FD0UBakloEHj/8FQtCpRACVfL500RMQmsU="
         }
       },
       "is_incremental": false,
@@ -622,7 +670,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 48,
+          "total_file_count": 52,
           "skipped_file_count": 20
         },
         "TocDocumentProcessor": {
