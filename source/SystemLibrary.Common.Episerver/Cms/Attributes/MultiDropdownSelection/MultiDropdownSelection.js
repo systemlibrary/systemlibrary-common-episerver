@@ -63,7 +63,6 @@ define([
                 // When the property value is set, we refresh the DOM elements representing the strings in the list
                 aspect.after(this, '_set', lang.hitch(this, function () {
                     this._refreshStringElements(this.value);
-                    
                 }));
             },
 
@@ -86,7 +85,7 @@ define([
                         this.stringSelector.addOption({
                             disabled: false,
                             label: (item.text && item.text !== '') ? item.text : '&nbsp',
-                            selected: false,
+                            selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
                             value: item.value
                         });
                     }
@@ -97,10 +96,14 @@ define([
                     // Only display textbox when there is no selection factory attached
                     domStyle.set(this.stringSelector.domNode, 'display', 'none');
                 }
-
                 this.stringSelector.setDisabled(this.readOnly);
                 this.stringTextbox.setDisabled(this.readOnly);
-                this.addButton.setDisabled(true); // Disable add button by default, until string is selected or entered
+                if (this._hasSelectionFactory && this.selections.length > 0) {
+                    this.addButton.setDisabled(false); // Enable option that is first selected
+                }
+                else {
+                    this.addButton.setDisabled(false); // Disable add button by default, until string is selected or entered
+                }
             },
 
             _getStylesheetLink(id, path) {
@@ -184,7 +187,7 @@ define([
             _onTextboxKeyDown: function (e) {
                 if (e.keyCode === 13) // Enter
                 {
-                    e.target.blur();
+                    //e.target.blur();
 
                     this._addString(e.target.value.toString().trim());
                 }
@@ -208,14 +211,9 @@ define([
                 if (this._hasSelectionFactory) { // Add string selected in dropdown
                     var selectedValue = this.stringSelector.value;
                     var displayName = this.stringSelector.focusNode.innerText;
-                    console.log("ADD SELECTED VALUE");
-                    console.log(selectedValue);
-                    console.log(displayName);
                     if (!selectedValue) {
                         return;
                     }
-
-              
 
                     this._addString(selectedValue, displayName);
                 } else { // Add string from textbox
@@ -277,14 +275,14 @@ define([
 
                 // summary: Adds a DOM element representing a string in the list
 
-                if (!value) {
+                if (typeof (value) === 'undefined' || value === null) {
                     return;
                 }
 
                 value = value.toString().trim();
 
-                if (value === '') {
-                    return;
+                if (value.indexOf(',') > -1) {
+                    value = value.replaceAll(',', '&#44;');
                 }
 
                 if (!displayName) {
@@ -298,8 +296,8 @@ define([
                 }
 
                 var containerDiv = domConstruct.create('div', { 'class': 'epi-categoryButton' });
-                var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName' });
-                var categoryNameDiv = domConstruct.create('div', { 'class': 'dojoxEllipsis', innerHTML: displayName });
+                var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName', 'title': displayName });
+                var categoryNameDiv = domConstruct.create('div', { 'class': 'dojoxEllipsis', innerHTML: displayName, 'title': displayName });
 
                 domConstruct.place(categoryNameDiv, buttonWrapperDiv);
 

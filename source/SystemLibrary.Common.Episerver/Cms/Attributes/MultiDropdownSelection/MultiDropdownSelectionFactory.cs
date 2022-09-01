@@ -43,43 +43,18 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
 
                 foreach (var key in KeysFiltered(keys, Show, Hide))
                     items.Add(GetSelectItemFromEnumType(key, enumType));
+
+                ShowExpiredItems(options.ShowExpiredItems, metadata, items);
             }
             else
             {
-                //Its a comma seperated list of data, that was manually entered by a "input field" where Editors can write whatever they want? Or???
+                //Its a comma separated list of data, that was manually entered by a "input field" where Editors can write whatever they want? Or???
             }
 
-            if(ShowExpiredItems(options.ShowExpiredItems, metadata.InitialValue))
-            {
-                var selected = metadata.InitialValue as IList;
-
-                if (selected != null && selected.Count > 0)
-                {
-                    foreach (var selection in selected)
-                    {
-                        var found = false;
-                        var selectedValue = selection + "";
-                        foreach (var item in items)
-                        {
-                            var val = item.Value + "";
-                            if (val == selectedValue)
-                            {
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found)
-                        {
-                            items.Insert(0, new SelectItem { Text = "Expired: " + selectedValue, Value = selectedValue });
-                        }
-                    }
-                }
-            }
         }
         catch (Exception ex)
         {
-            Dump.Write(ex);
+            Log.Error(ex);
             items.Add(new SelectItem() { Text = "ERROR: " + ex.Message, Value = "-1" });
         }
         return items;

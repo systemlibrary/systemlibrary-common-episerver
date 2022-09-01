@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -118,8 +119,44 @@ public abstract class BaseMultiSelectionFactory
         }
     }
 
-    protected bool ShowExpiredItems(bool showExpiredItems, object value) 
+    protected void ShowExpiredItems(bool showExpiredItems, ExtendedMetadata metadata, List<ISelectItem> items) 
     {
-        return showExpiredItems && value != null && value != "" && value + "" != "0";
+        if (!showExpiredItems) return;
+
+        var value = metadata.InitialValue;
+
+        if(value != null && value != "" && value + "" != "0")
+        {
+            AddExpiredItems(metadata, items);
+        }
     }
+    
+    static void AddExpiredItems(ExtendedMetadata metadata, List<ISelectItem> items)
+    {
+        var selected = metadata.InitialValue as IList;
+
+        if (selected != null && selected.Count > 0)
+        {
+            foreach (var selection in selected)
+            {
+                var found = false;
+                var selectedValue = selection + "";
+                foreach (var item in items)
+                {
+                    var val = item.Value + "";
+                    if (val == selectedValue)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    items.Insert(0, new SelectItem { Text = "Expired: " + selectedValue, Value = selectedValue });
+                }
+            }
+        }
+    }
+
 }

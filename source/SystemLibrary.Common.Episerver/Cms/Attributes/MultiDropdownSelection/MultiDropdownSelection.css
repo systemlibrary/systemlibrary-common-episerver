@@ -1,17 +1,19 @@
-﻿.systemLibraryCommonEpiserverMultiDropdownSelection {
+﻿.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection {
     display: inline-block;
     min-heigth: 24px;
 }
 
-.systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton {
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton 
+{ 
+    max-width: 225px;
     padding: 0.4em;
 }
 
-.systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton .dijitInline.epi-resourceName {
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton .dijitInline.epi-resourceName {
     border-radius: 10px;
 }
 
-.systemLibraryCommonEpiserverMultiDropdownSelection .help {
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .help {
     display: inline-block;
     min-height: 35.2px;
     color: #666;
@@ -40,4 +42,12 @@
 
 .Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton--hidden::before {
     content: ' ';
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .dijitInline.epi-resourceName {
+    max-width: 225px;
+}
+
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categorySelector .epi-resourceName div.dojoxEllipsis {
+    max-width: 175px;
 }
