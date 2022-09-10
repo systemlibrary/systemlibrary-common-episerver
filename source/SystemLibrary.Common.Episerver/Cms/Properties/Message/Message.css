@@ -1,0 +1,18 @@
+﻿.Sleek .systemLibraryCommonEpiserverMessage {
+    max-width: 840px;
+}
+.Sleek .systemLibraryCommonEpiserverMessage * {
+    max-width: 840px;
+}
+.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed {
+    max-height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed p,
+.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed span {
+    text-overflow: ellipsis;
+    overflow:hidden;
+}

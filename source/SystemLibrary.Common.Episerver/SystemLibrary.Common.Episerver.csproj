@@ -16,6 +16,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<None Remove="Cms\Properties\Message\Message.css" />
 		<None Remove="Cms\Properties\Message\Message.html" />
 		<None Remove="Cms\Properties\Message\Message.js" />
 		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
@@ -35,6 +36,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
 		<EmbeddedResource Include="FontAwesome\Css\fontawesome-bundled.css" />

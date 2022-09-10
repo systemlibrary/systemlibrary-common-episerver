@@ -2,21 +2,49 @@
     "dojo/_base/declare",
     "dijit/_Widget",
     "dijit/_TemplatedMixin",
+    'dojo/text!./Html'
 ],
     function (
         declare,
         _Widget,
-        _TemplatedMixin
+        _TemplatedMixin,
+        template
     ) {
         return declare("systemLibrary.Common.Episerver.Message", [
             _Widget,
             _TemplatedMixin], {
-            templateString: "<div class='dijitInline' style='position:relative;font-size:14px;line-height:1.36;color:#414141;border:1px solid #b5bcc7;padding:1em;min-width:585px;max-width: 1200px;background-color:MessagePropertyBackgroundColor'></div>",
+            templateString: template,
 
             isToggleable: false,
 
             postMixInProperties: function () {
                 this.tooltip = '';
+            },
+
+            _getStylesheetLink(id, path) {
+                var link = document.createElement('link');
+                link.id = id;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.media = 'all';
+                link.href = path;
+                return link;
+            },
+
+            _loadCssFile: function () {
+                try {
+                    var cssPrefixId = 'systemLibraryCommonEpiserverMessageStyle';
+                    if (!document.getElementById(cssPrefixId)) {
+                        var head = document.getElementsByTagName('body')[0];
+
+                        var css = this._getStylesheetLink(cssPrefixId, '/SystemLibrary/Common/Episerver/UiHint/Message/Style');
+
+                        head.appendChild(css);
+                    }
+                }
+                catch (e) {
+                    console.error(e);
+                }
             },
 
             onToggleDescription: function (tooltipNode, hide) {
@@ -27,13 +55,13 @@
                         var aHtml = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
                         if (typeof (hide) !== 'undefined' && hide !== null) {
                             if (hide === true) {
-                                textContainer.classList.add('dijitHidden');
+                                textContainer.classList.add('systemLibraryCommonEpiserverMessageCollapsed');
                             } else {
-                                textContainer.clazssList.remove('dijitHidden');
+                                textContainer.clazssList.remove('systemLibraryCommonEpiserverMessageCollapsed');
                             }
                         } else {
-                            textContainer.classList.toggle('dijitHidden');
-                            if (!textContainer.classList.contains('dijitHidden')) {
+                            textContainer.classList.toggle('systemLibraryCommonEpiserverMessageCollapsed');
+                            if (!textContainer.classList.contains('systemLibraryCommonEpiserverMessageCollapsed')) {
                                 aHtml = '<i class="fa fa-arrow-up" aria-hidden="true"></i>';
                             }
                         }
@@ -50,6 +78,8 @@
                 }
             },
             postCreate: function () {
+
+
                 function is(data) {
                     if (typeof (data) === 'undefined' || data === null || data === "" || (data.length && data.length === 0)) {
                         return false;
@@ -62,7 +92,7 @@
 
                     a.href = "#";
                     a.innerHTML = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
-                    a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:4px;margin-top:4px;width:24px;height:24px;text-align: center;font-size:17px;";
+                    a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:-1px;margin-top:3px;width:24px;height:24px;text-align: center;font-size:17px;";
 
                     a.onclick = function () {
                         self.onToggleDescription(self.domNode);
@@ -76,6 +106,9 @@
                 }
 
                 try {
+
+                    this._loadCssFile();
+
                     if (is(this.metadata) && is(this.metadata.settings) && is(this.metadata.settings.tooltip)) {
                         setDescription(this, this.metadata.settings.tooltip);
 
@@ -108,7 +141,7 @@
                     var a = document.createElement('a');
 
                     a.href = "#";
-                    a.innerHTML = '<i style="padding-left: 6px; font-size: 18px;" class="fa fa-info-circle" aria-hidden="true"></i>';
+                    a.innerHTML = '<i style="padding-left: 6px; font-size: 18px; position: absolute; margin-top: -2px; right: 2px;" class="fa fa-info-circle" aria-hidden="true"></i>';
                     if (canToggle === true) {
                         a.onclick = function () {
                             self.onToggleDescription(self.domNode);
@@ -117,7 +150,7 @@
                     } else {
                         a.style = 'cursor:default;';
                     }
-                    
+
                     label.appendChild(a);
                 }
 
