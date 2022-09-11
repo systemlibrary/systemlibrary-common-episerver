@@ -11,7 +11,7 @@
 
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6
-2. Add nuget package Episerver.Framework v12.9.1
+2. Delete appSettings.development.json
 3. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
 4. Add nuget package Episerver.Cms >= 12.9.0 && < 12.11.0
 	- Note: Episerver.Cms 12.11.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change!
@@ -19,11 +19,11 @@
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 6. Create '~/module.config', set its build to 'Content' 
 7. Create '~/Cms/Cms.cs'
-8. Create '~/Properties/launchSettings.json'
+8. Create '~/Properties/launchSettings.json' (it should exist already)
 9. Create '~/Content/Pages/StartPage/StartPage.cs'
 10. Create '~/Content/Pages/StartPage/StartPageController.cs'
 11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
-12. Create '~/appSettings.json', set its build to 'Content'
+12. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
 13. Copy paste code below, into their respective files
 
 ~/Cms/Cms.cs:
@@ -39,17 +39,27 @@ public class Cms : BaseCms
 
 ~/Content/Pages/StartPage/StartPage.cs
 ```csharp 
+using System.ComponentModel.DataAnnotations;
+
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 
 using SystemLibrary.Common.Episerver.Cms.Attributes;
+using SystemLibrary.Common.Episerver.Cms.Properties;
 using SystemLibrary.Common.Episerver.FontAwesome;
 
 namespace Demo;
 
 [ContentType(DisplayName = "Start Page", GUID = "7C3BBD03-5D83-4E75-A1E9-BCF5DF5F99B2")]
 [ContentIcon(FontAwesomeSolid.house)]
-public class StartPage : PageData { }
+public class StartPage : PageData
+{
+    [Display(Name = "Tip", Description = "Welcome to your brand new website")]
+    public virtual Message Tip { get; set; }
+
+    [Display(Name = "Parent", Description = "A link to the parent, where 'this' is created/living under")]
+    public virtual ParentLinkReference ParentRef { get; set;}
+}
 ```
 
 ~/Content/Pages/StartPage/StartPageController.cs
@@ -198,6 +208,7 @@ public class Program
 - Ctrl + F5 in Visual Studio, should start IIS Express and display an error on our startpage, as we have not created one yet
 - Visit http://localhost:51010/episerver
 - Log in with demo/Demo123!
+- If redirected to a 404, navigate again to http://localhost:51010/episerver
 - Create a StartPage in Edit Mode and publish it
 - Register StartPage as the start for your site (Admin > Config > Manage Websites)
 - Visit http://localhost:51010 should now give 200 OK status code
