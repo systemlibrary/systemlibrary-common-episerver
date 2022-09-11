@@ -11,18 +11,20 @@
 
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6
-2. Add nuget package Episerver.Cms >= 12.9.0 && < 12.11.0
+2. Add nuget package Episerver.Framework v12.9.1
+3. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
+4. Add nuget package Episerver.Cms >= 12.9.0 && < 12.11.0
 	- Note: Episerver.Cms 12.11.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change!
-3. Add nuget package SystemLibrary.Common.Episerver >= 6.2.0.11
+5. Add nuget package SystemLibrary.Common.Episerver >= 6.2.0.11
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
-4. Create '~/module.config', set its build to 'Content' 
-5. Create '~/Cms/Cms.cs'
-6. Create '~/Properties/launchSettings.json'
-7. Create '~/Content/Pages/StartPage/StartPage.cs'
-8. Create '~/Content/Pages/StartPage/StartPageController.cs'
-9. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
-10. Create '~/appSettings.json', set its build to 'Content'
-11. Copy paste code below, into their respective files
+6. Create '~/module.config', set its build to 'Content' 
+7. Create '~/Cms/Cms.cs'
+8. Create '~/Properties/launchSettings.json'
+9. Create '~/Content/Pages/StartPage/StartPage.cs'
+10. Create '~/Content/Pages/StartPage/StartPageController.cs'
+11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
+12. Create '~/appSettings.json', set its build to 'Content'
+13. Copy paste code below, into their respective files
 
 ~/Cms/Cms.cs:
 ```csharp 
