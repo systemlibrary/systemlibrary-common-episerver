@@ -9,7 +9,7 @@ partial class Fakes
         return new ContentAreaItem()
         {
             ContentGroup = nameof(ContentAreaItem),
-            ContentLink = new ContentReference(i(), i())
+            ContentLink = new ContentReference(Random(), Random())
         };
     }
 }

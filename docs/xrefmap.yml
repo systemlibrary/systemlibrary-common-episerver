@@ -986,6 +986,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Script
   nameWithType: MessageController.Script
+- uid: SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style
+  name: Style()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.MessageController.html#SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Style
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style
+  fullName: SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style()
+  nameWithType: MessageController.Style()
+- uid: SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style*
+  name: Style
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.MessageController.html#SystemLibrary_Common_Episerver_Cms_Properties_MessageController_Style_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Properties.MessageController.Style
+  nameWithType: MessageController.Style
 - uid: SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor
   name: MessageEditorDescriptor
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor.html

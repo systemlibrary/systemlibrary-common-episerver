@@ -7,11 +7,11 @@ namespace SystemLibrary.Common.Episerver.Tests.Models;
 public class JsonEditCarInvalid
 {
     [Required(ErrorMessage = "Must have larger text than 0")]
-    [Display(Name = "Fornavn her", Description = "Her kan du fylle inn fornavn")]
+    [Display(Name = "Fornavn her", Description = "Fill in firstname")]
     public string Name { get; set; }
 
     [Required(AllowEmptyStrings = true)]
-    [Display(Name = "Mellomnavn", Description = "Mellomnavn her...")]
+    [Display(Name = "Middlename", Description = "Middlename her...")]
     public string MiddleName { get; set; }
 
     public string lastName { get; set; }
@@ -24,17 +24,17 @@ public class JsonEditCarInvalid
 public class JsonEditCar
 {
     [Required(ErrorMessage = "Must have larger text than 0")]
-    [Display(Name = "Fornavn her", Description = "Her kan du fylle inn fornavn")]
+    [Display(Name = "Firstname here", Description = "Fill in firstname")]
     public string Name { get; set; }
 
     [Required(AllowEmptyStrings = true)]
-    [Display(Name = "Mellomnavn", Description = "Mellomnavn her...")]
+    [Display(Name = "Middle name", Description = "Middlename here...")]
     public string MiddleName { get; set; }
 
     public string lastName { get; set; }
 
     [Required]
-    [Display(Name = "Alder", Description = "Fra 0-100")]
+    [Display(Name = "Age", Description = "From 0-100")]
     public int Age { get; set; }
 
     public DateTime Created { get; set; }

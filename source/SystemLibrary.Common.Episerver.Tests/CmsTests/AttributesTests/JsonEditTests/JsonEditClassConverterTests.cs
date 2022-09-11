@@ -15,15 +15,15 @@ public class JsonEditClassConverterTests
     [TestMethod]
     public void Convert_Class_To_JsonEdit_Json_Data()
     {
-        var result = InvokeTestMethod(typeof(JsonEditCar));
+        var result = InvokeGetPropertySchemaMethod(typeof(JsonEditCar));
 
         Assert.IsTrue(result != null && result.Length > 100);
 
         Assert.IsFalse(result.StartsWith("{"));
         Assert.IsFalse(result.StartsWith("["));
-        Assert.IsTrue(result.Contains("Her kan du fylle inn fornavn"));
+        Assert.IsTrue(result.Contains("Fill in firstname"));
         Assert.IsTrue(result.Contains("Hello world"));
-        Assert.IsTrue(result.Contains("Fra 0-100"));
+        Assert.IsTrue(result.Contains("From 0-100"));
         Assert.IsTrue(result.Contains("Disable"));
         Assert.IsTrue(result.Contains("Owner"));
         Assert.IsTrue(result.Contains("Car30"));
@@ -38,7 +38,7 @@ public class JsonEditClassConverterTests
     [TestMethod]
     public void Convert_Class_To_JsonEdit_Json_Data_Fails()
     {
-        var result = InvokeTestMethod(typeof(JsonEditCarInvalid));
+        var result = InvokeGetPropertySchemaMethod(typeof(JsonEditCarInvalid));
 
         Assert.IsTrue(result != null, "Result is null");
         Assert.IsTrue(result.Length > 100, "Result is too short: " + result.Length);
@@ -52,7 +52,7 @@ public class JsonEditClassConverterTests
 
     }
 
-    static string InvokeTestMethod(Type type)
+    static string InvokeGetPropertySchemaMethod(Type type)
     {
         var testType = Type.GetType(typeName: "SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditPropertiesLoader, SystemLibrary.Common.Episerver");
 

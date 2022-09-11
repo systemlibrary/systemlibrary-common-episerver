@@ -71,7 +71,7 @@ internal static class JsonEditPropertiesLoader
             }
             else
             {
-                Log.Error("Unsupported type: " + type.Name + ", for property: " + property.Name + ". The Json Editor supports only simple types: string, int, double, datetime, datetimeoffset, bool, Enum or a  Class variable with those variables inside");
+                Log.Error("Unsupported type: " + type.Name + ", for property: " + property.Name + ". The Json Editor supports only simple types: string, int, double, datetime, datetimeoffset, bool, Enum or a Class variable which only have any of those variable types");
                 return null;
             }
         }
@@ -88,7 +88,7 @@ internal static class JsonEditPropertiesLoader
         return jsonProperty.ToString();
     }
 
-    //"name": { "type": "string",
+    //"name": { "type": "string", ... }
     static string GetDefinitionName(PropertyInfo property, Type type)
     {
         return "\"" + property.Name + "\": { " + Environment.NewLine + "\"type\": \"" + GetTypeName(type) + "\"," + Environment.NewLine;

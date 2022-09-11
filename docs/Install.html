@@ -402,8 +402,10 @@
 
 0. Create new empty database named !????!Demo!????! on your local SQL instance
 1. Create a new project !????!AspNet Core Empty!????! for .NET 6
-2. Add nuget package Episerver.Cms &gt;= 12.9.0
-3. Add nuget package SystemLibrary.Common.Episerver &gt;= 12.2.0.1
+2. Add nuget package Episerver.Cms &gt;= 12.9.0 &amp;&amp; &lt; 12.11.0
+	- Note: Episerver.Cms 12.11.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change!
+3. Add nuget package SystemLibrary.Common.Episerver &gt;= 6.2.0.11
+	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 4. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
 5. Create !@@@@!~/Cms/Cms.cs!@@@@!
 6. Create !@@@@!~/Properties/launchSettings.json!@@@@!
