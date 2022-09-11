@@ -403,19 +403,20 @@
 0. Create new empty database named !????!Demo!????! on your local SQL instance
 1. Create a new project !????!AspNet Core Empty!????! for .NET 6
 2. Delete appSettings.development.json
-3. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
-4. Add nuget package Episerver.Cms &gt;= 12.9.0 &amp;&amp; &lt; 12.11.0
-	- Note: Episerver.Cms 12.11.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change!
-5. Add nuget package SystemLibrary.Common.Episerver &gt;= 6.2.0.11
+3. Add nuget package Episerver.Framework v12.9.1
+4. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
+5. Add nuget package Episerver.Cms &gt;= 12.9.0 &amp;&amp; &lt; 12.10.0
+	- Note: Episerver.Cms 12.10.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change by Episerver Devs
+6. Add nuget package SystemLibrary.Common.Episerver &gt;= 6.2.0.11
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
-6. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
-7. Create !@@@@!~/Cms/Cms.cs!@@@@!
-8. Create !@@@@!~/Properties/launchSettings.json!@@@@! (it should exist already)
-9. Create !@@@@!~/Content/Pages/StartPage/StartPage.cs!@@@@!
-10. Create !@@@@!~/Content/Pages/StartPage/StartPageController.cs!@@@@!
-11. Create !@@@@!~/Content/Pages/StartPage/Index.cshtml!@@@@!, set its build to !@@@@!Content!@@@@!
-12. Create !@@@@!~/appSettings.json!@@@@!, set its build to !@@@@!Content!@@@@! (it should exist already)
-13. Copy paste code below, into their respective files
+7. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
+8. Create !@@@@!~/Cms/Cms.cs!@@@@!
+9. Create !@@@@!~/Properties/launchSettings.json!@@@@! (it should exist already)
+10. Create !@@@@!~/Content/Pages/StartPage/StartPage.cs!@@@@!
+11. Create !@@@@!~/Content/Pages/StartPage/StartPageController.cs!@@@@!
+12. Create !@@@@!~/Content/Pages/StartPage/Index.cshtml!@@@@!, set its build to !@@@@!Content!@@@@!
+13. Create !@@@@!~/appSettings.json!@@@@!, set its build to !@@@@!Content!@@@@! (it should exist already)
+14. Copy paste code below, into their respective files
 
 ~/Cms/Cms.cs:
 !====!!====!!====!csharp 

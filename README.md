@@ -66,7 +66,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 
 ## Latest Version
 - 6.2.0.11
-- Updated deps, supporting 6.9.0 of epi, up to 6.11.0 as 6.11.0 has major awful/breaking changes in the UI
+- Updated deps, supporting 6.9.0 of epi, up to 6.10.0 as 6.10.0 has major awful/breaking changes in the UI
 - Updated 'Message' property to look better and ellipsis text-overflow if collapsed
 - Updated docs
 - Updated install instructions
