@@ -1,10 +1,8 @@
 ﻿define([
-    "dojo/_base/array",
     "dojo/query",
     "dojo/on",
     "dojo/_base/declare",
     "dojo/_base/lang",
-    "dojo/dom-construct",
 
     "dijit/_CssStateMixin",
     "dijit/_Widget",
@@ -15,12 +13,10 @@
     "epi/shell/widget/_ValueRequiredMixin"
 ],
     function (
-        array,
         query,
         on,
         declare,
         lang,
-        domConstruct,
 
         _CssStateMixin,
         _Widget,

@@ -9,6 +9,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    padding: 4px;
 }
 
 .Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed p,

@@ -52,7 +52,7 @@
                     if (tooltipNode && tooltipNode.firstChild) {
                         var textContainer = tooltipNode.firstChild; //parentElement
 
-                        var aHtml = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+                        var aHtml = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
                         if (typeof (hide) !== 'undefined' && hide !== null) {
                             if (hide === true) {
                                 textContainer.classList.add('systemLibraryCommonEpiserverMessageCollapsed');
@@ -62,7 +62,7 @@
                         } else {
                             textContainer.classList.toggle('systemLibraryCommonEpiserverMessageCollapsed');
                             if (!textContainer.classList.contains('systemLibraryCommonEpiserverMessageCollapsed')) {
-                                aHtml = '<i class="fa fa-arrow-up" aria-hidden="true"></i>';
+                                aHtml = '<i class="fa fa-chevron-up" aria-hidden="true"></i>';
                             }
                         }
 
@@ -91,7 +91,7 @@
                     var a = document.createElement('a');
 
                     a.href = "#";
-                    a.innerHTML = '<i class="fa fa-arrow-down" aria-hidden="true"></i>';
+                    a.innerHTML = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
                     a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:-1px;margin-top:3px;width:24px;height:24px;text-align: center;font-size:17px;";
 
                     a.onclick = function () {
@@ -141,14 +141,14 @@
                     var a = document.createElement('a');
 
                     a.href = "#";
-                    a.innerHTML = '<i style="padding-left: 6px; font-size: 18px; position: absolute; margin-top: -2px; right: 2px;" class="fa fa-info-circle" aria-hidden="true"></i>';
+                    a.innerHTML = '<i style="font-size: 18px;" class="fa fa-info-circle" aria-hidden="true"></i>';
                     if (canToggle === true) {
                         a.onclick = function () {
                             self.onToggleDescription(self.domNode);
                         };
-                        a.style = 'cursor:pointer;';
+                        a.style = 'cursor: pointer; position: absolute; margin-left: 186px;';
                     } else {
-                        a.style = 'cursor:default;';
+                        a.style = 'cursor: default; position: absolute; margin-left: 186px;';
                     }
 
                     label.appendChild(a);
@@ -159,7 +159,6 @@
                     if (is(this.domNode.previousElementSibling)) {
                         var label = this.domNode.previousElementSibling;
                         label.innerHTML = '<span style="color: MessagePropertyBackgroundColorDarkened;">' + label.innerHTML + '</span>';
-                        label.style = 'border-bottom:1px solid #b5bcc7;';
 
                         if (this.isToggleable) {
                             this.onToggleDescription(this.domNode, true, label);

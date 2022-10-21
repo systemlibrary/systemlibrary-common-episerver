@@ -62,7 +62,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 
 ## Requirements
 - &gt;= .NET 6
-- &gt;= Episerver 12
+- &gt;= Episerver 12 & &lt;= 12.8.0, due to from v 12.9 the design has huge breaking changes with "?"-buttons all over, which reminds you of every website in early 2000, when people "first" found out they could toggle elements in javascript - without going back n forth to the server...
 
 ## Latest Version
 - 6.2.0.11

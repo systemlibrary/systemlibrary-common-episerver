@@ -18,7 +18,7 @@ public partial class CmsEditController : BaseController
     {
         AddCacheHeaders();
 
-        if (CssCache != null) return CssCache;
+        //if (CssCache != null) return CssCache;
 
         var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
 
