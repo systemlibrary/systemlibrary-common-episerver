@@ -44,7 +44,7 @@
                         var currentValue = JSON.stringify(options["value"].data);
                         var storedLength = currentStoredData.length;
                         if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
-                            if (prompt("Found data in local storage in your browser from previous time you were editing this data\n\nIf you want to load these values, input 1 in the textfield and click OK.\n\nReasons you see this:\n You've clicked 'X' instead of Save or Cancel\nSession might've expired while you edited\nBrowser crashed last time you edited\n\nRemember: You can write 1 then click OK, just to view the data, and if you dont want them click 'Cancel' which then removes the 'temporary data stored in your browser's cache', then simply click 'Edit' again") === "1") {
+                            if (confirm("Found data stored in your browser from previous time you edited this. Click 'OK' to continue from the data stored in your browser. Click 'Cancel' to continue from the data received from server.\n\nReasons you see this:\n You've 'X'd the window instead of Save or Cancel\nSession might've expired while you edited\n\nTip: You can click OK to view the data, then click the 'X' button, and then edit the field again and click 'Cancel' upon this prompt, to verify which data you want. Remember to 'X' the window between if you want to view data from browser or from server") == true) {
                                 options["value"].data = JSON.parse(currentStoredData);
                             }
                         }

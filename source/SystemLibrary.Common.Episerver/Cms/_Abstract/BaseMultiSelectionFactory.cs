@@ -125,7 +125,7 @@ public abstract class BaseMultiSelectionFactory
 
         var value = metadata.InitialValue;
 
-        if(value != null && value != "" && value + "" != "0")
+        if(value != null && value != "" && value != "0")
         {
             AddExpiredItems(metadata, items);
         }

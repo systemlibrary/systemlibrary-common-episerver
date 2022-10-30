@@ -65,10 +65,11 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12 & &lt;= 12.8.0, due to from v 12.9 the design has huge breaking changes with "?"-buttons all over, which reminds you of every website in early 2000, when people "first" found out they could toggle elements in javascript - without going back n forth to the server...
 
 ## Latest Version
-- 6.2.0.11
-- Updated deps, supporting 6.9.0 of epi, up to 6.10.0 as 6.10.0 has major awful/breaking changes in the UI
-- Updated 'Message' property to look better and ellipsis text-overflow if collapsed
-- Updated docs
+- 6.2.0.12
+- Updated deps
+- JsonEdit some design changes, font 16 to 14, changed the prompt to confirm, etc
+- CmsEditController renamed to EditController under Cms folder - internal class
+- Edit styles has now been gone over one by one, adding detaile description
 - Updated install instructions
 
 #### Version history

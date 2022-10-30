@@ -8,7 +8,7 @@ partial class FontAwesomeController
 {
     static FileContentResult FontAwesomeCache;
 
-    public ActionResult Stylesheet()
+    public ActionResult Style()
     {
         AddCacheControlHeader();
 

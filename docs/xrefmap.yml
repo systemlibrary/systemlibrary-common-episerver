@@ -869,25 +869,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections
   nameWithType: MultiDropdownSelectionFactory.GetSelections
-- uid: SystemLibrary.Common.Episerver.Cms.CmsEditController
-  name: CmsEditController
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.CmsEditController.html
-  commentId: T:SystemLibrary.Common.Episerver.Cms.CmsEditController
-  fullName: SystemLibrary.Common.Episerver.Cms.CmsEditController
-  nameWithType: CmsEditController
-- uid: SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet
-  name: Stylesheet()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.CmsEditController.html#SystemLibrary_Common_Episerver_Cms_CmsEditController_Stylesheet
-  commentId: M:SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet
-  fullName: SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet()
-  nameWithType: CmsEditController.Stylesheet()
-- uid: SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet*
-  name: Stylesheet
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.CmsEditController.html#SystemLibrary_Common_Episerver_Cms_CmsEditController_Stylesheet_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.CmsEditController.Stylesheet
-  nameWithType: CmsEditController.Stylesheet
 - uid: SystemLibrary.Common.Episerver.Cms.Descriptors
   name: SystemLibrary.Common.Episerver.Cms.Descriptors
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Descriptors.html
@@ -916,6 +897,25 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor.ModifyMetadata
   nameWithType: HideCategoryListDescriptor.ModifyMetadata
+- uid: SystemLibrary.Common.Episerver.Cms.EditController
+  name: EditController
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditController.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.EditController
+  fullName: SystemLibrary.Common.Episerver.Cms.EditController
+  nameWithType: EditController
+- uid: SystemLibrary.Common.Episerver.Cms.EditController.Style
+  name: Style()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditController.html#SystemLibrary_Common_Episerver_Cms_EditController_Style
+  commentId: M:SystemLibrary.Common.Episerver.Cms.EditController.Style
+  fullName: SystemLibrary.Common.Episerver.Cms.EditController.Style()
+  nameWithType: EditController.Style()
+- uid: SystemLibrary.Common.Episerver.Cms.EditController.Style*
+  name: Style
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.EditController.html#SystemLibrary_Common_Episerver_Cms_EditController_Style_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.EditController.Style
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.EditController.Style
+  nameWithType: EditController.Style
 - uid: SystemLibrary.Common.Episerver.Cms.Properties
   name: SystemLibrary.Common.Episerver.Cms.Properties
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.html
@@ -4463,19 +4463,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.SolidIcon
   nameWithType: FontAwesomeController.SolidIcon
-- uid: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet
-  name: Stylesheet()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.html#SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_Stylesheet
-  commentId: M:SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet
-  fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet()
-  nameWithType: FontAwesomeController.Stylesheet()
-- uid: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet*
-  name: Stylesheet
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.html#SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_Stylesheet_
-  commentId: Overload:SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet
+- uid: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style
+  name: Style()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.html#SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_Style
+  commentId: M:SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style
+  fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style()
+  nameWithType: FontAwesomeController.Style()
+- uid: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style*
+  name: Style
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.html#SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_Style_
+  commentId: Overload:SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Stylesheet
-  nameWithType: FontAwesomeController.Stylesheet
+  fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.Style
+  nameWithType: FontAwesomeController.Style
 - uid: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular
   name: FontAwesomeRegular
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular.html

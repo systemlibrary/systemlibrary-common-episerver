@@ -52,7 +52,5 @@ public abstract class IListProperty<T> : PropertyList<T>
     /// </example>
     public IListProperty()
     {
-
     }
 }
-

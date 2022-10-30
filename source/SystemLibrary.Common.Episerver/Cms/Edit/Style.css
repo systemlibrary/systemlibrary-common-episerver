@@ -14,8 +14,8 @@
     color: #626262;
     margin-top: 3px;
     position: relative;
-    width: 226px;
-    max-width: 226px;
+    max-width: 240px;
+    min-width: 140px;
     line-height: 1.31;
 }
 
@@ -27,8 +27,9 @@
     }
 }
 
-/* Display 'descriptions' for each property in 'PropertyList Dialog View' */
-/* The 'descriptions' are not currently part of the 'PropertyList Dialog View' */
+/* Display 'descriptions' for each property in 'IList Property Dialog View' */
+/* NOTE: 'descriptions' in epi 12.9.0 is currently not printed out to the HTML, cannot use the content: '' attr trick for these */
+
 
 /* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after {
@@ -50,13 +51,14 @@
 /* Set label width on all properties in 'On Create New Block Properties View' */
 .Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
     width: 100%;
-    max-width: 236px;
-    /* box-sizing: unset; */
+    max-width: 240px;
 }
 
 @media screen and (max-width: 1200px) {
+    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,
     .Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
         width: auto;
+        max-width: 200px;
     }
 }
 
@@ -69,29 +71,23 @@
 
 
 /* Set checkboxes "label" on left, checkbox on right, and adjust sizes */
-/*
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.epi-form-container__section__row--checkbox > label[title] {
-   min-width: 240px;
-}
-*/
-
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox > label {
     box-sizing: unset;
-    width: 234px !important;
+    width: 240px !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox > label {
+        box-sizing: unset;
+        width: 100% !important;
+        max-width: 240px;
+    }
 }
 
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox {
     padding-left: 0;
     margin-left: 0px;
     overflow: hidden;
-}
-
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitValidationTextBox {
-    min-width: 250px !important;
-}
-
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-previewableTextBox-text {
-    max-width: none;
 }
 
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label {
@@ -104,22 +100,32 @@
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
     margin-left: 12px !important;
     margin-right: 100% !important;
-    left: 228px !important;
+    left: 236px !important;
     top: 2px !important;
     position: relative !important;
     float: left !important;
     cursor: pointer;
 }
+@media screen and (max-width: 1200px) {
+    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
+        left: 210px !important;
+    }
+}
 
 /* Wide 'Content Area' selector */
 .Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
-    max-width: 608px;
+    max-width: 610px;
+    color: red;
     margin-left: 8px;
 }
 
 .Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block {
-    max-width: 608px;
+    max-width: 610px;
     margin-left: 8px;
+    padding: 0;
+}
+.Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
+    margin: 8px;
 }
 
 
@@ -140,6 +146,7 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 
 /*End checkbox adjustments */
 
+
 /* Hide "language" in version gadget as we only have NO */
 .Sleek .dgrid-row-table .dgrid-column-language:first-child {
     width: HideLanguageColumnInVersionGadget;
@@ -151,13 +158,6 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     background-color: ContentCreationBorderColor !important;
 }
 
-/* NEW CONTENT WINDOW - TEXT SIZES */
-.Sleek .epi-listingContainer .epi-advancedListing li h3 {
-    font-size: 16px;
-    margin-top: 8px;
-    margin-bottom: 0px;
-    line-height: 1.8;
-}
 
 /* PAGE TREE AND BLOCK TREE GETS A BORDER BOTTOM FOR SELECTED ITEM */
 .Sleek .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected::before {
@@ -165,11 +165,12 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     height: 31px;
 }
 
+
 /* Title of 'Current Content' in h1 in the breadcrumb */
 .Sleek .epi-toolbarLeading .epi-breadCrumbs-title-wrapper h1.epi-breadcrumbContentItem {
-    margin-top: 6px;
     color: ContentTitleColor;
 }
+
 
 /* PAGE TREE ICON */
 .Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage.custom-common-episerver-page-tree-icon {
@@ -182,66 +183,26 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     margin-top: 5px;
 }
 
+
 /* BORDER ON CONTENT TYPES WHEN CLICKING ON 'NEW PAGE' OR 'NEW BLOCK' */
 .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent {
     background-color: ContentCreationBackgroundColor;
 }
 
+
 /* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
 .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
-    min-height: 25%;
-    min-width: 25%;
-    max-height: 80%;
-    max-width: 80%;
+    min-height: 30%;
+    min-width: 30%;
+    max-height: 70%;
+    max-width: 70%;
     margin: 0 auto;
-    padding-top: 7%;
+    padding-top: 8%;
 }
+
 
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
 .Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
     background-color: ActiveProjectBarBackgroundColor !important;
     border-color: ActiveProjectBarBackgroundColorBorder !important;
-}
-
-/* Revert Epi 12.10 UI changes */
-
-.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
-
-.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitContainer.dijitTabPane > li.epi-form-container__section__row > .epi-form-container__section__label-container {
-    max-width: 200px !important;
-    min-width: 200px !important;
-    align-items: start;
-    padding: 8px !important;
-}
-
-.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row > * {
-    height: unset;
-    padding: 8px !important;
-}
-
-.Sleek .epi-form-container__section__row.epi-form-container__section__row--field {
-    border-bottom: 1px solid #efefef;
-}
-
-
-.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitContainer.dijitTabPane > li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox {
-    left: 0 !important;
-    padding: 0 !important;
-}
-
-.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container {
-    left: 0 !important;
-    display: flex;
-    padding: 0;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.dijit.dijitReset.dijitInline {
-    position: absolute;
-    left: 222px;
 }

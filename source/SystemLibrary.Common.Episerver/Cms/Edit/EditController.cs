@@ -8,24 +8,26 @@ using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
 
 namespace SystemLibrary.Common.Episerver.Cms;
 
-public partial class CmsEditController : BaseController
+public partial class EditController : BaseController
 {
-    const string CmsEditFolder = "Cms/CmsEdit";
+    const string CmsEditFolder = "Cms/Edit";
 
     static FileContentResult CssCache;
 
-    public ActionResult Stylesheet()
+    public ActionResult Style()
     {
+        //TODO: Merge this together with FontAwesomeController/Style ?
+        // then one have only 1 line in the module.config
         AddCacheHeaders();
 
-        //if (CssCache != null) return CssCache;
+        if (CssCache != null) return CssCache;
 
         var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
 
         var css = new StringBuilder("");
         if (cmsEdit.Enabled)
         {
-            css = GetEmbeddedResource(CmsEditFolder, "CmsEdit.css");
+            css = GetEmbeddedResource(CmsEditFolder, "Style.css");
 
             var hideLanguageColumnInVersionGadget = cmsEdit.HideLanguageColumnInVersionGadget ? "0px" : "";
             var hideLanguageColumnInVersionGadgetVisibility = cmsEdit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";

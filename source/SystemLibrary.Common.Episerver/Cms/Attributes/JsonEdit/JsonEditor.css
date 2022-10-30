@@ -10,7 +10,7 @@
 }
 
 .j-title-col {
-  width: 200px;
+  width: 240px;
 }
 
 .j-sep-col {
@@ -81,7 +81,7 @@
 .j-array-title-row,
 .j-object-title-row {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   margin-left: 0.33em;
 }
@@ -91,8 +91,8 @@
 }
 
 .j-object-value-row .j-title-col {
-  padding: 8px !important;
-  font-size: 16px;
+  padding: 2px !important;
+  font-size: 14px;
 }
 
 .j-add-array-item {
@@ -115,7 +115,7 @@
   font-weight: bold;
   background: unset;
   border: 0;
-  font-size: 16px;
+  font-size: 14px;
   margin-top: -4px;
 }
 
@@ -181,7 +181,7 @@ body {
 }
 
 td.j-title-col {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 td.j-title-col {
@@ -189,7 +189,7 @@ td.j-title-col {
 }
 
 .j-node-title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -225,35 +225,35 @@ tr.j-object-properties > td > table.j-container > tbody > tr.j-object-title-row 
 
 .j-input {
   background: transparent;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .j-input::placeholder {
   color: #777;
   opacity: 1;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .j-input.j-input-date {
   max-width: 220px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .j-input.j-input-checkbox {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .j-input.j-input-select {
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .j-input.j-input-select > option {
   cursor: pointer;
   background-color: #fafafa;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #jsonEditor > .j-container .j-object-title-row.j-object-title-row-ec {
@@ -271,7 +271,7 @@ tr.j-object-properties > td > table.j-container > tbody > tr.j-object-title-row 
 }
 
 input {
-  font-size: 16px;
+  font-size: 14px;
   font-family: "inter", "consolas" !important;
 }
 
@@ -288,17 +288,17 @@ input {
 }
 
 .j-required-star {
-  font-size: 22px;
+  font-size: 20px;
   top: 2px;
   position: relative;
 }
 
 td.j-array-items > table.j-container {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 tr.j-object-title-row.j-object-title-row-ec.collapsed {
-  box-shadow: 0px 1px 1px #0f70af !important;
+  box-shadow: 0px 1px 4px #0f70af !important;
 }
 
 tr.j-object-title-row.j-object-title-row-ec.expanded {

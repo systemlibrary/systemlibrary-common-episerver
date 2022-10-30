@@ -16,7 +16,7 @@
 4. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
 5. Add nuget package Episerver.Cms >= 12.9.0 && < 12.10.0
 	- Note: Episerver.Cms 12.10.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change by Episerver Devs
-6. Add nuget package SystemLibrary.Common.Episerver >= 6.2.0.11
+6. Add nuget package SystemLibrary.Common.Episerver >= 6.2.0.12
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 7. Create '~/module.config', set its build to 'Content' 
 8. Create '~/Cms/Cms.cs'
@@ -92,8 +92,8 @@ Startpage
 <?xml version="1.0" encoding="utf-8"?>
 <module>
 	<clientResources>
-		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/FontAwesome/Stylesheet" resourceType="Style" />
-		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/CmsEdit/Stylesheet" resourceType="Style" /> 
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/FontAwesome/Style" resourceType="Style" />
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/Edit/Style" resourceType="Style" /> 
 	</clientResources>
 </module>
 ```
