@@ -28,6 +28,8 @@
 
             <span id="infoModal"
                 style='background-image:url(/SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/circle-info.svg);background-repeat: no-repeat; cursor:pointer;display:inline-block; width: 68px; height:21px; margin-left: 0.5em; top:5px; position:relative;'></span>
+
+            <input type="text" id="inputFilter" placeholder="filter..." />
         </div>
         <div>
             <div id="jsonEditor"></div>
@@ -224,6 +226,45 @@
     </script>
 
     <script>
+        function onFilterInputKeyUp(e, v) {
+            var inputFilter = document.getElementById('inputFilter');
+            var search = inputFilter.value;
+            var itemcontainers = document.querySelectorAll('#jsonEditor > table.j-container > tbody > tr > td.j-array-items');
+            if (itemcontainers && itemcontainers[0]) {
+                var itemcontainer = itemcontainers[0];
+
+                if (itemcontainer) {
+                    var rows = itemcontainer.querySelectorAll(':scope > table.j-container');
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        var values = row.querySelectorAll(':scope tr.j-object-value-row > td.j-body-col');
+                        var found = false;
+                        for (var j = 0; j < values.length; j++) {
+                            if (found) break;
+                            var input = values[j].querySelector(':scope > input.j-input-text');
+                            if (input) {
+                                if (input.value.includes(search)) {
+                                    found = true
+                                }
+                            } else {
+                                var select = values[j].querySelector(':scope > select.j-input');
+                                if (select && select.selectedIndex) {
+                                    var selectedText = select.options[select.selectedIndex].text;
+                                    if (selectedText && selectedText.includes(search)) {
+                                        found = true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!found) {
+                            row.toggleClass('hidden');
+                        }
+                    }
+                }
+            }
+        }
+
         function onSaveAndClose(e) {
             const jsonValueObject = JSON.parse($("#jsonValue").html());
 
@@ -242,7 +283,7 @@
         function onClose(e) {
             try {
                 //Commented out: If one clicks cancel, keep whatever is in the localstorage
-               // localStorage.removeItem(storageDataName);
+                // localStorage.removeItem(storageDataName);
             }
             catch {
             }
@@ -275,11 +316,16 @@
         var btnClose = document.getElementById('btnClose');
         btnClose.onclick = onClose;
 
+
+
         var btnSave = document.getElementById('btnSaveAndClose');
         btnSave.onclick = onSaveAndClose;
 
         var infoModal = document.getElementById('infoModal');
         infoModal.onclick = infoModalClicked;
+
+        var inputFilter = document.getElementById('inputFilter');
+        inputFilter.onkeyup = onFilterInputKeyUp;
 
         document.addEventListener('keyup', hotkeySave, false);
         document.addEventListener('keyup', hotkeyCancel, false);
