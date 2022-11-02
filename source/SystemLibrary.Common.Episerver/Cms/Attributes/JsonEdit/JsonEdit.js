@@ -39,17 +39,17 @@
                 if (typeof (data) === 'undefined' || data === null || data === "" || (data.length && data.length === 0)) {
                     return false;
                 }
-                if(data === " " || data === "  " || data === "    ") {
+                if (data === " " || data === "  " || data === "    ") {
                     return false;
                 }
                 return true;
             },
 
             isEqual: function (value1, value2) {
-                if (typeof (value1) === 'undefined') {
+                if (!(!!value1)) {
                     value1 = null;
                 }
-                if (typeof (value2) === 'undefined') {
+                if (!(!!(value2))) {
                     value2 = null;
                 }
                 if (value1 === value2) {
@@ -83,7 +83,7 @@
                         console.warn(jsonEditValue);
                         throw "Error: Json Value is not an array, must start and end with []";
                     }
-                    
+
                     const jsonEditValueArray = JSON.parse(jsonEditValue);
 
                     if (!Array.isArray(jsonEditValueArray)) {

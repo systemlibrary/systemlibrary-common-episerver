@@ -229,39 +229,91 @@
         function onFilterInputKeyUp(e, v) {
             var inputFilter = document.getElementById('inputFilter');
             var search = inputFilter.value;
-            var itemcontainers = document.querySelectorAll('#jsonEditor > table.j-container > tbody > tr > td.j-array-items');
-            if (itemcontainers && itemcontainers[0]) {
-                var itemcontainer = itemcontainers[0];
 
-                if (itemcontainer) {
-                    var rows = itemcontainer.querySelectorAll(':scope > table.j-container');
-                    for (var i = 0; i < rows.length; i++) {
-                        var row = rows[i];
-                        var values = row.querySelectorAll(':scope tr.j-object-value-row > td.j-body-col');
-                        var found = false;
-                        for (var j = 0; j < values.length; j++) {
-                            if (found) break;
-                            var input = values[j].querySelector(':scope > input.j-input-text');
-                            if (input) {
-                                if (input.value.includes(search)) {
-                                    found = true
+            if (!search) {
+                search = '';
+            }
+
+            try {
+
+                var itemcontainers = document.querySelectorAll('#jsonEditor > table.j-container > tbody > tr > td.j-array-items');
+                if (itemcontainers && itemcontainers[0]) {
+                    var itemcontainer = itemcontainers[0];
+                    if (itemcontainer) {
+                        var rows = itemcontainer.querySelectorAll(':scope > table.j-container');
+                        var searchLowered = search.toLowerCase();
+                        for (var i = 0; i < rows.length; i++) {
+                            var row = rows[i];
+
+                            if (!search || search.length === 0) {
+                                if (row.classList && row.classList.contains('hidden')) {
+                                    row.classList.remove('hidden');
                                 }
                             } else {
-                                var select = values[j].querySelector(':scope > select.j-input');
-                                if (select && select.selectedIndex) {
-                                    var selectedText = select.options[select.selectedIndex].text;
-                                    if (selectedText && selectedText.includes(search)) {
-                                        found = true;
+                                var values = row.querySelectorAll(':scope tr.j-object-value-row > td.j-body-col');
+                                var found = false;
+
+                                for (var j = 0; j < values.length; j++) {
+                                    if (found) break;
+
+                                    var input = values[j].querySelector(':scope > input.j-input-text');
+
+                                    if (input) {
+                                        if (input.value) {
+                                            if (input.value.includes(search) || input.value.toLowerCase().includes(searchLowered)) {
+                                                found = true
+                                            }
+                                        }
+                                    } else {
+                                        var select = values[j].querySelector(':scope > select.j-input');
+                                        if (select) {
+                                            if (select.selectedIndex) {
+                                                var selectedText = select.options[select.selectedIndex].innerText;
+                                                if (selectedText) {
+                                                    if (selectedText.includes(search) || selectedText.toLowerCase().includes(searchLowered)) {
+                                                        found = true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            var inputDate = values[j].querySelector(':scope > input.j-input-date');
+                                            if (inputDate) {
+                                                if (inputDate.value) {
+                                                    if (inputDate.value.includes(search)) {
+                                                        found = true;
+                                                    }
+                                                    if (inputDate.value.includes(search.replaceAll('/', '-'))) {
+                                                        found = true;
+                                                    }
+                                                    if (inputDate.value.includes(search.replaceAll('.', '-'))) {
+                                                        found = true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (row.classList) {
+                                    if (row.classList.contains('hidden')) {
+                                        if (found) {
+                                            row.classList.remove('hidden');
+                                        }
+                                    } else {
+                                        if (!found) {
+                                            row.classList.add('hidden');
+                                        }
                                     }
                                 }
                             }
                         }
-
-                        if (!found) {
-                            row.toggleClass('hidden');
-                        }
                     }
                 }
+            }
+            catch (err) {
+                console.error("Error in onFilterInputKeyUp()");
+                console.error(err);
             }
         }
 
@@ -315,8 +367,6 @@
 
         var btnClose = document.getElementById('btnClose');
         btnClose.onclick = onClose;
-
-
 
         var btnSave = document.getElementById('btnSaveAndClose');
         btnSave.onclick = onSaveAndClose;

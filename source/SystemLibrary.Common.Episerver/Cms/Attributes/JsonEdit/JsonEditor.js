@@ -1,23 +1,26 @@
-﻿
-(function ($) {
-    $.fn.jsonEdit = function (options) {
+﻿/*jshint esversion: 10 */
 
+(function () {
+    'use strict';
+}());
+
+(function ($) {
+    if (!$) {
+        console.error("Error in $, jQuery not loaded");
+    }
+    $.fn.jsonEdit = function (options) {
         var renderPlace = this;
         var level = 0;
         var arrayTemplates = {};
-        initOptions();
-        initWidget();
 
-        var output = {
-            "isValid": function () { return isValid(); },
-            "getSchema": function () { return getSchema(); },
-            "getValue": function () { return getValue(); },
-            "setValue": function (v) { return setValue(v); }
-        };
-        return output;
 
         function setLocalStorageData(name, value) {
-            localStorage.setItem(name, JSON.stringify(value));
+            try {
+                localStorage.setItem(name, JSON.stringify(value));
+            } catch (err) {
+                console.error("Error in setLocalStorageData()");
+                console.error(err);
+            }
         }
 
         function getLocalStorageData(name) {
@@ -26,18 +29,19 @@
 
         function initOptions() {
             options = options || {};
-            options["storageDataName"] = options["storageDataName"] || 'systemLibraryCommonEpiserverJsonEditStorageDataName';
-            options["expandingLevel"] = (options["expandingLevel"] == null ? -1 : options["expandingLevel"]) // -1:expand all
-            options["value"] = options["value"] || {};
-            options["schema"] = options["schema"] || {};
-            options["renderFirstLevel"] = options["renderFirstLevel"] || 'false';
-            options["autoTrimValues"] = options["autoTrimValues"] || 'true';
-            options["identing"] = options["identing"] || 3;
-            options["radioNullCaption"] = options["radioNullCaption"] || 'null';
-            options["selectNullCaption"] = options["selectNullCaption"] || '';
-            options["treeExpandCollapseButton"] = options["treeExpandCollapseButton"] || 'true';
 
             try {
+                options["storageDataName"] = options["storageDataName"] || 'systemLibraryCommonEpiserverJsonEditStorageDataName';
+                options["expandingLevel"] = (options["expandingLevel"] == null ? -1 : options["expandingLevel"]); // -1:expand all
+                options["value"] = options["value"] || {};
+                options["schema"] = options["schema"] || {};
+                options["renderFirstLevel"] = options["renderFirstLevel"] || 'false';
+                options["autoTrimValues"] = options["autoTrimValues"] || 'true';
+                options["identing"] = options["identing"] || 3;
+                options["radioNullCaption"] = options["radioNullCaption"] || 'null';
+                options["selectNullCaption"] = options["selectNullCaption"] || '';
+                options["treeExpandCollapseButton"] = options["treeExpandCollapseButton"] || 'true';
+
                 var currentStoredData = getLocalStorageData(options["storageDataName"]);
                 if (currentStoredData) {
                     if (options["value"].data) {
@@ -57,6 +61,7 @@
                     console.warn("JsonEdit: no previous temp data stored");
                 }
             } catch {
+                console.error("Error in initOptions()");
                 console.error("JsonEdit: Error reading from localStorage, continue as normal...");
             }
         }
@@ -68,8 +73,8 @@
                         if (c.value && c.value.length > 0) {
                             $(node).text(c.value);
                         }
-                    })
-                })
+                    });
+                });
             });
         }
 
@@ -94,58 +99,71 @@
         }
 
         function validateInput(elm) {
-            var v_required = fixNU(elm.attr("data-required"), "false"),
-                v_min = elm.attr("data-min"), v_max = elm.attr("data-max");
+            try {
+                var v_required = fixNU(elm.attr("data-required"), "false"),
+                    v_min = elm.attr("data-min"), v_max = elm.attr("data-max");
 
-            v_min = (v_min ? parseFloat(v_min) : null);
-            v_max = (v_max ? parseFloat(v_max) : null);
+                v_min = (v_min ? parseFloat(v_min) : null);
+                v_max = (v_max ? parseFloat(v_max) : null);
 
-            if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea") || elm.hasClass("j-input-select") || elm.hasClass("j-input-number") || elm.hasClass("j-input-date")) {
-                elm.attr("data-is-valid", (v_required == "true" && fixNU(elm.val(), "") == "" ? "false" : "true"));
-                if (elm.attr("data-is-valid") == "false") return;
-                if (v_min) {
-                    if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea")) {
-                        elm.attr("data-is-valid", (elm.val().length < v_min ? "false" : "true"));
-                        if (elm.attr("data-is-valid") == "false") return;
+                if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea") || elm.hasClass("j-input-select") || elm.hasClass("j-input-number") || elm.hasClass("j-input-date")) {
+                    elm.attr("data-is-valid", (v_required == "true" && fixNU(elm.val(), "") == "" ? "false" : "true"));
+                    if (elm.attr("data-is-valid") == "false") return;
+                    if (v_min) {
+                        if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea")) {
+                            elm.attr("data-is-valid", (elm.val().length < v_min ? "false" : "true"));
+                            if (elm.attr("data-is-valid") == "false") return;
+                        }
+                        if (elm.hasClass("j-input-number")) {
+                            console.log("VALIDTAE INPUT NUMBER!");
+                            elm.attr("data-is-valid", (elm.val() < v_min ? "false" : "true"));
+                            if (elm.attr("data-is-valid") == "false") return;
+                        }
                     }
-                    if (elm.hasClass("j-input-number")) {
-                        elm.attr("data-is-valid", (elm.val() < v_min ? "false" : "true"));
-                        if (elm.attr("data-is-valid") == "false") return;
+                    if (v_max) {
+                        if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea")) {
+                            elm.attr("data-is-valid", (elm.val().length > v_max ? "false" : "true"));
+                            if (elm.attr("data-is-valid") == "false") return;
+                        }
+
+                        if (elm.hasClass("j-input-number")) {
+                            elm.attr("data-is-valid", (elm.val() > v_max ? "false" : "true"));
+                            if (elm.attr("data-is-valid") == "false") return;
+                        }
                     }
                 }
-                if (v_max) {
-                    if (elm.hasClass("j-input-text") || elm.hasClass("j-input-textarea")) {
-                        elm.attr("data-is-valid", (elm.val().length > v_max ? "false" : "true"));
-                        if (elm.attr("data-is-valid") == "false") return;
-                    }
+                if (elm.hasClass("j-input-email")) {
+                    let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/; // Regex validation for international number
+                    elm.attr("data-is-valid", (regex.test(elm.val())));
+                }
+                if (elm.hasClass("j-input-tel")) {
+                    let regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/; // Regex validation for email
+                    elm.attr("data-is-valid", (regex.test(elm.val())));
+                }
+                if (elm.hasClass("j-input-checkbox")) {
+                    elm.attr("data-is-valid", (v_required == "true" && elm.prop("checked") == false ? "false" : "true"));
+                }
 
-                    if (elm.hasClass("j-input-number")) {
-                        elm.attr("data-is-valid", (elm.val() > v_max ? "false" : "true"));
-                        if (elm.attr("data-is-valid") == "false") return;
-                    }
+                if (elm.hasClass("j-input-html")) {
+                    let v = (elm.next(".j-input-html-div:first").text() == "");
+                    elm.next(".j-input-html-div:first").attr("data-is-valid", (v_required == "true" && v ? "false" : "true"));
                 }
             }
-            if (elm.hasClass("j-input-email")) {
-                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/; // Regex validation for international number
-                elm.attr("data-is-valid", (regex.test(elm.val())));
-            }
-            if (elm.hasClass("j-input-tel")) {
-                var regex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/; // Regex validation for email
-                elm.attr("data-is-valid", (regex.test(elm.val())));
-            }
-            if (elm.hasClass("j-input-checkbox")) {
-                elm.attr("data-is-valid", (v_required == "true" && elm.prop("checked") == false ? "false" : "true"));
-            }
+            catch (err) {
+                console.error("Error in validateInput");
+                console.error(err);
 
-            if (elm.hasClass("j-input-html")) {
-                var v = (elm.next(".j-input-html-div:first").text() == "")
-                elm.next(".j-input-html-div:first").attr("data-is-valid", (v_required == "true" && v ? "false" : "true"));
             }
         }
 
         function isValid() {
-            var v = renderPlace.find('[data-is-valid="false"]:first').length;
-            return (v > 0 ? false : true);
+            try {
+                var v = renderPlace.find('[data-is-valid="false"]:first').length;
+                return (v > 0 ? false : true);
+            } catch (err) {
+                console.error("Error in isValid()");
+                console.error(err);
+            }
         }
 
         function onRemoveArrayItemClicked(e, ele) {
@@ -166,78 +184,124 @@
 
             renderPlace.find(".j-add-array-item").off("click").on("click", function () { addArrayItem($(this), true, null); });
             renderPlace.find(".j-remove-array-item").off("click").on("click", function (e) { onRemoveArrayItemClicked(e, $(this)); });
-            renderPlace.find(".j-input-text,.j-input-textarea,.j-input-date,.j-input-number,.j-input-email,.j-input-tel").off("keyup").on("keyup", function () { valueChanged($(this)) });
-            renderPlace.find(".j-input-checkbox,.j-input-radio,.j-input-select,.j-input-color,.j-input-date,.j-input-number,.j-input-html").off("change").on("change", function () { valueChanged($(this)) });
-            renderPlace.find(".j-input-html-div").off("keyup").on("keyup", function () { changeInput($(this)) });
+            renderPlace.find(".j-input-text,.j-input-textarea,.j-input-date,.j-input-number,.j-input-email,.j-input-tel").off("keyup").on("keyup", function () { valueChanged($(this)); });
+            renderPlace.find(".j-input-checkbox,.j-input-radio,.j-input-select,.j-input-color,.j-input-date,.j-input-number,.j-input-html").off("change").on("change", function () { valueChanged($(this)); });
+            renderPlace.find(".j-input-html-div").off("keyup").on("keyup", function () { changeInput($(this)); });
             renderPlace.find(".j-input-html").off("focus").on("focus", function () { $(this).parents("td:first").find(".j-input-html-div:first").focus(); });
         }
 
         function changeInput(htmlDiv) {
-            var i = htmlDiv.parents(":first").find("input:first");
-            i.val(htmlDiv.html());
-            valueChanged(i);
+            try {
+                var i = htmlDiv.parents(":first").find("input:first");
+                i.val(htmlDiv.html());
+                valueChanged(i);
+            }
+            catch (err) {
+                console.error("Error in changeInput()");
+                console.error(err);
+            }
         }
 
         function removeArrayItem(arrItem) {
-            var itemIndex = arrItem.attr("data-index");
-            var nodeToRemove = arrItem.parents("table:first");
-            var p = nodeToRemove.parents("td:first").attr("data-path");
-            eval('options["value"]' + p + "[" + itemIndex + "] = null;");
-            //eval('options["value"]' + p + '.splice(' + itemIndex + ',1);');
-            nodeToRemove.remove();
+            try {
+                var itemIndex = arrItem.attr("data-index");
+                var nodeToRemove = arrItem.parents("table:first");
+                var p = nodeToRemove.parents("td:first").attr("data-path");
+                eval('options["value"]' + p + "[" + itemIndex + "] = null;");
+                //eval('options["value"]' + p + '.splice(' + itemIndex + ',1);');
+                nodeToRemove.remove();
 
-            setValue(options["value"]);
+                setValue(options["value"]);
 
-            setLocalStorageData(options["storageDataName"], options["value"].data, 14);
+                setLocalStorageData(options["storageDataName"], options["value"].data, 14);
 
-            if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
+                if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
+            }
+            catch (err) {
+                console.error("Error in removeArrayItem()");
+                console.error(err);
+            }
         }
 
         function addArrayItem(arrayContainer, needInitiations, itemIndex) {
-            var tId = arrayContainer.attr("data-template-id");
-            var htmlTemplate = arrayTemplates[tId]["htmlTemplate"];
-            var dataTemplate = JSON.parse(JSON.stringify(arrayTemplates[tId]["dataTemplate"]));
-            var dataPath = arrayContainer.parents("tr:first").next().find("td:first").attr("data-path");
-            if (V(options["value"], dataPath) == undefined || V(options["value"], dataPath) == null) {
-                eval('options["value"]' + dataPath + "=[];");
-            }
+            try {
+                var tId = arrayContainer.attr("data-template-id");
+                var htmlTemplate = arrayTemplates[tId]["htmlTemplate"];
+                var dataTemplate = JSON.parse(JSON.stringify(arrayTemplates[tId]["dataTemplate"]));
+                var dataPath = arrayContainer.parents("tr:first").next().find("td:first").attr("data-path");
+                if (V(options["value"], dataPath) == undefined || V(options["value"], dataPath) == null) {
+                    eval('options["value"]' + dataPath + "=[];");
+                }
 
-            if (itemIndex == null) {
-                var arrLen = null;
-                eval('options["value"]' + dataPath + ".push(dataTemplate);");
-                eval('arrLen = options["value"]' + dataPath + ".length;");
-                itemIndex = arrLen - 1;
-            }
+                if (itemIndex == null) {
+                    var arrLen = null;
+                    eval('options["value"]' + dataPath + ".push(dataTemplate);");
+                    eval('arrLen = options["value"]' + dataPath + ".length;");
+                    itemIndex = arrLen - 1;
+                }
 
-            htmlTemplate = replaceAll(htmlTemplate, "$index$", itemIndex);
-            arrayContainer.parents("tr:first").next().find("td:first").append(htmlTemplate);
-            if (needInitiations) {
-                initValuePathes();
-                initEvents();
+                htmlTemplate = replaceAll(htmlTemplate, "$index$", itemIndex);
+                arrayContainer.parents("tr:first").next().find("td:first").append(htmlTemplate);
+                if (needInitiations) {
+                    initValuePathes();
+                    initEvents();
+                }
+            }
+            catch (err) {
+                console.error("Error in addArrayItem");
+                console.error(err);
             }
         }
 
-
-
         function valueChanged(changedObject) {
-            ensureDataPath(changedObject.attr("data-path"));
-            var p = 'options["value"]' + changedObject.attr("data-path");
-            if (changedObject.prop("tagName").toLowerCase() == "input" && changedObject.prop("type").toLowerCase() == "checkbox") {
-                p = p + "=" + (changedObject.prop("checked") == true ? "true" : "false") + ";";
-            } else {
-                if (changedObject.prop("type") === "number" || changedObject.prop("type") === "select-one") {
-                    p = p + "=" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + ";";
+            try {
+                ensureDataPath(changedObject.attr("data-path"));
+
+                var p = 'options["value"]' + changedObject.attr("data-path");
+                if (changedObject.prop("tagName").toLowerCase() == "input" && changedObject.prop("type").toLowerCase() == "checkbox") {
+                    p = p + "=" + (changedObject.prop("checked") == true ? "true" : "false") + ";";
                 } else {
-                    p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
+                    if (changedObject.prop("type") === "number" || changedObject.prop("type") === "select-one") {
+                        p = p + "=" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + ";";
+
+                        if (p.endsWith('=;')) {
+                            p = p.substring(0, p.length - 1);
+                            if (changedObject.prop("type") === "number") {
+                                p = p + "0;";
+                            } else {
+                                p = p + "null;";
+                            }
+                            console.log("NEW P NUMBER");
+                            console.log(p);
+                        }
+                    } else {
+                        p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
+                        if (p.endsWith('=;')) {
+                            p = p.substring(0, p.length - 1);
+                            p = p + "'';";
+                            console.log("NEW P ");
+                            console.log(p);
+                        }
+                    }
                 }
+                try {
+                    eval(p);
+                }
+                catch (ex) {
+                    console.error("Error in EVAL in valueChanged()");
+                    console.error(ex);
+                }
+
+                validateInput(changedObject);
+
+                setLocalStorageData(options["storageDataName"], options["value"].data, 14);
+
+                if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
             }
-            eval(p);
-
-            validateInput(changedObject);
-
-            setLocalStorageData(options["storageDataName"], options["value"].data, 14);
-
-            if (options["afterValueChanged"]) options["afterValueChanged"](options["value"], options["schema"]);
+            catch (err) {
+                console.error("Error in valueChanged()");
+                console.error(err);
+            }
         }
 
         function renderSchemaNode(schemaNode, schemaName, requiredItems) {
@@ -306,7 +370,7 @@
                             + classAtt + dataValueNameAtt + placeholderHint + requiredAtt + minAtt + maxAtt + ' />' + htmlEditor;
                     }
                 } else {
-                    var editor = getUISetting(schemaNode, "editor", "select");
+                    let editor = getUISetting(schemaNode, "editor", "select");
                     classAtt = ' class="j-input j-input-' + editor + additionalClass + '" ';
 
                     if (editor == "radio") {
@@ -381,6 +445,7 @@
             var itemDataTemplate = null, itemContainerT = null;
             var arrSchema = { "title": "", "type": arrType };
             level++;
+
             if (arrType == "string" || arrType == "number" || arrType == "boolean" || arrType == "email" || arrType == "tel") {
                 if (schemaNode["items"] && schemaNode["items"]["ui"]) arrSchema["ui"] = schemaNode["items"]["ui"];
                 if (schemaNode["items"] && schemaNode["items"]["enum"]) arrSchema["enum"] = schemaNode["items"]["enum"];
@@ -447,38 +512,43 @@
         }
 
         function setValue(v) {
-            addArrayItemsToTheDOM();
-            renderPlace.find("input[data-path],select[data-path],textarea[data-path]").each(function () {
+            try {
+                addArrayItemsToTheDOM();
+                renderPlace.find("input[data-path],select[data-path],textarea[data-path]").each(function () {
 
-                if ($(this).prop("tagName").toLowerCase() == "input" && $(this).prop("type").toLowerCase() == "checkbox") {
-                    $(this).prop("checked", V(v, $(this).attr("data-path")) == true ? true : false);
-                } else if ($(this).prop("tagName").toLowerCase() == "input" && $(this).prop("type").toLowerCase() == "radio") {
-                    //$('[data-path="' + $(this).attr("data-path") + '"]').prop("checked", false);
-                    $('[data-path="' + $(this).attr("data-path") + '"][value="' + V(v, $(this).attr("data-path")) + '"]').prop("checked", true);
-                } else {
-                    if (options["autoTrimValues"] == "true") {
-                        var _temp = V(v, $(this).attr("data-path"));
-
-                        if (_temp && _temp.trim) _temp = _temp.trim();
-
-                        $(this).val(_temp);
-                        // if (typeof (_temp) !== 'undefined' && isNaN(_temp)) {
-                        //     let titleRow = $(this).parents('.j-container').parents('.j-container').find('.j-node-title:first');
-                        //     let html = titleRow.html();
-                        //     if (!html || html.length < 1) {
-                        //          $(titleRow).val(_temp);
-                        //     }
-                        // }
+                    if ($(this).prop("tagName").toLowerCase() == "input" && $(this).prop("type").toLowerCase() == "checkbox") {
+                        $(this).prop("checked", V(v, $(this).attr("data-path")) == true ? true : false);
+                    } else if ($(this).prop("tagName").toLowerCase() == "input" && $(this).prop("type").toLowerCase() == "radio") {
+                        //$('[data-path="' + $(this).attr("data-path") + '"]').prop("checked", false);
+                        $('[data-path="' + $(this).attr("data-path") + '"][value="' + V(v, $(this).attr("data-path")) + '"]').prop("checked", true);
                     } else {
-                        $(this).val(V(v, $(this).attr("data-path")));
-                    }
-                    if ($(this).hasClass("j-input-html")) {
-                        $(this).parents(":first").find(".j-input-html-div:first").html($(this).val());
-                    }
-                }
+                        if (options["autoTrimValues"] == "true") {
+                            var _temp = V(v, $(this).attr("data-path"));
 
-            });
-            options["value"] = v;
+                            if (_temp && _temp.trim) _temp = _temp.trim();
+
+                            $(this).val(_temp);
+                            // if (typeof (_temp) !== 'undefined' && isNaN(_temp)) {
+                            //     let titleRow = $(this).parents('.j-container').parents('.j-container').find('.j-node-title:first');
+                            //     let html = titleRow.html();
+                            //     if (!html || html.length < 1) {
+                            //          $(titleRow).val(_temp);
+                            //     }
+                            // }
+                        } else {
+                            $(this).val(V(v, $(this).attr("data-path")));
+                        }
+                        if ($(this).hasClass("j-input-html")) {
+                            $(this).parents(":first").find(".j-input-html-div:first").html($(this).val());
+                        }
+                    }
+                });
+                options["value"] = v;
+            }
+            catch (err) {
+                console.error("Error in setValue()");
+                console.error(err);
+            }
         }
 
         function addArrayItemsToTheDOM() {
@@ -529,21 +599,29 @@
         }
 
         function ensureDataPath(dataPath) {
-            var pathParts = replaceAll(dataPath, "][", "].[").split('.');
-            var pathCursor = "";
-            pathParts.forEach(function (item, index, arr) {
-                pathCursor = pathCursor + item.toString();
-                if (V(options["value"], pathCursor) === undefined || V(options["value"], pathCursor) === null) {
-                    var phrase = 'options["value"]' + pathCursor + '={};';
-                    eval(phrase);
-                }
-            });
+            try {
+                var pathParts = replaceAll(dataPath, "][", "].[").split('.');
+                var pathCursor = "";
+                pathParts.forEach(function (item, index, arr) {
+                    pathCursor = pathCursor + item.toString();
+                    if (V(options["value"], pathCursor) === undefined || V(options["value"], pathCursor) === null) {
+                        var phrase = 'options["value"]' + pathCursor + '={};';
+                        eval(phrase);
+                    }
+                });
+            }
+            catch (err) {
+                console.error("Error in ensureDataPath()");
+                console.error(err);
+            }
         }
 
         function V(o, p) {
             try {
                 return eval("o" + p);
-            } catch (e) { return null; }
+            } catch (e) {
+                return null;
+            }
         }
 
         function jsonEscape(str) {
@@ -620,5 +698,17 @@
             return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
         }
 
-    }
+        initOptions();
+
+        initWidget();
+
+        var output = {
+            "isValid": function () { return isValid(); },
+            "getSchema": function () { return getSchema(); },
+            "getValue": function () { return getValue(); },
+            "setValue": function (v) { return setValue(v); }
+        };
+
+        return output;
+    };
 }(jQuery));
