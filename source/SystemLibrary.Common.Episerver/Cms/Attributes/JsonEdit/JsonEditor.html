@@ -1,4 +1,5 @@
-﻿<html>
+﻿<!DOCTYPE HTML>
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -6,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="EasyEditorScript"></script>
     <script src="EditorScript"></script>
+    
+    <link href="EasyEditorStyle" rel="stylesheet" type="text/css" />
     <link href="EditorStyle" rel="stylesheet" type="text/css" />
+    
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- <link href="EasyEditorStyle" rel="stylesheet" type="text/css" /> -->
 </head>
 
 <body>
     <div class="jsonEditor-container">
         <div class="jsonEditor-menu" style="padding-left: 0.5em;">
-            <button tabindex="-1" id="jsonEditSortByPropertyName1" style='min-width: 125px'
-                title="Sort all items by this field">Sort</button>
-            <button tabindex="-1" id="jsonEditSortByPropertyName2" style='min-width: 125px'
-                title="Sort all items by this field">Sort2</button>
             <button tabindex="-1" id="preview" style='min-width: 125px'
                 title="Preview my current json data if you want to copy paste it or similar">Preview Json</button>
             <button tabindex="-1" id="collapseExpandAll" style='min-width: 125px'
@@ -28,9 +31,19 @@
 
             <span id="infoModal"
                 style='background-image:url(/SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/circle-info.svg);background-repeat: no-repeat; cursor:pointer;display:inline-block; width: 68px; height:21px; margin-left: 0.5em; top:5px; position:relative;'></span>
+            <div class="jsonEditor-container-menu">
+                <input type="text" id="inputFilter" placeholder="Filter on..."
+                    title="Can filter on number, dates, values selected in dropdowns and text" />
 
-            <input type="text" id="inputFilter" placeholder="filter..." />
+                <button tabindex="-1" id="jsonEditSortByPropertyName1" style='min-width: 125px'
+                    title="Sort all items by this field">Sort</button>
+                <button tabindex="-1" id="jsonEditSortByPropertyName2" style='min-width: 125px'
+                    title="Sort all items by this field">Sort2</button>
+            </div>
+
+
         </div>
+
         <div>
             <div id="jsonEditor"></div>
         </div>
@@ -380,6 +393,8 @@
         document.addEventListener('keyup', hotkeySave, false);
         document.addEventListener('keyup', hotkeyCancel, false);
     </script>
+
+    
 </body>
 
 </html>

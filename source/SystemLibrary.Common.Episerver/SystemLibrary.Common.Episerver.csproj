@@ -9,6 +9,8 @@
 
 	<ItemGroup>
 		<None Remove="Cms\Admin\GetLinksInText.sql" />
+		<None Remove="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
+		<None Remove="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />
 		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.html" />
 		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.js" />
 		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.css" />
@@ -30,6 +32,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<EmbeddedResource Include="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
+		<EmbeddedResource Include="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.js" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.css" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.html" />
@@ -80,7 +84,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="6.0.1" />
-		<PackageReference Include="SystemLibrary.Common.Web" Version="6.2.1.7" />
+		<PackageReference Include="SystemLibrary.Common.Web" Version="6.2.1.8" />
 	</ItemGroup>
 
 </Project>

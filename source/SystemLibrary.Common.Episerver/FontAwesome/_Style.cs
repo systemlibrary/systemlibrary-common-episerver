@@ -1,25 +1,25 @@
-﻿using System.Text;
+﻿//using System.Text;
 
-using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc;
 
-namespace SystemLibrary.Common.Episerver.FontAwesome;
+//namespace SystemLibrary.Common.Episerver.FontAwesome;
 
-partial class FontAwesomeController
-{
-    static FileContentResult FontAwesomeCache;
+//partial class FontAwesomeController
+//{
+//    static FileContentResult FontAwesomeCache;
 
-    public ActionResult Style()
-    {
-        AddCacheControlHeader();
+//    public ActionResult Style()
+//    {
+//        AddCacheControlHeader();
 
-        if (FontAwesomeCache != null) return FontAwesomeCache;
+//        if (FontAwesomeCache != null) return FontAwesomeCache;
 
-        var css = FontAwesomeLoader.FontAwesomeBundledMinCss;
+//        var css = FontAwesomeLoader.FontAwesomeBundledMinCss;
 
-        var bytes = Encoding.UTF8.GetBytes(css);
+//        var bytes = Encoding.UTF8.GetBytes(css);
 
-        FontAwesomeCache = new FileContentResult(bytes, "text/css");
+//        FontAwesomeCache = new FileContentResult(bytes, "text/css");
 
-        return FontAwesomeCache;
-    }
-}
+//        return FontAwesomeCache;
+//    }
+//}

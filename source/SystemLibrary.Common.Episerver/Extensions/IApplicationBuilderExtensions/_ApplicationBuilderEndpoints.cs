@@ -10,11 +10,12 @@ partial class IApplicationBuilderExtensions
     {
         app.UseEndpoints(endpoints =>
         {
+            // Note: /Cms/ refers to the folder named 'Cms' at root of the library and all its inner controllers
             endpoints.MapAreaControllerRoute(
-                name: "SystemLibrary/Common/Episerver/UiHint/{controller}/{action}/{id?}",
-                areaName: "SystemLibrary/Common/Episerver/UiHint/",
-                pattern: "SystemLibrary/Common/Episerver/UiHint/{controller}/{action}/{id?}"
-                );
+                name: "SystemLibrary/Common/Episerver/Cms/{controller}/{action}/{id?}",
+                areaName: "SystemLibrary/Common/Episerver/Cms/",
+                pattern: "SystemLibrary/Common/Episerver/Cms/{controller}/{action}/{id?}"
+            );
         });
 
         app.UseEndpoints(endpoints =>

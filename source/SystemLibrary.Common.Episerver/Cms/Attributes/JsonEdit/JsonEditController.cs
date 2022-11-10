@@ -15,21 +15,47 @@ public partial class JsonEditController : BaseController
     static ActionResult EditorScriptCache;
     static ActionResult EditorStyleCache;
 
+    static ActionResult EasyEditorStyleCache;
+    static ActionResult EasyEditorScriptCache;
+
+    public ActionResult EasyEditorStyle()
+    {
+      //  AddCacheHeaders();
+
+       // if (EasyEditorStyleCache != null) return EasyEditorStyleCache;
+
+        var html = GetEmbeddedResource(CurrentFolder, "EasyEditorStyle.css");
+
+        return (HtmlCache = GetFileContentResult(html, "text/css"));
+    }
+
+    public ActionResult EasyEditorScript()
+    {
+      //  AddCacheHeaders();
+
+       // if (EasyEditorScriptCache != null) return EasyEditorScriptCache;
+
+        var html = GetEmbeddedResource(CurrentFolder, "EasyEditorScript.js");
+
+        return (HtmlCache = GetFileContentResult(html, "text/javascript"));
+    }
+
     public ActionResult Html()
     {
-        AddCacheHeaders();
+      //  AddCacheHeaders();
 
-        if (HtmlCache != null) return HtmlCache;
+       // if (HtmlCache != null) return HtmlCache;
 
         var html = GetEmbeddedResource(CurrentFolder, "JsonEdit.html");
 
         return (HtmlCache = GetFileContentResult(html, "text/html"));
     }
-     public ActionResult Script()
-    {
-        AddCacheHeaders();
 
-        if (ScriptCache != null) return ScriptCache;
+    public ActionResult Script()
+    {
+      //  AddCacheHeaders();
+
+      //  if (ScriptCache != null) return ScriptCache;
 
         var script = GetEmbeddedResource(CurrentFolder, "JsonEdit.js");
 
@@ -38,9 +64,9 @@ public partial class JsonEditController : BaseController
 
     public ActionResult EditorHtml()
     {
-        AddCacheHeaders();
+     //   AddCacheHeaders();
 
-        if (EditorHtmlCache != null) return EditorHtmlCache;
+     //   if (EditorHtmlCache != null) return EditorHtmlCache;
 
         var editor = GetEmbeddedResource(CurrentFolder, "JsonEditor.html");
 
@@ -49,9 +75,9 @@ public partial class JsonEditController : BaseController
 
     public ActionResult EditorScript()
     {
-        AddCacheHeaders();
+      //  AddCacheHeaders();
 
-        if (EditorScriptCache != null) return EditorScriptCache;
+      //  if (EditorScriptCache != null) return EditorScriptCache;
 
         var editorScript = GetEmbeddedResource(CurrentFolder, "JsonEditor.js");
 
@@ -60,9 +86,9 @@ public partial class JsonEditController : BaseController
 
     public ActionResult EditorStyle()
     {
-        AddCacheHeaders();
+       // AddCacheHeaders();
 
-        if (EditorStyleCache != null) return EditorStyleCache;
+       // if (EditorStyleCache != null) return EditorStyleCache;
 
         var editorStyle = GetEmbeddedResource(CurrentFolder, "JsonEditor.css");
 

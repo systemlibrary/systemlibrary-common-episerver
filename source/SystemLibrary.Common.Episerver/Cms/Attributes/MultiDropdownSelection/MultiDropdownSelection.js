@@ -122,7 +122,7 @@ define([
                     if (!document.getElementById(cssPrefixId + '1')) {
                         var head = document.getElementsByTagName('body')[0];
 
-                        var css1 = this._getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/MultiDropdownSelection/Style');
+                        var css1 = this._getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/Style');
 
                         head.appendChild(css1);
                     }

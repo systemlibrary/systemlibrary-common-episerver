@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
 public abstract class BaseController : Controller
 {
-    static int ClientCacheSeconds = 43200;
+    static int ClientCacheSeconds = 1;
 
     static Assembly _CurrentAssembly;
     protected Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :

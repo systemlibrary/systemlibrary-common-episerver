@@ -119,7 +119,8 @@
                     const d = new Date();
                     const skipCacheParam = 'skipCache=' + d.getHours().toString() + d.getMinutes().toString() + d.getMilliseconds().toString();
 
-                    const windowFeatures = "left=" + left + ",top=166,width=" + width + ",height=" + height;
+                    const windowFeatures = "left=" + left + ",top=166,width=" + width + ",height=" + height + ",directories=no,titlebar=no,location=no";
+                    //windowFeatures += ',directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,resizable=no';
                     const w = window.open(jsonEditorUrl + '?' + skipCacheParam, "Editor", windowFeatures);
 
                     if (!w) {
@@ -137,6 +138,8 @@
                         this.onFocus();
 
                         let jsonText = JSON.stringify(newJson);
+
+                        console.log(jsonText);
 
                         this._setValueAttr(jsonText);       //This should be "setValue()"?
 

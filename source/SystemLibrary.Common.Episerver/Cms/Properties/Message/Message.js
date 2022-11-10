@@ -37,7 +37,7 @@
                     if (!document.getElementById(cssPrefixId)) {
                         var head = document.getElementsByTagName('body')[0];
 
-                        var css = this._getStylesheetLink(cssPrefixId, '/SystemLibrary/Common/Episerver/UiHint/Message/Style');
+                        var css = this._getStylesheetLink(cssPrefixId, '/SystemLibrary/Common/Episerver/Cms/Message/Style');
 
                         head.appendChild(css);
                     }
@@ -92,7 +92,7 @@
 
                     a.href = "#";
                     a.innerHTML = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
-                    a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:-1px;margin-top:3px;width:24px;height:24px;text-align: center;font-size:17px;";
+                    a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:3px;margin-top:0px;width:22px;height:22px;text-align: center;font-size:17px;";
 
                     a.onclick = function () {
                         self.onToggleDescription(self.domNode);
@@ -141,24 +141,23 @@
                     var a = document.createElement('a');
 
                     a.href = "#";
-                    a.innerHTML = '<i style="font-size: 18px;" class="fa fa-info-circle" aria-hidden="true"></i>';
+                    a.innerHTML = '<i style="font-size: 16px;" class="fa fa-info-circle" aria-hidden="true"></i>';
                     if (canToggle === true) {
                         a.onclick = function () {
                             self.onToggleDescription(self.domNode);
                         };
-                        a.style = 'cursor: pointer; position: absolute; margin-left: 186px;';
+                        a.style = 'cursor: pointer; position: absolute; margin-left: 8px;margin-top: -1px;';
                     } else {
-                        a.style = 'cursor: default; position: absolute; margin-left: 186px;';
+                        a.style = 'cursor: default; position: absolute; margin-left: 8px;margin-top: -1px;';
                     }
 
                     label.appendChild(a);
                 }
 
-
                 try {
                     if (is(this.domNode.previousElementSibling)) {
                         var label = this.domNode.previousElementSibling;
-                        label.innerHTML = '<span style="color: MessagePropertyBackgroundColorDarkened;">' + label.innerHTML + '</span>';
+                        label.innerHTML = '<span style="color: TextColor;">' + label.innerHTML + '</span>';
 
                         if (this.isToggleable) {
                             this.onToggleDescription(this.domNode, true, label);

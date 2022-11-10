@@ -81,9 +81,10 @@
 .j-array-title-row,
 .j-object-title-row {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   margin-left: 0.33em;
+  margin-bottom: 1em;
 }
 
 .j-object-value-row td {
@@ -98,10 +99,12 @@
 .j-add-array-item {
   cursor: pointer;
   color: #086307;
-  background: 0;
   border: 0;
   font-size: 28px;
   line-height: 1;
+  position: absolute;
+  margin-top: -4px;
+  background: hsl(0, 0%, 84%);
 }
 
 .j-add-array-item:hover {
@@ -163,7 +166,7 @@
 }
 
 .j-input[type="number"] {
-  max-width: 220px;
+  max-width: 240px;
 }
 
 .j-input[data-is-valid="true"].j-validation-help {
@@ -191,7 +194,7 @@ td.j-title-col {
 }
 
 td.j-title-col {
-  width: 220px;
+  width: 240px;
 }
 
 .j-node-title {
@@ -216,8 +219,8 @@ td.j-title-col {
 }
 
 #jsonEditor > .j-container .j-object-title-row > td:first-child {
-  padding-top: 0.2em;
-  padding-bottom: 0em;
+  padding-top: 8px;
+  padding-bottom: 2px;
   background: white;
 }
 
@@ -247,7 +250,7 @@ tr.j-object-properties
 }
 
 .j-input.j-input-date {
-  max-width: 220px;
+  max-width: 240px;
   cursor: pointer;
   font-size: 14px;
 }
@@ -310,12 +313,14 @@ td.j-array-items > table.j-container {
 }
 
 tr.j-object-title-row.j-object-title-row-ec.collapsed {
-  box-shadow: 0px 1px 4px #0f70af !important;
+  /* box-shadow: 0px 1px 4px #0f70af !important; */
+  border-bottom: 1px solid hsl(0, 0%, 84%);
 }
 
 tr.j-object-title-row.j-object-title-row-ec.expanded {
   /* box-shadow: 0px 0px 2px #0f70af !important; */
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid hsl(0, 0%, 84%);
+  background: hsl(0, 0%, 84%);
 }
 
 /* tr.j-object-title-row.j-object-title-row-ec:hover {
@@ -396,4 +401,32 @@ thead tr {
 .hidden {
   display: none;
   visibility: hidden;
+}
+
+.jsonEditor-container-menu {
+  background: hsl(0, 0%, 93%);
+  border-bottom: 1px solid hsl(0, 0%, 84%);
+  border-top: 1px solid hsl(0, 0%, 84%);
+  height: 3em;
+  margin: 0 auto;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.jsonEditor-container-menu > * {
+  margin-left: 1em;
+}
+.jsonEditor-container-menu > input {
+  padding: 8px;
+}
+
+.j-title-col > .j-spacer {
+  font-size: 20px;
+}
+
+
+.easyeditor-toolbar {
+  padding: 0;
 }

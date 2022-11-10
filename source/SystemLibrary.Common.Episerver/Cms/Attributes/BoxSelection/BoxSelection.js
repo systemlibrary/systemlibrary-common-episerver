@@ -420,7 +420,7 @@
                     if (!document.getElementById(cssPrefixId + '1')) {
                         var head = document.getElementsByTagName('body')[0];
 
-                        var css1 = getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/UiHint/BoxSelection/Style');
+                        var css1 = getStylesheetLink(cssPrefixId + '1', '/SystemLibrary/Common/Episerver/Cms/BoxSelection/Style');
 
                         head.appendChild(css1);
                     }

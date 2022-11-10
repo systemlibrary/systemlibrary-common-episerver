@@ -1,19 +1,36 @@
 ﻿.Sleek .systemLibraryCommonEpiserverMessage {
-    max-width: 840px;
+  max-width: 800px;
+  border-bottom: 1px solid hsl(0, 0%, 84%);
+  font-size: 14px;
+  line-height: 1.36;
+  padding: 1em;
+  min-width: 564px;
+  max-width: 800px;
+  position: relative;
+  background-color: BackgroundColor;
+  color: TextColor;
 }
 .Sleek .systemLibraryCommonEpiserverMessage * {
-    max-width: 840px;
+  max-width: 840px;
 }
-.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed {
-    max-height: 20px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 4px;
+.Sleek
+  .systemLibraryCommonEpiserverMessage
+  .systemLibraryCommonEpiserverMessageCollapsed {
+  max-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 4px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed p,
-.Sleek .systemLibraryCommonEpiserverMessage .systemLibraryCommonEpiserverMessageCollapsed span {
-    text-overflow: ellipsis;
-    overflow:hidden;
+.Sleek
+  .systemLibraryCommonEpiserverMessage
+  .systemLibraryCommonEpiserverMessageCollapsed
+  p,
+.Sleek
+  .systemLibraryCommonEpiserverMessage
+  .systemLibraryCommonEpiserverMessageCollapsed
+  span {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

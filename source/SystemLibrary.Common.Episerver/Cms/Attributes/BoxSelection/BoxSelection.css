@@ -94,10 +94,10 @@
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected {
   //border: 2px solid #7cb5ec;
-  border: 2px solid transparent;
+  border-color: rgba(240, 240, 240, 1);
+  border: 2px;
   font-weight: 700;
-  font-size: 11px;
-  border-bottom: solid 2px #b84d94;
+  border-bottom: #080736;
   min-height: 48px;
   min-width: 80px;
 }

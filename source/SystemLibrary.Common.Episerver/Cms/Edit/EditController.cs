@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using SystemLibrary.Common.Episerver.Cms.Abstract;
+using SystemLibrary.Common.Episerver.FontAwesome;
 
 using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
 
@@ -10,49 +11,45 @@ namespace SystemLibrary.Common.Episerver.Cms;
 
 public partial class EditController : BaseController
 {
-    const string CmsEditFolder = "Cms/Edit";
+    const string CurrentFolder = "Cms/Edit";
 
     static FileContentResult CssCache;
 
     public ActionResult Style()
     {
-        //TODO: Merge this together with FontAwesomeController/Style ?
-        // then one have only 1 line in the module.config
         AddCacheHeaders();
 
         if (CssCache != null) return CssCache;
 
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
+        var edit = AppSettings.Current.Edit;
 
-        var css = new StringBuilder("");
-        if (cmsEdit.Enabled)
-        {
-            css = GetEmbeddedResource(CmsEditFolder, "Style.css");
+        var css = GetEmbeddedResource(CurrentFolder, "Style.css");
 
-            var hideLanguageColumnInVersionGadget = cmsEdit.HideLanguageColumnInVersionGadget ? "0px" : "";
-            var hideLanguageColumnInVersionGadgetVisibility = cmsEdit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
+        var hideLanguageColumnInVersionGadget = edit.HideLanguageColumnInVersionGadget ? "0px" : "";
+        var hideLanguageColumnInVersionGadgetVisibility = edit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
 
-            css.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
-            css.Replace(nameof(cmsEdit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
-            css.Replace(nameof(cmsEdit.ContentTitleColor), cmsEdit.ContentTitleColor);
-            css.Replace(nameof(cmsEdit.ContentCreationBorderColor), cmsEdit.ContentCreationBorderColor);
-            css.Replace(nameof(cmsEdit.ContentCreationBackgroundColor), cmsEdit.ContentCreationBackgroundColor);
-            css.Replace(nameof(cmsEdit.PageTreeSelectedContentBorderColor), cmsEdit.PageTreeSelectedContentBorderColor);
+        css.Replace(nameof(edit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
+        css.Replace(nameof(edit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
+        css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
+        css.Replace(nameof(edit.ContentCreationBorderColor), edit.ContentCreationBorderColor);
+        css.Replace(nameof(edit.ContentCreationBackgroundColor), edit.ContentCreationBackgroundColor);
+        css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
             
-            if (cmsEdit.ActiveProjectBarBackgroundColor.Is())
+        if (edit.ActiveProjectBarBackgroundColor.Is())
+        {
+            try
             {
-                try
-                {
-                    css.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor) + "Border", cmsEdit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
-                }
-                catch
-                {
-                }
-                css.Replace(nameof(cmsEdit.ActiveProjectBarBackgroundColor), cmsEdit.ActiveProjectBarBackgroundColor);
+                css.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
             }
-
-            AppendCustomPageTreeIcons(css);
+            catch
+            {
+            }
+            css.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
         }
+
+        AppendCustomPageTreeIcons(css);
+
+        css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (CssCache = GetFileContentResult(css, "text/css"));
     }

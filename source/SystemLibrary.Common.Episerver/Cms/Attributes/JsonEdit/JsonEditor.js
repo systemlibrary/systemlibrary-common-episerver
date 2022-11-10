@@ -13,7 +13,6 @@
         var level = 0;
         var arrayTemplates = {};
 
-
         function setLocalStorageData(name, value) {
             try {
                 localStorage.setItem(name, JSON.stringify(value));
@@ -48,7 +47,7 @@
                         var currentValue = JSON.stringify(options["value"].data);
                         var storedLength = currentStoredData.length;
                         if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
-                            if (confirm("Found data stored in your browser from previous time you edited this. Click 'OK' to continue from the data stored in your browser. Click 'Cancel' to continue from the data received from server.\n\nReasons you see this:\n You've 'X'd the window instead of Save or Cancel\nSession might've expired while you edited\n\nTip: You can click OK to view the data, then click the 'X' button, and then edit the field again and click 'Cancel' upon this prompt, to verify which data you want. Remember to 'X' the window between if you want to view data from browser or from server") == true) {
+                            if (confirm("Found a previous edit. Click 'OK' to continue from last edit found in your browser or click 'Cancel' to continue with data from server.\n\nReasons you see this:\n You've X'd (or Escape'd) the window instead of clicking Save or Cancel with edits\nSession might've expired while you edited\n\nTip: Click 'OK' to view data, then click 'X' on window if youre unhappy with what you see, then edit the data again and this time click 'Cancel'") == true) {
                                 options["value"].data = JSON.parse(currentStoredData);
                             }
                         }
@@ -81,15 +80,18 @@
         function initWidget() {
             level = 0;
             arrayTemplates = {};
+
             var widgetContent = renderSchemaNode(options["schema"], "");
             renderPlace.html(widgetContent);
+
             initValuePathes();
             setValue(options["value"]);
             initEvents();
             validateWidget();
+
             if (options["afterWidgetCreated"]) options["afterWidgetCreated"](options["value"], options["schema"]);
 
-            setTimeout(initNodeTitle, 10);
+            setTimeout(initNodeTitle, 20);
         }
 
         function validateWidget() {
@@ -115,7 +117,6 @@
                             if (elm.attr("data-is-valid") == "false") return;
                         }
                         if (elm.hasClass("j-input-number")) {
-                            console.log("VALIDTAE INPUT NUMBER!");
                             elm.attr("data-is-valid", (elm.val() < v_min ? "false" : "true"));
                             if (elm.attr("data-is-valid") == "false") return;
                         }
@@ -187,14 +188,23 @@
             renderPlace.find(".j-input-text,.j-input-textarea,.j-input-date,.j-input-number,.j-input-email,.j-input-tel").off("keyup").on("keyup", function () { valueChanged($(this)); });
             renderPlace.find(".j-input-checkbox,.j-input-radio,.j-input-select,.j-input-color,.j-input-date,.j-input-number,.j-input-html").off("change").on("change", function () { valueChanged($(this)); });
             renderPlace.find(".j-input-html-div").off("keyup").on("keyup", function () { changeInput($(this)); });
+            renderPlace.find(".j-input-rich-textarea").on("change", function () { changeInput($(this)); });
             renderPlace.find(".j-input-html").off("focus").on("focus", function () { $(this).parents("td:first").find(".j-input-html-div:first").focus(); });
         }
 
         function changeInput(htmlDiv) {
             try {
-                var i = htmlDiv.parents(":first").find("input:first");
-                i.val(htmlDiv.html());
-                valueChanged(i);
+                var parents = htmlDiv.parents(":first");
+                var input = parents.find("input:first");
+                if (input) {
+                    if (input.length == 0) {
+                        input = parents.find("textarea:first");
+                    }
+                    if (input && input.length > 0) {
+                        input.val(htmlDiv.html());
+                        valueChanged(input);
+                    }
+                }
             }
             catch (err) {
                 console.error("Error in changeInput()");
@@ -271,16 +281,12 @@
                             } else {
                                 p = p + "null;";
                             }
-                            console.log("NEW P NUMBER");
-                            console.log(p);
                         }
                     } else {
                         p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
                         if (p.endsWith('=;')) {
                             p = p.substring(0, p.length - 1);
                             p = p + "'';";
-                            console.log("NEW P ");
-                            console.log(p);
                         }
                     }
                 }
@@ -306,7 +312,7 @@
 
         function renderSchemaNode(schemaNode, schemaName, requiredItems) {
             var nodeType = fixNU(schemaNode["type"], "string");
-            if (nodeType == "string" || nodeType == "number" || nodeType == "integer" || nodeType == "boolean" || nodeType == "email" || nodeType == "tel") {
+            if (nodeType == "string" || nodeType == "number" || nodeType == "integer" || nodeType == "boolean" || nodeType == "email" || nodeType == "tel" || nodeType == 'textarea') {
                 return renderSimpleNode(schemaNode, schemaName, (requiredItems ? requiredItems.includes(schemaName) : false));
             }
             if (nodeType == "array") {
@@ -346,7 +352,11 @@
                 requiredStar = '&nbsp;<span class="j-required-star">*</span>';
             }
 
-            if (nodeType == "boolean") {
+            if (nodeType == "textarea") {
+                classAtt = ' class="j-input j-input-rich-textarea' + additionalClass + '" ';
+                inputBody = '<textarea ' + classAtt + dataValueNameAtt + requiredAtt + ' />';
+            }
+            else if (nodeType == "boolean") {
                 classAtt = ' class="j-input j-input-checkbox' + additionalClass + '" ';
                 inputBody = '<input type="checkbox" ' + classAtt + dataValueNameAtt + requiredAtt + ' />';
             } else {
@@ -446,7 +456,7 @@
             var arrSchema = { "title": "", "type": arrType };
             level++;
 
-            if (arrType == "string" || arrType == "number" || arrType == "boolean" || arrType == "email" || arrType == "tel") {
+            if (arrType == "string" || arrType == "number" || arrType == "boolean" || arrType == "email" || arrType == "tel" || arrType == "textarea") {
                 if (schemaNode["items"] && schemaNode["items"]["ui"]) arrSchema["ui"] = schemaNode["items"]["ui"];
                 if (schemaNode["items"] && schemaNode["items"]["enum"]) arrSchema["enum"] = schemaNode["items"]["enum"];
                 var space = "";
@@ -701,6 +711,14 @@
         initOptions();
 
         initWidget();
+
+        var textareaoptions = {
+            buttons: ['bold', 'italic', 'link', 'mark']
+        };
+
+        $('.j-input-rich-textarea').easyEditor({
+            options: textareaoptions
+        });
 
         var output = {
             "isValid": function () { return isValid(); },

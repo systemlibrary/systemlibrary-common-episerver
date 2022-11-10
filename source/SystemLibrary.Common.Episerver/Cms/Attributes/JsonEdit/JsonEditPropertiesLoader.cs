@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
+using EPiServer.Core;
+
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
@@ -108,6 +110,8 @@ internal static class JsonEditPropertiesLoader
         if (type == SystemType.IntType) return "integer";
         if (type == typeof(double)) return "number";
 
+        if (type == typeof(XhtmlString)) return "textarea";
+
         if (type == SystemType.DateTimeOffsetType || type == SystemType.DateTimeType) return "string";
 
         if (type.IsEnum) return "string";
@@ -151,7 +155,9 @@ internal static class JsonEditPropertiesLoader
 
     static bool IsValidVariableType(Type type)
     {
-        return type == SystemType.StringType ||
+        return
+            type == typeof(XhtmlString) ||
+            type == SystemType.StringType ||
             type == SystemType.IntType ||
             type == SystemType.BoolType ||
             type == SystemType.DateTimeOffsetType ||

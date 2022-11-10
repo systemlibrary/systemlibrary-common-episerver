@@ -18,16 +18,9 @@ public partial class MessageController : BaseController
 
         if (HtmlCache != null) return HtmlCache;
 
-        var html = GetEmbeddedResource(CurrentFolder, "Message.html");
+        var data = GetEmbeddedResource(CurrentFolder, "Message.html");
 
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
-
-        if (cmsEdit.Enabled)
-        {
-            html.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor), cmsEdit.MessagePropertyBackgroundColor);
-        }
-
-        return (HtmlCache = GetFileContentResult(html, "text/html"));
+        return HtmlCache = GetFileContentResult(data, "text/html");
     }
 
     public ActionResult Script()
@@ -36,16 +29,13 @@ public partial class MessageController : BaseController
         
         if (ScriptCache != null) return ScriptCache;
 
-        var script = GetEmbeddedResource(CurrentFolder, "Message.js");
+        var data = GetEmbeddedResource(CurrentFolder, "Message.js");
 
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
+        var edit = AppSettings.Current.Edit;
 
-        if (cmsEdit.Enabled)
-        {
-            script.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor) + "Darkened", cmsEdit.MessagePropertyBackgroundColor.HexDarkenOrLighten(0.41, false));
-        }
+        data.Replace(nameof(edit.Properties.Message.TextColor), edit.Properties.Message.TextColor);
 
-        return (ScriptCache = GetFileContentResult(script, "text/javascript"));
+        return ScriptCache = GetFileContentResult(data, "text/javascript");
     }
 
     public ActionResult Style()
@@ -54,15 +44,13 @@ public partial class MessageController : BaseController
 
         if (StyleCache != null) return StyleCache;
 
-        var css = GetEmbeddedResource(CurrentFolder, "Message.css");
+        var data = GetEmbeddedResource(CurrentFolder, "Message.css");
 
-        var cmsEdit = AppSettings.Current.SystemLibraryCommonEpiserver.CmsEdit;
+        var edit = AppSettings.Current.Edit;
 
-        if (cmsEdit.Enabled)
-        {
-            css.Replace(nameof(cmsEdit.MessagePropertyBackgroundColor), cmsEdit.MessagePropertyBackgroundColor);
-        }
+        data.Replace(nameof(edit.Properties.Message.TextColor), edit.Properties.Message.TextColor);
+        data.Replace(nameof(edit.Properties.Message.BackgroundColor), edit.Properties.Message.BackgroundColor);
 
-        return (StyleCache = GetFileContentResult(css, "text/css"));
+        return StyleCache = GetFileContentResult(data, "text/css");
     }
 }

@@ -7,6 +7,6 @@ public class ParentLinkReferenceEditorDescriptor : EditorDescriptor
 {
     public ParentLinkReferenceEditorDescriptor()
     {
-        ClientEditingClass = "/SystemLibrary/Common/Episerver/UiHint/ParentLinkReference/" + nameof(ParentLinkReferenceController.Script);
+        ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/ParentLinkReference/" + nameof(ParentLinkReferenceController.Script);
     }
 }
