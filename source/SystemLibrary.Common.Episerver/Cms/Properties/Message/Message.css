@@ -34,3 +34,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.Sleek .systemLibraryCommonEpiserverMessage a:not([class]) {
+  border-bottom: 1px solid #080736;
+}

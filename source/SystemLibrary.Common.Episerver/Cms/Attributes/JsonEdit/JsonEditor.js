@@ -1,5 +1,7 @@
 ﻿/*jshint esversion: 10 */
 
+window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea");
+
 (function () {
     'use strict';
 }());
@@ -46,13 +48,15 @@
                     if (options["value"].data) {
                         var currentValue = JSON.stringify(options["value"].data);
                         var storedLength = currentStoredData.length;
-                        if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
-                            if (confirm("Found a previous edit. Click 'OK' to continue from last edit found in your browser or click 'Cancel' to continue with data from server.\n\nReasons you see this:\n You've X'd (or Escape'd) the window instead of clicking Save or Cancel with edits\nSession might've expired while you edited\n\nTip: Click 'OK' to view data, then click 'X' on window if youre unhappy with what you see, then edit the data again and this time click 'Cancel'") == true) {
-                                options["value"].data = JSON.parse(currentStoredData);
+                        if (storedLength) {
+                            if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
+                                if (confirm("Found a previous edit. Click 'OK' to continue from last edit found in your browser or click 'Cancel' to continue with data from server.\n\nReasons you see this:\n You've X'd (or Escape'd) the window instead of clicking Save or Cancel with edits\nSession might've expired while you edited\n\nTip: Unsure? Click 'OK' to view data, then click 'X' on window if youre unhappy with what you see, then edit the data again and this time click 'Cancel'") == true) {
+                                    options["value"].data = JSON.parse(currentStoredData);
+                                }
                             }
-                        }
-                        else {
-                            console.warn("JsonEdit: found previous temp data, its equal to current loaded, continue as normal...");
+                            else {
+                                console.warn("JsonEdit: previous temp data is equal to currently loaded data, continuing as normal...");
+                            }
                         }
                     }
                 }
@@ -84,7 +88,7 @@
             var widgetContent = renderSchemaNode(options["schema"], "");
             renderPlace.html(widgetContent);
 
-            initValuePathes();
+            initValuePaths();
             setValue(options["value"]);
             initEvents();
             validateWidget();
@@ -153,7 +157,6 @@
             catch (err) {
                 console.error("Error in validateInput");
                 console.error(err);
-
             }
         }
 
@@ -187,9 +190,9 @@
             renderPlace.find(".j-remove-array-item").off("click").on("click", function (e) { onRemoveArrayItemClicked(e, $(this)); });
             renderPlace.find(".j-input-text,.j-input-textarea,.j-input-date,.j-input-number,.j-input-email,.j-input-tel").off("keyup").on("keyup", function () { valueChanged($(this)); });
             renderPlace.find(".j-input-checkbox,.j-input-radio,.j-input-select,.j-input-color,.j-input-date,.j-input-number,.j-input-html").off("change").on("change", function () { valueChanged($(this)); });
-            renderPlace.find(".j-input-html-div").off("keyup").on("keyup", function () { changeInput($(this)); });
+            //renderPlace.find(".j-input-html-div").off("keyup").on("keyup", function () { changeInput($(this)); });
             renderPlace.find(".j-input-rich-textarea").on("change", function () { changeInput($(this)); });
-            renderPlace.find(".j-input-html").off("focus").on("focus", function () { $(this).parents("td:first").find(".j-input-html-div:first").focus(); });
+            //renderPlace.find(".j-input-html").off("focus").on("focus", function () { $(this).parents("td:first").find(".j-input-html-div:first").focus(); });
         }
 
         function changeInput(htmlDiv) {
@@ -201,8 +204,13 @@
                         input = parents.find("textarea:first");
                     }
                     if (input && input.length > 0) {
+                        var oldValue = input.val();
                         input.val(htmlDiv.html());
-                        valueChanged(input);
+                        var newValue = input.val();
+                        if (oldValue !== newValue) {
+                            // class/attribute changed only, not the input value itself
+                            valueChanged(input);
+                        }
                     }
                 }
             }
@@ -253,7 +261,7 @@
                 htmlTemplate = replaceAll(htmlTemplate, "$index$", itemIndex);
                 arrayContainer.parents("tr:first").next().find("td:first").append(htmlTemplate);
                 if (needInitiations) {
-                    initValuePathes();
+                    initValuePaths();
                     initEvents();
                 }
             }
@@ -265,6 +273,7 @@
 
         function valueChanged(changedObject) {
             try {
+
                 ensureDataPath(changedObject.attr("data-path"));
 
                 var p = 'options["value"]' + changedObject.attr("data-path");
@@ -283,7 +292,7 @@
                             }
                         }
                     } else {
-                        p = p + "='" + (options["autoTrimValues"] == "true" ? jsonEscape(changedObject.val()).trim() : jsonEscape(changedObject.val())) + "';";
+                        p = p + "=`" + (options["autoTrimValues"] == "true" ? htmlDecode(jsonEscape(changedObject.val())).trim() : htmlDecode(jsonEscape(changedObject.val()))) + "`;";
                         if (p.endsWith('=;')) {
                             p = p.substring(0, p.length - 1);
                             p = p + "'';";
@@ -497,7 +506,7 @@
             return renderPlace.attr("id") + "_" + n;
         }
 
-        function initValuePathes() {
+        function initValuePaths() {
             renderPlace.find("[data-value-name]").each(function () {
                 var dp = generatePath($(this));
                 $(this).attr("data-path", dp);
@@ -532,19 +541,16 @@
                         //$('[data-path="' + $(this).attr("data-path") + '"]').prop("checked", false);
                         $('[data-path="' + $(this).attr("data-path") + '"][value="' + V(v, $(this).attr("data-path")) + '"]').prop("checked", true);
                     } else {
-                        if (options["autoTrimValues"] == "true") {
+                        if ($(this).prop("type") === "textarea") {
+                            var _temp = V(v, $(this).attr("data-path"));
+                            $(this).val(_temp);
+                        }
+                        else if (options["autoTrimValues"] == "true") {
                             var _temp = V(v, $(this).attr("data-path"));
 
                             if (_temp && _temp.trim) _temp = _temp.trim();
 
                             $(this).val(_temp);
-                            // if (typeof (_temp) !== 'undefined' && isNaN(_temp)) {
-                            //     let titleRow = $(this).parents('.j-container').parents('.j-container').find('.j-node-title:first');
-                            //     let html = titleRow.html();
-                            //     if (!html || html.length < 1) {
-                            //          $(titleRow).val(_temp);
-                            //     }
-                            // }
                         } else {
                             $(this).val(V(v, $(this).attr("data-path")));
                         }
@@ -564,7 +570,7 @@
         function addArrayItemsToTheDOM() {
             var arrayNodes = renderPlace.find('[data-array-loaded="false"]');
             if (arrayNodes.length == 0) {
-                initValuePathes();
+                initValuePaths();
                 return;
             }
             arrayNodes.each(function () {
@@ -632,6 +638,12 @@
             } catch (e) {
                 return null;
             }
+        }
+
+        function htmlDecode(str) {
+            if (!str || str.length < 4) return str;
+            systemLibraryJsonEditorGlobalTextArea.innerHTML = str;
+            return systemLibraryJsonEditorGlobalTextArea.value.toString().replaceAll('"', "'");
         }
 
         function jsonEscape(str) {

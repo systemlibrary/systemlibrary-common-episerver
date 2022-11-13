@@ -364,7 +364,6 @@
             node.attribute = arg.attribute || node.attribute;
             node.keepHtml = arg.keepHtml || node.keepHtml;
         }
-
         var selection = _this.getSelection();
 
         if (selection && selection.toString().length > 0 && selection.rangeCount) {
@@ -376,7 +375,7 @@
             var tag = document.createElement(node.name);
 
             // adding necessary attribute to tag
-            if (node.style !== null || node.class !== null || node.attribute !== null) {
+            if (node.style || node.class || node.attribute) {
                 tag = _this.addAttribute(tag, node);
             }
 
@@ -499,25 +498,33 @@
 
     // adding attribute in tag
     EasyEditor.prototype.addAttribute = function (tag, node) {
-        if (node.style !== null) {
+        if (node.style) {
             $(tag).attr('style', node.style);
         }
 
-        if (node.class !== null) {
+        if (node.addClass) {
             $(tag).addClass(node.class);
         }
 
-        if (node.attribute !== null) {
-            if ($.isArray(node.attribute) === true) {
-                if ($.isArray(node.attribute[0]) !== true) {
-                    node.attribute[0] = [node.attribute[0], node.attribute[1]];
+        if (node.attribute) {
+            if ($.isArray(node.attribute)) {
+                if ($.isArray(node.attribute)) {
+                    $.each(node.attribute, function (index, item) {
+                        if (item) {
+                            var keys = Object.keys(item);
+                            if (keys && keys.length == 1) {
+                                if (item[keys[0]]) {
+                                    $(tag).attr(keys[0], item[keys[0]]);
+                                }
+                            } else {
+                                console.warn("Attribute has multiple values: " + keys[0] + " length: " + keys.length);
+                            }
+                        }
+                    });
                 }
-                $.each(node.attribute, function (index, pair) {
-                    $(tag).attr(pair[0], pair[1]);
-                });
             }
             else {
-                $(tag).attr(node.attribute);
+                console.warn("Warning: node attribute is not an array of objects with key/values");
             }
         }
 
@@ -854,7 +861,9 @@
             buttonIdentifier: 'link',
             buttonHtml: 'Link',
             clickHandler: function () {
-                _this.wrapSelectionWithNodeName({ nodeName: 'a', attribute: ['href', prompt('Insert link', '')] });
+                let value = prompt('Insert link', '');
+
+                _this.wrapSelectionWithNodeName({ nodeName: 'a', attribute: [{ 'href': value }] });
             }
         };
 

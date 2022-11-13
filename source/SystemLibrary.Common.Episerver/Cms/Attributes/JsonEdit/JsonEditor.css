@@ -11,6 +11,7 @@
 
 .j-title-col {
   width: 240px;
+  vertical-align: top;
 }
 
 .j-sep-col {
@@ -328,7 +329,8 @@ tr.j-object-title-row.j-object-title-row-ec.expanded {
 } */
 
 #jsonEditor {
-  padding: 0.5em;
+  margin-bottom: 5em;
+  padding: 20px;
 }
 
 thead tr {
@@ -426,7 +428,9 @@ thead tr {
   font-size: 20px;
 }
 
-
 .easyeditor-toolbar {
   padding: 0;
+}
+#jsonValue {
+  font-size: 12px;
 }

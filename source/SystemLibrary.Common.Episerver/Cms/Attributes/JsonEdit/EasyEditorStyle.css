@@ -140,3 +140,16 @@
 .easyeditor-character-remaining.is-valid {
   color: #777;
 }
+
+.easyeditor-toolbar > ul {
+  margin: 0;
+  padding: 4px;
+}
+.easyeditor {
+  padding: 16px;
+  background: #f2f2f2;
+}
+
+.easyeditor[contenteditable="true"]:empty:before {
+  padding-bottom: 1em;
+}

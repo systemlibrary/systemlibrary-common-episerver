@@ -112,15 +112,14 @@
                     }
 
                     const width = (screen.availWidth / 2) + 60;
-                    const height = (screen.availHeight / 1.5) + 33;
+                    const height = (screen.availHeight / 1.2) + 33;
 
                     const left = (screen.availWidth - width) / 2;
 
                     const d = new Date();
                     const skipCacheParam = 'skipCache=' + d.getHours().toString() + d.getMinutes().toString() + d.getMilliseconds().toString();
 
-                    const windowFeatures = "left=" + left + ",top=166,width=" + width + ",height=" + height + ",directories=no,titlebar=no,location=no";
-                    //windowFeatures += ',directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,resizable=no';
+                    const windowFeatures = "left=" + left + ",top=166,width=" + width + ",height=" + height + ",status=no,menubar=no,directories=no,titlebar=no,location=no";
                     const w = window.open(jsonEditorUrl + '?' + skipCacheParam, "Editor", windowFeatures);
 
                     if (!w) {
@@ -138,8 +137,6 @@
                         this.onFocus();
 
                         let jsonText = JSON.stringify(newJson);
-
-                        console.log(jsonText);
 
                         this._setValueAttr(jsonText);       //This should be "setValue()"?
 

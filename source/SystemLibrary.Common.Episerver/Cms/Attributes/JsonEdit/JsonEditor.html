@@ -9,10 +9,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="EasyEditorScript"></script>
     <script src="EditorScript"></script>
-    
+
     <link href="EasyEditorStyle" rel="stylesheet" type="text/css" />
     <link href="EditorStyle" rel="stylesheet" type="text/css" />
-    
+
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
     <!-- <link href="EasyEditorStyle" rel="stylesheet" type="text/css" /> -->
 </head>
@@ -40,8 +40,6 @@
                 <button tabindex="-1" id="jsonEditSortByPropertyName2" style='min-width: 125px'
                     title="Sort all items by this field">Sort2</button>
             </div>
-
-
         </div>
 
         <div>
@@ -54,19 +52,27 @@
             <button id="previewModalClose">Close</button>
             <p>Json validated: <span id="jsonValidity">true</span></p>
             <b>Data:</b>
-            <pre id="jsonValue"></pre>
+            <pre id="jsonValue">
+            </pre>
         </div>
     </div>
 
     <script>
+        function replacer(key, value) {
+            if (typeof value === "string" && value.length > 3) {
+                if (value.includes('="')) {
+                }
+            }
+            return value;
+        }
+
         var v = {};
         var s = {};
         var je;
         var storageDataName = 'systemLibraryCommonEpiserver-JsonEdit-';
         $(document).ready(function () {
-
             if (typeof (jsonEditPropertiesObject) === 'undefined' || jsonEditPropertiesObject === null) {
-                alert("Error: No data was found\n\nDid you refresh this tab alone? Then the data is gone\n\nClose this tab by clicking 'X' or the 'Cancel' button, then reopen the Json Editor by clicking the 'Edit' button again inside the CMS");
+                alert("Error: No data was found\n\nDid you refresh this tab alone? Then the data is gone\n\nClose this tab by clicking 'X' button, then reopen the Json Editor");
                 return;
             }
 
@@ -80,6 +86,7 @@
             if (window.jsonEditSortByPropertyName2) {
                 storageDataName = storageDataName + window.jsonEditSortByPropertyName2;
             }
+
             storageDataName = storageDataName.replaceAll(' ', '').replaceAll(',', '').replaceAll('.', '').replaceAll('?', '').replaceAll('!', '').replaceAll(':', '');
 
             s = {
@@ -114,11 +121,11 @@
                 "schema": s,
                 "value": v,
                 "afterValueChanged": function (newValue, newSchema) {
-                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    $("#jsonValue").val(JSON.stringify(newValue, replacer, 2));
                     setValidity();
                 },
                 "afterWidgetCreated": function (newValue, newSchema) {
-                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    $("#jsonValue").val(JSON.stringify(newValue, replacer, 2));
                     setValidity();
                 }
             });
@@ -185,11 +192,11 @@
                 "schema": s,
                 "value": v,
                 "afterValueChanged": function (newValue, newSchema) {
-                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    $("#jsonValue").val(JSON.stringify(newValue, replacer, 2));
                     setValidity();
                 },
                 "afterWidgetCreated": function (newValue, newSchema) {
-                    $("#jsonValue").html(JSON.stringify(newValue, null, 2));
+                    $("#jsonValue").val(JSON.stringify(newValue, replacer, 2));
                     setValidity();
                 }
             });
@@ -200,6 +207,7 @@
         }
 
         function showPreviewModal() {
+            $("#jsonValue").html($("#jsonValue").val());
             $("#previewModal").show();
         }
 
@@ -278,29 +286,39 @@
                                             }
                                         }
                                     } else {
-                                        var select = values[j].querySelector(':scope > select.j-input');
-                                        if (select) {
-                                            if (select.selectedIndex) {
-                                                var selectedText = select.options[select.selectedIndex].innerText;
-                                                if (selectedText) {
-                                                    if (selectedText.includes(search) || selectedText.toLowerCase().includes(searchLowered)) {
-                                                        found = true;
-                                                    }
+                                        input = values[j].querySelector(':scope > input.j-input-number');
+                                        if (input) {
+                                            if (input.value) {
+                                                if (input.value.includes(search) || input.value.toLowerCase().includes(searchLowered)) {
+                                                    found = true
                                                 }
                                             }
                                         }
                                         else {
-                                            var inputDate = values[j].querySelector(':scope > input.j-input-date');
-                                            if (inputDate) {
-                                                if (inputDate.value) {
-                                                    if (inputDate.value.includes(search)) {
-                                                        found = true;
+                                            var select = values[j].querySelector(':scope > select.j-input');
+                                            if (select) {
+                                                if (select.selectedIndex) {
+                                                    var selectedText = select.options[select.selectedIndex].innerText;
+                                                    if (selectedText) {
+                                                        if (selectedText.includes(search) || selectedText.toLowerCase().includes(searchLowered)) {
+                                                            found = true;
+                                                        }
                                                     }
-                                                    if (inputDate.value.includes(search.replaceAll('/', '-'))) {
-                                                        found = true;
-                                                    }
-                                                    if (inputDate.value.includes(search.replaceAll('.', '-'))) {
-                                                        found = true;
+                                                }
+                                            }
+                                            else {
+                                                var inputDate = values[j].querySelector(':scope > input.j-input-date');
+                                                if (inputDate) {
+                                                    if (inputDate.value) {
+                                                        if (inputDate.value.includes(search)) {
+                                                            found = true;
+                                                        }
+                                                        if (inputDate.value.includes(search.replaceAll('/', '-'))) {
+                                                            found = true;
+                                                        }
+                                                        if (inputDate.value.includes(search.replaceAll('.', '-'))) {
+                                                            found = true;
+                                                        }
                                                     }
                                                 }
                                             }
@@ -331,18 +349,24 @@
         }
 
         function onSaveAndClose(e) {
-            const jsonValueObject = JSON.parse($("#jsonValue").html());
+            try {
+                const jsonValueObject = JSON.parse($("#jsonValue").val());
 
-            const data = jsonValueObject.data.filter(x => x);
+                const data = jsonValueObject.data.filter(x => x);
 
-            if (window.onSave(data)) {
-                try {
-                    localStorage.removeItem(storageDataName);
+                if (window.onSave(data)) {
+                    try {
+                        localStorage.removeItem(storageDataName);
+                    }
+                    catch {
+                    }
                 }
-                catch {
-                }
+                return onClose(e);
             }
-            return onClose(e);
+            catch (err) {
+                console.error("Erorr loading json and saving it");
+                console.error(err);
+            }
         }
 
         function onClose(e) {
@@ -394,7 +418,7 @@
         document.addEventListener('keyup', hotkeyCancel, false);
     </script>
 
-    
+
 </body>
 
 </html>

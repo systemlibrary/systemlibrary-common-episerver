@@ -69,7 +69,9 @@
                         var aCollection = tooltipNode.getElementsByTagName('a');
                         if (aCollection && aCollection.length && aCollection.length > 0) {
                             var a = aCollection[0];
-                            a.innerHTML = aHtml;
+                            if (a.innerHTML.toString().includes('<i class')) {
+                                a.innerHTML = aHtml;
+                            }
                         }
                     }
                 }
@@ -91,6 +93,7 @@
                     var a = document.createElement('a');
 
                     a.href = "#";
+                    a.className = 'chevron-toggle';
                     a.innerHTML = '<i class="fa fa-chevron-down" aria-hidden="true"></i>';
                     a.style = "cursor:pointer; position: absolute;top:0;right:0;margin-right:3px;margin-top:0px;width:22px;height:22px;text-align: center;font-size:17px;";
 
