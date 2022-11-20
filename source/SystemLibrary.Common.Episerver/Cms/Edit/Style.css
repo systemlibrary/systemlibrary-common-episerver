@@ -106,6 +106,7 @@
     float: left !important;
     cursor: pointer;
 }
+
 @media screen and (max-width: 1200px) {
     .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
         left: 210px !important;
@@ -124,9 +125,10 @@
     margin-left: 8px;
     padding: 0;
 }
-.Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
-    margin: 8px;
-}
+
+    .Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
+        margin: 8px;
+    }
 
 
 /* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
@@ -134,15 +136,15 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     overflow: hidden;
 }
 
-/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
-div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
-    margin-left: 12px !important;
-    margin-right: 100% !important;
-    position: absolute !important;
-    float: left !important;
-    cursor: pointer;
-    left: 252px !important;
-}
+    /* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+    div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
+        margin-left: 12px !important;
+        margin-right: 100% !important;
+        position: absolute !important;
+        float: left !important;
+        cursor: pointer;
+        left: 252px !important;
+    }
 
 /*End checkbox adjustments */
 
@@ -165,30 +167,47 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     height: 31px;
 }
 
-
 /* Title of 'Current Content' in h1 in the breadcrumb */
 .Sleek .epi-toolbarLeading .epi-breadCrumbs-title-wrapper h1.epi-breadcrumbContentItem {
     color: ContentTitleColor;
 }
 
-
-/* PAGE TREE ICON */
+/* CUSTOM PAGE TREE IMAGE */
 .Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage.custom-common-episerver-page-tree-icon {
     background-size: contain;
     background-repeat: no-repeat;
     min-width: 19px;
     max-height: 19px;
     max-width: 21px;
-    font-size: 0.25px;
+    font-size: 1px;
     margin-top: 5px;
 }
 
+/* PAGE TREE ICON */
+.Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage {
+    margin-top: 5px;
+}
+
+/* PAGE NAME (TITLE) IN NAVIGATION WHEN VIEWING A PAGE OR BLOCK'S PREFIX ICON */
+.Sleek .epi-breadCrumbs-title-wrapper > .dijitInline.dijitIcon.epi-breadCrumbsCurrentItem-icon.dijitTreeIcon.epi-iconObjectPage {
+    visibility: hidden;
+    display: none;
+}
+
+/* PAGE NAME (TITLE) IN NAVIGATION WHEN VIEWING A PAGE OR BLOCK */
+.Sleek .epi-breadCrumbs-title-wrapper {
+    margin-top: 2px;
+}
+
+/* PAGE TREE CHEVRON TO EXPAND OR COLLAPSE */
+.Sleek .dijitTreeExpandoOpened {
+    margin-top: 5px;
+}
 
 /* BORDER ON CONTENT TYPES WHEN CLICKING ON 'NEW PAGE' OR 'NEW BLOCK' */
 .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent {
     background-color: ContentCreationBackgroundColor;
 }
-
 
 /* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
 .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
@@ -200,9 +219,13 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     padding-top: 8%;
 }
 
-
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
 .Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
     background-color: ActiveProjectBarBackgroundColor !important;
     border-color: ActiveProjectBarBackgroundColorBorder !important;
+}
+
+/* ILIST PROPERTY DIALOG - HIDING THE OVERFLOW */
+.dijitDialogSingleChild > .epi-form-container.dijitLayoutContainer.dijitContainer {
+    max-width: 100%;
 }

@@ -52,7 +52,7 @@ internal static class JsonEditPropertiesLoader
         }
 
         definitions.TrimEnd(",");
-        definitions.Append("]");
+        definitions.Append(']');
 
         return definitions.ToString();
     }

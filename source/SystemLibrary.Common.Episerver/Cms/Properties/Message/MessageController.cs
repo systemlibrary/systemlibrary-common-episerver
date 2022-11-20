@@ -16,7 +16,7 @@ public partial class MessageController : BaseController
     {
         AddCacheHeaders();
 
-        if (HtmlCache != null) return HtmlCache;
+        if (IsCached(HtmlCache)) return HtmlCache;
 
         var data = GetEmbeddedResource(CurrentFolder, "Message.html");
 
@@ -26,8 +26,8 @@ public partial class MessageController : BaseController
     public ActionResult Script()
     {
         AddCacheHeaders();
-        
-        if (ScriptCache != null) return ScriptCache;
+
+        if (IsCached(ScriptCache)) return ScriptCache;
 
         var data = GetEmbeddedResource(CurrentFolder, "Message.js");
 
@@ -42,7 +42,7 @@ public partial class MessageController : BaseController
     {
         AddCacheHeaders();
 
-        if (StyleCache != null) return StyleCache;
+        if (IsCached(StyleCache)) return StyleCache;
 
         var data = GetEmbeddedResource(CurrentFolder, "Message.css");
 

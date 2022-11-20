@@ -7,22 +7,37 @@ namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
 public abstract class BaseController : Controller
 {
-    static int ClientCacheSeconds = 1;
+    static int ClientCacheSeconds = 7200;
 
     static Assembly _CurrentAssembly;
     protected Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
         (_CurrentAssembly = Assembly.GetExecutingAssembly());
+
+    protected bool IsCached(object data)
+    {
+        if (data != null && !Globals.IsDeveloping) return true;
+
+        return false;
+    }
 
     protected void AddCacheHeaders()
     {
         if (Response.Headers.ContainsKey("Cache-Control"))
             Response.Headers.Remove("Cache-Control");
 
+        if (Globals.IsDeveloping)
+            ClientCacheSeconds = 1;
+
         Response.Headers.Add("Cache-Control", "max-age=" + ClientCacheSeconds);
     }
 
     protected StringBuilder GetEmbeddedResource(string resourceFolder, string resourceName)
     {
+        if (Globals.IsDeveloping)
+        {
+            return new StringBuilder(System.IO.File.ReadAllText(Globals.LibraryBasePath + resourceFolder + "\\" + resourceName));
+        }
+
         var sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(resourceFolder, resourceName, CurrentAssembly));
 
         if(sb.Length == 0)

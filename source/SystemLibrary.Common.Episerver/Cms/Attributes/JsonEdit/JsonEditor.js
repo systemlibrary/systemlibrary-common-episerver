@@ -264,6 +264,14 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
                     initValuePaths();
                     initEvents();
                 }
+                
+                var textareaoptions = {
+                    buttons: ['bold', 'italic', 'link', 'mark']
+                };
+
+                $('.j-input-rich-textarea').easyEditor({
+                    options: textareaoptions
+                });
             }
             catch (err) {
                 console.error("Error in addArrayItem");

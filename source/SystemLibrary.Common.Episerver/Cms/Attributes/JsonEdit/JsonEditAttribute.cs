@@ -38,7 +38,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 /// 
 /// Index.cshtml
 /// <code>
-/// var cars = @Model.CurrentPage.Cars.ToJson&lt;List&lt;Car&gt;&gt;();
+/// var cars = @Model.CurrentPage.Cars.Json&lt;List&lt;Car&gt;&gt;();
 /// 
 /// &lt;Car count: @cars.Count&gt;
 /// </code>
@@ -46,8 +46,6 @@ namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 {
-    const string UiHint = "SystemLibrary.Common.Episerver.UiHint.JsonEdit";
-
     /// <summary>
     /// The c# class that is stored as a json string, and all its properties is editable through the Json Editor
     /// </summary>
@@ -124,8 +122,8 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
                         throw new Exception(nameof(JsonEditAttribute) + " must have a Type set in its declaration of the attribute for property: " + extendedMetadata.PropertyName);
 
                     extendedMetadata.SelectionFactoryType = typeof(JsonEditFactory);
-                    extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/JsonEdit/" + nameof(JsonEditController.Script);
-                    extendedMetadata.UIHint = UiHint;
+                    extendedMetadata.ClientEditingClass = Globals.AreaPath + "Cms/JsonEdit/" + nameof(JsonEditController.Script);
+                    extendedMetadata.UIHint = Globals.AreaPath + "Cms/JsonEdit";
                     break;
                 }
             }

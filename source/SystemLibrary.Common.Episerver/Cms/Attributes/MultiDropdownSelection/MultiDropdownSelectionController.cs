@@ -16,7 +16,7 @@ public partial class MultiDropdownSelectionController : BaseController
     {
         AddCacheHeaders();
 
-        if (StyleCache != null) return StyleCache;
+        if (IsCached(StyleCache)) return StyleCache;
 
         var css = GetEmbeddedResource(CurrentFolder, "MultiDropdownSelection.css");
 
@@ -27,7 +27,7 @@ public partial class MultiDropdownSelectionController : BaseController
     {
         AddCacheHeaders();
 
-        if (ScriptCache != null) return ScriptCache;
+        if (IsCached(ScriptCache)) return ScriptCache;
 
         var css = GetEmbeddedResource(CurrentFolder, "MultiDropdownSelection.js");
 
@@ -38,7 +38,7 @@ public partial class MultiDropdownSelectionController : BaseController
     {
         AddCacheHeaders();
 
-        if (HtmlCache != null) return HtmlCache;
+        if (IsCached(HtmlCache)) return HtmlCache;
 
         var html = GetEmbeddedResource(CurrentFolder, "MultiDropdownSelection.html");
 

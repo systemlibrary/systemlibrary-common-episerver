@@ -15,7 +15,7 @@ public partial class ParentLinkReferenceController : BaseController
     {
         AddCacheHeaders();
 
-        if (HtmlCache != null) return HtmlCache;
+        if (IsCached(HtmlCache)) return HtmlCache;
 
         var html = GetEmbeddedResource(CurrentFolder, "ParentLinkReference.html");
 

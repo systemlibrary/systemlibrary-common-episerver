@@ -26,7 +26,7 @@ public class JsonEditFactory : ISelectionFactory
 
             var type = metadata.ContainerType;
 
-            if(type != SystemType.StringType)
+            if (type != SystemType.StringType)
                 throw new Exception("Cannot add 'JsonEdit' attribute on property of type " + type.Name + ". Change it to a string");
 
             var title = options.Type.Name;

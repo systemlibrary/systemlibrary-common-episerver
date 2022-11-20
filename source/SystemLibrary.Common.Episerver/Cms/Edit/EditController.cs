@@ -13,13 +13,13 @@ public partial class EditController : BaseController
 {
     const string CurrentFolder = "Cms/Edit";
 
-    static FileContentResult CssCache;
+    static FileContentResult StyleCache;
 
     public ActionResult Style()
     {
         AddCacheHeaders();
 
-        if (CssCache != null) return CssCache;
+        if (IsCached(StyleCache)) return StyleCache;
 
         var edit = AppSettings.Current.Edit;
 
@@ -51,7 +51,7 @@ public partial class EditController : BaseController
 
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
-        return (CssCache = GetFileContentResult(css, "text/css"));
+        return (StyleCache = GetFileContentResult(css, "text/css"));
     }
 
     static void AppendCustomPageTreeIcons(StringBuilder sb)
@@ -68,6 +68,7 @@ public partial class EditController : BaseController
 
                 if (url.StartsWith("~"))
                     url = url.Substring(1);
+
                 if (!url.StartsWith("/"))
                     url = "/" + url;
 
