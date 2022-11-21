@@ -186,7 +186,23 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
             renderPlace.find(".j-object-title-row-ec").off("click").on("click", function (e) { toggleSubTree(this); e.preventDefault(); return true; });
             // renderPlace.find(".j-title-col").off("click").on("click", function (e) { alert('nice'); e.preventDefault(); return true; });
 
-            renderPlace.find(".j-add-array-item").off("click").on("click", function () { addArrayItem($(this), true, null); });
+            renderPlace.find(".j-add-array-item").off("click").on("click", function () {
+                addArrayItem($(this), true, null);
+
+                var textareaoptions = {
+                    buttons: ['bold', 'italic', 'link', 'mark']
+                };
+
+                var richtextareas = $('.j-input-rich-textarea');
+                $.each(richtextareas, function (i) {
+                    var richtextarea = richtextareas[i];
+                    if (richtextarea.classList.length < 3) {
+                        $(richtextarea).easyEditor({
+                            options: textareaoptions
+                        });
+                    }
+                });
+            });
             renderPlace.find(".j-remove-array-item").off("click").on("click", function (e) { onRemoveArrayItemClicked(e, $(this)); });
             renderPlace.find(".j-input-text,.j-input-textarea,.j-input-date,.j-input-number,.j-input-email,.j-input-tel").off("keyup").on("keyup", function () { valueChanged($(this)); });
             renderPlace.find(".j-input-checkbox,.j-input-radio,.j-input-select,.j-input-color,.j-input-date,.j-input-number,.j-input-html").off("change").on("change", function () { valueChanged($(this)); });
@@ -264,14 +280,7 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
                     initValuePaths();
                     initEvents();
                 }
-                
-                var textareaoptions = {
-                    buttons: ['bold', 'italic', 'link', 'mark']
-                };
 
-                $('.j-input-rich-textarea').easyEditor({
-                    options: textareaoptions
-                });
             }
             catch (err) {
                 console.error("Error in addArrayItem");
