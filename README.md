@@ -65,11 +65,12 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12 & &lt;= 12.8.0, due to from v 12.9 the design has huge breaking changes with "?"-buttons all over, which reminds you of every website in early 2000, when people "first" found out they could toggle elements in javascript - without going back n forth to the server...
 
 ## Latest Version
-- 6.3.1.1
+- 6.3.0.1
 - Updated deps which have breaking changes, like extension method ToJson() is now Json()
-- JsonEdit has a few changes, bugfixes, and supports XhtmlString types which renders per now a simple wysiwyg editor
-- CmsEditController renamed to EditController under Cms folder - internal class
-- Edit styles has now been gone over one by one, adding detaile description
+- JsonEdit has been updated, filtering, sorting, adding support for XhtmlString fields which gives a really simple wysiwyg editor
+- BoxSelection has been adjusted (colors and spacing)
+- Message Property has been adjusted (colors and spacing)
+- Edit styles has now been gone over one by one, adding detailed descriptions
 - Updated install instructions
 
 #### Version history

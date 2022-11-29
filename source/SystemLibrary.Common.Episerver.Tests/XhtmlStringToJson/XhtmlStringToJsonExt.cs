@@ -4,7 +4,7 @@ using EPiServer.Core;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using SystemLibrary.Common.Episerver.Cms.Attributes;
+using SystemLibrary.Common.Episerver.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Tests;
 

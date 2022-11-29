@@ -37,13 +37,7 @@ public partial class EditController : BaseController
             
         if (edit.ActiveProjectBarBackgroundColor.Is())
         {
-            try
-            {
-                css.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
-            }
-            catch
-            {
-            }
+            css.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
             css.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
         }
 

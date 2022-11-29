@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ContentAreaExtensions
+    <title>AppSettings
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ContentAreaExtensions
+    <meta name="title" content="AppSettings
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -189,39 +189,74 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.AppSettings">
   
   
-  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.html">SystemLibrary.Common.Episerver.Extensions</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
+  <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.html">SystemLibrary.Common.Episerver</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
   
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Common content area extensions</p>
+    <div class="markdown level0 summary h1-class-summary"><p>Override default configurations in 'SystemLibrary.Common.Episerver' by adding 'systemLibraryCommonEpiserver' object to 'appSettings.json'</p>
 </div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions" class="text-break h1-class-header">ContentAreaExtensions
+  <h1 id="SystemLibrary_Common_Episerver_AppSettings" data-uid="SystemLibrary.Common.Episerver.AppSettings" class="text-break h1-class-header">AppSettings
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions" class="h1-custom-display className">public static class ContentAreaExtensions</h1>
+  <h1 id="SystemLibrary_Common_Episerver_AppSettings" data-uid="SystemLibrary.Common.Episerver.AppSettings" class="h1-custom-display className">public class AppSettings : Config&lt;AppSettings&gt;</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">ContentAreaExtensions</span></div>
+    <div class="level1"><span class="xref">SystemLibrary.Common.Net.Config</span>&lt;<a class="xref" href="SystemLibrary.Common.Episerver.AppSettings.html">AppSettings</a>&gt;</div>
+    <div class="level2"><span class="xref">AppSettings</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">SystemLibrary.Common.Net.Config&lt;SystemLibrary.Common.Episerver.AppSettings&gt;.Current</span>
+    </div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_AppSettings_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
+      <div class="custom-menu-data-class-example" style="display: none;">
+        <div class="syslib-tab-menu-data--close">X</div>
+        <div class="codewrapper"><p>'appSettings.json'</p>
+<pre><code>{
+    ...,
+    &quot;systemLibraryCommonEpiserver&quot;: {
+        &quot;logMessageBuilderOptions&quot;: {
+            &quot;appendLoggedInState&quot;: false,
+            &quot;appendCurrentUrl&quot;: false,
+            &quot;appendIp&quot;: false,
+            &quot;appendBrowser&quot;: false,
+            &quot;appendCookieInfo&quot;: false
+       },
+        &quot;enabled&quot;: {
+            &quot;enabled&quot;: true,
+            &quot;hideLanguageColumnInVersionGadget&quot;: true,
+            &quot;contentCreationBackgroundColor&quot;: &quot;#B84D94&quot;,
+            &quot;contentCreationBorderColor&quot;: &quot;#B84D94&quot;,
+            &quot;pageTreeSelectedContentBorderColor&quot;: &quot;#B84D94&quot;,
+            &quot;contentTitleColor&quot;: &quot;#B84D94&quot;,
+            &quot;activeProjectBarBackgroundColor&quot;: &quot;#B84D94&quot;
+        }
+     }
+    ...
+}</code></pre>
+</div>
+        <div class="comment-examples-container-bottom"></div>
+      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_AppSettings_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -233,136 +268,151 @@
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="methods">Methods
+  <h3 id="constructors">Constructors
   </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if the content area has at least 1 item that can be displayed for current user (filtered), else false</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_Is_EPiServer_Core_ContentArea_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_AppSettings__ctor">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentAreaExtensions/ContentAreaExtensions.cs/#L24">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/AppSettings.cs/#L43">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_Is_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Is*"></a>
+  	<a id="SystemLibrary_Common_Episerver_AppSettings__ctor_" data-uid="SystemLibrary.Common.Episerver.AppSettings.#ctor*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_Is_EPiServer_Core_ContentArea_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Is(EPiServer.Core.ContentArea)" class="h4-custom-functionName">public static bool Is(this ContentArea contentArea)</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_AppSettings__ctor" data-uid="SystemLibrary.Common.Episerver.AppSettings.#ctor" class="h4-custom-functionName">public AppSettings()</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">EPiServer.Core.ContentArea</span></td>
-  							<td><span class="parametername">contentArea</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   			</div>
   
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Boolean</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
   		</div>
   	</div>
   </div>
   
   
+  <h3 id="properties">Properties
+  </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if the content area has at 0 items that can be displayed for current user (filtered), else false</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_IsNot_EPiServer_Core_ContentArea_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_AppSettings_ConnectionStrings">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentAreaExtensions/ContentAreaExtensions.cs/#L15">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/AppSettings.cs/#L40">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_IsNot_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.IsNot*"></a>
+  	<a id="SystemLibrary_Common_Episerver_AppSettings_ConnectionStrings_" data-uid="SystemLibrary.Common.Episerver.AppSettings.ConnectionStrings*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_IsNot_EPiServer_Core_ContentArea_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.IsNot(EPiServer.Core.ContentArea)" class="h4-custom-functionName">public static bool IsNot(this ContentArea contentArea)</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_AppSettings_ConnectionStrings" data-uid="SystemLibrary.Common.Episerver.AppSettings.ConnectionStrings" class="h4-custom-functionName">public ConnectionStringsConfiguration ConnectionStrings { get; set; }</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
   
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">EPiServer.Core.ContentArea</span></td>
-  							<td><span class="parametername">contentArea</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
   			</div>
   
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Boolean</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
   		</div>
   	</div>
   </div>
   
   
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><a class="xref" href="SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.html">ConnectionStringsConfiguration</a></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_AppSettings_Edit">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/AppSettings.cs/#L41">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_AppSettings_Edit_" data-uid="SystemLibrary.Common.Episerver.AppSettings.Edit*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_AppSettings_Edit" data-uid="SystemLibrary.Common.Episerver.AppSettings.Edit" class="h4-custom-functionName">public EditConfiguration Edit { get; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><a class="xref" href="SystemLibrary.Common.Episerver.EditConfiguration.html">EditConfiguration</a></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <div class="custom-container">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_AppSettings_SystemLibraryCommonEpiserver">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/AppSettings.cs/#L38">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_AppSettings_SystemLibraryCommonEpiserver_" data-uid="SystemLibrary.Common.Episerver.AppSettings.SystemLibraryCommonEpiserver*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_AppSettings_SystemLibraryCommonEpiserver" data-uid="SystemLibrary.Common.Episerver.AppSettings.SystemLibraryCommonEpiserver" class="h4-custom-functionName">public Configuration SystemLibraryCommonEpiserver { get; set; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><a class="xref" href="SystemLibrary.Common.Episerver.Configuration.html">Configuration</a></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
   
   
   <script>
@@ -1003,7 +1053,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentAreaExtensions/ContentAreaExtensions.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/AppSettings.cs/#L36" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

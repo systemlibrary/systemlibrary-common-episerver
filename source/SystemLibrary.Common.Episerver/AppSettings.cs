@@ -69,7 +69,7 @@ public class EditConfiguration
     public string ContentCreationBorderColor { get; set; } = "";
     public string PageTreeSelectedContentBorderColor { get; set; } = "";
     public string ContentTitleColor { get; set; } = "";
-    public string ActiveProjectBarBackgroundColor { get; set; } = "red";
+    public string ActiveProjectBarBackgroundColor { get; set; } = "";
 
     public PropertiesConfiguration Properties { get; set; }
 

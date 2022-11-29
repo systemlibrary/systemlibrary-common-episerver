@@ -26,7 +26,7 @@ public partial class BoxSelectionController : BaseController
     {
         AddCacheHeaders();
 
-        if (ScriptCache != null) return ScriptCache;
+        if(IsCached(ScriptCache)) return ScriptCache;
 
         var css = GetEmbeddedResource(CurrentFolder, "BoxSelection.js");
 
