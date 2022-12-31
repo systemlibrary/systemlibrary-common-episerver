@@ -69,50 +69,6 @@
     display: none;
 }
 
-
-/* Set checkboxes "label" on left, checkbox on right, and adjust sizes */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox > label {
-    box-sizing: unset;
-    width: 240px !important;
-}
-
-@media screen and (max-width: 1200px) {
-    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox > label {
-        box-sizing: unset;
-        width: 100% !important;
-        max-width: 240px;
-    }
-}
-
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section > li.epi-form-container__section__row--checkbox {
-    padding-left: 0;
-    margin-left: 0px;
-    overflow: hidden;
-}
-
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > label {
-    position: unset !important;
-    margin-top: -20px !important;
-    margin-left: unset !important;
-    cursor: pointer;
-}
-
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
-    margin-left: 12px !important;
-    margin-right: 100% !important;
-    left: 236px !important;
-    top: 2px !important;
-    position: relative !important;
-    float: left !important;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 1200px) {
-    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper .epi-form-container__section__row--checkbox > div {
-        left: 210px !important;
-    }
-}
-
 /* Wide 'Content Area' selector */
 .Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
     max-width: 610px;
@@ -209,15 +165,15 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     background-color: ContentCreationBackgroundColor;
 }
 
-/* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
-.Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
-    min-height: 30%;
-    min-width: 30%;
-    max-height: 70%;
-    max-width: 70%;
-    margin: 0 auto;
-    padding-top: 8%;
-}
+    /* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
+    .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
+        min-height: 30%;
+        min-width: 30%;
+        max-height: 70%;
+        max-width: 70%;
+        margin: 0 auto;
+        padding-top: 8%;
+    }
 
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
 .Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
@@ -228,4 +184,21 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 /* ILIST PROPERTY DIALOG - HIDING THE OVERFLOW */
 .dijitDialogSingleChild > .epi-form-container.dijitLayoutContainer.dijitContainer {
     max-width: 100%;
+}
+
+/* MOVE CHECK BOXES ON THE RIGHT SIDE OF THE LABEL */
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline {
+    margin-left: 12px;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline input.dijitCheckBoxInput {
+    cursor: pointer;
 }

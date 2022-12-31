@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
 public abstract class BaseMultiSelectionFactory
 {
-    protected Type GetGenericType(Type type)
+    protected Type GetGenericListType(Type type)
     {
         foreach (Type @interface in type.GetInterfaces())
         {

@@ -32,7 +32,7 @@ public static class ExtendedMetadataExtensions
     /// </example>
     public static T GetAttribute<T>(this ExtendedMetadata metadata) where T : System.Attribute
     {
-        var attribute = metadata?.Attributes.FirstOrDefault(x => x is T);
+        var attribute = metadata?.Attributes.LastOrDefault(x => x is T);
         
         if (attribute != null) return attribute as T;
 

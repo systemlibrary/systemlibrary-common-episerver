@@ -1,10 +1,12 @@
 ﻿using System.Reflection;
 using System.Text;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
+[Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]
 public abstract class BaseController : Controller
 {
     static int ClientCacheSeconds = 7200;

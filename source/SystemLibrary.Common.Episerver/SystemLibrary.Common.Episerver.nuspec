@@ -40,12 +40,10 @@ https://systemlibrary.github.io/systemlibrary-common-episerver/
 		<readme>docs\readme.md</readme>
 		
 		<dependencies>
-			<dependency id="EPiServer.Hosting" version="12.9.1" />
-			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.9.1" />
-			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.9.0" />
-			<dependency id="Microsoft.AspNetCore.Rewrite" version="2.2.0" />
-			<dependency id="Microsoft.Extensions.FileProviders.Abstractions" version="6.0.0" />
-			<dependency id="System.Security.Cryptography.Xml" version="6.0.1" />
+			<dependency id="EPiServer.Framework" version="12.11.0" />
+			<dependency id="EPiServer.Hosting" version="12.11.0" />
+			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.11.0" />
+			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.15.0" />
 			<dependency id="SystemLibrary.Common.Web" version="6.3.1.3" />
 		</dependencies>
 	</metadata>

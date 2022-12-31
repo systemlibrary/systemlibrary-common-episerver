@@ -19,11 +19,11 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
         {
             var options = GetOptions<MultiDropdownSelectionAttribute>(metadata);
 
-            var type = metadata.ContainerType;
+            var type = metadata.ModelType;
 
             var propertyName = metadata.PropertyName;
 
-            var genericType = GetGenericType(type);
+            var genericType = GetGenericListType(type);
 
             if (genericType == null)
                 throw new Exception("Property " + propertyName + " is of wrong type, must be an IList<string>");

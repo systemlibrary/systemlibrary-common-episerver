@@ -21,82 +21,53 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         {
             var options = GetOptions<BoxSelectionAttribute>(metadata);
 
-            var type = metadata.ContainerType;
+            var enumType = metadata.ModelType;
 
-            var genericType = GetGenericType(type);
+            var genericListType = GetGenericListType(enumType);
 
-            if (genericType == null)
+            var propertyName = metadata.PropertyName;
+
+            if (genericListType == null)
             {
-                if (!type.IsEnum)
-                    type = options.EnumType;
+                if (!enumType.IsEnum)
+                    enumType = options.EnumType;
 
-                if (type == null)
-                    throw new Exception("Property " + metadata.PropertyName + " of type " + metadata.ContainerType.Name + " must set the Type of an Enum, in the " + nameof(BoxSelectionAttribute));
+                if (enumType == null)
+                    throw new Exception("Property " + propertyName + " of type " + metadata.ModelType.Name + " must set the Type of an Enum, in the " + nameof(BoxSelectionAttribute));
 
-                if (!type.IsEnum)
-                    throw new Exception("Property " + metadata.PropertyName + " of type " + type.Name + " must be an Enum or a String!");
+                if (!enumType.IsEnum)
+                    throw new Exception("Property " + propertyName + " of type " + enumType.Name + " must be an Enum or a String!");
 
                 metadata.EditorConfiguration.Add("isMultiSelect", false);
             }
             else
             {
                 if (options.EnumType == null)
-                    type = genericType;
+                    enumType = genericListType;
                 else
-                    type = options.EnumType;
+                    enumType = options.EnumType;
 
-                if (!type.IsEnum)
-                    throw new Exception("Property " + metadata.PropertyName + " has an invalid generic type: " + type.Name + ". It must be an Enum or a String");
+                if (!enumType.IsEnum)
+                    throw new Exception("Property " + propertyName + " has an invalid generic type: " + enumType.Name + ". It must be an Enum or a String");
 
                 metadata.EditorConfiguration.Add("isMultiSelect", true);
             }
 
-            //NOTE: EditorConfiguration is used as AdditionalValues is not sent in "simple properties" like string/int...
+            //NOTE: metaData.AdditionalValues is not sent, so have to use EditorConfiguration
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
-            (var Show, var Hide) = GetShowHideOptions(options, metadata.PropertyName);
+            (var Show, var Hide) = GetShowHideOptions(options, propertyName);
             
-            var keys = Enum.GetNames(type);
+            var keys = Enum.GetNames(enumType);
 
-            foreach (var key in keys)
+            foreach (var key in KeysFiltered(keys, Show, Hide))
             {
-                if (Hide != null)
-                {
-                    var skip = false;
-                    foreach (var hide in Hide)
-                    {
-                        if (hide.ToString() == key)
-                        {
-                            skip = true;
-                            break;
-                        }
-                    }
-
-                    if (!skip)
-                        items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
-                }
-                else if (Show != null)
-                {
-                    var skip = true;
-                    foreach (var show in Show)
-                    {
-                        if (show.ToString() == key)
-                        {
-                            skip = false;
-                            break;
-                        }
-                    }
-
-                    if (!skip)
-                        items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
-                }
-                else
-                    items.Add(GetSelectItem(key, type, metadata.ContainerType == SystemType.StringType));
+                items.Add(GetSelectItem(key, enumType, metadata.ContainerType == SystemType.StringType));
             }
 
             if (options.ShowExpiredItems && metadata.InitialValue != null && metadata.InitialValue != "" && metadata.InitialValue + "" != "0")
             {
-                if (genericType == null)
+                if (genericListType == null)
                 {
                     var found = false;
                     foreach (var item in items)
@@ -159,7 +130,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         return items;
     }
 
-    static SelectItem GetSelectItem(string key, Type type, bool storedAsString)
+    static SelectItem GetSelectItem(string key, Type type, bool isStoredAsString)
     {
         string value = null;
         string text = null;
@@ -183,7 +154,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
         if(value == null)
         {
-            if (storedAsString)
+            if (isStoredAsString)
                 value = e.ToValue();
             else
                 value = Convert.ToInt32(e) + "__d_" + e.ToValue();
@@ -192,7 +163,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         }
         else
         {
-            if (!storedAsString)
+            if (!isStoredAsString)
                 value = Convert.ToInt32(e) + "__d_" + value;
         }
 

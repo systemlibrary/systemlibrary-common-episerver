@@ -24,7 +24,7 @@ public class JsonEditFactory : ISelectionFactory
             if (options?.Type == null)
                 throw new Exception(nameof(JsonEditAttribute) + " can only be used by adding the attribute to the property: " + metadata.PropertyName + ", and you must set the Type property of the attribute");
 
-            var type = metadata.ContainerType;
+            var type = metadata.ModelType;
 
             if (type != SystemType.StringType)
                 throw new Exception("Cannot add 'JsonEdit' attribute on property of type " + type.Name + ". Change it to a string");
