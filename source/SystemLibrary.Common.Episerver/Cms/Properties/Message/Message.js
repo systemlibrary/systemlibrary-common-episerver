@@ -151,9 +151,9 @@
                             a.onclick = function () {
                                 self.onToggleDescription(self.domNode);
                             };
-                            a.style = 'cursor: pointer; position: absolute; margin-left: 8px;margin-top: -1px;';
+                            a.style = 'cursor: pointer; position: relative; display: inline-block; margin-left: 8px;margin-top: -1px;';
                         } else {
-                            a.style = 'cursor: default; position: absolute; margin-left: 8px;margin-top: -1px;';
+                            a.style = 'cursor: default; position: relative; display: inline-block; margin-left: 8px;margin-top: -1px;';
                         }
 
                         label.appendChild(a);
