@@ -50,8 +50,7 @@
     <div id="previewModal">
         <div class="previewModal-container">
             <button id="previewModalClose">Close</button>
-            <p>Json validated: <span id="jsonValidity">true</span></p>
-            <b>Data:</b>
+            <span style="display: none; visibility: hidden;" id="jsonValidity">true</span>
             <pre id="jsonValue">
             </pre>
         </div>
@@ -203,7 +202,18 @@
         }
 
         function setValidity() {
-            if (je) $("#jsonValidity").html(JSON.stringify(je.isValid()));
+            if (je) {
+                console.log(je);
+                console.log(JSON.stringify(je.isValid()));
+                let isValidJson = true;
+                try {
+
+                } catch {
+
+                }
+
+                $("#jsonValidity").html(JSON.stringify(je.isValid()));
+            }
         }
 
         function showPreviewModal() {

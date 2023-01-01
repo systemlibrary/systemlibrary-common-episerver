@@ -162,6 +162,7 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
 
         function isValid() {
             try {
+                console.log("Run is valid?");
                 var v = renderPlace.find('[data-is-valid="false"]:first').length;
                 return (v > 0 ? false : true);
             } catch (err) {
