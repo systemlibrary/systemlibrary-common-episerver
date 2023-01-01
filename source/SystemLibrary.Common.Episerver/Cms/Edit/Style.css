@@ -202,3 +202,44 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 .epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline input.dijitCheckBoxInput {
     cursor: pointer;
 }
+
+/* Revert Epi 12.10 UI changes */
+.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitContainer.dijitTabPane > li.epi-form-container__section__row > .epi-form-container__section__label-container {
+    max-width: 240px !important;
+    min-width: 240px !important;
+    align-items: start;
+    padding: 4px !important;
+}
+
+/*.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row > * {
+    height: unset;
+}*/
+
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field {
+    border-bottom: 1px solid #f1f1f1;
+    margin-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Move tooltip button on right side of title, for checkbox */
+.Sleek li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {
+    position: absolute;
+    right: 0;
+    margin-right: 8px;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline {
+    margin-left: 0px;
+}
+
+.Sleek li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitInline > .dijit.dijitInline.dijitCheckBox {
+    margin-left: 2px;
+    position: absolute;
+    margin-top: 4px;
+}
