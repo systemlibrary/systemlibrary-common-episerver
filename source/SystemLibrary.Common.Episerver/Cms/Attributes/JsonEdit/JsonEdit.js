@@ -66,11 +66,19 @@
                     return false;
                 },
 
+                setCount: function (count) {
+                    if (count > 1) {
+                        this.jsonTextCount.innerHTML = "Items: " + count;
+                    } else {
+                        this.jsonTextCount.innerHTML = "";
+                    }
+                },
+
                 setError: function (message) {
                     this.jsonTextErrorMessage.innerHTML = message;
                 },
 
-                _onEditJsonClick: function (jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl) {
+                _onEditJsonClick: function (jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl, jsonIsArray) {
                     try {
                         if (!this.is(jsonEditTitle)) {
                             jsonEditTitle = 'Editor';
@@ -78,23 +86,33 @@
 
                         let jsonEditValue = this.jsonTextArea.value;
                         if (!this.is(jsonEditValue)) {
-                            jsonEditValue = '[]';
+                            if (jsonIsArray == 'false') {
+                                jsonEditValue = '{}';
+                            } else {
+                                jsonEditValue = '[]';
+                            }
                         }
 
-                        if (!jsonEditValue.startsWith('[')) {
+                        if (!jsonEditValue.startsWith('[') && !jsonEditValue.startsWith('{')) {
                             console.warn(jsonEditValue);
-                            throw "Error: Json Value is not an array, must start and end with []";
+                            throw "Error: Json value is not an array nor an object, must start with either { or [";
                         }
 
-                        const jsonEditValueArray = JSON.parse(jsonEditValue);
+                        let jsonEditObject = JSON.parse(jsonEditValue);
 
-                        if (!Array.isArray(jsonEditValueArray)) {
+                        if (!Array.isArray(jsonEditObject) && typeof (jsonEditObject) === 'object') {
+                            jsonEditObject = [jsonEditObject];
+                        }
+
+                        if (!Array.isArray(jsonEditObject)) {
                             console.warn(jsonEditValue);
-                            throw "Error: Json Value is not an array";
+                            throw "Error: Json Value is not an array nor an object";
                         }
+
                         if (!this.is(jsonEditProperties)) {
                             jsonEditProperties = '';
                         }
+
                         const jsonEditPropertiesObject = JSON.parse('{' + jsonEditProperties + '}');
 
                         if (!this.is(jsonEditPropertiesObject) || !this.is(jsonEditPropertiesObject.required)) {
@@ -129,9 +147,9 @@
                             return;
                         }
                         w.jsonEditTitle = jsonEditTitle;
-                        w.jsonEditValue = jsonEditValueArray;
+                        w.jsonEditValue = jsonEditObject;
+                        w.jsonIsArray = jsonIsArray;
                         w.jsonEditPropertiesObject = jsonEditPropertiesObject;
-
                         w.jsonEditSortByPropertyName1 = jsonEditSortByPropertyName1;
                         w.jsonEditSortByPropertyName2 = jsonEditSortByPropertyName2;
 
@@ -173,6 +191,15 @@
                 //always invoked on initial load by Epi, value is current value from the database
                 _setValueAttr: function (value) {
                     this._setValue(value, true);
+
+                    if (value && value.length) {
+                        let jsonObject = JSON.parse(value);
+                        if (jsonObject !== null) {
+                            if (Array.isArray(jsonObject)) {
+                                this.setCount(jsonObject.length);
+                            }
+                        }
+                    }
                 },
 
                 _setValue: function (value, initialLoad) {
@@ -214,13 +241,14 @@
                 postCreate: function () {
                     try {
                         let jsonEditTitle = this.jsonEditTitle;
+                        let jsonIsArray = this.jsonIsArray;
                         let jsonEditSortByPropertyName1 = this.jsonEditSortByPropertyName1;
                         let jsonEditSortByPropertyName2 = this.jsonEditSortByPropertyName2;
                         let jsonEditProperties = this.jsonEditProperties;
                         let jsonEditorUrl = this.jsonEditorUrl;
 
                         const selections = this.selections;
-                        if (this.is(selections)) {
+                        if (this.is(selections) && selections.forEach) {
                             selections.forEach(selection => {
                                 let text = selection.text;
                                 if (this.is(text) && text.startsWith("ERROR: ")) {
@@ -231,7 +259,7 @@
                         }
 
                         this._bindEvents(this,
-                            () => this._onEditJsonClick(jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl),
+                            () => this._onEditJsonClick(jsonEditTitle, jsonEditSortByPropertyName1, jsonEditSortByPropertyName2, jsonEditProperties, jsonEditorUrl, jsonIsArray),
                             (v) => this._onTextAreaChanged(v));
                     }
                     catch (e) {
@@ -249,8 +277,9 @@
                         textAreaOnChange(e.target.value);
                     });
 
-                    on(myself.jsonTextErrorMessage, 'onset', function (e) {
-                    })
+                    on(myself.jsonTextErrorMessage, 'onset', function (e) { });
+
+                    on(myself.jsonTextCount, 'onset', function (e) { });
                 },
             }
             );

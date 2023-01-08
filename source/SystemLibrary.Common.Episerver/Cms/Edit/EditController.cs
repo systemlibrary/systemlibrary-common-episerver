@@ -34,18 +34,27 @@ public partial class EditController : BaseController
         css.Replace(nameof(edit.ContentCreationBorderColor), edit.ContentCreationBorderColor);
         css.Replace(nameof(edit.ContentCreationBackgroundColor), edit.ContentCreationBackgroundColor);
         css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
-            
+
         if (edit.ActiveProjectBarBackgroundColor.Is())
         {
             css.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
             css.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
         }
 
+        AppendShowEditFieldsAsColumns(edit, css);
+
         AppendCustomPageTreeIcons(css);
 
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (StyleCache = GetFileContentResult(css, "text/css"));
+    }
+
+    void AppendShowEditFieldsAsColumns(EditConfiguration edit, StringBuilder sb)
+    {
+        if (!edit.ShowEditFieldsAsColumns) return;
+
+        sb.Append(GetEmbeddedResource(CurrentFolder, "showEditFieldsAsColumns.css"));
     }
 
     static void AppendCustomPageTreeIcons(StringBuilder sb)

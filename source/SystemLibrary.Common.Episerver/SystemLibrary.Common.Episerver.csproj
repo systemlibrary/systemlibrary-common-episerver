@@ -19,7 +19,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
-		<None Remove="Cms\Edit\Style-Epi12.10.RevertChanges.css" />
+		<None Remove="Cms\Edit\showEditFieldsAsColumns.css" />
 		<None Remove="Cms\Properties\Message\Message.css" />
 		<None Remove="Cms\Properties\Message\Message.html" />
 		<None Remove="Cms\Properties\Message\Message.js" />
@@ -42,7 +42,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
-		<EmbeddedResource Include="Cms\Edit\Style-Epi12.10.RevertChanges.css" />
+		<EmbeddedResource Include="Cms\Edit\showEditFieldsAsColumns.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
@@ -82,6 +82,7 @@
 	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.15.0" />
 	  <PackageReference Include="EPiServer.Framework" Version="12.11.0" />
 	  <PackageReference Include="EPiServer.Hosting" Version="12.11.0" />
+	  <PackageReference Include="SystemLibrary.Common.Net" Version="6.5.1.7" />
 	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.3.1.5" />
 	</ItemGroup>
 	

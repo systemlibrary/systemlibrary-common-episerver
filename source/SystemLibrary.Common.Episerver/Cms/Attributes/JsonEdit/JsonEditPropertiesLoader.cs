@@ -18,6 +18,9 @@ internal static class JsonEditPropertiesLoader
         if (!type.IsClass)
             throw new Exception("Type " + type.Name + " is not a class, cannot continue loading the jsonedit editor");
 
+        if (type.IsListOrArray())
+            type = type.GenericTypeArguments[0];
+
         var properties = type.GetProperties();
 
         var definitions = new StringBuilder();

@@ -31,9 +31,9 @@ public partial class MessageController : BaseController
 
         var data = GetEmbeddedResource(CurrentFolder, "Message.js");
 
-        var edit = AppSettings.Current.Edit;
+        var properties = AppSettings.Current.Properties;
 
-        data.Replace(nameof(edit.Properties.Message.TextColor), edit.Properties.Message.TextColor);
+        data.Replace(nameof(properties.Message.TextColor), properties.Message.TextColor);
 
         return ScriptCache = GetFileContentResult(data, "text/javascript");
     }
@@ -46,10 +46,10 @@ public partial class MessageController : BaseController
 
         var data = GetEmbeddedResource(CurrentFolder, "Message.css");
 
-        var edit = AppSettings.Current.Edit;
+        var properties = AppSettings.Current.Properties;
 
-        data.Replace(nameof(edit.Properties.Message.TextColor), edit.Properties.Message.TextColor);
-        data.Replace(nameof(edit.Properties.Message.BackgroundColor), edit.Properties.Message.BackgroundColor);
+        data.Replace(nameof(properties.Message.TextColor), properties.Message.TextColor);
+        data.Replace(nameof(properties.Message.BackgroundColor), properties.Message.BackgroundColor);
 
         return StyleCache = GetFileContentResult(data, "text/css");
     }

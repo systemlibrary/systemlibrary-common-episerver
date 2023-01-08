@@ -34,6 +34,7 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
             try {
                 options["storageDataName"] = options["storageDataName"] || 'systemLibraryCommonEpiserverJsonEditStorageDataName';
                 options["expandingLevel"] = (options["expandingLevel"] == null ? -1 : options["expandingLevel"]); // -1:expand all
+                options["jsonIsArray"] = options["jsonIsArray"];
                 options["value"] = options["value"] || {};
                 options["schema"] = options["schema"] || {};
                 options["renderFirstLevel"] = options["renderFirstLevel"] || 'false';
@@ -50,7 +51,7 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
                         var storedLength = currentStoredData.length;
                         if (storedLength) {
                             if (!currentValue || currentValue.length > storedLength + 1 || currentValue.length < storedLength - 1) {
-                                if (confirm("Found a previous edit. Click 'OK' to continue from last edit found in your browser or click 'Cancel' to continue with data from server.\n\nReasons you see this:\n You've X'd (or Escape'd) the window instead of clicking Save or Cancel with edits\nSession might've expired while you edited\n\nTip: Unsure? Click 'OK' to view data, then click 'X' on window if youre unhappy with what you see, then edit the data again and this time click 'Cancel'") == true) {
+                                if (confirm("Found a previous edit. Click 'OK' to continue from last edit found in your browser or click 'Cancel' to continue with data from server.\n\nReasons you see this:\n You've X'd (or Escape'd) the window instead of clicking Save or Cancel with edits\nSession might've expired while you edited\n\nTip: Unsure? Click 'OK' to view data, then click 'X' on window if youre unhappy with what you see, then click edit again, but this time click 'Cancel'") == true) {
                                     options["value"].data = JSON.parse(currentStoredData);
                                 }
                             }
@@ -81,6 +82,16 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
             });
         }
 
+        function updateUIOnJsonIsArrayIsFalse() {
+            if (jsonIsArray == 'false') {
+                document.getElementsByClassName('j-add-array-item')[0].style.display = 'none';
+                document.getElementById('collapseExpandAll').style.display = 'none';
+                document.getElementsByClassName('jsonEditor-container-menu')[0].style.display = 'none';
+
+                renderPlace.find(".j-object-title-row-ec").click();
+            }
+        }
+
         function initWidget() {
             level = 0;
             arrayTemplates = {};
@@ -92,6 +103,7 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
             setValue(options["value"]);
             initEvents();
             validateWidget();
+            updateUIOnJsonIsArrayIsFalse();
 
             if (options["afterWidgetCreated"]) options["afterWidgetCreated"](options["value"], options["schema"]);
 
@@ -162,12 +174,10 @@ window.systemLibraryJsonEditorGlobalTextArea = document.createElement("textarea"
 
         function isValid() {
             try {
-                console.log("Run is valid?");
                 var v = renderPlace.find('[data-is-valid="false"]:first').length;
                 return (v > 0 ? false : true);
             } catch (err) {
-                console.error("Error in isValid()");
-                console.error(err);
+                console.error("Error in isValid() " + err);
             }
         }
 

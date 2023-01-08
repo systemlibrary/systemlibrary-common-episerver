@@ -69,6 +69,7 @@
         var s = {};
         var je;
         var storageDataName = 'systemLibraryCommonEpiserver-JsonEdit-';
+
         $(document).ready(function () {
             if (typeof (jsonEditPropertiesObject) === 'undefined' || jsonEditPropertiesObject === null) {
                 alert("Error: No data was found\n\nDid you refresh this tab alone? Then the data is gone\n\nClose this tab by clicking 'X' button, then reopen the Json Editor");
@@ -76,17 +77,18 @@
             }
 
             if (window.jsonEditTitle) {
-                storageDataName = storageDataName + window.jsonEditTitle;
+                storageDataName = storageDataName + window.jsonEditTitle + window.jsonIsArray;
             }
 
             if (window.jsonEditSortByPropertyName1) {
-                storageDataName = storageDataName + window.jsonEditSortByPropertyName1;
+                storageDataName = storageDataName + window.jsonEditSortByPropertyName1 + window.jsonIsArray;
             }
             if (window.jsonEditSortByPropertyName2) {
-                storageDataName = storageDataName + window.jsonEditSortByPropertyName2;
+                storageDataName = storageDataName + window.jsonEditSortByPropertyName2 + window.jsonIsArray;
             }
 
             storageDataName = storageDataName.replaceAll(' ', '').replaceAll(',', '').replaceAll('.', '').replaceAll('?', '').replaceAll('!', '').replaceAll(':', '');
+
 
             s = {
                 "type": "object",
@@ -116,6 +118,7 @@
 
             je = $("#jsonEditor").jsonEdit({
                 "storageDataName": storageDataName,
+                "jsonIsArray": window.jsonIsArray,
                 "treeExpandCollapseButton": "true",
                 "schema": s,
                 "value": v,
@@ -187,6 +190,7 @@
 
             je = $("#jsonEditor").jsonEdit({
                 "storageDataName": storageDataName,
+                "jsonIsArray": window.jsonIsArray,
                 "treeExpandCollapseButton": "true",
                 "schema": s,
                 "value": v,
@@ -203,8 +207,6 @@
 
         function setValidity() {
             if (je) {
-                console.log(je);
-                console.log(JSON.stringify(je.isValid()));
                 let isValidJson = true;
                 try {
 
@@ -362,7 +364,11 @@
             try {
                 const jsonValueObject = JSON.parse($("#jsonValue").val());
 
-                const data = jsonValueObject.data.filter(x => x);
+                let data = jsonValueObject.data.filter(x => x);
+
+                if (jsonIsArray == 'false') {
+                    data = data[0];
+                }
 
                 if (window.onSave(data)) {
                     try {

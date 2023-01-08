@@ -8,6 +8,7 @@ using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Extensions;
 using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
@@ -39,6 +40,8 @@ public class JsonEditFactory : ISelectionFactory
 
             metadata.EditorConfiguration.Add("jsonEditTitle", title);
             metadata.EditorConfiguration.Add("jsonEditProperties", JsonEditPropertiesLoader.GetPropertySchema(options.Type));
+
+            metadata.EditorConfiguration.Add("jsonIsArray", options.Type.IsListOrArray().ToString().ToLower());
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName1", options.SortByPropertyName1);
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName2", options.SortByPropertyName2);
             metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/Common/Episerver/Cms/JsonEdit/" + nameof(JsonEditController.EditorHtml));
