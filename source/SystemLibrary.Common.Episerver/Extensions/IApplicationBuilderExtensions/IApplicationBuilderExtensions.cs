@@ -44,6 +44,8 @@ public static partial class IApplicationBuilderExtensions
 
         ApplicationBuilderEndpoints(app, options);
 
+        ApplicationBuilderRedirectCmsLoginPath(app, options);
+
         return app;
     }
 }

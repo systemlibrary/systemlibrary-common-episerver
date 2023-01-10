@@ -7,4 +7,5 @@ public class CommonEpiserverApplicationBuilderOptions : Web.Extensions.CommonWeb
 {
     public bool UseExceptionLogging = true;
     public bool UseEpiserverMapContentEndpoints = true;
+    public string CmsLoginPath = null;
 }
