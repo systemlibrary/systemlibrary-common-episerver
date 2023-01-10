@@ -13,6 +13,8 @@ partial class IApplicationBuilderExtensions
 
         app.UseRewriter(new RewriteOptions()
             .AddRedirect(path.ToPascalCase() + "$", "episerver/cms/")
-            .AddRedirect(path.toCamelCase() + "$", "episerver/cms/"));
+            .AddRedirect(path.toCamelCase() + "$", "episerver/cms/")
+            .AddRedirect(path.ToPascalCase() + "/$", "episerver/cms/")
+            .AddRedirect(path.toCamelCase() + "/$", "episerver/cms/"));
     }
 }
