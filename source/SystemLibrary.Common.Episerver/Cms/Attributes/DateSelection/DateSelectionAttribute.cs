@@ -8,17 +8,6 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
-//[EditorDescriptorRegistration(TargetType = typeof(DateTime), UIHint = "Date")]
-//public class DateDescriptor : EditorDescriptor
-//{
-//    public override void ModifyMetadata(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
-//    {
-//        base.ModifyMetadata(metadata, attributes);
-//        this.LayoutClass = "systemlibrary-common-episerver-date-descriptor";
-//        ClientEditingClass = "dijit/form/DateTextBox";
-//    }
-//}
-
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class DateSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
