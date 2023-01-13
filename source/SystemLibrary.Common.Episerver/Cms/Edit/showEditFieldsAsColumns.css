@@ -25,18 +25,31 @@
 }
 
 /* Move tooltip button on right side of title, for checkbox */
-.Sleek li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {
+.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {
     position: absolute;
     right: 0;
     margin-right: 8px;
 }
 
-.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline {
+.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline {
     margin-left: 0px;
 }
 
-.Sleek li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitInline > .dijit.dijitInline.dijitCheckBox {
+.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitInline > .dijit.dijitInline.dijitCheckBox {
     margin-left: 2px;
     position: absolute;
     margin-top: 4px;
+}
+
+/* Moved checkboxes to the right of public virtual bool properties */
+.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox .epi-form-container__section__label-container {
+    width: 100%;
+    height: 100%;
+    text-align: right;
+}
+
+.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox .epi-form-container__section__label-container > label {
+    width: 100%;
+    min-width: 220px;
+    cursor: pointer;
 }
