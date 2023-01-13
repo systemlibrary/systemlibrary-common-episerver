@@ -230,7 +230,7 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 
 /* Calendar increase font size on the clock icon */ 
 .Sleek > div.dijitPopup.Popup > .epi-dateTimeWrapper .dijitIcon.epi-iconClock {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /* Calendar time zone info increase font size */ 
@@ -240,7 +240,7 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 
 /* Calendar as a whole, increase width and font */ 
 .Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar {
-    font-size: 16px !important;
+    font-size: 14px !important;
     background: white;
     min-width: 230px;
     max-width: 590px;
@@ -248,7 +248,7 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 }
 
 .Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar .dijitCalendarDayLabel {
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 0.5em;
     padding-bottom: 0.3em;
 }
