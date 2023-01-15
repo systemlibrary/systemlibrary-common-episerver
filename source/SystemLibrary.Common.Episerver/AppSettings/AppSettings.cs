@@ -12,7 +12,7 @@ namespace SystemLibrary.Common.Episerver;
 ///    ...,
 ///    "systemLibraryCommonEpiserver": {
 ///        "edit": {
-///          "showEditFieldsAsColumns": true,
+///          "showEditFieldsAsColumns": false,
 ///          "hideLanguageColumnInVersionGadget": false,
 ///          "contentCreationBackgroundColor": "",
 ///          "contentCreationBorderColor": "",

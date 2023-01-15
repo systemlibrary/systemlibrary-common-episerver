@@ -445,11 +445,11 @@ namespace Demo;
 [ContentIcon(FontAwesomeSolid.house)]
 public class StartPage : PageData
 {
-    [Display(Name = !????!Tip!????!, Description = !????!Welcome to your brand new website!????!)]
-    public virtual Message Tip { get; set; }
+	[Display(Name = !????!Tip!????!, Description = !????!Welcome to your brand new website!????!)]
+	public virtual Message Tip { get; set; }
 
-    [Display(Name = !????!Parent!????!, Description = !????!A link to the parent, where !@@@@!this!@@@@! is created/living under!????!)]
-    public virtual ParentLinkReference ParentRef { get; set;}
+	[Display(Name = !????!Parent!????!, Description = !????!A link to the parent, where !@@@@!this!@@@@! is created/living under!????!)]
+	public virtual ParentLinkReference ParentRef { get; set;}
 
 	[Display(Name = !????!Expires!????!, Description = !????!A date time property, but only date can be selected, time is hidden!????!)]
 	[DateSelection]
