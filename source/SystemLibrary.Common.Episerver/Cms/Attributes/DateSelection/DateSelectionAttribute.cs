@@ -8,6 +8,21 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
+/// <summary>
+/// Add Date Selection attribute to a public virtual DateTime property to activate a 'date picker', it will hide the 'time selection'
+/// </summary>
+/// <example>
+/// <code>
+/// public class StartPage : PageData 
+/// {
+///     [DateSelection()]
+///     public virtual DateTime Expires { get; set; }
+///
+///     [DateSelection()]
+///     public virtual DateTime? Expires { get; set; }
+/// }
+/// </code>
+/// </example>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class DateSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
@@ -27,7 +42,6 @@ public class DateSelectionAttribute : Attribute, IDisplayMetadataProvider
                     extendedMetadata.EditorConfiguration.Add("className", "dijitReset dijitInputInner systemlibrary-common-episerver-date-property-input");
                     extendedMetadata.EditorConfiguration.Add("class", "systemlibrary-common-episerver-date-property");
                     break;
-                    //dijit dijitReset dijitInline dijitLeft dijitTextBox dijitComboBox dijitDateTextBox dijitValidationTextBox
                 }
             }
         }

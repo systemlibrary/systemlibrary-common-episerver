@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.3.0.1</Version>
+		<Version>6.4.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,6 +19,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
 		<None Remove="Cms\Edit\showEditFieldsAsColumns.css" />
 		<None Remove="Cms\Properties\Message\Message.css" />
 		<None Remove="Cms\Properties\Message\Message.html" />
@@ -43,6 +44,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<EmbeddedResource Include="Cms\Edit\showEditFieldsAsColumns.css" />
+		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
@@ -50,7 +52,7 @@
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-solid-900.woff2" />
-		<EmbeddedResource Include="Cms\Edit\Style.css" />
+		<EmbeddedResource Include="Cms\Edit\EditStyle.css" />
 		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />

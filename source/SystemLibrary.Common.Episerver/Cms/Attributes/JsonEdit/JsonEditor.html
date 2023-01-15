@@ -77,18 +77,17 @@
             }
 
             if (window.jsonEditTitle) {
-                storageDataName = storageDataName + window.jsonEditTitle + window.jsonIsArray;
+                storageDataName += + window.jsonEditTitle + window.jsonIsArray;
             }
 
             if (window.jsonEditSortByPropertyName1) {
-                storageDataName = storageDataName + window.jsonEditSortByPropertyName1 + window.jsonIsArray;
+                storageDataName += + window.jsonEditSortByPropertyName1 + window.jsonIsArray;
             }
             if (window.jsonEditSortByPropertyName2) {
-                storageDataName = storageDataName + window.jsonEditSortByPropertyName2 + window.jsonIsArray;
+                storageDataName += + window.jsonEditSortByPropertyName2 + window.jsonIsArray;
             }
 
             storageDataName = storageDataName.replaceAll(' ', '').replaceAll(',', '').replaceAll('.', '').replaceAll('?', '').replaceAll('!', '').replaceAll(':', '');
-
 
             s = {
                 "type": "object",
@@ -387,8 +386,7 @@
 
         function onClose(e) {
             try {
-                //Commented out: If one clicks cancel, keep whatever is in the localstorage
-                // localStorage.removeItem(storageDataName);
+                localStorage.removeItem(storageDataName);
             }
             catch {
             }

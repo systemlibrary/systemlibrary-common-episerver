@@ -62,7 +62,6 @@
     }
 }
 
-
 /* Hide the title saying 'Required Properties' during new block dialog */
 .Sleek .epi-newContentContainer li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
     visibility: hidden;
@@ -72,7 +71,6 @@
 /* Wide 'Content Area' selector */
 .Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
     max-width: 610px;
-    color: red;
     margin-left: 8px;
 }
 
@@ -82,9 +80,9 @@
     padding: 0;
 }
 
-    .Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
-        margin: 8px;
-    }
+.Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
+    margin: 8px;
+}
 
 
 /* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
@@ -92,18 +90,17 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     overflow: hidden;
 }
 
-    /* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
-    div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
-        margin-left: 12px !important;
-        margin-right: 100% !important;
-        position: absolute !important;
-        float: left !important;
-        cursor: pointer;
-        left: 252px !important;
-    }
+/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
+    margin-left: 12px !important;
+    margin-right: 100% !important;
+    position: absolute !important;
+    float: left !important;
+    cursor: pointer;
+    left: 252px !important;
+}
 
 /*End checkbox adjustments */
-
 
 /* Hide "language" in version gadget as we only have NO */
 .Sleek .dgrid-row-table .dgrid-column-language:first-child {
@@ -165,15 +162,15 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     background-color: ContentCreationBackgroundColor;
 }
 
-    /* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
-    .Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
-        min-height: 30%;
-        min-width: 30%;
-        max-height: 70%;
-        max-width: 70%;
-        margin: 0 auto;
-        padding-top: 8%;
-    }
+/* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
+.Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
+    min-height: 30%;
+    min-width: 30%;
+    max-height: 70%;
+    max-width: 70%;
+    margin: 0 auto;
+    padding-top: 8%;
+}
 
 /* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
 .Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
@@ -202,77 +199,3 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 .epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline input.dijitCheckBoxInput {
     cursor: pointer;
 }
-
-
-/* Calendar for DateTime (and Date) popup layout, increasing the popup and font size */
-.Sleek > div.dijitPopup.Popup,
-.Sleek > div.dijitPopup.dijitCalendarPopup {
-    background-color: white;
-    min-width: 230px;
-    max-width: 590px;
-    width: 100%;
-}
-
-/* Inner calendar container increase width */
-.Sleek > div.dijitPopup.Popup > .epi-dateTimeWrapper {
-    width: 100% !important;
-    background-color: white;
-}
-
-.Sleek > div.dijitPopup.Popup .epi-timePickerWrapper {
-    padding: 0 !important;
-    text-align: left !important;
-    padding-top: 1em !important;
-    background: white;
-    margin-top: 1em;
-    border-top: 1px solid;
-}
-
-/* Calendar increase font size on the clock icon */ 
-.Sleek > div.dijitPopup.Popup > .epi-dateTimeWrapper .dijitIcon.epi-iconClock {
-    font-size: 18px;
-}
-
-/* Calendar time zone info increase font size */ 
-.Sleek .epi-dateTimeWrapper .epi-timeZoneInfo {
-    font-size: 13px !important;
-}
-
-/* Calendar as a whole, increase width and font */ 
-.Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar {
-    font-size: 14px !important;
-    background: white;
-    min-width: 230px;
-    max-width: 590px;
-    width: 100% !important;
-}
-
-.Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar .dijitCalendarDayLabel {
-    font-size: 14px;
-    padding-top: 0.5em;
-    padding-bottom: 0.3em;
-}
-
-.Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar .dijitCalendarYearLabel span {
-    background-color: #fff9e6;
-    max-width: 12%;
-    font-size: 14px;
-    text-align: center;
-}
-
-/* Calendar date selected background */ 
-.Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar .dijitCalendarSelectedDate span.dijitCalendarDateLabel {
-    background-color: #36DF3A;
-}
-
-/* Calendar main heading background */ 
-.Sleek > div.dijitPopup table.dijitCalendarContainer.dijitCalendar .dijitCalendarMonthContainer {
-    background-color: #080736;
-}
-
-/* Calendar input field when filled out, gets a red cross, increase and change color */ 
-.Sleek .dijitDateTextBox .epi-clearButtonSlimInput {
-    color: #EF3434;
-    font-size: 20px;
-}
-

@@ -2,7 +2,7 @@
 
 public class EditConfiguration
 {
-    public bool ShowEditFieldsAsColumns { get; set; } = true;
+    public bool ShowEditFieldsAsColumns { get; set; } = false;
     public bool HideLanguageColumnInVersionGadget { get; set; } = false;
     public string ContentCreationBackgroundColor { get; set; } = "";
     public string ContentCreationBorderColor { get; set; } = "";

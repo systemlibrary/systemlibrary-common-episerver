@@ -26,6 +26,51 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.AppSettings.AppSettings
   nameWithType: AppSettings.AppSettings
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration
+  name: AppSettings.Configuration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html
+  commentId: T:SystemLibrary.Common.Episerver.AppSettings.Configuration
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration
+  nameWithType: AppSettings.Configuration
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.#ctor
+  name: Configuration()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration__ctor
+  commentId: M:SystemLibrary.Common.Episerver.AppSettings.Configuration.#ctor
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Configuration()
+  nameWithType: AppSettings.Configuration.Configuration()
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.#ctor*
+  name: Configuration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration__ctor_
+  commentId: Overload:SystemLibrary.Common.Episerver.AppSettings.Configuration.#ctor
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Configuration
+  nameWithType: AppSettings.Configuration.Configuration
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
+  name: Edit
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_Edit
+  commentId: P:SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
+  nameWithType: AppSettings.Configuration.Edit
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit*
+  name: Edit
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_Edit_
+  commentId: Overload:SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
+  nameWithType: AppSettings.Configuration.Edit
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties
+  name: Properties
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_Properties
+  commentId: P:SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties
+  nameWithType: AppSettings.Configuration.Properties
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties*
+  name: Properties
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_Properties_
+  commentId: Overload:SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Properties
+  nameWithType: AppSettings.Configuration.Properties
 - uid: SystemLibrary.Common.Episerver.AppSettings.ConnectionStrings
   name: ConnectionStrings
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.html#SystemLibrary_Common_Episerver_AppSettings_ConnectionStrings
@@ -39,19 +84,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.AppSettings.ConnectionStrings
   nameWithType: AppSettings.ConnectionStrings
-- uid: SystemLibrary.Common.Episerver.AppSettings.Edit
-  name: Edit
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.html#SystemLibrary_Common_Episerver_AppSettings_Edit
-  commentId: P:SystemLibrary.Common.Episerver.AppSettings.Edit
-  fullName: SystemLibrary.Common.Episerver.AppSettings.Edit
-  nameWithType: AppSettings.Edit
-- uid: SystemLibrary.Common.Episerver.AppSettings.Edit*
-  name: Edit
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.html#SystemLibrary_Common_Episerver_AppSettings_Edit_
-  commentId: Overload:SystemLibrary.Common.Episerver.AppSettings.Edit
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.AppSettings.Edit
-  nameWithType: AppSettings.Edit
 - uid: SystemLibrary.Common.Episerver.AppSettings.SystemLibraryCommonEpiserver
   name: SystemLibraryCommonEpiserver
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.html#SystemLibrary_Common_Episerver_AppSettings_SystemLibraryCommonEpiserver
@@ -353,19 +385,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum
   nameWithType: BaseMultiSelectionFactory.AsEnum
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
-  name: GetGenericType(Type)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericType_System_Type_
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType(System.Type)
-  nameWithType: BaseMultiSelectionFactory.GetGenericType(Type)
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType*
-  name: GetGenericType
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericType_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
+  name: GetGenericListType(Type)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericListType_System_Type_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
+  nameWithType: BaseMultiSelectionFactory.GetGenericListType(Type)
+- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType*
+  name: GetGenericListType
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericListType_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericType
-  nameWithType: BaseMultiSelectionFactory.GetGenericType
+  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType
+  nameWithType: BaseMultiSelectionFactory.GetGenericListType
 - uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions*
   name: GetOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetOptions_
@@ -631,6 +663,25 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute.Value
   nameWithType: ContentIconAttribute.Value
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute
+  name: DateSelectionAttribute
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute
+  nameWithType: DateSelectionAttribute
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  name: CreateDisplayMetadata(DisplayMetadataProviderContext)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_DateSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)
+  nameWithType: DateSelectionAttribute.CreateDisplayMetadata(DisplayMetadataProviderContext)
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata*
+  name: CreateDisplayMetadata
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.html#SystemLibrary_Common_Episerver_Cms_Attributes_DateSelectionAttribute_CreateDisplayMetadata_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.DateSelectionAttribute.CreateDisplayMetadata
+  nameWithType: DateSelectionAttribute.CreateDisplayMetadata
 - uid: SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute
   name: JsonEditAttribute
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditAttribute.html
@@ -1307,38 +1358,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.Value
   nameWithType: ParentLinkReferenceProperty.Value
-- uid: SystemLibrary.Common.Episerver.Configuration
-  name: Configuration
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Configuration.html
-  commentId: T:SystemLibrary.Common.Episerver.Configuration
-  fullName: SystemLibrary.Common.Episerver.Configuration
-  nameWithType: Configuration
-- uid: SystemLibrary.Common.Episerver.Configuration.#ctor
-  name: Configuration()
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Configuration.html#SystemLibrary_Common_Episerver_Configuration__ctor
-  commentId: M:SystemLibrary.Common.Episerver.Configuration.#ctor
-  fullName: SystemLibrary.Common.Episerver.Configuration.Configuration()
-  nameWithType: Configuration.Configuration()
-- uid: SystemLibrary.Common.Episerver.Configuration.#ctor*
-  name: Configuration
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Configuration.html#SystemLibrary_Common_Episerver_Configuration__ctor_
-  commentId: Overload:SystemLibrary.Common.Episerver.Configuration.#ctor
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Configuration.Configuration
-  nameWithType: Configuration.Configuration
-- uid: SystemLibrary.Common.Episerver.Configuration.Edit
-  name: Edit
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Configuration.html#SystemLibrary_Common_Episerver_Configuration_Edit
-  commentId: P:SystemLibrary.Common.Episerver.Configuration.Edit
-  fullName: SystemLibrary.Common.Episerver.Configuration.Edit
-  nameWithType: Configuration.Edit
-- uid: SystemLibrary.Common.Episerver.Configuration.Edit*
-  name: Edit
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Configuration.html#SystemLibrary_Common_Episerver_Configuration_Edit_
-  commentId: Overload:SystemLibrary.Common.Episerver.Configuration.Edit
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Configuration.Edit
-  nameWithType: Configuration.Edit
 - uid: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration
   name: ConnectionStringsConfiguration
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.html
@@ -1581,19 +1600,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.EditConfiguration.PageTreeSelectedContentBorderColor
   nameWithType: EditConfiguration.PageTreeSelectedContentBorderColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.Properties
-  name: Properties
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_Properties
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.Properties
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.Properties
-  nameWithType: EditConfiguration.Properties
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.Properties*
-  name: Properties
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_Properties_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.Properties
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
+  name: ShowEditFieldsAsColumns
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ShowEditFieldsAsColumns
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
+  nameWithType: EditConfiguration.ShowEditFieldsAsColumns
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns*
+  name: ShowEditFieldsAsColumns
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ShowEditFieldsAsColumns_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.Properties
-  nameWithType: EditConfiguration.Properties
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
+  nameWithType: EditConfiguration.ShowEditFieldsAsColumns
 - uid: SystemLibrary.Common.Episerver.Extensions
   name: SystemLibrary.Common.Episerver.Extensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.html
@@ -1606,6 +1625,12 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions
   fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions
   nameWithType: CommonEpiserverApplicationBuilderOptions
+- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.CmsLoginPath
+  name: CmsLoginPath
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_CmsLoginPath
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.CmsLoginPath
+  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.CmsLoginPath
+  nameWithType: CommonEpiserverApplicationBuilderOptions.CmsLoginPath
 - uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseEpiserverMapContentEndpoints
   name: UseEpiserverMapContentEndpoints
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_UseEpiserverMapContentEndpoints
@@ -1618,12 +1643,6 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseExceptionLogging
   fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseExceptionLogging
   nameWithType: CommonEpiserverApplicationBuilderOptions.UseExceptionLogging
-- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  name: UseRewriteEpiserverPathToEpiserverCms
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_UseRewriteEpiserverPathToEpiserverCms
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
-  nameWithType: CommonEpiserverApplicationBuilderOptions.UseRewriteEpiserverPathToEpiserverCms
 - uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions
   name: CommonEpiserverApplicationServicesOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html

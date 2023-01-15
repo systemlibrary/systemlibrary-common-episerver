@@ -403,12 +403,11 @@
 0. Create new empty database named !????!Demo!????! on your local SQL instance
 1. Create a new project !????!AspNet Core Empty!????! for .NET 6
 2. Delete appSettings.development.json
-3. Add nuget package Episerver.Framework v12.9.1
-4. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.9.1
-5. Add nuget package Episerver.Cms &gt;= 12.9.0 &amp;&amp; &lt; 12.10.0
-	- Note: Episerver.Cms 12.10.0 have updated UI, all descriptions and most of the UI is fucked up, huge breaking change by Episerver Devs
-6. Add nuget package SystemLibrary.Common.Episerver &gt;= 6.2.0.12
-	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent up2date. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
+3. Add nuget package Episerver.Framework v12.11.0
+4. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.11.0
+5. Add nuget package Episerver.Cms &gt;= 12.15.1
+6. Add nuget package SystemLibrary.Common.Episerver &gt;= 6.4.0.1
+	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 7. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
 8. Create !@@@@!~/Cms/Cms.cs!@@@@!
 9. Create !@@@@!~/Properties/launchSettings.json!@@@@! (it should exist already)
@@ -451,6 +450,10 @@ public class StartPage : PageData
 
     [Display(Name = !????!Parent!????!, Description = !????!A link to the parent, where !@@@@!this!@@@@! is created/living under!????!)]
     public virtual ParentLinkReference ParentRef { get; set;}
+
+	[Display(Name = !????!Expires!????!, Description = !????!A date time property, but only date can be selected, time is hidden!????!)]
+	[DateSelection]
+	public virtual DateTime Expires { get; set; }
 }
 !====!!====!!====!
 
@@ -613,17 +616,22 @@ appSettings.json:
 {
 	...,
 	!????!systemLibraryCommonEpiserver!????!: {
-		!????!cmsEdit!????!: {
-			!????!enabled!????!: true,
+		!????!edit!????!: {
+			!????!showEditFieldsAsColumns!????!: false,
 			!????!hideLanguageColumnInVersionGadget!????!: false,
 			!????!contentCreationBackgroundColor!????!: !????!!????!,
 			!????!contentCreationBorderColor!????!: !????!!????!,
 			!????!pageTreeSelectedContentBorderColor!????!: !????!!????!,
 			!????!contentTitleColor!????!: !????!!????!,
-			!????!activeProjectBarBackgroundColor!????!: !????!!????!,
-			!????!messagePropertyBackgroundColor!????!: !????!!????!
+			!????!activeProjectBarBackgroundColor!????!: !????!!????!
+		},
+		!????!properties!????!: {
+			!????!message!????!: {
+				!????!backgroundColor!????!: !????!#ededed!????!,
+				!????!textColor!????!: !????!#080736!????!
+			}
 		}
-	},
+	}
 	...
 }
 !====!!====!!====!  

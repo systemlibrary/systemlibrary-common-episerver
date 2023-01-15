@@ -13,6 +13,11 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - Supports showing your own custom images
 - Supports setting background color, to be used as a color picker  
 
+#### DateSelection
+![Date Selection Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-dateselection.png "")
+- Supports showing DateTime picker as 'Date'
+- Default style is overridden for the DateTime picker
+
 #### MultidropdownSelection
 ![Box Selection Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-multidropdownselection.png "")
 - Supports adding one or more items from a dropdownlist (enum)
@@ -62,16 +67,21 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 
 ## Requirements
 - &gt;= .NET 6
-- &gt;= Episerver 12 & &lt;= 12.8.0, due to from v 12.9 the design has huge breaking changes with "?"-buttons all over, which reminds you of every website in early 2000, when people "first" found out they could toggle elements in javascript - without going back n forth to the server...
+- &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.3.0.1
-- Updated deps which have breaking changes, like extension method ToJson() is now Json()
-- JsonEdit has been updated, filtering, sorting, adding support for XhtmlString fields which gives a really simple wysiwyg editor
-- BoxSelection has been adjusted (colors and spacing)
-- Message Property has been adjusted (colors and spacing)
-- Edit styles has now been gone over one by one, adding detailed descriptions
+- 6.4.0.1
+- Updated deps (breaking changes in deps, so adjusting this one too with breaking changes, from 6.3 to 6.4)
 - Updated install instructions
+- Episerver deps updated to latest
+- Added a 'DateSelection' attribute for DateTime properties to show only date picker
+- Added support for the newer UI of Epi, from Epi 12.10 and onwards
+- Added option to show properties in "previous manner" (key/value in the same row, instead of title now being above value)
+- Message property UI adjustments
+- JsonEdit supports both an array of elements, or a single class to edit
+- CmsLoginPath is now an option, so you can configure a path of the "/util/login", like "/episerver/" or "/opti/" ...
+- AppSetting node for configurations have changed (breaking changes)
+
 
 #### Version history
 - View git history of this file if interested

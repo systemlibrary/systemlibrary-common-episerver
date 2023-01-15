@@ -23,7 +23,7 @@ public partial class EditController : BaseController
 
         var edit = AppSettings.Current.Edit;
 
-        var css = GetEmbeddedResource(CurrentFolder, "Style.css");
+        var css = GetEmbeddedResource(CurrentFolder, "EditStyle.css");
 
         var hideLanguageColumnInVersionGadget = edit.HideLanguageColumnInVersionGadget ? "0px" : "";
         var hideLanguageColumnInVersionGadgetVisibility = edit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
@@ -43,6 +43,8 @@ public partial class EditController : BaseController
 
         AppendShowEditFieldsAsColumns(edit, css);
 
+        AppendCalendarDateTimePropertyStyle(css);
+
         AppendCustomPageTreeIcons(css);
 
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
@@ -55,6 +57,11 @@ public partial class EditController : BaseController
         if (!edit.ShowEditFieldsAsColumns) return;
 
         sb.Append(GetEmbeddedResource(CurrentFolder, "showEditFieldsAsColumns.css"));
+    }
+
+    void AppendCalendarDateTimePropertyStyle(StringBuilder sb)
+    {
+        sb.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
     }
 
     static void AppendCustomPageTreeIcons(StringBuilder sb)
