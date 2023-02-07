@@ -70,17 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.4.0.1
-- Updated deps (breaking changes in deps, so adjusting this one too with breaking changes, from 6.3 to 6.4)
-- Updated install instructions
-- Episerver deps updated to latest
-- Added a 'DateSelection' attribute for DateTime properties to show only date picker
-- Added support for the newer UI of Epi, from Epi 12.10 and onwards
-- Added option to show properties in "previous manner" (key/value in the same row, instead of title now being above value)
-- Message property UI adjustments
-- JsonEdit supports both an array of elements, or a single class to edit
-- CmsLoginPath is now an option, so you can configure a path of the "/util/login", like "/episerver/" or "/opti/" ...
-- AppSetting node for configurations have changed (breaking changes)
+- 6.4.0.2
+- Updated deps
 
 
 #### Version history

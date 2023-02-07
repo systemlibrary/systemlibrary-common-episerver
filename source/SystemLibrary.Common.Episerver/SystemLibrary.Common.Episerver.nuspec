@@ -3,7 +3,7 @@
 	<metadata>
 		<id>SystemLibrary.Common.Episerver</id>
 
-		<version>6.4.0.1</version>
+		<version>6.4.0.2</version>
 
 		<authors>System Library</authors>
 
@@ -44,7 +44,7 @@ https://systemlibrary.github.io/systemlibrary-common-episerver/
 			<dependency id="EPiServer.Hosting" version="12.11.0" />
 			<dependency id="EPiServer.CMS.AspNetCore.Routing" version="12.11.0" />
 			<dependency id="EPiServer.CMS.UI.AspNetIdentity" version="12.15.0" />
-			<dependency id="SystemLibrary.Common.Web" version="6.3.1.6" />
+			<dependency id="SystemLibrary.Common.Web" version="6.4.1.2" />
 		</dependencies>
 	</metadata>
 
