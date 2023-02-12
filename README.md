@@ -72,6 +72,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 ## Latest Version
 - 6.4.0.2
 - Updated deps
+- Validator takes now IContentData, not just IContent as Blocks are not IContent till runtime
 
 
 #### Version history

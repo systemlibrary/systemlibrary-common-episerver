@@ -84,7 +84,7 @@
 	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.15.0" />
 	  <PackageReference Include="EPiServer.Framework" Version="12.11.0" />
 	  <PackageReference Include="EPiServer.Hosting" Version="12.11.0" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.4.1.2" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.4.1.4" />
 	</ItemGroup>
 	
 </Project>

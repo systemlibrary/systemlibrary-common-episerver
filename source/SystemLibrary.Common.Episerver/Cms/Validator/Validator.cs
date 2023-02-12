@@ -43,7 +43,7 @@ namespace SystemLibrary.Common.Episerver;
 /// }
 /// </code>
 /// </example>
-public abstract class Validator<T> : IValidate<T> where T : IContent
+public abstract class Validator<T> : IValidate<T> where T : IContentData
 {
     List<ValidationError> Validations = new List<ValidationError>();
 
