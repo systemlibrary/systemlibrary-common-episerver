@@ -4,7 +4,18 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.4.0.2</Version>
+		<Version>6.5.0.1</Version>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
+		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+		<DebugType>pdbonly</DebugType>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
+		<Company>System Library</Company>
+		<Authors>System Library</Authors>
+		<Product>$(AssemblyVersion)</Product>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -74,17 +85,55 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="nuget-icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.11.0" />
-	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.15.0" />
-	  <PackageReference Include="EPiServer.Framework" Version="12.11.0" />
-	  <PackageReference Include="EPiServer.Hosting" Version="12.11.0" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.4.1.4" />
+	  <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.13.*" />
+	  <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.13.*" />
+	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.17.*" />
+	  <PackageReference Include="EPiServer.Framework" Version="12.13.*" />
+	  <PackageReference Include="EPiServer.Hosting" Version="12.13.*" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
+	  <PackageReference Include="React.AspNet" Version="5.2.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.6.*" />
 	</ItemGroup>
+
+	<PropertyGroup>
+		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
+		<Version>$(Version)</Version>
+		<Title>SystemLibrary Common Episerver</Title>
+		<Description>
+			Library with classes, methods and dijits for every .NET &gt;= 6 episerver web application
+			https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
+
+			Installation
+			https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
+
+			Documentation with sample code
+			https://systemlibrary.github.io/systemlibrary-common-episerver/
+		</Description>
+		<Copyright>Copyright © System Library</Copyright>
+		<PackageProjectUrl>https://www.systemlibrary.com/#SystemLibraryCommonEpiserver</PackageProjectUrl>
+		<PackageIcon>nuget-icon.png</PackageIcon>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageTags>C# .NET 6.0 Episerver Optimizely Library</PackageTags>
+		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-version</PackageReleaseNotes>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+	</PropertyGroup>
 	
 </Project>

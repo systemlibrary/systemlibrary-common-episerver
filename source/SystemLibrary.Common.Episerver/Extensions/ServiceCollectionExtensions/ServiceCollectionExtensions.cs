@@ -1,6 +1,12 @@
-﻿using EPiServer.ServiceLocation;
+﻿using System.Collections.Generic;
+using System.Linq;
 
+using EPiServer.ServiceLocation;
+
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
+
+using React.AspNet;
 
 using SystemLibrary.Common.Episerver.Initialize;
 using SystemLibrary.Common.Net.Extensions;
@@ -38,8 +44,6 @@ public static partial class ServiceCollectionExtensions
     /// </example>
     public static IServiceCollection CommonEpiserverApplicationServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
     {
-        //Services.Collection = services;
-
         SetOptions(options);
 
         services.CommonWebApplicationServices(Options);
@@ -53,6 +57,8 @@ public static partial class ServiceCollectionExtensions
         ServiceCollectionCaching(services, options);
 
         ServiceCollectionCompression(services, options);
+
+        services.AddReact();
 
         return services;
     }
@@ -100,7 +106,7 @@ public static partial class ServiceCollectionExtensions
 
         if (Options.DefaultAdminPassword.IsNot())
             Options.DefaultAdminPassword = fallback.DefaultAdminPassword;
-
+        
         Options.ViewLocations = ViewLocations.AllViews.Add(Options.ViewLocations);
     }
 }

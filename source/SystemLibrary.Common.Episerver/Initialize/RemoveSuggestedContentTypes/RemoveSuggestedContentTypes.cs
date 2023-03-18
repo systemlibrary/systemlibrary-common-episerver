@@ -18,7 +18,7 @@ public class RemoveSuggestedContentTypes : StartupModule
         if (Extensions.ServiceCollectionExtensions.Options == null)
             Log.Error("Error: You've not called on extension for IServiceCollection named: CommonEpiserverServices()");
 
-        if (Extensions.ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
-            Services.Remove<IContentTypeAdvisor>();
+        //if (Extensions.ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
+      //      Services.Remove<IContentTypeAdvisor>();
     }
 }

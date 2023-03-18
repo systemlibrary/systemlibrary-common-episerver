@@ -39,7 +39,7 @@ partial class IApplicationBuilderExtensions
                         }
                     }
 
-                    if (!options.UseExceptionPageInTestAndDev)
+                    if (!options.UseExceptionPage)
                     {
                         if (context?.Response != null)
                             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

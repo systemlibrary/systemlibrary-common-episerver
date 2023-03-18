@@ -34,6 +34,13 @@ public static class StringExtensions
     {
         return text.Json<T>(new XhtmlStringJsonConverter());
     }
+
+    public static string ToFriendlyUrl(this string url)
+    {
+        if (url.IsNot()) return "";
+
+        return "";
+    }
 }
 
 internal class XhtmlStringJsonConverter : JsonConverter<XhtmlString>

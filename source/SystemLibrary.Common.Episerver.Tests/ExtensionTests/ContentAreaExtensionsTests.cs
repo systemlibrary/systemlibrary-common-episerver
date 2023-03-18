@@ -10,6 +10,24 @@ namespace SystemLibrary.Common.Episerver.Tests;
 public class ContentAreaExtensionsTests
 {
     [TestMethod]
+    public void A()
+    {
+        
+
+    }
+
+    string S(string name)
+    {
+        if (name.EndsWith("ViewModel"))
+            return name.Substring(0, name.Length - "ViewModel".Length);
+
+        if (name.EndsWith("Model"))
+            return name.Substring(0, name.Length - "Model".Length);
+
+        return name;
+    }
+
+    [TestMethod]
     public void Is_And_IsNot_Success()
     {
         ContentArea contentArea = null;

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
 using SystemLibrary.Common.Web.Extensions;
 
@@ -23,22 +25,26 @@ public static partial class IApplicationBuilderExtensions
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options = null)
+    public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, IWebHostEnvironment env, CommonEpiserverApplicationBuilderOptions options = null)
     {
+        if (env.WebRootPath == null)
+        {
+            env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
+            if (env.WebRootPath.EndsWith("\\bin\\"))
+                env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+        }
+
         if (options == null)
             options = new CommonEpiserverApplicationBuilderOptions();
 
         ApplicationBuilderLogging(app, options);
 
-        if (!System.IO.File.Exists("module.config"))
+        if (!File.Exists("module.config"))
         {
-            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the Installation instructions. Install instructions are within the documentation for this nuget package");
+            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the instructions at:https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
         ApplicationBuilderCompression(app, options);
-
-        //MapContent() from Episerver calls UseRazorPages()
-        options.UseRazorPagesEndpoints = false;
 
         app.CommonWebApplicationBuilder(options);
 

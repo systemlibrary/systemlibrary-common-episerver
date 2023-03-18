@@ -228,12 +228,12 @@ public abstract class BaseCms
 
         return Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsFullPath))
+            .ConfigureCmsDefaults()
             .ConfigureWebHostDefaults(config =>
             {
-                    //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
-                    //config.UseEnvironment(environment);
+                //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
+                //config.UseEnvironment(environment);
                 config.UseStartup<T>();
-            })
-            .ConfigureCmsDefaults();
+            });
     }
 }

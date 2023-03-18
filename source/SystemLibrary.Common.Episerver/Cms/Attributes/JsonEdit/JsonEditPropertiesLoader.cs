@@ -101,6 +101,7 @@ internal static class JsonEditPropertiesLoader
 
     static string GetDefinitionEnumSelections(Type type)
     {
+        
         var sb = new StringBuilder(string.Join(",", type.GetEnumNames().Select(x => "\"" + x + "\"")));
 
         sb.TrimEnd(",");

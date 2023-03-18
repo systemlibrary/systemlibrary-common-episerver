@@ -16,28 +16,16 @@ partial class IApplicationBuilderExtensions
                 areaName: Globals.AreaName + "Cms/",
                 pattern: Globals.AreaName + "Cms/{controller}/{action}/{id?}"
             );
-        });
 
-        app.UseEndpoints(endpoints =>
-        {
+            // Note: Icons in page tree
             endpoints.MapAreaControllerRoute(
-                name: Globals.AreaName + "{controller}/{action}/{id?}",
-                areaName: Globals.AreaName,
-                pattern: Globals.AreaName + "{controller}/{action}/{id?}"
-                //was: pattern: "SystemLibrary/{controller=Home}/{action=Index}/{id?}"
-                );
+               name: Globals.AreaName + "{controller}/{action}/{id?}",
+               areaName: Globals.AreaName,
+               pattern: Globals.AreaName + "{controller}/{action}/{id?}"
+               );
         });
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapAreaControllerRoute(
-                name: "/imageshopextended/{controller}/{action}",
-                areaName: "imageshopextended/",
-                pattern: "imageshopextended/" + "{controller}/{action}/{id?}"
-                );
-        });
-
-        if (options.UseEpiserverMapContentEndpoints)
+        if (options.MapEndpoints)
         {
             app.UseEndpoints(endpoints =>
             {
