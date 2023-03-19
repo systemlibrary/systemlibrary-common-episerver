@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -175,11 +176,11 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
     /// Returns true if the value has some content, else false
     /// 
     /// A simple check that they are not null and contains at least some value, for properties of type:
-    /// string, int, bool, ContentReference, ContentArea, XhtmlString, Uri and Url
+    /// string, int, bool, ContentReference, ContentArea, XhtmlString, IList, DateTime, Uri and Url
     /// </summary>
     public bool IsValid(object value)
     {
-        if (value == null || value == "" || value + "" == "0" || value == " ")
+        if (value == null || value == "" || value + "" == "0" || value == " " || value is DateTime dt && dt == DateTime.MinValue)
         {
             return false;
         }
@@ -210,6 +211,10 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
         else if (value is XhtmlString xhtmlString)
         {
             return xhtmlString.Is();
+        }
+        else if (value is IList ilist)
+        {
+            return ilist.Count > 0;
         }
         return true;
     }
