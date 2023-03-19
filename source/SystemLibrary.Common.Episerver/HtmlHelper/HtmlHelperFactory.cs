@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Http;
@@ -25,7 +24,6 @@ public class HtmlHelperFactory
     static DummyIndexView DummyIndex = new DummyIndexView();
     static ITempDataProvider TempDataProvider;
 
-
     public static IHtmlHelper<T> Build<T>() where T : class
     {
         var contextAccessor = Services.Get<IHttpContextAccessor>();
@@ -38,19 +36,6 @@ public class HtmlHelperFactory
 
         return htmlHelper;
     }
-
-    //public static IHtmlHelper Build(Type type) where T : class
-    //{
-    //    var contextAccessor = Services.Get<IHttpContextAccessor>();
-
-    //    var viewContext = GetViewContext<T>(contextAccessor);
-
-    //    var htmlHelper = Services.Get<IHtmlHelper<T>>();
-
-    //    ((IViewContextAware)htmlHelper).Contextualize(viewContext);
-
-    //    return htmlHelper;
-    //}
 
     public static IHtmlHelper Build()
     {

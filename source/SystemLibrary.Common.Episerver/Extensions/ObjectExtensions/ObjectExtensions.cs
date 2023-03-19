@@ -11,7 +11,7 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
-internal static class ObjectExtensions
+public static class ObjectExtensions
 {
     static string[] BlackListedContentProperties = new string[]
     {
@@ -52,7 +52,7 @@ internal static class ObjectExtensions
             "ViewData"
     };
 
-    internal static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, params string[] ignorePropertyNames)
+    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, params string[] ignorePropertyNames)
     {
         if (model == null) return new ExpandoObject();
 

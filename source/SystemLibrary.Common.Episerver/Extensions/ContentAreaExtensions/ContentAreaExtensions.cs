@@ -6,8 +6,6 @@ using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Web.Mvc.Html;
 
-using static SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions;
-
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
@@ -40,35 +38,32 @@ public static class ContentAreaExtensions
         var filteredItems = contentArea.FilteredItems;
 
         var rendered = new StringBuilder("");
+
+        var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
+
         foreach (var item in filteredItems)
         {
+            // Deleted pages and blocks in contentarea returns type BlockData or PageData
             var block = item.ContentLink.To<BlockData>();
             if (block != null)
             {
                 var type = block.GetOriginalType();
-
-                // Deleted pages and blocks in a contentarea returns the base type name "BlockData" or "PageData"
-                if (type.Name != "BlockData" && type.Name != "PageData")
-                {
-                    var blockDataHelper = HtmlHelperFactory.Build<BlockData>();
-                    rendered.Append(blockDataHelper.PropertyFor(x => block).ToString());
-                }
+                if (type.Name == "BlockData") continue;
+                
+                rendered.Append(iContentHtmlHelper.PropertyFor(x => block).ToString());
             }
             else
             {
                 var page = item.ContentLink.To<PageData>();
-                if(page != null)
-                {
-                    var type = page.GetOriginalType();
 
-                    if (type.Name != "BlockData" && type.Name != "PageData")
-                    {
-                        if (page.IsPublished())
-                        {
-                            var pageDataHelper = HtmlHelperFactory.Build<PageData>();
-                            rendered.Append(pageDataHelper.PropertyFor(x => page).ToString());
-                        }
-                    }
+                if (page == null) continue;
+
+                var type = page.GetOriginalType();
+                if (type.Name == "PageData") continue;
+
+                if (page.IsPublished())
+                {
+                    rendered.Append(iContentHtmlHelper.PropertyFor(x => page).ToString());
                 }
             }
         }
