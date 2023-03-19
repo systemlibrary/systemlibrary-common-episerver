@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Web;
 
+using EPiServer;
+
 using React;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -27,7 +29,8 @@ public static class TExtensions
             return "";
         }
 
-        var type = typeof(T);
+        var type = viewModel.GetOriginalType();
+
         if (!type.IsClass)
             throw new Exception("'viewModel/model' passed must be a class with C# properties, where they will be passed as props into your react component");
 
@@ -42,7 +45,6 @@ public static class TExtensions
         }
         try
         {
-            componentFullName = "modules.breadcrumbs.BreadCrumbs";
             var props = ToReactComponentProps(viewModel, additionalProps, camelCaseProps);
 
             var data = new StringBuilder();
