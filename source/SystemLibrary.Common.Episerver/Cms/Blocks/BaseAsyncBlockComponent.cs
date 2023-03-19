@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SystemLibrary.Common.Episerver.Cms.Blocks;
 
-public abstract class AsyncBlockComponentBase<T> : AsyncBlockComponent<T> where T : BlockData
+public abstract class BaseAsyncBlockComponent<T> : AsyncBlockComponent<T> where T : BlockData
 {
-    protected async Task<IViewComponentResult> ComponentResultAsync(string viewName, object model)
+    protected async Task<IViewComponentResult> ResultAsync(string viewName, object model)
     {
         if (!viewName.StartsWith("~"))
             throw new Exception("ComponentResultAsync() requires a full relative path to the view, starting with ~/");

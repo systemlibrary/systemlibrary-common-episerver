@@ -8,7 +8,7 @@
         internal const string AreaName = "SystemLibrary/Common/Episerver/";
         internal const string AreaPath = "/SystemLibrary/Common/Episerver/";
 
-        internal static bool IsDeveloping => true;
+        internal static bool IsDeveloping => false;
 
         internal static string LibraryBasePath
         {

@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace SystemLibrary.Common.Episerver.Cms.Blocks;
 
 [TemplateDescriptor(Inherited = true)]
-public class DefaultBlockComponent : AsyncBlockComponentBase<BlockData>
+public class DefaultBlockComponent : BaseAsyncBlockComponent<BlockData>
 {
     internal static string DefaultBlockComponentFolderPath;
     protected override async Task<IViewComponentResult> InvokeComponentAsync(BlockData currentBlock)
     {
         if (DefaultBlockComponentFolderPath == null)
-            throw new Exception("DefaultBlockComponentFolderPath is null. Please specify it during app.CommonEpiserverApplicationBuilder options, set in your startup/program. It should be the default root folder where block lives in, for instance ~/Content/Blocks/");
+            throw new Exception("A block is missing a controller, tried using the 'DefaultBlockComponent as a controller, but DefaultBlockComponentFolderPath is null. Please specify it during app.CommonEpiserverApplicationBuilder options, set in your startup/program. It should be the default root folder where block lives in, for instance ~/Content/Blocks/");
 
         if (!DefaultBlockComponentFolderPath.StartsWith("~") || !DefaultBlockComponentFolderPath.EndsWith("/"))
             throw new Exception("DefaultBlockComponentFolderPath must start with ~/ and end with /");

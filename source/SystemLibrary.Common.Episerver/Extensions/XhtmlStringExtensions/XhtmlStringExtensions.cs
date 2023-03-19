@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 using EPiServer.Core;
+using EPiServer.Core.Html.StringParsing;
 using EPiServer.Web.Mvc.Html;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -39,8 +41,12 @@ public static class XhtmlStringExtensions
 
         try
         {
+            if (xhtmlString.Fragments.All(fragment => fragment is StaticFragment))
+            {
+                return xhtmlString.ToHtmlString();
+            }
+
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
-            var icontentHelper = HtmlHelperFactory.Build<IContent>();
 
             var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
             var rendered = new StringBuilder();
