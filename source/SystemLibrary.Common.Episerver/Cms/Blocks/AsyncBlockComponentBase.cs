@@ -6,7 +6,7 @@ using EPiServer.Web.Mvc;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver.Cms.Blocks;
 
 public abstract class AsyncBlockComponentBase<T> : AsyncBlockComponent<T> where T : BlockData
 {

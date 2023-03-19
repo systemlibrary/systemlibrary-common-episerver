@@ -2,7 +2,7 @@
 {
     internal class DesktopResolution : BaseDisplayResolution
     {
-        public DesktopResolution() : base("/display-template/desktop", 1920, 1080)
+        public DesktopResolution() : base("Desktop", 1920, 1080)
         {
         }
     }

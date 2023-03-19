@@ -64,7 +64,7 @@ public static class XhtmlStringExtensions
             else
                 rendered.Append(data.ToString());
 
-            Dump.Write(rendered);
+            //Dump.Write(rendered);
 
             //for (int i = 0; i < xhtmlString.Fragments.Count; i++)
             //{
@@ -192,86 +192,5 @@ public static class XhtmlStringExtensions
     //    }
     //}
 
-    public class HtmlHelperFactory
-    {
-        //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
-        static ModelStateDictionary ModelStateDictionary = new ModelStateDictionary();
-        static HtmlHelperOptions HtmlHelperOptions = new HtmlHelperOptions();
-        static ControllerActionDescriptor ControllerActionDescriptor = new ControllerActionDescriptor();
-        static DummyIndexView DummyIndex = new DummyIndexView();
-        static ITempDataProvider TempDataProvider;
-
-        public static IHtmlHelper<T> Build<T>() where T : class
-        {
-            var contextAccessor = Services.Get<IHttpContextAccessor>();
-
-            var viewContext = GetViewContext<T>(contextAccessor);
-
-            var htmlHelper = Services.Get<IHtmlHelper<T>>();
-
-            ((IViewContextAware)htmlHelper).Contextualize(viewContext);
-
-            return htmlHelper;
-        }
-
-        public static IHtmlHelper Build()
-        {
-            var contextAccessor = Services.Get<IHttpContextAccessor>();
-
-            var viewContext = GetViewContext(contextAccessor);
-
-            var htmlHelper = Services.Get<IHtmlHelper>();
-
-            ((IViewContextAware)htmlHelper).Contextualize(viewContext);
-
-            return htmlHelper;
-        }
-
-        static ViewContext GetViewContext<T>(IHttpContextAccessor contextAccessor)
-        {
-            var modelMetadataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
-
-            var viewData = new ViewDataDictionary<T>(modelMetadataProvider, ModelStateDictionary);
-
-            return GetViewContext(contextAccessor, viewData);
-        }
-
-        static ViewContext GetViewContext(IHttpContextAccessor contextAccessor)
-        {
-            var modelMetadataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<IModelMetadataProvider>();
-
-            var viewData = new ViewDataDictionary(modelMetadataProvider, ModelStateDictionary);
-
-            return GetViewContext(contextAccessor, viewData);
-        }
-
-        static ViewContext GetViewContext(IHttpContextAccessor contextAccessor, ViewDataDictionary viewData)
-        {
-            if (TempDataProvider == null)
-                TempDataProvider = contextAccessor.HttpContext.RequestServices.GetRequiredService<ITempDataProvider>();
-
-            var tempData = new TempDataDictionary(contextAccessor.HttpContext, TempDataProvider);
-
-            // using StringWriter writer = new StringWriter();
-
-            return new ViewContext(
-                new ActionContext(contextAccessor.HttpContext, contextAccessor.HttpContext.GetRouteData(), ControllerActionDescriptor),
-                DummyIndex,
-                viewData,
-                tempData,
-                TextWriter.Null,
-                HtmlHelperOptions
-            );
-        }
-
-        internal class DummyIndexView : IView
-        {
-            public Task RenderAsync(ViewContext context)
-            {
-                return Task.CompletedTask;
-            }
-
-            public string Path => "Index";
-        }
-    }
+    
 }

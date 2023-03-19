@@ -2,7 +2,7 @@
 {
     internal class MobileResolution : BaseDisplayResolution
     {
-        public MobileResolution() : base("/display-template/mobile", 414, 896)
+        public MobileResolution() : base("Mobile", 414, 896)
         {
         }
     }

@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
+using SystemLibrary.Common.Episerver.Cms.Blocks;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -27,6 +28,11 @@ public static partial class IApplicationBuilderExtensions
     /// </example>
     public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, IWebHostEnvironment env, CommonEpiserverApplicationBuilderOptions options = null)
     {
+        if (!File.Exists("module.config"))
+        {
+            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the instructions at:https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
+        }
+
         if (env.WebRootPath == null)
         {
             env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
@@ -37,12 +43,9 @@ public static partial class IApplicationBuilderExtensions
         if (options == null)
             options = new CommonEpiserverApplicationBuilderOptions();
 
-        ApplicationBuilderLogging(app, options);
+        DefaultBlockComponent.DefaultBlockComponentFolderPath = options.DefaultBlockComponentFolderPath;
 
-        if (!File.Exists("module.config"))
-        {
-            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the instructions at:https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
-        }
+        ApplicationBuilderLogging(app, options);
 
         ApplicationBuilderCompression(app, options);
 

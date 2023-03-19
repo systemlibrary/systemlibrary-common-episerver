@@ -59,10 +59,15 @@ public static class ContentAreaExtensions
                 var page = item.ContentLink.To<PageData>();
                 if(page != null)
                 {
-                    if (page.IsPublished())
+                    var type = page.GetOriginalType();
+
+                    if (type.Name != "BlockData" && type.Name != "PageData")
                     {
-                        var pageDataHelper = HtmlHelperFactory.Build<PageData>();
-                        rendered.Append(pageDataHelper.PropertyFor(x => page).ToString());
+                        if (page.IsPublished())
+                        {
+                            var pageDataHelper = HtmlHelperFactory.Build<PageData>();
+                            rendered.Append(pageDataHelper.PropertyFor(x => page).ToString());
+                        }
                     }
                 }
             }

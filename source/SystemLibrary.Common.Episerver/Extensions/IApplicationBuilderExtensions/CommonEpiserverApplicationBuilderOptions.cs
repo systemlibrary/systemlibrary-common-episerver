@@ -8,4 +8,5 @@ public class CommonEpiserverApplicationBuilderOptions : Web.Extensions.CommonWeb
     public bool UseExceptionLogging = true;
     public bool MapEndpoints = true;
     public string CmsLoginPath = null;
+    public string DefaultBlockComponentFolderPath = null;
 }

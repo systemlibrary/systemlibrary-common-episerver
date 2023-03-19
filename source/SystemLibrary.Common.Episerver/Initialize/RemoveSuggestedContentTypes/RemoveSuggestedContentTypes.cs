@@ -1,8 +1,5 @@
-﻿using EPiServer.Cms.Shell.UI.Rest;
-using EPiServer.Framework;
+﻿using EPiServer.Framework;
 using EPiServer.ServiceLocation;
-
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Initialize;
 
