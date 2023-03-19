@@ -1017,6 +1017,57 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections
   nameWithType: MultiDropdownSelectionFactory.GetSelections
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks
+  name: SystemLibrary.Common.Episerver.Cms.Blocks
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.html
+  commentId: N:SystemLibrary.Common.Episerver.Cms.Blocks
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks
+  nameWithType: SystemLibrary.Common.Episerver.Cms.Blocks
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1
+  name: BaseAsyncBlockComponent<T>
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent-1.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1
+  name.vb: BaseAsyncBlockComponent(Of T)
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent<T>
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent(Of T)
+  nameWithType: BaseAsyncBlockComponent<T>
+  nameWithType.vb: BaseAsyncBlockComponent(Of T)
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1.ResultAsync(System.String,System.Object)
+  name: ResultAsync(String, Object)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent-1.html#SystemLibrary_Common_Episerver_Cms_Blocks_BaseAsyncBlockComponent_1_ResultAsync_System_String_System_Object_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1.ResultAsync(System.String,System.Object)
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent<T>.ResultAsync(System.String, System.Object)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent(Of T).ResultAsync(System.String, System.Object)
+  nameWithType: BaseAsyncBlockComponent<T>.ResultAsync(String, Object)
+  nameWithType.vb: BaseAsyncBlockComponent(Of T).ResultAsync(String, Object)
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1.ResultAsync*
+  name: ResultAsync
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent-1.html#SystemLibrary_Common_Episerver_Cms_Blocks_BaseAsyncBlockComponent_1_ResultAsync_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent`1.ResultAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent<T>.ResultAsync
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Blocks.BaseAsyncBlockComponent(Of T).ResultAsync
+  nameWithType: BaseAsyncBlockComponent<T>.ResultAsync
+  nameWithType.vb: BaseAsyncBlockComponent(Of T).ResultAsync
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent
+  name: DefaultBlockComponent
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent
+  nameWithType: DefaultBlockComponent
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync(EPiServer.Core.BlockData)
+  name: InvokeComponentAsync(BlockData)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.html#SystemLibrary_Common_Episerver_Cms_Blocks_DefaultBlockComponent_InvokeComponentAsync_EPiServer_Core_BlockData_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync(EPiServer.Core.BlockData)
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync(EPiServer.Core.BlockData)
+  nameWithType: DefaultBlockComponent.InvokeComponentAsync(BlockData)
+- uid: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync*
+  name: InvokeComponentAsync
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.html#SystemLibrary_Common_Episerver_Cms_Blocks_DefaultBlockComponent_InvokeComponentAsync_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Blocks.DefaultBlockComponent.InvokeComponentAsync
+  nameWithType: DefaultBlockComponent.InvokeComponentAsync
 - uid: SystemLibrary.Common.Episerver.Cms.Descriptors
   name: SystemLibrary.Common.Episerver.Cms.Descriptors
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Descriptors.html
@@ -1631,12 +1682,18 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.CmsLoginPath
   fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.CmsLoginPath
   nameWithType: CommonEpiserverApplicationBuilderOptions.CmsLoginPath
-- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  name: UseEpiserverMapContentEndpoints
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_UseEpiserverMapContentEndpoints
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseEpiserverMapContentEndpoints
-  nameWithType: CommonEpiserverApplicationBuilderOptions.UseEpiserverMapContentEndpoints
+- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.DefaultBlockComponentFolderPath
+  name: DefaultBlockComponentFolderPath
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_DefaultBlockComponentFolderPath
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.DefaultBlockComponentFolderPath
+  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.DefaultBlockComponentFolderPath
+  nameWithType: CommonEpiserverApplicationBuilderOptions.DefaultBlockComponentFolderPath
+- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.MapEndpoints
+  name: MapEndpoints
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_MapEndpoints
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.MapEndpoints
+  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.MapEndpoints
+  nameWithType: CommonEpiserverApplicationBuilderOptions.MapEndpoints
 - uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.UseExceptionLogging
   name: UseExceptionLogging
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_UseExceptionLogging
@@ -1735,6 +1792,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.IsNot
   nameWithType: ContentAreaExtensions.IsNot
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render(EPiServer.Core.ContentArea)
+  name: Render(ContentArea)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_Render_EPiServer_Core_ContentArea_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render(EPiServer.Core.ContentArea)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render(EPiServer.Core.ContentArea)
+  nameWithType: ContentAreaExtensions.Render(ContentArea)
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render*
+  name: Render
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_Render_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.Render
+  nameWithType: ContentAreaExtensions.Render
 - uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions
   name: ContentReferenceExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html
@@ -1818,18 +1888,40 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Extensions.ExtendedMetadataExtensions.GetAttribute(Of T)(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
   nameWithType: ExtendedMetadataExtensions.GetAttribute<T>(ExtendedMetadata)
   nameWithType.vb: ExtendedMetadataExtensions.GetAttribute(Of T)(ExtendedMetadata)
+- uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions
+  name: HtmlHelperExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions
+  nameWithType: HtmlHelperExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea*
+  name: PropertyForContentArea
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html#SystemLibrary_Common_Episerver_Extensions_HtmlHelperExtensions_PropertyForContentArea_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea
+  nameWithType: HtmlHelperExtensions.PropertyForContentArea
+- uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  name: PropertyForContentArea<TModel, TValue>(IHtmlHelper<TModel>, Expression<Func<TModel, TValue>>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html#SystemLibrary_Common_Episerver_Extensions_HtmlHelperExtensions_PropertyForContentArea__2_Microsoft_AspNetCore_Mvc_Rendering_IHtmlHelper___0__System_Linq_Expressions_Expression_System_Func___0___1___
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea``2(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
+  name.vb: PropertyForContentArea(Of TModel, TValue)(IHtmlHelper(Of TModel), Expression(Of Func(Of TModel, TValue)))
+  fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea<TModel, TValue>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, System.Linq.Expressions.Expression<System.Func<TModel, TValue>>)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea(Of TModel, TValue)(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper(Of TModel), System.Linq.Expressions.Expression(Of System.Func(Of TModel, TValue)))
+  nameWithType: HtmlHelperExtensions.PropertyForContentArea<TModel, TValue>(IHtmlHelper<TModel>, Expression<Func<TModel, TValue>>)
+  nameWithType.vb: HtmlHelperExtensions.PropertyForContentArea(Of TModel, TValue)(IHtmlHelper(Of TModel), Expression(Of Func(Of TModel, TValue)))
 - uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
   name: IApplicationBuilderExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html
   commentId: T:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
   fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions
   nameWithType: IApplicationBuilderExtensions
-- uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
-  name: CommonEpiserverApplicationBuilder(IApplicationBuilder, CommonEpiserverApplicationBuilderOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Extensions_IApplicationBuilderExtensions_CommonEpiserverApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
-  fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
-  nameWithType: IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(IApplicationBuilder, CommonEpiserverApplicationBuilderOptions)
+- uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
+  name: CommonEpiserverApplicationBuilder(IApplicationBuilder, IWebHostEnvironment, CommonEpiserverApplicationBuilderOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Extensions_IApplicationBuilderExtensions_CommonEpiserverApplicationBuilder_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationBuilderOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(Microsoft.AspNetCore.Builder.IApplicationBuilder, Microsoft.AspNetCore.Hosting.IWebHostEnvironment, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions)
+  nameWithType: IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder(IApplicationBuilder, IWebHostEnvironment, CommonEpiserverApplicationBuilderOptions)
 - uid: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder*
   name: CommonEpiserverApplicationBuilder
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html#SystemLibrary_Common_Episerver_Extensions_IApplicationBuilderExtensions_CommonEpiserverApplicationBuilder_
@@ -1837,6 +1929,28 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder
   nameWithType: IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder
+- uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
+  name: ObjectExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
+  nameWithType: ObjectExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject(System.Object,System.Boolean,System.String[])
+  name: ToExpandoObject(Object, Boolean, String[])
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToExpandoObject_System_Object_System_Boolean_System_String___
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject(System.Object,System.Boolean,System.String[])
+  name.vb: ToExpandoObject(Object, Boolean, String())
+  fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject(System.Object, System.Boolean, System.String[])
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject(System.Object, System.Boolean, System.String())
+  nameWithType: ObjectExtensions.ToExpandoObject(Object, Boolean, String[])
+  nameWithType.vb: ObjectExtensions.ToExpandoObject(Object, Boolean, String())
+- uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject*
+  name: ToExpandoObject
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToExpandoObject_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToExpandoObject
+  nameWithType: ObjectExtensions.ToExpandoObject
 - uid: SystemLibrary.Common.Episerver.Extensions.PageDataExtensions
   name: PageDataExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.html
@@ -1932,6 +2046,64 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject(Of T)(System.String)
   nameWithType: StringExtensions.JsonEditAsObject<T>(String)
   nameWithType.vb: StringExtensions.JsonEditAsObject(Of T)(String)
+- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
+  name: ToFriendlyUrl(String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
+  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
+  nameWithType: StringExtensions.ToFriendlyUrl(String)
+- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl*
+  name: ToFriendlyUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl
+  nameWithType: StringExtensions.ToFriendlyUrl
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions
+  name: UrlExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.UrlExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions
+  nameWithType: UrlExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is(EPiServer.Url)
+  name: Is(Url)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_Is_EPiServer_Url_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is(EPiServer.Url)
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is(EPiServer.Url)
+  nameWithType: UrlExtensions.Is(Url)
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is*
+  name: Is
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_Is_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.Is
+  nameWithType: UrlExtensions.Is
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot(EPiServer.Url)
+  name: IsNot(Url)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_IsNot_EPiServer_Url_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot(EPiServer.Url)
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot(EPiServer.Url)
+  nameWithType: UrlExtensions.IsNot(Url)
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot*
+  name: IsNot
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_IsNot_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot
+  nameWithType: UrlExtensions.IsNot
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
+  name: ToFriendlyUrl(Url)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_ToFriendlyUrl_EPiServer_Url_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
+  nameWithType: UrlExtensions.ToFriendlyUrl(Url)
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl*
+  name: ToFriendlyUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_ToFriendlyUrl_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl
+  nameWithType: UrlExtensions.ToFriendlyUrl
 - uid: SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions
   name: ViewContextExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ViewContextExtensions.html
@@ -1983,6 +2155,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot
   nameWithType: XhtmlStringExtensions.IsNot
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render(EPiServer.Core.XhtmlString,System.Boolean)
+  name: Render(XhtmlString, Boolean)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Render_EPiServer_Core_XhtmlString_System_Boolean_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render(EPiServer.Core.XhtmlString,System.Boolean)
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render(EPiServer.Core.XhtmlString, System.Boolean)
+  nameWithType: XhtmlStringExtensions.Render(XhtmlString, Boolean)
+- uid: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render*
+  name: Render
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html#SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Render_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render
+  nameWithType: XhtmlStringExtensions.Render
 - uid: SystemLibrary.Common.Episerver.FontAwesome
   name: SystemLibrary.Common.Episerver.FontAwesome
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.html
@@ -12469,6 +12654,34 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.z
   fullName: SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.z
   nameWithType: FontAwesomeSolid.z
+- uid: SystemLibrary.Common.Episerver.HtmlHelperFactory
+  name: HtmlHelperFactory
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.html
+  commentId: T:SystemLibrary.Common.Episerver.HtmlHelperFactory
+  fullName: SystemLibrary.Common.Episerver.HtmlHelperFactory
+  nameWithType: HtmlHelperFactory
+- uid: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build
+  name: Build()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.html#SystemLibrary_Common_Episerver_HtmlHelperFactory_Build
+  commentId: M:SystemLibrary.Common.Episerver.HtmlHelperFactory.Build
+  fullName: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build()
+  nameWithType: HtmlHelperFactory.Build()
+- uid: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build*
+  name: Build
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.html#SystemLibrary_Common_Episerver_HtmlHelperFactory_Build_
+  commentId: Overload:SystemLibrary.Common.Episerver.HtmlHelperFactory.Build
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build
+  nameWithType: HtmlHelperFactory.Build
+- uid: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build``1
+  name: Build<T>()
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.html#SystemLibrary_Common_Episerver_HtmlHelperFactory_Build__1
+  commentId: M:SystemLibrary.Common.Episerver.HtmlHelperFactory.Build``1
+  name.vb: Build(Of T)()
+  fullName: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build<T>()
+  fullName.vb: SystemLibrary.Common.Episerver.HtmlHelperFactory.Build(Of T)()
+  nameWithType: HtmlHelperFactory.Build<T>()
+  nameWithType.vb: HtmlHelperFactory.Build(Of T)()
 - uid: SystemLibrary.Common.Episerver.Initialize
   name: SystemLibrary.Common.Episerver.Initialize
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.html
