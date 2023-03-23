@@ -70,14 +70,10 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.5.0.1s
-- Updated deps
-- ToExpandoObject() object extension, which converts a class with Episerver properties such as Url and XhtmlString to normal string values, ready to be rendered or sent to react as props
-- Validator now also validates IList and DateTime
-- ConfigureCmsDefaults is now before WebHostDefaults, else Views always complains about not being at "root" in "Components"-folder
-- DisplayName in resolution list fixed
-- DefaultBlockComponentPath option is now available to configure a default block controller for all blocks
-- HtmlHelperFactory added to retrieve a fake HtmlHelper to be able to invoke HtmlHelper extensions
+- 6.5.0.2
+- UriExtensions for is and isnot and tofriendlyurl
+- StringExtensions for ToFriendlyUrl
+- BaseCms now contains a property to get primary host url registered inside Admin > Web Settings
 
 #### Version history
 - View git history of this file if interested
