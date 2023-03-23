@@ -101,7 +101,7 @@ public static class ObjectExtensions
                 expando.Add(name, url.ToFriendlyUrl());
 
             else if (value is Uri uri)
-                expando.Add(name, uri?.OriginalString.ToFriendlyUrl());
+                expando.Add(name, uri.ToFriendlyUrl());
 
             else if (value is ContentReference contentReference)
                 expando.Add(name, contentReference.ToFriendlyUrl());
@@ -113,7 +113,7 @@ public static class ObjectExtensions
                 expando.Add(name, enumerable);
 
             else if (value is ContentArea contentArea)
-                expando.Add(name, contentArea.Render());
+                expando.Add(name, contentArea.Render());    // TODO: Consider read each fragment, render each fragment...
 
             else if (value is Enum en)
                 expando.Add(name, en.ToValue());

@@ -91,7 +91,7 @@ public class HtmlHelperFactory
     {
         public Task RenderAsync(ViewContext context)
         {
-            return Task.CompletedTask;
+            return Task.CompletedTask;  // NOTE: Is this more performant than Task.FromResult(0)? 
         }
 
         public string Path => "Index";

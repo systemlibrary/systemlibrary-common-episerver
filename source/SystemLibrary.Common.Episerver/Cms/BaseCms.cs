@@ -236,4 +236,50 @@ public abstract class BaseCms
                 config.UseStartup<T>();
             });
     }
+
+    static string _PrimaryHostUrl;
+    /// <summary>
+    /// Returns the primary site registered in Episerver, or the SiteUrl defined, or if both are null, falls back to 'localhost', returns never null
+    /// 
+    /// Note: This requires you to register your primary url inside Web Site Settings, under Admin, within the CMS
+    /// </summary>
+    public static string PrimaryHostUrl
+    {
+        get
+        {
+            if (_PrimaryHostUrl == null)
+            {
+                var siteDefinition = SiteDefinition.Current;
+
+                var schema = HttpContextInstance.Current?.Request?.Scheme ?? "http";
+
+                if (siteDefinition == null)
+                {
+                    _PrimaryHostUrl = schema + "://localhost";
+                }
+                else
+                {
+                    var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost() && h.Name != "localhost");
+
+                    if (host == null)
+                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && h.Name != "localhost" && h.Name.Contains("."));
+
+                    if (host == null)
+                    {
+                        var siteUrl = siteDefinition.SiteUrl;
+
+                        if (siteUrl.IsNot())
+                            _PrimaryHostUrl = schema + "://localhost";
+                        else
+                            _PrimaryHostUrl = schema + "://" + siteUrl.Host;
+                    }
+                    else
+                    {
+                        _PrimaryHostUrl = schema + "://localhost";
+                    }
+                }
+            }
+            return _PrimaryHostUrl;
+        }
+    }
 }
