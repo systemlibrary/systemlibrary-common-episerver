@@ -70,7 +70,7 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.5.0.3
+- 6.5.0.4
 - ContentRefrence ToFriendlyUrl takes param for absolute
 
 #### Version history
