@@ -58,12 +58,12 @@ public static class ContentReferenceExtensions
     /// <summary>
     /// Returns a friendly url behind the content reference, or null if content reference is null or has an invalid ID
     /// </summary>
-    public static string ToFriendlyUrl(this ContentReference contentReference)
+    public static string ToFriendlyUrl(this ContentReference contentReference, bool? convertToAbsolute = null)
     {
         if (contentReference.IsNot()) return null;
 
         var url = IUrlResolver.GetUrl(contentReference, null, new UrlResolverArguments { ContextMode = ContextMode.Default });
 
-        return url;
+        return url.ToFriendlyUrl(convertToAbsolute);
     }
 }

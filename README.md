@@ -70,10 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.5.0.2
-- UriExtensions for is and isnot and tofriendlyurl
-- StringExtensions for ToFriendlyUrl
-- BaseCms now contains a property to get primary host url registered inside Admin > Web Settings
+- 6.5.0.3
+- ContentRefrence ToFriendlyUrl takes param for absolute
 
 #### Version history
 - View git history of this file if interested

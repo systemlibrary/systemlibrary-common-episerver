@@ -17,10 +17,10 @@ public static class UrlExtensions
     /// <summary>
     /// Returns a friendly url behind the content reference, or null if content reference is null or has an invalid ID
     /// </summary>
-    public static string ToFriendlyUrl(this Url url)
+    public static string ToFriendlyUrl(this Url url, bool? convertToAbsolute = null)
     {
         if (IsNot(url)) return "";
 
-        return url.OriginalString;
+        return url.OriginalString.ToFriendlyUrl(convertToAbsolute);
     }
 }
