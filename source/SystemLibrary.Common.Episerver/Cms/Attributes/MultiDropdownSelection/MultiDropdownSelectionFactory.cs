@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using EPiServer.Shell.ObjectEditing;
@@ -17,21 +16,33 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
 
         try
         {
-            var options = GetOptions<MultiDropdownSelectionAttribute>(metadata);
-
             var type = metadata.ModelType;
 
             var propertyName = metadata.PropertyName;
 
+            if (type.Name == "String" && propertyName.IsNot())
+            {
+                return items;
+            }
+
+            var options = GetOptions<MultiDropdownSelectionAttribute>(metadata);
+
+            var defaultPropertyIListOfStrings = "epi-cms/contentediting/editors/propertyvaluelist/PropertyValueList";
+            if (metadata.ClientEditingClass == defaultPropertyIListOfStrings)
+            {
+                metadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/Script";
+            }
             var genericType = GetGenericListType(type);
 
             if (genericType == null)
-                throw new Exception("Property " + propertyName + " is of wrong type, must be an IList<string>");
+            {
+                throw new Exception("Property " + propertyName + " (Display: " + metadata.DisplayName + ") has wrong type, must be an IList<string> or IList<Enum>");
+            }
 
             var enumType = options.EnumType;
 
             if (enumType != null && !enumType.IsEnum)
-                throw new Exception("Property " + propertyName + " has an invalid 'EnumType', the type must be an Enum");
+                throw new Exception("Property " + propertyName + " (Display: " + metadata.DisplayName + ") has an invalid 'EnumType', the type must be an Enum");
 
             (var Show, var Hide) = GetShowHideOptions(options, propertyName);
 
@@ -48,9 +59,12 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
             }
             else
             {
-                //Its a comma separated list of data, that was manually entered by a "input field" where Editors can write whatever they want? Or???
+                //Its a comma separated list of data, that was manually entered by a "input field" where Editors can write whatever they want
+                if (value is IList<string> keys)
+                {
+                    // TODO: Support show/hide, and expired "strings"?
+                }
             }
-
         }
         catch (Exception ex)
         {

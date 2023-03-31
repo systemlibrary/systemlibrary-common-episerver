@@ -1,5 +1,8 @@
-﻿using EPiServer.Framework;
+﻿using EPiServer.Cms.Shell.UI.Rest;
+using EPiServer.Framework;
 using EPiServer.ServiceLocation;
+
+using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Initialize;
 
@@ -15,7 +18,7 @@ public class RemoveSuggestedContentTypes : StartupModule
         if (Extensions.ServiceCollectionExtensions.Options == null)
             Log.Error("Error: You've not called on extension for IServiceCollection named: CommonEpiserverServices()");
 
-        //if (Extensions.ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
-      //      Services.Remove<IContentTypeAdvisor>();
+        if (Extensions.ServiceCollectionExtensions.Options?.HideSuggestedContentTypes == true)
+            Services.Remove<IContentTypeAdvisor>();
     }
 }

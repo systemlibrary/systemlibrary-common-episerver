@@ -13,6 +13,6 @@ public static class HtmlHelperExtensions
 {
     public static IHtmlContent PropertyForContentArea<TModel, TValue>(this IHtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression)
     {
-        return html.PropertyFor(expression, new { SkipWrapperTag = true, HasContainer = false, HasItemContainer = false });
+        return html.PropertyFor(expression, new { SkipWrapperTag = true, HasContainer = false, HasItemContainer = false, CustomTag = "systemLibraryEpiserverContentAreaRender" });
     }
 }

@@ -113,7 +113,6 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     background-color: ContentCreationBorderColor !important;
 }
 
-
 /* PAGE TREE AND BLOCK TREE GETS A BORDER BOTTOM FOR SELECTED ITEM */
 .Sleek .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected::before {
     border-bottom: 1px solid PageTreeSelectedContentBorderColor;
@@ -136,11 +135,6 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     margin-top: 5px;
 }
 
-/* PAGE TREE ICON */
-.Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage {
-    margin-top: 5px;
-}
-
 /* PAGE NAME (TITLE) IN NAVIGATION WHEN VIEWING A PAGE OR BLOCK'S PREFIX ICON */
 .Sleek .epi-breadCrumbs-title-wrapper > .dijitInline.dijitIcon.epi-breadCrumbsCurrentItem-icon.dijitTreeIcon.epi-iconObjectPage {
     visibility: hidden;
@@ -154,7 +148,7 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
 
 /* PAGE TREE CHEVRON TO EXPAND OR COLLAPSE */
 .Sleek .dijitTreeExpandoOpened {
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
 /* BORDER ON CONTENT TYPES WHEN CLICKING ON 'NEW PAGE' OR 'NEW BLOCK' */
@@ -170,12 +164,6 @@ div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-
     max-width: 70%;
     margin: 0 auto;
     padding-top: 8%;
-}
-
-/* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
-.Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
-    background-color: ActiveProjectBarBackgroundColor !important;
-    border-color: ActiveProjectBarBackgroundColorBorder !important;
 }
 
 /* ILIST PROPERTY DIALOG - HIDING THE OVERFLOW */

@@ -16,8 +16,12 @@ public abstract class BaseMultiSelectionFactory
         foreach (Type @interface in type.GetInterfaces())
         {
             if (@interface.IsGenericType)
+            {
                 if (@interface.GetGenericTypeDefinition() == typeof(ICollection<>))
                     return @interface.GetGenericArguments()[0];
+                else if(@interface.GetGenericTypeDefinition() == typeof(IList<>))
+                    return @interface.GetGenericArguments()[0];
+            }
         }
         return null;
     }

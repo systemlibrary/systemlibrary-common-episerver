@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.5.0.4</Version>
+		<Version>6.5.1.1</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -31,6 +31,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
+		<None Remove="Cms\Edit\showActiveProjectBarBackgroundColor.css" />
 		<None Remove="Cms\Edit\showEditFieldsAsColumns.css" />
 		<None Remove="Cms\Properties\Message\Message.css" />
 		<None Remove="Cms\Properties\Message\Message.html" />
@@ -56,6 +57,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<EmbeddedResource Include="Cms\Edit\showEditFieldsAsColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
+		<EmbeddedResource Include="Cms\Edit\showActiveProjectBarBackgroundColor.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
@@ -63,7 +65,7 @@
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-solid-900.woff2" />
-		<EmbeddedResource Include="Cms\Edit\EditStyle.css" />
+		<EmbeddedResource Include="Cms\Edit\showEditStyle.css" />
 		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />
@@ -104,12 +106,12 @@
 	<ItemGroup>
 	  <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.13.*" />
 	  <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.13.*" />
-	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.17.*" />
+	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.18.0" />
 	  <PackageReference Include="EPiServer.Framework" Version="12.13.*" />
 	  <PackageReference Include="EPiServer.Hosting" Version="12.13.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
 	  <PackageReference Include="React.AspNet" Version="5.2.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.6.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.7.*" />
 	</ItemGroup>
 
 	<PropertyGroup>

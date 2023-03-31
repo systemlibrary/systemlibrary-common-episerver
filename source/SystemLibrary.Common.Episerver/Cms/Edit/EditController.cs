@@ -18,28 +18,28 @@ public partial class EditController : BaseController
     public ActionResult Style()
     {
         AddCacheHeaders();
-
+     
         if (IsCached(StyleCache)) return StyleCache;
 
         var edit = AppSettings.Current.Edit;
 
-        var css = GetEmbeddedResource(CurrentFolder, "EditStyle.css");
-
-        var hideLanguageColumnInVersionGadget = edit.HideLanguageColumnInVersionGadget ? "0px" : "";
-        var hideLanguageColumnInVersionGadgetVisibility = edit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
-
-        css.Replace(nameof(edit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
-        css.Replace(nameof(edit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
-        css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
-        css.Replace(nameof(edit.ContentCreationBorderColor), edit.ContentCreationBorderColor);
-        css.Replace(nameof(edit.ContentCreationBackgroundColor), edit.ContentCreationBackgroundColor);
-        css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
-
-        if (edit.ActiveProjectBarBackgroundColor.Is())
+        var css = new StringBuilder("");
+        if (edit.ShowEditStyle)
         {
-            css.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
-            css.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
+            css.Append(GetEmbeddedResource(CurrentFolder, "showEditStyle.css"));
+
+            var hideLanguageColumnInVersionGadget = edit.HideLanguageColumnInVersionGadget ? "0px" : "";
+            var hideLanguageColumnInVersionGadgetVisibility = edit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
+
+            css.Replace(nameof(edit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
+            css.Replace(nameof(edit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
+            css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
+            css.Replace(nameof(edit.ContentCreationBorderColor), edit.ContentCreationBorderColor);
+            css.Replace(nameof(edit.ContentCreationBackgroundColor), edit.ContentCreationBackgroundColor);
+            css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
         }
+
+        AppendActiveProjectBarBackgroundColor(edit, css);
 
         AppendShowEditFieldsAsColumns(edit, css);
 
@@ -50,6 +50,16 @@ public partial class EditController : BaseController
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (StyleCache = GetFileContentResult(css, "text/css"));
+    }
+
+    void AppendActiveProjectBarBackgroundColor(EditConfiguration edit, StringBuilder sb)
+    {
+        if (edit.ActiveProjectBarBackgroundColor.IsNot()) return;
+
+        sb.Append(GetEmbeddedResource(CurrentFolder, "showActiveProjectBarBackgroundColor.css"));
+
+        sb.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
+        sb.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
     }
 
     void AppendShowEditFieldsAsColumns(EditConfiguration edit, StringBuilder sb)

@@ -189,7 +189,7 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
         {
             foreach (var data in additionalMetadata)
             {
-                if (data.Value is ExtendedMetadata extendedMetadata)
+                if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
                 {
                     extendedMetadata.SelectionFactoryType = typeof(BoxSelectionFactory);
                     extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/BoxSelection/" + nameof(BoxSelectionController.Script);

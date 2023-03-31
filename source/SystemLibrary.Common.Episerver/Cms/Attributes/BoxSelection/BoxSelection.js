@@ -140,6 +140,7 @@
             }
 
             function getBackgroundColorValue(data) {
+
                 if (!is(data)) {
                     return null;
                 }
@@ -160,9 +161,9 @@
 
                 if (isColorValue(data)) {
                     if (data.includes('(')) {
-                        return "rgb" + data;
+                        return "rgba" + data;
                     }
-                    return "rgb(" + data + ")";
+                    return "rgba(" + data + ")";
                 }
 
                 return null;
@@ -183,6 +184,26 @@
             }
 
             function appendContainerInlineBackground(data) {
+                if (is(data)) {
+                    // data contains comma, and each "word" is either Hex, or Rgb, or "no css class" (dash, underscores), then it is 
+                    // built in colors, hex or rgb values
+                    data = data.toString();
+                    if (data.includes('-') && !data.includes("/")) {
+                        let colors = data.split('-');
+                        if (colors.length === 2) {
+                            let bottom = getBackgroundColorValue(colors[0].replace(' ', ''));
+                            if (bottom === null) {
+                                bottom = colors[0].replace(' ', '');
+                            }
+                            let top = getBackgroundColorValue(colors[1].replace(' ', ''));
+                            if (top === null) {
+                                top = colors[1].replace(' ', '');
+                            }
+                            return 'background-image: linear-gradient(to top left, ' + bottom + ' 48%, ' + top + ' 51%); text-shadow: 1.25px 1.25px #FFF;';
+                        }
+                    }
+                }
+
                 let backgroundValue = getBackgroundColorValue(data);
                 if (backgroundValue !== null) {
                     return 'background-color:' + backgroundValue;
@@ -208,7 +229,12 @@
                             additional = additional.substring(1);
                         }
 
-                        inline += ' background-image:url(' + additional + ');background-size: 36%;';
+                        let size = '36%';
+                        if (!text || text === '') {
+                            size = '48%';
+                        }
+
+                        inline += ' background-image:url(' + additional + ');background-size: ' + size + ';';
 
                         if (is(text)) {
                             inline += 'background-position-y: 2px;align-items:end;';

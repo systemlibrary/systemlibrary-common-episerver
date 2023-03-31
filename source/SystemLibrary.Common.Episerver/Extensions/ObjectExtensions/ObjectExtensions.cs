@@ -68,12 +68,15 @@ public static class ObjectExtensions
 
         var isContentDataModel = type.Name.EndsWithAny("BlockData", "PageData", "BlockProxy", "BlockDataProxy", "PageProxy", "PageDataProxy", "MediaData", "MediaDataProxy");
 
+        var blackListedLowered = BlackListedContentProperties.Select(x => x.ToLower());
+
         foreach (var property in properties)
         {
             var name = property.Name;
 
-            if (isContentDataModel && BlackListedContentProperties.Contains(name)) continue;
+            if (isContentDataModel && blackListedLowered.Contains(name.ToLower())) continue;
 
+            Dump.Write("OK " + name);
             if (ignorePropertyNames != null)
             {
                 if (ignorePropertyNames.Contains(name)) continue;

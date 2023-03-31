@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 
 using EPiServer.Core;
 using EPiServer.Core.Html.StringParsing;
@@ -49,14 +48,10 @@ public static class XhtmlStringExtensions
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
 
             var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
-            var rendered = new StringBuilder();
-            data = null;
             if (data == null)
-                rendered.Append("<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString());
-            else
-                rendered.Append(data.ToString());
+                return "<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString();
 
-            return rendered.ToString();
+            return data.ToString();
         }
         catch (Exception ex)
         {

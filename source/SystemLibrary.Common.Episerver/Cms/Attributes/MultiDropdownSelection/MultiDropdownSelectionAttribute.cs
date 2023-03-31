@@ -52,7 +52,7 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
     public virtual Type SelectionFactoryType { get; set; }
 
     public Type EnumType { get; set; }
-    
+
     public object Hide { get; set; }
 
     public object Show { get; set; }
@@ -61,25 +61,22 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
 
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
-        var additionalMetadata = context?.DisplayMetadata?.AdditionalValues;
+        var additionalValues = context?.DisplayMetadata?.AdditionalValues;
 
-        if (additionalMetadata.IsNot()) return;
+        if (additionalValues.IsNot()) return;
 
-        try
+        foreach (var data in additionalValues)
         {
-            foreach (var data in additionalMetadata)
+            // NOTE: Optimizely keeps fucking up, they always break things, someone should get fired...
+            // This does not do anything, the Factory is running multiple times, even though attribute exists only once
+            // Must check on "PropertyName" to avoid calling factory twice...
+            // and setting ClientEditingClass here, do nada
+            if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
             {
-                if (data.Value is ExtendedMetadata extendedMetadata)
-                {
-                    extendedMetadata.SelectionFactoryType = typeof(MultiDropdownSelectionFactory);
-                    extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
-                    break;
-                }
+                extendedMetadata.SelectionFactoryType = typeof(MultiDropdownSelectionFactory);
+                extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
+                break;
             }
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex);
         }
     }
 }

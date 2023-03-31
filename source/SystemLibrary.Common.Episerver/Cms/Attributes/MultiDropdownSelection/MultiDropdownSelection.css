@@ -1,53 +1,96 @@
 ﻿.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection {
-    display: inline-block;
-    min-heigth: 24px;
+  display: inline-block;
+  min-heigth: 24px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton 
-{ 
-    max-width: 225px;
-    padding: 0.4em;
+.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton {
+  max-width: 225px;
+  padding: 0.4em;
+  position: relative;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categoryButton .dijitInline.epi-resourceName {
-    border-radius: 10px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-categoryButton
+  .dijitInline.epi-resourceName {
+  border-radius: 6px;
 }
 
 .Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .help {
-    display: inline-block;
-    min-height: 35.2px;
-    color: #666;
-    padding: 0.4em;
+  display: inline-block;
+  min-height: 35.2px;
+  color: #666;
+  padding: 0.4em;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection span.dijitButton .dijitStretch.dijitButtonContents .dijitButtonText {
-    font-size: 22px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  span.dijitButton
+  .dijitStretch.dijitButtonContents
+  .dijitButtonText {
+  font-size: 22px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .multidropdownselection__selector {
-    min-width: 200px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .multidropdownselection__selector {
+  min-width: 200px;
 }
 
 .Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton {
-    cursor: pointer;
+  cursor: pointer;
+  position: absolute;
+  background: #444;
+  height: 15.33px;
+  width: 10px;
+  right: -6px;
+  border-radius: 6px;
+  border-left: 0;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .multidropdownselection__values {
-    max-width: 585px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .multidropdownselection__values {
+  max-width: 585px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton--hidden {
-    cursor: default;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-removeButton--hidden {
+  cursor: default;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-removeButton--hidden::before {
-    content: ' ';
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-removeButton--hidden::before {
+  content: " ";
+}
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-categorySelector
+  .epi-removeButton::before {
+  width: 10px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .dijitInline.epi-resourceName {
-    max-width: 225px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .dijitInline.epi-resourceName {
+  max-width: 225px;
 }
 
-.Sleek .systemLibraryCommonEpiserverMultiDropdownSelection .epi-categorySelector .epi-resourceName div.dojoxEllipsis {
-    max-width: 175px;
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-categorySelector
+  .dijitInline.epi-resourceName--expired
+  div.dojoxEllipsis {
+  color: #fffc00 !important;
+}
+
+.Sleek
+  .systemLibraryCommonEpiserverMultiDropdownSelection
+  .epi-categorySelector
+  .epi-resourceName
+  div.dojoxEllipsis {
+  max-width: 220px;
+  padding-right: 21px;
 }

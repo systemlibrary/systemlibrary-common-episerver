@@ -89,7 +89,6 @@ define([
                             value: item.value
                         });
                     }
-
                     // Only display dropdown when we have a selection factory attached
                     domStyle.set(this.stringTextbox.domNode, 'display', 'none');
                 } else {
@@ -139,7 +138,7 @@ define([
             _setValue: function () {
                 var strings = this._getAddedStrings();
 
-                this.set("value", strings.length > 0 ? strings : null);
+                this.set("value", strings?.length > 0 ? strings : null);
 
                 this._setHelpTextVisibility();
 
@@ -153,19 +152,34 @@ define([
 
                 var that = this;
 
-                strings.forEach(function (string, index, array) {
-                    if (strings.indexOf(string) === -1) {
-                        that._removeStringElement(string);
+                if (strings.forEach) {
+                    strings.forEach(function (text, index, array) {
+                        if (strings.indexOf(text) === -1) {
+                            that._removeStringElement(text);
+                        }
+                    });
+
+                    // Add an element for each string in the list
+                    strings.forEach(function (text, index, array) {
+
+                        var displayName = that._getStringDisplayName(text);
+
+                        that._addStringElement(text, displayName);
+                    });
+                }
+                else {
+                    for (var i = 0; i < strings.length; i++) {
+                        if (strings.indexOf(strings[i]) === -1) {
+                            that._removeStringElement(strings[i]);
+                        }
                     }
-                });
 
-                // Add an element for each string in the list
-                strings.forEach(function (string, index, array) {
+                    for (var i = 0; i < strings.length; i++) {
+                        var displayName = that._getStringDisplayName(strings[i]);
 
-                    var displayName = that._getStringDisplayName(string);
-
-                    that._addStringElement(string, displayName);
-                });
+                        that._addStringElement(strings[i], displayName);
+                    }
+                }
 
                 this._setHelpTextVisibility();
             },
@@ -210,11 +224,23 @@ define([
             _onAddButtonClick: function () {
                 if (this._hasSelectionFactory) { // Add string selected in dropdown
                     var selectedValue = this.stringSelector.value;
-                    var displayName = this.stringSelector.focusNode.innerText;
-                    if (!selectedValue) {
-                        return;
-                    }
 
+                    var displayName = this.stringSelector.focusNode.innerText;
+
+                    if (isNaN(selectedValue)) {
+                        if (this.selections && this.selections.length) {
+                            var index = -1;
+                            for (var i = 0; i < this.selections.length; i++) {
+                                if (this.selections[i].value === selectedValue) {
+                                    index = i;
+                                }
+                            }
+
+                            if (index >= 0) {
+                                selectedValue = index.toString();
+                            }
+                        }
+                    }
                     this._addString(selectedValue, displayName);
                 } else { // Add string from textbox
 
@@ -254,7 +280,7 @@ define([
 
                 // summary: Adds a string to the list and updates the property value
 
-                value = value.toString().trim();
+                value = value?.toString()?.trim();
 
                 if (!value) {
                     return;
@@ -295,10 +321,15 @@ define([
                     return;
                 }
 
+                var expiredClass = "";
+                if(displayName.includes("Expired: ")) {
+                    expiredClass = " epi-resourceName--expired";
+                }
                 var containerDiv = domConstruct.create('div', { 'class': 'epi-categoryButton' });
-                var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName', 'title': displayName });
+                var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName' + expiredClass, 'title': displayName });
                 var categoryNameDiv = domConstruct.create('div', { 'class': 'dojoxEllipsis', innerHTML: displayName, 'title': displayName });
 
+                
                 domConstruct.place(categoryNameDiv, buttonWrapperDiv);
 
                 domConstruct.place(buttonWrapperDiv, containerDiv);
