@@ -24,49 +24,104 @@ public partial class EditController : BaseController
         var edit = AppSettings.Current.Edit;
 
         var css = new StringBuilder("");
-        if (edit.ShowEditStyle)
-        {
-            css.Append(GetEmbeddedResource(CurrentFolder, "showEditStyle.css"));
 
-            var hideLanguageColumnInVersionGadget = edit.HideLanguageColumnInVersionGadget ? "0px" : "";
-            var hideLanguageColumnInVersionGadgetVisibility = edit.HideLanguageColumnInVersionGadget ? "hidden" : "visible";
+        AppendNewContentDialogHideRequiredTitle(edit, css);
+        AppendAllPropertiesShowPropertyDescriptions(edit, css);
+        AppendAllPropertiesShowPropertiesAsColumns(edit, css);
+        AppendAllPropertiesShowCheckBoxOnRightSide(edit, css);
+        AppendVersionGadgetHideLanguageColumn(edit, css);
 
-            css.Replace(nameof(edit.HideLanguageColumnInVersionGadget) + "Visibility", hideLanguageColumnInVersionGadgetVisibility);
-            css.Replace(nameof(edit.HideLanguageColumnInVersionGadget), hideLanguageColumnInVersionGadget);
-            css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
-            css.Replace(nameof(edit.ContentCreationBorderColor), edit.ContentCreationBorderColor);
-            css.Replace(nameof(edit.ContentCreationBackgroundColor), edit.ContentCreationBackgroundColor);
-            css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
-        }
-
-        AppendActiveProjectBarBackgroundColor(edit, css);
-
-        AppendShowEditFieldsAsColumns(edit, css);
+        AppendNewContentDialogItemBackgroundColor(edit, css);
 
         AppendCalendarDateTimePropertyStyle(css);
 
-        AppendCustomPageTreeIcons(css);
+        AppendCustomPageTreeIcons(edit, css);
+
+        AppendProjectBarActiveProjectBackgroundColor(edit, css);
+
+        AppendContentTitleColor(edit, css);
+
+        AppendActiveProjectBarBackgroundColor(edit, css);
+
+        AppendAllPropertiesShowPropertiesAsColumns(edit, css);
+
+
 
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (StyleCache = GetFileContentResult(css, "text/css"));
     }
 
-    void AppendActiveProjectBarBackgroundColor(EditConfiguration edit, StringBuilder sb)
+    void AppendContentTitleColor(EditConfiguration edit, StringBuilder css)
     {
-        if (edit.ActiveProjectBarBackgroundColor.IsNot()) return;
-
-        sb.Append(GetEmbeddedResource(CurrentFolder, "showActiveProjectBarBackgroundColor.css"));
-
-        sb.Replace(nameof(edit.ActiveProjectBarBackgroundColor) + "Border", edit.ActiveProjectBarBackgroundColor.HexDarkenOrLighten(auto: true));
-        sb.Replace(nameof(edit.ActiveProjectBarBackgroundColor), edit.ActiveProjectBarBackgroundColor);
+        if (edit.ContentTitleColor.Is())
+        {
+            css.Append(GetEmbeddedResource(CurrentFolder, "ContentTitleColor.css"));
+            css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
+        }
     }
 
-    void AppendShowEditFieldsAsColumns(EditConfiguration edit, StringBuilder sb)
+    void AppendProjectBarActiveProjectBackgroundColor(EditConfiguration edit, StringBuilder css)
     {
-        if (!edit.ShowEditFieldsAsColumns) return;
+        if(edit.ProjectBarActiveProjectBackgroundColor.Is())
+        {
+            css.Append(GetEmbeddedResource(CurrentFolder, "ProjectBarActiveProjectBackgroundColor.css"));
 
-        sb.Append(GetEmbeddedResource(CurrentFolder, "showEditFieldsAsColumns.css"));
+            css.Replace(nameof(edit.ProjectBarActiveProjectBackgroundColor) + "Border", edit.ProjectBarActiveProjectBackgroundColor.HexDarkenOrLighten(auto: true));
+            css.Replace(nameof(edit.ProjectBarActiveProjectBackgroundColor), edit.ProjectBarActiveProjectBackgroundColor);
+        }
+    }
+
+    void AppendNewContentDialogItemBackgroundColor(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.NewContentDialogItemBackgroundColor.Is() ||
+            edit.NewContentDialogItemBorderColor.Is())
+        {
+            css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogItemBackgroundColor.css"));
+
+            css.Replace(nameof(edit.NewContentDialogItemBorderColor), edit.NewContentDialogItemBorderColor);
+            css.Replace(nameof(edit.NewContentDialogItemBackgroundColor), edit.NewContentDialogItemBackgroundColor);
+        }
+    }
+
+    void AppendVersionGadgetHideLanguageColumn(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.VersionGadgetHideLanguageColumn)
+            css.Append(GetEmbeddedResource(CurrentFolder, "VersionGadgetHideLanguageColumn.css"));
+    }
+
+    void AppendAllPropertiesShowCheckBoxOnRightSide(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.AllPropertiesShowCheckBoxOnRightSide)
+            css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowCheckBoxOnRightSide.css"));
+    }
+
+    void AppendAllPropertiesShowPropertyDescriptions(EditConfiguration edit, StringBuilder css)
+    {
+        if(edit.AllPropertiesShowPropertyDescriptions)
+            css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertyDescriptions.css"));
+    }
+
+    void AppendNewContentDialogHideRequiredTitle(EditConfiguration edit, StringBuilder css)
+    {
+        if(edit.NewContentDialogHideRequiredTitle)
+            css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogHideRequiredTitle.css"));
+    }
+
+    void AppendActiveProjectBarBackgroundColor(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.ProjectBarActiveProjectBackgroundColor.IsNot()) return;
+
+        css.Append(GetEmbeddedResource(CurrentFolder, "ProjectBarActiveProjectBackgroundColor.css"));
+
+        css.Replace(nameof(edit.ProjectBarActiveProjectBackgroundColor) + "Border", edit.ProjectBarActiveProjectBackgroundColor.HexDarkenOrLighten(auto: true));
+        css.Replace(nameof(edit.ProjectBarActiveProjectBackgroundColor), edit.ProjectBarActiveProjectBackgroundColor);
+    }
+
+    void AppendAllPropertiesShowPropertiesAsColumns(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.AllPropertiesShowPropertiesAsColumns)
+            css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertiesAsColumns.css"));
     }
 
     void AppendCalendarDateTimePropertyStyle(StringBuilder sb)
@@ -74,15 +129,19 @@ public partial class EditController : BaseController
         sb.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
     }
 
-    static void AppendCustomPageTreeIcons(StringBuilder sb)
+    void AppendCustomPageTreeIcons(EditConfiguration edit, StringBuilder css)
     {
+        css.Append(GetEmbeddedResource(CurrentFolder, "CustomPageTreeIcons.css"));
+
+        css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
+
         if (ContentIconEditorDescriptorModule.ContentDescriptorSettings == null) return;
 
         foreach (var setting in ContentIconEditorDescriptorModule.ContentDescriptorSettings)
         {
             if (setting.Item4.Is())
             {
-                sb.Append("." + setting.Item3.Replace(" ", "."));
+                css.Append("." + setting.Item3.Replace(" ", "."));
 
                 var url = setting.Item4;
 
@@ -92,7 +151,7 @@ public partial class EditController : BaseController
                 if (!url.StartsWith("/"))
                     url = "/" + url;
 
-                sb.Append("{background-size: 100%;background-image: url(" + url + ");}");
+                css.Append("{background-size: 100%;background-image: url(" + url + ");}");
             }
         }
     }

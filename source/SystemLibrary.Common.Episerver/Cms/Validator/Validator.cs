@@ -249,9 +249,9 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     static string GetPropertyDisplayName(string propertyName)
     {
-        if (propertyName.IsNot()) return propertyName;
-
         var property = typeof(T).GetProperty(propertyName);
+
+        if (property == null) return propertyName;
 
         var display = property?.GetCustomAttribute<DisplayAttribute>();
 
@@ -261,3 +261,4 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
         return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyName;
     }
 }
+

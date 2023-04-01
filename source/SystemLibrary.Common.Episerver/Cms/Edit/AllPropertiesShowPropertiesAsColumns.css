@@ -53,3 +53,36 @@
     min-width: 220px;
     cursor: pointer;
 }
+
+
+/* Set label width on all properties in 'Properties View' and in 'On Create New Page Required Properties View' */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,
+/* Set label width on all properties in 'On Create New Block Properties View' */
+.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
+    width: 100%;
+    max-width: 240px;
+}
+
+@media screen and (max-width: 1200px) {
+    .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,
+    .Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
+        width: auto;
+        max-width: 200px;
+    }
+}
+
+/* Wide 'Content Area' selector */
+.Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
+    max-width: 610px;
+    margin-left: 8px;
+}
+
+.Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block {
+    max-width: 610px;
+    margin-left: 8px;
+    padding: 0;
+}
+
+.Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
+    margin: 8px;
+}

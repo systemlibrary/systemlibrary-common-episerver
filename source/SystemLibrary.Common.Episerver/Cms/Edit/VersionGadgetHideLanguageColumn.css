@@ -1,0 +1,5 @@
+﻿/* Hide "language" in version gadget as we only have NO */
+.Sleek .dgrid-row-table .dgrid-cell.dgrid-column-language:first-child {
+    width: 0px;
+    visibility: hidden;
+}

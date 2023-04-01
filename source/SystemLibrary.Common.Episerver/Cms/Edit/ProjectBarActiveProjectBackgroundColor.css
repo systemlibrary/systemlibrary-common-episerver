@@ -1,5 +1,5 @@
 ﻿/* BACKGROUND COLOR OF 'PROJECT TOOLBAR' AT BOTTOM WHEN VIEWING 'Edit' IF YOU'RE WORKING IN A PROJECT */
 .Sleek .epi-project-mode-toolbar.epi-project-mode-toolbar--project-selected {
-    background-color: ActiveProjectBarBackgroundColor !important;
-    border-color: ActiveProjectBarBackgroundColorBorder !important;
+    background-color: ProjectBarActiveProjectBackgroundColor !important;
+    border-color: ProjectBarActiveProjectBackgroundColorBorder !important;
 }

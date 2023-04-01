@@ -1,0 +1,45 @@
+﻿/* Display 'descriptions' for each property in 'Properties View' and in 'On Create New Page Required Properties View' */
+/* Display 'descriptions' for each property in 'On Create New Block Properties View' */
+.Sleek .sysLibPropDesc {
+    font-size: 13px;
+    font-style: italic;
+    background-color: #efefef;
+    border-radius: 4px;
+    padding: 4px;
+    color: #626262;
+    line-height: 1.75;
+}
+
+.Sleek .dijitTooltip.dijitTooltipRight .sysLibPropDesc {
+    display: none;
+}
+
+.Sleek .epi-property-description svg.svg-inline--fa.fa-circle-question.axiom-icon.axiom-icon--small.fa-fw {
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .Sleek .epi-form-container__section__row div.sysLibPropDesc {
+        font-size: 12px;
+        width: 100%;
+    }
+}
+
+/* Display 'descriptions' for each property in 'IList Property Dialog View' */
+/* NOTE: 'descriptions' in epi 12.9.0 is currently not printed out to the HTML, cannot use the content: '' attr trick for these */
+
+
+/* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after {
+    content: none;
+}
+
+/* Show 'Descriptions' in the last tab, 'SETTINGS', but only the none-top-4 */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row:nth-child(n+8) > label[title]:after {
+    content: " " attr(title) !important;
+}
+
+/* Show 'Descriptions' always in the last property on all tabs, even 'Settings' tab */
+.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section > li.epi-form-container__section__row:last-of-type > label[title]:after {
+    content: " " attr(title) !important;
+}

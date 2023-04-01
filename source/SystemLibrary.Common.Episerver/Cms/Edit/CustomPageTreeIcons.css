@@ -1,0 +1,40 @@
+﻿.Sleek .dijitTreeContainer .dijitTreeRow.dijitTreeRowSelected::before {
+    border-bottom: 1px solid PageTreeSelectedContentBorderColor;
+    height: 31px;
+}
+
+.Sleek .dijitIcon.dijitTreeIcon.epi-iconObjectPage.custom-common-episerver-page-tree-icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-width: 19px;
+    max-height: 19px;
+    max-width: 21px;
+    font-size: 1px;
+    margin-top: 5px;
+}
+
+/* PAGE NAME (TITLE) IN NAVIGATION WHEN VIEWING A PAGE OR BLOCK'S PREFIX ICON */
+/*.Sleek .epi-breadCrumbs-title-wrapper > .dijitInline.dijitIcon.epi-breadCrumbsCurrentItem-icon.dijitTreeIcon.epi-iconObjectPage {
+    visibility: hidden;
+    display: none;
+}
+*/
+/* PAGE TREE CHEVRON TO EXPAND OR COLLAPSE */
+.Sleek .dijitTreeExpandoOpened {
+    margin-top: 2px;
+}
+
+/* PLACE THE 'CONTENT IMAGE' DURING 'NEW CONTENT WINDOW DIALOG' IN THE CENTER OF ITS 'BUTTON' */
+.Sleek .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent > img {
+    min-height: 30%;
+    min-width: 30%;
+    max-height: 70%;
+    max-width: 70%;
+    margin: 0 auto;
+    padding-top: 8%;
+}
+
+/* ILIST PROPERTY DIALOG - HIDING THE OVERFLOW */
+.dijitDialogSingleChild > .epi-form-container.dijitLayoutContainer.dijitContainer {
+    max-width: 100%;
+}

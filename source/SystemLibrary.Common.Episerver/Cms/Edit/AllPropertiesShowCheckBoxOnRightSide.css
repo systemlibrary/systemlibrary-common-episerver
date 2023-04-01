@@ -1,0 +1,32 @@
+﻿/* MOVE CHECK BOXES ON THE RIGHT SIDE OF THE LABEL */
+/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox {
+    overflow: hidden;
+}
+
+/* CheckBoxes 'On Create Page' and 'On Create Block' required properties view */
+div.epi-createContent div.dijitContainer.epi-newContentContainer ul li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > div.dijit.dijitInline {
+    margin-left: 12px !important;
+    margin-right: 100% !important;
+    position: absolute !important;
+    float: left !important;
+    cursor: pointer;
+    left: 252px !important;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline {
+    margin-left: 12px;
+}
+
+.epi-form-container__section li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container .dijitInline input.dijitCheckBoxInput {
+    cursor: pointer;
+}
+

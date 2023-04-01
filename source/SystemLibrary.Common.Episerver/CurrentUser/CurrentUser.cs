@@ -69,12 +69,12 @@ public class CurrentUser : ApplicationUser
     /// <summary>
     /// First name taken from claim 'GivenName'
     /// </summary>
-    public string FirstName { get; set; }
+    public string FirstName { get; }
 
     /// <summary>
     /// Last name taken from claim 'Surname'
     /// </summary>
-    public string LastName { get; set; }
+    public string LastName { get; }
 
     /// <summary>
     /// Override 'OnAddClaims' to add additional claims to your 'CurrentUser' object.

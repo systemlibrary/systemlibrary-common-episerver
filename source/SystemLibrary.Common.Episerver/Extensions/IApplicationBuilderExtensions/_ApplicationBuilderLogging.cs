@@ -12,6 +12,7 @@ partial class IApplicationBuilderExtensions
 {
     static void ApplicationBuilderLogging(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
     {
+
         if (!options.UseExceptionLogging) return;
 
         app.UseExceptionHandler(appError =>

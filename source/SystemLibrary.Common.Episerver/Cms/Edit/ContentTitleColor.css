@@ -1,0 +1,4 @@
+﻿/* Title of 'Current Content' in h1 in the breadcrumb */
+.Sleek .epi-toolbarLeading .epi-breadCrumbs-title-wrapper h1.epi-breadcrumbContentItem {
+    color: ContentTitleColor;
+}
