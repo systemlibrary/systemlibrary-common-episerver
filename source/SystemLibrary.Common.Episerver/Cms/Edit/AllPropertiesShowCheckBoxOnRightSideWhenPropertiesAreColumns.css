@@ -1,0 +1,6 @@
+﻿/* MINOR ADJUSTMENTS WHEN PROPERTY DISPLAY NAMES TAKE 265PX LEFT SIDE */
+
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitReset.dijitInline {
+    position: absolute;
+    left: 265px;
+}

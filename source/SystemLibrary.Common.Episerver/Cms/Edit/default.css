@@ -2,3 +2,9 @@
 .Sleek .epi-localToolbar.epi-viewHeaderContainer .epi-breadCrumbs-title-wrapper .dijitInline.dijitIcon.epi-breadCrumbsCurrentItem-icon.dijitTreeIcon.epi-iconObjectPage {
     margin-top: 1px;
 }
+
+/* MODAL ILISTPROPERTIES GETS SCROLLBAR IF TOO TALL */
+.Sleek .epi-dialogPaneContent .epi-form-container__section > .epi-form-container__section__row.epi-form-container__section__row--group > .epi-form-container__section.dijitLayoutContainer.dijitContainer {
+    overflow-y: scroll;
+    max-height: 730px;
+}

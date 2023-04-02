@@ -1,22 +1,22 @@
 ﻿/* MOVE CHECK BOXES ON THE RIGHT SIDE OF THE LABEL */
 
 /* CHECKBOXES IN 'ALL PROPERTIES' VIEW */
-.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container {
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container {
     flex-direction: row-reverse;
     justify-content: flex-end;
 }
 
 /* SET CURSOR ON THE PROPERTY DISPLAY NAME LABEL AND ORDER */
-.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > label {
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > label {
     cursor: pointer;
     order: 3;
 }
 
-.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .epi-form-container__section__tooltip {
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .epi-form-container__section__tooltip {
     order: 1;
 }
 
-.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitReset.dijitInline {
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitReset.dijitInline {
     order: 2;
     padding-left: 8px;
 }

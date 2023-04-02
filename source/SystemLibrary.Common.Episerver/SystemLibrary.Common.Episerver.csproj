@@ -31,6 +31,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
 		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />
+		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
 		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
@@ -61,6 +62,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />

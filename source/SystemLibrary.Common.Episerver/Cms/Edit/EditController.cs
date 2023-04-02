@@ -82,7 +82,13 @@ public partial class EditController : BaseController
     void AppendAllPropertiesShowCheckBoxOnRightSide(EditConfiguration edit, StringBuilder css)
     {
         if (edit.AllPropertiesShowCheckBoxOnRightSide)
+        {
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowCheckBoxOnRightSide.css"));
+         
+            if (edit.AllPropertiesShowPropertiesAsColumns)
+                css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css"));
+        }
+        
     }
 
     void AppendAllPropertiesShowPropertyDescriptions(EditConfiguration edit, StringBuilder css)
