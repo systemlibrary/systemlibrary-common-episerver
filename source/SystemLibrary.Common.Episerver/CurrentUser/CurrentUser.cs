@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
@@ -69,12 +70,12 @@ public class CurrentUser : ApplicationUser
     /// <summary>
     /// First name taken from claim 'GivenName'
     /// </summary>
-    public string FirstName { get; }
+    public string GivenName => GetClaim(ClaimTypes.GivenName);
 
     /// <summary>
     /// Last name taken from claim 'Surname'
     /// </summary>
-    public string LastName { get; }
+    public string Surname => GetClaim(ClaimTypes.Surname);
 
     /// <summary>
     /// Override 'OnAddClaims' to add additional claims to your 'CurrentUser' object.
@@ -103,8 +104,8 @@ public class CurrentUser : ApplicationUser
         if (UserName.IsNot())
             claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, Username));
 
-        if (FirstName.IsNot())
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.GivenName, FirstName));
+        if (GivenName.IsNot())
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.GivenName, GivenName));
 
         if (Email.IsNot())
             claimsIdentity.AddClaim(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email", Email));
@@ -112,11 +113,25 @@ public class CurrentUser : ApplicationUser
         if (Email.IsNot())
             claimsIdentity.AddClaim(new Claim("email", Email));
 
-        if (LastName.IsNot())
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.Surname, LastName));
+        if (Surname.IsNot())
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.Surname, Surname));
 
         OnAddClaims(claimsIdentity);
 
         return null;
+    }
+
+    string GetClaim(string type, string typeFallback = null, string defaultValue = null)
+    {
+        if (Principal is ClaimsPrincipal claimsPrincipal)
+        {
+            var claim1 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == type);
+            if (claim1 != null) return claim1.Value;
+
+            var claim2 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == typeFallback);
+            if (claim2 != null) return claim2.Value;
+        }
+
+        return defaultValue;
     }
 }
