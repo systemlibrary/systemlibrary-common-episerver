@@ -1,49 +1,58 @@
-﻿/* Display 'descriptions' for each property in 'Properties View' and in 'On Create New Page Required Properties View' */
-/* Display 'descriptions' for each property in 'On Create New Block Properties View' */
-.Sleek .sysLibPropDesc {
-    font-size: 13px;
-    font-style: italic;
-    background-color: #efefef;
-    border-radius: 4px;
-    padding: 4px;
-    color: #626262;
-    line-height: 1.75;
+﻿/* String Textboxes are too tall, so restrict to content */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container li.epi-form-container__section__row .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox {
+    height: fit-content;
 }
 
-.Sleek .dijitTooltip.dijitTooltipRight .sysLibPropDesc {
-    display: none;
-}
-
-.Sleek .epi-property-description svg.svg-inline--fa.fa-circle-question.axiom-icon.axiom-icon--small.fa-fw {
-    display: none;
-}
-
-@media screen and (max-width: 1200px) {
-    .Sleek .epi-form-container__section__row div.sysLibPropDesc {
-        font-size: 12px;
-        width: 100%;
-    }
-}
-/* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after {
-    content: none;
-}
-
-/* Show 'Descriptions' in the last tab, 'SETTINGS', but only the none-top-4 */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row:nth-child(n+8) > label[title]:after {
-    content: " " attr(title) !important;
-}
-
-/* Show 'Descriptions' always in the last property on all tabs, even 'Settings' tab */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section > li.epi-form-container__section__row:last-of-type > label[title]:after {
-    content: " " attr(title) !important;
-}
-
-.Sleek li.epi-form-container__section__row--field .epi-form-container__section__label-container {
-    display: block;
-}
-
-.Sleek .epi-property-description div:not([class]) {
+/* Display epi-property- descriptions in 'property container' */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description div:not([class]) {
     display: block !important;
     visibility: visible !important;
+}
+
+/* Hide the tooltip click area */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description > .click-area {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Clear padding of the descriptions container */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description .oui-pop--over {
+    position: relative !important;
+    margin: 0 !important;
+    top: -2px !important;
+    border: 0 !important;
+}
+
+
+/* Set background, fontsize etc of the description */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description .oui-pop--over__content {
+    font-size: 13px;
+    font-style: italic;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 3px;
+    color: #606060;
+    line-height: 1.3;
+}
+
+/* Hide the tooltip button whenever epi-property-descriptions are visible */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description svg.svg-inline--fa.fa-circle-question.axiom-icon.axiom-icon--small.fa-fw {
+    display: none;
+}
+
+/* Hide 'Descriptions' in the last tab, 'SETTINGS' */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section.dijitLayoutContainer.dijitTabContainerTop-child:last-child .epi-form-container__section__row .epi-property-description {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Show 'Descriptions' in the last tab, 'SETTINGS', from property number 8 and higher */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section.dijitLayoutContainer.dijitTabContainerTop-child li.epi-form-container__section__row:nth-child(n+8) .epi-property-description {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Set the label to block, so "description" goes below display name */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-form-container__section__label-container {
+    display: block !important;
 }
