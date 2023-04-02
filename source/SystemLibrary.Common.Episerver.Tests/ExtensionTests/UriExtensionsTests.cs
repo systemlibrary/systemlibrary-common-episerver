@@ -24,4 +24,60 @@ public class UriExtensionsTests
         Assert.IsFalse(uri.IsNot());
         Assert.IsTrue(uri.Is());
     }
+
+    [TestMethod]
+    public void ToFriendlyUrl_Success()
+    {
+        var uri = (Uri)null;
+        var expected = (string)null;
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "C:\\Temp\\text.log";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "http://www.systemlibrary.com/image.png";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "https://www.systemlibrary.com/image.png";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "http://www.systemlibrary.com/image.png/";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "https://www.systemlibrary.com/image.png/";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "http://www.systemlibrary.com/image.png/?quality=90";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "https://www.systemlibrary.com/image.png/?quality=90";
+        uri = new Uri(expected);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "www.systemlibrary.com/image.png/?quality=90";
+        uri = new Uri(expected, UriKind.Relative);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "/image.png/?quality=90";
+        uri = new Uri(expected, UriKind.Relative);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "image.png/?quality=90";
+        uri = new Uri(expected, UriKind.Relative);
+        Assert.IsTrue(uri.ToFriendlyUrl() == expected, uri + "");
+
+        expected = "/image.png/?quality=90";
+        uri = new Uri(expected, UriKind.Relative);
+        Assert.IsTrue(uri.ToFriendlyUrl(true) == "http://localhost/image.png/?quality=90", uri + "");
+
+        expected = "image.png/?quality=90";
+        uri = new Uri(expected, UriKind.Relative);
+        Assert.IsTrue(uri.ToFriendlyUrl(true) == "http://localhost/image.png/?quality=90", uri + "");
+    }
 }

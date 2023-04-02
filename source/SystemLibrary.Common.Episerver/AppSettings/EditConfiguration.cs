@@ -2,12 +2,12 @@
 
 public class EditConfiguration
 {
-    public bool NewContentDialogHideRequiredTitle { get; set; } = true;
-    public bool AllPropertiesShowPropertyDescriptions { get; set; } = true;
-    public bool AllPropertiesShowPropertiesAsColumns { get; set; } = true;
-    public bool AllPropertiesShowCheckBoxOnRightSide { get; set; } = true;
+    public bool NewContentDialogHideRequiredTitle { get; set; } = false;
+    public bool AllPropertiesShowPropertyDescriptions { get; set; } = false;
+    public bool AllPropertiesShowPropertiesAsColumns { get; set; } = false;
+    public bool AllPropertiesShowCheckBoxOnRightSide { get; set; } = false;
 
-    public bool VersionGadgetHideLanguageColumn { get; set; } = true;
+    public bool VersionGadgetHideLanguageColumn { get; set; } = false;
 
     public string NewContentDialogItemBackgroundColor { get; set; } = "";
     public string NewContentDialogItemBorderColor { get; set; } = "";

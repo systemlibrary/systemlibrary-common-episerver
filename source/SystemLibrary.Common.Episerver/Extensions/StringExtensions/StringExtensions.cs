@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using EPiServer.Core;
 using EPiServer.Web.Routing;
 
-using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -45,6 +44,17 @@ public static class StringExtensions
         return text.Json<T>(new XhtmlStringJsonConverter());
     }
 
+    /// <summary>
+    /// Returns true if path is either relative or absolute path to a file
+    /// 
+    /// File must be minimum 4 char long in total, including the extension and the dot
+    /// 
+    /// Supports up to 6 characters in the extension
+    /// 
+    /// Supports also query-params in the path
+    /// 
+    /// Returns true or false
+    /// </summary>
     public static bool IsFile(this string path)
     {
         if (path.IsNot()) return false;
@@ -52,8 +62,7 @@ public static class StringExtensions
         var length = path.Length;
         if (length <= 3) return false;
 
-        var hasInvalidPathChars = path.IndexOfAny(Path.GetInvalidPathChars()) == -1;
-
+        var hasInvalidPathChars = path.IndexOfAny(Path.GetInvalidPathChars()) != -1;
         if (hasInvalidPathChars) return false;
 
         var extensionIndex = path.LastIndexOf('.');
@@ -63,9 +72,16 @@ public static class StringExtensions
         var queryIndex = path.IndexOf('?');
 
         if (queryIndex == -1)
-            return extensionIndex > length - 6; // .config
+            return extensionIndex >= length - 7; // .config
 
-        return extensionIndex < queryIndex;
+        if(extensionIndex > queryIndex)
+        {
+            var temp = path.Substring(0, queryIndex);
+            
+            return temp.LastIndexOf(".") >= temp.Length - 7; // .config
+        }
+
+        return queryIndex - 7 <= extensionIndex;
     }
 
     /// <summary>

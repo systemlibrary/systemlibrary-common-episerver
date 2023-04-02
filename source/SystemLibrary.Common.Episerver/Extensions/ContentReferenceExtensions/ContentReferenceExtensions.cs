@@ -62,7 +62,7 @@ public static class ContentReferenceExtensions
     {
         if (contentReference.IsNot()) return null;
 
-        var url = IUrlResolver.GetUrl(contentReference, null, new UrlResolverArguments { ContextMode = ContextMode.Default });
+        var url = IUrlResolver?.GetUrl(contentReference, null, new UrlResolverArguments { ContextMode = ContextMode.Default });
 
         return url.ToFriendlyUrl(convertToAbsolute);
     }

@@ -12,13 +12,15 @@ namespace SystemLibrary.Common.Episerver;
 ///    ...,
 ///    "systemLibraryCommonEpiserver": {
 ///        "edit": {
-///          "showEditStyle": false,
-///          "showEditFieldsAsColumns": false,
-///          "hideLanguageColumnInVersionGadget": false,
-///          "contentCreationBackgroundColor": "",
-///          "contentCreationBorderColor": "",
+///          "newContentDialogHideRequiredTitle": false,
+///          "allPropertiesShowPropertyDescriptions": false,
+///          "allPropertiesShowPropertiesAsColumns": false,
+///          "allPropertiesShowCheckBoxOnRightSide": false,
+///          "versionGadgetHideLanguageColumn": false,
+///          "newContentDialogItemBackgroundColor": "",
+///          "newContentDialogItemBorderColor": "",
 ///          "pageTreeSelectedContentBorderColor": "",
-///          "activeProjectBarBackgroundColor": ""
+///          "projectBarActiveProjectBackgroundColor": ""
 ///        },
 ///        "properties": {
 ///           "message": {

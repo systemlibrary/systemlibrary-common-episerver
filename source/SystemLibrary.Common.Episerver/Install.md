@@ -12,19 +12,18 @@
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for .NET 6
 2. Delete appSettings.development.json
-3. Add nuget package Episerver.Framework v12.11.0
-4. Add nuget package Episerver.Cms.AspNetCore.HtmlHelpers v12.11.0
-5. Add nuget package Episerver.Cms >= 12.15.1
-6. Add nuget package SystemLibrary.Common.Episerver >= 6.4.0.1
+3. Add nuget package Episerver.CMS.AspNetCore.Routing v12.13.1
+4. Add nuget package Episerver.Cms >= 12.18.0
+5. Add nuget package SystemLibrary.Common.Episerver >= 6.6.0.1
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
-7. Create '~/module.config', set its build to 'Content' 
-8. Create '~/Cms/Cms.cs'
-9. Create '~/Properties/launchSettings.json' (it should exist already)
-10. Create '~/Content/Pages/StartPage/StartPage.cs'
-11. Create '~/Content/Pages/StartPage/StartPageController.cs'
-12. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
-13. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
-14. Copy paste code below, into their respective files
+6. Create '~/module.config', set its build to 'Content' 
+7. Create '~/Cms/Cms.cs'
+8. Create '~/Properties/launchSettings.json' (it should exist already)
+9. Create '~/Content/Pages/StartPage/StartPage.cs'
+10. Create '~/Content/Pages/StartPage/StartPageController.cs'
+11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
+12. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
+13. Copy paste code below, into their respective files
 
 ~/Cms/Cms.cs:
 ```csharp 
@@ -154,20 +153,28 @@ public class Program
 	},
 	"systemLibraryCommonWeb": {
 		"log": {
-		"isEnabled": true,
-		"level": "Info"
+			"isEnabled": true,
+			"level": "Info"
 		}
 	},
 
 	"systemLibraryCommonEpiserver": {
-		"cmsEdit": {
-			"enabled": true,
-			"hideLanguageColumnInVersionGadget": false,
-			"contentCreationBackgroundColor": "",
-			"contentCreationBorderColor": "",
+		"edit": {
+			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesShowPropertyDescriptions": false,
+			"allPropertiesShowPropertiesAsColumns": false,
+			"allPropertiesShowCheckBoxOnRightSide": false,
+			"versionGadgetHideLanguageColumn": false,
+			"newContentDialogItemBackgroundColor": "",
+			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
-			"activeProjectBarBackgroundColor": "",
-			"messagePropertyBackgroundColor": ""
+			"projectBarActiveProjectBackgroundColor": ""
+		},
+		"properties": {
+			"message": {
+				"backgroundColor": "#fff9e6",
+				"textColor": "#000"
+			}
 		}
 	}
 }
