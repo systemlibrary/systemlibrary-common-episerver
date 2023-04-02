@@ -13,7 +13,6 @@ public class EditConfiguration
     public string NewContentDialogItemBorderColor { get; set; } = "";
     public string PageTreeSelectedContentBorderColor { get; set; } = "";
     public string ProjectBarActiveProjectBackgroundColor { get; set; } = "";
-    public string ContentTitleColor { get; set; } = "";
 
     public EditConfiguration()
     {

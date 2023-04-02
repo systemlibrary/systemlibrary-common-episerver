@@ -161,12 +161,15 @@
 
                     try {
                         if (is(this.domNode.previousElementSibling)) {
-                            var label = this.domNode.previousElementSibling;
-                            label.innerHTML = '<span style="color: TextColor;">' + label.innerHTML + '</span>';
+                            var labelContainer = this.domNode.previousElementSibling;
+                            var label = labelContainer.firstChild.nextElementSibling;
+
+                            //label.innerHTML = '<span style="color: TextColor;">' + label.innerHTML + '</span>';
 
                             if (this.isToggleable) {
                                 this.onToggleDescription(this.domNode, true, label);
                             }
+
                             addInfoIcon(label, this, this.isToggleable);
                         }
                     }

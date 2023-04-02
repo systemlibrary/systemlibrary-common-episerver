@@ -25,40 +25,29 @@ public partial class EditController : BaseController
 
         var css = new StringBuilder("");
 
+        css.Append(GetEmbeddedResource(CurrentFolder, "default.css"));
+        css.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
+
         AppendNewContentDialogHideRequiredTitle(edit, css);
+        AppendNewContentDialogItemBackgroundColor(edit, css);
+
         AppendAllPropertiesShowPropertyDescriptions(edit, css);
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
         AppendAllPropertiesShowCheckBoxOnRightSide(edit, css);
+
         AppendVersionGadgetHideLanguageColumn(edit, css);
-
-        AppendNewContentDialogItemBackgroundColor(edit, css);
-
-        AppendCalendarDateTimePropertyStyle(css);
 
         AppendCustomPageTreeIcons(edit, css);
 
         AppendProjectBarActiveProjectBackgroundColor(edit, css);
 
-        AppendContentTitleColor(edit, css);
-
         AppendActiveProjectBarBackgroundColor(edit, css);
 
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
 
-
-
         css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (StyleCache = GetFileContentResult(css, "text/css"));
-    }
-
-    void AppendContentTitleColor(EditConfiguration edit, StringBuilder css)
-    {
-        if (edit.ContentTitleColor.Is())
-        {
-            css.Append(GetEmbeddedResource(CurrentFolder, "ContentTitleColor.css"));
-            css.Replace(nameof(edit.ContentTitleColor), edit.ContentTitleColor);
-        }
     }
 
     void AppendProjectBarActiveProjectBackgroundColor(EditConfiguration edit, StringBuilder css)
@@ -122,11 +111,6 @@ public partial class EditController : BaseController
     {
         if (edit.AllPropertiesShowPropertiesAsColumns)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertiesAsColumns.css"));
-    }
-
-    void AppendCalendarDateTimePropertyStyle(StringBuilder sb)
-    {
-        sb.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
     }
 
     void AppendCustomPageTreeIcons(EditConfiguration edit, StringBuilder css)

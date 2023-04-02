@@ -18,7 +18,6 @@ namespace SystemLibrary.Common.Episerver;
 ///          "contentCreationBackgroundColor": "",
 ///          "contentCreationBorderColor": "",
 ///          "pageTreeSelectedContentBorderColor": "",
-///          "contentTitleColor": "",
 ///          "activeProjectBarBackgroundColor": ""
 ///        },
 ///        "properties": {

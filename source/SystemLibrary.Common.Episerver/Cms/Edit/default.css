@@ -1,0 +1,4 @@
+﻿/* Icon prefix to Content Name when visiting the content reset margins */
+.Sleek .epi-localToolbar.epi-viewHeaderContainer .epi-breadCrumbs-title-wrapper .dijitInline.dijitIcon.epi-breadCrumbsCurrentItem-icon.dijitTreeIcon.epi-iconObjectPage {
+    margin-top: 1px;
+}

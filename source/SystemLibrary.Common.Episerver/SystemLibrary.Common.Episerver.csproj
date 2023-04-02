@@ -34,7 +34,7 @@
 		<None Remove="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
 		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
-		<None Remove="Cms\Edit\ContentTitleColor.css" />
+		<None Remove="Cms\Edit\default.css" />
 		<None Remove="Cms\Edit\NewContentDialogHideRequiredTitle.css" />
 		<None Remove="Cms\Edit\NewContentDialogItemBackgroundColor.css" />
 		<None Remove="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
@@ -64,10 +64,10 @@
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />
+		<EmbeddedResource Include="Cms\Edit\default.css" />
 		<EmbeddedResource Include="Cms\Edit\NewContentDialogItemBackgroundColor.css" />
 		<EmbeddedResource Include="Cms\Edit\VersionGadgetHideLanguageColumn.css" />
 		<EmbeddedResource Include="Cms\Edit\NewContentDialogHideRequiredTitle.css" />
-		<EmbeddedResource Include="Cms\Edit\ContentTitleColor.css" />
 		<EmbeddedResource Include="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />

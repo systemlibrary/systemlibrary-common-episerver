@@ -166,7 +166,6 @@ public class Program
 			"contentCreationBackgroundColor": "",
 			"contentCreationBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
-			"contentTitleColor": "",
 			"activeProjectBarBackgroundColor": "",
 			"messagePropertyBackgroundColor": ""
 		}
@@ -231,7 +230,6 @@ appSettings.json:
 			"contentCreationBackgroundColor": "",
 			"contentCreationBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
-			"contentTitleColor": "",
 			"activeProjectBarBackgroundColor": ""
 		},
 		"properties": {
