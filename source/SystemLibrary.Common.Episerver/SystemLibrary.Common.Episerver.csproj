@@ -120,12 +120,12 @@
 	<ItemGroup>
 	  <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.13.*" />
 	  <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.13.*" />
-	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.18.0" />
+	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.18.*" />
 	  <PackageReference Include="EPiServer.Framework" Version="12.13.*" />
 	  <PackageReference Include="EPiServer.Hosting" Version="12.13.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
 	  <PackageReference Include="React.AspNet" Version="5.2.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.7.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.8.*" />
 	</ItemGroup>
 
 	<PropertyGroup>
