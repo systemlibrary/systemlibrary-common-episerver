@@ -24,11 +24,6 @@
         width: 100%;
     }
 }
-
-/* Display 'descriptions' for each property in 'IList Property Dialog View' */
-/* NOTE: 'descriptions' in epi 12.9.0 is currently not printed out to the HTML, cannot use the content: '' attr trick for these */
-
-
 /* Hide 'Descriptions' in the last tab, 'SETTINGS' which is Episerver "only" properties */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section:last-child > li.epi-form-container__section__row > label[title]:after {
     content: none;
@@ -42,4 +37,13 @@
 /* Show 'Descriptions' always in the last property on all tabs, even 'Settings' tab */
 .Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.dijitLayoutContainer.dijitContainer.epi-form-container__section > li.epi-form-container__section__row:last-of-type > label[title]:after {
     content: " " attr(title) !important;
+}
+
+.Sleek li.epi-form-container__section__row--field .epi-form-container__section__label-container {
+    display: block;
+}
+
+.Sleek .epi-property-description div:not([class]) {
+    display: block !important;
+    visibility: visible !important;
 }

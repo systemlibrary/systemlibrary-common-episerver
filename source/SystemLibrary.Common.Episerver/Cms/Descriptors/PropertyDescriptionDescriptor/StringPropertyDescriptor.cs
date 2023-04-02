@@ -24,7 +24,7 @@ public abstract class BaseCustomPropertyDescriptor : EditorDescriptor
                     if (metadata.IsRequired && metadata.InitialValue == null)
                         return;
 
-                    metadata.DisplayName = "<span>" + metadata.DisplayName + "<div class='sysLibPropDesc'>" + displayAttribute.Description + "</div></span>";
+                    // metadata.DisplayName = "<span>" + metadata.DisplayName + "<div class='sysLibPropDesc'>" + displayAttribute.Description + "</div></span>";
                 }
             }
         }
