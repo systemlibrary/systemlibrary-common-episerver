@@ -1,0 +1,9 @@
+﻿/* BORDER ON CONTENT TYPES WHEN CLICKING ON 'NEW PAGE' OR 'NEW BLOCK' */
+.Sleek .epi-createContent .epi-newContentContainer ul.epi-advancedListing li.dijitLayoutContainer-child > .epi-browserWindow > .epi-browserWindowContent {
+    background-color: NewContentDialogItemBackgroundColor;
+}
+
+/* NEW CONTENT WINDOW - BORDER AROUND EACH CONTENT TYPE (BLOCK/PAGE) TO SELECT FROM (BORDER, EVEN THOUGH ITS BACKGROUND, AS ITS THE CONTAINER) */
+.Sleek .epi-createContent .epi-listingContainer ul.epi-advancedListing li div.epi-browserWindow {
+    background-color: NewContentDialogItemBorderColor;
+}

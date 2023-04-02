@@ -29,7 +29,7 @@ public partial class EditController : BaseController
         css.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
 
         AppendNewContentDialogHideRequiredTitle(edit, css);
-        AppendNewContentDialogItemBackgroundColor(edit, css);
+        AppendNewContentDialogItemColors(edit, css);
 
         AppendAllPropertiesShowPropertyDescriptions(edit, css);
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
@@ -61,12 +61,12 @@ public partial class EditController : BaseController
         }
     }
 
-    void AppendNewContentDialogItemBackgroundColor(EditConfiguration edit, StringBuilder css)
+    void AppendNewContentDialogItemColors(EditConfiguration edit, StringBuilder css)
     {
         if (edit.NewContentDialogItemBackgroundColor.Is() ||
             edit.NewContentDialogItemBorderColor.Is())
         {
-            css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogItemBackgroundColor.css"));
+            css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogItemColors.css"));
 
             css.Replace(nameof(edit.NewContentDialogItemBorderColor), edit.NewContentDialogItemBorderColor);
             css.Replace(nameof(edit.NewContentDialogItemBackgroundColor), edit.NewContentDialogItemBackgroundColor);

@@ -1,18 +1,52 @@
 ﻿/* Revert Epi 12.10 UI changes 
    Displays properties in "title - value" mode, just like the old days, instead of title above the value
 */
-.Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row {
+
+/* PROPERTIES IN 'ALL PROPERTIES VIEW' */
+.Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
 }
 
+/* PROPERTIES 'Display Name' COLUMN WIDTH IN 'ALL PROPERTIES VIEW' */
 .Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitContainer.dijitTabPane > li.epi-form-container__section__row > .epi-form-container__section__label-container {
-    max-width: 240px !important;
-    min-width: 240px !important;
+    max-width: 260px !important;
+    min-width: 260px !important;
     align-items: start;
     padding: 4px !important;
 }
+
+
+/* PROPERTIES IN 'CREATE NEW CONTENT DIALOG' */
+.Sleek .epi-createContent .epi-form-container .epi-form-container__section .epi-form-container__section__row.epi-form-container__section__row--field {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+/* PROPERTIES 'Display Name' COLUMN WIDTH IN 'NEW CONTENT DIALOG' VIEW' */
+.Sleek .epi-createContent .epi-form-container .epi-form-container__section .epi-form-container__section__row > .epi-form-container__section__label-container {
+    max-width: 260px !important;
+    min-width: 260px !important;
+    align-items: start;
+    padding: 4px !important;
+}
+
+
+
+/* TOP HEADER PROPERTIES IN 'ALL PROPERTIES VIEW' */
+/*.Sleek .epi-documentHeader > .epi-form-container__section {
+    max-width: 33%;
+}
+.Sleek .epi-documentHeader > .epi-form-container__section > .epi-form-container__section__row {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+*/
+
+
 
 .Sleek div.dijitTabPaneWrapper > ul.epi-form-container__section.dijitLayoutContainer.dijitContainer.dijitTabPane.dijitVisible > li.epi-form-container__section__row > * {
     height: unset;
@@ -25,7 +59,7 @@
 }
 
 /* Move tooltip button on right side of title, for checkbox */
-.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {
+/*.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {
     position: absolute;
     right: 0;
     margin-right: 8px;
@@ -37,12 +71,11 @@
 
 .Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > .dijit.dijitInline > .dijit.dijitInline.dijitCheckBox {
     margin-left: 2px;
-    position: absolute;
     margin-top: 4px;
-}
+}*/
 
 /* Moved checkboxes to the right of public virtual bool properties */
-.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox .epi-form-container__section__label-container {
+/*.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row.epi-form-container__section__row--field.epi-form-container__section__row--checkbox .epi-form-container__section__label-container {
     width: 100%;
     height: 100%;
     text-align: right;
@@ -52,13 +85,13 @@
     width: 100%;
     min-width: 220px;
     cursor: pointer;
-}
+}*/
 
 
 /* Set label width on all properties in 'Properties View' and in 'On Create New Page Required Properties View' */
-.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,
+/*.Sleek div.epi-cardContainer.dijitContainer.dijitLayoutContainer .dijitContainer > .epi-form-container div.dijitTabPaneWrapper ul.epi-form-container__section.dijitLayoutContainer.dijitContainer > li.epi-form-container__section__row > label,*/
 /* Set label width on all properties in 'On Create New Block Properties View' */
-.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
+/*.Sleek div.epi-containerLayout.dijitLayoutContainer.dijitContainer ul > li.epi-form-container__section__row.epi-form-container__section__row--field > label {
     width: 100%;
     max-width: 240px;
 }
@@ -69,10 +102,10 @@
         width: auto;
         max-width: 200px;
     }
-}
+}*/
 
 /* Wide 'Content Area' selector */
-.Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
+/*.Sleek li.epi-form-container__section__row--field div.epi-content-area-editor--wide.epi-content-area-editor {
     max-width: 610px;
     margin-left: 8px;
 }
@@ -85,4 +118,4 @@
 
 .Sleek li.epi-form-container__section__row--field div.epi-content-area-header-block > div {
     margin: 8px;
-}
+}*/
