@@ -107,14 +107,11 @@ public class CurrentUser : ApplicationUser
         if (GivenName.IsNot())
             claimsIdentity.AddClaim(new Claim(ClaimTypes.GivenName, GivenName));
 
-        if (Email.IsNot())
-            claimsIdentity.AddClaim(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email", Email));
-
-        if (Email.IsNot())
-            claimsIdentity.AddClaim(new Claim("email", Email));
-
         if (Surname.IsNot())
             claimsIdentity.AddClaim(new Claim(ClaimTypes.Surname, Surname));
+
+        if (Email.IsNot())
+            claimsIdentity.AddClaim(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email", Email));
 
         OnAddClaims(claimsIdentity);
 
