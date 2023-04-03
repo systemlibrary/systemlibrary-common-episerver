@@ -32,6 +32,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
                     return;
                 }
 
+                Log.Info("Running first time setup due to 0 users in the DB");
+
                 InitializedSiteDefinitions(httpContext);
 
                 InitializeSystemPropertiesSortIndex();

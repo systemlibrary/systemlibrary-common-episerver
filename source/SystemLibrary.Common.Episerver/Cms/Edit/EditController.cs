@@ -125,7 +125,11 @@ public partial class EditController : BaseController
 
         css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
 
-        if (ContentIconEditorDescriptorModule.ContentDescriptorSettings == null) return;
+        if (ContentIconEditorDescriptorModule.ContentDescriptorSettings == null)
+        {
+            Log.Info("ContentDescriptorSettings is null, backround image in PageTree wont show. Try a restart of APP");
+            return;
+        }
 
         foreach (var setting in ContentIconEditorDescriptorModule.ContentDescriptorSettings)
         {

@@ -34,7 +34,7 @@
 //        // add another custom tab under 'admin' which invokes 'new-admin-tab' controller
 //        var newAdminTab = new UrlMenuItem("New Admin Tab",
 //        MenuPaths.Global + "/cms/admin/new-tab",
-//        "/EPiServer/EPiServer.Cms.UI.Admin/default#/SystemLibrary/Common/Episerver/FontAwesome/Style")
+//        "/EPiServer/EPiServer.Cms.UI.Admin/default#/SystemLibrary/CommonEpiserverFontAwesome/FontAwesome/Style")
 //        {
 //            //EPiServer/EPiServer.Cms.UI.Admin/default#/
 //            IsAvailable = (request) => true

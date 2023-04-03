@@ -74,7 +74,7 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
             if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
             {
                 extendedMetadata.SelectionFactoryType = typeof(MultiDropdownSelectionFactory);
-                extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
+                extendedMetadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
                 break;
             }
         }

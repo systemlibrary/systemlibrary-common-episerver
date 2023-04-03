@@ -16,6 +16,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
 
             var result = await _uIUserProvider.CreateUserAsync(userName, password, email, null, null, true);
 
+            Log.Info("Created a new admin user");
+
             if (result.Status == UIUserCreateStatus.Success)
             {
                 var roles = Roles.CmsRoles;

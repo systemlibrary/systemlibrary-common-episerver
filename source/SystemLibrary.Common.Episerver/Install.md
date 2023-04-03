@@ -94,8 +94,7 @@ Startpage
 <?xml version="1.0" encoding="utf-8"?>
 <module>
 	<clientResources>
-		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/FontAwesome/Style" resourceType="Style" />
-		<add name="epi-cms.widgets.base" path="/SystemLibrary/Common/Episerver/Edit/Style" resourceType="Style" /> 
+		<add name="epi-cms.widgets.base" path="/SystemLibrary/CommonEpiserverCms/Edit/Style" resourceType="Style" /> 
 	</clientResources>
 </module>
 ```

@@ -76,11 +76,8 @@ public static class ObjectExtensions
 
             if (isContentDataModel && blackListedLowered.Contains(name.ToLower())) continue;
 
-            Dump.Write("OK " + name);
             if (ignorePropertyNames != null)
-            {
                 if (ignorePropertyNames.Contains(name)) continue;
-            }
 
             if (name == "Property") continue;
 

@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Episerver.FontAwesome;
 
 partial class FontAwesomeController
 {
-    [Route("SystemLibrary/Common/Episerver/FontAwesome/Fonts/{filePath?}")]
+    [Route(Globals.AreaFontAwesome + "/FontAwesome/Fonts/{filePath?}")]
     public ActionResult Fonts(string filePath)
     {
         if (filePath.IsNot()) return new EmptyResult();

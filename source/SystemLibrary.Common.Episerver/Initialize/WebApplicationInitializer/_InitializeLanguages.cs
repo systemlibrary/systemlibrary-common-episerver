@@ -14,6 +14,9 @@ namespace SystemLibrary.Common.Episerver.Initialize
             var initialLanguagesEnabled = Extensions.ServiceCollectionExtensions.Options.InitialLanguagesEnabled;
 
             if (initialLanguagesEnabled.IsNot()) return;
+
+            Log.Info("Initializing languages: " + initialLanguagesEnabled);
+
             var initialLanguages = initialLanguagesEnabled.Split(',').Select(x => x.Replace(" ", "")).ToArray();
 
             var languageBranchRepository = Services.Get<ILanguageBranchRepository>();

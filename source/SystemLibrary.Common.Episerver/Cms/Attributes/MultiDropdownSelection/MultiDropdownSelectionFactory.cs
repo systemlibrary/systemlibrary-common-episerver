@@ -30,7 +30,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
             var defaultPropertyIListOfStrings = "epi-cms/contentediting/editors/propertyvaluelist/PropertyValueList";
             if (metadata.ClientEditingClass == defaultPropertyIListOfStrings)
             {
-                metadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/MultiDropdownSelection/Script";
+                metadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/Script";
             }
             var genericType = GetGenericListType(type);
 

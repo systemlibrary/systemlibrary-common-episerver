@@ -31,15 +31,15 @@ internal class FontAwesomeLoader
 
         if (icon is FontAwesomeBrands)
         {
-            requestUrl = "~/SystemLibrary/Common/Episerver/FontAwesome/BrandsIcon/";
+            requestUrl = "~/SystemLibrary/CommonEpiserverFontAwesome/FontAwesome/BrandsIcon/";
         }
         else if (icon is FontAwesomeRegular)
         {
-            requestUrl = "~/SystemLibrary/Common/Episerver/FontAwesome/RegularIcon/";
+            requestUrl = "~/SystemLibrary/CommonEpiserverFontAwesome/FontAwesome/RegularIcon/";
         }
         else
         {
-            requestUrl = "~/SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/";
+            requestUrl = "~/SystemLibrary/CommonEpiserverFontAwesome/FontAwesome/SolidIcon/";
         }
 
         var iconName = icon.ToString();

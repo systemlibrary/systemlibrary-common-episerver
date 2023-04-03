@@ -192,7 +192,7 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
                 if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
                 {
                     extendedMetadata.SelectionFactoryType = typeof(BoxSelectionFactory);
-                    extendedMetadata.ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/BoxSelection/" + nameof(BoxSelectionController.Script);
+                    extendedMetadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/BoxSelection/" + nameof(BoxSelectionController.Script);
                     break;
                 }
             }

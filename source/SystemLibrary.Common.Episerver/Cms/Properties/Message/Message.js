@@ -39,7 +39,7 @@
                         if (!document.getElementById(cssPrefixId)) {
                             var head = document.getElementsByTagName('body')[0];
 
-                            var css = this._getStylesheetLink(cssPrefixId, '/SystemLibrary/Common/Episerver/Cms/Message/Style');
+                            var css = this._getStylesheetLink(cssPrefixId, '/SystemLibrary/CommonEpiserverCms/Message/Style');
 
                             head.appendChild(css);
                         }

@@ -44,7 +44,7 @@ public class JsonEditFactory : ISelectionFactory
             metadata.EditorConfiguration.Add("jsonIsArray", options.Type.IsListOrArray().ToString().ToLower());
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName1", options.SortByPropertyName1);
             metadata.EditorConfiguration.Add("jsonEditSortByPropertyName2", options.SortByPropertyName2);
-            metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/Common/Episerver/Cms/JsonEdit/" + nameof(JsonEditController.EditorHtml));
+            metadata.EditorConfiguration.Add("jsonEditorUrl", "/SystemLibrary/CommonEpiserverCms/JsonEdit/" + nameof(JsonEditController.EditorHtml));
         }
         catch (Exception ex)
         {

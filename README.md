@@ -70,12 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.6.0.1
-- Supporting 12.18 Sleek UI Changes in Epi
-- BoxSelection can now take two colors, seperated by - (dash), so "red - blue" on EnumValue, creates a box with red and blue colors, split in half
-- Package configurations have changed (breaking change, check installation doc for latest configurations)
-- Updated deps
-- Modal for IListProperties/PropertyList gets a vertical scroll (can be overridden by you, by adding !important on css rule)
+- 6.6.0.5
+- New area for all controllers CommonEpiserverCms 
 
 #### Version history
 - View git history of this file if interested

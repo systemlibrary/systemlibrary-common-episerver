@@ -5,8 +5,9 @@
         internal const int ClientCacheDurationSeconds = 180;
         internal const int ServerCacheDurationSeconds = 180;
 
-        internal const string AreaName = "SystemLibrary/Common/Episerver/";
-        internal const string AreaPath = "/SystemLibrary/Common/Episerver/";
+        // Last part 'Cms' refers to the FolderName in root of this project
+        internal const string AreaCms = "/SystemLibrary/CommonEpiserverCms";
+        internal const string AreaFontAwesome = "/SystemLibrary/CommonEpiserverFontAwesome";
 
         internal static bool IsDeveloping => false;
 

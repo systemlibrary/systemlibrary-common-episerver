@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
+[Area(Globals.AreaCms)]
 [Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]
 public abstract class BaseController : Controller
 {

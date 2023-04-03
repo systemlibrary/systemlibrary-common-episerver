@@ -10,19 +10,24 @@ partial class IApplicationBuilderExtensions
     {
         app.UseEndpoints(endpoints =>
         {
-            // Note: /Cms/ refers to the folder named 'Cms' at root of the library and all its inner controllers
+            // /Cms folder in this project
             endpoints.MapAreaControllerRoute(
-                name: Globals.AreaName + "Cms",
-                areaName: Globals.AreaName + "Cms/",
-                pattern: Globals.AreaName + "Cms/{controller}/{action}/{id?}"
-            );
+                name: Globals.AreaCms,
+                areaName: Globals.AreaCms,
+                pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+
+            //endpoints.MapAreaControllerRoute(
+            //    name: Globals.AreaName,
+            //    areaName: Globals.AreaName,
+            //    pattern: Globals.AreaPath + "{area:exists}/{controller}/{action}/{id?}"
+            //);
 
             // Note: Icons in page tree
-            endpoints.MapAreaControllerRoute(
-               name: Globals.AreaName + "{controller}/{action}/{id?}",
-               areaName: Globals.AreaName,
-               pattern: Globals.AreaName + "{controller}/{action}/{id?}"
-               );
+            //endpoints.MapAreaControllerRoute(
+            //   name: Globals.AreaName + "/{controller}/{action}/{id?}",
+            //   areaName: Globals.AreaName,
+            //   pattern: Globals.AreaName + "/{controller}/{action}/{id?}"
+            //   );
         });
 
         if (options.MapEndpoints)

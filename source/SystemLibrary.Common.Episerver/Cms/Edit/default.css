@@ -8,3 +8,7 @@
     overflow-y: scroll;
     max-height: 730px;
 }
+
+.Sleek .dojoDndTarget.dojoDndContainer .dojoDndTarget.epi-linkItemEditor .epi-resourceName {
+    color: white;
+}

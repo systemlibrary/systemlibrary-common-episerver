@@ -7,6 +7,6 @@ public class MessageEditorDescriptor : EditorDescriptor
 {
     public MessageEditorDescriptor()
     {
-        ClientEditingClass = "/SystemLibrary/Common/Episerver/Cms/Message/" + nameof(MessageController.Script);
+        ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/Message/" + nameof(MessageController.Script);
     }
 }

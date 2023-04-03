@@ -4,7 +4,7 @@ namespace SystemLibrary.Common.Episerver.FontAwesome;
 
 partial class FontAwesomeController
 {
-    [Route("SystemLibrary/Common/Episerver/FontAwesome/SolidIcon/{icon}")]
+    [Route(Globals.AreaFontAwesome + "/FontAwesome/SolidIcon/{icon}")]
     public ActionResult SolidIcon(string icon)
     {
         AddCacheControlHeader();
