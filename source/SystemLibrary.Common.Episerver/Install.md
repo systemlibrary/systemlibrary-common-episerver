@@ -232,17 +232,20 @@ appSettings.json:
 	...,
 	"systemLibraryCommonEpiserver": {
 		"edit": {
-			"showEditFieldsAsColumns": false,
-			"hideLanguageColumnInVersionGadget": false,
-			"contentCreationBackgroundColor": "",
-			"contentCreationBorderColor": "",
+			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesShowPropertyDescriptions": false,
+			"allPropertiesShowPropertiesAsColumns": false,
+			"allPropertiesShowCheckBoxOnRightSide": false,
+			"versionGadgetHideLanguageColumn": false,
+			"newContentDialogItemBackgroundColor": "",
+			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
-			"activeProjectBarBackgroundColor": ""
+			"projectBarActiveProjectBackgroundColor": ""
 		},
 		"properties": {
 			"message": {
-				"backgroundColor": "#ededed",
-				"textColor": "#080736"
+				"backgroundColor": "#fff9e6",
+				"textColor": "#000"
 			}
 		}
 	}

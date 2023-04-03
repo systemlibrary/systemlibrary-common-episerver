@@ -237,6 +237,74 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns true if path is either relative or absolute path to a file</p>
+<p>File must be minimum 4 char long in total, including the extension and the dot</p>
+<p>Supports up to 6 characters in the extension</p>
+<p>Supports also query-params in the path</p>
+<p>Returns true or false</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_System_String_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L58">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_System_String_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile(System.String)" class="h4-custom-functionName">public static bool IsFile(this string path)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.String</span></td>
+  							<td><span class="parametername">path</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  			<div class="custom-menu-data-returntype" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<table class="table table-bordered table-striped table-condensed table-return">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Returns a string array with data stored from a JsonEdit attribute back to a list of class in C#</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -244,7 +312,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject__1_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L33">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L42">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject*"></a>
@@ -336,16 +404,22 @@ public class Controller
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns a friendly url version of the passed in url, usually a episerver content link or similar</p>
+<p>Returns never null even if input is null</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_System_Nullable_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L38">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L94">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)" class="h4-custom-functionName">public static string ToFriendlyUrl(this string url)</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_System_Nullable_System_Boolean__" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String,System.Nullable{System.Boolean})" class="h4-custom-functionName">public static string ToFriendlyUrl(this string url, bool? convertToAbsolute = null)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -365,6 +439,12 @@ public class Controller
   							<td><span class="xref">System.String</span></td>
   							<td><span class="parametername">url</span></td>
   							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+  							<td><span class="parametername">convertToAbsolute</span></td>
+  							<td><p>Pass null, which is default, to not convert, if input is absolute it returns absolute, else relative. Set to 'false' to force a relative return value, set to 'true' to force a absolute path based on CMS PrimaryDomain value</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -1033,7 +1113,7 @@ public class Controller
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -270,6 +270,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.BaseCms.LanguageBranchRepository
   nameWithType: BaseCms.LanguageBranchRepository
+- uid: SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl
+  name: PrimaryHostUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_PrimaryHostUrl
+  commentId: P:SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl
+  fullName: SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl
+  nameWithType: BaseCms.PrimaryHostUrl
+- uid: SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl*
+  name: PrimaryHostUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_PrimaryHostUrl_
+  commentId: Overload:SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.BaseCms.PrimaryHostUrl
+  nameWithType: BaseCms.PrimaryHostUrl
 - uid: SystemLibrary.Common.Episerver.BaseCms.ProjectRepository
   name: ProjectRepository
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_ProjectRepository
@@ -1434,19 +1447,6 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.CurrentUser
   fullName: SystemLibrary.Common.Episerver.CurrentUser
   nameWithType: CurrentUser
-- uid: SystemLibrary.Common.Episerver.CurrentUser.FirstName
-  name: FirstName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_FirstName
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.FirstName
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.FirstName
-  nameWithType: CurrentUser.FirstName
-- uid: SystemLibrary.Common.Episerver.CurrentUser.FirstName*
-  name: FirstName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_FirstName_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.FirstName
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.FirstName
-  nameWithType: CurrentUser.FirstName
 - uid: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync(Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory{SystemLibrary.Common.Episerver.CurrentUser})
   name: GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<CurrentUser>)
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GenerateUserIdentityAsync_Microsoft_AspNetCore_Identity_IUserClaimsPrincipalFactory_SystemLibrary_Common_Episerver_CurrentUser__
@@ -1463,6 +1463,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync
   nameWithType: CurrentUser.GenerateUserIdentityAsync
+- uid: SystemLibrary.Common.Episerver.CurrentUser.GivenName
+  name: GivenName
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GivenName
+  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.GivenName
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.GivenName
+  nameWithType: CurrentUser.GivenName
+- uid: SystemLibrary.Common.Episerver.CurrentUser.GivenName*
+  name: GivenName
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GivenName_
+  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.GivenName
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.GivenName
+  nameWithType: CurrentUser.GivenName
 - uid: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
   name: IsAdministrator()
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator
@@ -1515,19 +1528,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.CurrentUser.IsInRole
   nameWithType: CurrentUser.IsInRole
-- uid: SystemLibrary.Common.Episerver.CurrentUser.LastName
-  name: LastName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_LastName
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.LastName
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.LastName
-  nameWithType: CurrentUser.LastName
-- uid: SystemLibrary.Common.Episerver.CurrentUser.LastName*
-  name: LastName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_LastName_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.LastName
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.LastName
-  nameWithType: CurrentUser.LastName
 - uid: SystemLibrary.Common.Episerver.CurrentUser.Name
   name: Name
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Name
@@ -1554,6 +1554,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims
   nameWithType: CurrentUser.OnAddClaims
+- uid: SystemLibrary.Common.Episerver.CurrentUser.Surname
+  name: Surname
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Surname
+  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.Surname
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.Surname
+  nameWithType: CurrentUser.Surname
+- uid: SystemLibrary.Common.Episerver.CurrentUser.Surname*
+  name: Surname
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Surname_
+  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.Surname
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.Surname
+  nameWithType: CurrentUser.Surname
 - uid: SystemLibrary.Common.Episerver.EditConfiguration
   name: EditConfiguration
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html
@@ -1573,71 +1586,84 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.EditConfiguration.EditConfiguration
   nameWithType: EditConfiguration.EditConfiguration
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor
-  name: ActiveProjectBarBackgroundColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ActiveProjectBarBackgroundColor
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor
-  nameWithType: EditConfiguration.ActiveProjectBarBackgroundColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor*
-  name: ActiveProjectBarBackgroundColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ActiveProjectBarBackgroundColor_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+  name: AllPropertiesShowCheckBoxOnRightSide
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowCheckBoxOnRightSide
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+  nameWithType: EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide*
+  name: AllPropertiesShowCheckBoxOnRightSide
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowCheckBoxOnRightSide_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ActiveProjectBarBackgroundColor
-  nameWithType: EditConfiguration.ActiveProjectBarBackgroundColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor
-  name: ContentCreationBackgroundColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentCreationBackgroundColor
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor
-  nameWithType: EditConfiguration.ContentCreationBackgroundColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor*
-  name: ContentCreationBackgroundColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentCreationBackgroundColor_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+  nameWithType: EditConfiguration.AllPropertiesShowCheckBoxOnRightSide
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns
+  name: AllPropertiesShowPropertiesAsColumns
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowPropertiesAsColumns
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns
+  nameWithType: EditConfiguration.AllPropertiesShowPropertiesAsColumns
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns*
+  name: AllPropertiesShowPropertiesAsColumns
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowPropertiesAsColumns_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBackgroundColor
-  nameWithType: EditConfiguration.ContentCreationBackgroundColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor
-  name: ContentCreationBorderColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentCreationBorderColor
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor
-  nameWithType: EditConfiguration.ContentCreationBorderColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor*
-  name: ContentCreationBorderColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentCreationBorderColor_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertiesAsColumns
+  nameWithType: EditConfiguration.AllPropertiesShowPropertiesAsColumns
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions
+  name: AllPropertiesShowPropertyDescriptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowPropertyDescriptions
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions
+  nameWithType: EditConfiguration.AllPropertiesShowPropertyDescriptions
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions*
+  name: AllPropertiesShowPropertyDescriptions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_AllPropertiesShowPropertyDescriptions_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentCreationBorderColor
-  nameWithType: EditConfiguration.ContentCreationBorderColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor
-  name: ContentTitleColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentTitleColor
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor
-  nameWithType: EditConfiguration.ContentTitleColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor*
-  name: ContentTitleColor
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ContentTitleColor_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.AllPropertiesShowPropertyDescriptions
+  nameWithType: EditConfiguration.AllPropertiesShowPropertyDescriptions
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle
+  name: NewContentDialogHideRequiredTitle
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogHideRequiredTitle
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle
+  nameWithType: EditConfiguration.NewContentDialogHideRequiredTitle
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle*
+  name: NewContentDialogHideRequiredTitle
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogHideRequiredTitle_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ContentTitleColor
-  nameWithType: EditConfiguration.ContentTitleColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget
-  name: HideLanguageColumnInVersionGadget
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_HideLanguageColumnInVersionGadget
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget
-  nameWithType: EditConfiguration.HideLanguageColumnInVersionGadget
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget*
-  name: HideLanguageColumnInVersionGadget
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_HideLanguageColumnInVersionGadget_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogHideRequiredTitle
+  nameWithType: EditConfiguration.NewContentDialogHideRequiredTitle
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor
+  name: NewContentDialogItemBackgroundColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogItemBackgroundColor
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor
+  nameWithType: EditConfiguration.NewContentDialogItemBackgroundColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor*
+  name: NewContentDialogItemBackgroundColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogItemBackgroundColor_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.HideLanguageColumnInVersionGadget
-  nameWithType: EditConfiguration.HideLanguageColumnInVersionGadget
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBackgroundColor
+  nameWithType: EditConfiguration.NewContentDialogItemBackgroundColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor
+  name: NewContentDialogItemBorderColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogItemBorderColor
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor
+  nameWithType: EditConfiguration.NewContentDialogItemBorderColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor*
+  name: NewContentDialogItemBorderColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_NewContentDialogItemBorderColor_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.NewContentDialogItemBorderColor
+  nameWithType: EditConfiguration.NewContentDialogItemBorderColor
 - uid: SystemLibrary.Common.Episerver.EditConfiguration.PageTreeSelectedContentBorderColor
   name: PageTreeSelectedContentBorderColor
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_PageTreeSelectedContentBorderColor
@@ -1651,19 +1677,32 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.EditConfiguration.PageTreeSelectedContentBorderColor
   nameWithType: EditConfiguration.PageTreeSelectedContentBorderColor
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
-  name: ShowEditFieldsAsColumns
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ShowEditFieldsAsColumns
-  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
-  nameWithType: EditConfiguration.ShowEditFieldsAsColumns
-- uid: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns*
-  name: ShowEditFieldsAsColumns
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ShowEditFieldsAsColumns_
-  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor
+  name: ProjectBarActiveProjectBackgroundColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ProjectBarActiveProjectBackgroundColor
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor
+  nameWithType: EditConfiguration.ProjectBarActiveProjectBackgroundColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor*
+  name: ProjectBarActiveProjectBackgroundColor
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_ProjectBarActiveProjectBackgroundColor_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ShowEditFieldsAsColumns
-  nameWithType: EditConfiguration.ShowEditFieldsAsColumns
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.ProjectBarActiveProjectBackgroundColor
+  nameWithType: EditConfiguration.ProjectBarActiveProjectBackgroundColor
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn
+  name: VersionGadgetHideLanguageColumn
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_VersionGadgetHideLanguageColumn
+  commentId: P:SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn
+  nameWithType: EditConfiguration.VersionGadgetHideLanguageColumn
+- uid: SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn*
+  name: VersionGadgetHideLanguageColumn
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditConfiguration.html#SystemLibrary_Common_Episerver_EditConfiguration_VersionGadgetHideLanguageColumn_
+  commentId: Overload:SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.EditConfiguration.VersionGadgetHideLanguageColumn
+  nameWithType: EditConfiguration.VersionGadgetHideLanguageColumn
 - uid: SystemLibrary.Common.Episerver.Extensions
   name: SystemLibrary.Common.Episerver.Extensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.html
@@ -1853,12 +1892,15 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To(Of T)(EPiServer.Core.ContentReference)
   nameWithType: ContentReferenceExtensions.To<T>(ContentReference)
   nameWithType.vb: ContentReferenceExtensions.To(Of T)(ContentReference)
-- uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference)
-  name: ToFriendlyUrl(ContentReference)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_EPiServer_Core_ContentReference_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference)
-  fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference)
-  nameWithType: ContentReferenceExtensions.ToFriendlyUrl(ContentReference)
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference,System.Nullable{System.Boolean})
+  name: ToFriendlyUrl(ContentReference, Nullable<Boolean>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_EPiServer_Core_ContentReference_System_Nullable_System_Boolean__
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference,System.Nullable{System.Boolean})
+  name.vb: ToFriendlyUrl(ContentReference, Nullable(Of Boolean))
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference, System.Nullable<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference, System.Nullable(Of System.Boolean))
+  nameWithType: ContentReferenceExtensions.ToFriendlyUrl(ContentReference, Nullable<Boolean>)
+  nameWithType.vb: ContentReferenceExtensions.ToFriendlyUrl(ContentReference, Nullable(Of Boolean))
 - uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl*
   name: ToFriendlyUrl
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_
@@ -2030,6 +2072,19 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Extensions.StringExtensions
   fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions
   nameWithType: StringExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile(System.String)
+  name: IsFile(String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile(System.String)
+  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile(System.String)
+  nameWithType: StringExtensions.IsFile(String)
+- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile*
+  name: IsFile
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile
+  nameWithType: StringExtensions.IsFile
 - uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject*
   name: JsonEditAsObject
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject_
@@ -2046,12 +2101,15 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject(Of T)(System.String)
   nameWithType: StringExtensions.JsonEditAsObject<T>(String)
   nameWithType.vb: StringExtensions.JsonEditAsObject(Of T)(String)
-- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
-  name: ToFriendlyUrl(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
-  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String)
-  nameWithType: StringExtensions.ToFriendlyUrl(String)
+- uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String,System.Nullable{System.Boolean})
+  name: ToFriendlyUrl(String, Nullable<Boolean>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_System_Nullable_System_Boolean__
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String,System.Nullable{System.Boolean})
+  name.vb: ToFriendlyUrl(String, Nullable(Of Boolean))
+  fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String, System.Nullable<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl(System.String, System.Nullable(Of System.Boolean))
+  nameWithType: StringExtensions.ToFriendlyUrl(String, Nullable<Boolean>)
+  nameWithType.vb: StringExtensions.ToFriendlyUrl(String, Nullable(Of Boolean))
 - uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl*
   name: ToFriendlyUrl
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html#SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_
@@ -2059,6 +2117,54 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl
   nameWithType: StringExtensions.ToFriendlyUrl
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions
+  name: UriExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.UriExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions
+  nameWithType: UriExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is(System.Uri)
+  name: Is(Uri)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_Is_System_Uri_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is(System.Uri)
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is(System.Uri)
+  nameWithType: UriExtensions.Is(Uri)
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is*
+  name: Is
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_Is_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.Is
+  nameWithType: UriExtensions.Is
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot(System.Uri)
+  name: IsNot(Uri)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_IsNot_System_Uri_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot(System.Uri)
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot(System.Uri)
+  nameWithType: UriExtensions.IsNot(Uri)
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot*
+  name: IsNot
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_IsNot_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.IsNot
+  nameWithType: UriExtensions.IsNot
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl(System.Uri,System.Nullable{System.Boolean})
+  name: ToFriendlyUrl(Uri, Nullable<Boolean>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_ToFriendlyUrl_System_Uri_System_Nullable_System_Boolean__
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl(System.Uri,System.Nullable{System.Boolean})
+  name.vb: ToFriendlyUrl(Uri, Nullable(Of Boolean))
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl(System.Uri, System.Nullable<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl(System.Uri, System.Nullable(Of System.Boolean))
+  nameWithType: UriExtensions.ToFriendlyUrl(Uri, Nullable<Boolean>)
+  nameWithType.vb: UriExtensions.ToFriendlyUrl(Uri, Nullable(Of Boolean))
+- uid: SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl*
+  name: ToFriendlyUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html#SystemLibrary_Common_Episerver_Extensions_UriExtensions_ToFriendlyUrl_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.UriExtensions.ToFriendlyUrl
+  nameWithType: UriExtensions.ToFriendlyUrl
 - uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions
   name: UrlExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html
@@ -2091,12 +2197,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.IsNot
   nameWithType: UrlExtensions.IsNot
-- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
-  name: ToFriendlyUrl(Url)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_ToFriendlyUrl_EPiServer_Url_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
-  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url)
-  nameWithType: UrlExtensions.ToFriendlyUrl(Url)
+- uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url,System.Nullable{System.Boolean})
+  name: ToFriendlyUrl(Url, Nullable<Boolean>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_ToFriendlyUrl_EPiServer_Url_System_Nullable_System_Boolean__
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url,System.Nullable{System.Boolean})
+  name.vb: ToFriendlyUrl(Url, Nullable(Of Boolean))
+  fullName: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url, System.Nullable<System.Boolean>)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl(EPiServer.Url, System.Nullable(Of System.Boolean))
+  nameWithType: UrlExtensions.ToFriendlyUrl(Url, Nullable<Boolean>)
+  nameWithType.vb: UrlExtensions.ToFriendlyUrl(Url, Nullable(Of Boolean))
 - uid: SystemLibrary.Common.Episerver.Extensions.UrlExtensions.ToFriendlyUrl*
   name: ToFriendlyUrl
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html#SystemLibrary_Common_Episerver_Extensions_UrlExtensions_ToFriendlyUrl_
