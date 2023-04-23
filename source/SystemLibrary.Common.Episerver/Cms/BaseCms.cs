@@ -13,7 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 using SystemLibrary.Common.Episerver.Extensions;
-using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
 
@@ -288,14 +287,14 @@ public abstract class BaseCms
                         if (siteUrl.IsNot())
                             return schema + "://localhost" + portNumber;
 
-                        else if (siteUrl.Port != 80)
+                        else if (siteUrl.Port != 0 && siteUrl.Port != 80)
                             _PrimaryHostUrl = schema + "://" + siteUrl.Host + ":" + siteUrl.Port;
                         else
                             _PrimaryHostUrl = schema + "://" + siteUrl.Host;
                     }
                     else
                     {
-                        if(host.Url.Port > 80)
+                        if (host.Url.Port != 0 && host.Url.Port != 80)
                         {
                             _PrimaryHostUrl = schema + "://" + host.Url.Host + ":" + host.Url.Port;
                         }
