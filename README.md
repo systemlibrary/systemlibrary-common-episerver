@@ -70,10 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.6.0.8
-- ToFriendlyUrl(true), for absolute url's, updated the PrimaryUrl logic to support localhost as primary domain for local development
-- BaseCms.PrimaryHostUrl supports localhost as domain and portnumber is now
-- Default block view locations added content/blocks/blockFolder/viewName.cshtml
+- 6.6.0.9
+- BaseCms.PrimaryHostUrl returns localhost over and over again without caching, if siteDef and host is not found
 
 #### Version history
 - View git history of this file if interested
