@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.6.0.9
-- BaseCms.PrimaryHostUrl returns localhost over and over again without caching, if siteDef and host is not found
+- 6.6.1.0
+- AppUrl is a new package configuration, which is used in PrimaryHostUrl and ToFriendlyUrl(absolute: true). PrimaryHostUrl still has same logic, but it first checks if this variable is set
 
 #### Version history
 - View git history of this file if interested

@@ -158,6 +158,7 @@ public class Program
 	},
 
 	"systemLibraryCommonEpiserver": {
+		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
 			"allPropertiesShowPropertyDescriptions": false,
@@ -230,6 +231,7 @@ appSettings.json:
 {
 	...,
 	"systemLibraryCommonEpiserver": {
+		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
 			"allPropertiesShowPropertyDescriptions": false,

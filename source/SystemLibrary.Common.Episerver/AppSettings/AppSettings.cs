@@ -11,6 +11,7 @@ namespace SystemLibrary.Common.Episerver;
 /// {
 ///    ...,
 ///    "systemLibraryCommonEpiserver": {
+///        "appUrl": "https://localhost:50001",
 ///        "edit": {
 ///          "newContentDialogHideRequiredTitle": false,
 ///          "allPropertiesShowPropertyDescriptions": false,
@@ -40,6 +41,7 @@ public partial class AppSettings : Config<AppSettings>
     
     internal EditConfiguration Edit => SystemLibraryCommonEpiserver.Edit;
     internal PropertiesConfiguration Properties => SystemLibraryCommonEpiserver.Properties;
+    internal string AppUrl => SystemLibraryCommonEpiserver.AppUrl;
 
     public AppSettings()
     {
@@ -54,6 +56,8 @@ public partial class AppSettings : Config<AppSettings>
             Edit = new EditConfiguration();
             Properties = new PropertiesConfiguration();
         }
+
+        public string AppUrl { get; set; }
 
         public EditConfiguration Edit { get; set; }
 

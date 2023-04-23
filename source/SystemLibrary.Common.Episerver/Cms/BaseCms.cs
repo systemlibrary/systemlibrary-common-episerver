@@ -250,7 +250,15 @@ public abstract class BaseCms
         {
             if (_PrimaryHostUrl == null)
             {
-                var siteDefinition = SiteDefinition.Current;
+                var appUrl = AppSettings.Current.AppUrl;
+                if(appUrl.Is())
+                {
+                    _PrimaryHostUrl = appUrl;
+
+                    return _PrimaryHostUrl;
+                }
+
+               var siteDefinition = SiteDefinition.Current;
 
                 var schema = HttpContextInstance.Current?.Request?.Scheme ?? "http";
 
