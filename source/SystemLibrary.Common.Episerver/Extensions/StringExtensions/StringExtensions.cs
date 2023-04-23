@@ -97,14 +97,19 @@ public static class StringExtensions
 
         bool IsNativeHrefType()
         {
-            return url.StartsWith("javascript") || url.StartsWith("tel:") || url.StartsWith("email:");
+            return url.StartsWith("javascript:") || url.StartsWith("tel:") || url.StartsWith("email:");
         }
 
         if (IsNativeHrefType()) return url;
 
         bool IsEpiserverInternalLink()
         {
-            return url.StartsWithAny("~/", "/EPiServer/CMS/") || url.Contains(",,");
+            return (url.Contains(",,") && url.Contains("epieditmode")) ||   // www.epi.com/image.jpg,,12345?epieditmode=true
+                (url.Contains("/link/") && url.Contains(".aspx")) ||        // www.epi.com/link/control.aspx
+                (url.Contains("/globalassets/") && url.Contains(".")) ||    // www.epi.com/globalassets/image.jpg
+                (url.Contains("/contentassets/") && url.Contains(".")) ||   // www.epi.com/contentassets/image.jpg
+                (url.Contains("/cms/") && url.Contains("contentversion")) || // www.epi.com/EPiServer/cms/Stores/contentversion/?contentLink=5
+                (url.StartsWith("~/") && url.Contains("/EPiServer/"));  
         }
 
         void ConvertEpiserverInternalLink()

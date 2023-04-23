@@ -253,29 +253,46 @@ public abstract class BaseCms
 
                 var schema = HttpContextInstance.Current?.Request?.Scheme ?? "http";
 
+                var portNumber = "";
+                var port = HttpContextInstance.Current?.Request?.Host;
+
+                if(port.HasValue && port.Value.Port != 0 && port.Value.Port != 80)
+                {
+                    portNumber = ":" + port.Value;
+                }
+
                 if (siteDefinition == null)
                 {
-                    _PrimaryHostUrl = schema + "://localhost";
+                    _PrimaryHostUrl = schema + "://localhost" + portNumber;
                 }
                 else
                 {
-                    var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost() && h.Name != "localhost");
-
+                    var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
+                    
                     if (host == null)
-                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && h.Name != "localhost" && h.Name.Contains("."));
+                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost() && h.Name.Contains("."));
 
                     if (host == null)
                     {
                         var siteUrl = siteDefinition.SiteUrl;
 
                         if (siteUrl.IsNot())
-                            _PrimaryHostUrl = schema + "://localhost";
+                            _PrimaryHostUrl = schema + "://localhost" + portNumber;
+                        else if (siteUrl.Port != 80)
+                            _PrimaryHostUrl = schema + "://" + siteUrl.Host + ":" + siteUrl.Port;
                         else
                             _PrimaryHostUrl = schema + "://" + siteUrl.Host;
                     }
                     else
                     {
-                        _PrimaryHostUrl = schema + "://localhost";
+                        if(host.Url.Port > 80)
+                        {
+                            _PrimaryHostUrl = schema + "://" + host.Url.Host + ":" + host.Url.Port;
+                        }
+                        else
+                        {
+                            _PrimaryHostUrl = schema + "://" + host.Url.Host + portNumber;
+                        }
                     }
                 }
             }

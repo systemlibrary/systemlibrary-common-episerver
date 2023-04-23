@@ -102,7 +102,10 @@ public static partial class ServiceCollectionExtensions
 
         if (Options.DefaultAdminPassword.IsNot())
             Options.DefaultAdminPassword = fallback.DefaultAdminPassword;
-        
-        Options.ViewLocations = ViewLocations.AllViews.Add(Options.ViewLocations);
+
+        if(Options.ViewLocations != null)
+            Options.ViewLocations = ViewLocations.AllViews.Add(Options.ViewLocations);
+        else
+            Options.ViewLocations = ViewLocations.AllViews;
     }
 }

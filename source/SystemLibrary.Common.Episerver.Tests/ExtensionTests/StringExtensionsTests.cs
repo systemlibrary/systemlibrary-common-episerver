@@ -53,6 +53,26 @@ public class StringExtensionsTests
         url = "https://localhost.no/relative-path/image.jpg/?quality=90";
         result = url.ToFriendlyUrl(convertToAbsolute: true);
         Assert.IsTrue(result == "https://localhost.no/relative-path/image.jpg/?quality=90", result);
+
+        url = ("/relative/path/" + "1234").ToFriendlyUrl(true);
+        result = url.ToFriendlyUrl(convertToAbsolute: true);
+        Assert.IsTrue(result == "http://localhost/relative/path/1234", result);
+
+        url = "https://localhost.no:50000/relative-path/image.jpg/?quality=90";
+        result = url.ToFriendlyUrl(convertToAbsolute: true);
+        Assert.IsTrue(result == "https://localhost.no:50000/relative-path/image.jpg/?quality=90", result);
+
+        url = "https://localhost.no:50000/relative-path/image.jpg/?quality=90";
+        result = url.ToFriendlyUrl(convertToAbsolute: false);
+        Assert.IsTrue(result == "/relative-path/image.jpg/?quality=90", result);
+
+        url = "https://localhost.no:80/relative-path/image.jpg/?quality=90";
+        result = url.ToFriendlyUrl(convertToAbsolute: true);
+        Assert.IsTrue(result == "https://localhost.no:80/relative-path/image.jpg/?quality=90", result);
+
+        url = "/relative-path/image.jpg/?quality=99";
+        result = url.ToFriendlyUrl(convertToAbsolute: true);
+        Assert.IsTrue(result == "http://localhost/relative-path/image.jpg/?quality=99", result);
     }
 
     [TestMethod]
