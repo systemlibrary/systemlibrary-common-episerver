@@ -70,8 +70,9 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.6.1.0
-- AppUrl is a new package configuration, which is used in PrimaryHostUrl and ToFriendlyUrl(absolute: true). PrimaryHostUrl still has same logic, but it first checks if this variable is set
+- 6.7.0.1
+- BaseCms.CreateHostBuilder() now also adds the transformation file of appsettings.json by default, based on environment
+- BaseCms.CreateHostBuilder() takes an optional array of configuration files to be added 
 
 #### Version history
 - View git history of this file if interested

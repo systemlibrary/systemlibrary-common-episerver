@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 using SystemLibrary.Common.Episerver.Extensions;
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
 
@@ -221,18 +222,42 @@ public abstract class BaseCms
     /// }
     /// </code>
     /// </example>
-    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null) where T : class
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null) where T : class
     {
         if(appSettingsFullPath.IsNot())
             appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
 
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        if (environment.IsNot())
+            environment = EnvironmentConfig.Current.Name;
+
         return Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(config => config.AddJsonFile(appSettingsFullPath))
+            .ConfigureAppConfiguration(config =>
+            {
+                config.AddJsonFile(appSettingsFullPath);
+
+                if (environment.Is())
+                {
+                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                }
+
+                if(additionalConfigurationsFullPath.Is())
+                {
+                    foreach(var additionalConfig in additionalConfigurationsFullPath)
+                    {
+                        config.AddJsonFile(additionalConfig);
+                        if (environment.Is())
+                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                    }
+                }
+            })
             .ConfigureCmsDefaults()
             .ConfigureWebHostDefaults(config =>
             {
-                //NOTE: UseEnvironment() does not change anything that is loaded from SystemLibrary.Common.Net it seems
-                //config.UseEnvironment(environment);
+                if(environment.Is())
+                    config.UseEnvironment(environment);
+
                 config.UseStartup<T>();
             });
     }
