@@ -14,7 +14,7 @@ public class HideCategoryListDescriptor : EditorDescriptor
 {
     public override void ModifyMetadata(ExtendedMetadata metadata, IEnumerable<Attribute> attributes)
     {
-        if (ServiceCollectionExtensions.Options?.HidePropertyCategoryList == true)
+        if (IServiceCollectionExtensions.Options?.HidePropertyCategoryList == true)
         {
             base.ModifyMetadata(metadata, attributes);
             if (metadata.PropertyName == "icategorizable_category")

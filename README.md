@@ -70,9 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.7.0.1
-- BaseCms.CreateHostBuilder() now also adds the transformation file of appsettings.json by default, based on environment
-- BaseCms.CreateHostBuilder() takes an optional array of configuration files to be added 
+- 6.8.4.2
+- Updated deps to Episerver.Cms 12.19.*
 
 #### Version history
 - View git history of this file if interested

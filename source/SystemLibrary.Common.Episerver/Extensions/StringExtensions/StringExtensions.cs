@@ -72,7 +72,11 @@ public static class StringExtensions
         var queryIndex = path.IndexOf('?');
 
         if (queryIndex == -1)
+        {
+            if (extensionIndex == length - 1) return false;
+
             return extensionIndex >= length - 7; // .config
+        }
 
         if(extensionIndex > queryIndex)
         {

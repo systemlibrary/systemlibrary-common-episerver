@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
     {
         static void InitializeLanguages()
         {
-            var initialLanguagesEnabled = Extensions.ServiceCollectionExtensions.Options.InitialLanguagesEnabled;
+            var initialLanguagesEnabled = Extensions.IServiceCollectionExtensions.Options.InitialLanguagesEnabled;
 
             if (initialLanguagesEnabled.IsNot()) return;
 

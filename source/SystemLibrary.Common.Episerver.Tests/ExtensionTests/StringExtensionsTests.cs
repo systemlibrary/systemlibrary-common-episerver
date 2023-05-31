@@ -197,8 +197,17 @@ public class StringExtensionsTests
         Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
 
         Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
         data = "../../../image.jpg";
         expected = true;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "../../../image.a";
+        expected = true;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "../../../image.";
+        expected = false;
         Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
     }
 }

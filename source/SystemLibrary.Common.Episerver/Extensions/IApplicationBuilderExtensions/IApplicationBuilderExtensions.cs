@@ -47,8 +47,45 @@ public static partial class IApplicationBuilderExtensions
 
         ApplicationBuilderLogging(app, options);
 
+        app.Use(async (context, next) =>
+        {
+            var path = context?.Request?.Path.Value;
+            if (path != null)
+            {
+                if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml"))
+                {
+                    return;
+                }
+
+                if (path.StartsWith("/a") || path.StartsWith("/c") ||
+                   path.StartsWith("/A") || path.StartsWith("/C"))
+                {
+                    var p = path.ToLower();
+
+                    if (p.StartsWith("/appsettings.") ||
+                       p.StartsWith("/configurations/") ||
+                       p.StartsWith("/configuration/") ||
+                       p.StartsWith("/config/") ||
+                       p.StartsWith("/configs/"))
+                    {
+                        return;
+                    }
+                }
+                else if(path.StartsWith("/b") || path.StartsWith("/B"))
+                {
+                    var p = path.ToLower();
+                    if(p.StartsWith("/bin/"))
+                    {
+                        return;
+                    }
+                }
+            }
+            await next();
+        });
+
         ApplicationBuilderCompression(app, options);
 
+        
         app.CommonWebApplicationBuilder(options);
 
         ApplicationBuilderEndpoints(app, options);

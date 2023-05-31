@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.7.0.1</Version>
+		<Version>6.8.4.2</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -118,14 +118,10 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.13.*" />
-	  <PackageReference Include="EPiServer.CMS.AspNetCore.Routing" Version="12.13.*" />
-	  <PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.18.*" />
-	  <PackageReference Include="EPiServer.Framework" Version="12.13.*" />
-	  <PackageReference Include="EPiServer.Hosting" Version="12.13.*" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.19.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
-	  <PackageReference Include="React.AspNet" Version="5.2.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.8.*" />
+	  <PackageReference Include="React.AspNet" Version="5.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.*" />
 	</ItemGroup>
 
 	<PropertyGroup>

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Net;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
-
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -12,45 +7,26 @@ partial class IApplicationBuilderExtensions
 {
     static void ApplicationBuilderLogging(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
     {
-
         if (!options.UseExceptionLogging) return;
 
         app.UseExceptionHandler(appError =>
         {
             appError.Run(context =>
             {
-                try
-                {
-                    var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
+                if(context?.Response?.StatusCode == 503)
+                    return System.Threading.Tasks.Task.FromResult(0);
 
-                    var logwriter = Services.Get<ILogWriter>();
-                    if (logwriter == null)
-                    {
-                        Dump.Write(contextFeature?.Error);
-                    }
-                    else
-                    {
-                        try
-                        {
-                            Log.Error(contextFeature?.Error);
-                        }
-                        catch
-                        {
-                            Dump.Write(contextFeature?.Error);
-                        }
-                    }
+                var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                    if (!options.UseExceptionPage)
-                    {
-                        if (context?.Response != null)
-                            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    }
-                }
-                catch (Exception ex)
+                if (context?.Response != null)
                 {
-                    Dump.Write("Error occured inside the appErrorHandler, on path: " + context?.Request?.Path.ToString() + ": " + ex.Message);
+                    if (context.Response.StatusCode < 300)
+                        context.Response.StatusCode = 500;
                 }
-                return null;
+
+                Log.Error(contextFeature?.Error);
+
+                return System.Threading.Tasks.Task.FromResult(0);
             });
         });
     }

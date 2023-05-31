@@ -10,8 +10,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
     {
         async Task CreateAdminUser()
         {
-            var email = ServiceCollectionExtensions.Options.DefaultAdminEmail;
-            var password = ServiceCollectionExtensions.Options.DefaultAdminPassword;
+            var email = IServiceCollectionExtensions.Options.DefaultAdminEmail;
+            var password = IServiceCollectionExtensions.Options.DefaultAdminPassword;
             var userName = email.Substring(0, email.IndexOf('@'));
 
             var result = await _uIUserProvider.CreateUserAsync(userName, password, email, null, null, true);
@@ -42,7 +42,7 @@ namespace SystemLibrary.Common.Episerver.Initialize
             if(NoUsersExistsInDb() > 0)
                 return true;
 
-            var email = ServiceCollectionExtensions.Options.DefaultAdminEmail;
+            var email = IServiceCollectionExtensions.Options.DefaultAdminEmail;
 
             var userName = email.Substring(0, email.IndexOf('@'));
 
