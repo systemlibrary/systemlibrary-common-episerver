@@ -9,24 +9,21 @@ partial class IApplicationBuilderExtensions
     {
         if (!options.UseExceptionLogging) return;
 
-        app.UseExceptionHandler(appError =>
+        app.UseExceptionHandler(appInError =>
         {
-            appError.Run(context =>
+            appInError.Run(async context =>
             {
-                if(context?.Response?.StatusCode == 503)
-                    return System.Threading.Tasks.Task.FromResult(0);
-
                 var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
                 if (context?.Response != null)
                 {
-                    if (context.Response.StatusCode < 300)
-                        context.Response.StatusCode = 500;
+                    if (!context.Response.HasStarted)
+                        if (context.Response.StatusCode < 300)
+                            context.Response.StatusCode = 500;
                 }
 
-                Log.Error(contextFeature?.Error);
-
-                return System.Threading.Tasks.Task.FromResult(0);
+                if(context?.Response?.StatusCode != 503)
+                    Log.Error(contextFeature?.Error);
             });
         });
     }

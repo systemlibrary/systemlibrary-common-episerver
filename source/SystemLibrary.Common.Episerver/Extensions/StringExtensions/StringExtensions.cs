@@ -75,6 +75,9 @@ public static class StringExtensions
         {
             if (extensionIndex == length - 1) return false;
 
+            var lastIndexOfSlash = path.LastIndexOf('/');
+            if (lastIndexOfSlash > extensionIndex) return false;
+
             return extensionIndex >= length - 7; // .config
         }
 

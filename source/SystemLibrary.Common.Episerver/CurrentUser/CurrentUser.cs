@@ -1,12 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Threading.Tasks;
 
 using EPiServer.Cms.UI.AspNetIdentity;
 
-using Microsoft.AspNetCore.Identity;
-
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
@@ -45,7 +44,7 @@ public class CurrentUser : ApplicationUser
         (_Principal = HttpContextInstance.Current?.User);
 
     public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
-
+    
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
     /// </summary>
@@ -65,7 +64,7 @@ public class CurrentUser : ApplicationUser
     /// <summary>
     /// Name of the Principal Identity
     /// </summary>
-    public string Name => Principal?.Identity?.Name;
+    public string Name => Principal?.Identity?.Name ?? GetClaim(ClaimTypes.Name);
 
     /// <summary>
     /// First name taken from claim 'GivenName'
@@ -77,45 +76,27 @@ public class CurrentUser : ApplicationUser
     /// </summary>
     public string Surname => GetClaim(ClaimTypes.Surname);
 
-    /// <summary>
-    /// Override 'OnAddClaims' to add additional claims to your 'CurrentUser' object.
-    /// 
-    /// NOTE: Not yet implemented
-    /// </summary>
-    /// <param name="claimsIdentity"></param>
-    public virtual void OnAddClaims(ClaimsIdentity claimsIdentity)
+    public T Claim<T>(string claim, T defaultValue = default)
     {
-        claimsIdentity.AddClaim(new Claim(ClaimTypes.MobilePhone, PhoneNumber));
-    }
+        if (claim.IsNot()) return defaultValue;
 
-    /// <summary>
-    /// //TODO: Implement so this is in use and works like planned
-    /// </summary>
-    /// <param name="manager"></param>
-    /// <returns></returns>
-    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<CurrentUser> manager)
-    {
-        var userIdentity = await manager.CreateAsync(this);
+        var value = GetClaim(claim);
 
-        var claimsIdentity = userIdentity.Identity as ClaimsIdentity;
+        if(value == null) return defaultValue;
 
-        if (claimsIdentity == null) return null;
+        if (value is T t) return t;
 
-        if (UserName.IsNot())
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, Username));
+        var type = typeof(T);
+        if (type == SystemType.IntType)
+            return (T)(object)int.Parse(value);
 
-        if (GivenName.IsNot())
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.GivenName, GivenName));
+        if (type == SystemType.DateTimeType)
+            return (T)(object)DateTime.Parse(value);
 
-        if (Surname.IsNot())
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.Surname, Surname));
+        if(type == SystemType.BoolType)
+            return (T)(object) bool.Parse(value);
 
-        if (Email.IsNot())
-            claimsIdentity.AddClaim(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/email", Email));
-
-        OnAddClaims(claimsIdentity);
-
-        return null;
+        throw new Exception("Unsupported claim type " + type.Name + ". Supports only int, string, bool and datetime for now. Return the value as a string and convert it yourself.");
     }
 
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
@@ -125,8 +106,11 @@ public class CurrentUser : ApplicationUser
             var claim1 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == type);
             if (claim1 != null) return claim1.Value;
 
-            var claim2 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == typeFallback);
-            if (claim2 != null) return claim2.Value;
+            if (typeFallback != null)
+            {
+                var claim2 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == typeFallback);
+                if (claim2 != null) return claim2.Value;
+            }
         }
 
         return defaultValue;

@@ -209,5 +209,25 @@ public class StringExtensionsTests
         data = "../../../image.";
         expected = false;
         Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "https://localhost.no:8000/text////img.jpg";
+        expected = true;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "https://localhost.no:8000/test////blog//anotherdepth/";
+        expected = false;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "https://localhost.no/test////blog//anotherdepth/";
+        expected = false;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "https://localhost.no/img";
+        expected = false;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+
+        data = "https://localhost.no/img.jpg";
+        expected = true;
+        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
     }
 }

@@ -83,12 +83,11 @@ public static partial class IApplicationBuilderExtensions
             await next();
         });
 
-        ApplicationBuilderCompression(app, options);
-
-        
         app.CommonWebApplicationBuilder(options);
 
         ApplicationBuilderEndpoints(app, options);
+
+        ApplicationBuilderCompression(app, options);
 
         ApplicationBuilderRedirectCmsLoginPath(app, options);
 

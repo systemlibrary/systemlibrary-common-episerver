@@ -1,7 +1,9 @@
-﻿using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.ServiceLocation;
+﻿using EPiServer.ServiceLocation;
+using EPiServer.Shell.Security;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using React.AspNet;
 
@@ -44,7 +46,7 @@ public static partial class IServiceCollectionExtensions
         SetOptions(options);
 
         services.CommonWebApplicationServices(Options);
-        
+
         ServiceCollectionFirstTime(services, options);
 
         ServiceCollectionDisplays(services, options);
@@ -80,11 +82,12 @@ public static partial class IServiceCollectionExtensions
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonEpiserverApplicationServices<T>(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null) where T : ApplicationUser, new()
+    public static IServiceCollection CommonEpiserverApplicationServices<T>(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null) where T : IdentityUser, IUIUser, new()
     {
         services.AddCmsAspNetIdentity<T>();
-
-        return CommonEpiserverApplicationServices(services, options);
+        services = CommonEpiserverApplicationServices(services, options);
+        services.AddScoped<T>();
+        return services;
     }
 
     static void SetOptions(CommonEpiserverApplicationServicesOptions options)
