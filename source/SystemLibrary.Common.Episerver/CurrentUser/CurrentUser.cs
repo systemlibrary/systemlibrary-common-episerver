@@ -103,6 +103,8 @@ public class CurrentUser : ApplicationUser
     {
         if (Principal is ClaimsPrincipal claimsPrincipal)
         {
+            if (claimsPrincipal?.Claims == null) return defaultValue;
+
             var claim1 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == type);
             if (claim1 != null) return claim1.Value;
 
