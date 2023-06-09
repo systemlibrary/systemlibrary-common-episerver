@@ -70,9 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.9.0.1
-- CurrentUser contains Claim() method to return any claim on the current principal
-- CurrentUser removed "OnAddClaim" (breaking change, although never in use)
+- 6.10.0.1
+- Compression removed from this package, its added to SystemLibrary.Common.Web instead
 
 #### Version history
 - View git history of this file if interested

@@ -55,8 +55,6 @@ public static partial class IServiceCollectionExtensions
 
         ServiceCollectionCaching(services, options);
 
-        ServiceCollectionCompression(services, options);
-
         services.AddReact();
 
         return services;

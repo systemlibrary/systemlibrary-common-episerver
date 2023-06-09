@@ -87,8 +87,6 @@ public static partial class IApplicationBuilderExtensions
 
         ApplicationBuilderEndpoints(app, options);
 
-        ApplicationBuilderCompression(app, options);
-
         ApplicationBuilderRedirectCmsLoginPath(app, options);
 
         return app;
