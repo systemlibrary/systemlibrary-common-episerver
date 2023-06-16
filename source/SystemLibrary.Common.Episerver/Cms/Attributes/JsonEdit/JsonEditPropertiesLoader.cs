@@ -101,7 +101,6 @@ internal static class JsonEditPropertiesLoader
 
     static string GetDefinitionEnumSelections(Type type)
     {
-        
         var sb = new StringBuilder(string.Join(",", type.GetEnumNames().Select(x => "\"" + x + "\"")));
 
         sb.TrimEnd(",");
@@ -112,7 +111,8 @@ internal static class JsonEditPropertiesLoader
     static string GetTypeName(Type type)
     {
         if (type == SystemType.IntType) return "integer";
-        if (type == typeof(double)) return "number";
+
+        if (type == SystemType.DoubleType) return "number";
 
         if (type == typeof(XhtmlString)) return "textarea";
 

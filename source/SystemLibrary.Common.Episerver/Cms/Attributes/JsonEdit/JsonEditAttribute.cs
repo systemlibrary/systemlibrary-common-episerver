@@ -122,8 +122,8 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
                         throw new Exception(nameof(JsonEditAttribute) + " must have a Type set in its declaration of the attribute for property: " + extendedMetadata.PropertyName);
 
                     extendedMetadata.SelectionFactoryType = typeof(JsonEditFactory);
-                    extendedMetadata.ClientEditingClass = Globals.AreaCms + "Cms/JsonEdit/" + nameof(JsonEditController.Script);
-                    extendedMetadata.UIHint = Globals.AreaCms + "Cms/JsonEdit";
+                    extendedMetadata.ClientEditingClass = Globals.AreaCms + "/JsonEdit/" + nameof(JsonEditController.Script);
+                    extendedMetadata.UIHint = Globals.AreaCms + "/JsonEdit";
                     break;
                 }
             }

@@ -5,7 +5,7 @@
         internal const int ClientCacheDurationSeconds = 180;
         internal const int ServerCacheDurationSeconds = 180;
 
-        // Last part 'Cms' refers to the FolderName in root of this project
+        // Last part 'Cms' refers to the FolderName in root of this project and it matches any controller at any depth below it
         internal const string AreaCms = "/SystemLibrary/CommonEpiserverCms";
         internal const string AreaFontAwesome = "/SystemLibrary/CommonEpiserverFontAwesome";
 

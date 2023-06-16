@@ -41,7 +41,23 @@ public static class StringExtensions
     /// </example>
     public static T JsonEditAsObject<T>(this string text) where T : class
     {
-        return text.Json<T>(new XhtmlStringJsonConverter());
+        try
+        {
+            return text.Json<T>(new XhtmlStringJsonConverter());
+        }
+        catch
+        {
+            try
+            {
+                Log.Warning("JsonEditAsObject() warning thrown, with XhtmlStringJsonConverter");
+                return text.Json<T>();
+            }
+            catch(Exception ex)
+            {
+                Log.Error("Could not convert '" + text + "' to " + typeof(T).Name + " in JsonEditAsObject(): " + ex.Message);
+                return Activator.CreateInstance<T>();
+            }
+        }
     }
 
     /// <summary>
