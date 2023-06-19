@@ -70,8 +70,9 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.10.0.1
-- Compression removed from this package, its added to SystemLibrary.Common.Web instead
+- 6.10.0.2
+- JsonEdit script not loaded (bugfix)
+- 
 
 #### Version history
 - View git history of this file if interested
