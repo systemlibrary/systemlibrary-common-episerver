@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.10.0.2</Version>
+		<Version>6.10.0.3</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -121,7 +121,7 @@
 	  <PackageReference Include="EPiServer.CMS" Version="12.19.*" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.8.*" />
 	</ItemGroup>
 
 	<PropertyGroup>

@@ -6,6 +6,8 @@ using EPiServer.Web;
 
 using Microsoft.AspNetCore.Http;
 
+using SystemLibrary.Common.Web;
+
 namespace SystemLibrary.Common.Episerver.Initialize
 {
     internal partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
@@ -14,10 +16,17 @@ namespace SystemLibrary.Common.Episerver.Initialize
         UIRoleProvider _uIRoleProvider;
         ISiteDefinitionRepository _siteDefinitionRepository;
 
-        public WebApplicationInitializer(UIUserProvider uIUserProvider, UIRoleProvider uIRoleProvider, ISiteDefinitionRepository siteDefinitionRepository)
+        public WebApplicationInitializer(ISiteDefinitionRepository siteDefinitionRepository)
         {
-            _uIUserProvider = uIUserProvider;
-            _uIRoleProvider = uIRoleProvider;
+            try
+            {
+                _uIUserProvider = Services.Get<UIUserProvider>();
+                _uIRoleProvider = Services.Get<UIRoleProvider>();
+            }
+            catch
+            {
+                // services.CmsAspNetIdentity not invoked 
+            }
             _siteDefinitionRepository = siteDefinitionRepository;
         }
 
@@ -27,6 +36,8 @@ namespace SystemLibrary.Common.Episerver.Initialize
         {
             try
             {
+                if (_uIUserProvider == null) return;
+
                 if (IsAnyUserAlreadyRegisteredInDatabase())
                 {
                     return;

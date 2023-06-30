@@ -70,9 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.10.0.2
-- JsonEdit script not loaded (bugfix)
-- 
+- 6.10.0.3
+- BoxSelection null exception occurs on ".length" when you save invalid data, fixed
 
 #### Version history
 - View git history of this file if interested

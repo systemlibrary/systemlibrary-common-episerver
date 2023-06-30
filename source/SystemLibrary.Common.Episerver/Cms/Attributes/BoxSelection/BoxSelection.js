@@ -32,7 +32,7 @@
             const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
             function is(data) {
-                if (typeof (data) === 'undefined' || data === null || data === "" || (data.length && data.length === 0) || data == -1) {
+                if (typeof (data) === 'undefined' || data === null || data === "" || data == -1 || (data.length && data.length === 0)) {
                     return false;
                 }
                 return true;
@@ -278,6 +278,7 @@
                 if (value1 !== null && value2 !== null) {
                     return value1.toString() === value2.toString();
                 }
+
                 return false;
             }
 
@@ -310,13 +311,19 @@
                 // },
 
                 isValid: function () {
-                    return !this.required ||
-                        (lang.isArray(this.value) && this.value.length > 0 && this.value.join() !== "") ||
-                        (typeof (this.value) !== 'undefined' && this.value !== "" && this.value.length > 0)
+                    if (!this.required) return true;
+
+                    if (typeof (this.value) === 'undefined') return false;
+
+                    if (!this.value) return false;
+
+                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
+                        (this.value !== "" && this.value.length && this.value.length > 0)
                 },
 
                 _setValue: function (value, initialLoad) {
                     try {
+
                         if (!this._started) {
                             return;
                         }
@@ -410,13 +417,12 @@
 
                         for (var i = 0; i < boxes.length; i++) {
                             let box = boxes[i];
-
                             if (!is(box)) {
                                 continue;
                             }
-
                             let div = box.getElementsByTagName('div')[0];
                             if (!is(div)) {
+                                console.warning("Warn: no div to select, dijit rendering changed?");
                                 continue;
                             }
 
@@ -426,7 +432,7 @@
 
                             let css = getContainerCssClass(text, value, additional);
                             let inline = getContainerInlineStyle(text, value, additional);
-
+                            
                             if (this.isMultiSelect) {
                                 if (selected.includes(value.toString())) {
                                     css = css + ' ' + dojoAttachPointName + '--item-selected';
