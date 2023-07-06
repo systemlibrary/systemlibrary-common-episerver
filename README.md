@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.10.0.3
-- BoxSelection null exception occurs on ".length" when you save invalid data, fixed
+- 6.10.0.5
+- Previous version was packed with debug symbols
 
 #### Version history
 - View git history of this file if interested

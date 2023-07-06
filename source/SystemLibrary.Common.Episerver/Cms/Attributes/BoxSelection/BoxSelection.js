@@ -311,14 +311,16 @@
                 // },
 
                 isValid: function () {
-                    if (!this.required) return true;
+                    if (!this.required) {
+                        return true;
+                    }
 
                     if (typeof (this.value) === 'undefined') return false;
 
-                    if (!this.value) return false;
+                    return true;
 
-                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
-                        (this.value !== "" && this.value.length && this.value.length > 0)
+//                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
+  //                      (this.value !== "" && this.value.length && this.value.length > 0)
                 },
 
                 _setValue: function (value, initialLoad) {
@@ -432,7 +434,7 @@
 
                             let css = getContainerCssClass(text, value, additional);
                             let inline = getContainerInlineStyle(text, value, additional);
-                            
+
                             if (this.isMultiSelect) {
                                 if (selected.includes(value.toString())) {
                                     css = css + ' ' + dojoAttachPointName + '--item-selected';

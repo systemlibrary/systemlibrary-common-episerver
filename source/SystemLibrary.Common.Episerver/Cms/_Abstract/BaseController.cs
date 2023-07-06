@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 
 using Microsoft.AspNetCore.Authorization;
@@ -36,17 +37,26 @@ public abstract class BaseController : Controller
 
     protected StringBuilder GetEmbeddedResource(string resourceFolder, string resourceName)
     {
-        if (Globals.IsDeveloping)
+        try
         {
-            return new StringBuilder(System.IO.File.ReadAllText(Globals.LibraryBasePath + resourceFolder + "\\" + resourceName));
+            if (Globals.IsDeveloping)
+            {
+                return new StringBuilder(System.IO.File.ReadAllText(Globals.LibraryBasePath + resourceFolder + "\\" + resourceName));
+            }
+
+            var sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(resourceFolder, resourceName, CurrentAssembly));
+
+            if (sb.Length == 0)
+                Log.Error(this.GetType().Name + " could not find resource " + resourceName + " in folder " + resourceFolder);
+
+            return sb;
         }
+        catch(Exception ex)
+        {
+            Log.Error(ex);
 
-        var sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(resourceFolder, resourceName, CurrentAssembly));
-
-        if(sb.Length == 0)
-            Log.Error(this.GetType().Name + " could not find resource " + resourceName + " in folder " + resourceFolder);
-
-        return sb;
+            return new StringBuilder("");
+        }
     }
 
     protected FileContentResult GetFileContentResult(StringBuilder content, string contentType)
