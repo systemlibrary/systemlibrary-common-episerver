@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.10.0.5
-- Previous version was packed with debug symbols
+- 6.10.0.6
+- Removed a console.log
 
 #### Version history
 - View git history of this file if interested
