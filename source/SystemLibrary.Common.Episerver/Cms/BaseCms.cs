@@ -170,7 +170,7 @@ public abstract class BaseCms
     /// var isInPreviewMode = BaseCms.IsInPreviewMode;
     /// </code>
     /// </example>
-    public static bool IsInEditMode 
+    public static bool IsInEditMode
     {
         get
         {
@@ -224,7 +224,7 @@ public abstract class BaseCms
     /// </example>
     public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null) where T : class
     {
-        if(appSettingsFullPath.IsNot())
+        if (appSettingsFullPath.IsNot())
             appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
 
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -242,9 +242,9 @@ public abstract class BaseCms
                     config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
                 }
 
-                if(additionalConfigurationsFullPath.Is())
+                if (additionalConfigurationsFullPath.Is())
                 {
-                    foreach(var additionalConfig in additionalConfigurationsFullPath)
+                    foreach (var additionalConfig in additionalConfigurationsFullPath)
                     {
                         config.AddJsonFile(additionalConfig);
                         if (environment.Is())
@@ -255,7 +255,7 @@ public abstract class BaseCms
             .ConfigureCmsDefaults()
             .ConfigureWebHostDefaults(config =>
             {
-                if(environment.Is())
+                if (environment.Is())
                     config.UseEnvironment(environment);
 
                 config.UseStartup<T>();
@@ -274,59 +274,57 @@ public abstract class BaseCms
         {
             if (_PrimaryHostUrl == null)
             {
-                var appUrl = AppSettings.Current.AppUrl;
-                if(appUrl.Is())
+                var appUrl = AppSettings.Current.SystemLibraryCommonEpiserver.AppUrl;
+                if (appUrl.Is())
                 {
                     _PrimaryHostUrl = appUrl;
 
                     return _PrimaryHostUrl;
                 }
 
-               var siteDefinition = SiteDefinition.Current;
+                var siteDefinition = SiteDefinition.Current;
 
-                var schema = HttpContextInstance.Current?.Request?.Scheme ?? "http";
+                var scheme = HttpContextInstance.Current?.Request?.Scheme ?? "http";
 
                 var portNumber = "";
                 var port = HttpContextInstance.Current?.Request?.Host;
 
-                if(port.HasValue && port.Value.Port != 0 && port.Value.Port != 80)
+                if (port.HasValue && port.Value.Port != 0 && port.Value.Port != 80)
                 {
                     portNumber = ":" + port.Value;
                 }
 
                 if (siteDefinition == null)
                 {
-                    return schema + "://localhost" + portNumber;
+                    _PrimaryHostUrl = scheme + "://localhost" + portNumber;
                 }
                 else
                 {
+                    var siteUri = siteDefinition.SiteUrl;
+
                     var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
-                    
+
                     if (host == null)
                         host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost() && h.Name.Contains("."));
 
                     if (host == null)
-                    {
-                        var siteUrl = siteDefinition.SiteUrl;
+                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost());
 
-                        if (siteUrl.IsNot())
-                            return schema + "://localhost" + portNumber;
+                    if (host != null)
+                        siteUri = host.Url;
 
-                        else if (siteUrl.Port != 0 && siteUrl.Port != 80)
-                            _PrimaryHostUrl = schema + "://" + siteUrl.Host + ":" + siteUrl.Port;
-                        else
-                            _PrimaryHostUrl = schema + "://" + siteUrl.Host;
-                    }
+                    if (siteUri.IsNot())
+                        _PrimaryHostUrl = scheme + "://localhost" + portNumber;
+
                     else
                     {
-                        if (host.Url.Port != 0 && host.Url.Port != 80)
-                        {
-                            _PrimaryHostUrl = schema + "://" + host.Url.Host + ":" + host.Url.Port;
-                        }
+                        if (siteUri.Scheme.Is())
+                            scheme = siteUri.Scheme;
+
+                        if (siteUri.Port != 0 && siteUri.Port != 80)
+                            _PrimaryHostUrl = scheme + "://" + siteUri.Host + ":" + siteUri.Port;
                         else
-                        {
-                            _PrimaryHostUrl = schema + "://" + host.Url.Host + portNumber;
-                        }
+                            _PrimaryHostUrl = scheme + "://" + siteUri.Host;
                     }
                 }
             }

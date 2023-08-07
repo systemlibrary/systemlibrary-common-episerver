@@ -129,9 +129,10 @@ public static class StringExtensions
         {
             return (url.Contains(",,") && url.Contains("epieditmode")) ||   // www.epi.com/image.jpg,,12345?epieditmode=true
                 (url.Contains("/link/") && url.Contains(".aspx")) ||        // www.epi.com/Episerver/Cms/~/link/control.aspx
-                (url.Contains("globalassets/") && url.Contains(".")) ||    // www.epi.com/globalassets/image.jpg
-                (url.Contains("contentassets/") && url.Contains(".")) ||   // www.epi.com/contentassets/image.jpg
-                (url.Contains("/cms/") && url.Contains("contentversion")) || // www.epi.com/EPiServer/cms/Stores/contentversion/?contentLink=5
+                // NOTE: These formats are already "public available paths", not internal links, co commented out
+                // (url.Contains("globalassets/") && url.Contains(".")) ||    // www.epi.com/globalassets/image.jpg
+                // (url.Contains("contentassets/") && url.Contains(".")) ||   // www.epi.com/contentassets/image.jpg
+                (url.Contains("/cms/") && url.Contains("/contentversion")) || // www.epi.com/EPiServer/cms/Stores/contentversion/?contentLink=5
                 (url.Contains("~/") && url.Contains("EPiServer/"));        //www.epi.com/Episerver/Cms/~/blockcontroller
         }
 

@@ -70,8 +70,11 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.10.0.6
-- Removed a console.log
+- 6.10.0.7
+- BaseCms.PrimaryHostUrl slightly rewritten, one additional fallback on finding the url from site definitions
+- BoxSelectionAttribute now does not append "Expired:" to a value of 0
+- BoxSelectionAttribute auto selects "blank" if the value from DB is null, usually initial Enum selection without a default value
+- BoxSelectionAttribute now stores the string value instead of the Enum Int, if the property type is string
 
 #### Version history
 - View git history of this file if interested

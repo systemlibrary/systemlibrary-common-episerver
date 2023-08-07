@@ -290,6 +290,9 @@
 
                 postCreate: function () {
                     this._loadCssFile();
+                    if (!this.isMultiSelect) {
+                        this.value = '';
+                    }
                     this._initWidgetProperties();
                     this._bindEvents(this);
                     this.inherited(arguments);
@@ -319,13 +322,12 @@
 
                     return true;
 
-//                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
-  //                      (this.value !== "" && this.value.length && this.value.length > 0)
+                    //                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
+                    //                      (this.value !== "" && this.value.length && this.value.length > 0)
                 },
 
                 _setValue: function (value, initialLoad) {
                     try {
-
                         if (!this._started) {
                             return;
                         }
@@ -444,6 +446,19 @@
                             } else {
                                 if (isEqual(value, selected)) {
                                     css = css + ' ' + dojoAttachPointName + '--item-selected';
+                                } else {
+                                    // Initial selection is null, the "value" from html is ofc empty as the attribute exists
+                                    // so check if html is "" and current value is null, then its a "match"
+                                    if (value === "" && selected === null) {
+                                        css = css + ' ' + dojoAttachPointName + '--item-selected';
+                                    }
+                                    else {
+                                        // Initial selection is 0, when type is an Enum in backend
+                                        // without specifying a default, if theres a 0 in the Enum, then that is selected
+                                        if (value == 0 && selected === null) {
+                                            css = css + ' ' + dojoAttachPointName + '--item-selected';
+                                        }
+                                    }
                                 }
                             }
 

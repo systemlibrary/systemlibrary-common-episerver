@@ -26,4 +26,23 @@ public class ContentReferenceExtensionsTests
         Assert.IsTrue(contentReference.Is(), "ContentReference has Id, but Is is false");
         Assert.IsFalse(contentReference.IsNot(), "ContentReference has Id, but IsNot is true");
     }
+
+    [TestMethod]
+    public void ToFriendlyUrl_Success()
+    {
+        ContentReference contentReference = null;
+        var result = contentReference.ToFriendlyUrl();
+        var expected = (string)null;
+        Assert.IsTrue(result == expected, result + " is not equal " + expected);
+
+        contentReference = new ContentReference();
+        result = contentReference.ToFriendlyUrl();
+        expected = null;
+        Assert.IsTrue(result == expected, result + " is not equal " + expected);
+
+        contentReference = new ContentReference(5);
+        result = contentReference.ToFriendlyUrl();
+        expected = "";
+        Assert.IsTrue(result == expected, result + " is not equal " + expected);
+    }
 }

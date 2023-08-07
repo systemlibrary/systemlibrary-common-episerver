@@ -62,7 +62,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             foreach (var key in KeysFiltered(keys, Show, Hide))
             {
-                items.Add(GetSelectItem(key, enumType, metadata.ContainerType == SystemType.StringType));
+                items.Add(GetSelectItem(key, enumType, metadata.ModelType == SystemType.StringType));
             }
 
             if (options.ShowExpiredItems && metadata.InitialValue != null && metadata.InitialValue != "" && metadata.InitialValue + "" != "0")
@@ -79,6 +79,11 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                         }
 
                         if (val == metadata.InitialValue + "")
+                        {
+                            found = true;
+                            break;
+                        }
+                        if(val == "0")
                         {
                             found = true;
                             break;

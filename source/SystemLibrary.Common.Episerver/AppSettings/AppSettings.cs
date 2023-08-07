@@ -41,7 +41,6 @@ public partial class AppSettings : Config<AppSettings>
     
     internal EditConfiguration Edit => SystemLibraryCommonEpiserver.Edit;
     internal PropertiesConfiguration Properties => SystemLibraryCommonEpiserver.Properties;
-    internal string AppUrl => SystemLibraryCommonEpiserver.AppUrl;
 
     public AppSettings()
     {

@@ -49,7 +49,11 @@ public static class XhtmlStringExtensions
 
             var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
             if (data == null)
+            {
+                Log.Error("Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? " + xhtmlString.ToHtmlString());
+
                 return "<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString();
+            }
 
             return data.ToString();
         }
