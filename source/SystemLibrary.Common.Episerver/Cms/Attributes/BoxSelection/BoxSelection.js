@@ -199,7 +199,7 @@
                             if (top === null) {
                                 top = colors[1].replace(' ', '');
                             }
-                            return 'background-image: linear-gradient(to top left, ' + bottom + ' 48%, ' + top + ' 51%); text-shadow: 1.25px 1.25px #FFF;';
+                            return 'background-image: linear-gradient(to top left, ' + top + ' 48%, ' + bottom + ' 51%); text-shadow: 1px 1px 6px white, 0 0px 8px white, 0 0 20px white;';
                         }
                     }
                 }
