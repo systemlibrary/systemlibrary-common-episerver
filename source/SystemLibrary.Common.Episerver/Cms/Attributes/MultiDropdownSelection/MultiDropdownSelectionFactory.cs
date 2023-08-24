@@ -59,7 +59,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
             }
             else
             {
-                //Its a comma separated list of data, that was manually entered by a "input field" where Editors can write whatever they want
+                //Its a comma separated list of data or json, that was maybe manually entered by a "input field" where Editors can write whatever they want. or a custom selection factory was used
                 if (value is IList<string> keys)
                 {
                     // TODO: Support show/hide, and expired "strings"?

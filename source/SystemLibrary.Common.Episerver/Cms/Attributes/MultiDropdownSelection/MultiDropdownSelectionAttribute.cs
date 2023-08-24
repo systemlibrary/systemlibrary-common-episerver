@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using EPiServer.Shell.ObjectEditing;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
@@ -78,9 +80,42 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
                 else
                     extendedMetadata.SelectionFactoryType = SelectionFactoryType;
 
+                var multiDropdownSelectionSaveString = false;
+                
+                var genericType = GetGenericListType(extendedMetadata.ModelType);
+                if (EnumType == null)
+                {
+                    if (genericType != null && genericType == SystemType.StringType)
+                    {
+                        multiDropdownSelectionSaveString = true;
+                    }
+                }
+
+                extendedMetadata.EditorConfiguration.Add(nameof(multiDropdownSelectionSaveString), multiDropdownSelectionSaveString);
+
                 extendedMetadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
                 break;
             }
         }
+    }
+
+    static Type GetGenericListType(Type type)
+    {
+        if (type.IsGenericType)
+        {
+            foreach (Type @interface in type.GetInterfaces())
+            {
+                if (@interface.IsGenericType)
+                {
+                    if (@interface.GetGenericTypeDefinition() == typeof(ICollection<>))
+                        return @interface.GetGenericArguments()[0];
+                    else if (@interface.GetGenericTypeDefinition() == typeof(IList<>))
+                        return @interface.GetGenericArguments()[0];
+                }
+            }
+
+            return type.GetGenericArguments()[0];
+        }
+        return null;
     }
 }

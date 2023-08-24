@@ -73,6 +73,8 @@ define([
 
                 // summary: Populates the dropdown (if selection factory options are available), otherwise the textbox is displayed
 
+                let multiDropdownSelectionSaveString = this.multiDropdownSelectionSaveString;
+
                 if (this.selections && this.selections.length > 0) {
                     this._hasSelectionFactory = true;
                 }
@@ -228,16 +230,18 @@ define([
                     var displayName = this.stringSelector.focusNode.innerText;
 
                     if (isNaN(selectedValue)) {
-                        if (this.selections && this.selections.length) {
-                            var index = -1;
-                            for (var i = 0; i < this.selections.length; i++) {
-                                if (this.selections[i].value === selectedValue) {
-                                    index = i;
+                        if (!this.multiDropdownSelectionSaveString) {
+                            if (this.selections && this.selections.length) {
+                                var index = -1;
+                                for (var i = 0; i < this.selections.length; i++) {
+                                    if (this.selections[i].value === selectedValue) {
+                                        index = i;
+                                    }
                                 }
-                            }
 
-                            if (index >= 0) {
-                                selectedValue = index.toString();
+                                if (index >= 0) {
+                                    selectedValue = index.toString();
+                                }
                             }
                         }
                     }
@@ -322,14 +326,14 @@ define([
                 }
 
                 var expiredClass = "";
-                if(displayName.includes("Expired: ")) {
+                if (displayName.includes("Expired: ")) {
                     expiredClass = " epi-resourceName--expired";
                 }
                 var containerDiv = domConstruct.create('div', { 'class': 'epi-categoryButton' });
                 var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName' + expiredClass, 'title': displayName });
                 var categoryNameDiv = domConstruct.create('div', { 'class': 'dojoxEllipsis', innerHTML: displayName, 'title': displayName });
 
-                
+
                 domConstruct.place(categoryNameDiv, buttonWrapperDiv);
 
                 domConstruct.place(buttonWrapperDiv, containerDiv);

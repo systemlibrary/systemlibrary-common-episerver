@@ -70,9 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.11.0.1
-- Updated deps (breaking changes)
-- BoxSelection different text shadow and swapped the colors in "multi colored selection"
+- 6.11.0.2
+- MultidropdownSelectionAttribute now supports storing 'strings' instead of int's, if EnumType is null and a SelectionFactory is set
 
 #### Version history
 - View git history of this file if interested
