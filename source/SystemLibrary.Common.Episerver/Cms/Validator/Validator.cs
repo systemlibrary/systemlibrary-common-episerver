@@ -221,7 +221,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     void Add(string propertyName, string message, ValidationErrorSeverity severity)
     {
-        string propertyDisplayName = GetPropertyDisplayName(propertyName);
+        var propertyDisplayName = GetPropertyDisplayName(propertyName);
 
         for (int i = 0; i < Validations.Count; i++)
         {
@@ -235,7 +235,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
             }
         }
 
-        if (!message.Contains(propertyDisplayName))
+        if (propertyDisplayName != null && !message.Contains(propertyDisplayName))
             message = propertyDisplayName + ": " + message;
 
         Validations.Add(new ValidationError
@@ -249,6 +249,8 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     static string GetPropertyDisplayName(string propertyName)
     {
+        if (propertyName.IsNot()) return null;
+
         var property = typeof(T).GetProperty(propertyName);
 
         if (property == null) return propertyName;
