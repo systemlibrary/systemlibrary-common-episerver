@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.11.0.3
-- Validator: Null exception in "Warning, Error and Info", if propertyName is not passed in - fixed
+- 6.11.0.4
+- Multidropdown - do not store blanks, store it as null or a list of selected items
 
 #### Version history
 - View git history of this file if interested

@@ -140,7 +140,10 @@ define([
             _setValue: function () {
                 var strings = this._getAddedStrings();
 
-                this.set("value", strings?.length > 0 ? strings : null);
+                if (!strings || strings === '' || strings.length === 0) {
+                    strings = null;
+                }
+                this.set("value", strings);
 
                 this._setHelpTextVisibility();
 
@@ -148,7 +151,7 @@ define([
             },
 
             _refreshStringElements: function (strings) {
-                if (strings === undefined || strings === null) {
+                if (strings === undefined || strings === null || strings === '') {
                     return;
                 }
 
