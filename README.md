@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.11.0.4
-- Multidropdown - do not store blanks, store it as null or a list of selected items
+- 6.11.0.5
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
