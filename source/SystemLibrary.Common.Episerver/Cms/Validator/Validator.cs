@@ -83,6 +83,9 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
     /// </summary>
     public IEnumerable<ValidationError> Validate(T instance)
     {
+        if (Validations == null)
+            Validations = new List<ValidationError>();
+
         Validations.Clear();
         try
         {
@@ -92,7 +95,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
         catch (Exception ex)
         {
             Log.Error(ex);
-            Add(null, "Exception occured, let your developers know: " + ex.Message + ". The publishing continues as normal...", ValidationErrorSeverity.Warning);
+            Add(null, "Exception occured, let your developers know: " + ex.Message + ". Publishing flow continues as normal...", ValidationErrorSeverity.Warning);
         }
         return Validations;
     }
@@ -221,46 +224,66 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     void Add(string propertyName, string message, ValidationErrorSeverity severity)
     {
-        var propertyDisplayName = GetPropertyDisplayName(propertyName);
-
-        for (int i = 0; i < Validations.Count; i++)
+        try
         {
-            if (Validations[i].ErrorMessage == message)
+            var propertyDisplayName = GetPropertyDisplayName(propertyName);
+
+            for (int i = 0; i < Validations.Count; i++)
             {
-                if ((int)Validations[i].Severity >= (int)severity)
-                    return;
+                if (Validations[i].ErrorMessage == message)
+                {
+                    if ((int)Validations[i].Severity >= (int)severity)
+                        return;
 
-                Validations.RemoveAt(i);
-                break;
+                    Validations.RemoveAt(i);
+                    break;
+                }
             }
+
+            if (propertyDisplayName != null && !message.Contains(propertyDisplayName))
+                message = propertyDisplayName + ": " + message;
+
+            Validations.Add(new ValidationError
+            {
+                ErrorMessage = message,
+                PropertyName = propertyDisplayName ?? "",
+                Severity = severity,
+                ValidationType = ValidationErrorType.AttributeMatched
+            });
         }
-
-        if (propertyDisplayName != null && !message.Contains(propertyDisplayName))
-            message = propertyDisplayName + ": " + message;
-
-        Validations.Add(new ValidationError
+        catch(Exception ex)
         {
-            ErrorMessage = message,
-            PropertyName = propertyDisplayName,
-            Severity = severity,
-            ValidationType = ValidationErrorType.AttributeMatched
-        });
+            Validations.Add(new ValidationError
+            {
+                ErrorMessage = "Validation failed: " + ex.Message,
+                PropertyName = null,
+                Severity = ValidationErrorSeverity.Error,
+                ValidationType = ValidationErrorType.Unspecified
+            });
+        }
     }
 
     static string GetPropertyDisplayName(string propertyName)
     {
-        if (propertyName.IsNot()) return null;
+        try
+        {
+            if (propertyName.IsNot()) return null;
 
-        var property = typeof(T).GetProperty(propertyName);
+            var property = typeof(T).GetProperty(propertyName);
 
-        if (property == null) return propertyName;
+            if (property == null) return propertyName;
 
-        var display = property?.GetCustomAttribute<DisplayAttribute>();
+            var display = property?.GetCustomAttribute<DisplayAttribute>();
 
-        if (display?.Name != null)
-            return display.Name;
+            if (display?.Name != null)
+                return display.Name;
 
-        return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyName;
+            return property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyName;
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
 
