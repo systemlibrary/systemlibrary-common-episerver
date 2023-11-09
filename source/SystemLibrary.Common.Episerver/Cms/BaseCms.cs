@@ -233,14 +233,12 @@ public abstract class BaseCms
             environment = EnvironmentConfig.Current.Name;
 
         return Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(config =>
+            .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.AddJsonFile(appSettingsFullPath);
-
+                
                 if (environment.Is())
-                {
                     config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
-                }
 
                 if (additionalConfigurationsFullPath.Is())
                 {
@@ -252,14 +250,14 @@ public abstract class BaseCms
                     }
                 }
             })
-            .ConfigureCmsDefaults()
-            .ConfigureWebHostDefaults(config =>
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-                if (environment.Is())
-                    config.UseEnvironment(environment);
+                if(environment.Is())
+                    webBuilder.UseEnvironment(environment);
 
-                config.UseStartup<T>();
-            });
+                webBuilder.UseStartup<T>();
+            })
+            .ConfigureCmsDefaults();
     }
 
     static string _PrimaryHostUrl;
