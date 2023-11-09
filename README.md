@@ -70,8 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - &gt;= Episerver 12.8.0
 
 ## Latest Version
-- 6.11.0.6
-- Validator with a try catch and a null check more
+- 6.11.0.7
+- CmsDefaults registered after .NET defaults
 
 #### Version history
 - View git history of this file if interested
