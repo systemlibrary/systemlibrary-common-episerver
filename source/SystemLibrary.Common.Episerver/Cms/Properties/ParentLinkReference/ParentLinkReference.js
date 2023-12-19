@@ -18,6 +18,7 @@
                 templateString: template,
                 postCreate: function () {
                     var current = this;
+                    let parentLinkReferenceId = this.parentLinkReferenceId;
 
                     setTimeout(function () {
                         try {
@@ -25,6 +26,9 @@
                             if (parent && parent !== null) {
                                 var contentModel = parent.contentModel;
                                 var id = contentModel['epi-icontent_parentlink'];
+                                if (parentLinkReferenceId && parentLinkReferenceId > 4) {
+                                    id = parentLinkReferenceId;
+                                }
                                 var path = "/EPiServer/CMS/?language=no#context=epi.cms.contentdata:///";
 
                                 var fullUrl = path + id;

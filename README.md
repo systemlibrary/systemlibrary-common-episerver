@@ -70,9 +70,8 @@ Library with classes, methods and dijits for every .NET &gt;= 7 episerver web ap
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 7.0.0.1
-- Updated dependencies
-- Fixed CMS layout not bugging on first login (epi had a few breaking css changes)
+- 7.0.0.3
+- ParentLink fix: if parent is an asset folder, it will search in the DB for the owning page
 
 #### Version history
 - View git history of this file if interested
