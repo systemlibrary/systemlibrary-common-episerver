@@ -45,6 +45,19 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.Configuration
   nameWithType: AppSettings.Configuration.Configuration
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl
+  name: AppUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_AppUrl
+  commentId: P:SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl
+  nameWithType: AppSettings.Configuration.AppUrl
+- uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl*
+  name: AppUrl
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_AppUrl_
+  commentId: Overload:SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.AppSettings.Configuration.AppUrl
+  nameWithType: AppSettings.Configuration.AppUrl
 - uid: SystemLibrary.Common.Episerver.AppSettings.Configuration.Edit
   name: Edit
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.AppSettings.Configuration.html#SystemLibrary_Common_Episerver_AppSettings_Configuration_Edit
@@ -149,15 +162,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder
   nameWithType: BaseCms.CreateHostBuilder
-- uid: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)
-  name: CreateHostBuilder<T>(String[], String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_
-  commentId: M:SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String)
-  name.vb: CreateHostBuilder(Of T)(String(), String)
-  fullName: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder<T>(System.String[], System.String)
-  fullName.vb: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder(Of T)(System.String(), System.String)
-  nameWithType: BaseCms.CreateHostBuilder<T>(String[], String)
-  nameWithType.vb: BaseCms.CreateHostBuilder(Of T)(String(), String)
+- uid: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String,System.String[])
+  name: CreateHostBuilder<T>(String[], String, String[])
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_CreateHostBuilder__1_System_String___System_String_System_String___
+  commentId: M:SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder``1(System.String[],System.String,System.String[])
+  name.vb: CreateHostBuilder(Of T)(String(), String, String())
+  fullName: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder<T>(System.String[], System.String, System.String[])
+  fullName.vb: SystemLibrary.Common.Episerver.BaseCms.CreateHostBuilder(Of T)(System.String(), System.String, System.String())
+  nameWithType: BaseCms.CreateHostBuilder<T>(String[], String, String[])
+  nameWithType.vb: BaseCms.CreateHostBuilder(Of T)(String(), String, String())
 - uid: SystemLibrary.Common.Episerver.BaseCms.Get*
   name: Get
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html#SystemLibrary_Common_Episerver_BaseCms_Get_
@@ -1441,28 +1454,41 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.EPiServerDB
   nameWithType: ConnectionStringsConfiguration.EPiServerDB
+- uid: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB
+  name: ExternalDB
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.html#SystemLibrary_Common_Episerver_ConnectionStringsConfiguration_ExternalDB
+  commentId: P:SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB
+  fullName: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB
+  nameWithType: ConnectionStringsConfiguration.ExternalDB
+- uid: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB*
+  name: ExternalDB
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.html#SystemLibrary_Common_Episerver_ConnectionStringsConfiguration_ExternalDB_
+  commentId: Overload:SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.ExternalDB
+  nameWithType: ConnectionStringsConfiguration.ExternalDB
 - uid: SystemLibrary.Common.Episerver.CurrentUser
   name: CurrentUser
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html
   commentId: T:SystemLibrary.Common.Episerver.CurrentUser
   fullName: SystemLibrary.Common.Episerver.CurrentUser
   nameWithType: CurrentUser
-- uid: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync(Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory{SystemLibrary.Common.Episerver.CurrentUser})
-  name: GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<CurrentUser>)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GenerateUserIdentityAsync_Microsoft_AspNetCore_Identity_IUserClaimsPrincipalFactory_SystemLibrary_Common_Episerver_CurrentUser__
-  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync(Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory{SystemLibrary.Common.Episerver.CurrentUser})
-  name.vb: GenerateUserIdentityAsync(IUserClaimsPrincipalFactory(Of CurrentUser))
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync(Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory<SystemLibrary.Common.Episerver.CurrentUser>)
-  fullName.vb: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync(Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory(Of SystemLibrary.Common.Episerver.CurrentUser))
-  nameWithType: CurrentUser.GenerateUserIdentityAsync(IUserClaimsPrincipalFactory<CurrentUser>)
-  nameWithType.vb: CurrentUser.GenerateUserIdentityAsync(IUserClaimsPrincipalFactory(Of CurrentUser))
-- uid: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync*
-  name: GenerateUserIdentityAsync
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GenerateUserIdentityAsync_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync
+- uid: SystemLibrary.Common.Episerver.CurrentUser.Claim*
+  name: Claim
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Claim_
+  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.Claim
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.GenerateUserIdentityAsync
-  nameWithType: CurrentUser.GenerateUserIdentityAsync
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.Claim
+  nameWithType: CurrentUser.Claim
+- uid: SystemLibrary.Common.Episerver.CurrentUser.Claim``1(System.String,``0)
+  name: Claim<T>(String, T)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Claim__1_System_String___0_
+  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.Claim``1(System.String,``0)
+  name.vb: Claim(Of T)(String, T)
+  fullName: SystemLibrary.Common.Episerver.CurrentUser.Claim<T>(System.String, T)
+  fullName.vb: SystemLibrary.Common.Episerver.CurrentUser.Claim(Of T)(System.String, T)
+  nameWithType: CurrentUser.Claim<T>(String, T)
+  nameWithType.vb: CurrentUser.Claim(Of T)(String, T)
 - uid: SystemLibrary.Common.Episerver.CurrentUser.GivenName
   name: GivenName
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GivenName
@@ -1541,19 +1567,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.CurrentUser.Name
   nameWithType: CurrentUser.Name
-- uid: SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims(System.Security.Claims.ClaimsIdentity)
-  name: OnAddClaims(ClaimsIdentity)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_OnAddClaims_System_Security_Claims_ClaimsIdentity_
-  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims(System.Security.Claims.ClaimsIdentity)
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims(System.Security.Claims.ClaimsIdentity)
-  nameWithType: CurrentUser.OnAddClaims(ClaimsIdentity)
-- uid: SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims*
-  name: OnAddClaims
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_OnAddClaims_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.OnAddClaims
-  nameWithType: CurrentUser.OnAddClaims
 - uid: SystemLibrary.Common.Episerver.CurrentUser.Surname
   name: Surname
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Surname
@@ -1745,6 +1758,12 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions
   fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions
   nameWithType: CommonEpiserverApplicationServicesOptions
+- uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.CmsLoginPath
+  name: CmsLoginPath
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_CmsLoginPath
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.CmsLoginPath
+  fullName: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.CmsLoginPath
+  nameWithType: CommonEpiserverApplicationServicesOptions.CmsLoginPath
 - uid: SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.CmsUserSessionDurationMinutes
   name: CmsUserSessionDurationMinutes
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html#SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_CmsUserSessionDurationMinutes
@@ -1971,6 +1990,34 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder
   nameWithType: IApplicationBuilderExtensions.CommonEpiserverApplicationBuilder
+- uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions
+  name: IServiceCollectionExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions
+  nameWithType: IServiceCollectionExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  name: CommonEpiserverApplicationServices(IServiceCollection, CommonEpiserverApplicationServicesOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  nameWithType: IServiceCollectionExtensions.CommonEpiserverApplicationServices(IServiceCollection, CommonEpiserverApplicationServicesOptions)
+- uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices*
+  name: CommonEpiserverApplicationServices
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices
+  nameWithType: IServiceCollectionExtensions.CommonEpiserverApplicationServices
+- uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  name: CommonEpiserverApplicationServices<T>(IServiceCollection, CommonEpiserverApplicationServicesOptions)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  name.vb: CommonEpiserverApplicationServices(Of T)(IServiceCollection, CommonEpiserverApplicationServicesOptions)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices<T>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
+  nameWithType: IServiceCollectionExtensions.CommonEpiserverApplicationServices<T>(IServiceCollection, CommonEpiserverApplicationServicesOptions)
+  nameWithType.vb: IServiceCollectionExtensions.CommonEpiserverApplicationServices(Of T)(IServiceCollection, CommonEpiserverApplicationServicesOptions)
 - uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
   name: ObjectExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html
@@ -2038,34 +2085,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.ToFriendlyUrl
   nameWithType: PageDataExtensions.ToFriendlyUrl
-- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
-  name: ServiceCollectionExtensions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html
-  commentId: T:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
-  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions
-  nameWithType: ServiceCollectionExtensions
-- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  name: CommonEpiserverApplicationServices(IServiceCollection, CommonEpiserverApplicationServicesOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverApplicationServices(IServiceCollection, CommonEpiserverApplicationServicesOptions)
-- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices*
-  name: CommonEpiserverApplicationServices
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverApplicationServices_
-  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverApplicationServices
-- uid: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  name: CommonEpiserverApplicationServices<T>(IServiceCollection, CommonEpiserverApplicationServicesOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_ServiceCollectionExtensions_CommonEpiserverApplicationServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  name.vb: CommonEpiserverApplicationServices(Of T)(IServiceCollection, CommonEpiserverApplicationServicesOptions)
-  fullName: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices<T>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ServiceCollectionExtensions.CommonEpiserverApplicationServices(Of T)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)
-  nameWithType: ServiceCollectionExtensions.CommonEpiserverApplicationServices<T>(IServiceCollection, CommonEpiserverApplicationServicesOptions)
-  nameWithType.vb: ServiceCollectionExtensions.CommonEpiserverApplicationServices(Of T)(IServiceCollection, CommonEpiserverApplicationServicesOptions)
 - uid: SystemLibrary.Common.Episerver.Extensions.StringExtensions
   name: StringExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html

@@ -3,7 +3,7 @@
 ## Description
 Setup new empty episerver website - in 5 min!
 
-Library with classes, methods and dijits for every .NET &gt;= 6 episerver web application
+Library with classes, methods and dijits for every .NET &gt;= 7 episerver web application
 
 ### Features
 
@@ -66,12 +66,13 @@ Library with classes, methods and dijits for every .NET &gt;= 6 episerver web ap
 - Contains 'CurrentUser' class, either new it up or inject it
 
 ## Requirements
-- &gt;= .NET 6
-- &gt;= Episerver 12.8.0
+- &gt;= .NET 7
+- &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 6.11.0.7
-- CmsDefaults registered after .NET defaults
+- 7.0.0.1
+- Updated dependencies
+- Fixed CMS layout not bugging on first login (epi had a few breaking css changes)
 
 #### Version history
 - View git history of this file if interested

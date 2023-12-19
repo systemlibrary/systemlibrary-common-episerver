@@ -1,5 +1,5 @@
 ﻿# Installation
-* Create a new Episerver Web Application and have it running on your local machine in no time with .NET 6!
+* Create a new Episerver Web Application and have it running on your local machine in no time with .NET 7!
 
 ## Install nuget package
 
@@ -10,20 +10,19 @@
 ## Setup new episerver website - in 5 min!
 
 0. Create new empty database named "Demo" on your local SQL instance
-1. Create a new project "AspNet Core Empty" for .NET 6
+1. Create a new project "AspNet Core Empty" for .NET 7
 2. Delete appSettings.development.json
-3. Add nuget package Episerver.CMS.AspNetCore.Routing v12.13.1
-4. Add nuget package Episerver.Cms >= 12.18.0
-5. Add nuget package SystemLibrary.Common.Episerver >= 6.6.0.1
+3. Add nuget package Episerver.Cms >= 12.26.0
+4. Add nuget package SystemLibrary.Common.Episerver >= 7.0.0.2
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
-6. Create '~/module.config', set its build to 'Content' 
-7. Create '~/Cms/Cms.cs'
-8. Create '~/Properties/launchSettings.json' (it should exist already)
-9. Create '~/Content/Pages/StartPage/StartPage.cs'
-10. Create '~/Content/Pages/StartPage/StartPageController.cs'
-11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
-12. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
-13. Copy paste code below, into their respective files
+5. Create '~/module.config', set its build to 'Content' 
+6. Create '~/Cms/Cms.cs'
+7. Create '~/Properties/launchSettings.json' (it should exist already)
+8. Create '~/Content/Pages/StartPage/StartPage.cs'
+9. Create '~/Content/Pages/StartPage/StartPageController.cs'
+10. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
+11. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
+12. Copy paste code below, into their respective files
 
 ~/Cms/Cms.cs:
 ```csharp 

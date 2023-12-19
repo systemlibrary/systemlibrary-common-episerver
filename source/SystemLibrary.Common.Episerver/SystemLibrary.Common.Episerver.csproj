@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>6.11.0.7</Version>
+		<Version>7.0.0.1</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -118,10 +118,10 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.22.4" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.26.0" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.*" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="6.9.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.*" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -142,7 +142,7 @@
 		<PackageProjectUrl>https://www.systemlibrary.com/#SystemLibraryCommonEpiserver</PackageProjectUrl>
 		<PackageIcon>nuget-icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageTags>C# .NET 6.0 Episerver Optimizely Library</PackageTags>
+		<PackageTags>C# .NET 7.0 Episerver Optimizely Library</PackageTags>
 		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-version</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
