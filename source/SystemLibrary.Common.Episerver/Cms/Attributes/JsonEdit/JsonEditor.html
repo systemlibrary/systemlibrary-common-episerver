@@ -19,18 +19,17 @@
 
 <body>
     <div class="jsonEditor-container">
-        <div class="jsonEditor-menu" style="padding-left: 0.5em;">
+        <div class="jsonEditor-menu" style="padding: 2em;">
             <button tabindex="-1" id="preview" style='min-width: 125px'
                 title="Preview my current json data if you want to copy paste it or similar">Preview Json</button>
             <button tabindex="-1" id="collapseExpandAll" style='min-width: 125px'
                 title="Collapse/Expand all items based on the state of the first item">Collapse/Expand</button>
             <button tabindex="-1" id="btnSaveAndClose" style='min-width: 125px'
                 title="Save and close this editor">Save</button>
-            <button tabindex="-1" id="btnClose" style='min-width: 125px; float:right; margin-right: 28px;'
+            <button tabindex="-1" id="btnClose" style='min-width: 125px; float:right; margin-right: 3em;'
                 title="Cancel all my changes and close this editor">Cancel</button>
 
             <span id="infoModal"
-            
                 style='background-image:url(/SystemLibrary/CommonEpiserverFontAwesome/FontAwesome/SolidIcon/circle-info.svg);background-repeat: no-repeat; cursor:pointer;display:inline-block; width: 68px; height:21px; margin-left: 0.5em; top:5px; position:relative;'></span>
             <div class="jsonEditor-container-menu">
                 <input type="text" id="inputFilter" placeholder="Filter on..."
@@ -397,9 +396,19 @@
 
         function hotkeySave(e) {
             if (e) {
-                if (e.ctrlKey) {
+                if (e.altKey) {
                     if (e.key === 's') {
                         onSaveAndClose();
+                    }
+                }
+            }
+        }
+
+        function hotkeyCollapseExpand(e) {
+            if (e) {
+                if (e.altKey) {
+                    if (e.key === 'c') {
+                        collapseExpandAll();
                     }
                 }
             }
@@ -414,7 +423,7 @@
         }
 
         function infoModalClicked() {
-            alert("Info:\n\nHotkeys:\n Ctrl + s to save and close\nEscape to close")
+            alert("Info:\n\nHotkeys:\nAlt+S to save and close\nEscape to close\nAlt+C to collapse/expand")
         }
 
         var btnClose = document.getElementById('btnClose');
@@ -430,6 +439,7 @@
         inputFilter.onkeyup = onFilterInputKeyUp;
 
         document.addEventListener('keyup', hotkeySave, false);
+        document.addEventListener('keydown', hotkeyCollapseExpand, false);
         document.addEventListener('keyup', hotkeyCancel, false);
     </script>
 
