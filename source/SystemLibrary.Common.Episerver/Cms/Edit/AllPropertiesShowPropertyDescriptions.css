@@ -3,7 +3,7 @@
     height: fit-content;
 }
 
-/* Display epi-property- descriptions in 'property container' */
+/* Display epi-property-descriptions in 'property container' */
 .Sleek .dijitTabPaneWrapper.dijitTabContainerTop-container .epi-property-description div:not([class]) {
     display: block !important;
     visibility: visible !important;

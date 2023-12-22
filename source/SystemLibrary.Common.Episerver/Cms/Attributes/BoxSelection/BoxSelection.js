@@ -184,12 +184,13 @@
             }
 
             function appendContainerInlineBackground(data) {
+
                 if (is(data)) {
                     // data contains comma, and each "word" is either Hex, or Rgb, or "no css class" (dash, underscores), then it is 
                     // built in colors, hex or rgb values
                     data = data.toString();
-                    if (data.includes('-') && !data.includes("/")) {
-                        let colors = data.split('-');
+                    if (data.includes("--") && !data.includes("/")) {
+                        let colors = data.split("--");
                         if (colors.length === 2) {
                             let bottom = getBackgroundColorValue(colors[0].replace(' ', ''));
                             if (bottom === null) {
@@ -206,6 +207,33 @@
 
                 let backgroundValue = getBackgroundColorValue(data);
                 if (backgroundValue !== null) {
+                    if (backgroundValue.startsWith('#')) {
+                        if (backgroundValue.length === 7) {
+                            if (backgroundValue[1] <= 4 && backgroundValue[3] <= 4 && backgroundValue[5] <= 4) {
+                                return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            }
+                        }
+                        else if (backgroundValue.includes('#000')) {
+                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                        }
+                    }
+
+                    if (backgroundValue.startsWith('rgb')) {
+                        if (backgroundValue.length <= 13) {
+                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                        }
+                        if (backgroundValue.startsWith('rgba')) {
+                            if (backgroundValue.length <= 14) {
+                                return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            }
+                        }
+                    }
+
+                    if (backgroundValue.startsWith('(')) {
+                        if (backgroundValue.length <= 11) {
+                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                        }
+                    }
                     return 'background-color:' + backgroundValue;
                 }
                 return "";
@@ -295,7 +323,7 @@
                     }
                     this._initWidgetProperties();
                     this._bindEvents(this);
-                    this.inherited(arguments);
+                    this.inherited();
                 },
 
                 //always invoked on initial load by Epi, value is true if 'readonly' attribute has been added to the property

@@ -25,15 +25,15 @@ public class ParentLinkReferenceFactory : ISelectionFactory
             if (metadata?.EditorConfiguration?.ContainsKey("parentLinkReferenceId") == true)
                 metadata.EditorConfiguration.Remove("parentLinkReferenceId");
 
-            var owner = metadata.FindOwnerContent();
+            var owner = metadata?.FindOwnerContent();
 
-            if (owner is not PageData)
+            if (owner != null && owner is not PageData)
             {
                 var parentLink = owner?.ParentLink;
 
-                parentId = parentLink.ID;
+                parentId = parentLink?.ID ?? 0;
 
-                if (parentLink.WorkID == 0)
+                if (parentLink?.WorkID == 0)
                 {
                     var cacheKey = nameof(ParentLinkReferenceFactory) + "GetSelections" + "ParentId" + parentLink.ID + "#" + parentLink.WorkID + "#" + owner.ContentLink?.ID;
                     var cached = Cache.Get<object>(cacheKey);

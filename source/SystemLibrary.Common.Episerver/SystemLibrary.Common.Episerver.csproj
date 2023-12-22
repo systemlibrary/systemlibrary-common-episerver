@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>7.0.0.3</Version>
+		<Version>7.0.0.4</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -120,7 +120,11 @@
 	<ItemGroup>
 	  <PackageReference Include="EPiServer.CMS" Version="12.26.0" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.*" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.1.0.2" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Cms\Properties\ParentLinkReference\NewFolder\" />
 	</ItemGroup>
 
 	<PropertyGroup>
