@@ -209,11 +209,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.html",
+          "hash": "AdaTT/a7VxSv+jMAIxZSEJ5AmxqS9AK0Ppjyrig8jOc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.yml",
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.html",
-          "hash": "NkINa/gLJ6q+sFvTWYUjzJGqjtWD7x2N/2ByCVTfv6g="
+          "hash": "MntdPjHW0RsA+o3Rrg2YAwwLRiMNkY5BgSiQVCrisWc="
         }
       },
       "is_incremental": true,
@@ -393,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.html",
-          "hash": "OXPsAHFWVYCzh6G3/9lUGPAgMcMSvaTnNHo7D0jU3YM="
+          "hash": "4/YeeL+yIXjKpLWAnvxvfjY2TGFFzJ1AqQmgDUKCTAQ="
         }
       },
       "is_incremental": true,
@@ -825,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "SystemLibrary.Common.Episerver/toc.html",
-          "hash": "re1PZElXN5/Srf4RrVSzUECQv7COnmXhN55nZgG14s0="
+          "hash": "KFTBaIjLARqu4/u9ggAjd89+34BdwNjzPgWRuhuSrCw="
         }
       },
       "is_incremental": false,
@@ -862,8 +874,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 68,
-          "skipped_file_count": 68
+          "total_file_count": 69,
+          "skipped_file_count": 69
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

@@ -1043,6 +1043,25 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory.GetSelections
   nameWithType: MultiDropdownSelectionFactory.GetSelections
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory
+  name: ParentLinkReferenceFactory
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.html
+  commentId: T:SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory
+  nameWithType: ParentLinkReferenceFactory
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  name: GetSelections(ExtendedMetadata)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.html#SystemLibrary_Common_Episerver_Cms_Attributes_ParentLinkReferenceFactory_GetSelections_EPiServer_Shell_ObjectEditing_ExtendedMetadata_
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
+  nameWithType: ParentLinkReferenceFactory.GetSelections(ExtendedMetadata)
+- uid: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections*
+  name: GetSelections
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.html#SystemLibrary_Common_Episerver_Cms_Attributes_ParentLinkReferenceFactory_GetSelections_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory.GetSelections
+  nameWithType: ParentLinkReferenceFactory.GetSelections
 - uid: SystemLibrary.Common.Episerver.Cms.Blocks
   name: SystemLibrary.Common.Episerver.Cms.Blocks
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Blocks.html
@@ -1390,6 +1409,22 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ParentLinkReferenceEditorDescriptor
   nameWithType: ParentLinkReferenceEditorDescriptor.ParentLinkReferenceEditorDescriptor
+- uid: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+  name: ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.html#SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor_ModifyMetadata_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_IEnumerable_System_Attribute__
+  commentId: M:SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.IEnumerable{System.Attribute})
+  name.vb: ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
+  fullName: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable<System.Attribute>)
+  fullName.vb: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata(EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.IEnumerable(Of System.Attribute))
+  nameWithType: ParentLinkReferenceEditorDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable<Attribute>)
+  nameWithType.vb: ParentLinkReferenceEditorDescriptor.ModifyMetadata(ExtendedMetadata, IEnumerable(Of Attribute))
+- uid: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata*
+  name: ModifyMetadata
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.html#SystemLibrary_Common_Episerver_Cms_Properties_ParentLinkReferenceEditorDescriptor_ModifyMetadata_
+  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor.ModifyMetadata
+  nameWithType: ParentLinkReferenceEditorDescriptor.ModifyMetadata
 - uid: SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty
   name: ParentLinkReferenceProperty
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty.html
