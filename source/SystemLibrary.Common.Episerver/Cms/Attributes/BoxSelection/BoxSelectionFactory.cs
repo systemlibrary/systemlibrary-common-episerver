@@ -23,7 +23,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             var enumType = metadata.ModelType;
 
-            var genericListType = GetGenericListType(enumType);
+            var genericListType = GetGenericType(enumType);
 
             var propertyName = metadata.PropertyName;
 
@@ -56,7 +56,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
             //NOTE: metaData.AdditionalValues is not sent, so have to use EditorConfiguration
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
-            (var Show, var Hide) = GetShowHideOptions(options, propertyName);
+            (var Show, var Hide, var ShowExpiredItems) = GetAttributeOptions(options);
             
             var keys = Enum.GetNames(enumType);
 

@@ -317,13 +317,18 @@
                 value: null,
 
                 postCreate: function () {
-                    this._loadCssFile();
-                    if (!this.isMultiSelect) {
-                        this.value = '';
+                    try {
+                        this._loadCssFile();
+                        if (!this.isMultiSelect) {
+                            this.value = '';
+                        }
+                        this._initWidgetProperties();
+                        this._bindEvents(this);
+                        this.inherited(arguments);
                     }
-                    this._initWidgetProperties();
-                    this._bindEvents(this);
-                    this.inherited();
+                    catch (err) {
+                        console.error(err);
+                    }
                 },
 
                 //always invoked on initial load by Epi, value is true if 'readonly' attribute has been added to the property

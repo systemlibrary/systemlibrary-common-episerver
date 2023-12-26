@@ -5,6 +5,7 @@ using EPiServer.Shell.ObjectEditing;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
+using SystemLibrary.Common.Episerver.Cms.Abstract;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
@@ -69,53 +70,43 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
 
         foreach (var data in additionalValues)
         {
-            // NOTE: Optimizely keeps fucking up, they always break things, someone should get fired...
-            // This does not do anything, the Factory is running multiple times, even though attribute exists only once
-            // Must check on "PropertyName" to avoid calling factory twice...
-            // and setting ClientEditingClass here, do nada
-            if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
+            // NOTE: Latest Optimizely suddenly invokes this multiple times, so checking the value and propertyName as propertyName is null in irrelevant occasions
+            if (data.Value is ExtendedMetadata metadata && metadata.PropertyName.Is())
             {
-                if (SelectionFactoryType == null)
-                    extendedMetadata.SelectionFactoryType = typeof(MultiDropdownSelectionFactory);
-                else
-                    extendedMetadata.SelectionFactoryType = SelectionFactoryType;
+                var propertyType = metadata.ModelType;
 
-                var multiDropdownSelectionSaveString = false;
+                var propertyListType = BaseMultiSelectionFactory.GetGenericType(propertyType);
+
+                if (propertyListType == null)
+                    throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList<string> or IList<Enum> (Enum is your own custom type 'public enum Colors ...'");
+
+                if (propertyListType != SystemType.StringType && !propertyListType.IsEnum)
+                    throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList with either String or Enum");
+
+                if (EnumType != null && !EnumType.IsEnum)
+                    throw new Exception("Property " + metadata.PropertyName + ": EnumType is filled in the attribute, but the type is not an Enum");
                 
-                var genericType = GetGenericListType(extendedMetadata.ModelType);
-                if (EnumType == null)
-                {
-                    if (genericType != null && genericType == SystemType.StringType)
-                    {
-                        multiDropdownSelectionSaveString = true;
-                    }
-                }
+                var multiDropdownStoreOptions = new List<ISelectItem>();
 
-                extendedMetadata.EditorConfiguration.Add(nameof(multiDropdownSelectionSaveString), multiDropdownSelectionSaveString);
+                BaseMultiSelectionFactory.PopulateSelectionItems(multiDropdownStoreOptions, this, propertyListType, metadata);
 
-                extendedMetadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
+                var multiDropdownSelectionSaveString = propertyListType == SystemType.StringType;
+
+                var multiDropdownSelectionDoFilter = propertyListType.IsEnum && (SelectionFactoryType != null || (EnumType != null && EnumType != propertyListType));
+
+                metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionDoFilter), multiDropdownSelectionDoFilter);
+
+                metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionSaveString), multiDropdownSelectionSaveString);
+
+                metadata.EditorConfiguration.Add("multiDropdownStoreOptions", multiDropdownStoreOptions);
+
+                metadata.EditorConfiguration.Add("multiDropdownShowExpiredItems", ShowExpiredItems);
+
+                metadata.SelectionFactoryType = SelectionFactoryType ?? typeof(MultiDropdownSelectionFactory);
+
+                metadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
                 break;
             }
         }
-    }
-
-    static Type GetGenericListType(Type type)
-    {
-        if (type.IsGenericType)
-        {
-            foreach (Type @interface in type.GetInterfaces())
-            {
-                if (@interface.IsGenericType)
-                {
-                    if (@interface.GetGenericTypeDefinition() == typeof(ICollection<>))
-                        return @interface.GetGenericArguments()[0];
-                    else if (@interface.GetGenericTypeDefinition() == typeof(IList<>))
-                        return @interface.GetGenericArguments()[0];
-                }
-            }
-
-            return type.GetGenericArguments()[0];
-        }
-        return null;
     }
 }

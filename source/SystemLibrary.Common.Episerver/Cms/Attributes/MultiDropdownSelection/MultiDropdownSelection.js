@@ -5,17 +5,12 @@ define([
     "dojo/dom-construct",
     "dojo/dom-attr",
     "dojo/dom-style",
-    //"dojo/_base/connect",
     "dojo/_base/lang",
     "dojo/query",
 
     "dijit/_Widget",
     "dijit/_TemplatedMixin",
     "dijit/_WidgetsInTemplateMixin",
-
-    // "dijit/form/Button",
-    // "dijit/form/Select",
-    // "dijit/form/TextBox",
 
     'dojo/text!./Html'
 ],
@@ -26,7 +21,6 @@ define([
         domConstruct,
         domAttr,
         domStyle,
-        //  connect,
         lang,
         query,
 
@@ -35,14 +29,12 @@ define([
         _WidgetsInTemplateMixin,
 
         template
-        // Button,
-        // Select,
-        // TextBox,
-        //Labels
     ) {
         return declare("systemLibrary.Common.Episerver.MultiSelectDropdown", [_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
 
-            templateString: template, // dojo.cache("systemLibrary.Common.Episerver.MultiSelectDropdown", "Template.html"),
+            templateString: template,
+
+            filteredSelections: [],
 
             labels: {
                 textboxWatermark: 'Enter a value to add',
@@ -66,44 +58,113 @@ define([
                 }));
             },
 
+            isSelectionStorable: function (item) {
+                let canStoreItem = false;
+                let filterText = item?.text?.toLowerCase();
+                let filterValue = item?.value?.toLowerCase();
+
+                if (!filterText && !filterValue) {
+                    return canStoreItem;
+                }
+
+                for (var j = 0; j < this.multiDropdownStoreOptions?.length; j++) {
+                    var matchText = this.multiDropdownStoreOptions[j]?.text?.toLowerCase();
+                    var matchValue = this.multiDropdownStoreOptions[j]?.value?.toLowerCase();
+
+                    canStoreItem = matchText === filterText || matchValue === filterValue;
+
+                    if (canStoreItem) {
+                        break;
+                    }
+                }
+
+                return canStoreItem;
+            },
+
+            getDisplayNameOfSelectedValue: function (filteredIndex) {
+                try {
+                    let item = this.multiDropdownStoreOptions[Number(filteredIndex)];
+
+                    return item.text;
+                } catch (err) {
+                    console.error(err);
+                }
+                return filteredIndex;
+            },
+
+            getSelectionIndexStorable: function (filteredIndex) {
+                try {
+                    let item = this.selections[Number(filteredIndex)];
+                    let value = item?.value;
+                    if (value) {
+                        let index = filteredIndex;
+                        for (var i = 0; i < this.multiDropdownStoreOptions?.length; i++) {
+                            var matchText = this.multiDropdownStoreOptions[i]?.text?.toLowerCase();
+                            var matchValue = this.multiDropdownStoreOptions[i]?.value?.toLowerCase();
+
+                            canStoreItem = matchText === value || matchValue === value;
+
+                            if (canStoreItem) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        return index;
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+                return filteredIndex;
+            },
+
             postCreate: function () {
                 this.inherited(arguments);
 
                 this._loadCssFile();
 
-                // summary: Populates the dropdown (if selection factory options are available), otherwise the textbox is displayed
+                try {
+                    if (this.multiDropdownSelectionSaveString) {
+                        // Display textbox when there are no select options to select from
+                        domStyle.set(this.stringSelector.domNode, 'display', 'none');
+                    } else {
+                        if (this.selections?.length) {
+                            for (let i = 0; i < this.selections.length; i++) {
+                                let item = this.selections[i];
 
-                let multiDropdownSelectionSaveString = this.multiDropdownSelectionSaveString;
+                                if (this.multiDropdownSelectionDoFilter) {
+                                    let canStoreItem = this.isSelectionStorable(item);
 
-                if (this.selections && this.selections.length > 0) {
-                    this._hasSelectionFactory = true;
-                }
+                                    this.filteredSelections.push(item);
 
-                if (this._hasSelectionFactory) {
-                    for (var i = 0; i < this.selections.length; i++) {
+                                    if (canStoreItem) {
+                                        this.stringSelector.addOption({
+                                            disabled: false,
+                                            label: (item.text && item.text !== '') ? item.text : '&nbsp',
+                                            selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
+                                            value: item.value?.toString()
+                                        });
+                                    }
+                                } else {
+                                    this.stringSelector.addOption({
+                                        disabled: false,
+                                        label: (item.text && item.text !== '') ? item.text : '&nbsp',
+                                        selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
+                                        value: item.value?.toString()
+                                    });
+                                }
+                            }
+                        }
 
-                        var item = this.selections[i];
-
-                        this.stringSelector.addOption({
-                            disabled: false,
-                            label: (item.text && item.text !== '') ? item.text : '&nbsp',
-                            selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
-                            value: item.value
-                        });
+                        // Display dropdown when we have a list of selections to select from
+                        domStyle.set(this.stringTextbox.domNode, 'display', 'none');
                     }
-                    // Only display dropdown when we have a selection factory attached
-                    domStyle.set(this.stringTextbox.domNode, 'display', 'none');
-                } else {
-                    // Only display textbox when there is no selection factory attached
-                    domStyle.set(this.stringSelector.domNode, 'display', 'none');
+
+                    this.stringSelector.setDisabled(this.readOnly);
+                    this.stringTextbox.setDisabled(this.readOnly);
+                    this.addButton.setDisabled(false);
                 }
-                this.stringSelector.setDisabled(this.readOnly);
-                this.stringTextbox.setDisabled(this.readOnly);
-                if (this._hasSelectionFactory && this.selections.length > 0) {
-                    this.addButton.setDisabled(false); // Enable option that is first selected
-                }
-                else {
-                    this.addButton.setDisabled(false); // Disable add button by default, until string is selected or entered
+                catch (err) {
+                    console.error(err);
                 }
             },
 
@@ -133,21 +194,17 @@ define([
                 }
             },
 
-            onChange: function (value) {
-                this.inherited(arguments);
-            },
-
             _setValue: function () {
-                var strings = this._getAddedStrings();
+                var value = this._getAddedStrings();
 
-                if (!strings || strings === '' || strings.length === 0) {
-                    strings = null;
+                if (!value || value === '' || value.length === 0) {
+                    value = null;
                 }
-                this.set("value", strings);
+                this.set("value", value);
 
                 this._setHelpTextVisibility();
 
-                this.onChange(strings);
+                this.onChange(value);
             },
 
             _refreshStringElements: function (strings) {
@@ -165,12 +222,24 @@ define([
                     });
 
                     // Add an element for each string in the list
-                    strings.forEach(function (text, index, array) {
 
-                        var displayName = that._getStringDisplayName(text);
+                    if (that.filteredSelections.length > 0) {
 
-                        that._addStringElement(text, displayName);
-                    });
+                        strings.forEach(function (text, index, array) {
+                            var displayName = that._getStringDisplayName(text);
+
+                            if (!isNaN(displayName)) {
+                                displayName = that.getDisplayNameOfSelectedValue(displayName);
+                            }
+                            that._addStringElement(text, displayName);
+                        });
+
+                    } else {
+                        strings.forEach(function (text, index, array) {
+                            var displayName = that._getStringDisplayName(text);
+                            that._addStringElement(text, displayName);
+                        });
+                    }
                 }
                 else {
                     for (var i = 0; i < strings.length; i++) {
@@ -214,20 +283,24 @@ define([
 
             _selectedStringChanged: function (value) {
                 if (value) {
+                    // value is is in list, disable button, else enable it
                     this.addButton.setDisabled(false);
                 }
             },
 
             _onRemoveClick: function (e) {
-                var stringValue = domAttr.get(e.srcElement, "data-value").toString().trim();
+                var stringValue = domAttr.get(e.srcElement, "data-value")?.toString()?.trim();
 
-                this._removeStringElement(stringValue);
+                if (stringValue) {
+                    this._removeStringElement(stringValue);
+                }
 
                 this._setValue();
             },
 
             _onAddButtonClick: function () {
-                if (this._hasSelectionFactory) { // Add string selected in dropdown
+                if (this.selections?.length > 0) {
+                    // Add item from dropdown
                     var selectedValue = this.stringSelector.value;
 
                     var displayName = this.stringSelector.focusNode.innerText;
@@ -248,9 +321,11 @@ define([
                             }
                         }
                     }
-                    this._addString(selectedValue, displayName);
-                } else { // Add string from textbox
 
+
+                    this._addString(selectedValue, displayName);
+                } else {
+                    // Add string from textbox
                     var enteredValue = this.stringTextbox.value;
 
                     if (!enteredValue) {
@@ -312,15 +387,18 @@ define([
                     return;
                 }
 
-                value = value.toString().trim();
+                value = value?.toString()?.trim();
 
                 if (value.indexOf(',') > -1) {
                     value = value.replaceAll(',', '&#44;');
                 }
 
+                if (this.filteredSelections.length > 0) {
+                    value = this.getSelectionIndexStorable(value);
+                }
+
                 if (!displayName) {
                     displayName = this._getStringDisplayName(value);
-                    //displayName = value;
                 }
 
                 // Don't add if it's already added
@@ -328,10 +406,14 @@ define([
                     return;
                 }
 
+                displayName = displayName.toString();
+
                 var expiredClass = "";
+
                 if (displayName.includes("Expired: ")) {
                     expiredClass = " epi-resourceName--expired";
                 }
+
                 var containerDiv = domConstruct.create('div', { 'class': 'epi-categoryButton' });
                 var buttonWrapperDiv = domConstruct.create('div', { 'class': 'dijitInline epi-resourceName' + expiredClass, 'title': displayName });
                 var categoryNameDiv = domConstruct.create('div', { 'class': 'dojoxEllipsis', innerHTML: displayName, 'title': displayName });
@@ -386,25 +468,34 @@ define([
                 if (!this._hasSelectionFactory) {
                     return text;
                 }
-                var displayName = text;
+                var displayName = text?.toString();
 
                 if (typeof text === 'number' || !isNaN(text)) {
                     if (this.selections && this.selections.length > text) {
                         const selection = this.selections[text];
+
                         displayName = selection.text;
+                        if (!displayName && selection.value) {
+                            displayName = selection.value;
+                        }
                     }
                 }
                 else {
                     this.selections.some(function (selection) {
                         if (selection.value === text) {
-                            if (selection.text) {
-                                displayName = selection.text;
+                            displayName = selection.text;
+                            if (!displayName && selection.value) {
+                                displayName = selection.value;
                             }
                             return true; // Break
                         }
                     });
                 }
-                return displayName;
+
+                if (displayName === null) {
+                    return "";
+                }
+                return displayName.toString();
             }
         });
     });
