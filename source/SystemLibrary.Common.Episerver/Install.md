@@ -13,7 +13,7 @@
 1. Create a new project "AspNet Core Empty" for .NET 7
 2. Delete appSettings.development.json
 3. Add nuget package Episerver.Cms >= 12.26.0
-4. Add nuget package SystemLibrary.Common.Episerver >= 7.0.0.2
+4. Add nuget package SystemLibrary.Common.Episerver >= 7.1.0.1
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 5. Create '~/module.config', set its build to 'Content' 
 6. Create '~/Cms/Cms.cs'

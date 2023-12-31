@@ -411,19 +411,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.AsEnum
   nameWithType: BaseMultiSelectionFactory.AsEnum
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
-  name: GetGenericListType(Type)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericListType_System_Type_
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType(System.Type)
-  nameWithType: BaseMultiSelectionFactory.GetGenericListType(Type)
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType*
-  name: GetGenericListType
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetGenericListType_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetGenericListType
-  nameWithType: BaseMultiSelectionFactory.GetGenericListType
 - uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions*
   name: GetOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetOptions_
@@ -440,51 +427,6 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetOptions(Of T)(EPiServer.Shell.ObjectEditing.ExtendedMetadata)
   nameWithType: BaseMultiSelectionFactory.GetOptions<T>(ExtendedMetadata)
   nameWithType.vb: BaseMultiSelectionFactory.GetOptions(Of T)(ExtendedMetadata)
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute,System.String)
-  name: GetShowHideOptions(Attribute, String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetShowHideOptions_System_Attribute_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute,System.String)
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions(System.Attribute, System.String)
-  nameWithType: BaseMultiSelectionFactory.GetShowHideOptions(Attribute, String)
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions*
-  name: GetShowHideOptions
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_GetShowHideOptions_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.GetShowHideOptions
-  nameWithType: BaseMultiSelectionFactory.GetShowHideOptions
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[],System.Object[],System.Object[])
-  name: KeysFiltered(String[], Object[], Object[])
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_KeysFiltered_System_String___System_Object___System_Object___
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[],System.Object[],System.Object[])
-  name.vb: KeysFiltered(String(), Object(), Object())
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String[], System.Object[], System.Object[])
-  fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered(System.String(), System.Object(), System.Object())
-  nameWithType: BaseMultiSelectionFactory.KeysFiltered(String[], Object[], Object[])
-  nameWithType.vb: BaseMultiSelectionFactory.KeysFiltered(String(), Object(), Object())
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered*
-  name: KeysFiltered
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_KeysFiltered_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.KeysFiltered
-  nameWithType: BaseMultiSelectionFactory.KeysFiltered
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean,EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.List{EPiServer.Shell.ObjectEditing.ISelectItem})
-  name: ShowExpiredItems(Boolean, ExtendedMetadata, List<ISelectItem>)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_ShowExpiredItems_System_Boolean_EPiServer_Shell_ObjectEditing_ExtendedMetadata_System_Collections_Generic_List_EPiServer_Shell_ObjectEditing_ISelectItem__
-  commentId: M:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean,EPiServer.Shell.ObjectEditing.ExtendedMetadata,System.Collections.Generic.List{EPiServer.Shell.ObjectEditing.ISelectItem})
-  name.vb: ShowExpiredItems(Boolean, ExtendedMetadata, List(Of ISelectItem))
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean, EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.List<EPiServer.Shell.ObjectEditing.ISelectItem>)
-  fullName.vb: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems(System.Boolean, EPiServer.Shell.ObjectEditing.ExtendedMetadata, System.Collections.Generic.List(Of EPiServer.Shell.ObjectEditing.ISelectItem))
-  nameWithType: BaseMultiSelectionFactory.ShowExpiredItems(Boolean, ExtendedMetadata, List<ISelectItem>)
-  nameWithType.vb: BaseMultiSelectionFactory.ShowExpiredItems(Boolean, ExtendedMetadata, List(Of ISelectItem))
-- uid: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems*
-  name: ShowExpiredItems
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.html#SystemLibrary_Common_Episerver_Cms_Abstract_BaseMultiSelectionFactory_ShowExpiredItems_
-  commentId: Overload:SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory.ShowExpiredItems
-  nameWithType: BaseMultiSelectionFactory.ShowExpiredItems
 - uid: SystemLibrary.Common.Episerver.Cms.Attributes
   name: SystemLibrary.Common.Episerver.Cms.Attributes
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Cms.Attributes.html

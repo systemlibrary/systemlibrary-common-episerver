@@ -70,7 +70,7 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
 
         foreach (var data in additionalValues)
         {
-            // NOTE: Latest Optimizely suddenly invokes this multiple times, so checking the value and propertyName as propertyName is null in irrelevant occasions
+            // NOTE: Latest Optimizely suddenly invokes this multiple times, so checking the value and propertyName as propertyName exists when we want to override it
             if (data.Value is ExtendedMetadata metadata && metadata.PropertyName.Is())
             {
                 var propertyType = metadata.ModelType;

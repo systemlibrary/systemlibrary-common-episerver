@@ -12,3 +12,8 @@
 .Sleek .dojoDndTarget.dojoDndContainer .dojoDndTarget.epi-linkItemEditor .epi-resourceName {
     color: white;
 }
+
+/* INT PROPERTY FIELD HEIGHT WHEN LARGE PROPERTYNAME */
+.Sleek .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitSpinner.dijitNumberTextBox.dijitValidationTextBox {
+    max-height: 42px;
+}

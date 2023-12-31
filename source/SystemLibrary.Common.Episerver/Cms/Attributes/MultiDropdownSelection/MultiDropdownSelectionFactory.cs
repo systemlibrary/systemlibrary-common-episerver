@@ -19,14 +19,13 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
 
             var propertyName = metadata.PropertyName;
 
-            //if (type.Name == "String" && propertyName.IsNot())
-            //{
-            //    return items;
-            //}
-
             var options = GetOptions<MultiDropdownSelectionAttribute>(metadata);
 
             var selectionType = options.EnumType ?? GetGenericType(type);
+
+            var defaultPropertyIListOfStrings = "epi-cms/contentediting/editors/propertyvaluelist/PropertyValueList";
+            if (metadata.ClientEditingClass == defaultPropertyIListOfStrings)
+                metadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/Script";
 
             PopulateSelectionItems(items, options, selectionType, metadata);
         }
