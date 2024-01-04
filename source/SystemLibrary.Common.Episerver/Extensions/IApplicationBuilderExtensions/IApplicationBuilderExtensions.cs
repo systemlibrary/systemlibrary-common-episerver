@@ -55,34 +55,41 @@ public static partial class IApplicationBuilderExtensions
                 var l = path.Length;
                 if (l > 3 && path[l-1] != '/')
                 {
-                    if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml"))
+                    try
                     {
-                        return;
-                    }
-
-                    if(l > 13)
-                    {
-                        if (path[1] == 'a' || path[1] == 'A' ||
-                            path[1] == 'c' || path[1] == 'C')
+                        if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml"))
                         {
-                            var p = path.ToLower();
-                            if (p.StartsWith("/appsettings.") ||
-                                    p.StartsWith("/configurations/") ||
-                                    p.StartsWith("/configuration/") ||
-                                    p.StartsWith("/config/") ||
-                                    p.StartsWith("/configs/"))
+                            return;
+                        }
+
+                        if (l > 13)
+                        {
+                            if (path[1] == 'a' || path[1] == 'A' ||
+                                path[1] == 'c' || path[1] == 'C')
                             {
-                                return;
+                                var p = path.ToLower();
+                                if (p.StartsWith("/appsettings.") ||
+                                        p.StartsWith("/configurations/") ||
+                                        p.StartsWith("/configuration/") ||
+                                        p.StartsWith("/config/") ||
+                                        p.StartsWith("/configs/"))
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                        else if (l > 6)
+                        {
+                            if (path[1] == 'b' || path[1] == 'B')
+                            {
+                                var p = path.ToLower();
+                                if (p.StartsWith("/bin/")) return;
                             }
                         }
                     }
-                    else if (l > 6)
+                    catch(Exception ex)
                     {
-                        if(path[1] == 'b' || path[1] == 'B')
-                        {
-                            var p = path.ToLower();
-                            if (p.StartsWith("/bin/")) return;
-                        }
+                        Log.Error(ex);
                     }
                 }
             }

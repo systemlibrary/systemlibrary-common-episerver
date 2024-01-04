@@ -68,45 +68,53 @@ public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvid
 
         if (additionalValues.IsNot()) return;
 
-        foreach (var data in additionalValues)
+        try
         {
-            // NOTE: Latest Optimizely suddenly invokes this multiple times, so checking the value and propertyName as propertyName exists when we want to override it
-            if (data.Value is ExtendedMetadata metadata && metadata.PropertyName.Is())
+
+            foreach (var data in additionalValues)
             {
-                var propertyType = metadata.ModelType;
+                // NOTE: Latest Optimizely suddenly invokes this multiple times, so checking the value and propertyName as propertyName exists when we want to override it
+                if (data.Value is ExtendedMetadata metadata && metadata.PropertyName.Is())
+                {
+                    var propertyType = metadata.ModelType;
 
-                var propertyListType = BaseMultiSelectionFactory.GetGenericType(propertyType);
+                    var propertyListType = BaseMultiSelectionFactory.GetGenericType(propertyType);
 
-                if (propertyListType == null)
-                    throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList<string> or IList<Enum> (Enum is your own custom type 'public enum Colors ...'");
+                    if (propertyListType == null)
+                        throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList<string> or IList<Enum> (Enum is your own custom type 'public enum Colors ...'");
 
-                if (propertyListType != SystemType.StringType && !propertyListType.IsEnum)
-                    throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList with either String or Enum");
+                    if (propertyListType != SystemType.StringType && !propertyListType.IsEnum)
+                        throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList with either String or Enum");
 
-                if (EnumType != null && !EnumType.IsEnum)
-                    throw new Exception("Property " + metadata.PropertyName + ": EnumType is filled in the attribute, but the type is not an Enum");
-                
-                var multiDropdownStoreOptions = new List<ISelectItem>();
+                    if (EnumType != null && !EnumType.IsEnum)
+                        throw new Exception("Property " + metadata.PropertyName + ": EnumType is filled in the attribute, but the type is not an Enum");
 
-                BaseMultiSelectionFactory.PopulateSelectionItems(multiDropdownStoreOptions, this, propertyListType, metadata);
+                    var multiDropdownStoreOptions = new List<ISelectItem>();
 
-                var multiDropdownSelectionSaveString = propertyListType == SystemType.StringType;
+                    BaseMultiSelectionFactory.PopulateSelectionItems(multiDropdownStoreOptions, this, propertyListType, metadata);
 
-                var multiDropdownSelectionDoFilter = propertyListType.IsEnum && (SelectionFactoryType != null || (EnumType != null && EnumType != propertyListType));
+                    var multiDropdownSelectionSaveString = propertyListType == SystemType.StringType;
 
-                metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionDoFilter), multiDropdownSelectionDoFilter);
+                    var multiDropdownSelectionDoFilter = propertyListType.IsEnum && (SelectionFactoryType != null || (EnumType != null && EnumType != propertyListType));
 
-                metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionSaveString), multiDropdownSelectionSaveString);
+                    metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionDoFilter), multiDropdownSelectionDoFilter);
 
-                metadata.EditorConfiguration.Add("multiDropdownStoreOptions", multiDropdownStoreOptions);
+                    metadata.EditorConfiguration.Add(nameof(multiDropdownSelectionSaveString), multiDropdownSelectionSaveString);
 
-                metadata.EditorConfiguration.Add("multiDropdownShowExpiredItems", ShowExpiredItems);
+                    metadata.EditorConfiguration.Add("multiDropdownStoreOptions", multiDropdownStoreOptions);
 
-                metadata.SelectionFactoryType = SelectionFactoryType ?? typeof(MultiDropdownSelectionFactory);
+                    metadata.EditorConfiguration.Add("multiDropdownShowExpiredItems", ShowExpiredItems);
 
-                metadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
-                break;
+                    metadata.SelectionFactoryType = SelectionFactoryType ?? typeof(MultiDropdownSelectionFactory);
+
+                    metadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/MultiDropdownSelection/" + nameof(MultiDropdownSelectionController.Script);
+                    break;
+                }
             }
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex);
         }
     }
 }

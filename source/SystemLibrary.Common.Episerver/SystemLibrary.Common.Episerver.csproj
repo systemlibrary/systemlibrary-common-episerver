@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>7.1.0.1</Version>
+		<Version>7.1.0.2</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -128,7 +128,7 @@
 		<Version>$(Version)</Version>
 		<Title>SystemLibrary Common Episerver</Title>
 		<Description>
-			Library with classes, methods and dijits for every .NET &gt;= 6 episerver web application
+			Library with classes, methods and dijits for every .NET &gt;= 7 episerver web application
 			https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
 
 			Installation

@@ -118,11 +118,11 @@ define([
             },
 
             postCreate: function () {
-                this.inherited(arguments);
-
-                this._loadCssFile();
-
                 try {
+                    this.inherited(arguments);
+
+                    this._loadCssFile();
+
                     if (this.multiDropdownSelectionSaveString) {
                         // Display textbox when there are no select options to select from
                         domStyle.set(this.stringSelector.domNode, 'display', 'none');

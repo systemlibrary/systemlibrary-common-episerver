@@ -90,9 +90,15 @@ public abstract class BaseMultiSelectionFactory
     {
         (var Show, var Hide, var ShowExpiredItems) = GetAttributeOptions(options);
 
-        PopulateSelectionItems(items, enumType, ShowExpiredItems, Show, Hide, metadata);
+        try
+        {
+            PopulateSelectionItems(items, enumType, ShowExpiredItems, Show, Hide, metadata);
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex);
+        }
     }
-
 
     internal static (object[] Show, object[] Hide, bool ShowExpiredItems) GetAttributeOptions(Attribute options)
     {
