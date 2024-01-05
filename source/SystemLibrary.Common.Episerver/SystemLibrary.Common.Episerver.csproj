@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>7.1.0.2</Version>
+		<Version>7.1.0.4</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>

@@ -66,10 +66,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 7.1.0.1
-- BoxSelection: multi color boxes now requires 2 dashes to seperate colors, from one (breaking change)
-- BoxSelection: dark single color values gets a white text shadow for the text
-- MultiDropdownSelection: supports more definitions (IList<Enum> without specifying a factory, nor the EnumType in the attribute)
+- 7.1.0.4
+- MultiDropdownSelection: setting selectionfactorytype now uses the MultiDropdownSelection js and css as in 6.11
 
 #### Version history
 - View git history of this file if interested

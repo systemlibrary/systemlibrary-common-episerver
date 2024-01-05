@@ -67,6 +67,10 @@ define([
                     return canStoreItem;
                 }
 
+                if (!this.multiDropdownStoreOptions) {
+                    return true;
+                }
+
                 for (var j = 0; j < this.multiDropdownStoreOptions?.length; j++) {
                     var matchText = this.multiDropdownStoreOptions[j]?.text?.toLowerCase();
                     var matchValue = this.multiDropdownStoreOptions[j]?.value?.toLowerCase();
@@ -123,28 +127,30 @@ define([
 
                     this._loadCssFile();
 
-                    if (this.multiDropdownSelectionSaveString) {
-                        // Display textbox when there are no select options to select from
+                    if (this.selections && this.selections.length > 0) {
+                        this._hasSelectionFactory = true;
+                        // Display Dropdown
+                        domStyle.set(this.stringTextbox.domNode, 'display', 'none');
+                    }
+                    else {
+                        // Display Textbox
                         domStyle.set(this.stringSelector.domNode, 'display', 'none');
-                    } else {
-                        if (this.selections?.length) {
-                            for (let i = 0; i < this.selections.length; i++) {
-                                let item = this.selections[i];
+                    }
 
-                                if (this.multiDropdownSelectionDoFilter) {
-                                    let canStoreItem = this.isSelectionStorable(item);
+                    if (this._hasSelectionFactory) {
+                        for (let i = 0; i < this.selections.length; i++) {
+                            let item = this.selections[i];
 
-                                    this.filteredSelections.push(item);
+                            if (item?.text?.includes("ERROR:") === true) {
+                                console.error(item.text);
+                            }
 
-                                    if (canStoreItem) {
-                                        this.stringSelector.addOption({
-                                            disabled: false,
-                                            label: (item.text && item.text !== '') ? item.text : '&nbsp',
-                                            selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
-                                            value: item.value?.toString()
-                                        });
-                                    }
-                                } else {
+                            if (this.multiDropdownSelectionDoFilter) {
+                                let canStoreItem = this.isSelectionStorable(item);
+
+                                this.filteredSelections.push(item);
+
+                                if (canStoreItem) {
                                     this.stringSelector.addOption({
                                         disabled: false,
                                         label: (item.text && item.text !== '') ? item.text : '&nbsp',
@@ -152,11 +158,15 @@ define([
                                         value: item.value?.toString()
                                     });
                                 }
+                            } else {
+                                this.stringSelector.addOption({
+                                    disabled: false,
+                                    label: (item.text && item.text !== '') ? item.text : '&nbsp',
+                                    selected: i === 0 && item.text !== '' && item.text.length > 0,      // First item is always "addable", unless it is empty string ""
+                                    value: item.value?.toString()
+                                });
                             }
                         }
-
-                        // Display dropdown when we have a list of selections to select from
-                        domStyle.set(this.stringTextbox.domNode, 'display', 'none');
                     }
 
                     this.stringSelector.setDisabled(this.readOnly);
