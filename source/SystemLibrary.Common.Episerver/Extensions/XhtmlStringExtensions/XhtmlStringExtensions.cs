@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 using EPiServer.Core;
 using EPiServer.Core.Html.StringParsing;
@@ -34,15 +35,20 @@ public static class XhtmlStringExtensions
 
     public static string Render(this XhtmlString xhtmlString, bool skipWrapperTag = true)
     {
-        if (xhtmlString.IsNot()) return "";
+        return RenderStringBuilder(xhtmlString, skipWrapperTag).ToString();
+    }
 
-        if (xhtmlString.Fragments == null || xhtmlString.Fragments.Count == 0) return "";
+    public static StringBuilder RenderStringBuilder(this XhtmlString xhtmlString, bool skipWrapperTag = true)
+    {
+        if (xhtmlString.IsNot()) return new StringBuilder();
+
+        if (xhtmlString.Fragments == null || xhtmlString.Fragments.Count == 0) return new StringBuilder();
 
         try
         {
             if (xhtmlString.Fragments.All(fragment => fragment is StaticFragment))
             {
-                return xhtmlString.ToHtmlString();
+                return new StringBuilder(xhtmlString.ToHtmlString());
             }
 
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
@@ -52,10 +58,12 @@ public static class XhtmlStringExtensions
             {
                 Log.Error("Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? " + xhtmlString.ToHtmlString());
 
-                return "<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString();
+                return new StringBuilder(
+                    "<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString()
+                );
             }
 
-            return data.ToString();
+            return new StringBuilder(data.ToString());
         }
         catch (Exception ex)
         {

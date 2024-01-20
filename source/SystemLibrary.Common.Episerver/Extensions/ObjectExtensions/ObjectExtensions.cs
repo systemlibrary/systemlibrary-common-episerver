@@ -6,6 +6,7 @@ using System.Linq;
 
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Shell.Web;
 
 using SystemLibrary.Common.Net.Extensions;
 
@@ -13,44 +14,37 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
-    static string[] BlackListedContentProperties = new string[]
+    static string[] _BlackListedContentPropertiesLowered;
+    static string[] BlackListedContentPropertiesLowered
     {
-            "ParentLinkReference",
-            "ContentTypeID",
-            "IsModified",
-            "IModifiedTrackable.IsModified",
-            "CurrentPage",
-            "CurrentBlock",
-            "Category",
-            "Created",
-            "CreatedBy",
-            "Changed",
-            "SetChangedOnPublish",
-            "ChangedBy",
-            "Saved",
-            "DeletedBy",
-            "Deleted",
-            "Name",
-            "ContentLink",
-            "ParentLink",
-            "ContentGuid",
-            "EPiServer.Core.IContent.ContentTypeID",
-            "IsDeleted",
-            "Language",
-            "ExistingLanguages",
-            "MasterLanguage",
-            "ContentAssetsID",
-            "Status",
-            "IsPendingPublish",
-            "StartPublish",
-            "StopPublish",
-            "ShouldBeImplicitlyExported",
-            "MixinInstance",
-            "Property",
-            "IsReadOnly",
-            "Item",
-            "ViewData"
-    };
+        get
+        {
+            if (_BlackListedContentPropertiesLowered == null)
+            {
+                var epiProperties = typeof(BlockData).GetProperties().Concat(typeof(PageData).GetProperties());
+
+                _BlackListedContentPropertiesLowered = epiProperties.Select(p => p.Name)
+                    .Concat(new string[]
+                    {
+                        "Properties",
+                        "SortIndex",
+                        "CurrentPage",
+                        "CurrentBlock",
+                        "EPiServer.Core.IContent.ContentTypeID",
+                        "EPiServer.Core.IModifiedTrackable.IsModified",
+                        "IModifiedTrackable.IsModified",
+                        "ParentLinkReference",
+                        "ShouldBeImplicitlyExported",
+                        "MixinInstance",
+                        "Property",
+                        "ViewData"
+                    })
+                    .Select(p2 => p2.ToLower())
+                    .ToArray();
+            }
+            return _BlackListedContentPropertiesLowered;
+        }
+    }
 
     public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, params string[] ignorePropertyNames)
     {
@@ -66,23 +60,23 @@ public static class ObjectExtensions
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
-        var isContentDataModel = type.Name.EndsWithAny("BlockData", "PageData", "BlockProxy", "BlockDataProxy", "PageProxy", "PageDataProxy", "MediaData", "MediaDataProxy");
-
-        var blackListedLowered = BlackListedContentProperties.Select(x => x.ToLower());
+        var isContentDataModel = type.Name.EndsWithAny("Page", "Block", "BlockData", "PageData", "BlockProxy", "BlockDataProxy", "PageProxy", "PageDataProxy", "MediaProxy", "MediaData", "MediaDataProxy");
 
         foreach (var property in properties)
         {
             var name = property.Name;
 
-            if (isContentDataModel && blackListedLowered.Contains(name.ToLower())) continue;
+            if (isContentDataModel && BlackListedContentPropertiesLowered.Contains(name.ToLower())) continue;
 
             if (ignorePropertyNames != null)
                 if (ignorePropertyNames.Contains(name)) continue;
 
             if (name == "Property") continue;
 
-            if (property.PropertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage")))
+            if (property.PropertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia")))
                 continue;
+
+            if (name.StartsWith("EPiServer.")) continue;
 
             var value = property.GetValue(model);
 
@@ -94,8 +88,11 @@ public static class ObjectExtensions
                     name = char.ToLowerInvariant(name[0]) + name.Substring(1);
             }
 
+            if (value is MediaData mediaData)
+                expando.Add(name, mediaData?.ContentLink?.ToFriendlyUrl());
+
             if (value is XhtmlString xHtmlString)
-                expando.Add(name, xHtmlString.Render());
+                expando.Add(name, xHtmlString.RenderStringBuilder());
 
             else if (value is Url url)
                 expando.Add(name, url.ToFriendlyUrl());
@@ -113,7 +110,7 @@ public static class ObjectExtensions
                 expando.Add(name, enumerable);
 
             else if (value is ContentArea contentArea)
-                expando.Add(name, contentArea.Render());    // TODO: Consider read each fragment, render each fragment...
+                expando.Add(name, contentArea.RenderStringBuilder());    // TODO: Consider read each fragment, render each fragment...
 
             else if (value is Enum en)
                 expando.Add(name, en.ToValue());

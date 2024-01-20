@@ -33,7 +33,12 @@ public static class ContentAreaExtensions
 
     public static string Render(this ContentArea contentArea)
     {
-        if (contentArea.IsNot()) return "";
+        return RenderStringBuilder(contentArea).ToString();
+    }
+
+    public static StringBuilder RenderStringBuilder(this ContentArea contentArea)
+    {
+        if (contentArea.IsNot()) return new StringBuilder();
 
         var filteredItems = contentArea.FilteredItems;
 
@@ -49,7 +54,7 @@ public static class ContentAreaExtensions
             {
                 var type = block.GetOriginalType();
                 if (type.Name == "BlockData") continue;
-                
+
                 rendered.Append(iContentHtmlHelper.PropertyFor(x => block).ToString());
             }
             else
@@ -59,6 +64,7 @@ public static class ContentAreaExtensions
                 if (page == null) continue;
 
                 var type = page.GetOriginalType();
+
                 if (type.Name == "PageData") continue;
 
                 if (page.IsPublished())
@@ -68,6 +74,6 @@ public static class ContentAreaExtensions
             }
         }
 
-        return rendered.ToString();
+        return rendered;
     }
 }

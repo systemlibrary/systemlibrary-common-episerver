@@ -66,8 +66,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 7.1.0.4
-- MultiDropdownSelection: setting selectionfactorytype now uses the MultiDropdownSelection js and css as in 6.11
+Release 7.1.0.5
+- BlacklistedContentProperties are optimized (lowered and cached once) and supports future changes to block and page data property structure as its read in static ctor
+- XhtmlStringExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
+- ContentAreaExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
+
 
 #### Version history
 - View git history of this file if interested
