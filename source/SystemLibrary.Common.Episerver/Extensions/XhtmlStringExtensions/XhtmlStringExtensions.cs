@@ -35,7 +35,35 @@ public static class XhtmlStringExtensions
 
     public static string Render(this XhtmlString xhtmlString, bool skipWrapperTag = true)
     {
-        return RenderStringBuilder(xhtmlString, skipWrapperTag).ToString();
+        if (xhtmlString.IsNot()) return "";
+
+        if (xhtmlString.Fragments == null || xhtmlString.Fragments.Count == 0) return "";
+
+        try
+        {
+            if (xhtmlString.Fragments.All(fragment => fragment is StaticFragment))
+            {
+                return xhtmlString.ToHtmlString();
+            }
+
+            var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
+
+            var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
+            if (data == null)
+            {
+                var msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
+
+                Log.Error(msg + xhtmlString.ToHtmlString());
+
+                return "<div style='color:#e20000;font-size: 14px;line-height:1;'>" + msg + "</div>" + xhtmlString.ToHtmlString();
+            }
+
+            return data.ToString();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Cannot render XhtmlString to String: " + ex.Message + " " + ex.InnerException?.Message + " " + ex);
+        }
     }
 
     public static StringBuilder RenderStringBuilder(this XhtmlString xhtmlString, bool skipWrapperTag = true)
@@ -53,13 +81,15 @@ public static class XhtmlStringExtensions
 
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
 
-            var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
+            var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag, HasContainer = false, HasItemContainer = false });
             if (data == null)
             {
-                Log.Error("Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? " + xhtmlString.ToHtmlString());
+                var msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
+
+                Log.Error(msg + xhtmlString.ToHtmlString());
 
                 return new StringBuilder(
-                    "<div style='color:#e20000;font-size: 14px;line-height:1;'>Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error?):</div>" + xhtmlString.ToHtmlString()
+                    "<div style='color:#e20000;font-size: 14px;line-height:1;'>" + msg + "</div>" + xhtmlString.ToHtmlString()
                 );
             }
 

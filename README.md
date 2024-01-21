@@ -66,9 +66,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.1.0.5
-- BlacklistedContentProperties are optimized (lowered and cached once) and supports future changes to block and page data property structure as its read in static ctor
-- XhtmlStringExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
+Release 7.1.0.6
+- XhtmlStringExtensions: Render() does not call on RenderStringBuilder to create a stringbuilder (micro optimization)
+- Render() now invokes ContentArea() above XhtmlString (micro optimization)
+- 
 - ContentAreaExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
 
 

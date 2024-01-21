@@ -91,8 +91,15 @@ public static class ObjectExtensions
             if (value is MediaData mediaData)
                 expando.Add(name, mediaData?.ContentLink?.ToFriendlyUrl());
 
-            if (value is XhtmlString xHtmlString)
+            else if (value is ContentArea contentArea)
+            {
+                expando.Add(name, contentArea.RenderStringBuilder());
+            }
+
+            else if (value is XhtmlString xHtmlString)
+            {
                 expando.Add(name, xHtmlString.RenderStringBuilder());
+            }
 
             else if (value is Url url)
                 expando.Add(name, url.ToFriendlyUrl());
@@ -108,9 +115,6 @@ public static class ObjectExtensions
 
             else if (value is IEnumerable enumerable)
                 expando.Add(name, enumerable);
-
-            else if (value is ContentArea contentArea)
-                expando.Add(name, contentArea.RenderStringBuilder());    // TODO: Consider read each fragment, render each fragment...
 
             else if (value is Enum en)
                 expando.Add(name, en.ToValue());

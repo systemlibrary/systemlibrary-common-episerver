@@ -42,7 +42,7 @@ public static class ContentAreaExtensions
 
         var filteredItems = contentArea.FilteredItems;
 
-        var rendered = new StringBuilder("");
+        var rendered = new StringBuilder("", 64);
 
         var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
 
@@ -53,6 +53,7 @@ public static class ContentAreaExtensions
             if (block != null)
             {
                 var type = block.GetOriginalType();
+
                 if (type.Name == "BlockData") continue;
 
                 rendered.Append(iContentHtmlHelper.PropertyFor(x => block).ToString());
