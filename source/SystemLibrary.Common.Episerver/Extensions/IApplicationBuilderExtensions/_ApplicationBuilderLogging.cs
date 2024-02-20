@@ -11,8 +11,10 @@ partial class IApplicationBuilderExtensions
 
         app.UseExceptionHandler(appInError =>
         {
+            Dump.Write("APP IN ERROR?1");
             appInError.Run(async context =>
             {
+                Dump.Write("APP IN ERROR?");
                 var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
                 if (context?.Response != null)

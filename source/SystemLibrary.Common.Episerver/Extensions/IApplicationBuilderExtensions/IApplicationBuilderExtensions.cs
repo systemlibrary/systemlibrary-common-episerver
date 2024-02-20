@@ -43,17 +43,20 @@ public static partial class IApplicationBuilderExtensions
         if (options == null)
             options = new CommonEpiserverApplicationBuilderOptions();
 
-        DefaultBlockComponent.DefaultBlockComponentFolderPath = options.DefaultBlockComponentFolderPath;
+        DefaultBlockComponent.DefaultBlockComponentFolderPathPredicate = options.DefaultBlockComponentFolderPathPredicate;
 
         ApplicationBuilderLogging(app, options);
+
+        app.CommonWebApplicationBuilder(options);
 
         app.Use(async (context, next) =>
         {
             var path = context?.Request?.Path.Value;
+
             if (path != null)
             {
                 var l = path.Length;
-                if (l > 3 && path[l-1] != '/')
+                if (l > 3 && path[l - 1] != '/')
                 {
                     try
                     {
@@ -83,11 +86,14 @@ public static partial class IApplicationBuilderExtensions
                             if (path[1] == 'b' || path[1] == 'B')
                             {
                                 var p = path.ToLower();
-                                if (p.StartsWith("/bin/")) return;
+                                if (p.StartsWith("/bin/"))
+                                {
+                                    return;
+                                }
                             }
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Log.Error(ex);
                     }
@@ -95,8 +101,6 @@ public static partial class IApplicationBuilderExtensions
             }
             await next();
         });
-
-        app.CommonWebApplicationBuilder(options);
 
         ApplicationBuilderEndpoints(app, options);
 

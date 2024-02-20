@@ -66,11 +66,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.1.0.6
-- XhtmlStringExtensions: Render() does not call on RenderStringBuilder to create a stringbuilder (micro optimization)
-- Render() now invokes ContentArea() above XhtmlString (micro optimization)
-- 
-- ContentAreaExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
+Release 7.2.0.1
+- ReactComponentResult: A new ActionResult dependent on React .NET package and System.Text.Json, to render a block as a react component, either server side, client side, or both. It converts your block to a HTML ready React object, simply search for it in JS and "React.Hydrate" it
 
 
 #### Version history

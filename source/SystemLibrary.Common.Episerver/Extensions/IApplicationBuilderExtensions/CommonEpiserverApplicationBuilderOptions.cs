@@ -1,4 +1,6 @@
-﻿namespace SystemLibrary.Common.Episerver.Extensions;
+﻿using System;
+
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
 /// Contains application builder options that you can override if you want to
@@ -8,5 +10,5 @@ public class CommonEpiserverApplicationBuilderOptions : Web.Extensions.CommonWeb
     public bool UseExceptionLogging = true;
     public bool MapEndpoints = true;
     public string CmsLoginPath = null;
-    public string DefaultBlockComponentFolderPath = null;
+    public Func<string, string> DefaultBlockComponentFolderPathPredicate = null;
 }

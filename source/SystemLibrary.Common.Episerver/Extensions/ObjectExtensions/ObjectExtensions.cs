@@ -88,8 +88,11 @@ public static class ObjectExtensions
                     name = char.ToLowerInvariant(name[0]) + name.Substring(1);
             }
 
-            if (value is MediaData mediaData)
-                expando.Add(name, mediaData?.ContentLink?.ToFriendlyUrl());
+            if (value == null) 
+                expando.Add(name, null);
+
+            else if (value is MediaData mediaData)
+                expando.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
 
             else if (value is ContentArea contentArea)
             {
