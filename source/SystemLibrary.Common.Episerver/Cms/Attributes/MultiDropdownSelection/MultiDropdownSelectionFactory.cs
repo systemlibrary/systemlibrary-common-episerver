@@ -7,6 +7,7 @@ using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Cms.Abstract;
 using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Cms.Attributes;
 
@@ -20,7 +21,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
         {
             var propertyType = metadata.ModelType;
 
-            var propertyListType = GetGenericType(propertyType);
+            var propertyListType = propertyType.GetFirstGenericType();
 
             if (propertyListType == null)
                 throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList<string> or IList<Enum> (Enum is your own custom type 'public enum Colors ...'");
@@ -49,7 +50,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
 
             var type = metadata.ModelType;
 
-            var selectionType = options.EnumType ?? GetGenericType(type);
+            var selectionType = options.EnumType ?? type.GetFirstGenericType();
 
             if (options.SelectionFactoryType != null)
             {

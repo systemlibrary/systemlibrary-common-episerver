@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Text;
+using System.Xml.Linq;
 
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Shell.Web;
+using EPiServer.SpecializedProperties;
+using EPiServer.Web.Mvc.Html;
+
+using Org.BouncyCastle.Asn1.Cms;
 
 using SystemLibrary.Common.Net.Extensions;
 
@@ -14,6 +20,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
+    static Type ContentDataType = typeof(ContentData);
     static string[] _BlackListedContentPropertiesLowered;
     static string[] BlackListedContentPropertiesLowered
     {
@@ -33,11 +40,13 @@ public static class ObjectExtensions
                         "EPiServer.Core.IContent.ContentTypeID",
                         "EPiServer.Core.IModifiedTrackable.IsModified",
                         "IModifiedTrackable.IsModified",
+                        "ParentLinkReferenceProperty",
                         "ParentLinkReference",
                         "ShouldBeImplicitlyExported",
                         "MixinInstance",
                         "Property",
-                        "ViewData"
+                        "ViewData",
+                        "ReferencedPermanentLinkIds"
                     })
                     .Select(p2 => p2.ToLower())
                     .ToArray();
@@ -60,7 +69,7 @@ public static class ObjectExtensions
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
-        var isContentDataModel = type.Name.EndsWithAny("Page", "Block", "BlockData", "PageData", "BlockProxy", "BlockDataProxy", "PageProxy", "PageDataProxy", "MediaProxy", "MediaData", "MediaDataProxy");
+        var isContentDataModel = type.Name.EndsWithAny("_DynamicProxy", "BlockData", "PageData", "MediaData", "ContentData", "BlockProxy", "PageProxy", "MediaProxy", "DataProxy");
 
         foreach (var property in properties)
         {
@@ -110,11 +119,44 @@ public static class ObjectExtensions
             else if (value is Uri uri)
                 expando.Add(name, uri.ToFriendlyUrl());
 
+            else if (value is LinkItem linkItem)
+            {
+                var attributes = GetAttributesOfLinkItem(linkItem);
+                expando.Add(name, attributes);
+            }
+            else if (value is IList<LinkItem> linkItems)
+            {
+                var linkItemAttributes = linkItems.Where(x => x.Attributes != null).Select(x => GetAttributesOfLinkItem(x));
+
+                expando.Add(name, linkItemAttributes);
+            }
             else if (value is ContentReference contentReference)
                 expando.Add(name, contentReference.ToFriendlyUrl());
 
             else if (value is PageData page)
                 expando.Add(name, page.ToFriendlyUrl());
+
+            else if (value is IList iList)
+            {
+                var genericType = iList.GetType().GetFirstGenericType();
+                if (genericType.Inherits(ContentDataType))
+                {
+                    var contentList = new List<ContentData>();
+
+                    foreach (var item in iList)
+                    {
+                        contentList.Add(item as ContentData);
+                    }
+
+                    var renderedLinkItems = RenderIListContentItems(contentList);
+
+                    expando.Add(name, renderedLinkItems);
+                }
+                else
+                {
+                    expando.Add(name, iList);
+                }
+            }
 
             else if (value is IEnumerable enumerable)
                 expando.Add(name, enumerable);
@@ -127,5 +169,115 @@ public static class ObjectExtensions
         }
 
         return (ExpandoObject)expando;
+    }
+
+    static object GetAttributesOfLinkItem(LinkItem linkItem)
+    {
+        if (linkItem?.Attributes == null) return null;
+
+        if (linkItem.Attributes.Count == 0) return null;
+
+        var hasImage = linkItem.Attributes.ContainsKey("Image");
+        var hasIcon = linkItem.Attributes.ContainsKey("Icon");
+        var hasThumbnail = linkItem.Attributes.ContainsKey("Thumbnail");
+
+        if(hasImage)
+        {
+            if(hasIcon)
+            {
+                if(hasThumbnail)
+                {
+                    return new
+                    {
+                        text = linkItem.Text,
+                        title = linkItem.Title,
+                        href = linkItem.Href.ToFriendlyUrl(),
+                        target = linkItem.Target,
+                        thumbnail = linkItem.Attributes["Thumbnail"],
+                        icon = linkItem.Attributes["Icon"],
+                        image = linkItem.Attributes["Image"],
+                    };
+                }
+                return new
+                {
+                    text = linkItem.Text,
+                    title = linkItem.Title,
+                    href = linkItem.Href.ToFriendlyUrl(),
+                    target = linkItem.Target,
+                    icon = linkItem.Attributes["Icon"],
+                    image = linkItem.Attributes["Image"],
+                };
+            }
+            return new
+            {
+                text = linkItem.Text,
+                title = linkItem.Title,
+                href = linkItem.Href.ToFriendlyUrl(),
+                target = linkItem.Target,
+                image = linkItem.Attributes["Image"],
+            };
+        }
+
+        if(hasThumbnail)
+        {
+            if(hasIcon)
+            {
+                return new
+                {
+                    text = linkItem.Text,
+                    title = linkItem.Title,
+                    href = linkItem.Href.ToFriendlyUrl(),
+                    target = linkItem.Target,
+                    thumbnail = linkItem.Attributes["Thumbnail"],
+                    icon = linkItem.Attributes["Icon"]
+                };
+            }
+            return new
+            {
+                text = linkItem.Text,
+                title = linkItem.Title,
+                href = linkItem.Href.ToFriendlyUrl(),
+                target = linkItem.Target,
+                thumbnail = linkItem.Attributes["Thumbnail"],
+            };
+        }
+
+        if(hasIcon)
+        {
+            return new
+            {
+                text = linkItem.Text,
+                title = linkItem.Title,
+                href = linkItem.Href.ToFriendlyUrl(),
+                target = linkItem.Target,
+                icon = linkItem.Attributes["Icon"]
+            };
+        }
+     
+        return new
+        {
+            text = linkItem.Text,
+            title = linkItem.Title,
+            href = linkItem.Href.ToFriendlyUrl(),
+            target = linkItem.Target,
+        };
+    }
+    
+    static StringBuilder RenderIListContentItems(this List<ContentData> list)
+    {
+        if (list == null) return null;
+
+        var rendered = new StringBuilder();
+
+        var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
+
+        foreach (var contentData in list)
+        {
+            if (contentData == null) continue;
+
+            rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData ).ToString());
+        }
+
+        return rendered;
     }
 }

@@ -5,17 +5,30 @@
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
 		<Version>7.2.0.1</Version>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<DebugType>none</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<ErrorReport>none</ErrorReport>
+		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
+		<AnalysisLevel>latest-minimum</AnalysisLevel>
+		<EnableNETAnalyzers>False</EnableNETAnalyzers>
 	</PropertyGroup>
 	
 	<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<DebugType>pdbonly</DebugType>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
 		<Company>System Library</Company>
 		<Authors>System Library</Authors>
-		<Product>$(AssemblyVersion)</Product>
+		<Product>$(Version)</Product>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<WarningLevel>0</WarningLevel>
+		<WarningsAsErrors>$(WarningsAsErrors);NU1605;</WarningsAsErrors>
+		<NoWarn>1701;1702;CS0252:CS8618;CS8602;CS8625;CS8619;CS8601;CS8604;CS8603</NoWarn>
+		<Deterministic>False</Deterministic>
+		<FileAlignment>4096</FileAlignment>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -118,10 +131,9 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.26.0" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.26.*" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Net" Version="7.2.1.1" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.2.0.1" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.2.0.4" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -146,6 +158,7 @@
 		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-version</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
 </Project>

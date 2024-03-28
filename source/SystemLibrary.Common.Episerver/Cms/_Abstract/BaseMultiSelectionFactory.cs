@@ -12,26 +12,6 @@ namespace SystemLibrary.Common.Episerver.Cms.Abstract;
 
 public abstract class BaseMultiSelectionFactory
 {
-    internal static Type GetGenericType(Type type)
-    {
-        if (type.IsGenericType)
-        {
-            foreach (Type @interface in type.GetInterfaces())
-            {
-                if (@interface.IsGenericType)
-                {
-                    if (@interface.GetGenericTypeDefinition() == typeof(ICollection<>))
-                        return @interface.GetGenericArguments()[0];
-                    else if (@interface.GetGenericTypeDefinition() == typeof(IList<>))
-                        return @interface.GetGenericArguments()[0];
-                }
-            }
-
-            return type.GetGenericArguments()[0];
-        }
-        return null;
-    }
-
     protected static Enum AsEnum(string value, Type type)
     {
         return Enum.Parse(type, value) as Enum;

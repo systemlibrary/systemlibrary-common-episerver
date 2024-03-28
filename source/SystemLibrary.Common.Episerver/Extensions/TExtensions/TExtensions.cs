@@ -11,6 +11,7 @@ using System.Web;
 
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.SpecializedProperties;
 
 using React;
 
@@ -48,7 +49,7 @@ public static partial class TExtensions
     internal const string SysLibComponentArgs = "___" + nameof(SysLibComponentArgs);
     internal const string SysLibComponentKeys = "___" + nameof(SysLibComponentKeys);
 
-    public static StringBuilder ReactServerSideRender<T>(this T propsModel, Type propsModelType, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false)
+    public static StringBuilder ReactServerSideRender<T>(this T propsModel, Type propsModelType, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false) where T : class
     {
         if (tagName?.StartsWith("<") == true)
             throw new Exception("'tagName' should not include < > characters");
@@ -60,18 +61,25 @@ public static partial class TExtensions
             throw new Exception("'tagName' must be either null, div, section, header, article or footer");
 
         if (additionalProps != null && !additionalProps.GetOriginalType().IsClass)
-            throw new Exception("'additionalProps' passed must be a class with C# properties, where they will be passed as props into your react component");
+            throw new Exception("'additionalProps' passed must be a class with C# properties, where they will be passed as props into your react component. If an additional property matches a property in the model, then additional property is overwriting it");
 
         if (renderServerOnly && renderClientOnly)
             throw new Exception("Choose either client or server side rendering, or render on both sides, by setting both to false: " + componentFullName);
 
         var content = new StringBuilder();
 
-        if (tagName.Is())
-            content.Append("<" + tagName);
-
         var renderServerSide = !renderClientOnly || renderServerOnly;
         var renderClientSide = renderClientOnly || !renderServerOnly;
+
+        if (tagName.Is())
+            content.Append("<" + tagName);
+        else
+        {
+            //TODO: if tag name is not, and server side?
+            //Then use the ID and CSSCLASS directly on the element AFTER server side rendered ?
+            //If render ClientOnly, we render tag, id and css class of course ...
+            //or I cant? As the react hydration then, does???
+        }
 
         try
         {
@@ -83,7 +91,7 @@ public static partial class TExtensions
                 if (cssClass.Is())
                     content.Append($" class=\"{cssClass}\"");
             }
-
+      
             if (renderClientSide)
             {
                 if (!HttpContextInstance.Current.Items.ContainsKey(SysLibComponentArgs))
@@ -163,7 +171,7 @@ public static partial class TExtensions
                 var dummy = new Dictionary<string, object>();
                 component = ReactEnvironment.GetCurrentOrThrow.CreateComponent(componentFullName, dummy, null, false, true, true);
                 component.ContainerClass = null;
-                component.ContainerTag = null;
+                component.ContainerTag = tagName.Is() ? null : "div";
 
                 _props.SetValue(component, props);
                 _serializedProps.SetValue(component, jsonFormattedProps.ToString());
@@ -173,7 +181,7 @@ public static partial class TExtensions
                 if (tagName.IsNot() && renderClientSide)
                 {
                     var space = content.IndexOf(" ");
-                    if (space > 0)
+                    if (space > 1 && space < 10)
                     {
                         content.Insert(space, " data-rcssr-id=\"" + key + "-" + level + "\"");
                     }
@@ -195,7 +203,7 @@ public static partial class TExtensions
             Log.Error(message);
 
             content.Clear();
-            content.Append("<" + tagName + " data-error-is-logged='true'>" + message + "</" + tagName + ">");
+            content.Append("<" + tagName + " data-rcssr-error='true'>" + message + "</" + tagName + ">");
         }
         finally
         {
@@ -217,7 +225,10 @@ public static partial class TExtensions
         return content;
     }
 
-    // TODO: Skip adding props to dictionaries, directly write to a 'JsonWriter' each prop/value
+    // TODO: Skip adding props to dictionaries, directly write to a 'JsonWriter' which contains a "stringbuilder" behind the scenes
+    // would "double" the performance in "one optimization"
+    // Basically: ReactComponentResult should create a StringBuilder/JsonWriter, and reuse it throughout all components and properties rendered
+    // By passing the ref "downwards" and around...
     static (ExpandoObject, string) ToReactComponentProps(object model, object additionalProps, bool forceCamelCase = false, string id = null)
     {
         IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);
@@ -240,10 +251,11 @@ public static partial class TExtensions
         }
         else
         {
-            key.Append(propCount + "_" + model?.GetType()?.Name);
-
-            if (additionalProps != null)
-                key.Append("_p");
+            var typeName = model?.GetType()?.Name;
+            if (typeName.EndsWith("_DynamicProxy"))
+                key.Append(propCount + "_Dyn");
+            else
+                key.Append(propCount + "_" + typeName);
 
             if (HttpContextInstance.Current.Items.ContainsKey(SysLibComponentLevel))
                 key.Append("_" + HttpContextInstance.Current.Items[SysLibComponentLevel]);
@@ -261,27 +273,42 @@ public static partial class TExtensions
                 {
                     key.Append("_" + number);
                 }
-
                 else if (property.Value is bool b)
                 {
                     key.Append("_" + (b ? "1" : "0"));
                 }
-
+                else if (property.Value is Enum e)
+                {
+                    key.Append("_" + e.ToValue());
+                }
                 else if (property.Value is string text)
                 {
-                    if (text?.Length > 5 && text.Length <= 160)
+                    if (text?.Length > 5 && text.Length <= 255)
                     {
                         hasAppendedKey = true;
-                        key.Append("_" + text.ToBase64());
+                        if (key.Length > 28)
+                        {
+                            key.Append("_" + text.Substring(0, 28).ToBase64().Replace("+", "").Replace("=", ""));
+                        }
+                        else
+                        {
+                            key.Append("_" + text.ToBase64().Replace("+", "").Replace("=", ""));
+                        }
                     }
                 }
-
                 else if (property.Value is StringBuilder sb)
                 {
-                    if (sb?.Length > 5 && sb?.Length <= 160)
+                    if (sb?.Length > 5 && sb?.Length <= 255)
                     {
                         hasAppendedKey = true;
-                        key.Append("_" + sb.ToString().ToBase64());
+                        if (sb.Length > 28)
+                        {
+                            key.Append("_" + sb.ToString().Substring(0, 28).ToBase64().Replace("+", "").Replace("=", ""));
+                        }
+                        else
+                        {
+                            key.Append("_" + sb.ToString().ToBase64().Replace("+", "").Replace("=", ""));
+                        }
                     }
 
                     props[property.Key] = sb?.ToString();
@@ -300,6 +327,8 @@ public static partial class TExtensions
 
         if (additional != null)
         {
+            key.Append("_p");
+
             foreach (var kv in additional)
             {
                 if (props.ContainsKey(kv.Key))

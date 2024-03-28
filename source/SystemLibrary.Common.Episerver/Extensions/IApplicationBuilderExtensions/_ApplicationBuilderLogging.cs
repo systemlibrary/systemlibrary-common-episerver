@@ -11,21 +11,22 @@ partial class IApplicationBuilderExtensions
 
         app.UseExceptionHandler(appInError =>
         {
-            Dump.Write("APP IN ERROR?1");
             appInError.Run(async context =>
             {
-                Dump.Write("APP IN ERROR?");
                 var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                if (context?.Response != null)
+                if (contextFeature != null)
                 {
-                    if (!context.Response.HasStarted)
-                        if (context.Response.StatusCode < 300)
-                            context.Response.StatusCode = 500;
-                }
+                    if (context?.Response != null)
+                    {
+                        if (!context.Response.HasStarted)
+                            if (context.Response.StatusCode < 300)
+                                context.Response.StatusCode = 500;
+                    }
 
-                if(context?.Response?.StatusCode != 503)
-                    Log.Error(contextFeature?.Error);
+                    if (context?.Response?.StatusCode != 503)
+                        Log.Error(contextFeature?.Error);
+                }
             });
         });
     }

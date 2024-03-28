@@ -120,7 +120,7 @@ public class Program
 		}
 		catch (Exception ex)
 		{
-			Dump.Write(ex);
+			Log.Error(ex);
 		}
 	}
 

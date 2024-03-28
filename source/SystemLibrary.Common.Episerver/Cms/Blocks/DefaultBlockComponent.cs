@@ -7,16 +7,16 @@ using EPiServer.Framework.DataAnnotations;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace SystemLibrary.Common.Episerver.Cms.Blocks;
+namespace SystemLibrary.Common.Episerver.Components;
 
 [TemplateDescriptor(Inherited = true)]
-public class DefaultBlockComponent : BaseAsyncBlockComponent<BlockData>
+public class DefaultBlockComponent : AsyncComponentResult<BlockData>
 {
     internal static Func<string, string> DefaultBlockComponentFolderPathPredicate = null;
     protected override async Task<IViewComponentResult> InvokeComponentAsync(BlockData currentBlock)
     {
         if (DefaultBlockComponentFolderPathPredicate == null)
-            throw new Exception("A block is missing a controller, tried using the 'DefaultBlockComponent' from the library as a controller, but DefaultBlockComponentFolderPathPredicate is null. Please specify it in the options object when you invoke: app.CommonEpiserverApplicationBuilder(CommonEpiserverApplicationBuilderOptions) options. It should be the default root folder where block lives in, for instance ~/Content/Blocks/");
+            throw new Exception("A block is missing a controller, tried using 'SystemLibrary.Common.Episerver.DefaultBlockComponent' as a controller, but DefaultBlockComponentFolderPathPredicate is null. Please specify it in the options object when you invoke: app.CommonEpiserverApplicationBuilder(CommonEpiserverApplicationBuilderOptions) options. It should be the default root folder where block lives in, for instance ~/Content/Blocks/");
 
         var blockName = currentBlock.GetOriginalType().Name;
 

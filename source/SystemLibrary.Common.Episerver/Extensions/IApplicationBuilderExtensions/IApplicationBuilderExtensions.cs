@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-using SystemLibrary.Common.Episerver.Cms.Blocks;
+using SystemLibrary.Common.Episerver.Components;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -22,15 +22,15 @@ public static partial class IApplicationBuilderExtensions
     /// <code class="language-csharp hljs">
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
-    ///     app.CommonEpiserverAppBuilder();
+    ///     app.UseCommonEpiserverApp();
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, IWebHostEnvironment env, CommonEpiserverApplicationBuilderOptions options = null)
+    public static IApplicationBuilder UseCommonEpiserverApp(this IApplicationBuilder app, IWebHostEnvironment env, CommonEpiserverApplicationBuilderOptions options = null)
     {
         if (!File.Exists("module.config"))
         {
-            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the instructions at:https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
+            throw new Exception("Module.config is not located at root, cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
         if (env.WebRootPath == null)
@@ -56,11 +56,11 @@ public static partial class IApplicationBuilderExtensions
             if (path != null)
             {
                 var l = path.Length;
-                if (l > 3 && path[l - 1] != '/')
+                if (l > 4 && path[l - 1] != '/' && !path.EndsWith(".js") && !path.EndsWith(".png") && !path.EndsWith(".jpg") && !path.EndsWith(".css"))
                 {
                     try
                     {
-                        if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml"))
+                        if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml", ".config"))
                         {
                             return;
                         }
@@ -81,7 +81,8 @@ public static partial class IApplicationBuilderExtensions
                                 }
                             }
                         }
-                        else if (l > 6)
+                        
+                        if (l > 7)
                         {
                             if (path[1] == 'b' || path[1] == 'B')
                             {

@@ -217,7 +217,7 @@ public abstract class BaseCms
     ///     }
     ///     catch (Exception ex)
     ///     {
-    ///         Dump.Write(ex);
+    ///         Log.Error(ex);
     ///     }
     /// }
     /// </code>
