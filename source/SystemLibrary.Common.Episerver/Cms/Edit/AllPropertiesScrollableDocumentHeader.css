@@ -1,0 +1,8 @@
+﻿/* SHORTEN DOWN THE DOCUMENT HEADER IN ALL PROPERTIES, AND ADD SCROLL */
+
+.Sleek .epi-documentHeader {
+    max-height: 74px;
+    overflow-y: scroll;
+    padding-top: 0.25em;
+    display: grid;
+}

@@ -160,6 +160,7 @@ public class Program
 		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,
@@ -233,6 +234,7 @@ appSettings.json:
 		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,

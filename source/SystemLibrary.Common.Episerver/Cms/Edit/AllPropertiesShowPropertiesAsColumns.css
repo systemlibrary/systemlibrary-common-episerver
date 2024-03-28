@@ -57,6 +57,10 @@
     margin-top: 8px;
     padding-bottom: 8px;
 }
+.Sleek .epi-form-container__section__row.epi-form-container__section__row--field:last-of-type {
+    border: 0;
+    padding-bottom: 2em;
+}
 
 /* Move tooltip button on right side of title, for checkbox */
 /*.Sleek ul.epi-form-container__section.dijitContainer.dijitTabPane li.epi-form-container__section__row--checkbox > .epi-form-container__section__label-container > div.epi-form-container__section__tooltip {

@@ -31,6 +31,7 @@ public partial class EditController : BaseController
         AppendNewContentDialogHideRequiredTitle(edit, css);
         AppendNewContentDialogItemColors(edit, css);
 
+        AppendAllPropertiesScrollableDocumentHeader(edit, css);
         AppendAllPropertiesShowPropertyDescriptions(edit, css);
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
         AppendAllPropertiesShowCheckBoxOnRightSide(edit, css);
@@ -91,8 +92,22 @@ public partial class EditController : BaseController
         
     }
 
+    void AppendAllPropertiesScrollableDocumentHeader(EditConfiguration edit, StringBuilder css)
+    {
+        if (edit.AllPropertiesScrollableDocumentHeader)
+            css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesScrollableDocumentHeader.css"));
+    }
+    
     void AppendAllPropertiesShowPropertyDescriptions(EditConfiguration edit, StringBuilder css)
     {
+        if (edit.AllPropertiesShowPropertyDescriptions)
+        {
+            var note = "BREAKING: Optimizely/Episerver CMS has broken this in version 12.10, fixed in 12.19 and yet again broken in 12.20 and onwards - they've removed the hidden element that contained the description. Set this flag to false and restart app";
+            Log.Error(note);
+            throw new Exception(note);
+        }
+            
+        
         if(edit.AllPropertiesShowPropertyDescriptions)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertyDescriptions.css"));
     }

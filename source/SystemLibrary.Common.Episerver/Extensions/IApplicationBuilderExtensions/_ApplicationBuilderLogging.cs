@@ -5,9 +5,9 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderLogging(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
+    static void ApplicationBuilderLogging(IApplicationBuilder app, UseCommonEpiserverAppOptions options)
     {
-        if (!options.UseExceptionLogging) return;
+        if (!options.UseExceptionHandler) return;
 
         app.UseExceptionHandler(appInError =>
         {

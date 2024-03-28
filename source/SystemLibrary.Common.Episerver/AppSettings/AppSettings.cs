@@ -14,6 +14,7 @@ namespace SystemLibrary.Common.Episerver;
 ///        "appUrl": "https://localhost:50001",
 ///        "edit": {
 ///          "newContentDialogHideRequiredTitle": false,
+///          "allPropertiesScrollableDocumentHeader": false,
 ///          "allPropertiesShowPropertyDescriptions": false,
 ///          "allPropertiesShowPropertiesAsColumns": false,
 ///          "allPropertiesShowCheckBoxOnRightSide": false,

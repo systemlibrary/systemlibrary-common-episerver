@@ -43,6 +43,7 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<None Remove="Cms\Edit\AllPropertiesScrollableDocumentHeader.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
@@ -75,6 +76,7 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
+		<EmbeddedResource Include="Cms\Edit\AllPropertiesScrollableDocumentHeader.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
@@ -131,7 +133,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.26.*" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.26.1" />
+	  <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.24.1" />
+	  <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.24.2" />
+	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
+	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
 	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.2.0.4" />
 	</ItemGroup>

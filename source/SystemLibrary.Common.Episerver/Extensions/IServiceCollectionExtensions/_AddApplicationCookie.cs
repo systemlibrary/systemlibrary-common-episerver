@@ -6,14 +6,14 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void ServiceCollectionCookies(IServiceCollection services, CommonEpiserverApplicationServicesOptions options)
+    static void AddApplicationCookie(this IServiceCollection services, CommonCmsServicesOptions options)
     {
         if (!Options.ConfigureApplicationCookie) return;
      
         services.ConfigureApplicationCookie(o =>
         {
             o.LoginPath = Options.CmsLoginPath ?? "/util/login";
-            o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUserSessionDurationMinutes);
+            o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUsersSignedInDurationMinutes);
             o.SlidingExpiration = Options.CmsUsersSlidingExpiration;
         });
     }

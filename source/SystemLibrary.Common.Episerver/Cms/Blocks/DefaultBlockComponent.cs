@@ -10,27 +10,27 @@ using Microsoft.AspNetCore.Mvc;
 namespace SystemLibrary.Common.Episerver.Components;
 
 [TemplateDescriptor(Inherited = true)]
-public class DefaultBlockComponent : AsyncComponentResult<BlockData>
+public class DefaultBlockComponent : AsyncComponent<BlockData>
 {
-    internal static Func<string, string> DefaultBlockComponentFolderPathPredicate = null;
+    internal static Func<string, string> DefaultComponentPathPredicate = null;
     protected override async Task<IViewComponentResult> InvokeComponentAsync(BlockData currentBlock)
     {
-        if (DefaultBlockComponentFolderPathPredicate == null)
-            throw new Exception("A block is missing a controller, tried using 'SystemLibrary.Common.Episerver.DefaultBlockComponent' as a controller, but DefaultBlockComponentFolderPathPredicate is null. Please specify it in the options object when you invoke: app.CommonEpiserverApplicationBuilder(CommonEpiserverApplicationBuilderOptions) options. It should be the default root folder where block lives in, for instance ~/Content/Blocks/");
+        var type = currentBlock.GetOriginalType();
 
-        var blockName = currentBlock.GetOriginalType().Name;
+        if (DefaultComponentPathPredicate == null)
+            throw new Exception(type.Name + " is missing a 'controller/component', tried using 'SystemLibrary.Common.Episerver.DefaultComponent', but DefaultComponentPathPredicate is null. Please specify it in the options object when you invoke: app.CommonEpiserverApp(CommonEpiserverAppOptions) options. It should be the default root folder where block/components lives in, for instance ~/Content/Blocks/");
 
-        var blockComponentFolderPath = DefaultBlockComponentFolderPathPredicate(blockName);
+        var componentStartingPath = DefaultComponentPathPredicate(type.Name);
 
-        if (!blockComponentFolderPath.StartsWith("~") || !blockComponentFolderPath.EndsWith("/"))
-            throw new Exception("DefaultBlockComponentFolderPath must start with ~/ and end with /. It must point to the parent folder of where your block " + blockName + " lives. Example: Blocks/Button/ButtonBlock.cshtml, then '~/Blocks/' should be returned");
+        if (!componentStartingPath.StartsWith("~") || !componentStartingPath.EndsWith("/"))
+            throw new Exception("DefaultComponentPathPredicate must start with ~/ and end with /. It must point to the parent folder of where your block " + type.Name + " lives. Example: ~/Button/ButtonBlock.cshtml, then '~/Blocks/' should be returned");
 
-        var viewPath = string.Format(blockComponentFolderPath + "{0}/{1}.cshtml", blockName, blockName);
+        var viewPath = string.Format(componentStartingPath + "{0}/{1}.cshtml", type.Name, type.Name);
 
         var view = ViewEngine.GetView(null, viewPath, false);
 
         if (!view.Success)
-            viewPath = string.Format(blockComponentFolderPath + "{0}/{1}.cshtml", blockName, "Index");
+            viewPath = string.Format(componentStartingPath + "{0}/{1}.cshtml", type.Name, "Index");
 
         return await Task.FromResult(View(viewPath, currentBlock));
     }

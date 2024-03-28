@@ -32,14 +32,18 @@
                                 var path = "/EPiServer/CMS/?language=no#context=epi.cms.contentdata:///";
 
                                 var fullUrl = path + id;
-                                var urlLink = '<a target="_blank" style="margin-left: 4px; position: relative; top: 2px; text-decoration: underline; color: #212121;" href="' + fullUrl + '">Content Id: ' + id + '</a>';
+                                var urlLink = '<a target="_blank" style="font-size:12px;position: relative;top: 2px;text-decoration: underline;color: #0037ff;" href="' + fullUrl + '">Parent: ' + id + '</a>';
 
-                                current.domNode.innerHTML = '<div style="font-size: 14px;">' + urlLink + '</div>';
+                                current.domNode.innerHTML = '<div>' + urlLink + '</div>';
 
                                 var li = current.domNode.parentElement;
-                                if (li) {
-                                    li.style.display = 'flex';
+
+                                if (this.allPropertiesShowPropertiesAsColumns) {
+                                    if (li) {
+                                        li.style.display = 'flex';
+                                    }
                                 }
+
                             } else {
                                 console.warn("Current viewed object has no parent found");
                             }

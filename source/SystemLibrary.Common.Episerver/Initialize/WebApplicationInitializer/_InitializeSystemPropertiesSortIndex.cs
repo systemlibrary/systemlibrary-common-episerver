@@ -1,16 +1,15 @@
-﻿namespace SystemLibrary.Common.Episerver.Initialize
+﻿namespace SystemLibrary.Common.Episerver;
+
+partial class WebApplicationInitializer
 {
-    partial class WebApplicationInitializer
+    static void InitializeSystemPropertiesSortIndex()
     {
-        static void InitializeSystemPropertiesSortIndex()
-        {
-            var q = @"UPDATE TOP(10) tblPropertyDefinitionGroup 
+        var q = @"UPDATE TOP(10) tblPropertyDefinitionGroup 
                         SET GroupOrder = GroupOrder + 9000 
                         WHERE SystemGroup = 'True' 
                         AND GroupOrder < 10000 
                         AND GroupOrder > 9";
 
-            ExecuteQuery(q);
-        }
+        ExecuteQuery(q);
     }
 }

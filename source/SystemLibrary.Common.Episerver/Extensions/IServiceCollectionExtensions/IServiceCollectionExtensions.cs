@@ -1,7 +1,19 @@
-﻿using EPiServer.ServiceLocation;
-using EPiServer.Shell.Security;
+﻿using System.Reflection.Metadata;
 
+using EPiServer.Cms.Shell.UI.Configurations;
+using EPiServer.Cms.TinyMce;
+using EPiServer.ServiceLocation;
+using EPiServer.Shell.Security;
+using EPiServer.Web;
+
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using JavaScriptEngineSwitcher.V8;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -9,6 +21,7 @@ using React.AspNet;
 
 using SystemLibrary.Common.Episerver.Initialize;
 using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -18,7 +31,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 /// </summary>
 public static partial class IServiceCollectionExtensions
 {
-    internal static CommonEpiserverApplicationServicesOptions Options;
+    internal static CommonCmsServicesOptions Options;
 
     /// <summary>
     /// Registers default web-application settings:
@@ -41,19 +54,55 @@ public static partial class IServiceCollectionExtensions
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonEpiserverApplicationServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
+    public static IServiceCollection AddCommonCmsServices<TLogWriter>(this IServiceCollection services, CommonCmsServicesOptions options = null)
+        where TLogWriter : class, ILogWriter
     {
         SetOptions(options);
 
-        services.CommonWebApplicationServices(Options);
+        services = services.CommonWebApplicationServices(Options);
 
-        ServiceCollectionFirstTime(services, options);
+        services = services.AddTransient<ILogWriter, TLogWriter>();
 
-        ServiceCollectionDisplays(services, options);
+        services.AddFirstRequestInitializer(options);
 
-        ServiceCollectionCookies(services, options);
+        services.AddApplicationCookie(options);
 
-        ServiceCollectionCaching(services, options);
+        services = services.AddResponseCaching();
+
+        services = services.AddCms();
+
+        services.AddTinyMce();
+
+        services.AddDisplays(options);
+
+        services.Configure<UIOptions>(opt =>
+        {
+            opt.WebSocketEnabled = options.WebSocketEnabled;
+            opt.AutoPublishMediaOnUpload = true;
+            opt.UIShowGlobalizationUserInterface = false;       // Shows only the main language, not the language in the url (one lang enabled)
+            opt.InlineBlocksInContentAreaEnabled = false;
+            opt.PreviewTimeout = 60000;
+        });
+
+        services.Configure<UploadOptions>(x =>
+        {
+            x.FileSizeLimit = options.UploadLimitBytes;
+        });
+
+        services.Configure<IHttpMaxRequestBodySizeFeature>(x =>
+        {
+            x.MaxRequestBodySize = options.UploadLimitBytes;
+        });
+
+        services.Configure<CookiePolicyOptions>(options =>
+        {
+            options.CheckConsentNeeded = context => false;
+            options.MinimumSameSitePolicy = SameSiteMode.Lax;
+        });
+
+        services
+           .AddJsEngineSwitcher(opt => opt.DefaultEngineName = V8JsEngine.EngineName)
+           .AddV8();
 
         services.AddReact();
 
@@ -80,22 +129,27 @@ public static partial class IServiceCollectionExtensions
     /// }
     /// </code>
     /// </example>
-    public static IServiceCollection CommonEpiserverApplicationServices<T>(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null) where T : IdentityUser, IUIUser, new()
+    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CommonCmsServicesOptions options = null)
+        where T : IdentityUser, IUIUser, new()
+        where TLogWriter : class, ILogWriter
     {
         services.AddCmsAspNetIdentity<T>();
-        services = CommonEpiserverApplicationServices(services, options);
+
+        services = AddCommonCmsServices<TLogWriter>(services, options);
+
         services.AddScoped<T>();
+
         return services;
     }
 
-    static void SetOptions(CommonEpiserverApplicationServicesOptions options)
+    static void SetOptions(CommonCmsServicesOptions options)
     {
-        var fallback = new CommonEpiserverApplicationServicesOptions();
+        var fallback = new CommonCmsServicesOptions();
 
         Options = options ?? fallback;
 
-        if (Options.CmsUserSessionDurationMinutes == 0)
-            Options.CmsUserSessionDurationMinutes = fallback.CmsUserSessionDurationMinutes;
+        if (Options.CmsUsersSignedInDurationMinutes == 0)
+            Options.CmsUsersSignedInDurationMinutes = fallback.CmsUsersSignedInDurationMinutes;
 
         if (Options.DefaultAdminEmail.IsNot())
             Options.DefaultAdminEmail = fallback.DefaultAdminEmail;
@@ -103,7 +157,7 @@ public static partial class IServiceCollectionExtensions
         if (Options.DefaultAdminPassword.IsNot())
             Options.DefaultAdminPassword = fallback.DefaultAdminPassword;
 
-        if(Options.ViewLocations != null)
+        if (Options.ViewLocations != null)
             Options.ViewLocations = ViewLocations.AllViews.Add(Options.ViewLocations);
         else
             Options.ViewLocations = ViewLocations.AllViews;

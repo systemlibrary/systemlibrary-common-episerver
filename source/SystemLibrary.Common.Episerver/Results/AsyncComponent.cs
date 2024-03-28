@@ -19,7 +19,7 @@ using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Components;
 
-public abstract class AsyncComponentResult<T> : AsyncBlockComponent<T> where T : BlockData
+public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : BlockData
 {
     const string WindowReactComponentsPath = "reactComponents";
 
@@ -70,16 +70,25 @@ public abstract class AsyncComponentResult<T> : AsyncBlockComponent<T> where T :
 
     protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
-        var type = GetType(model);
+        try
+        {
+            var type = GetType(model);
 
-        componentFullName = GetReactComponentFullName(type, componentFullName);
+            componentFullName = GetReactComponentFullName(type, componentFullName);
 
-        var data = model.ReactServerSideRender(type, additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
+            var data = model.ReactServerSideRender(type, additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
 
-        if (!renderServerOnly)
-            AppendClientProperties(data);
+            if (!renderServerOnly)
+                AppendClientProperties(data);
 
-        return new ContentViewComponentResult(data.ToString());
+            return new ContentViewComponentResult(data.ToString());
+        }
+        catch(Exception ex)
+        {
+            Log.Error(ex);
+
+            return null;
+        }
     }
 
     static string GetReactComponentFullName(Type modelType, string componentFullName)

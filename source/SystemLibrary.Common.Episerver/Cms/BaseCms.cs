@@ -238,7 +238,7 @@ public abstract class BaseCms
                 config.AddJsonFile(appSettingsFullPath);
                 
                 if (environment.Is())
-                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: false);
 
                 if (additionalConfigurationsFullPath.Is())
                 {
@@ -246,7 +246,7 @@ public abstract class BaseCms
                     {
                         config.AddJsonFile(additionalConfig);
                         if (environment.Is())
-                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: false);
                     }
                 }
             })

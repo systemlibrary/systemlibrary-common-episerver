@@ -7,46 +7,45 @@ using EPiServer.Web;
 
 using Microsoft.AspNetCore.Http;
 
-namespace SystemLibrary.Common.Episerver.Initialize
+namespace SystemLibrary.Common.Episerver;
+
+partial class WebApplicationInitializer
 {
-    partial class WebApplicationInitializer
+    bool InitializedSiteDefinitions(HttpContext context)
     {
-        bool InitializedSiteDefinitions(HttpContext context)
+        if (_siteDefinitionRepository?.List()?.Any() == true) return false;
+
+        var request = context?.Request;
+
+        var host = request?.Host ?? new HostString("http://localhost", 80);
+
+        var site = new SiteDefinition
         {
-            if (_siteDefinitionRepository?.List()?.Any() == true) return false;
+            Id = Guid.NewGuid(),
+            Name = host.Host,
+            SiteUrl = new Uri(request.Scheme + "://" + host.Host + ":" + host.Port)
+        };
 
-            var request = context?.Request;
+        if (site.Hosts == null)
+            site.Hosts = new List<HostDefinition>();
 
-            var host = request?.Host ?? new HostString("http://localhost", 80);
+        var primaryHostName = host.Host.GetPrimaryDomain();
 
-            var site = new SiteDefinition
-            {
-                Id = Guid.NewGuid(),
-                Name = host.Host,
-                SiteUrl = new Uri(request.Scheme + "://" + host.Host + ":" + host.Port)
-            };
+        site.Hosts.Add(new HostDefinition()
+        {
+            Name = primaryHostName + ":" + host.Port,
+            Type = HostDefinitionType.Primary
+        });
 
-            if (site.Hosts == null)
-                site.Hosts = new List<HostDefinition>();
+        site.Hosts.Add(new HostDefinition()
+        {
+            Name = HostDefinition.WildcardHostName,
+            Type = HostDefinitionType.Undefined
+        });
 
-            var primaryHostName = host.Host.GetPrimaryDomain();
+        site.StartPage = ContentReference.RootPage;
 
-            site.Hosts.Add(new HostDefinition()
-            {
-                Name = primaryHostName + ":" + host.Port,
-                Type = HostDefinitionType.Primary
-            });
-
-            site.Hosts.Add(new HostDefinition()
-            {
-                Name = HostDefinition.WildcardHostName,
-                Type = HostDefinitionType.Undefined
-            });
-
-            site.StartPage = ContentReference.RootPage;
-
-            _siteDefinitionRepository.Save(site);
-            return true;
-        }
+        _siteDefinitionRepository.Save(site);
+        return true;
     }
 }
