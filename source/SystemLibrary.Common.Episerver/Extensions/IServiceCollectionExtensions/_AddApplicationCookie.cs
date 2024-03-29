@@ -8,7 +8,7 @@ partial class IServiceCollectionExtensions
 {
     static void AddApplicationCookie(this IServiceCollection services, CommonCmsServicesOptions options)
     {
-        if (!Options.ConfigureApplicationCookie) return;
+        if (!Options.AddApplicationCookie) return;
      
         services.ConfigureApplicationCookie(o =>
         {

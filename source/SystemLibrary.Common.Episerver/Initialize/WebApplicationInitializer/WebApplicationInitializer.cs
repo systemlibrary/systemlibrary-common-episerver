@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
 
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 using SystemLibrary.Common.Web;
@@ -12,45 +13,51 @@ namespace SystemLibrary.Common.Episerver;
 
 public partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
 {
-    UIUserProvider _uIUserProvider;
-    UIRoleProvider _uIRoleProvider;
-    ISiteDefinitionRepository _siteDefinitionRepository;
+    UIUserProvider uIUserProvider;
+    UIRoleProvider uIRoleProvider;
+    ISiteDefinitionRepository siteDefinitionRepository;
 
-    internal static bool HasInitialized = false;
+    IWebHostEnvironment env;
 
-    public WebApplicationInitializer(ISiteDefinitionRepository siteDefinitionRepository)
+    public WebApplicationInitializer(ISiteDefinitionRepository siteDefinitionRepository, IWebHostEnvironment env)
     {
         try
         {
-            _uIUserProvider = Services.Get<UIUserProvider>();
-            _uIRoleProvider = Services.Get<UIRoleProvider>();
+            uIUserProvider = Services.Get<UIUserProvider>();
+            uIRoleProvider = Services.Get<UIRoleProvider>();
         }
         catch
         {
             // services.AddCmsAspNetIdentity not invoked, app is running without the AspNetIdentity
         }
-        _siteDefinitionRepository = siteDefinitionRepository;
+        this.siteDefinitionRepository = siteDefinitionRepository;
+        this.env = env;
     }
 
     public bool CanRunInParallel => false;
 
     public Task InitializeAsync(HttpContext httpContext)
     {
-        Dump.Write("Init Async");
-        System.IO.File.AppendAllText(@"C:\Logs\textxtt.txt", "hehe\n");
-        HasInitialized = true;
         try
         {
-            Dump.Write("Init Async");
-            if (_uIUserProvider == null)
+            if(env.WebRootPath == null)
             {
-                Dump.Write("Init Async Ignored");
+                env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+            }
+
+            if (uIUserProvider == null)
+            {
                 return Task.FromResult(0);
             }
 
             if (IsAnyUserAlreadyRegisteredInDatabase())
             {
-                Dump.Write("Init Async not needed");
                 return Task.FromResult(0);
             }
 
@@ -62,15 +69,12 @@ public partial class WebApplicationInitializer : IBlockingFirstRequestInitialize
 
             InitializeLanguages();
 
-            Dump.Write("Init Async ran");
-
             return Task.FromResult(CreateAdminUser());
         }
         catch (Exception ex)
         {
             Log.Error(ex);
         }
-        Dump.Write("Init Async done");
         return Task.FromResult(0);
     }
 }

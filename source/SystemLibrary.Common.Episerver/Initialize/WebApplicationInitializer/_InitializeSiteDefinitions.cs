@@ -13,7 +13,7 @@ partial class WebApplicationInitializer
 {
     bool InitializedSiteDefinitions(HttpContext context)
     {
-        if (_siteDefinitionRepository?.List()?.Any() == true) return false;
+        if (siteDefinitionRepository?.List()?.Any() == true) return false;
 
         var request = context?.Request;
 
@@ -45,7 +45,7 @@ partial class WebApplicationInitializer
 
         site.StartPage = ContentReference.RootPage;
 
-        _siteDefinitionRepository.Save(site);
+        siteDefinitionRepository.Save(site);
         return true;
     }
 }

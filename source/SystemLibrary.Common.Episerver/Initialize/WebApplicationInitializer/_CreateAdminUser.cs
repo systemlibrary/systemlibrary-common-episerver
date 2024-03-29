@@ -14,7 +14,7 @@ partial class WebApplicationInitializer
         var password = IServiceCollectionExtensions.Options.DefaultAdminPassword;
         var userName = email.Substring(0, email.IndexOf('@'));
 
-        var result = _uIUserProvider.CreateUserAsync(userName, password, email, null, null, true)
+        var result = uIUserProvider.CreateUserAsync(userName, password, email, null, null, true)
             .ConfigureAwait(true)
             .GetAwaiter()
             .GetResult();
@@ -27,19 +27,19 @@ partial class WebApplicationInitializer
 
             foreach (var role in roles)
             {
-                var exists = _uIRoleProvider.RoleExistsAsync(role)
+                var exists = uIRoleProvider.RoleExistsAsync(role)
                     .ConfigureAwait(true)
                     .GetAwaiter()
                     .GetResult();
 
                 if (!exists)
-                    _uIRoleProvider.CreateRoleAsync(role)
+                    uIRoleProvider.CreateRoleAsync(role)
                         .ConfigureAwait(true)
                         .GetAwaiter()
                         .GetResult();
             }
 
-            _uIRoleProvider.AddUserToRolesAsync(result.User.Username, roles)
+            uIRoleProvider.AddUserToRolesAsync(result.User.Username, roles)
                 .ConfigureAwait(true)
                 .GetAwaiter()
                 .GetResult();
@@ -60,7 +60,7 @@ partial class WebApplicationInitializer
 
         var userName = email.Substring(0, email.IndexOf('@'));
 
-        var res = _uIUserProvider.GetUserAsync(userName)
+        var res = uIUserProvider.GetUserAsync(userName)
             .ConfigureAwait(false)
             .GetAwaiter()
             .GetResult();

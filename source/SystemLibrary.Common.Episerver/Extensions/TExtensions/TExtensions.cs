@@ -143,6 +143,7 @@ public static partial class TExtensions
             {
                 var keys = HttpContextInstance.Current.Items[SysLibComponentKeys] as List<string>;
 
+                // NOTE: keys are a list of already printed <input type=hidden props...>
                 if (!keys.Contains(key))
                 {
                     keys.Add(key);

@@ -6,6 +6,7 @@ using EPiServer.Events.Clients;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 
 using React.AspNet;
 
@@ -45,6 +46,7 @@ public static partial class IApplicationBuilderExtensions
             options = new UseCommonEpiserverAppOptions();
 
         DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
+
 
         //app.Use(async (context, next) =>
         //{
@@ -107,11 +109,14 @@ public static partial class IApplicationBuilderExtensions
         //    }
         //});
 
+        app = app.UseCookiePolicy();
+        app = app.UseMiddleware<HstsMiddleware>();
+
         ApplicationBuilderLogging(app, options);
 
         app.CommonWebApplicationBuilder(options);
 
-        ApplicationBuilderEndpoints(app, options);
+        app.UseEndpoints(options);
 
         app = app.UseReact(config =>
         {
@@ -133,40 +138,31 @@ public static partial class IApplicationBuilderExtensions
             Dump.Write("Using react");
         });
 
-        app.UseWhen((httpContext) => (httpContext.Response?.HasStarted == true && env != null && env.WebRootPath == null && WebApplicationInitializer.HasInitialized == true), appBuilder =>
-        {
-            Dump.Write("Settings WebRootPath as its null, after the initialization was completed: "  + WebApplicationInitializer.HasInitialized);
-            // NOTE: Fallthrough three times, in case bin/release/version 
 
-            //env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
-            //if (env.WebRootPath.Contains("\\bin\\"))
-            //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-            //if (env.WebRootPath.Contains("\\bin\\"))
-            //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-            //if (env.WebRootPath.Contains("\\bin\\"))
-            //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-        });
-
-
-        //ApplicationBuilderRedirectCmsLoginPath(app, options);
-
-
-        //       if (env.WebRootPath == null)
+        //app.UseWhen((httpContext) => (httpContext.Response?.HasStarted == true && env != null && env.WebRootPath == null && WebApplicationInitializer.HasInitialized == true), appBuilder =>
         //{
+        //    Dump.Write("Settings WebRootPath as its null, after the initialization was completed: " + WebApplicationInitializer.HasInitialized);
         //    // NOTE: Fallthrough three times, in case bin/release/version 
-        //    env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
-        //    if (env.WebRootPath.Contains("\\bin\\"))
-        //        env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-        //    if (env.WebRootPath.Contains("\\bin\\"))
-        //        env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-        //    if (env.WebRootPath.Contains("\\bin\\"))
-        //        env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-        //}
+
+        //    //env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
+        //    //if (env.WebRootPath.Contains("\\bin\\"))
+        //    //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+        //    //if (env.WebRootPath.Contains("\\bin\\"))
+        //    //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+        //    //if (env.WebRootPath.Contains("\\bin\\"))
+        //    //    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+        //});
+
+
+        ApplicationBuilderRedirectCmsLoginPath(app, options);
+
+
+
         return app;
     }
 }
 
-public static class IWebHostEnvironmentInstance 
+public static class IWebHostEnvironmentInstance
 {
     static IWebHostEnvironment Instance;
 

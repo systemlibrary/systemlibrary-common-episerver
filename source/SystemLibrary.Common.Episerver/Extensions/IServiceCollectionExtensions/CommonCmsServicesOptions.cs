@@ -1,11 +1,29 @@
-﻿using JavaScriptEngineSwitcher.V8;
+﻿using System;
+
+using JavaScriptEngineSwitcher.V8;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 public class CommonCmsServicesOptions : Web.Extensions.CommonWebApplicationServicesOptions
 {
+    /// <summary>
+    /// Add mobile, tablet and desktop resolutions for the CMS in Edit
+    /// </summary>
     public bool AddDisplays = true;
 
+    /// <summary>
+    /// Registered the 'ApplicationCookie' to be the login cookie in the CMS
+    /// - CmsUsersSlidingExpiration handled the sliding expiartion
+    /// - CmsUsersSignedInDurationMinutes handles cookie duration
+    /// </summary>
+    public bool AddApplicationCookie = true;
+
+    /// <summary>
+    /// Configure a custom login path
+    /// </summary>
+    /// <example>
+    /// Example: "hello/world", then www.systemlibrary.com/hello/world would the CMS login screen
+    /// </example>
     public string CmsLoginPath = null;
 
     /// <summary>
@@ -18,12 +36,6 @@ public class CommonCmsServicesOptions : Web.Extensions.CommonWebApplicationServi
     /// </summary>
     public int CmsUsersSignedInDurationMinutes = 120;
 
-    /// <summary>
-    /// Registered the 'ApplicationCookie' to be the login cookie in the CMS
-    /// - CmsUsersSlidingExpiration handled the sliding expiartion
-    /// - CmsUsersSignedInDurationMinutes handles cookie duration
-    /// </summary>
-    public bool ConfigureApplicationCookie = true;
 
     /// <summary>
     /// The default email of the default admin user
@@ -54,16 +66,10 @@ public class CommonCmsServicesOptions : Web.Extensions.CommonWebApplicationServi
 
     public bool WebSocketEnabled = true;
 
+    public bool AutoPublishMediaOnUpload = true;
+
     /// <summary>
     /// Maximum upload size in bytes, defaults to 30MB
     /// </summary>
     public long UploadLimitBytes = 30720000;
-
-    /// <summary>
-    /// Set to True when your DB is empty and brand new, to initialize the DB with language, an admin user and site settings
-    /// - Set to False afterwards 
-    ///
-    /// NOTE: From Epi 12.26.0 to 12.26.1 they broke the way this is done, if Env.WebRootPath also is set, then this initializer is returning 500 "as it is the first request"
-    /// </summary>
-    public bool RunFirstRequestInitializer = true;
 }

@@ -15,14 +15,8 @@ partial class IServiceCollectionExtensions
 {
     static void AddFirstRequestInitializer(this IServiceCollection services, CommonCmsServicesOptions options)
     {
-        //if (!options.RunFirstRequestInitializer)
-        //    return;
-
-        Dump.Write("Register the FirstReqClass");
         services.AddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
 
         services.TryAddEnumerable(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(WebApplicationInitializer)));
-        //services.AddSingleton<IBlockingFirstRequestInitializer, WebApplicationInitializer>();
-        //services.AddSingleton(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(WebApplicationInitializer)));
     }
 }
