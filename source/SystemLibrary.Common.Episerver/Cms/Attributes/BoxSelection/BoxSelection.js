@@ -225,7 +225,7 @@
                             if (top === null) {
                                 top = colors[1].replace(' ', '');
                             }
-                            return 'background-image: linear-gradient(to top left, ' + top + ' 48%, ' + bottom + ' 51%); text-shadow: 1px 1px 6px white, 0 0px 8px white, 0 0 20px white;';
+                            return 'background-image: linear-gradient(to top left, ' + top + ' 48%, ' + bottom + ' 51%); text-shadow: 2px 1px 5px white, 0 0px 6px white, 0 0 12px white;';
                         }
                     }
                 }
@@ -234,29 +234,29 @@
                 if (backgroundValue !== null) {
                     if (backgroundValue.startsWith('#')) {
                         if (backgroundValue.length === 7) {
-                            if (backgroundValue[1] <= 4 && backgroundValue[3] <= 4 && backgroundValue[5] <= 4) {
-                                return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            if (backgroundValue[1] <= 5 && backgroundValue[3] <= 5 && backgroundValue[5] <= 5) {
+                                return 'background-color:' + backgroundValue + ";color:white;";
                             }
                         }
                         else if (backgroundValue.includes('#000')) {
-                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            return 'background-color:' + backgroundValue + ";color:white;";
                         }
                     }
 
                     if (backgroundValue.startsWith('rgb')) {
                         if (backgroundValue.length <= 13) {
-                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            return 'background-color:' + backgroundValue + ";text-shadow: 2px 1px 5px white, 0 0px 6px white, 0 0 12px white;";
                         }
                         if (backgroundValue.startsWith('rgba')) {
                             if (backgroundValue.length <= 14) {
-                                return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                                return 'background-color:' + backgroundValue + ";text-shadow: 2px 1px 5px white, 0 0px 6px white, 0 0 12px white;";
                             }
                         }
                     }
 
                     if (backgroundValue.startsWith('(')) {
                         if (backgroundValue.length <= 11) {
-                            return 'background-color:' + backgroundValue + ";text-shadow:1px 1px 4px white, 0 0px 6px white, 0 0 5px white;";
+                            return 'background-color:' + backgroundValue + ";text-shadow: 2px 1px 5px white, 0 0px 6px white, 0 0 12px white;";
                         }
                     }
                     return 'background-color:' + backgroundValue;
