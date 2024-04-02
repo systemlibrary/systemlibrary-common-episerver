@@ -45,20 +45,15 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 
 ##### One Line Setup
 * Setup IApplicationBuilder in one line:  
-    app.CommonEpiserverApplicationBuilder();
-    - Routing requests to content controllers and mvc controllers
-    - New user "demo/Demo123!" if no user exists in db
-    - Enables login on relative path '/episerver'
-    - Register middleware for serving static files such as css, js, png, jpg, ...
-    - Register middleware for Authorization and Authentication attributes  
+    app.UseCommonCmsApp();
+    - registers common middlewares for Optimizely CMS, like cache, authentication, cookies, routing to controllers and more
 * Setup IServiceCollection in one line:  
-    services.CommonEpiserverApplicationServices&lt;CurrentUser&gt;().AddCms().AddTinyMce();
-    - Register AspNet.Mvc services
-    - Routing requests to controllers
-    - Add view locations or area view locations by setting them in the options sent to: CommonEpiserverApplicationServices()
-    - Register service for serving static files such as css, js, png, jpg, ...
+    services.AddCommonCmsServices&lt;CurrentUser, LogWriter&gt;().AddFind();
+    - registers common services for Optimizely CMS, like cache, authenticaation, Cms, TinyMce, and more...
+    - registers common view locations
 - Contains extensions for XhtmlString, ContentReference, ContentArea, etc ... such as Is() and IsNot()
 - Contains 'CurrentUser' class, either new it up or inject it
+- Contains ReactServerSide rendering results to convert a Block to React
 
 
 ## Requirements
@@ -66,12 +61,16 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.1.0.6
-- XhtmlStringExtensions: Render() does not call on RenderStringBuilder to create a stringbuilder (micro optimization)
-- Render() now invokes ContentArea() above XhtmlString (micro optimization)
-- 
-- ContentAreaExtensions: new method for Render() - RenderStringBuilder for further cleanup or appending more data
-
+Release 7.2.0.1
+- Breaking Change: converting block/component to server side now uses different data attributes and the props are added outside of the element inside a hidden input for reuse, so same prop is printed only once in a nested scenario
+- Breaking Change: Collection and App middleware options is renamed to UseCommonCmsApp and AddCommonCmsServices
+- Breaking Change: The two options now only have fields set, and most of them have been renamed
+- New: A new content result ReactBlockResult for BlockControllers which can render a block as React Component
+- New: A new component result AsyncComponent for AsyncBlockComponent which can render a block as React Component
+- Breaking Change: SystemLibrary.Common.Web has a few breaking changes
+- Breaking Change: the orering of middleware has been improved
+- New: SkipInitialization option allows you to skip the creation of a new admin user/preventing to update the orders of properties and language on startup
+- New: ReactSsrScriptsInOrder and UseReact options can be set to null/false to avoid registering React Configurations and V8 engine
 
 #### Version history
 - View git history of this file if interested

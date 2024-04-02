@@ -217,12 +217,12 @@ public abstract class BaseCms
     ///     }
     ///     catch (Exception ex)
     ///     {
-    ///         Dump.Write(ex);
+    ///         Log.Error(ex);
     ///     }
     /// }
     /// </code>
     /// </example>
-    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null) where T : class
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
     {
         if (appSettingsFullPath.IsNot())
             appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
@@ -236,9 +236,9 @@ public abstract class BaseCms
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.AddJsonFile(appSettingsFullPath);
-                
+
                 if (environment.Is())
-                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
 
                 if (additionalConfigurationsFullPath.Is())
                 {
@@ -246,13 +246,13 @@ public abstract class BaseCms
                     {
                         config.AddJsonFile(additionalConfig);
                         if (environment.Is())
-                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: true);
+                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
                     }
                 }
             })
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                if(environment.Is())
+                if (environment.Is())
                     webBuilder.UseEnvironment(environment);
 
                 webBuilder.UseStartup<T>();

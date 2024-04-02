@@ -6,6 +6,10 @@ using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.Web.Mvc.Html;
 
+using Microsoft.AspNetCore.Components.RenderTree;
+
+using SystemLibrary.Common.Net.Extensions;
+
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
@@ -36,13 +40,14 @@ public static class ContentAreaExtensions
         return RenderStringBuilder(contentArea).ToString();
     }
 
+
     public static StringBuilder RenderStringBuilder(this ContentArea contentArea)
     {
         if (contentArea.IsNot()) return new StringBuilder();
 
         var filteredItems = contentArea.FilteredItems;
 
-        var rendered = new StringBuilder("", 64);
+        var rendered = new StringBuilder("", 128);
 
         var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
 

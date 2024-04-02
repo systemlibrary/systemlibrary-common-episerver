@@ -57,6 +57,7 @@ public class ParentLinkReferenceFactory : ISelectionFactory
         {
             Log.Error(ex);
         }
+        metadata.EditorConfiguration.TryAdd("allPropertiesShowPropertiesAsColumns", AppSettings.Current.Edit.AllPropertiesShowPropertiesAsColumns);
         metadata.EditorConfiguration.TryAdd("parentLinkReferenceId", parentId);
 
         return items;

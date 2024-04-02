@@ -31,6 +31,22 @@
             const moduleFullName = "systemLibraryCommonEpiserverBoxSelectionWidget";
             const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
+            function initialValue(obj, value) {
+                if (is(value)) {
+                    return value;
+                }
+                if (value === 0) {
+                    return value;
+                }
+                if (obj.isMultiSelect) {
+                    return '';
+                }
+                if (obj.propertyIsEnum) {
+                    return 0;
+                }
+                return null;
+            }
+
             function is(data) {
                 if (typeof (data) === 'undefined' || data === null || data === "" || data == -1 || (data.length && data.length === 0)) {
                     return false;
@@ -319,9 +335,9 @@
                 postCreate: function () {
                     try {
                         this._loadCssFile();
-                        if (!this.isMultiSelect) {
-                            this.value = '';
-                        }
+
+                        this.value = initialValue(this, this.value);
+
                         this._initWidgetProperties();
                         this._bindEvents(this);
                         this.inherited(arguments);
@@ -366,7 +382,12 @@
                         }
 
                         if (typeof (value) === 'undefined') {
-                            value = null;
+                            if (this.propertyIsEnum) {
+                                value = 0;
+                            }
+                            else {
+                                value = null;
+                            }
                         }
 
                         if (this.isMultiSelect) {
@@ -540,6 +561,7 @@
                             console.warn("BoxSelection: No boxes from the backend");
                             return;
                         }
+
                         boxes.forEach(box => {
                             let text = box.text;
                             let value = box.value;
@@ -555,8 +577,12 @@
                             if (!is(text)) {
                                 text = "";
                             }
-                            if (!is(value)) {
-                                value = "";
+                            if (!is(value) && value !== 0) {
+                                if (this.propertyIsEnum) {
+                                    value = 0;
+                                } else {
+                                    value = "";
+                                }
                             }
 
                             if (value != "-1" && value != "0") {
@@ -601,6 +627,10 @@
 
                             list.appendChild(li);
                         });
+
+                        if (is(this.value) || value === 0) {
+                            this._selectBoxes();
+                        }
                     }
                     catch (e) {
                         console.error("BoxSelection: _initWidgetProperties");

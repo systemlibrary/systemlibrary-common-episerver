@@ -5,25 +5,19 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderLogging(IApplicationBuilder app, CommonEpiserverApplicationBuilderOptions options)
+    static void ExceptionHandler(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
-        if (!options.UseExceptionLogging) return;
+        if (!options.UseExceptionHandler) return;
 
         app.UseExceptionHandler(appInError =>
         {
             appInError.Run(async context =>
             {
-                var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
-
-                if (context?.Response != null)
+                if (context?.Response?.StatusCode != 503 && context?.Response?.StatusCode != 404)
                 {
-                    if (!context.Response.HasStarted)
-                        if (context.Response.StatusCode < 300)
-                            context.Response.StatusCode = 500;
-                }
-
-                if(context?.Response?.StatusCode != 503)
+                    var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
                     Log.Error(contextFeature?.Error);
+                }
             });
         });
     }

@@ -24,11 +24,23 @@ public class HtmlHelperFactory
     static DummyIndexView DummyIndex = new DummyIndexView();
     static ITempDataProvider TempDataProvider;
 
+    static IHttpContextAccessor _HttpContextAccessor;
+
+    static IHttpContextAccessor HttpContextAccessor
+    {
+        get
+        {
+            if (_HttpContextAccessor == null)
+            {
+                _HttpContextAccessor = Services.Get<IHttpContextAccessor>();
+            }
+            return _HttpContextAccessor;
+        }
+    }
+
     public static IHtmlHelper<T> Build<T>() where T : class
     {
-        var contextAccessor = Services.Get<IHttpContextAccessor>();
-
-        var viewContext = GetViewContext<T>(contextAccessor);
+        var viewContext = GetViewContext<T>(HttpContextAccessor);
 
         var htmlHelper = Services.Get<IHtmlHelper<T>>();
 
@@ -39,9 +51,7 @@ public class HtmlHelperFactory
 
     public static IHtmlHelper Build()
     {
-        var contextAccessor = Services.Get<IHttpContextAccessor>();
-
-        var viewContext = GetViewContext(contextAccessor);
+        var viewContext = GetViewContext(HttpContextAccessor);
 
         var htmlHelper = Services.Get<IHtmlHelper>();
 
@@ -75,8 +85,6 @@ public class HtmlHelperFactory
 
         var tempData = new TempDataDictionary(contextAccessor.HttpContext, TempDataProvider);
 
-        // using StringWriter writer = new StringWriter();
-
         return new ViewContext(
             new ActionContext(contextAccessor.HttpContext, contextAccessor.HttpContext.GetRouteData(), ControllerActionDescriptor),
             DummyIndex,
@@ -91,7 +99,7 @@ public class HtmlHelperFactory
     {
         public Task RenderAsync(ViewContext context)
         {
-            return Task.CompletedTask;  // NOTE: Is this more performant than Task.FromResult(0)? 
+            return Task.CompletedTask;  // NOTE: This is more performant than Task.FromResult(0)
         }
 
         public string Path => "Index";

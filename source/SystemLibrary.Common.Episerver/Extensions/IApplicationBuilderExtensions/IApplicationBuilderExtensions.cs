@@ -1,10 +1,18 @@
 ﻿using System;
 using System.IO;
 
+using EPiServer.Events.Clients;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 
-using SystemLibrary.Common.Episerver.Cms.Blocks;
+using React.AspNet;
+
+using SystemLibrary.Common.Episerver.Components;
+using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -22,86 +30,35 @@ public static partial class IApplicationBuilderExtensions
     /// <code class="language-csharp hljs">
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
-    ///     app.CommonEpiserverAppBuilder();
+    ///     app.UseCommonEpiserverApp();
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder CommonEpiserverApplicationBuilder(this IApplicationBuilder app, IWebHostEnvironment env, CommonEpiserverApplicationBuilderOptions options = null)
+    public static IApplicationBuilder UseCommonCmsApp(this IApplicationBuilder app, IWebHostEnvironment env, CmsAppBuilderOptions options = null)
     {
         if (!File.Exists("module.config"))
         {
-            throw new Exception("Module.config is not located at root, cannot continue with CommonEpiServer initialization. Remember to read and follow the instructions at:https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
-        }
-
-        if (env.WebRootPath == null)
-        {
-            env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
-            if (env.WebRootPath.EndsWith("\\bin\\"))
-                env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+            throw new Exception("Module.config is not located at root, cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
         if (options == null)
-            options = new CommonEpiserverApplicationBuilderOptions();
+            options = new CmsAppBuilderOptions();
 
-        DefaultBlockComponent.DefaultBlockComponentFolderPath = options.DefaultBlockComponentFolderPath;
+        DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
 
-        ApplicationBuilderLogging(app, options);
+        app.DisallowKnownAppFiles(options);
 
-        app.Use(async (context, next) =>
-        {
-            var path = context?.Request?.Path.Value;
-            if (path != null)
-            {
-                var l = path.Length;
-                if (l > 3 && path[l-1] != '/')
-                {
-                    try
-                    {
-                        if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml"))
-                        {
-                            return;
-                        }
+        app.ExceptionHandler(options);
 
-                        if (l > 13)
-                        {
-                            if (path[1] == 'a' || path[1] == 'A' ||
-                                path[1] == 'c' || path[1] == 'C')
-                            {
-                                var p = path.ToLower();
-                                if (p.StartsWith("/appsettings.") ||
-                                        p.StartsWith("/configurations/") ||
-                                        p.StartsWith("/configuration/") ||
-                                        p.StartsWith("/config/") ||
-                                        p.StartsWith("/configs/"))
-                                {
-                                    return;
-                                }
-                            }
-                        }
-                        else if (l > 6)
-                        {
-                            if (path[1] == 'b' || path[1] == 'B')
-                            {
-                                var p = path.ToLower();
-                                if (p.StartsWith("/bin/")) return;
-                            }
-                        }
-                    }
-                    catch(Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                }
-            }
-            await next();
-        });
+        app.UseCommonWebApp(env, options);
 
-        app.CommonWebApplicationBuilder(options);
+        app.AddUseReact(options);
 
-        ApplicationBuilderEndpoints(app, options);
+        app.UseEndpoints(options);
 
-        ApplicationBuilderRedirectCmsLoginPath(app, options);
+        app.RedirectCmsLoginPath(options);
 
         return app;
     }
 }
+

@@ -4,60 +4,81 @@ using System.Threading.Tasks;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
 
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Initialize
+namespace SystemLibrary.Common.Episerver;
+
+public partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
 {
-    internal partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
+    UIUserProvider uIUserProvider;
+    UIRoleProvider uIRoleProvider;
+    ISiteDefinitionRepository siteDefinitionRepository;
+
+    IWebHostEnvironment env;
+
+    public WebApplicationInitializer(ISiteDefinitionRepository siteDefinitionRepository, IWebHostEnvironment env)
     {
-        UIUserProvider _uIUserProvider;
-        UIRoleProvider _uIRoleProvider;
-        ISiteDefinitionRepository _siteDefinitionRepository;
-
-        public WebApplicationInitializer(ISiteDefinitionRepository siteDefinitionRepository)
+        try
         {
-            try
-            {
-                _uIUserProvider = Services.Get<UIUserProvider>();
-                _uIRoleProvider = Services.Get<UIRoleProvider>();
-            }
-            catch
-            {
-                // services.CmsAspNetIdentity not invoked 
-            }
-            _siteDefinitionRepository = siteDefinitionRepository;
+            uIUserProvider = Services.Get<UIUserProvider>();
+            uIRoleProvider = Services.Get<UIRoleProvider>();
         }
-
-        public bool CanRunInParallel => false;
-
-        public async Task InitializeAsync(HttpContext httpContext)
+        catch
         {
-            try
-            {
-                if (_uIUserProvider == null) return;
-
-                if (IsAnyUserAlreadyRegisteredInDatabase())
-                {
-                    return;
-                }
-
-                Log.Info("Running first time setup due to 0 users in the DB");
-
-                InitializedSiteDefinitions(httpContext);
-
-                InitializeSystemPropertiesSortIndex();
-
-                InitializeLanguages();
-
-                await CreateAdminUser().ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                throw;
-            }
+            // services.AddCmsAspNetIdentity not invoked, app is running without the AspNetIdentity
         }
+        this.siteDefinitionRepository = siteDefinitionRepository;
+        this.env = env;
+    }
+
+    public bool CanRunInParallel => false;
+
+    public Task InitializeAsync(HttpContext httpContext)
+    {
+        try
+        {
+            if(env.WebRootPath == null)
+            {
+                env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+                if (env.WebRootPath.Contains("\\bin\\"))
+                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+            }
+
+            if(SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
+                return Task.FromResult(0);
+
+            if (uIUserProvider == null)
+            {
+                return Task.FromResult(0);
+            }
+
+            if (IsAnyUserAlreadyRegisteredInDatabase())
+            {
+                return Task.FromResult(0);
+            }
+
+            Log.Info("Running first time setup due to 0 users in the DB");
+
+            InitializedSiteDefinitions(httpContext);
+
+            InitializeSystemPropertiesSortIndex();
+
+            InitializeLanguages();
+
+            return Task.FromResult(CreateAdminUser());
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+        }
+        return Task.FromResult(0);
     }
 }

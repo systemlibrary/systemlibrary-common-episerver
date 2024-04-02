@@ -32,9 +32,6 @@ namespace SystemLibrary.Common.Episerver.Initialize;
 /// </example>
 public abstract class StartupModule : IConfigurableModule
 {
-    //TODO:CONSIDER NAMES: StartupModule, OnInitModule, OnInitialization, OnInitiliaztionModule, OnStartupModule, OnStartup, ...
-    //ConfigModule, StartupConfigModule, ... OnStartupEvent....? OnInitEvent.... OnEvent
-
     public virtual void ConfigureContainer(ServiceConfigurationContext context)
     {
     }

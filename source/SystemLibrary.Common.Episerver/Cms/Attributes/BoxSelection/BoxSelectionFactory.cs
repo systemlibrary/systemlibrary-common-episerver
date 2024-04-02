@@ -23,7 +23,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             var enumType = metadata.ModelType;
 
-            var genericListType = GetGenericType(enumType);
+            var genericListType = enumType.GetFirstGenericType();
 
             var propertyName = metadata.PropertyName;
 
@@ -52,6 +52,8 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
                 metadata.EditorConfiguration.Add("isMultiSelect", true);
             }
+            // If multiselect is false, then we pass wether or not enum is the type, controlling the Default Value on POST
+            metadata.EditorConfiguration.Add("propertyIsEnum", genericListType == null && metadata.ModelType.IsEnum);
 
             //NOTE: metaData.AdditionalValues is not sent, so have to use EditorConfiguration
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);

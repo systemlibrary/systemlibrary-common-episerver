@@ -3,6 +3,7 @@
 public class EditConfiguration
 {
     public bool NewContentDialogHideRequiredTitle { get; set; } = false;
+    public bool AllPropertiesScrollableDocumentHeader { get; set; } = false;
     public bool AllPropertiesShowPropertyDescriptions { get; set; } = false;
     public bool AllPropertiesShowPropertiesAsColumns { get; set; } = false;
     public bool AllPropertiesShowCheckBoxOnRightSide { get; set; } = false;

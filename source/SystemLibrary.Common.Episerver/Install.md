@@ -13,7 +13,7 @@
 1. Create a new project "AspNet Core Empty" for .NET 7
 2. Delete appSettings.development.json
 3. Add nuget package Episerver.Cms >= 12.26.0
-4. Add nuget package SystemLibrary.Common.Episerver >= 7.1.0.1
+4. Add nuget package SystemLibrary.Common.Episerver >= 7.2.0.1
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 5. Create '~/module.config', set its build to 'Content' 
 6. Create '~/Cms/Cms.cs'
@@ -120,25 +120,25 @@ public class Program
 		}
 		catch (Exception ex)
 		{
-			Dump.Write(ex);
+			Log.Error(ex);
 		}
 	}
 
 	public void ConfigureServices(IServiceCollection services)
 	{
-		var options = new CommonEpiserverApplicationServicesOptions();
+		var options = new CmsServicesCollectionOptions();
 
 		options.InitialLanguagesEnabled = "no";
 
-		services.CommonEpiserverApplicationServices<CurrentUser>(options)
+		services.AddCommonCmsServices<CurrentUser>(options)
 			.AddCms()
 			.AddTinyMce();
 	}
 
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		var options = new CommonEpiserverApplicationBuilderOptions();
-		app.CommonEpiserverApplicationBuilder(options);
+		var options = new CmsAppBuilderOptions();
+		app.UseCommonCmsApp(options);
 	}
 }
 ```
@@ -160,6 +160,7 @@ public class Program
 		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,
@@ -233,6 +234,7 @@ appSettings.json:
 		"appUrl": "https://localhost:50001",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
+			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,

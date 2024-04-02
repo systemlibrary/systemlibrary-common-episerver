@@ -32,6 +32,7 @@ internal class ViewLocations
     // https://github.com/aspnet/Mvc/blob/e985fa5d423968f36a651a354d9c953192c52532/src/Microsoft.AspNet.Mvc.ViewFeatures/ViewComponents/ViewViewComponentResult.cs
     static string[] GetViewsForBlocks() => new string[]
     {
+        "/Content/Components/{1}/{0}.cshtml",
         "/Content/Blocks/{1}/{0}.cshtml",
         "/Content/Blocks/{1}/Views/{0}.cshtml",
     };
