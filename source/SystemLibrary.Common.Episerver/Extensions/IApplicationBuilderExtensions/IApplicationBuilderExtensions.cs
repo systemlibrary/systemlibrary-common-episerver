@@ -59,10 +59,10 @@ public static partial class IApplicationBuilderExtensions
         }
         app.UseCommonWebApp(env, options);
 
+        app.UseMapEndpoints(options);
+
         options.UseControllers = preserveUseControllers;
         options.UseRazorPages = preserveUseRazor;
-
-        app.UseMapEndpoints(options);
 
         app.AddUseReact(options);
 

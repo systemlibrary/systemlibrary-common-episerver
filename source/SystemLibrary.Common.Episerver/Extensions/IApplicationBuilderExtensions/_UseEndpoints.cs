@@ -12,13 +12,12 @@ partial class IApplicationBuilderExtensions
         {
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapContent();
-
-                // CMS folder in this project
                 endpoints.MapAreaControllerRoute(
-                    name: Globals.AreaCms,
-                    areaName: Globals.AreaCms,
-                    pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+                   name: Globals.AreaCms,
+                   areaName: Globals.AreaCms,
+                   pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapContent();
             });
         }
         else
@@ -26,6 +25,11 @@ partial class IApplicationBuilderExtensions
             // CMS folder in this project
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: Globals.AreaFontAwesome,
+                    areaName: Globals.AreaFontAwesome,
+                    pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapAreaControllerRoute(
                     name: Globals.AreaCms,
                     areaName: Globals.AreaCms,

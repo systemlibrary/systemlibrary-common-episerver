@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.5
-- Bug: MapContent adds DefaultControllerRoute and RazorPages, invoking those twice results in ambigous matches on endpoints
+Release 7.2.0.6
+- Bug: MapContent endpoints after Area
 
 #### Version history
 - View git history of this file if interested
