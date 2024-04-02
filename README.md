@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.2
-- Null exception fix in ToReactComponentProps
+Release 7.2.0.4
+- FormOptions: added the UploadLimitBytes configuration to max form post
 
 #### Version history
 - View git history of this file if interested

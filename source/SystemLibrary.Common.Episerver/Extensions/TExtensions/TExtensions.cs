@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Web;
 
 using EPiServer;
@@ -93,7 +94,9 @@ public static partial class TExtensions
                 if (id.Is())
                     content.Append(" id=\"" + id + "\"");
 
-                if (cssClass.Is())
+                if(cssClass == null)
+                    content.Append(" class=\"" + GetComponentContainerClassName(componentFullName) + "\"");
+                else if(cssClass != "")
                     content.Append($" class=\"{cssClass}\"");
             }
       
@@ -345,44 +348,17 @@ public static partial class TExtensions
         return ((ExpandoObject)props, key.ToString());
     }
 
-    public class ComponentArgsList
+    static string GetComponentContainerClassName(string componentFullName)
     {
-        public static Dictionary<int, List<string>> Args = new Dictionary<int, List<string>>();
+        var index = componentFullName.LastIndexOf('.');
 
-        public static void Clear()
-        {
-            if (Args.Count == 0) return;
+        var componentName = componentFullName.Substring(index + 1);
 
-            foreach (var list in Args)
-            {
-                list.Value.Clear();
-            }
-            Args.Clear();
-            Args = new Dictionary<int, List<string>>();
-        }
+        var temp = Regex.Replace(componentName, "([A-Z])", "-$1");
 
-        public static void Add(string value)
-        {
-            var depth = (int)HttpContextInstance.Current.Items["__sysLevel"];
+        if (temp[0] == '-')
+            return temp.Substring(1).ToLower() + "-container";
 
-            if (depth <= 1) return;
-
-            if (!Args.ContainsKey(depth))
-            {
-                Args.Add(depth, new List<string>());
-            }
-
-            Args[depth].Add(value);
-        }
-
-        public static IEnumerable<string> GetComponentArgsToRemove(int currentDepth)
-        {
-            if (!Args.ContainsKey(currentDepth)) yield break;
-
-            foreach (var componentArgs in Args[currentDepth])
-            {
-                yield return componentArgs;
-            }
-        }
+        return temp.ToLower() + "-container";
     }
 }
