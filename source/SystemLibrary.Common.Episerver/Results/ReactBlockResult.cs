@@ -11,7 +11,7 @@ namespace SystemLibrary.Common.Episerver;
 
 public class ReactBlockResult : ContentResult
 {
-    const string WindowReactComponentsPath = "reactComponents";
+    const string WindowReactComponentsPath = "reactBlocks";
 
     public ReactBlockResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
