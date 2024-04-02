@@ -61,16 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.1
-- Breaking Change: converting block/component to server side now uses different data attributes and the props are added outside of the element inside a hidden input for reuse, so same prop is printed only once in a nested scenario
-- Breaking Change: Collection and App middleware options is renamed to UseCommonCmsApp and AddCommonCmsServices
-- Breaking Change: The two options now only have fields set, and most of them have been renamed
-- New: A new content result ReactBlockResult for BlockControllers which can render a block as React Component
-- New: A new component result AsyncComponent for AsyncBlockComponent which can render a block as React Component
-- Breaking Change: SystemLibrary.Common.Web has a few breaking changes
-- Breaking Change: the orering of middleware has been improved
-- New: SkipInitialization option allows you to skip the creation of a new admin user/preventing to update the orders of properties and language on startup
-- New: ReactSsrScriptsInOrder and UseReact options can be set to null/false to avoid registering React Configurations and V8 engine
+Release 7.2.0.2
+- Null exception fix in ToReactComponentProps
 
 #### Version history
 - View git history of this file if interested

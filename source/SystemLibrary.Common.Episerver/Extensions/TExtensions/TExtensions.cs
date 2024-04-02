@@ -69,9 +69,6 @@ public static partial class TExtensions
         if (renderServerOnly && renderClientOnly)
             throw new Exception("Choose either client or server side rendering, or render on both sides, by setting both to false: " + componentFullName);
 
-        if (propsModelType == SystemType.StringType)
-            throw new Exception("ModelType ");
-
         var content = new StringBuilder();
 
         if (propsModel == null) return content;
@@ -189,7 +186,7 @@ public static partial class TExtensions
 
                 if (tagName.IsNot() && renderClientSide)
                 {
-                    var space = content.IndexOf(" ");
+                    var space = content?.IndexOf(" ") ?? 0;
                     if (space > 1 && space < 10)
                     {
                         content.Insert(space, " data-rcssr-id=\"" + key + "-" + level + "\"");
@@ -293,9 +290,9 @@ public static partial class TExtensions
                     if (text?.Length > 5 && text.Length <= 255)
                     {
                         hasAppendedKey = true;
-                        if (key.Length > 28)
+                        if (text.Length > 32)
                         {
-                            key.Append("_" + text.Substring(0, 28).ToBase64().Replace("+", "").Replace("=", ""));
+                            key.Append("_" + text.Substring(0, 30).ToBase64().Replace("+", "").Replace("=", ""));
                         }
                         else
                         {
@@ -310,7 +307,7 @@ public static partial class TExtensions
                         hasAppendedKey = true;
                         if (sb.Length > 28)
                         {
-                            key.Append("_" + sb.ToString().Substring(0, 28).ToBase64().Replace("+", "").Replace("=", ""));
+                            key.Append("_" + sb.ToString().Substring(0, 26).ToBase64().Replace("+", "").Replace("=", ""));
                         }
                         else
                         {
