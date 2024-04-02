@@ -13,6 +13,8 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 
+using Microsoft.AspNetCore.Http;
+
 using React;
 
 using SystemLibrary.Common.Net;
@@ -125,7 +127,7 @@ public static partial class TExtensions
 
             if (renderClientSide)
                 level = (int)HttpContextInstance.Current.Items[SysLibComponentLevel];
-
+            
             IReactComponent component = null;
 
             var options = new JsonSerializerOptions()
@@ -144,7 +146,7 @@ public static partial class TExtensions
             };
 
             var jsonFormattedProps = new StringBuilder(props.Json(options));
-
+         
             if (renderClientSide)
             {
                 var keys = HttpContextInstance.Current.Items[SysLibComponentKeys] as List<string>;
