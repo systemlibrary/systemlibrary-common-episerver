@@ -63,6 +63,11 @@ public static partial class IServiceCollectionExtensions
             x.MaxRequestBodySize = Options.UploadLimitBytes;
         });
 
+        services.Configure<FormOptions>(opt =>
+        {
+            opt.MultipartBodyLengthLimit = Options.UploadLimitBytes;
+        });
+
         if (Options.AddReactServerSideServices)
             services
                 .AddJsEngineSwitcher(opt => opt.DefaultEngineName = V8JsEngine.EngineName)
