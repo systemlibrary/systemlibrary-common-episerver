@@ -71,8 +71,6 @@ public static class ObjectExtensions
 
         var isContentDataModel = type.Name.EndsWithAny("Proxy", "BlockData", "PageData", "MediaData", "ContentData");
 
-        Dump.Write(isContentDataModel);
-
         foreach (var property in properties)
         {
             var name = property.Name;

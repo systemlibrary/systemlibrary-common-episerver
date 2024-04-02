@@ -18,6 +18,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
+using Newtonsoft.Json.Serialization;
+
+using React;
 using React.AspNet;
 
 using SystemLibrary.Common.Episerver.Initialize;
@@ -76,7 +79,12 @@ public static partial class IServiceCollectionExtensions
         services.AddFirstRequestInitializer(options);
 
         if (Options.AddReactServerSideServices)
+        {
             services.AddReact();
+            ReactSiteConfiguration.Configuration.JsonSerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            ReactSiteConfiguration.Configuration.JsonSerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
+            //ReactSiteConfiguration.Configuration.JsonSerializerSettings.ContractResolver = new DefaultContractResolver();
+        }
 
         return services;
     }

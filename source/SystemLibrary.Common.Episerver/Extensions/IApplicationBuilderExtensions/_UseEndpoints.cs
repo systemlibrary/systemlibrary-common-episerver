@@ -6,23 +6,31 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void UseEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
+    static void UseMapEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
-        if (options.MapEndpoints)
+        if (options.MapContentEndpoints)
         {
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapContent();
+
+                // CMS folder in this project
+                endpoints.MapAreaControllerRoute(
+                    name: Globals.AreaCms,
+                    areaName: Globals.AreaCms,
+                    pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        app.UseEndpoints(endpoints =>
+        else
         {
             // CMS folder in this project
-            endpoints.MapAreaControllerRoute(
-                name: Globals.AreaCms,
-                areaName: Globals.AreaCms,
-                pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
-        });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapAreaControllerRoute(
+                    name: Globals.AreaCms,
+                    areaName: Globals.AreaCms,
+                    pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+            });
+        }
     }
 }

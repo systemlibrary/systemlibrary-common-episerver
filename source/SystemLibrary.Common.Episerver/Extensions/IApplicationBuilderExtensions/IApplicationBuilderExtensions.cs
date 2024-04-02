@@ -50,11 +50,21 @@ public static partial class IApplicationBuilderExtensions
 
         app.ExceptionHandler(options);
 
+        var preserveUseControllers = options.UseControllers;
+        var preserveUseRazor = options.UseRazorPages;
+        if (options.MapContentEndpoints)
+        {
+            options.UseControllers = false;
+            options.UseRazorPages = false;
+        }
         app.UseCommonWebApp(env, options);
 
-        app.AddUseReact(options);
+        options.UseControllers = preserveUseControllers;
+        options.UseRazorPages = preserveUseRazor;
 
-        app.UseEndpoints(options);
+        app.UseMapEndpoints(options);
+
+        app.AddUseReact(options);
 
         app.RedirectCmsLoginPath(options);
 

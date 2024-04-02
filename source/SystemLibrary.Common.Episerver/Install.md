@@ -131,8 +131,7 @@ public class Program
 		options.InitialLanguagesEnabled = "no";
 
 		services.AddCommonCmsServices<CurrentUser>(options)
-			.AddCms()
-			.AddTinyMce();
+				.AddFind();
 	}
 
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
