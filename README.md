@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.6
-- Bug: MapContent endpoints after Area
+Release 7.2.0.7
+- BoxSelection: error with string and EnumType fixed (null ex)
 
 #### Version history
 - View git history of this file if interested

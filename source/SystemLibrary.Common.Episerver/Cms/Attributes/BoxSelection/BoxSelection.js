@@ -32,6 +32,15 @@
             const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
             function initialValue(obj, value) {
+                if (typeof (value) === "undefined") {
+                    if (obj.isMultiSelect) {
+                        return '';
+                    }
+                    if (obj.propertyIsEnum) {
+                        return 0;
+                    }
+                    return null;
+                }
                 if (is(value)) {
                     return value;
                 }
@@ -375,18 +384,18 @@
                     //                      (this.value !== "" && this.value.length && this.value.length > 0)
                 },
 
-                _setValue: function (value, initialLoad) {
+                _setValue: function (v, initialLoad) {
                     try {
                         if (!this._started) {
                             return;
                         }
 
-                        if (typeof (value) === 'undefined') {
+                        if (typeof (v) === 'undefined') {
                             if (this.propertyIsEnum) {
-                                value = 0;
+                                v = 0;
                             }
                             else {
-                                value = null;
+                                v = null;
                             }
                         }
 
@@ -394,30 +403,30 @@
                             let selected = this.value;
 
                             if (selected === null) {
-                                if (value !== null && Array.isArray(value)) {
-                                    selected = value;
+                                if (v !== null && Array.isArray(v)) {
+                                    selected = v;
                                 }
                                 else {
                                     selected = [];
-                                    selected.push(value);
+                                    selected.push(v);
                                 }
                             } else {
-                                if (Array.isArray(value)) {
+                                if (Array.isArray(v)) {
                                     console.warn("BoxSelection: value is an array from an onClick event from a box, this should never happen");
                                     return;
                                 } else {
-                                    if (selected.includes(value)) {
+                                    if (selected.includes(v)) {
                                         if (this.allowUnselection) {
-                                            selected = selected.filter(e => e !== value)
+                                            selected = selected.filter(e => e !== v)
                                         } else {
                                             if (selected.length === 1) {
                                                 console.warn("BoxSelection: allowUnselection is false, cannot unselect the value leaving the list empty");
                                                 return;
                                             }
-                                            selected = selected.filter(e => e !== value)
+                                            selected = selected.filter(e => e !== v)
                                         }
                                     } else {
-                                        selected.push(value);
+                                        selected.push(v);
                                     }
                                 }
                             }
@@ -425,21 +434,21 @@
 
                         } else {
                             if (initialLoad) {
-                                this._set('value', value);
+                                this._set('value', v);
                             }
                             else {
                                 if (this.allowUnselection !== true) {
-                                    if (isEqual(this.value, value)) {
+                                    if (isEqual(this.value, v)) {
                                         console.warn("BoxSelection: allowUnselection is false, cannot unselect the value");
                                         return;
                                     } else {
-                                        this._set('value', value);
+                                        this._set('value', v);
                                     }
                                 } else {
-                                    if (isEqual(this.value, value)) {
+                                    if (isEqual(this.value, v)) {
                                         this._set('value', null);
                                     } else {
-                                        this._set('value', value);
+                                        this._set('value', v);
                                     }
                                 }
                             }
@@ -557,6 +566,11 @@
                         const list = this.systemLibraryCommonEpiserverBoxSelection;
                         const boxes = this.selections;
 
+                        if (!list) {
+                            console.warn("'systemLibraryCommonEpiserverBoxSelection' is not existing");
+                            return;
+                        }
+
                         if (!is(boxes)) {
                             console.warn("BoxSelection: No boxes from the backend");
                             return;
@@ -566,6 +580,9 @@
                             let text = box.text;
                             let value = box.value;
                             let additional = null;
+                            if (typeof (value) === "undefined") {
+                                value = null;
+                            }
 
                             if (is(text)) {
                                 text = text.toString();
@@ -574,9 +591,11 @@
                             if (is(text) && text.startsWith("ERROR: ")) {
                                 console.error(text);
                             }
+
                             if (!is(text)) {
                                 text = "";
                             }
+
                             if (!is(value) && value !== 0) {
                                 if (this.propertyIsEnum) {
                                     value = 0;
@@ -628,9 +647,7 @@
                             list.appendChild(li);
                         });
 
-                        if (is(this.value) || value === 0) {
-                            this._selectBoxes();
-                        }
+                        this._selectBoxes();
                     }
                     catch (e) {
                         console.error("BoxSelection: _initWidgetProperties");
