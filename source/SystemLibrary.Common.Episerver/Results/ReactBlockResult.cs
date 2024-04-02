@@ -9,11 +9,11 @@ using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver;
 
-public class ReactComponentResult : ContentResult
+public class ReactBlockResult : ContentResult
 {
-    const string WindowReactComponentsPath = "reactComponents";
+    const string WindowReactComponentsPath = "reactBlocks";
 
-    public ReactComponentResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
+    public ReactBlockResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
         var type = GetType(model);
 
