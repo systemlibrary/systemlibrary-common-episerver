@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ApplicationBuilderRedirectCmsLoginPath(IApplicationBuilder app, UseCommonEpiserverAppOptions options)
+    static void RedirectCmsLoginPath(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
         var path = options.CmsLoginPath;
 

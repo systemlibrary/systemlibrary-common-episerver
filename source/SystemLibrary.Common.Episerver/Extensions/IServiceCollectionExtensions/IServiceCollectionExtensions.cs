@@ -29,22 +29,18 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class IServiceCollectionExtensions
 {
-    internal static CommonCmsServicesOptions Options;
+    internal static CmsServicesCollectionOptions Options;
 
-    public static IServiceCollection AddCommonCmsServices<TLogWriter>(this IServiceCollection services, CommonCmsServicesOptions options = null)
+    public static IServiceCollection AddCommonCmsServices<TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
         where TLogWriter : class, ILogWriter
     {
         SetOptions(options);
 
-        services = services.CommonWebApplicationServices(Options);
-
-        services = services.AddTransient<ILogWriter, TLogWriter>();
+        services.AddCommonWebServices(Options);
 
         services.AddApplicationCookie(Options);
 
-        services = services.AddResponseCaching();
-
-        services = services.AddCms();
+        services.AddCms();
 
         services.AddTinyMce();
 
@@ -67,12 +63,6 @@ public static partial class IServiceCollectionExtensions
             x.MaxRequestBodySize = Options.UploadLimitBytes;
         });
 
-        services.Configure<CookiePolicyOptions>(opt =>
-        {
-            opt.CheckConsentNeeded = context => false;
-            opt.MinimumSameSitePolicy = SameSiteMode.Lax;
-        });
-
         services
            .AddJsEngineSwitcher(opt => opt.DefaultEngineName = V8JsEngine.EngineName)
            .AddV8();
@@ -84,7 +74,7 @@ public static partial class IServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CommonCmsServicesOptions options = null)
+    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
         where T : IdentityUser, IUIUser, new()
         where TLogWriter : class, ILogWriter
     {
@@ -97,9 +87,9 @@ public static partial class IServiceCollectionExtensions
         return services;
     }
 
-    static void SetOptions(CommonCmsServicesOptions options)
+    static void SetOptions(CmsServicesCollectionOptions options)
     {
-        var fallback = new CommonCmsServicesOptions();
+        var fallback = new CmsServicesCollectionOptions();
 
         Options = options ?? fallback;
 

@@ -69,7 +69,7 @@ public static class ObjectExtensions
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
-        var isContentDataModel = type.Name.EndsWithAny("_DynamicProxy", "BlockData", "PageData", "MediaData", "ContentData", "BlockProxy", "PageProxy", "MediaProxy", "DataProxy");
+        var isContentDataModel = type.Name.EndsWithAny("Proxy", "BlockData", "PageData", "MediaData", "ContentData");
 
         foreach (var property in properties)
         {
@@ -97,7 +97,7 @@ public static class ObjectExtensions
                     name = char.ToLowerInvariant(name[0]) + name.Substring(1);
             }
 
-            if (value == null) 
+            if (value == null)
                 expando.Add(name, null);
 
             else if (value is MediaData mediaData)
@@ -181,11 +181,11 @@ public static class ObjectExtensions
         var hasIcon = linkItem.Attributes.ContainsKey("Icon");
         var hasThumbnail = linkItem.Attributes.ContainsKey("Thumbnail");
 
-        if(hasImage)
+        if (hasImage)
         {
-            if(hasIcon)
+            if (hasIcon)
             {
-                if(hasThumbnail)
+                if (hasThumbnail)
                 {
                     return new
                     {
@@ -218,9 +218,9 @@ public static class ObjectExtensions
             };
         }
 
-        if(hasThumbnail)
+        if (hasThumbnail)
         {
-            if(hasIcon)
+            if (hasIcon)
             {
                 return new
                 {
@@ -242,7 +242,7 @@ public static class ObjectExtensions
             };
         }
 
-        if(hasIcon)
+        if (hasIcon)
         {
             return new
             {
@@ -253,7 +253,7 @@ public static class ObjectExtensions
                 icon = linkItem.Attributes["Icon"]
             };
         }
-     
+
         return new
         {
             text = linkItem.Text,
@@ -262,7 +262,7 @@ public static class ObjectExtensions
             target = linkItem.Target,
         };
     }
-    
+
     static StringBuilder RenderIListContentItems(this List<ContentData> list)
     {
         if (list == null) return null;
@@ -275,7 +275,7 @@ public static class ObjectExtensions
         {
             if (contentData == null) continue;
 
-            rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData ).ToString());
+            rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData).ToString());
         }
 
         return rendered;

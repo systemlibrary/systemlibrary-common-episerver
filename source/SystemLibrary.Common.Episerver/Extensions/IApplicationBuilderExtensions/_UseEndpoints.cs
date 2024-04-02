@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void UseEndpoints(this IApplicationBuilder app, UseCommonEpiserverAppOptions options)
+    static void UseEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
         app.UseEndpoints(endpoints =>
         {

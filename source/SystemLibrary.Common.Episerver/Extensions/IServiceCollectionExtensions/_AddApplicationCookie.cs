@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void AddApplicationCookie(this IServiceCollection services, CommonCmsServicesOptions options)
+    static void AddApplicationCookie(this IServiceCollection services, CmsServicesCollectionOptions options)
     {
         if (!Options.AddApplicationCookie) return;
      

@@ -13,7 +13,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void AddFirstRequestInitializer(this IServiceCollection services, CommonCmsServicesOptions options)
+    static void AddFirstRequestInitializer(this IServiceCollection services, CmsServicesCollectionOptions options)
     {
         services.AddSingleton<ServiceAccessor<IContentRouteHelper>>(locator => locator.GetInstance<IContentRouteHelper>);
 

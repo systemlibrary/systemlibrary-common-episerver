@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void AddDisplays(this IServiceCollection services, CommonCmsServicesOptions options)
+    static void AddDisplays(this IServiceCollection services, CmsServicesCollectionOptions options)
     {
         if (!Options.AddDisplays) return;
 

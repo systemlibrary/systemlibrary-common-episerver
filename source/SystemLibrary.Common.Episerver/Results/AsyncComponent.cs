@@ -7,8 +7,11 @@ using EPiServer.Core;
 using EPiServer.Shell;
 using EPiServer.Web.Mvc;
 
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.Extensions.DependencyInjection;
 
 using SystemLibrary;
 using SystemLibrary.Common;
@@ -27,9 +30,17 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
     {
         if (!viewName.StartsWith("~"))
         {
-            var componentType = component.GetType().Name.Replace("ViewModel", "").Replace("Model", "");
+            var componentName = component.GetType().Name;
 
-            viewName = "~/Content/Blocks/" + componentType + "/" + viewName;
+            var componentType = componentName
+                .Replace("Proxy", "")
+                .Replace("ViewModel", "")
+                .Replace("Model", "");
+
+            if(componentName.Contains("Block"))
+                viewName = "~/Content/Blocks/" + componentType + "/" + viewName;
+            else
+                viewName = "~/Content/Components/" + componentType + "/" + viewName;
         }
 
         if (!viewName.EndsWith(".cshtml"))
@@ -65,7 +76,7 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
 
     protected async Task<IViewComponentResult> ReactServerSideResultAsync(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
-        return await Task.FromResult(ReactServerSideResult(model));
+        return await Task.FromResult(ReactServerSideResult(model, additionalProps, camelCaseProps, renderClientOnly, renderServerOnly, tagName, cssClass, id, componentFullName));
     }
 
     protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
@@ -81,9 +92,9 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
             if (!renderServerOnly)
                 AppendClientProperties(data);
 
-            return new ContentViewComponentResult(data.ToString());
+            return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex);
 

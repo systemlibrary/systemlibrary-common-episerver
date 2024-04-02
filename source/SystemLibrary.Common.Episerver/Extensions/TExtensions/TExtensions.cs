@@ -15,6 +15,7 @@ using EPiServer.SpecializedProperties;
 
 using React;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
 
@@ -65,6 +66,9 @@ public static partial class TExtensions
 
         if (renderServerOnly && renderClientOnly)
             throw new Exception("Choose either client or server side rendering, or render on both sides, by setting both to false: " + componentFullName);
+
+        if (propsModelType == SystemType.StringType)
+            throw new Exception("ModelType ");
 
         var content = new StringBuilder();
 

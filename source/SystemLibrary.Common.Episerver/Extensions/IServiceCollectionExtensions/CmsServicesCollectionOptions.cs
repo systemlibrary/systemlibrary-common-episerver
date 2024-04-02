@@ -4,7 +4,7 @@ using JavaScriptEngineSwitcher.V8;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
-public class CommonCmsServicesOptions : Web.Extensions.CommonWebApplicationServicesOptions
+public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOptions
 {
     /// <summary>
     /// Add mobile, tablet and desktop resolutions for the CMS in Edit
@@ -61,11 +61,24 @@ public class CommonCmsServicesOptions : Web.Extensions.CommonWebApplicationServi
     /// </summary>
     public string InitialLanguagesEnabled = "sv,en";
 
+    /// <summary>
+    /// Hide the suggested content types at the top of the "New creation dialog"
+    /// </summary>
     public bool HideSuggestedContentTypes = true;
+
+    /// <summary>
+    /// Hide the Category Property that all content comes with from Optimizely CMS
+    /// </summary>
     public bool HidePropertyCategoryList = true;
 
+    /// <summary>
+    /// Websockets enabled by default
+    /// </summary>
     public bool WebSocketEnabled = true;
 
+    /// <summary>
+    /// Auto publish on uploaded media, defaults to True
+    /// </summary>
     public bool AutoPublishMediaOnUpload = true;
 
     /// <summary>
