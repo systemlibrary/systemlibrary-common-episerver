@@ -32,6 +32,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="C:\syslib\Packages\episerver.cms.tinymce\4.7.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.admin\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Admin\EPiServer.Cms.UI.Admin.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.settings\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Settings\EPiServer.Cms.UI.Settings.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.visitorgroups\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.VisitorGroups\EPiServer.Cms.UI.VisitorGroups.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.26.0\contentFiles\any\any\modules\_protected\CMS\CMS.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.26.0\contentFiles\any\any\modules\_protected\Shell\Shell.zip" />
 		<None Remove="Cms\Admin\GetLinksInText.sql" />
 		<None Remove="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
 		<None Remove="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />
@@ -133,7 +139,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.26.1" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.26.0" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.24.1" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.24.2" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />

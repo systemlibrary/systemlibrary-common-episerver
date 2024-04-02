@@ -9,7 +9,7 @@
         internal const string AreaCms = "/SystemLibrary/CommonEpiserverCms";
         internal const string AreaFontAwesome = "/SystemLibrary/CommonEpiserverFontAwesome";
 
-        internal static bool IsDeveloping => true;
+        internal static bool IsDeveloping => false;
 
         internal static string LibraryBasePath
         {

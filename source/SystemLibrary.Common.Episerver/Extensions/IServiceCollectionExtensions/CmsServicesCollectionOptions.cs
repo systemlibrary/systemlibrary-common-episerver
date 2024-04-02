@@ -36,6 +36,13 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// </summary>
     public int CmsUsersSignedInDurationMinutes = 120;
 
+    /// <summary>
+    /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions
+    /// Defaults to: false
+    /// 
+    /// Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar
+    /// </summary>
+    public bool SkipInitialization = false;
 
     /// <summary>
     /// The default email of the default admin user
@@ -85,4 +92,10 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// Maximum upload size in bytes, defaults to 30MB
     /// </summary>
     public long UploadLimitBytes = 30720000;
+
+    /// <summary>
+    /// Adds all react services and the V8 engine for react server side rendering
+    /// - Set to false if you do not use react server side
+    /// </summary>
+    public bool AddReactServerSideServices = true;
 }

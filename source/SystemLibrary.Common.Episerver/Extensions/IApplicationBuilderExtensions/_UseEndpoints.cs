@@ -8,6 +8,14 @@ partial class IApplicationBuilderExtensions
 {
     static void UseEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
+        if (options.MapEndpoints)
+        {
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapContent();
+            });
+        }
+
         app.UseEndpoints(endpoints =>
         {
             // CMS folder in this project
@@ -16,13 +24,5 @@ partial class IApplicationBuilderExtensions
                 areaName: Globals.AreaCms,
                 pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
         });
-
-        if (options.MapEndpoints)
-        {
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapContent();
-            });
-        }
     }
 }

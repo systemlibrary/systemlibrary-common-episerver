@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver;
 
@@ -50,6 +51,9 @@ public partial class WebApplicationInitializer : IBlockingFirstRequestInitialize
                 if (env.WebRootPath.Contains("\\bin\\"))
                     env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
             }
+
+            if(SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
+                return Task.FromResult(0);
 
             if (uIUserProvider == null)
             {

@@ -63,13 +63,15 @@ public static partial class IServiceCollectionExtensions
             x.MaxRequestBodySize = Options.UploadLimitBytes;
         });
 
-        services
-           .AddJsEngineSwitcher(opt => opt.DefaultEngineName = V8JsEngine.EngineName)
-           .AddV8();
+        if (Options.AddReactServerSideServices)
+            services
+                .AddJsEngineSwitcher(opt => opt.DefaultEngineName = V8JsEngine.EngineName)
+                .AddV8();
 
         services.AddFirstRequestInitializer(options);
 
-        services.AddReact();
+        if (Options.AddReactServerSideServices)
+            services.AddReact();
 
         return services;
     }

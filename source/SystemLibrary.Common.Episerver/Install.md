@@ -137,8 +137,8 @@ public class Program
 
 	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 	{
-		var options = new CommonEpiserverApplicationBuilderOptions();
-		app.CommonEpiserverApplicationBuilder(options);
+		var options = new CmsAppBuilderOptions();
+		app.UseCommonCmsApp(options);
 	}
 }
 ```

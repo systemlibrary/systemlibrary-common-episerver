@@ -230,10 +230,8 @@ public static partial class TExtensions
         return content;
     }
 
-    // TODO: Skip adding props to dictionaries, directly write to a 'JsonWriter' which contains a "stringbuilder" behind the scenes
+    // TODO: Skip adding props to dictionaries, directly write to a 'JsonWriter' (or stringbuilder) which contains a "stringbuilder" behind the scenes
     // would "double" the performance in "one optimization"
-    // Basically: ReactComponentResult should create a StringBuilder/JsonWriter, and reuse it throughout all components and properties rendered
-    // By passing the ref "downwards" and around...
     static (ExpandoObject, string) ToReactComponentProps(object model, object additionalProps, bool forceCamelCase = false, string id = null)
     {
         IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);

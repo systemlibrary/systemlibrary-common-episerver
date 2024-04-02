@@ -52,9 +52,9 @@ public static partial class IApplicationBuilderExtensions
 
         app.UseCommonWebApp(env, options);
 
-        app.UseEndpoints(options);
-
         app.AddUseReact(options);
+
+        app.UseEndpoints(options);
 
         app.RedirectCmsLoginPath(options);
 
