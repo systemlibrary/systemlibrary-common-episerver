@@ -72,6 +72,8 @@ public static partial class TExtensions
 
         var content = new StringBuilder();
 
+        if (propsModel == null) return content;
+
         var renderServerSide = !renderClientOnly || renderServerOnly;
         var renderClientSide = renderClientOnly || !renderServerOnly;
 
