@@ -21,6 +21,21 @@ partial class IApplicationBuilderExtensions
             config.SetLoadReact(false);
             config.SetLoadBabel(false);
 
+            if (EnvironmentConfig.IsLocal)
+            {
+                config.SetReuseJavaScriptEngines(false);
+                config.SetUseDebugReact(false);
+                config.SetMaxUsagesPerEngine(2);
+                config.SetAllowJavaScriptPrecompilation(true);
+            }
+            else
+            {
+                config.SetReuseJavaScriptEngines(true);
+                config.SetUseDebugReact(false);
+                config.SetMaxUsagesPerEngine(2000);
+                config.SetAllowJavaScriptPrecompilation(true);
+            }
+
             foreach (var script in options.ReactSsrScriptsInOrder)
             {
                 if (script.Is())
@@ -30,21 +45,6 @@ partial class IApplicationBuilderExtensions
                     else
                         Log.Error("React script path invalid, must start with ~. " + script);
                 }
-            }
-
-            if (EnvironmentConfig.IsLocal)
-            {
-                config.SetReuseJavaScriptEngines(false);
-                config.SetUseDebugReact(false);
-                config.SetMaxUsagesPerEngine(1);
-                config.SetAllowJavaScriptPrecompilation(false);
-            }
-            else
-            {
-                config.SetReuseJavaScriptEngines(true);
-                config.SetUseDebugReact(false);
-                config.SetMaxUsagesPerEngine(2000);
-                config.SetAllowJavaScriptPrecompilation(true);
             }
             config.ExceptionHandler = OnReactException;
         });

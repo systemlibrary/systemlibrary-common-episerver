@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.9
-- Dev flag disable
+Release 7.2.0.10
+- react ssr id not containing "bad characters" when using "TypeName"
+- react ssr id made more unique reading the length of strings and xhtmlstrings
 
 #### Version history
 - View git history of this file if interested

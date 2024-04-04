@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -15,9 +16,11 @@ using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 using React;
 
+using SystemLibrary.Common.Episerver.Cms.Properties;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
@@ -113,7 +116,13 @@ public static partial class TExtensions
 
                 if (HttpContextInstance.Current.Items.ContainsKey(SysLibComponentLevel))
                 {
-                    HttpContextInstance.Current.Items[SysLibComponentLevel] = (int)HttpContextInstance.Current.Items[SysLibComponentLevel] + 1;
+                    var nextLevel = (int)HttpContextInstance.Current.Items[SysLibComponentLevel] + 1;
+                    if (nextLevel > 128)
+                    {
+                        return new StringBuilder("<p color='red'>Components nested too deply: max depth 128</p>");
+                    }
+                    
+                    HttpContextInstance.Current.Items[SysLibComponentLevel] = nextLevel;
                 }
                 else
                 {
@@ -259,10 +268,32 @@ public static partial class TExtensions
         else
         {
             var typeName = model?.GetType()?.Name;
-            if (typeName.EndsWith("_DynamicProxy"))
-                key.Append(propCount + "_Dyn");
+
+            var contentData = model as ContentData;
+
+            if(contentData != null)
+            {
+                key.Append("_t" + contentData.ContentTypeID + "-" + contentData.Property.Count);
+
+                var contentProperties = contentData.Property;
+
+                if (contentProperties != null)
+                {
+                    foreach (var prop in contentProperties)
+                    {
+                        if (prop.Value is int i)
+                            key.Append("_xi" + i);
+
+                        if (prop.Value is string s)
+                            key.Append("_x" + s?.Length);
+
+                        if (prop.Value is XhtmlString x)
+                            key.Append("_X" + x?.ToInternalString()?.Length);
+                    }
+                }
+            }
             else
-                key.Append(propCount + "_" + typeName);
+                key.Append(propCount + "_" + typeName.Replace("<>", "").Replace("`", ""));
 
             if (HttpContextInstance.Current.Items.ContainsKey(SysLibComponentLevel))
                 key.Append("_" + HttpContextInstance.Current.Items[SysLibComponentLevel]);
@@ -280,46 +311,47 @@ public static partial class TExtensions
                 {
                     key.Append("_" + number);
                 }
+                else if (property.Value is IList en)
+                {
+                    key.Append("_ie" + en?.Count);
+                }
                 else if (property.Value is bool b)
                 {
-                    key.Append("_" + (b ? "1" : "0"));
+                    key.Append("_b" + (b ? "1" : "0"));
                 }
                 else if (property.Value is Enum e)
                 {
-                    key.Append("_" + e.ToValue());
+                    key.Append("_e" + e.ToValue().Replace("\"", ""));
                 }
                 else if (property.Value is string text)
                 {
-                    if (text?.Length > 5 && text.Length <= 255)
+                    key.Append("_s" + text.Length);
+                    if (text.Length > 16)
                     {
-                        hasAppendedKey = true;
-                        if (text.Length > 32)
-                        {
-                            key.Append("_" + text.Substring(0, 30).ToBase64().Replace("+", "").Replace("=", ""));
-                        }
-                        else
-                        {
-                            key.Append("_" + text.ToBase64().Replace("+", "").Replace("=", ""));
-                        }
+                        key.Append("_" + text.Substring(0, 14).ToBase64().Replace("+", "").Replace("=", ""));
+                    }
+                    else
+                    {
+                        key.Append("_" + text.ToBase64().Replace("+", "").Replace("=", ""));
                     }
                 }
                 else if (property.Value is StringBuilder sb)
                 {
-                    if (sb?.Length > 5 && sb?.Length <= 255)
+                    key.Append("_sb" + sb.Length);
+                    if (sb.Length > 16)
                     {
-                        hasAppendedKey = true;
-                        if (sb.Length > 28)
-                        {
-                            key.Append("_" + sb.ToString().Substring(0, 26).ToBase64().Replace("+", "").Replace("=", ""));
-                        }
-                        else
-                        {
-                            key.Append("_" + sb.ToString().ToBase64().Replace("+", "").Replace("=", ""));
-                        }
+                        key.Append("_" + sb.ToString().Substring(0, 14).ToBase64().Replace("+", "").Replace("=", ""));
+                    }
+                    else
+                    {
+                        key.Append("_" + sb.ToString().ToBase64().Replace("+", "").Replace("=", ""));
                     }
 
                     props[property.Key] = sb?.ToString();
                 }
+
+                if (key.Length > 96)
+                    hasAppendedKey = true;
             }
             else
             {
