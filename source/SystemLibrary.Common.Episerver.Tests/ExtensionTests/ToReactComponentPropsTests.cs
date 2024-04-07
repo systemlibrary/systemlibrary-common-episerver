@@ -14,21 +14,58 @@ namespace SystemLibrary.Common.Episerver.Tests;
 public class ToReactComponentPropsTests
 {
     [TestMethod]
+    public void Model_With_Client_And_Server_Rendering_Throws()
+    {
+        Model propsModel = new Model();
+
+        try
+        {
+            var result = propsModel.ReactServerSideRender(renderClientOnly: true, renderServerOnly: true);
+            
+            Assert.IsTrue(false, "Should throw as params are invalid");
+        }
+        catch (Exception ex)
+        {
+            Assert.IsTrue(ex.Message.Contains("cannot render"), "Wrong exception or message changed");
+        }
+    }
+
+    [TestMethod]
+    public void Model_With_NonClass_As_Additional_Props_Throws()
+    {
+        Model propsModel = new Model();
+
+        var i = 100;
+
+        try
+        {
+            var result = propsModel.ReactServerSideRender(i);
+
+            Assert.IsTrue(false, "Should throw, additionalprops cannot be a single int");
+        }
+        catch (Exception ex)
+        {
+            Assert.IsTrue(ex.Message.Contains("additionalProps"));
+        }
+    }
+
+    [TestMethod]
     public void Model_To_ReactProps_Success()
     {
         Model propsModel = null;
-        var type = typeof(Model);
-        var result = propsModel.ReactServerSideRender(type);
+
+        var result = propsModel.ReactServerSideRender();
+
         Assert.IsTrue(result.Length == 0);
 
         propsModel = new Model();
         try
         {
-            result = propsModel.ReactServerSideRender(type, renderClientOnly: true);
+            result = propsModel.ReactServerSideRender(renderClientOnly: true);
 
             Assert.IsTrue(false, "Should throw null exception on HttpContext");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Assert.IsTrue(ex.ToString().Contains("NullReferenceException"), ex.Message);
         }

@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.2.0.10
-- react ssr id not containing "bad characters" when using "TypeName"
-- react ssr id made more unique reading the length of strings and xhtmlstrings
+Release 7.3.0.1
+- updated deps
+- react ReactServerSideRender() extension method now also prints the <input type=hidden>, so it can be used in .cshtml files directly if needed
 
 #### Version history
 - View git history of this file if interested

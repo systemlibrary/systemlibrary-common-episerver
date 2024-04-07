@@ -81,74 +81,8 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
 
     protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
-        try
-        {
-            var type = GetType(model);
+        var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
 
-            componentFullName = GetReactComponentFullName(type, componentFullName);
-
-            var data = model.ReactServerSideRender(type, additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
-
-            if (!renderServerOnly)
-                AppendClientProperties(data);
-
-            return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex);
-
-            return null;
-        }
-    }
-
-    static string GetReactComponentFullName(Type modelType, string componentFullName)
-    {
-        if (componentFullName.Is()) return componentFullName;
-
-        return WindowReactComponentsPath + "." + GetReactComponentName(modelType);
-    }
-
-    static Type GetType(object model)
-    {
-        var type = model.GetOriginalType();
-
-        if (!type.IsClass)
-            throw new Exception("'viewModel/model' passed must be a class with C# properties, where they will be passed as props into your react component");
-
-        return type;
-    }
-
-    static string GetReactComponentName(Type type)
-    {
-        var name = type.Name;
-
-        if (name.EndsWith("ViewModel"))
-            return name.Substring(0, name.Length - "ViewModel".Length);
-
-        if (name.EndsWith("Model"))
-            return name.Substring(0, name.Length - "Model".Length);
-
-        return name;
-    }
-
-    static void AppendClientProperties(StringBuilder data)
-    {
-        if (HttpContextInstance.Current?.Items?.ContainsKey(TExtensions.SysLibComponentLevel) != true)
-            return;
-
-        var level = (int)HttpContextInstance.Current.Items[TExtensions.SysLibComponentLevel];
-        if (level != -1)
-            return;
-
-        if (HttpContextInstance.Current?.Items?.ContainsKey(TExtensions.SysLibComponentArgs) != true)
-            return;
-
-        var reactComponentProps = HttpContextInstance.Current.Items[TExtensions.SysLibComponentArgs] as StringBuilder;
-        if (reactComponentProps?.Length > 0)
-        {
-            data.Append(reactComponentProps);
-            reactComponentProps.Clear();
-        }
+        return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
     }
 }
