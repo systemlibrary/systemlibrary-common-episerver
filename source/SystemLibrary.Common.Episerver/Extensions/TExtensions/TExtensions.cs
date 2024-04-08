@@ -113,7 +113,10 @@ public static partial class TExtensions
         if (tagName.Is())
             content.Append("<" + tagName);
 
-        var storage = HttpContextInstance.Current.Items;
+        IDictionary<object, object?> storage = null;
+
+        if (renderClientSide)
+            storage = HttpContextInstance.Current.Items;
 
         try
         {
@@ -126,7 +129,6 @@ public static partial class TExtensions
                     content.Append(" class=\"" + GetComponentContainerClassName(componentFullName) + "\"");
                 else if (cssClass != null)
                     content.Append($" class=\"{cssClass}\"");
-                // cssClass is null, default to leave it out
             }
 
             if (renderClientSide)
@@ -135,6 +137,7 @@ public static partial class TExtensions
                 {
                     storage.Add(SysLibComponentArgs, new StringBuilder());
                 }
+
                 if (!storage.ContainsKey(SysLibComponentKeys))
                 {
                     storage.Add(SysLibComponentKeys, new List<string>());
@@ -156,7 +159,7 @@ public static partial class TExtensions
                 }
             }
 
-            (var props, var key) = ToReactComponentProps(storage, propsModel, additionalProps, camelCaseProps, id);
+            (var props, var key) = ToReactComponentProps(storage, renderClientSide, propsModel, additionalProps, camelCaseProps, id);
 
             var level = 0;
 
@@ -181,7 +184,6 @@ public static partial class TExtensions
             };
 
             var jsonProps = props.Json(options);
-            var jsonFormattedProps = new StringBuilder(jsonProps);
 
             if (renderClientSide)
             {
@@ -193,14 +195,14 @@ public static partial class TExtensions
                 {
                     keys.Add(key);
 
-                    var componentProps = HttpUtility.HtmlAttributeEncode(jsonFormattedProps.ToString());
+                    var componentProps = HttpUtility.HtmlAttributeEncode(jsonProps);
 
                     var componentPropsList = storage[SysLibComponentArgs] as StringBuilder;
 
                     componentPropsList.Append($"<input type='hidden' id=\"" + key + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{componentProps}\" />" + Environment.NewLine);
 
                     if (debug)
-                        Log.Debug(obj: "Appending: input id="  + key);
+                        Log.Debug(obj: "Appending: input id=" + key);
                 }
                 else
                 {
@@ -228,16 +230,19 @@ public static partial class TExtensions
                 component.ContainerTag = tagName.Is() ? null : "div";
 
                 _props.SetValue(component, props);
-                _serializedProps.SetValue(component, jsonFormattedProps.ToString());
+                _serializedProps.SetValue(component, jsonProps);
 
                 content.Append(component.RenderHtml(false, true));
 
                 if (tagName.IsNot() && renderClientSide)
                 {
                     var space = content?.IndexOf(" ") ?? 0;
-                    if (space > 1 && space < 10)
+                    if (space > 0 && space < 18)
                     {
-                        content.Insert(space, " data-rcssr-id=\"" + key + "-" + level + "\"");
+                        content.Insert(space, " data-rcssr-id=\"" + key + "\"");
+
+                        if (debug)
+                            Log.Debug("Inserted data-rcssr-id=" + key + " at " + space);
                     }
                 }
             }
@@ -276,8 +281,8 @@ public static partial class TExtensions
             storage[SysLibComponentLevel] = (int)storage[SysLibComponentLevel] - 1;
         }
 
-        if (!renderServerOnly)
-            AppendClientProperties(storage, content);
+        if (renderClientSide)
+            AppendInputHiddenProperties(storage, content);
 
         return content;
     }
@@ -295,7 +300,21 @@ public static partial class TExtensions
         return name;
     }
 
-    static void AppendClientProperties(IDictionary<object, object> storage, StringBuilder data)
+    static void ClearInputHiddenKeys(IDictionary<object, object> storage, bool debug)
+    {
+        var level = (int)storage[TExtensions.SysLibComponentLevel];
+        if (level <= -1)
+        {
+            var keys = storage[SysLibComponentKeys] as List<string>;
+            if (keys?.Count > 0)
+                keys.Clear();
+
+            if(debug)
+                Log.Debug("Component level: <= -1, clearing all keys");
+        }
+    }
+
+    static void AppendInputHiddenProperties(IDictionary<object, object> storage, StringBuilder data)
     {
         if (storage?.ContainsKey(TExtensions.SysLibComponentLevel) != true)
             return;
@@ -306,56 +325,51 @@ public static partial class TExtensions
             data.Append(reactComponentProps);
             reactComponentProps.Clear();
         }
-
-        var level = (int)storage[TExtensions.SysLibComponentLevel];
-        if (level <= -1)
-        {
-            //var keys = storage[SysLibComponentKeys] as List<string>;
-            //i//(keys?.Count > 0)
-            //    keys.Clear();
-
-            //Lo//Debug(obj: "Component level: < -1,//learing keys so inputs might dupl//ate");
-        }
     }
 
     // TODO: Skip adding props to a dictionary, simply write it to a StringBuilder directly
     // This little "trick" would half the memory usage "right there"
-    static (ExpandoObject, string) ToReactComponentProps(IDictionary<object, object> storage, object model, object additionalProps, bool forceCamelCase = false, string id = null)
+    static (ExpandoObject, string) ToReactComponentProps(IDictionary<object, object> storage, bool renderClientSide, object model, object additionalProps, bool forceCamelCase = false, string id = null)
     {
         IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);
 
         var propCount = props.Count();
 
-        var key = new StringBuilder();
+        StringBuilder key = null;
 
-        var keyIsUnique = false;
-
-        if (model is IContent icontent)
+        var keyIsUnique = !renderClientSide;
+        
+        if (!keyIsUnique)
         {
-            keyIsUnique = true;
-            key.Append("k-" + propCount + "-" + icontent?.ContentLink?.ID + "-" + icontent?.ContentLink?.WorkID);
-        }
-        else if (id.Is())
-        {
-            keyIsUnique = true;
-            key.Append("k-" + propCount + "-" + id);
-        }
-        else
-        {
-            // TODO: If the model is a "ViewModel" which contains "CurrentBlock"
-            // then we can fetch the content Id from property "CurrentBlock" on the 'model'
-            var contentData = model as ContentData;
-            if (contentData != null)
+            key = new StringBuilder();
+            
+            if (model is IContent icontent)
             {
-                key.Append("k-" + contentData.ContentTypeID);
+                keyIsUnique = true;
+                key.Append("k-" + propCount + "-" + icontent?.ContentLink?.ID + "-" + icontent?.ContentLink?.WorkID);
+            }
+            else if (id.Is())
+            {
+                keyIsUnique = true;
+                key.Append("k-" + propCount + "-" + id);
             }
             else
             {
-                key.Append("k-" + model.GetType()?.Name
-                    .Replace("DynamicProxy", "D")
-                    .Replace("AnonymousType", "AT")
-                    .Replace("<>", "")
-                    .Replace("`", ""));
+                // TODO: If the model is a "ViewModel" which contains "CurrentBlock"
+                // then we can fetch the content Id from property "CurrentBlock" on the 'model'
+                var contentData = model as ContentData;
+                if (contentData != null)
+                {
+                    key.Append("k-" + contentData.ContentTypeID);
+                }
+                else
+                {
+                    key.Append("k-" + model.GetType()?.Name
+                        .Replace("DynamicProxy", "D")
+                        .Replace("AnonymousType", "AT")
+                        .Replace("<>", "")
+                        .Replace("`", ""));
+                }
             }
         }
 
@@ -470,7 +484,8 @@ public static partial class TExtensions
                 props.Add(kv.Key, kv.Value);
             }
 
-            key.Append("-" + additional.Count);
+            if (!keyIsUnique)
+                key?.Append("-" + additional.Count);
         }
 
         if (!keyIsUnique)
@@ -491,8 +506,7 @@ public static partial class TExtensions
                       .Replace("\"", ".");
         }
 
-
-        return ((ExpandoObject)props, key.ToString());
+        return ((ExpandoObject)props, key?.ToString());
     }
 
 
