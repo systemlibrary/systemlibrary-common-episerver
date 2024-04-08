@@ -14,6 +14,7 @@ using System.Web;
 
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Shell;
 using EPiServer.SpecializedProperties;
 
 using Microsoft.AspNetCore.Http;
@@ -35,234 +36,46 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class TExtensions
 {
-    const string WindowComponentsPath = "reactComponents";
-
-    static FieldInfo __props;
-    static FieldInfo _props
-    {
-        get
-        {
-            if (__props == null)
-                __props = typeof(ReactComponent).GetField("_props", BindingFlags.Instance | BindingFlags.NonPublic);
-
-            return __props;
-        }
-    }
-    static FieldInfo __serializedProps;
-    static FieldInfo _serializedProps
-    {
-        get
-        {
-            if (__serializedProps == null)
-                __serializedProps = typeof(ReactComponent).GetField("_serializedProps", BindingFlags.Instance | BindingFlags.NonPublic);
-
-            return __serializedProps;
-        }
-    }
-
     internal const string SysLibComponentLevel = "___" + nameof(SysLibComponentLevel);
     internal const string SysLibComponentArgs = "___" + nameof(SysLibComponentArgs);
     internal const string SysLibComponentKeys = "___" + nameof(SysLibComponentKeys);
 
-    /// <summary>
-    /// Render a model server side and return the HTML rendered, in a StringBuilder.
-    /// 
-    /// Throws exception if you pass invalid params.
-    /// </summary>
-    /// <param name="propsModel">Current component/block in the CMS</param>
-    /// <param name="additionalProps">Override or append properties to the model</param>
-    /// <param name="tagName">Usually div, can be section, article, header, footer or null</param>
-    /// <param name="camelCaseProps">Set to 'true' if you want to always send camel cased props to your components, else it uses the C# property names as is</param>
-    /// <param name="cssClass">null to not print it, leave it blank to auto-add '-container', or pass in your own custom css class, attached to the 'outer element' of your component</param>
-    /// <param name="id"></param>
-    /// <param name="componentFullName">If not set, uses 'reactComponents.' as the global path where your components should live, else add its full name</param>
-    /// <param name="renderClientOnly">Skip rendering server side, only printing the minimal DOM to let your javascript do the rendering</param>
-    /// <param name="renderServerOnly">Skip printing client side props, only prints the components at serverside. For components that just prints text or 'a href', no javascript events...</param>
-    public static StringBuilder ReactServerSideRender<T>(this T propsModel, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false) where T : class
+    public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false) where T : class
     {
-        var content = new StringBuilder();
+        IDictionary<string, object> RootStorage = new Dictionary<string, object>();
+        IDictionary<string, object> HiddenInputStorage = new Dictionary<string, object>();
 
-        if (propsModel == null) return content;
+        return ReactServerSideRender(RootStorage, HiddenInputStorage, model, additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, debug);
+    }
 
-        var type = propsModel.GetOriginalType();
+    static StringBuilder ReactServerSideRender(IDictionary<string, object> rootStorage, IDictionary<string, object> hiddenInputStorage, object model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false)
+    {
+        Validate(model, additionalProps, tagName, renderClientOnly, renderServerOnly);
 
-        if (!type.IsClass)
-            throw new Exception("'viewModel/model' passed must be a class with C# properties, where they will be passed as props into your react component");
+        var props = ModelToProps(model, additionalProps, camelCaseProps);
 
-        if (componentFullName.IsNot())
-            componentFullName = WindowComponentsPath + "." + GetComponentName(type);
+        var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
-        if (tagName?.StartsWith("<") == true)
-            throw new Exception("'tagName' should not include < > characters");
-
-        if (tagName.IsNot() && renderClientOnly)
-            throw new Exception("'tagName' must be included when using 'renderClientOnly', as it is used to keep track of the initial properties. Please set it, for instance: 'div'");
-
-        if (tagName != null && tagName != "div" && tagName != "article" && tagName != "section" && tagName != "header" && tagName != "footer")
-            throw new Exception("'tagName' must be either null, div, section, header, article or footer");
-
-        if (additionalProps != null && !additionalProps.GetOriginalType().IsClass)
-            throw new Exception("'additionalProps' passed must be a class with C# properties, where they will be passed as props into your react component. If an 'additional property' matches a property in the model, then the 'additional property' is overwriting it");
-
-        if (renderServerOnly && renderClientOnly)
-            throw new Exception("You cannot render 'client only' and 'server side only', it doesnt make any sense. Choose either client or server side or let both be false, to render on both sides: " + componentFullName);
+        var ssrId = GetSSRID(id, model, props, jsonProps);
 
         var renderServerSide = !renderClientOnly || renderServerOnly;
         var renderClientSide = renderClientOnly || !renderServerOnly;
 
-        if (tagName.Is())
-            content.Append("<" + tagName);
+        componentFullName = GetComponentFullName(model, componentFullName);
 
-        IDictionary<object, object?> storage = null;
-
-        if (renderClientSide)
-            storage = HttpContextInstance.Current.Items;
+        var root = GetRootElementStart(componentFullName, id, cssClass, tagName, renderClientSide, ssrId);
 
         try
         {
-            if (tagName.Is())
-            {
-                if (id.Is())
-                    content.Append(" id=\"" + id + "\"");
+            var serverSideComponent = CreateServerSideComponent(props, jsonProps, componentFullName, tagName, cssClass, renderServerSide, renderClientSide);
 
-                if (cssClass == "")
-                    content.Append(" class=\"" + GetComponentContainerClassName(componentFullName) + "\"");
-                else if (cssClass != null)
-                    content.Append($" class=\"{cssClass}\"");
-            }
-
-            if (renderClientSide)
-            {
-                if (!storage.ContainsKey(SysLibComponentArgs))
-                {
-                    storage.Add(SysLibComponentArgs, new StringBuilder());
-                }
-
-                if (!storage.ContainsKey(SysLibComponentKeys))
-                {
-                    storage.Add(SysLibComponentKeys, new List<string>());
-                }
-
-                if (storage.ContainsKey(SysLibComponentLevel))
-                {
-                    var nextLevel = (int)storage[SysLibComponentLevel] + 1;
-                    if (nextLevel > 256)
-                    {
-                        return new StringBuilder("<p color='red'>Components nested too deply: max depth 256</p>");
-                    }
-
-                    storage[SysLibComponentLevel] = nextLevel;
-                }
-                else
-                {
-                    storage.Add(SysLibComponentLevel, 0);
-                }
-            }
-
-            (var props, var key) = ToReactComponentProps(storage, renderClientSide, propsModel, additionalProps, camelCaseProps, id);
-
-            var level = 0;
-
-            if (renderClientSide)
-                level = (int)storage[SysLibComponentLevel];
-
-            IReactComponent component = null;
-
-            var options = new JsonSerializerOptions()
-            {
-                IncludeFields = true,
-                ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                DefaultIgnoreCondition = JsonIgnoreCondition.Never,
-                MaxDepth = 32,
-                AllowTrailingCommas = true,
-                WriteIndented = false,
-                NumberHandling = JsonNumberHandling.AllowReadingFromString,
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                PropertyNameCaseInsensitive = false,
-                PropertyNamingPolicy = camelCaseProps ? JsonNamingPolicy.CamelCase : null,
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            };
-
-            var jsonProps = props.Json(options);
-
-            if (renderClientSide)
-            {
-                key = key + jsonProps.Length;
-                var keys = storage[SysLibComponentKeys] as List<string>;
-
-                // NOTE: keys are a list of already printed <input type=hidden props...>
-                if (!keys.Contains(key))
-                {
-                    keys.Add(key);
-
-                    var componentProps = HttpUtility.HtmlAttributeEncode(jsonProps);
-
-                    var componentPropsList = storage[SysLibComponentArgs] as StringBuilder;
-
-                    componentPropsList.Append($"<input type='hidden' id=\"" + key + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{componentProps}\" />" + Environment.NewLine);
-
-                    if (debug)
-                        Log.Debug(obj: "Appending: input id=" + key);
-                }
-                else
-                {
-                    if (debug)
-                        Log.Debug(obj: "Skipping: input id=" + key + " as it already was in the list");
-                }
-
-                if (tagName.Is())
-                    content.Append(" data-rcssr-id=\"" + key + "\"");
-            }
-
-            if (tagName.Is())
-                content.Append(">");
-
-            if (renderServerSide)
-            {
-                // NOTE: Sending dummy data as CreateComponent immediately serializes the props using Newtonsoft
-                // NOTE: System.Text.Json uses less memory, and is faster
-                // NOTE: For client side, we also need json serialized, adding it to the attribute 'data-rcssr-props'
-                // NOTE: Newtonsoft's default escaping is not sufficient, and EscapeHtml generates 10% more text than System.Text.Json
-
-                var dummy = new Dictionary<string, object>();
-                component = ReactEnvironment.GetCurrentOrThrow.CreateComponent(componentFullName, dummy, null, false, true, true);
-                component.ContainerClass = null;
-                component.ContainerTag = tagName.Is() ? null : "div";
-
-                _props.SetValue(component, props);
-                _serializedProps.SetValue(component, jsonProps);
-
-                content.Append(component.RenderHtml(false, true));
-
-                if (tagName.IsNot() && renderClientSide)
-                {
-                    var space = content?.IndexOf(" ") ?? 0;
-                    if (space > 0 && space < 18)
-                    {
-                        content.Insert(space, " data-rcssr-id=\"" + key + "\"");
-
-                        if (debug)
-                            Log.Debug("Inserted data-rcssr-id=" + key + " at " + space);
-                    }
-                }
-            }
-
-            if (tagName.Is())
-                content.Append($"</{tagName}>");
+            RenderServerSideComponent(root, serverSideComponent);
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
-            var message = ex.ToString();
-            if (ex.InnerException != null)
-                message = ex.Message + " " + ex.InnerException;
+            Log.Error(ex);
 
-            if (ex?.InnerException?.InnerException != null)
-                message = ex.Message + " " + ex.InnerException.Message + " " + ex.InnerException.InnerException;
-
-            Log.Error(message);
-
-            content.Clear();
-            content.Append("<" + tagName + " data-rcssr-error='true'>" + message + "</" + tagName + ">");
+            root.Append("<div>Error: " + ex.Message + "</div>");
         }
         finally
         {
@@ -276,251 +89,14 @@ public static partial class TExtensions
             }
         }
 
-        if (renderClientSide)
-        {
-            storage[SysLibComponentLevel] = (int)storage[SysLibComponentLevel] - 1;
-        }
 
-        if (renderClientSide)
-            AppendInputHiddenProperties(storage, content);
+        if (tagName.Is())
+            root.Append("</" + tagName + ">");
 
-        return content;
-    }
+        //var componentProps = HttpUtility.HtmlAttributeEncode(jsonProps);
+        //var componentPropsList = storage[SysLibComponentArgs] as StringBuilder;
+        //componentPropsList.Append($"<input type='hidden' id=\"" + key + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{componentProps}\" />" + Environment.NewLine);
 
-    static string GetComponentName(Type type)
-    {
-        var name = type.Name;
-
-        if (name.EndsWith("ViewModel"))
-            return name.Substring(0, name.Length - "ViewModel".Length);
-
-        if (name.EndsWith("Model"))
-            return name.Substring(0, name.Length - "Model".Length);
-
-        return name;
-    }
-
-    static void ClearInputHiddenKeys(IDictionary<object, object> storage, bool debug)
-    {
-        var level = (int)storage[TExtensions.SysLibComponentLevel];
-        if (level <= -1)
-        {
-            var keys = storage[SysLibComponentKeys] as List<string>;
-            if (keys?.Count > 0)
-                keys.Clear();
-
-            if(debug)
-                Log.Debug("Component level: <= -1, clearing all keys");
-        }
-    }
-
-    static void AppendInputHiddenProperties(IDictionary<object, object> storage, StringBuilder data)
-    {
-        if (storage?.ContainsKey(TExtensions.SysLibComponentLevel) != true)
-            return;
-
-        var reactComponentProps = storage[TExtensions.SysLibComponentArgs] as StringBuilder;
-        if (reactComponentProps?.Length > 0)
-        {
-            data.Append(reactComponentProps);
-            reactComponentProps.Clear();
-        }
-    }
-
-    // TODO: Skip adding props to a dictionary, simply write it to a StringBuilder directly
-    // This little "trick" would half the memory usage "right there"
-    static (ExpandoObject, string) ToReactComponentProps(IDictionary<object, object> storage, bool renderClientSide, object model, object additionalProps, bool forceCamelCase = false, string id = null)
-    {
-        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);
-
-        var propCount = props.Count();
-
-        StringBuilder key = null;
-
-        var keyIsUnique = !renderClientSide;
-        
-        if (!keyIsUnique)
-        {
-            key = new StringBuilder();
-            
-            if (model is IContent icontent)
-            {
-                keyIsUnique = true;
-                key.Append("k-" + propCount + "-" + icontent?.ContentLink?.ID + "-" + icontent?.ContentLink?.WorkID);
-            }
-            else if (id.Is())
-            {
-                keyIsUnique = true;
-                key.Append("k-" + propCount + "-" + id);
-            }
-            else
-            {
-                // TODO: If the model is a "ViewModel" which contains "CurrentBlock"
-                // then we can fetch the content Id from property "CurrentBlock" on the 'model'
-                var contentData = model as ContentData;
-                if (contentData != null)
-                {
-                    key.Append("k-" + contentData.ContentTypeID);
-                }
-                else
-                {
-                    key.Append("k-" + model.GetType()?.Name
-                        .Replace("DynamicProxy", "D")
-                        .Replace("AnonymousType", "AT")
-                        .Replace("<>", "")
-                        .Replace("`", ""));
-                }
-            }
-        }
-
-        for (int i = 0; i < propCount; i++)
-        {
-            var property = props.ElementAt(i);
-
-            if (property.Value == null)
-            {
-                if (!keyIsUnique)
-                    key.Append("o");
-
-                continue;
-            }
-
-            if (!keyIsUnique)
-            {
-                if (property.Value is StringBuilder sb)
-                {
-                    props[property.Key] = sb?.ToString();
-
-                    if (sb?.Length > 0)
-                    {
-                        if (sb?.Length > 5)
-                        {
-                            key.Append("s" + sb.Length + "" + sb[3] + sb[4] + sb[sb.Length - 5]);
-                        }
-                        else if (sb.Length > 1)
-                        {
-                            key.Append("s" + sb.Length + "" + sb[0] + sb[1]);
-                        }
-                        else
-                            key.Append("s");
-                    }
-                }
-
-                else if (property.Value is string txt)
-                {
-                    if (txt?.Length > 5)
-                    {
-                        key.Append("t" + txt.Length + "" + txt[3] + "" + txt[4] + "" + txt[txt.Length - 5]);
-                    }
-                    else if (txt.Length > 1)
-                    {
-                        key.Append("t" + txt?.Length + "" + txt[0] + "" + txt[1]);
-                    }
-                    else
-                        key.Append("t");
-                }
-
-                else if (property.Value is int number)
-                    key.Append("i" + number);
-
-                else if (property.Value is bool b)
-                    key.Append("b" + (b ? "A" : "B"));
-
-                else if (property.Value is ContentReference cr)
-                    key.Append("cr" + cr?.ID + +cr?.WorkID);
-
-                else if (property.Value is Url u)
-                    key.Append("u" + u?.ToString()?.Length);
-
-                else if (property.Value is Enum e)
-                    key.Append("E" + e.ToString());
-
-                else if (property.Value is ContentArea ca)
-                    key.Append("ca" + ca?.Count);
-
-                else if (property.Value is IEnumerable en)
-                    key.Append(property.Key[0] + "en");
-
-                else if (property.Value is DateTime dt)
-                    key.Append("dt" + dt.Day);
-
-                else
-                {
-                    key.Append(property.Key[0]);
-                }
-
-                if (key.Length > 64)
-                {
-                    keyIsUnique = true;
-                    key = key.Replace("<", "_")
-                      .Replace("&", "WW")
-                      .Replace(">", "_")
-                      .Replace("`", "")
-                      .Replace("'", "")
-                      .Replace("\n", "")
-                      .Replace(" ", "z")
-                      .Replace("/", "--")
-                      .Replace("\\", "__")
-                      .Replace(":", "QQ")
-                      .Replace(";", "ZZ")
-                      .Replace(";", "_")
-                      .Replace(Environment.NewLine, "")
-                      .Replace("\"", ".");
-                }
-            }
-            else if (property.Value is StringBuilder sb)
-                props[property.Key] = sb?.ToString();
-        }
-
-        IDictionary<string, object> additional = additionalProps.ToExpandoObject(forceCamelCase);
-
-        if (additional != null)
-        {
-            foreach (var kv in additional)
-            {
-                if (props.ContainsKey(kv.Key))
-                    props.Remove(kv.Key);
-
-                props.Add(kv.Key, kv.Value);
-            }
-
-            if (!keyIsUnique)
-                key?.Append("-" + additional.Count);
-        }
-
-        if (!keyIsUnique)
-        {
-            key = key.Replace("<", "_")
-                      .Replace("&", "WW")
-                      .Replace(">", "_")
-                      .Replace("`", "")
-                      .Replace("'", "")
-                      .Replace("\n", "")
-                      .Replace(" ", "z")
-                      .Replace("/", "--")
-                      .Replace("\\", "__")
-                      .Replace(":", "QQ")
-                      .Replace(";", "ZZ")
-                      .Replace(";", "_")
-                      .Replace(Environment.NewLine, "")
-                      .Replace("\"", ".");
-        }
-
-        return ((ExpandoObject)props, key?.ToString());
-    }
-
-
-    static string GetComponentContainerClassName(string componentFullName)
-    {
-        var index = componentFullName.LastIndexOf('.');
-
-        var componentName = componentFullName.Substring(index + 1);
-
-        var temp = Regex.Replace(componentName, "([A-Z])", "-$1");
-
-        if (temp[0] == '-')
-            return temp.Substring(1).ToLower() + "-container";
-
-        return temp.ToLower() + "-container";
+        return root;
     }
 }
