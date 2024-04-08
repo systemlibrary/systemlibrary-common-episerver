@@ -42,6 +42,8 @@ partial class TExtensions
 
         for (int i = 0; i < propCount; i++)
         {
+            if (ssrId.Length > 128) break;
+
             var property = props.ElementAt(i);
 
             if (property.Value == null)

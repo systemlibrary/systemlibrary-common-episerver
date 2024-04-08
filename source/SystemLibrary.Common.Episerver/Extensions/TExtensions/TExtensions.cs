@@ -40,15 +40,7 @@ public static partial class TExtensions
     internal const string SysLibComponentArgs = "___" + nameof(SysLibComponentArgs);
     internal const string SysLibComponentKeys = "___" + nameof(SysLibComponentKeys);
 
-    public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false) where T : class
-    {
-        IDictionary<string, object> RootStorage = new Dictionary<string, object>();
-        IDictionary<string, object> HiddenInputStorage = new Dictionary<string, object>();
-
-        return ReactServerSideRender(RootStorage, HiddenInputStorage, model, additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, debug);
-    }
-
-    static StringBuilder ReactServerSideRender(IDictionary<string, object> rootStorage, IDictionary<string, object> hiddenInputStorage, object model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false)
+    public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false) where T : class
     {
         Validate(model, additionalProps, tagName, renderClientOnly, renderServerOnly);
 
@@ -89,13 +81,11 @@ public static partial class TExtensions
             }
         }
 
+        AppendRootElementEnd(root, tagName);
 
-        if (tagName.Is())
-            root.Append("</" + tagName + ">");
+        var keys = GetHashSet(renderClientSide);
 
-        //var componentProps = HttpUtility.HtmlAttributeEncode(jsonProps);
-        //var componentPropsList = storage[SysLibComponentArgs] as StringBuilder;
-        //componentPropsList.Append($"<input type='hidden' id=\"" + key + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{componentProps}\" />" + Environment.NewLine);
+        AppendHiddenInput(renderClientSide, ssrId, componentFullName, jsonProps, keys, root);
 
         return root;
     }

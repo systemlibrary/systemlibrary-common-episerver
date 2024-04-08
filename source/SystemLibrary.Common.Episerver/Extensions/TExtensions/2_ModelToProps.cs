@@ -10,18 +10,18 @@ partial class TExtensions
     {
         IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);
 
-        // var propCount = props.Count();
-        
-        //for (int i = 0; i < propCount; i++)
-        //{
-        //    var property = props.ElementAt(i);
+        var propCount = props.Count();
 
-        //    if (property.Value == null)
-        //        continue;
+        for (int i = 0; i < propCount; i++)
+        {
+            var property = props.ElementAt(i);
 
-        //    else if (property.Value is StringBuilder sb)
-        //        props[property.Key] = sb?.ToString();
-        //}
+            if (property.Value == null)
+                continue;
+
+            else if (property.Value is StringBuilder sb)
+                props[property.Key] = sb?.ToString();
+        }
 
         IDictionary<string, object> additional = additionalProps.ToExpandoObject(forceCamelCase);
 

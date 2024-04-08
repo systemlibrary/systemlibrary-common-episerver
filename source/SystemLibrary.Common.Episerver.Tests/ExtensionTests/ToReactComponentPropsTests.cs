@@ -50,25 +50,76 @@ public class ToReactComponentPropsTests
     }
 
     [TestMethod]
-    public void Model_To_ReactProps_Success()
+    public void TempBlockData_To_ReactProps_ServerSideRendering_Success()
     {
-        Model propsModel = null;
+        var temp = new TempBlockData();
 
-        var result = propsModel.ReactServerSideRender();
-
-        Assert.IsTrue(result.Length == 0);
-
-        propsModel = new Model();
         try
         {
-            result = propsModel.ReactServerSideRender(renderClientOnly: true);
+            var result = temp.ReactServerSideRender(renderServerOnly: true);
 
-            Assert.IsTrue(false, "Should throw null exception on HttpContext");
+            Assert.IsTrue(false, "ServerSide should invoke ReactJS.NET which is not initialized, which should throw");
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
-            Assert.IsTrue(ex.ToString().Contains("NullReferenceException"), ex.Message);
+            Assert.IsTrue(ex.Message.Contains("ReactJS.NET"));
         }
+    }
+
+    [TestMethod]
+    public void TempBlockData_To_ReactProps_Success()
+    {
+        var temp = new TempBlockData();
+
+        var result = temp.ReactServerSideRender(renderClientOnly: true, componentFullName: "HelloWorld.123");
+
+        var html = result.ToString();
+
+        Assert.IsTrue(html.Contains("data-rcssr=\"HelloWorld.123\""));
+
+        Assert.IsTrue(html.Contains("{&quot;Title&quot;:null,&quot;Flag&quot;:false,&quot;Year&quot;:0}"), "Properties rendered are changed, some epi property is also printed?");
+    }
+
+    [TestMethod]
+    public void Model_To_ReactProps_Success()
+    {
+        var model = new Model();
+        
+        var result = model.ReactServerSideRender(renderClientOnly: true);
+
+        var html = result.ToString();
+
+        // The component id is properly generated
+        Assert.IsTrue(html.Contains("<div data-rcssr-id=\"k-3-33Model"));
+
+        // The hidden input with props is generated with same id
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33Model"));
+
+        // The component fullName is generated
+        Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Model\""));
+
+        // The object is converted to json and encoded
+        Assert.IsTrue(html.Contains("&quot;B&quot;:null,&quot;C&quot;:0,&quot;E&quot;:&quot;0001-01-01&quot"));
+    }
+
+    [TestMethod]
+    public void Model_With_Values_To_ReactProps_Success()
+    {
+        var model = new Model();
+
+        model.A = "AAA";
+        model.B = "BBB";
+        model.C = 9999;
+
+        var result = model.ReactServerSideRender(renderClientOnly: true);
+
+        var html = result.ToString();
+
+        Assert.IsTrue(!html.Contains("AAA"), "Field is part of the json");
+
+        Assert.IsTrue(html.Contains("BBB"), "Property is missing from output");
+
+        Assert.IsTrue(html.Contains("9999"), "Integer is missing from output");
     }
 
     [TestMethod]

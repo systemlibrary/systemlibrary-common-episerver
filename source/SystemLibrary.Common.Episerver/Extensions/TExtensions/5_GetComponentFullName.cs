@@ -11,16 +11,16 @@ partial class TExtensions
 {
     static string GetComponentFullName(object model, string componentFullName)
     {
-        if(componentFullName != null) return componentFullName;
+        if(componentFullName.Is()) return componentFullName;
 
         var type = model.GetOriginalType();
     
         var name = type.Name;
 
-        if (name.EndsWith("ViewModel"))
+        if (name != "ViewModel" && name.EndsWith("ViewModel"))
             return "reactComponents." + name.Substring(0, name.Length - "ViewModel".Length);
 
-        if (name.EndsWith("Model"))
+        if (name != "Model" && name.EndsWith("Model"))
             return "reactComponents." + name.Substring(0, name.Length - "Model".Length);
 
         return "reactComponents." + name;
