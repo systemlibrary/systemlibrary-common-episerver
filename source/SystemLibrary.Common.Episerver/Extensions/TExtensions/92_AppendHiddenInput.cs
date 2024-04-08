@@ -21,10 +21,11 @@ partial class TExtensions
     {
         if (!renderClientSide) return;
 
-        if (keys == null || !keys.Contains(ssrId))
-        {
-            keys?.Add(ssrId);
-            root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
-        }
+        root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
+
+        //if (keys == null || !keys.Contains(ssrId))
+        //{
+        //    keys?.Add(ssrId);
+        //}
     }
 }
