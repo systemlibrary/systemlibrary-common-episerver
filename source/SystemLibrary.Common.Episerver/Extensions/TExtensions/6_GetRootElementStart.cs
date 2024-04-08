@@ -11,6 +11,8 @@ partial class TExtensions
     {
         var index = componentFullName.LastIndexOf('.');
 
+        if (index == -1) return componentFullName.ToLower() + "-container";
+
         var componentName = componentFullName.Substring(index + 1);
 
         var temp = Regex.Replace(componentName, "([A-Z])", "-$1");
@@ -42,7 +44,7 @@ partial class TExtensions
             else if (cssClass != null)
                 root.Append($" class=\"{cssClass}\"");
 
-            if(renderClientSide)
+            if (renderClientSide)
             {
                 root.Append(" data-rcssr-id=\"" + ssrId + "\"");
             }

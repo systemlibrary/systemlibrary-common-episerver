@@ -90,13 +90,12 @@ public class ToReactComponentPropsTests
         var html = result.ToString();
 
         // The component id is properly generated
-        Assert.IsTrue(html.Contains("<div data-rcssr-id=\"k-3-33Model"));
-
+        Assert.IsTrue(html.Contains("<div data-rcssr-id=\"k-3-33.QModel"), "id");
         // The hidden input with props is generated with same id
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33Model"));
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.QModel"), "input");
 
         // The component fullName is generated
-        Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Model\""));
+        Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Model\""), "reactcomponents");
 
         // The object is converted to json and encoded
         Assert.IsTrue(html.Contains("&quot;B&quot;:null,&quot;C&quot;:0,&quot;E&quot;:&quot;0001-01-01&quot"));

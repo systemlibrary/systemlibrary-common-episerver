@@ -25,6 +25,9 @@ partial class TExtensions
 
         var ssrId = new StringBuilder("k-" + props.Count() + "-" + jsonProps.Length);
 
+        if (jsonProps.Length > 8)
+            ssrId.Append(jsonProps[3] + "" + jsonProps[4]);
+
         if (contentData != null)
         {
             ssrId.Append(contentData.ContentTypeID);

@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.4.0.1
-- ReactServerSideRendering: refactored
-- ReactServerSideRendering: removed debug flag as param (breaking change)
+Release 7.4.0.2
+- ReactServerSideRendering: allows tagName to be null, still adding data rcssr-id if serverSide is rendered and clientSide too
+- ReactServerSideRendering: some leaf block still not part of the output?
 
 #### Version history
 - View git history of this file if interested

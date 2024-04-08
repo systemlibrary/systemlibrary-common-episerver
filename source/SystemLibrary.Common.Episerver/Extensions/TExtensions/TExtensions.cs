@@ -61,7 +61,7 @@ public static partial class TExtensions
         {
             var serverSideComponent = CreateServerSideComponent(props, jsonProps, componentFullName, tagName, cssClass, renderServerSide, renderClientSide);
 
-            RenderServerSideComponent(root, serverSideComponent);
+            RenderServerSideComponent(root, serverSideComponent, ssrId, tagName, renderClientSide);
         }
         catch(Exception ex)
         {

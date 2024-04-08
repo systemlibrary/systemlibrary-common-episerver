@@ -21,7 +21,7 @@ partial class TExtensions
     {
         if (!renderClientSide) return;
 
-        if (keys?.Contains(ssrId) != true)
+        if (keys == null || !keys.Contains(ssrId))
         {
             keys?.Add(ssrId);
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
