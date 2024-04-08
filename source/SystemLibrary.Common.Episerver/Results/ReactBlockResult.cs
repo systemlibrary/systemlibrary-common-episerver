@@ -15,6 +15,6 @@ public class ReactBlockResult : ContentResult
     {
         ContentType = "text/html";
 
-        Content = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly).ToString();
+        Content = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, true).ToString();
     }
 }

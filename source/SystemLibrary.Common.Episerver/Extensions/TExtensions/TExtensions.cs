@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,7 @@ using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Identity.Client.Extensions.Msal;
 
@@ -76,9 +78,7 @@ public static partial class TExtensions
     /// <param name="componentFullName">If not set, uses 'reactComponents.' as the global path where your components should live, else add its full name</param>
     /// <param name="renderClientOnly">Skip rendering server side, only printing the minimal DOM to let your javascript do the rendering</param>
     /// <param name="renderServerOnly">Skip printing client side props, only prints the components at serverside. For components that just prints text or 'a href', no javascript events...</param>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
-    public static StringBuilder ReactServerSideRender<T>(this T propsModel, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false) where T : class
+    public static StringBuilder ReactServerSideRender<T>(this T propsModel, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool debug = false) where T : class
     {
         var content = new StringBuilder();
 
@@ -143,9 +143,9 @@ public static partial class TExtensions
                 if (storage.ContainsKey(SysLibComponentLevel))
                 {
                     var nextLevel = (int)storage[SysLibComponentLevel] + 1;
-                    if (nextLevel > 128)
+                    if (nextLevel > 256)
                     {
-                        return new StringBuilder("<p color='red'>Components nested too deply: max depth 128</p>");
+                        return new StringBuilder("<p color='red'>Components nested too deply: max depth 256</p>");
                     }
 
                     storage[SysLibComponentLevel] = nextLevel;
@@ -185,6 +185,7 @@ public static partial class TExtensions
 
             if (renderClientSide)
             {
+                key = key + jsonProps.Length;
                 var keys = storage[SysLibComponentKeys] as List<string>;
 
                 // NOTE: keys are a list of already printed <input type=hidden props...>
@@ -197,6 +198,14 @@ public static partial class TExtensions
                     var componentPropsList = storage[SysLibComponentArgs] as StringBuilder;
 
                     componentPropsList.Append($"<input type='hidden' id=\"" + key + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{componentProps}\" />" + Environment.NewLine);
+
+                    if (debug)
+                        Log.Debug(obj: "Appending: input id="  + key);
+                }
+                else
+                {
+                    if (debug)
+                        Log.Debug(obj: "Skipping: input id=" + key + " as it already was in the list");
                 }
 
                 if (tagName.Is())
@@ -291,18 +300,21 @@ public static partial class TExtensions
         if (storage?.ContainsKey(TExtensions.SysLibComponentLevel) != true)
             return;
 
-        var level = (int)storage[TExtensions.SysLibComponentLevel];
-        if (level != -1)
-            return;
-
-        if (storage.ContainsKey(TExtensions.SysLibComponentArgs) != true)
-            return;
-
         var reactComponentProps = storage[TExtensions.SysLibComponentArgs] as StringBuilder;
         if (reactComponentProps?.Length > 0)
         {
             data.Append(reactComponentProps);
             reactComponentProps.Clear();
+        }
+
+        var level = (int)storage[TExtensions.SysLibComponentLevel];
+        if (level <= -1)
+        {
+            //var keys = storage[SysLibComponentKeys] as List<string>;
+            //i//(keys?.Count > 0)
+            //    keys.Clear();
+
+            //Lo//Debug(obj: "Component level: < -1,//learing keys so inputs might dupl//ate");
         }
     }
 
@@ -341,6 +353,7 @@ public static partial class TExtensions
             {
                 key.Append("k-" + model.GetType()?.Name
                     .Replace("DynamicProxy", "D")
+                    .Replace("AnonymousType", "AT")
                     .Replace("<>", "")
                     .Replace("`", ""));
             }
@@ -426,17 +439,19 @@ public static partial class TExtensions
                 {
                     keyIsUnique = true;
                     key = key.Replace("<", "_")
-                        .Replace("&", "WW")
-                        .Replace(">", "_")
-                        .Replace("`", "")
-                        .Replace("\n", "")
-                        .Replace("/", "--")
-                        .Replace("\\", "__")
-                        .Replace(":", "QQ")
-                        .Replace(";", "ZZ")
-                        .Replace(";", "_")
-                        .Replace(Environment.NewLine, "")
-                        .Replace("\"", ".");
+                      .Replace("&", "WW")
+                      .Replace(">", "_")
+                      .Replace("`", "")
+                      .Replace("'", "")
+                      .Replace("\n", "")
+                      .Replace(" ", "z")
+                      .Replace("/", "--")
+                      .Replace("\\", "__")
+                      .Replace(":", "QQ")
+                      .Replace(";", "ZZ")
+                      .Replace(";", "_")
+                      .Replace(Environment.NewLine, "")
+                      .Replace("\"", ".");
                 }
             }
             else if (property.Value is StringBuilder sb)
@@ -461,17 +476,19 @@ public static partial class TExtensions
         if (!keyIsUnique)
         {
             key = key.Replace("<", "_")
-                        .Replace("&", "WW")
-                        .Replace(">", "_")
-                        .Replace("`", "")
-                        .Replace("\n", "")
-                        .Replace("/", "--")
-                        .Replace("\\", "__")
-                        .Replace(":", "QQ")
-                        .Replace(";", "ZZ")
-                        .Replace(";", "_")
-                        .Replace(Environment.NewLine, "")
-                        .Replace("\"", ".");
+                      .Replace("&", "WW")
+                      .Replace(">", "_")
+                      .Replace("`", "")
+                      .Replace("'", "")
+                      .Replace("\n", "")
+                      .Replace(" ", "z")
+                      .Replace("/", "--")
+                      .Replace("\\", "__")
+                      .Replace(":", "QQ")
+                      .Replace(";", "ZZ")
+                      .Replace(";", "_")
+                      .Replace(Environment.NewLine, "")
+                      .Replace("\"", ".");
         }
 
 

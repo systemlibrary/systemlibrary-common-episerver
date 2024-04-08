@@ -40,7 +40,6 @@ public static class ContentAreaExtensions
         return RenderStringBuilder(contentArea).ToString();
     }
 
-
     public static StringBuilder RenderStringBuilder(this ContentArea contentArea)
     {
         if (contentArea.IsNot()) return new StringBuilder();

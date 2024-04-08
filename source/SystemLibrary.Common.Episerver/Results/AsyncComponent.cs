@@ -81,7 +81,7 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
 
     protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
     {
-        var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
+        var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, true);
 
         return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
     }
