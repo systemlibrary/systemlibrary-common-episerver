@@ -51,11 +51,12 @@ public static class ObjectExtensions
                     .Select(p2 => p2.ToLower())
                     .ToArray();
             }
+
             return _BlackListedContentPropertiesLowered;
         }
     }
 
-    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, params string[] ignorePropertyNames)
+    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, bool addNullProperties = true, params string[] ignorePropertyNames)
     {
         if (model == null) return new ExpandoObject();
 
@@ -63,7 +64,7 @@ public static class ObjectExtensions
 
         var type = model.GetType();
 
-        if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties into your react component");
+        if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties in your react component");
 
         var properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.GetField);
 
@@ -98,11 +99,11 @@ public static class ObjectExtensions
             }
 
             if (value == null)
-                expando.Add(name, null);
-
-            else if (value is MediaData mediaData)
-                expando.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
-
+            {
+                if (addNullProperties)
+                    expando.Add(name, null);
+            }
+            
             else if (value is ContentArea contentArea)
             {
                 expando.Add(name, contentArea.RenderStringBuilder());
@@ -163,6 +164,9 @@ public static class ObjectExtensions
 
             else if (value is Enum en)
                 expando.Add(name, en.ToValue());
+
+            else if (value is MediaData mediaData)
+                expando.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
 
             else
                 expando.Add(name, value);

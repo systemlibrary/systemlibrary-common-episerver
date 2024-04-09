@@ -46,7 +46,7 @@ public static class ContentAreaExtensions
 
         var filteredItems = contentArea.FilteredItems;
 
-        var rendered = new StringBuilder("", 128);
+        var rendered = new StringBuilder("", capacity: 512);
 
         var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
 
@@ -64,17 +64,30 @@ public static class ContentAreaExtensions
             }
             else
             {
-                var page = item.ContentLink.To<PageData>();
-
-                if (page == null) continue;
-
-                var type = page.GetOriginalType();
-
-                if (type.Name == "PageData") continue;
-
-                if (page.IsPublished())
+                var media = item.ContentLink.To<MediaData>();
+                if (media != null)
                 {
-                    rendered.Append(iContentHtmlHelper.PropertyFor(x => page).ToString());
+                    if (media.Name == "MediaData") continue;
+
+                    if (media.IsDeleted) continue;
+
+                    if(media.IsPublished())
+                        rendered.Append(iContentHtmlHelper.PropertyFor(x => media).ToString());
+                }
+                else
+                {
+                    var page = item.ContentLink.To<PageData>();
+
+                    if (page == null) continue;
+
+                    var type = page.GetOriginalType();
+
+                    if (type.Name == "PageData") continue;
+
+                    if (page.IsPublished())
+                    {
+                        rendered.Append(iContentHtmlHelper.PropertyFor(x => page).ToString());
+                    }
                 }
             }
         }

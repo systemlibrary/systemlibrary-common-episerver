@@ -1,5 +1,7 @@
 ﻿using EPiServer;
 
+using SystemLibrary.Common.Net.Extensions;
+
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -11,6 +13,9 @@ partial class TExtensions
 
         if (!type.IsClass)
             throw new Exception("'viewModel/model' passed must be a class with C# properties, where they will be passed as props into your react component");
+
+        if (type.IsListOrArray())
+            throw new Exception("'viewModel/model' passed cannot be an array or a list. It must be a 'viewModel' or 'model' with properties. Surround the array/list with a class is one way to fix this.");
 
         if (tagName?.StartsWith("<") == true)
             throw new Exception("'tagName' should not include < > characters");

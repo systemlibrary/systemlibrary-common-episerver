@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using EPiServer.Logging;
+
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -17,28 +19,32 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static ConcurrentDictionary<string, bool> GetSsrIdStore(bool renderClientSide)
+    const string SysLibComponentStorageKey = "1";
+
+    static int IncrementLevel(bool renderClientSide)
     {
         var storage = HttpContextInstance.Current?.Items;
 
-        if (storage == null || !renderClientSide) return null;
+        if (storage == null || !renderClientSide) return -999;
 
-        var dictionary = storage[SysLibStorageSsrId] as ConcurrentDictionary<string, bool>;
+        var dictionary = storage[SysLibStorageLevel] as ConcurrentDictionary<string, int>;
 
         if (dictionary == null)
         {
-            dictionary = new ConcurrentDictionary<string,bool>();
+            dictionary = new ConcurrentDictionary<string, int>();
             // NOTE: in rare async scenarios, between null and adding the keys (creating the hashset), another thread might also create a HashSet
             // but that second hashSet during creation, the first thread (hopefully) manages to set it, so it is not null after creation
             // We do not want to use a lock here for time being
-            if (storage[SysLibStorageSsrId] == null)
+            if (storage[SysLibStorageLevel] == null)
             {
-                storage[SysLibStorageSsrId] = dictionary;
+                storage[SysLibStorageLevel] = dictionary;
             }
             else
-                dictionary = storage[SysLibStorageSsrId] as ConcurrentDictionary<string, bool>;
+                dictionary = storage[SysLibStorageLevel] as ConcurrentDictionary<string, int>;
         }
 
-        return dictionary;
+        dictionary.AddOrUpdate(SysLibComponentStorageKey, 1, (key, oldValue) => oldValue + 1);
+
+        return dictionary[SysLibComponentStorageKey];
     }
 }

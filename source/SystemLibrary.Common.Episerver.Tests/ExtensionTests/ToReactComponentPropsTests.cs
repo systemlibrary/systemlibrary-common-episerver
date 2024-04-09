@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
 using EPiServer.Core;
 
@@ -13,6 +15,11 @@ namespace SystemLibrary.Common.Episerver.Tests;
 [TestClass]
 public class ToReactComponentPropsTests
 {
+    static ToReactComponentPropsTests()
+    {
+        Initialize.Globals();
+    }
+
     [TestMethod]
     public void Model_With_Client_And_Server_Rendering_Throws()
     {
@@ -21,7 +28,7 @@ public class ToReactComponentPropsTests
         try
         {
             var result = propsModel.ReactServerSideRender(renderClientOnly: true, renderServerOnly: true);
-            
+
             Assert.IsTrue(false, "Should throw as params are invalid");
         }
         catch (Exception ex)
@@ -60,7 +67,7 @@ public class ToReactComponentPropsTests
 
             Assert.IsTrue(false, "ServerSide should invoke ReactJS.NET which is not initialized, which should throw");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Assert.IsTrue(ex.Message.Contains("ReactJS.NET"));
         }
@@ -84,15 +91,15 @@ public class ToReactComponentPropsTests
     public void Model_To_ReactProps_Success()
     {
         var model = new Model();
-        
+
         var result = model.ReactServerSideRender(renderClientOnly: true);
 
         var html = result.ToString();
 
         // The component id is properly generated
-        Assert.IsTrue(html.Contains("<div data-rcssr-id=\"k-3-33.QModel"), "id");
+        Assert.IsTrue(html.Contains("<div data-rcssr-id=\"k-3-33.QMMoi0E"), "id");
         // The hidden input with props is generated with same id
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.QModel"), "input");
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.QMMoi0E"), "input");
 
         // The component fullName is generated
         Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Model\""), "reactcomponents");
@@ -167,6 +174,22 @@ public class ToReactComponentPropsTests
         // Skipped properties not returned hence 3
         Assert.IsTrue(props.Count == 3);
         Assert.IsTrue(props["Title"] == "Hello world");
+    }
+
+    [TestMethod]
+    public void List_To_ExpandoObject_Throws()
+    {
+        var list = new List<Model>();
+
+        try
+        {
+            var exp1 = list.ToExpandoObject();
+            Assert.IsTrue(false, "Expando should throw on list");
+        }
+        catch
+        {
+            Assert.IsTrue(true, "List cannot be converted to expando object. Loop over the list yourself and convert each item");
+        }
     }
 
     public class Model

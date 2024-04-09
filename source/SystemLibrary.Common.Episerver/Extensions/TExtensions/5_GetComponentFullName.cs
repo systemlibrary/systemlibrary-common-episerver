@@ -14,8 +14,11 @@ partial class TExtensions
         if(componentFullName.Is()) return componentFullName;
 
         var type = model.GetOriginalType();
-    
+
         var name = type.Name;
+
+        if(name.StartsWith("<"))
+            name = name.Replace("<>", "").Replace("`", "").Replace(" ", "");
 
         if (name != "ViewModel" && name.EndsWith("ViewModel"))
             return "reactComponents." + name.Substring(0, name.Length - "ViewModel".Length);

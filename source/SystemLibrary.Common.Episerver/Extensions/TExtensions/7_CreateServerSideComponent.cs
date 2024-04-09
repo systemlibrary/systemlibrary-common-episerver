@@ -49,19 +49,5 @@ partial class TExtensions
         _serializedProps.SetValue(component, jsonProps);
 
         return component;
-
-        //content.Append(component.RenderHtml(false, true));
-
-        //if (tagName.IsNot() && renderClientSide)
-        //{
-        //    var space = content?.IndexOf(" ") ?? 0;
-        //    if (space > 0 && space < 18)
-        //    {
-        //        content.Insert(space, " data-rcssr-id=\"" + key + "\"");
-
-        //        if (debug)
-        //            Log.Debug("Inserted data-rcssr-id=" + key + " at " + space);
-        //    }
-        //}
     }
 }

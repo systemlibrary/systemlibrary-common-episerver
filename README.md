@@ -61,9 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.4.0.3
-- ReactServerSideRendering: Always printing the hidden input without HashSet caching
-- Need a middleware or HtmlHelper, and add the prints to Context.Items[], and print at the very end of the @RenderBody()
+Release 7.5.0.1
+- ReactServerSideRendering: Restructured and hopefully it prints the leaf node in an async context too (quite drasitc modifications, hence "breaking change")
 
 
 #### Version history

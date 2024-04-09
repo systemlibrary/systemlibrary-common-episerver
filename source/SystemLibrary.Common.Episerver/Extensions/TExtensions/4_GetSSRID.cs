@@ -4,6 +4,7 @@ using System.Text;
 
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Core.Transfer.Internal;
 using EPiServer.Data;
 
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -35,6 +36,9 @@ partial class TExtensions
         else
         {
             ssrId.Append(model.GetType()?.Name
+                    .Replace("BlockViewModel", "BVM")
+                    .Replace("ViewModel", "VM")
+                    .Replace("Model", "MM")
                     .Replace("DynamicProxy", "DPX")
                     .Replace("AnonymousType", "ATY")
                     .Replace("<>", "")
