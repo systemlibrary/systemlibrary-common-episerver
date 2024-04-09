@@ -58,7 +58,7 @@ public static partial class TExtensions
     /// 
     /// NOTE: Always skipped property names: CurrentPage, CurrentBlock
     /// </summary>
-    public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false) where T : class
+    public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool printNullValues = true) where T : class
     {
         Validate(model, additionalProps, tagName, renderClientOnly, renderServerOnly);
 
@@ -69,7 +69,7 @@ public static partial class TExtensions
 
         if (Globals.IsUnitTesting) level = 1;
 
-        var props = ModelToProps(model, additionalProps, camelCaseProps);
+        var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
         var jsonProps = PropsToJsonProps(props, camelCaseProps);
 

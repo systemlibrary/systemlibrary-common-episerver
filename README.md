@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.5.0.1
-- ReactServerSideRendering: Restructured and hopefully it prints the leaf node in an async context too (quite drasitc modifications, hence "breaking change")
+Release 7.6.0.1
+- ReactBlockResult and AsyncComponent contains "printNullValues" flag
+- Extension ToExpandoObject() argument renamed to "printNullValues" (Breaking Change)
 
 
 #### Version history

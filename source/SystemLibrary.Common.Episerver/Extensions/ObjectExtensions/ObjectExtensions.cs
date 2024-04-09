@@ -56,7 +56,7 @@ public static class ObjectExtensions
         }
     }
 
-    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, bool addNullProperties = true, params string[] ignorePropertyNames)
+    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
     {
         if (model == null) return new ExpandoObject();
 
@@ -100,7 +100,7 @@ public static class ObjectExtensions
 
             if (value == null)
             {
-                if (addNullProperties)
+                if (printNullValues)
                     expando.Add(name, null);
             }
             

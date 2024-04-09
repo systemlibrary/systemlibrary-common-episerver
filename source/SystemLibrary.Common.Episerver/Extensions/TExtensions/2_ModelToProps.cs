@@ -6,9 +6,9 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static ExpandoObject ModelToProps(object model, object additionalProps, bool forceCamelCase)
+    static ExpandoObject ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
     {
-        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase);
+        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase, printNullValues);
 
         var propCount = props.Count();
 

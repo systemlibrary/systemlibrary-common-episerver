@@ -74,14 +74,14 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
         return View(viewName, component);
     }
 
-    protected async Task<IViewComponentResult> ReactServerSideResultAsync(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
+    protected async Task<IViewComponentResult> ReactServerSideResultAsync(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null, bool printNullValues = true)
     {
-        return await Task.FromResult(ReactServerSideResult(model, additionalProps, camelCaseProps, renderClientOnly, renderServerOnly, tagName, cssClass, id, componentFullName));
+        return await Task.FromResult(ReactServerSideResult(model, additionalProps, camelCaseProps, renderClientOnly, renderServerOnly, tagName, cssClass, id, componentFullName, printNullValues));
     }
 
-    protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null)
+    protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null, bool printNullValues = true)
     {
-        var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly);
+        var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, printNullValues);
 
         return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
     }
