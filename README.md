@@ -61,9 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.5
-- IList<ContentData> was rendered through HtmlBuilder, it is now converted to Expando, and becomes an array to the react props in ReactResult
-- BoxSelection: top bot css rules have now important
+Release 7.6.0.6
+- ToExpando: AdditionalProps are checked first and ignored on the Model, so avoiding double conversion
 
 #### Version history
 - View git history of this file if interested

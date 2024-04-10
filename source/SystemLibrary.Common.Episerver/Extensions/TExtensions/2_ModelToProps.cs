@@ -1,4 +1,6 @@
-﻿using System.Dynamic;
+﻿using Org.BouncyCastle.Bcpg.OpenPgp;
+
+using System.Dynamic;
 using System.Text;
 
 
@@ -8,7 +10,24 @@ partial class TExtensions
 {
     static ExpandoObject ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
     {
-        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase, printNullValues);
+        List<string> ignorePropertyNames = null;
+
+        if (additionalProps != null)
+        {
+            var additionalType = additionalProps.GetType();
+
+            var additionalProperties = additionalType.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
+
+            if (additionalProperties != null && additionalProperties.Length > 0)
+            {
+                ignorePropertyNames = new List<string>();
+
+                foreach (var additionalPropertyName in additionalProperties)
+                    ignorePropertyNames.Add(additionalPropertyName.Name);
+            }
+        }
+
+        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
         var propCount = props.Count();
 
@@ -28,13 +47,9 @@ partial class TExtensions
         if (additional != null && additional.Count > 0)
         {
             foreach (var kv in additional)
-            {
-                if (props.ContainsKey(kv.Key))
-                    props.Remove(kv.Key);
-
                 props.Add(kv.Key, kv.Value);
-            }
         }
+
         return (ExpandoObject)props;
     }
 }

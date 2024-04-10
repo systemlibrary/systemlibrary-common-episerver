@@ -146,6 +146,8 @@ public static class ObjectExtensions
 
                     foreach (var item in iList)
                     {
+                        if (item == model) continue;
+
                         iListAsExpando.Add(item.ToExpandoObject(forceCamelCase, printNullValues, ignorePropertyNames));
                     }
 
