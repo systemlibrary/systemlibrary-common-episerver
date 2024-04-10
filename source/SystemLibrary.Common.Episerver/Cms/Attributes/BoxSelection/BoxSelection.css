@@ -1,9 +1,9 @@
 ﻿.systemLibraryCommonEpiserverBoxSelection {
   list-style-type: none;
   border: 1px solid #b5bcc7;
-  padding: 4px;
   overflow: hidden;
   max-width: 676px;
+  padding: 4px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -38,24 +38,26 @@
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item {
-  position: relative;
-  word-break: break-word;
-  border: 4px solid rgba(240, 240, 240, 1);
-  font-size: 12px;
+  position: relative !important;
+  word-break: break-word !important;
+  border: 4px solid rgba(240, 240, 240, 1) !important;
+  font-size: 12px !important;
   text-align: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: center;
-  min-height: 44px;
-  min-width: 76px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position-x: center !important;
+  background-position-y: center !important;
+  min-height: 44px !important;
+  min-width: 76px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item:hover {
-  border: 4px solid #b5bcc7;
+  border: 4px solid #b5bcc7 !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item--black,
@@ -70,15 +72,15 @@
 .systemLibraryCommonEpiserverBoxSelection-item.background-color--no:after,
 .systemLibraryCommonEpiserverBoxSelection-item.background-color--none:after,
 .systemLibraryCommonEpiserverBoxSelection-item.background-color--unset:after {
-  position: absolute;
-  color: #343434;
-  bottom: 0;
-  left: 0px;
-  right: 0;
-  content: "\d7";
-  font-size: 32px;
-  line-height: 80px;
-  top: -44%;
+  position: absolute !important;
+  color: #343434 !important;
+  bottom: 0 !important;
+  left: 0px !important;
+  right: 0 !important;
+  content: "\d7" !important;
+  font-size: 32px !important;
+  line-height: 80px !important;
+  top: -44% !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected.background-color--no:after,
@@ -89,24 +91,24 @@
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected {
   /* border: 2px solid rgba(240, 240, 240, 1); */
-  border: 2px solid transparent;
-  border-bottom: 4px solid #4fffb0;
-  font-weight: 600;
-  min-width: 82px;
-  min-height: 50px;
-  margin-left: -2px;
-  margin-top: -1px;
+  border: 2px solid transparent !important;
+  border-bottom: 4px solid #4fffb0 !important;
+  font-weight: 600 !important;
+  min-width: 82px !important;
+  min-height: 50px !important;
+  margin-left: -2px !important;
+  margin-top: -1px !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected:hover {
-  border: 0;
-  border-bottom: 2px solid #4fffb0;
-  padding: 2px;
-  font-weight: 600;
-  min-width: 82px;
-  min-height: 50px;
-  margin-left: -2px;
-  margin-top: -1px;
+  border: 0 !important;
+  border-bottom: 2px solid #4fffb0 !important;
+  padding: 2px !important;
+  font-weight: 600 !important;
+  min-width: 82px !important;
+  min-height: 50px !important;
+  margin-left: -2px !important;
+  margin-top: -1px !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection--item-selected.background-color--no:after,

@@ -198,8 +198,17 @@
                 let css = dojoAttachPointName + '-item';
 
                 css += appendCssClass(text);
-                css += appendCssClass(value);
-                css += appendCssClass(additional);
+                if (text !== value) {
+                    css += appendCssClass(value);
+                }
+                if (value !== additional && additional) {
+                    css += appendCssClass(additional);
+                }
+
+                if (value && typeof (value) === 'string' && value.length > 1) {
+                    css += ' ' + value;
+                }
+
 
                 if (is(text) && (isImageUrl(value) || isImageUrl(additional))) {
                     css += ' systemLibraryCommonEpiserverBoxSelection--item-image';

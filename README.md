@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.1
-- ReactBlockResult and AsyncComponent contains "printNullValues" flag
-- Extension ToExpandoObject() argument renamed to "printNullValues" (Breaking Change)
+Release 7.6.0.2
+- BoxSelection, reducing the amount of css classes generated (duplicated are not allowed)
+- BoxSelection, adding the "value" directly as a css class (with some replacement of space, comma and dots to single dash) 
 
 
 #### Version history
