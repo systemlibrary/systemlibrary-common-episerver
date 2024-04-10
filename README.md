@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.6
-- ToExpando: AdditionalProps are checked first and ignored on the Model, so avoiding double conversion
+Release 7.6.0.7
+- ToExpando: Try catch IList with logging
 
 #### Version history
 - View git history of this file if interested

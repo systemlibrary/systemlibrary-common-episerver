@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-
-using EPiServer;
+﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
 
+using Microsoft.ClearScript.JavaScript;
+
 using Org.BouncyCastle.Asn1.Cms;
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
 
 using SystemLibrary.Common.Net.Extensions;
 
@@ -103,7 +106,7 @@ public static class ObjectExtensions
                 if (printNullValues)
                     expando.Add(name, null);
             }
-            
+
             else if (value is ContentArea contentArea)
             {
                 expando.Add(name, contentArea.RenderStringBuilder());
@@ -127,7 +130,7 @@ public static class ObjectExtensions
             }
             else if (value is IList<LinkItem> linkItems)
             {
-                var linkItemAttributes = linkItems.Where(x => x.Attributes != null).Select(x => GetAttributesOfLinkItem(x));
+                var linkItemAttributes = linkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
 
                 expando.Add(name, linkItemAttributes);
             }
@@ -144,12 +147,57 @@ public static class ObjectExtensions
                 {
                     var iListAsExpando = new List<object>();
 
+                    //var list = new List<Dictionary<string, object>>();
+
+                    //var listProperties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
+
+                    //if (listProperties?.Length > 0)
+                    //{
+
+                    var ignoreListAdditional = (ignorePropertyNames?.ToList() ?? new List<string>());
+
+                    ignoreListAdditional.Add("MediaData");
+                    ignoreListAdditional.Add("CurrentMedia");
+
+                    ignoreListAdditional.Add("BlockData");
+                    ignoreListAdditional.Add("CurrentBlock");
+
+                    ignoreListAdditional.Add("PageData");
+                    ignoreListAdditional.Add("CurrentPage");
+
+                    ignoreListAdditional.Add("Properties");
+                    ignoreListAdditional.Add("Property");
+                    ignoreListAdditional.Add("Model");
+                    ignoreListAdditional.Add("CurrentUser");
+                    ignoreListAdditional.Add("ViewData");
+
+                    var ignoreListAdditionalArray = ignoreListAdditional.ToArray();
+
+
                     foreach (var item in iList)
                     {
                         if (item == model) continue;
+                        try
+                        {
+                            iListAsExpando.Add(item.ToExpandoObject(forceCamelCase, printNullValues, ignoreListAdditionalArray));
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
 
-                        iListAsExpando.Add(item.ToExpandoObject(forceCamelCase, printNullValues, ignorePropertyNames));
+                            var error = new Dictionary<string, object>();
+                            error.Add("Exception", new
+                            {
+                                Id = (item as IContent)?.ContentLink?.ID,
+                                ContentTypeId = (item as IContent)?.ContentTypeID,
+                                Message = ex.Message,
+                                Error = ex.StackTrace.ToString()
+                            });
+
+                            iListAsExpando.Add(error);
+                        }
                     }
+
 
                     expando.Add(name, iListAsExpando);
                 }
@@ -267,21 +315,21 @@ public static class ObjectExtensions
         };
     }
 
-    static StringBuilder RenderIListContentItems(this List<ContentData> list)
-    {
-        if (list == null) return null;
+    //static StringBuilder RenderIListContentItems(this List<ContentData> list)
+    //{
+    //    if (list == null) return null;
 
-        var rendered = new StringBuilder();
+    //    var rendered = new StringBuilder();
 
-        var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
+    //    var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
 
-        foreach (var contentData in list)
-        {
-            if (contentData == null) continue;
+    //    foreach (var contentData in list)
+    //    {
+    //        if (contentData == null) continue;
 
-            rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData).ToString());
-        }
+    //        rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData).ToString());
+    //    }
 
-        return rendered;
-    }
+    //    return rendered;
+    //}
 }
