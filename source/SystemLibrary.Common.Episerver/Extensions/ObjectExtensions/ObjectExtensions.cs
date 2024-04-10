@@ -142,16 +142,14 @@ public static class ObjectExtensions
                 var genericType = iList.GetType().GetFirstGenericType();
                 if (genericType.Inherits(ContentDataType))
                 {
-                    var contentList = new List<ContentData>();
+                    var iListAsExpando = new List<object>();
 
                     foreach (var item in iList)
                     {
-                        contentList.Add(item as ContentData);
+                        iListAsExpando.Add(item.ToExpandoObject(forceCamelCase, printNullValues, ignorePropertyNames));
                     }
 
-                    var renderedLinkItems = RenderIListContentItems(contentList);
-
-                    expando.Add(name, renderedLinkItems);
+                    expando.Add(name, iListAsExpando);
                 }
                 else
                 {

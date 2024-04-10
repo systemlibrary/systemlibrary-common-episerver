@@ -61,10 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.4
-- Forgot dev flag to false
-- BoxSelection: adding text, value and additional, if eligible as css name
-
+Release 7.6.0.5
+- IList<ContentData> was rendered through HtmlBuilder, it is now converted to Expando, and becomes an array to the react props in ReactResult
+- BoxSelection: top bot css rules have now important
 
 #### Version history
 - View git history of this file if interested
