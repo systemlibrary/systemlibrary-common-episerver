@@ -1,5 +1,6 @@
 ﻿using EPiServer;
 using EPiServer.Core;
+using EPiServer.Enterprise.Transfer.Internal;
 using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
@@ -47,6 +48,9 @@ public static class ObjectExtensions
                         "ParentLinkReference",
                         "ShouldBeImplicitlyExported",
                         "MixinInstance",
+                        "Item",
+                        "ContentTypeID",
+                        "IsReadOnly",
                         "Property",
                         "ViewData",
                         "ReferencedPermanentLinkIds"
@@ -145,71 +149,99 @@ public static class ObjectExtensions
                 var genericType = iList.GetType().GetFirstGenericType();
                 if (genericType.Inherits(ContentDataType))
                 {
-                    var iListAsExpando = new List<object>();
+                    var contentList = new List<IDictionary<string, object>>();
 
-                    //var list = new List<Dictionary<string, object>>();
+                    var listProperties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
 
-                    //var listProperties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
-
-                    //if (listProperties?.Length > 0)
-                    //{
-
-                    var ignoreListAdditional = (ignorePropertyNames?.ToList() ?? new List<string>());
-
-                    ignoreListAdditional.Add("MediaData");
-                    ignoreListAdditional.Add("CurrentMedia");
-
-                    ignoreListAdditional.Add("BlockData");
-                    ignoreListAdditional.Add("CurrentBlock");
-
-                    ignoreListAdditional.Add("PageData");
-                    ignoreListAdditional.Add("CurrentPage");
-
-                    ignoreListAdditional.Add("Properties");
-                    ignoreListAdditional.Add("Property");
-                    ignoreListAdditional.Add("Model");
-                    ignoreListAdditional.Add("CurrentUser");
-                    ignoreListAdditional.Add("ViewData");
-
-                    var ignoreListAdditionalArray = ignoreListAdditional.ToArray();
-
-
-                    foreach (var item in iList)
+                    if (listProperties?.Length > 0)
                     {
-                        if (item == model) continue;
-                        try
+                        foreach (var listItem in iList)
                         {
-                            iListAsExpando.Add(item.ToExpandoObject(forceCamelCase, printNullValues, ignoreListAdditionalArray));
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
+                            if (listItem == model) continue;
 
-                            var error = new Dictionary<string, object>();
-                            error.Add("Exception", new
+                            IDictionary<string, object> listItemExpando = new ExpandoObject();
+
+                            foreach (var listProp in listProperties)
                             {
-                                Id = (item as IContent)?.ContentLink?.ID,
-                                ContentTypeId = (item as IContent)?.ContentTypeID,
-                                Message = ex.Message,
-                                Error = ex.StackTrace.ToString()
-                            });
+                                var listPropName = listProp.Name;
 
-                            iListAsExpando.Add(error);
+                                if (BlackListedContentPropertiesLowered.Contains(listPropName.ToLower())) continue;
+
+                                if (ignorePropertyNames != null)
+                                    if (ignorePropertyNames.Contains(listPropName)) continue;
+
+                                if (listPropName == "Property") continue;
+
+                                if (listProp.PropertyType.IsClass && (listPropName.StartsWith("CurrentBlock") || listPropName.StartsWith("CurrentPage") || listPropName.StartsWith("CurrentMedia")))
+                                    continue;
+
+                                if (listPropName.StartsWith("EPiServer.")) continue;
+
+                                if (forceCamelCase)
+                                {
+                                    if (listPropName.Length <= 1)
+                                        listPropName = listPropName.ToLower();
+                                    else
+                                        listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
+                                }
+                                
+                                var listPropValue = listProp.GetValue(listItem);
+
+                                if (listPropValue == null)
+                                {
+                                    if (printNullValues)
+                                        listItemExpando.Add(listPropName, listPropValue);
+
+                                    continue;
+                                }
+                                else if (listPropValue is ContentArea listItemContentArea)
+                                {
+                                    listItemExpando.Add(listPropName, listItemContentArea.RenderStringBuilder());
+                                }
+                                else if (listPropValue is XhtmlString listItemXHtmlString)
+                                {
+                                    listItemExpando.Add(listPropName, listItemXHtmlString.RenderStringBuilder());
+                                }
+                                else if (listPropValue is Url listItemUrl)
+                                    listItemExpando.Add(listPropName, listItemUrl.ToFriendlyUrl());
+
+                                else if (listPropValue is Uri listItemUri)
+                                    listItemExpando.Add(listPropName, listItemUri.ToFriendlyUrl());
+
+                                else if (listPropValue is LinkItem listItemLinkItem)
+                                {
+                                    var attributes = GetAttributesOfLinkItem(listItemLinkItem);
+                                    listItemExpando.Add(listPropName, attributes);
+                                }
+                                else if (listPropValue is IList<LinkItem> listItemLinkItems)
+                                {
+                                    var listItemLinkItemAttributes = listItemLinkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
+
+                                    listItemExpando.Add(listPropName, listItemLinkItemAttributes);
+                                }
+                                else if (listPropValue is ContentReference listItemContentReference)
+                                    listItemExpando.Add(listPropName, listItemContentReference.ToFriendlyUrl());
+
+                                else if (value is Enum en)
+                                    listItemExpando.Add(listPropName, en.ToValue());
+
+                                else if(listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
+                                    listItemExpando.Add(listPropName, listPropValue);
+                            }
+                            
+                            contentList.Add(listItemExpando);
                         }
                     }
 
-
-                    expando.Add(name, iListAsExpando);
+                    expando.Add(name, contentList);
                 }
                 else
                 {
                     expando.Add(name, iList);
                 }
             }
-
             else if (value is IEnumerable enumerable)
                 expando.Add(name, enumerable);
-
             else if (value is Enum en)
                 expando.Add(name, en.ToValue());
 

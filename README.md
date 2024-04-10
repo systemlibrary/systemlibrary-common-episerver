@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.7
-- ToExpando: Try catch IList with logging
+Release 7.6.0.8
+- ToExpandoObject: Converting BlackListedProperties, werent Lowered in the IList (bug fix).
+- ToExpandoObject: IList<ContentData> hardcoding only a few default property types to avoid the recursion
 
 #### Version history
 - View git history of this file if interested

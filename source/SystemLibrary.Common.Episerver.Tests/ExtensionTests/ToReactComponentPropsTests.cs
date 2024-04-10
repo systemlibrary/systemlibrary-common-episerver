@@ -1,14 +1,15 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-
+using EPiServer;
 using EPiServer.Core;
+using EPiServer.SpecializedProperties;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using System;
+using System.Collections.Generic;
+
 using SystemLibrary.Common.Episerver.Extensions;
+using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Tests;
 
@@ -82,9 +83,11 @@ public class ToReactComponentPropsTests
 
         var html = result.ToString();
 
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-55nn0oobBi0\"></div><input"), "Beginning failed");
+
         Assert.IsTrue(html.Contains("data-rcssr=\"HelloWorld.123\""));
 
-        Assert.IsTrue(html.Contains("{&quot;Title&quot;:null,&quot;Flag&quot;:false,&quot;Year&quot;:0}"), "Properties rendered are changed, some epi property is also printed?");
+        Assert.IsTrue(html.Contains("{&quot;InnerBlocks&quot;:null,&quot;Title&quot;:null,&quot;Flag&quot;:false,&quot;Year&quot;:0}"), "Properties rendered are changed, some epi property is also printed?");
     }
 
     [TestMethod]
@@ -151,6 +154,65 @@ public class ToReactComponentPropsTests
     }
 
     [TestMethod]
+    public void Model_With_IList_ContentData_To_Expando_Success()
+    {
+        TempBlockData data = new TempBlockData();
+        data.Title = "hello";
+        data.SortIndex = 100;
+        data.Age = 99;
+        data.InnerBlocks = new List<InnerBlockData>
+        {
+            new InnerBlockData()
+            {
+                Age = 8888,
+                InnerTitle = "inner",
+                InnerBool = true,
+                InnerInt = -111,
+                InnerXhtmlString = new XhtmlString("<p>Hello world</p>"),
+                InnerRef = new ContentReference(55),
+                InnerUrl = new Url("www.no"),
+                InnerLinkItem = new LinkItem
+                {
+                     Href = "www.se",
+                     Title = "SE 11",
+                    Text = "LinkItemText"
+                }
+            },
+             new InnerBlockData()
+            {
+                InnerTitle = "innerinnerinner",
+                InnerBool = true,
+                Age = 7777,
+                InnerInt = -111,
+                InnerRef = new ContentReference(55),
+                InnerUrl = new Url("www.no"),
+                InnerLinkItem = new LinkItem
+                {
+                    Href = "www.se",
+                    Title = "SE 22",
+                    Text = "LinkItemText"
+                }
+            }
+        };
+        
+        IDictionary<string, object> props = data.ToExpandoObject();
+
+        var json = props.Json();
+
+        Assert.IsTrue(props.Count > 3);
+        Assert.IsTrue(json.Contains("www.se"), "www.se missing");
+        Assert.IsTrue(json.Contains("SE 22"), "SE 22 missing");
+        Assert.IsTrue(json.Contains("-111"), "-111 missing");
+        Assert.IsTrue(json.Contains("innerinnerinner"), "innerinnerinner missing");
+        Assert.IsTrue(json.Contains("SE 11"), "SE 11 missing");
+        Assert.IsTrue(json.Contains("www.no"), "www.no missing");
+        Assert.IsTrue(json.Contains("LinkItemText"), "LinkItemText missing");
+        Assert.IsTrue(!json.Contains("99"), "99 exists, it should be skipped, a field");
+        Assert.IsTrue(!json.Contains("8888"), "8888 exists, it should be skipped, a field");
+        Assert.IsTrue(!json.Contains("7777"), "7777 exists, it should be skipped, a field");
+    }
+
+    [TestMethod]
     public void BlockData_To_ExpandoObject_Success()
     {
         TempBlockData blockModel = null;
@@ -159,7 +221,7 @@ public class ToReactComponentPropsTests
 
         blockModel = new TempBlockData();
         props = blockModel.ToExpandoObject();
-        Assert.IsTrue(props.Count == 3);
+        Assert.IsTrue(props.Count == 4, "Invalid count " + props.Count);
 
         blockModel.Title = "Hello world";
         blockModel.Year = 20000;
@@ -171,8 +233,8 @@ public class ToReactComponentPropsTests
 
         props = blockModel.ToExpandoObject();
 
-        // Skipped properties not returned hence 3
-        Assert.IsTrue(props.Count == 3);
+        // Skipped properties not returned hence 4
+        Assert.IsTrue(props.Count == 4);
         Assert.IsTrue(props["Title"] == "Hello world");
     }
 
@@ -204,8 +266,21 @@ public class ToReactComponentPropsTests
         internal static string H { get; set; }
     }
 
+    public class InnerBlockData : BlockData
+    {
+        public int Age;
+        public virtual string InnerTitle { get; set; }
+        public virtual int InnerInt { get; set; }
+        public virtual bool InnerBool { get; set; }
+        public virtual XhtmlString InnerXhtmlString { get; set; }
+        public virtual ContentReference InnerRef { get; set; }
+        public virtual Url InnerUrl { get; set; }
+        public virtual LinkItem InnerLinkItem { get; set; }
+    }
+
     public class TempBlockData : BlockData
     {
+        public virtual IList<InnerBlockData> InnerBlocks { get; set; }
         public virtual string Title { get; set; }
 
         public virtual bool Flag { get; set; }
