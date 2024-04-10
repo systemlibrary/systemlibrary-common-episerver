@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.2
-- BoxSelection, reducing the amount of css classes generated (duplicated are not allowed)
-- BoxSelection, adding the "value" directly as a css class (with some replacement of space, comma and dots to single dash) 
+Release 7.6.0.4
+- Forgot dev flag to false
+- BoxSelection: adding text, value and additional, if eligible as css name
 
 
 #### Version history

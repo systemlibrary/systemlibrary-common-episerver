@@ -159,7 +159,10 @@
             function appendCssClass(data) {
                 var cssName = getCssName(data);
                 if (cssName !== null) {
-                    return ' ' + dojoAttachPointName + '-item--' + cssName + ' background-color--' + cssName;
+                    return ' '
+                        + dojoAttachPointName + '-item--' + cssName
+                        + ' background-color--' + cssName
+                        + ((isNaN(cssName) && cssName?.length > 1) ? ' ' + cssName : '');
                 }
                 return '';
             }
@@ -198,17 +201,14 @@
                 let css = dojoAttachPointName + '-item';
 
                 css += appendCssClass(text);
-                if (text !== value) {
+
+                if (value !== text) {
                     css += appendCssClass(value);
                 }
-                if (value !== additional && additional) {
+
+                if (additional !== value && additional !== text) {
                     css += appendCssClass(additional);
                 }
-
-                if (value && typeof (value) === 'string' && value.length > 1) {
-                    css += ' ' + value;
-                }
-
 
                 if (is(text) && (isImageUrl(value) || isImageUrl(additional))) {
                     css += ' systemLibraryCommonEpiserverBoxSelection--item-image';
