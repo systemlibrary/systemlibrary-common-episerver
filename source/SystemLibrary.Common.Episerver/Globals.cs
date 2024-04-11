@@ -1,4 +1,6 @@
-﻿namespace SystemLibrary.Common.Episerver;
+﻿using EPiServer.Core;
+
+namespace SystemLibrary.Common.Episerver;
 
 internal static class Globals
 {
@@ -18,4 +20,5 @@ internal static class Globals
         }
     }
 
+    internal static Type ContentDataType = typeof(ContentData);
 }

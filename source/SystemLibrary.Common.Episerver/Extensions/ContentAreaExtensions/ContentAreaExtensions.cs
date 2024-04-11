@@ -1,13 +1,18 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core;
+using EPiServer.Filters;
+using EPiServer.Security;
 using EPiServer.Web.Mvc.Html;
 
 using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using SystemLibrary.Common.Episerver.Cms;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -35,11 +40,21 @@ public static class ContentAreaExtensions
             && contentArea.FilteredItems?.Count() > 0;
     }
 
+    /// <summary>
+    /// Render all fragments in the 'Content Area' to a string.
+    /// 
+    /// Returns a string with all HTML generated from the 'Content Area' based on current visitors access
+    /// </summary>
     public static string Render(this ContentArea contentArea)
     {
         return RenderStringBuilder(contentArea).ToString();
     }
 
+    /// <summary>
+    /// Render all fragments in the 'Content Area' to a StringBuilder.
+    /// 
+    /// Returns a StringBuilder with all HTML generated from the 'Content Area' based on current visitors access
+    /// </summary>
     public static StringBuilder RenderStringBuilder(this ContentArea contentArea)
     {
         if (contentArea.IsNot()) return new StringBuilder();
@@ -71,7 +86,7 @@ public static class ContentAreaExtensions
 
                     if (media.IsDeleted) continue;
 
-                    if(media.IsPublished())
+                    if (media.IsPublished())
                         rendered.Append(iContentHtmlHelper.PropertyFor(x => media).ToString());
                 }
                 else
@@ -93,5 +108,22 @@ public static class ContentAreaExtensions
         }
 
         return rendered;
+    }
+
+    /// <summary>
+    /// Select ContentData  from 'ContentArea' based on what the current visitor has access to.
+    /// 
+    /// Optional: only return content that is published
+    /// </summary>
+    /// <returns>Returns an IEnumerable of IContentData</returns>
+    public static IEnumerable<T> SelectFiltered<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
+    {
+        if (contentArea.IsNot()) yield break;
+
+        var references = contentArea.FilteredItems.Select(item => item.ContentLink);
+
+        var enumerable = references.SelectFiltered<T>(filterByPublished);
+
+        foreach(var item in enumerable) yield return item;
     }
 }

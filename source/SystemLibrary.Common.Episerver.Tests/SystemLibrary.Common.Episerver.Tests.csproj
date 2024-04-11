@@ -31,8 +31,4 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\SystemLibrary.Common.Episerver\SystemLibrary.Common.Episerver.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ExtensionTests\NewFolder\" />
-	</ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
-﻿using System.Dynamic;
-using System.Reflection;
+﻿using React;
 
-using React;
+using System.Dynamic;
+using System.Reflection;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -44,7 +44,7 @@ partial class TExtensions
         IReactComponent component = ReactEnvironment.GetCurrentOrThrow.CreateComponent(componentFullName, dummy, null, false, true, true);
         component.ContainerClass = renderClientSide ? null : cssClass;
         component.ContainerTag = renderClientSide ? null : tagName;
-
+        component.ContainerId = null;
         _props.SetValue(component, props);
         _serializedProps.SetValue(component, jsonProps);
 

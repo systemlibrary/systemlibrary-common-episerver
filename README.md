@@ -61,9 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.6.0.8
-- ToExpandoObject: Converting BlackListedProperties, werent Lowered in the IList (bug fix).
-- ToExpandoObject: IList<ContentData> hardcoding only a few default property types to avoid the recursion
+Release 7.7.0.1
+- ToExpandoObject/ReactServerSideRendering: BlackListed property names from ContentData, such as "SortIndex", etc, are now not lower-case checked. (Breaking change)
+- ToExpandoObject/ReactServerSideRendering: Checks now if type inherits ContentData, not name specific, to skip CMS properties or not (Breaking change)
+- ContentAreaExtensions: added SelectFiltered
 
 #### Version history
 - View git history of this file if interested

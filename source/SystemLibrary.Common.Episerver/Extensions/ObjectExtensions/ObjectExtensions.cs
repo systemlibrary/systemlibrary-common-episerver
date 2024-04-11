@@ -1,4 +1,13 @@
-﻿using EPiServer;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
+
+using EPiServer;
 using EPiServer.Core;
 using EPiServer.Enterprise.Transfer.Internal;
 using EPiServer.Shell.Web;
@@ -9,32 +18,23 @@ using Microsoft.ClearScript.JavaScript;
 
 using Org.BouncyCastle.Asn1.Cms;
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Xml.Linq;
-
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
-    static Type ContentDataType = typeof(ContentData);
-    static string[] _BlackListedContentPropertiesLowered;
-    static string[] BlackListedContentPropertiesLowered
+
+    static string[] _BlackListedContentProperties;
+    static string[] BlackListedContentProperties
     {
         get
         {
-            if (_BlackListedContentPropertiesLowered == null)
+            if (_BlackListedContentProperties == null)
             {
                 var epiProperties = typeof(BlockData).GetProperties().Concat(typeof(PageData).GetProperties());
 
-                _BlackListedContentPropertiesLowered = epiProperties.Select(p => p.Name)
+                _BlackListedContentProperties = epiProperties.Select(p => p.Name)
                     .Concat(new string[]
                     {
                         "Properties",
@@ -55,11 +55,10 @@ public static class ObjectExtensions
                         "ViewData",
                         "ReferencedPermanentLinkIds"
                     })
-                    .Select(p2 => p2.ToLower())
                     .ToArray();
             }
 
-            return _BlackListedContentPropertiesLowered;
+            return _BlackListedContentProperties;
         }
     }
 
@@ -77,16 +76,23 @@ public static class ObjectExtensions
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
-        var isContentDataModel = type.Name.EndsWithAny("Proxy", "BlockData", "PageData", "MediaData", "ContentData");
+        var isContentDataModel = type.Inherits(Globals.ContentDataType);
 
         foreach (var property in properties)
         {
+            if (!property.CanRead) continue;
+
             var name = property.Name;
 
-            if (isContentDataModel && BlackListedContentPropertiesLowered.Contains(name.ToLower())) continue;
+            if (isContentDataModel && BlackListedContentProperties.Contains(name)) continue;
 
             if (ignorePropertyNames != null)
-                if (ignorePropertyNames.Contains(name)) continue;
+            {
+                if (ignorePropertyNames.Contains(name))
+                {
+                    continue;
+                }
+            }
 
             if (name == "Property") continue;
 
@@ -147,7 +153,7 @@ public static class ObjectExtensions
             else if (value is IList iList)
             {
                 var genericType = iList.GetType().GetFirstGenericType();
-                if (genericType.Inherits(ContentDataType))
+                if (genericType.Inherits(Globals.ContentDataType))
                 {
                     var contentList = new List<IDictionary<string, object>>();
 
@@ -163,9 +169,11 @@ public static class ObjectExtensions
 
                             foreach (var listProp in listProperties)
                             {
+                                if (!listProp.CanRead) continue;
+
                                 var listPropName = listProp.Name;
 
-                                if (BlackListedContentPropertiesLowered.Contains(listPropName.ToLower())) continue;
+                                if (BlackListedContentProperties.Contains(listPropName)) continue;
 
                                 if (ignorePropertyNames != null)
                                     if (ignorePropertyNames.Contains(listPropName)) continue;
