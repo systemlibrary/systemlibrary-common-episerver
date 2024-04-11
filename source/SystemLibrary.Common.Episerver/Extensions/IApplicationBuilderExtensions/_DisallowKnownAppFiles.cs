@@ -19,45 +19,49 @@ partial class IApplicationBuilderExtensions
                 var l = path.Length;
                 if (l > 4 && path[l - 1] != '/' && !path.EndsWith(".js") && !path.EndsWith(".png") && !path.EndsWith(".jpg") && !path.EndsWith(".css"))
                 {
-                    try
+                    if (path.EndsWith(".dll") ||
+                        path.EndsWith(".cs") ||
+                        path.EndsWith(".cshtml") ||
+                        path.EndsWith(".config") ||
+                        path.EndsWith(".DLL") ||
+                        path.EndsWith(".CS") ||
+                        path.EndsWith(".CSHTML") ||
+                        path.EndsWith(".CONFIG") ||
+                        path.EndsWith(".Dll") ||
+                        path.EndsWith(".Cs") ||
+                        path.EndsWith(".Config") ||
+                        path.EndsWith(".Cshtml"))
                     {
-                        if (path.EndsWithAnyCaseInsensitive(".dll", ".cs", ".cshtml", ".config"))
-                        {
-                            return;
-                        }
+                        return;
+                    }
 
-                        if (l > 13)
+                    if (l > 11)
+                    {
+                        if (path[1] == 'a' || path[1] == 'A' ||
+                            path[1] == 'c' || path[1] == 'C')
                         {
-                            if (path[1] == 'a' || path[1] == 'A' ||
-                                path[1] == 'c' || path[1] == 'C')
+                            var p = path.ToLower();
+                            if (p.StartsWith("/appsettings.") ||
+                                    p.StartsWith("/configurations/") ||
+                                    p.StartsWith("/configuration/") ||
+                                    p.StartsWith("/config/") ||
+                                    p.StartsWith("/configs/"))
                             {
-                                var p = path.ToLower();
-                                if (p.StartsWith("/appsettings.") ||
-                                        p.StartsWith("/configurations/") ||
-                                        p.StartsWith("/configuration/") ||
-                                        p.StartsWith("/config/") ||
-                                        p.StartsWith("/configs/"))
-                                {
-                                    return;
-                                }
-                            }
-                        }
-
-                        if (l > 7)
-                        {
-                            if (path[1] == 'b' || path[1] == 'B')
-                            {
-                                var p = path.ToLower();
-                                if (p.StartsWith("/bin/"))
-                                {
-                                    return;
-                                }
+                                return;
                             }
                         }
                     }
-                    catch (Exception ex)
+
+                    if (l > 8)
                     {
-                        Log.Error(ex);
+                        if (path[1] == 'b' || path[1] == 'B')
+                        {
+                            var p = path.ToLower();
+                            if (p.StartsWith("/bin/"))
+                            {
+                                return;
+                            }
+                        }
                     }
                 }
 

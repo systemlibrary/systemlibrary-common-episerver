@@ -8,16 +8,24 @@ partial class IApplicationBuilderExtensions
 {
     static void UseMapEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
-        if (options.MapContentEndpoints)
+        if (options.UseMapContent)
         {
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapContent();
+
+                if (options.UseApiControllers)
+                    endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
+
                 endpoints.MapAreaControllerRoute(
                    name: Globals.AreaCms,
                    areaName: Globals.AreaCms,
                    pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapContent();
+                endpoints.MapAreaControllerRoute(
+                    name: Globals.AreaFontAwesome,
+                    areaName: Globals.AreaFontAwesome,
+                    pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
             });
         }
         else
@@ -25,6 +33,9 @@ partial class IApplicationBuilderExtensions
             // CMS folder in this project
             app.UseEndpoints(endpoints =>
             {
+                if (options.UseApiControllers)
+                    endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
+
                 endpoints.MapAreaControllerRoute(
                     name: Globals.AreaFontAwesome,
                     areaName: Globals.AreaFontAwesome,
@@ -36,5 +47,7 @@ partial class IApplicationBuilderExtensions
                     pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

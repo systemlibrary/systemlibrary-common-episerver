@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 
 using EPiServer.Events.Clients;
 
@@ -50,19 +51,23 @@ public static partial class IApplicationBuilderExtensions
 
         app.ExceptionHandler(options);
 
-        var preserveUseControllers = options.UseControllers;
-        var preserveUseRazor = options.UseRazorPages;
-        if (options.MapContentEndpoints)
-        {
-            options.UseControllers = false;
-            options.UseRazorPages = false;
-        }
+        var useControllers = options.UseControllers;
+        var useRazorPages = options.UseRazorPages;
+        var useApiControllers = options.UseApiControllers;
+
+        // Disable all endpoints in "CommonWeb", OptimizelyCMS is picky in the order
+        // and for "performance" we want to register Content early
+        options.UseControllers = false;
+        options.UseRazorPages = false;
+        options.UseApiControllers = false;
+
         app.UseCommonWebApp(env, options);
 
-        app.UseMapEndpoints(options);
+        options.UseControllers = useControllers;
+        options.UseRazorPages = useRazorPages;
+        options.UseApiControllers = useApiControllers;
 
-        options.UseControllers = preserveUseControllers;
-        options.UseRazorPages = preserveUseRazor;
+        app.UseMapEndpoints(options);
 
         app.AddUseReact(options);
 

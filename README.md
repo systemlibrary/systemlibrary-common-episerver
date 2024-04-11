@@ -61,10 +61,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.7.0.1
-- ToExpandoObject/ReactServerSideRendering: BlackListed property names from ContentData, such as "SortIndex", etc, are now not lower-case checked. (Breaking change)
-- ToExpandoObject/ReactServerSideRendering: Checks now if type inherits ContentData, not name specific, to skip CMS properties or not (Breaking change)
-- ContentAreaExtensions: added SelectFiltered
+Release 7.8.0.1
+- Updated deps
+- Option renamed "MapContentEndpoints" to "UseMapContent" (breaking change)
+- DisallowKnownAppFiles: is case sensitive, saving a ".ToLower()" on every request, but "dLl" is then bypassed, but ".dll" and ".DLL" is still stopped from served
+- Breaking change in 7.6.0.2 bug: broke "ContentControllers", mathing /api/ before content controllers. 7.8.0.1 fixed the order again
 
 #### Version history
 - View git history of this file if interested
