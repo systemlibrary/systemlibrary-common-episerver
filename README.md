@@ -61,9 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.9.0.2
-- ReactServerSideRendering the key generator appends data from url, linkitem and linkitemcollection too
-- ToExpandoObject skips types of Message, ParentLinkReference, ReadOnlySpan<byte>, ReadOnlySpan<char>, System.Type and System.Encoding
+Release 7.9.0.3
+- ToExpandoObject skips types of PropertyUrl and properties starting with UTF8Encoding
 
 #### Version history
 - View git history of this file if interested

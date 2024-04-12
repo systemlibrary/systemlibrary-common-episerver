@@ -71,17 +71,7 @@ public static partial class TExtensions
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
-        string jsonProps;
-        try
-        {
-            jsonProps = PropsToJsonProps(props, camelCaseProps);
-        }
-        catch
-        {
-            Log.Error("Erroring when converting the expando object of the model to a json string. These properties exists:");
-            Log.Error(props);
-            throw;
-        }
+        string jsonProps = PropsToJsonProps(props, camelCaseProps);
 
         var ssrId = GetSSRID(id, model, props, jsonProps);
 
@@ -109,7 +99,7 @@ public static partial class TExtensions
             }
             catch (Exception ex)
             {
-                if(!Globals.IsUnitTesting)
+                if (!Globals.IsUnitTesting)
                     Log.Error("React returning engine too pool failed, continue silently..." + ex.Message);
             }
         }

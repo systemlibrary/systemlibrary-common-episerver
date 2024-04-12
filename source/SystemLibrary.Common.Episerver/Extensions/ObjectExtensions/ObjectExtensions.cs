@@ -29,6 +29,8 @@ public static class ObjectExtensions
     static Type MessageType = typeof(Message);
     static Type ParentLinkReferenceType = typeof(ParentLinkReference);
     static Type CultureInfoType = typeof(CultureInfo);
+    static Type PropertyUrlType = typeof(PropertyUrl);
+    
 
     static string[] _BlackListedContentProperties;
     static string[] BlackListedContentProperties
@@ -101,18 +103,23 @@ public static class ObjectExtensions
 
             if (name == "Property") continue;
 
-            if (property.PropertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia")))
+            var propertyType = property.PropertyType;
+
+            if (propertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia")))
                 continue;
 
             if (name.StartsWith("EPiServer.")) continue;
 
-            if (property.PropertyType == ReadOnlySpanByteType ||
-                property.PropertyType == ReadOnlySpanCharType ||
-                property.PropertyType == MessageType ||
-                property.PropertyType == ParentLinkReferenceType ||
-                property.PropertyType == SystemType || 
-                property.PropertyType == CultureInfoType ||
-                property.PropertyType == EncodingType)
+            if (name.StartsWith("UTF8Encoding")) continue;
+
+            if (propertyType == ReadOnlySpanByteType ||
+                propertyType == ReadOnlySpanCharType ||
+                propertyType == MessageType ||
+                propertyType == ParentLinkReferenceType ||
+                propertyType == SystemType || 
+                propertyType == CultureInfoType ||
+                propertyType == PropertyUrlType ||
+                propertyType == EncodingType)
                 continue;
 
             var value = property.GetValue(model);
