@@ -61,9 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.2
-- ToReactComponentProps internally renders ContentArea and Xhtml as strings, avoiding a loop
-- ToReactComponentProps IList<ContentData> built-in properties on ContentData is now skipped properly
+Release 7.10.0.3
+- ToReactComponentProps IEnumerable<ContentData> built-in properties is also rendered now out of the box
 
 #### Version history
 - View git history of this file if interested

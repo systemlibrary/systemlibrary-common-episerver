@@ -148,84 +148,9 @@ public static class ObjectExtensions
                 var genericType = iList.GetType().GetFirstGenericType();
                 if (genericType.Inherits(Globals.ContentDataType))
                 {
-                    var contentList = new List<IDictionary<string, object>>();
+                    var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
 
-                    var listProperties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
-
-                    if (listProperties?.Length > 0)
-                    {
-                        foreach (var listItem in iList)
-                        {
-                            if (listItem == model) continue;
-
-                            IDictionary<string, object> listItemExpando = new ExpandoObject();
-
-                            foreach (var listProp in listProperties)
-                            {
-                                var listPropName = listProp.Name;
-
-                                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
-                                {
-                                    continue;
-                                }
-
-                                if (forceCamelCase)
-                                {
-                                    if (listPropName.Length <= 1)
-                                        listPropName = listPropName.ToLower();
-                                    else
-                                        listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
-                                }
-
-                                var listPropValue = listProp.GetValue(listItem);
-
-                                if (listPropValue == null)
-                                {
-                                    if (printNullValues)
-                                        listItemExpando.Add(listPropName, listPropValue);
-
-                                    continue;
-                                }
-                                else if (listPropValue is ContentArea listItemContentArea)
-                                {
-                                    listItemExpando.Add(listPropName, listItemContentArea.Render());
-                                }
-                                else if (listPropValue is XhtmlString listItemXHtmlString)
-                                {
-                                    listItemExpando.Add(listPropName, listItemXHtmlString.Render());
-                                }
-                                else if (listPropValue is Url listItemUrl)
-                                    listItemExpando.Add(listPropName, listItemUrl.ToFriendlyUrl());
-
-                                else if (listPropValue is Uri listItemUri)
-                                    listItemExpando.Add(listPropName, listItemUri.ToFriendlyUrl());
-
-                                else if (listPropValue is LinkItem listItemLinkItem)
-                                {
-                                    var attributes = GetAttributesOfLinkItem(listItemLinkItem);
-                                    listItemExpando.Add(listPropName, attributes);
-                                }
-                                else if (listPropValue is IList<LinkItem> listItemLinkItems)
-                                {
-                                    var listItemLinkItemAttributes = listItemLinkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
-
-                                    listItemExpando.Add(listPropName, listItemLinkItemAttributes);
-                                }
-                                else if (listPropValue is ContentReference listItemContentReference)
-                                    listItemExpando.Add(listPropName, listItemContentReference.ToFriendlyUrl());
-
-                                else if (value is Enum en)
-                                    listItemExpando.Add(listPropName, en.ToValue());
-
-                                else if (listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
-                                    listItemExpando.Add(listPropName, listPropValue);
-                            }
-
-                            contentList.Add(listItemExpando);
-                        }
-                    }
-
-                    result.Add(name, contentList);
+                    result.Add(name, listItems);
                 }
                 else
                 {
@@ -233,7 +158,19 @@ public static class ObjectExtensions
                 }
             }
             else if (value is IEnumerable enumerable)
-                result.Add(name, enumerable);
+            {
+                var genericType = enumerable.GetType().GetFirstGenericType();
+                if (genericType.Inherits(Globals.ContentDataType))
+                {
+                    var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
+
+                    result.Add(name, enumerableItems);
+                }
+                else
+                {
+                    result.Add(name, enumerable);
+                }
+            }
             else if (value is Enum en)
                 result.Add(name, en.ToValue());
 
@@ -245,6 +182,85 @@ public static class ObjectExtensions
         }
 
         return result;
+    }
+
+    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable list, Type genericType)
+    {
+        var properties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
+
+        var contentList = new List<IDictionary<string, object>>();
+
+        if (properties == null || properties.Length == 0) return contentList;
+
+        foreach (var content in list)
+        {
+            if (content == model) continue;
+
+            IDictionary<string, object> item = new Dictionary<string, object>();
+
+            foreach (var listProp in properties)
+            {
+                var listPropName = listProp.Name;
+
+                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
+                {
+                    continue;
+                }
+
+                if (forceCamelCase)
+                {
+                    if (listPropName.Length <= 1)
+                        listPropName = listPropName.ToLower();
+                    else
+                        listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
+                }
+
+                var listPropValue = listProp.GetValue(content);
+
+                if (listPropValue == null)
+                {
+                    if (printNullValues)
+                        item.Add(listPropName, listPropValue);
+                }
+                else if (listPropValue is ContentArea listItemContentArea)
+                {
+                    item.Add(listPropName, listItemContentArea.Render());
+                }
+                else if (listPropValue is XhtmlString listItemXHtmlString)
+                {
+                    item.Add(listPropName, listItemXHtmlString.Render());
+                }
+                else if (listPropValue is Url listItemUrl)
+                    item.Add(listPropName, listItemUrl.ToFriendlyUrl());
+
+                else if (listPropValue is Uri listItemUri)
+                    item.Add(listPropName, listItemUri.ToFriendlyUrl());
+
+                else if (listPropValue is LinkItem listItemLinkItem)
+                {
+                    var attributes = GetAttributesOfLinkItem(listItemLinkItem);
+                    item.Add(listPropName, attributes);
+                }
+                else if (listPropValue is IList<LinkItem> listItemLinkItems)
+                {
+                    var listItemLinkItemAttributes = listItemLinkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
+
+                    item.Add(listPropName, listItemLinkItemAttributes);
+                }
+                else if (listPropValue is ContentReference listItemContentReference)
+                    item.Add(listPropName, listItemContentReference.ToFriendlyUrl());
+
+                else if (value is Enum en)
+                    item.Add(listPropName, en.ToValue());
+
+                else if (listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
+                    item.Add(listPropName, listPropValue);
+            }
+
+            contentList.Add(item);
+        }
+
+        return contentList;
     }
 
     static bool IsPropertyElligibleAsProp(bool isContentDataModel, PropertyInfo property, string name, string[] ignorePropertyNames)

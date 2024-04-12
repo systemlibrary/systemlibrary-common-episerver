@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -82,6 +84,33 @@ public class ToReactComponentPropsTests
         {
             Assert.IsTrue(ex.Message.Contains("ReactJS.NET"));
         }
+    }
+
+    [TestMethod]
+    public void Render_Simple_Model_With_AdditionalEnumerableItems_Success()
+    {
+        var temp = new TestBlock();
+
+        temp.InnerBlocks = new List<NestedTestBlock>() {
+            new NestedTestBlock
+            {
+                 Age = 12345,
+                 InnerTitle = "EnumerableTitle"
+            }
+        };
+
+        var result = temp.ReactServerSideRender(new {
+                enumerableItems = temp.InnerBlocks.Where(x => x !=null)
+        },
+        renderClientOnly: true);
+
+        var html = result.ToString();
+
+        // Check that IList from Model was printed correctly:
+        Assert.IsTrue(html.Contains("{&quot;InnerBlocks&quot;:[{&quot;InnerTitle&quot;:&quot;EnumerableTitle&quot;,&quot;InnerInt&quot;:0,&quot;InnerBool&quot;:false,&quot;InnerXhtmlString&quot;:null,&quot;InnerRef&quot;:null,&quot;InnerUrl&quot;:null,&quot;InnerLinkItem&quot;:null}],&quot;Title&quot;:null,&quot;Flag&quot;:false,&quot;Year&quot;:0,&quot;"));
+
+        // Check that the additional prop, as IEnumerable was printed correctly:
+        Assert.IsTrue(html.Contains("enumerableItems&quot;:[{&quot;InnerTitle&quot;:&quot;EnumerableTitle&quot;,&quot;InnerInt&quot;:0,&quot;InnerBool&quot;:false,&quot;InnerXhtmlString&quot;:null,&quot;InnerRef&quot;:null,&quot;InnerUrl&quot;:null,&quot;InnerLinkItem&quot;:null}]}"));
     }
 
     [TestMethod]
