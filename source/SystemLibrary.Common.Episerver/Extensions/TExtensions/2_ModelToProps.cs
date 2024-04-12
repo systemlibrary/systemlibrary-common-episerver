@@ -29,19 +29,6 @@ partial class TExtensions
 
         var props = model.ToReactPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
-        var propCount = props.Count;
-
-        for (int i = 0; i < propCount; i++)
-        {
-            var property = props.ElementAt(i);
-
-            if (property.Value == null)
-                continue;
-
-            else if (property.Value is StringBuilder sb)
-                props[property.Key] = sb?.ToString();
-        }
-
         if (additionalProps != null)
         {
             IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase);

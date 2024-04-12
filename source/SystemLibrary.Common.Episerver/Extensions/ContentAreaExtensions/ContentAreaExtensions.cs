@@ -57,7 +57,7 @@ public static class ContentAreaExtensions
     /// </summary>
     public static StringBuilder RenderStringBuilder(this ContentArea contentArea)
     {
-        if (contentArea.IsNot()) return new StringBuilder();
+        if (contentArea.IsNot()) return new StringBuilder("");
 
         var filteredItems = contentArea.FilteredItems;
 

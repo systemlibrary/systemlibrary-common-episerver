@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.1
-- ToExpandoObject renamed to ToReactComponentProps (breaking change)
-- ToReactComponentProps returns a IDictionary (no longer ExpandoObject)
+Release 7.10.0.2
+- ToReactComponentProps internally renders ContentArea and Xhtml as strings, avoiding a loop
+- ToReactComponentProps IList<ContentData> built-in properties on ContentData is now skipped properly
 
 #### Version history
 - View git history of this file if interested

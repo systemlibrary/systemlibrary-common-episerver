@@ -15,22 +15,23 @@ using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
 
+using Microsoft.CodeAnalysis.Operations;
+
 using SystemLibrary.Common.Episerver.Cms.Properties;
 using SystemLibrary.Common.Net.Extensions;
+
+using static Azure.Core.HttpHeader;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
     static Type SystemType = typeof(Type);
-    static Type EncodingType = typeof(Encoding);
-    static Type ReadOnlySpanByteType = typeof(ReadOnlySpan<byte>);
-    static Type ReadOnlySpanCharType = typeof(ReadOnlySpan<char>);
     static Type MessageType = typeof(Message);
     static Type ParentLinkReferenceType = typeof(ParentLinkReference);
     static Type CultureInfoType = typeof(CultureInfo);
     static Type PropertyUrlType = typeof(PropertyUrl);
-    
+
 
     static string[] _BlackListedContentProperties;
     static string[] BlackListedContentProperties
@@ -87,37 +88,12 @@ public static class ObjectExtensions
 
         foreach (var property in properties)
         {
-            if (!property.CanRead) continue;
-
             var name = property.Name;
 
-            if (isContentDataModel && BlackListedContentProperties.Contains(name)) continue;
-
-            if (ignorePropertyNames != null)
+            if (!IsPropertyElligibleAsProp(isContentDataModel, property, name, ignorePropertyNames))
             {
-                if (ignorePropertyNames.Contains(name))
-                {
-                    continue;
-                }
+                continue;
             }
-
-            if (name == "Property") continue;
-
-            var propertyType = property.PropertyType;
-
-            if (propertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia")))
-                continue;
-
-            if (name.StartsWith("EPiServer.")) continue;
-
-            if (propertyType == ReadOnlySpanByteType ||
-                propertyType == MessageType ||
-                propertyType == ParentLinkReferenceType ||
-                propertyType == SystemType || 
-                propertyType == CultureInfoType ||
-                propertyType == PropertyUrlType ||
-                propertyType == EncodingType)
-                continue;
 
             var value = property.GetValue(model);
 
@@ -137,12 +113,12 @@ public static class ObjectExtensions
 
             else if (value is ContentArea contentArea)
             {
-                result.Add(name, contentArea.RenderStringBuilder());
+                result.Add(name, contentArea.Render());
             }
 
             else if (value is XhtmlString xHtmlString)
             {
-                result.Add(name, xHtmlString.RenderStringBuilder());
+                result.Add(name, xHtmlString.Render());
             }
 
             else if (value is Url url)
@@ -186,21 +162,12 @@ public static class ObjectExtensions
 
                             foreach (var listProp in listProperties)
                             {
-                                if (!listProp.CanRead) continue;
-
                                 var listPropName = listProp.Name;
 
-                                if (BlackListedContentProperties.Contains(listPropName)) continue;
-
-                                if (ignorePropertyNames != null)
-                                    if (ignorePropertyNames.Contains(listPropName)) continue;
-
-                                if (listPropName == "Property") continue;
-
-                                if (listProp.PropertyType.IsClass && (listPropName.StartsWith("CurrentBlock") || listPropName.StartsWith("CurrentPage") || listPropName.StartsWith("CurrentMedia")))
+                                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
+                                {
                                     continue;
-
-                                if (listPropName.StartsWith("EPiServer.")) continue;
+                                }
 
                                 if (forceCamelCase)
                                 {
@@ -221,11 +188,11 @@ public static class ObjectExtensions
                                 }
                                 else if (listPropValue is ContentArea listItemContentArea)
                                 {
-                                    listItemExpando.Add(listPropName, listItemContentArea.RenderStringBuilder());
+                                    listItemExpando.Add(listPropName, listItemContentArea.Render());
                                 }
                                 else if (listPropValue is XhtmlString listItemXHtmlString)
                                 {
-                                    listItemExpando.Add(listPropName, listItemXHtmlString.RenderStringBuilder());
+                                    listItemExpando.Add(listPropName, listItemXHtmlString.Render());
                                 }
                                 else if (listPropValue is Url listItemUrl)
                                     listItemExpando.Add(listPropName, listItemUrl.ToFriendlyUrl());
@@ -278,6 +245,38 @@ public static class ObjectExtensions
         }
 
         return result;
+    }
+
+    static bool IsPropertyElligibleAsProp(bool isContentDataModel, PropertyInfo property, string name, string[] ignorePropertyNames)
+    {
+        if (!property.CanRead) return false;
+
+        if (isContentDataModel && BlackListedContentProperties.Contains(name)) return false;
+
+        if (ignorePropertyNames != null)
+        {
+            if (ignorePropertyNames.Contains(name))
+            {
+                return false;
+            }
+        }
+
+        if (name == "Property") return false;
+
+        var propertyType = property.PropertyType;
+
+        if (propertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia"))) return false;
+
+        if (name.StartsWith("EPiServer.")) return false;
+
+        if (propertyType == MessageType ||
+            propertyType == ParentLinkReferenceType ||
+            propertyType == SystemType ||
+            propertyType == CultureInfoType ||
+            propertyType == PropertyUrlType)
+            return false;
+
+        return true;
     }
 
     static object GetAttributesOfLinkItem(LinkItem linkItem)
