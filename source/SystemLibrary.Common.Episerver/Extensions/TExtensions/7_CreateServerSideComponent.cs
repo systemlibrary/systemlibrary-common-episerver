@@ -1,7 +1,7 @@
-﻿using React;
-
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Reflection;
+
+using React;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -30,7 +30,7 @@ partial class TExtensions
         }
     }
 
-    static IReactComponent CreateServerSideComponent(ExpandoObject props, string jsonProps, string componentFullName, string tagName, string cssClass, bool renderServerSide, bool renderClientSide)
+    static IReactComponent CreateServerSideComponent(IDictionary<string, object> props, string jsonProps, string componentFullName, string tagName, string cssClass, bool renderServerSide, bool renderClientSide)
     {
         if (!renderServerSide) return null;
 

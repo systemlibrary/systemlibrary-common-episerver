@@ -15,18 +15,18 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static string GetSSRID(string id, object model, ExpandoObject props, string jsonProps)
+    static string GetSSRID(string id, object model, IDictionary<string, object> props, string jsonProps)
     {
         // NOTE: We append "k-" as this Key is used for "data-rcssr-id"
         if (id.Is())
             return "k-" + id + "-" + jsonProps.Length;
 
         if (model is IContent icontent)
-            return "k-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length + "-" + props.Count();
+            return "k-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
 
         var contentData = model as ContentData;
 
-        var ssrId = new StringBuilder("k-" + props.Count() + "-" + jsonProps.Length);
+        var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
 
         if (jsonProps.Length > 8)
             ssrId.Append(jsonProps[3] + "" + jsonProps[4]);
@@ -47,7 +47,7 @@ partial class TExtensions
                     .Replace("`", ""));
         }
 
-        var propCount = props.Count();
+        var propCount = props.Count;
 
         for (int i = 0; i < propCount; i++)
         {

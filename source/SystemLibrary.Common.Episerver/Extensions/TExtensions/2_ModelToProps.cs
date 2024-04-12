@@ -1,14 +1,14 @@
-﻿using Org.BouncyCastle.Bcpg.OpenPgp;
-
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Text;
+
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static ExpandoObject ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
+    static IDictionary<string, object> ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
     {
         List<string> ignorePropertyNames = null;
 
@@ -27,9 +27,9 @@ partial class TExtensions
             }
         }
 
-        IDictionary<string, object> props = model.ToExpandoObject(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
+        var props = model.ToReactPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
-        var propCount = props.Count();
+        var propCount = props.Count;
 
         for (int i = 0; i < propCount; i++)
         {
@@ -42,14 +42,17 @@ partial class TExtensions
                 props[property.Key] = sb?.ToString();
         }
 
-        IDictionary<string, object> additional = additionalProps.ToExpandoObject(forceCamelCase);
-
-        if (additional != null && additional.Count > 0)
+        if (additionalProps != null)
         {
-            foreach (var kv in additional)
-                props.Add(kv.Key, kv.Value);
+            IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase);
+
+            if (additional != null && additional.Count > 0)
+            {
+                foreach (var kv in additional)
+                    props.Add(kv.Key, kv.Value);
+            }
         }
 
-        return (ExpandoObject)props;
+        return props;
     }
 }

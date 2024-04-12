@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.9.0.3
-- ToExpandoObject skips types of PropertyUrl and properties starting with UTF8Encoding
+Release 7.10.0.1
+- ToExpandoObject renamed to ToReactComponentProps (breaking change)
+- ToReactComponentProps returns a IDictionary (no longer ExpandoObject)
 
 #### Version history
 - View git history of this file if interested

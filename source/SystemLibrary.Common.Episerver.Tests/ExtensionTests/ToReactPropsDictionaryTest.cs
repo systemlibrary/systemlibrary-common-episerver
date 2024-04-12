@@ -13,13 +13,13 @@ using SystemLibrary.Common.Net.Extensions;
 namespace SystemLibrary.Common.Episerver.Tests;
 
 [TestClass]
-public class ToExpandoObjectTests
+public class ToReactPropsDictionaryTest
 {
     [TestMethod]
     public void Convert_Null_To_Expando_Success()
     {
         TestBlock model = null;
-        IDictionary<string, object> props = model.ToExpandoObject();
+        IDictionary<string, object> props = model.ToReactPropsDictionary();
         Assert.IsTrue(props.Count == 0);
     }
 
@@ -27,7 +27,7 @@ public class ToExpandoObjectTests
     public void Convert_Simple_Poco_Returns_Properties_Success()
     {
         var model = new TestBlock();
-        IDictionary<string, object> props = model.ToExpandoObject();
+        IDictionary<string, object> props = model.ToReactPropsDictionary();
         Assert.IsTrue(props.Count == 4, "Invalid count " + props.Count + ", did it include ignored properties?");
     }
 
@@ -43,7 +43,7 @@ public class ToExpandoObjectTests
         model.SortIndex = 100;
         model.ShouldBeImplicitlyExported = "Ignored";
 
-        IDictionary<string, object> props = model.ToExpandoObject();
+        IDictionary<string, object> props = model.ToReactPropsDictionary();
 
         // Skipped properties not returned hence 4
         Assert.IsTrue(props.Count == 4, "Invalid count, included ignored properties? Youve added new ones? " + props.Count);
@@ -58,7 +58,7 @@ public class ToExpandoObjectTests
         model.C = 20000;
         model.E = DateTimeOffset.Now;
 
-        IDictionary<string, object> props = model.ToExpandoObject();
+        IDictionary<string, object> props = model.ToReactPropsDictionary();
 
         Assert.IsTrue(props.Count == 3);
         Assert.IsTrue(props["B"] == "Hello world");
@@ -108,7 +108,7 @@ public class ToExpandoObjectTests
             }
         };
 
-        IDictionary<string, object> props = model.ToExpandoObject();
+        IDictionary<string, object> props = model.ToReactPropsDictionary();
 
         var json = props.Json();
 
@@ -133,7 +133,7 @@ public class ToExpandoObjectTests
 
         try
         {
-            var exp1 = model.ToExpandoObject();
+            var exp1 = model.ToReactPropsDictionary();
             Assert.IsTrue(false, "Expando should throw on list");
         }
         catch

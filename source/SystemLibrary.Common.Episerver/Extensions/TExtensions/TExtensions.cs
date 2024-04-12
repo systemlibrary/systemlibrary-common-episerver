@@ -71,7 +71,7 @@ public static partial class TExtensions
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
-        string jsonProps = PropsToJsonProps(props, camelCaseProps);
+        var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
         var ssrId = GetSSRID(id, model, props, jsonProps);
 

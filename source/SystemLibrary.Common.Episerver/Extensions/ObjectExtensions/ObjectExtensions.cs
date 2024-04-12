@@ -69,17 +69,17 @@ public static class ObjectExtensions
         }
     }
 
-    public static ExpandoObject ToExpandoObject(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
+    public static IDictionary<string, object> ToReactPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
     {
-        if (model == null) return new ExpandoObject();
+        if (model == null) return new Dictionary<string, object>();
 
-        IDictionary<string, object> expando = new ExpandoObject();
+        IDictionary<string, object> result = new Dictionary<string, object>();
 
         var type = model.GetType();
 
         if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties in your react component");
 
-        var properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.GetField);
+        var properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
@@ -110,10 +110,7 @@ public static class ObjectExtensions
 
             if (name.StartsWith("EPiServer.")) continue;
 
-            if (name.StartsWith("UTF8Encoding")) continue;
-
             if (propertyType == ReadOnlySpanByteType ||
-                propertyType == ReadOnlySpanCharType ||
                 propertyType == MessageType ||
                 propertyType == ParentLinkReferenceType ||
                 propertyType == SystemType || 
@@ -135,41 +132,40 @@ public static class ObjectExtensions
             if (value == null)
             {
                 if (printNullValues)
-                    expando.Add(name, null);
+                    result.Add(name, null);
             }
 
             else if (value is ContentArea contentArea)
             {
-                expando.Add(name, contentArea.RenderStringBuilder());
+                result.Add(name, contentArea.RenderStringBuilder());
             }
 
             else if (value is XhtmlString xHtmlString)
             {
-                expando.Add(name, xHtmlString.RenderStringBuilder());
+                result.Add(name, xHtmlString.RenderStringBuilder());
             }
 
             else if (value is Url url)
-                expando.Add(name, url.ToFriendlyUrl());
+                result.Add(name, url.ToFriendlyUrl());
 
             else if (value is Uri uri)
-                expando.Add(name, uri.ToFriendlyUrl());
+                result.Add(name, uri.ToFriendlyUrl());
 
             else if (value is LinkItem linkItem)
             {
-                var attributes = GetAttributesOfLinkItem(linkItem);
-                expando.Add(name, attributes);
+                result.Add(name, GetAttributesOfLinkItem(linkItem));
             }
             else if (value is IList<LinkItem> linkItems)
             {
                 var linkItemAttributes = linkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
 
-                expando.Add(name, linkItemAttributes);
+                result.Add(name, linkItemAttributes);
             }
             else if (value is ContentReference contentReference)
-                expando.Add(name, contentReference.ToFriendlyUrl());
+                result.Add(name, contentReference.ToFriendlyUrl());
 
             else if (value is PageData page)
-                expando.Add(name, page.ToFriendlyUrl());
+                result.Add(name, page.ToFriendlyUrl());
 
             else if (value is IList iList)
             {
@@ -262,26 +258,26 @@ public static class ObjectExtensions
                         }
                     }
 
-                    expando.Add(name, contentList);
+                    result.Add(name, contentList);
                 }
                 else
                 {
-                    expando.Add(name, iList);
+                    result.Add(name, iList);
                 }
             }
             else if (value is IEnumerable enumerable)
-                expando.Add(name, enumerable);
+                result.Add(name, enumerable);
             else if (value is Enum en)
-                expando.Add(name, en.ToValue());
+                result.Add(name, en.ToValue());
 
             else if (value is MediaData mediaData)
-                expando.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
+                result.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
 
             else
-                expando.Add(name, value);
+                result.Add(name, value);
         }
 
-        return (ExpandoObject)expando;
+        return result;
     }
 
     static object GetAttributesOfLinkItem(LinkItem linkItem)
