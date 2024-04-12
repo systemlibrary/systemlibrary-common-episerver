@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,16 +15,20 @@ using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
 
-using Microsoft.ClearScript.JavaScript;
-
-using Org.BouncyCastle.Asn1.Cms;
-
+using SystemLibrary.Common.Episerver.Cms.Properties;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
+    static Type SystemType = typeof(Type);
+    static Type EncodingType = typeof(Encoding);
+    static Type ReadOnlySpanByteType = typeof(ReadOnlySpan<byte>);
+    static Type ReadOnlySpanCharType = typeof(ReadOnlySpan<char>);
+    static Type MessageType = typeof(Message);
+    static Type ParentLinkReferenceType = typeof(ParentLinkReference);
+    static Type CultureInfoType = typeof(CultureInfo);
 
     static string[] _BlackListedContentProperties;
     static string[] BlackListedContentProperties
@@ -100,6 +105,15 @@ public static class ObjectExtensions
                 continue;
 
             if (name.StartsWith("EPiServer.")) continue;
+
+            if (property.PropertyType == ReadOnlySpanByteType ||
+                property.PropertyType == ReadOnlySpanCharType ||
+                property.PropertyType == MessageType ||
+                property.PropertyType == ParentLinkReferenceType ||
+                property.PropertyType == SystemType || 
+                property.PropertyType == CultureInfoType ||
+                property.PropertyType == EncodingType)
+                continue;
 
             var value = property.GetValue(model);
 
@@ -192,7 +206,7 @@ public static class ObjectExtensions
                                     else
                                         listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
                                 }
-                                
+
                                 var listPropValue = listProp.GetValue(listItem);
 
                                 if (listPropValue == null)
@@ -233,10 +247,10 @@ public static class ObjectExtensions
                                 else if (value is Enum en)
                                     listItemExpando.Add(listPropName, en.ToValue());
 
-                                else if(listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
+                                else if (listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
                                     listItemExpando.Add(listPropName, listPropValue);
                             }
-                            
+
                             contentList.Add(listItemExpando);
                         }
                     }

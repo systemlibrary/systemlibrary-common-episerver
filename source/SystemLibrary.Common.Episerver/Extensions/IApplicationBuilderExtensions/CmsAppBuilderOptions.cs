@@ -8,7 +8,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
 {
     public bool UseExceptionHandler = true;
-    public bool UseMapContent = true;
+    public bool UseMapContentAndControllers = true;
     public string CmsLoginPath = null;
     public Func<string, string> DefaultComponentPathPredicate = null;
 

@@ -8,11 +8,13 @@ partial class IApplicationBuilderExtensions
 {
     static void UseMapEndpoints(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
-        if (options.UseMapContent)
+        if (options.UseMapContentAndControllers)
         {
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapContent();
+
+                endpoints.MapDefaultControllerRoute();
 
                 if (options.UseApiControllers)
                     endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
@@ -33,9 +35,6 @@ partial class IApplicationBuilderExtensions
             // CMS folder in this project
             app.UseEndpoints(endpoints =>
             {
-                if (options.UseApiControllers)
-                    endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
-
                 endpoints.MapAreaControllerRoute(
                     name: Globals.AreaFontAwesome,
                     areaName: Globals.AreaFontAwesome,

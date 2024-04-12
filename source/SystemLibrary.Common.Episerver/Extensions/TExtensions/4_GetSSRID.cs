@@ -6,7 +6,9 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.Core.Transfer.Internal;
 using EPiServer.Data;
+using EPiServer.SpecializedProperties;
 
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -100,10 +102,16 @@ partial class TExtensions
                 ssrId.Append("cr" + cr?.ID + +cr?.WorkID);
 
             else if (property.Value is Url u)
-                ssrId.Append("u" + u?.ToString()?.Length);
+                ssrId.Append("u" + u?.OriginalString?.Length);
 
             else if (property.Value is ContentArea ca)
                 ssrId.Append("ca" + ca?.Count);
+
+            else if (property.Value is LinkItemCollection lic)
+                ssrId.Append("c" + lic?.Count);
+
+            else if (property.Value is LinkItem li)
+                ssrId.Append("li" + li.Href?.Length + li.Text?.Length);
 
             else if (property.Value is IEnumerable en)
                 ssrId.Append("en" + property.Key[0]);
