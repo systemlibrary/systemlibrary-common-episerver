@@ -21,7 +21,9 @@ partial class TExtensions
 {
     static void AppendHiddenInput(int level, string ssrId, string componentFullName, string jsonProps, ConcurrentDictionary<string, bool> ssrIdStore, StringBuilder root)
     {
-        if (level == -999) return;
+        if (ssrId == null) return;
+
+        if (level == -9) return;
 
         var storage = HttpContextInstance.Current?.Items;
 

@@ -23,9 +23,9 @@ partial class TExtensions
         return temp.ToLower() + "-container";
     }
 
-    static StringBuilder GetRootElementStart(string componentFullName, string id, string cssClass, string tagName, bool renderClientSide, string ssrId)
+    static StringBuilder GetRootElementStart(string componentFullName, string id, string cssClass, string tagName, string ssrId)
     {
-        if (tagName.Is())
+        if (tagName != null)
         {
             StringBuilder root;
 
@@ -44,7 +44,7 @@ partial class TExtensions
             else if (cssClass != null)
                 root.Append($" class=\"{cssClass}\"");
 
-            if (renderClientSide)
+            if (ssrId != null)
             {
                 root.Append(" data-rcssr-id=\"" + ssrId + "\"");
             }

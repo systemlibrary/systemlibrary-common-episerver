@@ -26,7 +26,7 @@ partial class IApplicationBuilderExtensions
                 config.SetReuseJavaScriptEngines(false);
                 config.SetUseDebugReact(false);
                 config.SetMaxUsagesPerEngine(2);
-                config.SetAllowJavaScriptPrecompilation(true);
+                config.SetAllowJavaScriptPrecompilation(false);
             }
             else
             {

@@ -60,24 +60,24 @@ public static partial class TExtensions
     /// </summary>
     public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool printNullValues = true) where T : class
     {
-        Validate(model, additionalProps, tagName, renderClientOnly, renderServerOnly);
+        Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);
 
         var renderServerSide = !renderClientOnly || renderServerOnly;
         var renderClientSide = renderClientOnly || !renderServerOnly;
 
         var level = IncrementLevel(renderClientSide);
 
-        if (Globals.IsUnitTesting) level = 1;
+        if (Globals.IsUnitTesting && renderClientSide) level = 1;
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
         var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
-        var ssrId = GetSSRID(id, model, props, jsonProps);
+        var ssrId = GetSSRID(renderClientSide, id, model, props, jsonProps);
 
         componentFullName = GetComponentFullName(model, componentFullName);
 
-        var root = GetRootElementStart(componentFullName, id, cssClass, tagName, renderClientSide, ssrId);
+        var root = GetRootElementStart(componentFullName, id, cssClass, tagName, ssrId);
 
         try
         {
@@ -110,7 +110,7 @@ public static partial class TExtensions
 
         level = DecrementLevel(renderClientSide);
 
-        if (Globals.IsUnitTesting) level = 0;
+        if (Globals.IsUnitTesting && renderClientSide) level = 0;
 
         AppendHiddenInput(level, ssrId, componentFullName, jsonProps, ssrIdStore, root);
 

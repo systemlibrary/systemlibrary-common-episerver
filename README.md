@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.3
-- ToReactComponentProps IEnumerable<ContentData> built-in properties is also rendered now out of the box
+Release 7.10.0.4
+- Local environment now does not precompile js files, so loaded on every request
+- ReactServerSide bug: render server only, does not create 'ssr id' nor output 'hidden'
 
 #### Version history
 - View git history of this file if interested

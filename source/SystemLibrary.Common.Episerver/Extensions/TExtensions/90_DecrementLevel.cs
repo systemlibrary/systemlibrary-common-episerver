@@ -23,7 +23,7 @@ partial class TExtensions
     {
         var storage = HttpContextInstance.Current?.Items;
 
-        if (storage == null || !renderClientSide) return -999;
+        if (storage == null || !renderClientSide) return -9;
 
         var dictionary = storage[SysLibStorageLevel] as ConcurrentDictionary<string, int>;
 

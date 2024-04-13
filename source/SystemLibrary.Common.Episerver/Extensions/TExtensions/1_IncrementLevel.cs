@@ -23,9 +23,11 @@ partial class TExtensions
 
     static int IncrementLevel(bool renderClientSide)
     {
+        if (!renderClientSide) return -9;
+
         var storage = HttpContextInstance.Current?.Items;
 
-        if (storage == null || !renderClientSide) return -999;
+        if (storage == null) return -9;
 
         var dictionary = storage[SysLibStorageLevel] as ConcurrentDictionary<string, int>;
 

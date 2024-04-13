@@ -7,12 +7,18 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static void Validate(object propsModel, object additionalProps = null, string tagName = "div", bool renderClientOnly = false, bool renderServerOnly = false)
+    static void Validate(object propsModel, object additionalProps, string tagName, string cssClass, bool renderClientOnly, bool renderServerOnly)
     {
         var type = propsModel.GetOriginalType();
 
         if (!type.IsClass)
             throw new Exception("'viewModel/model' passed must be a class with C# properties, where they will be passed as props into your react component");
+
+        if (tagName == null && renderServerOnly == false)
+            throw new Exception("TagName can only be null if the component is only server side rendered, renderServerOnly is set to false");
+
+        if (renderServerOnly && tagName == null && cssClass != null)
+            throw new Exception("ServerSideOnly is set, without a tag, you cannot add a cssClass. Remove the param cssClass and rather add it to your react code");
 
         if (type.IsListOrArray())
             throw new Exception("'viewModel/model' passed cannot be an array or a list. It must be a 'viewModel' or 'model' with properties. Surround the array/list with a class is one way to fix this.");
@@ -20,7 +26,7 @@ partial class TExtensions
         if (tagName?.StartsWith("<") == true)
             throw new Exception("'tagName' should not include < > characters");
 
-        if (tagName.IsNot() && renderClientOnly)
+        if (tagName == null && renderClientOnly)
             throw new Exception("'tagName' must be included when using 'renderClientOnly', as it is used to keep track of the initial properties. Please set it, for instance: 'div'");
 
         if (tagName != null && tagName != "div" && tagName != "article" && tagName != "section" && tagName != "header" && tagName != "footer")

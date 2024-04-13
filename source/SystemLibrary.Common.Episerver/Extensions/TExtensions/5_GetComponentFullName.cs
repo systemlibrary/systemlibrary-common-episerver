@@ -11,7 +11,7 @@ partial class TExtensions
 {
     static string GetComponentFullName(object model, string componentFullName)
     {
-        if(componentFullName.Is()) return componentFullName;
+        if(componentFullName != null) return componentFullName;
 
         var type = model.GetOriginalType();
 

@@ -15,8 +15,10 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static string GetSSRID(string id, object model, IDictionary<string, object> props, string jsonProps)
+    static string GetSSRID(bool renderClientSide, string id, object model, IDictionary<string, object> props, string jsonProps)
     {
+        if (!renderClientSide) return null;
+
         // NOTE: We append "k-" as this Key is used for "data-rcssr-id"
         if (id.Is())
             return "k-" + id + "-" + jsonProps.Length;

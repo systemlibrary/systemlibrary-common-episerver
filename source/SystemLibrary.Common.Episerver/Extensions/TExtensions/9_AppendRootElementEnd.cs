@@ -18,7 +18,7 @@ partial class TExtensions
 {
     static void AppendRootElementEnd(StringBuilder root, string tagName)
     {
-        if (tagName.Is())
+        if (tagName != null)
             root.Append("</" + tagName + ">");
     }
 }
