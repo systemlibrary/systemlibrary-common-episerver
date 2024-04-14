@@ -1,15 +1,9 @@
 ﻿using System.Collections;
-using System.Dynamic;
 using System.Text;
 
 using EPiServer;
 using EPiServer.Core;
-using EPiServer.Core.Transfer.Internal;
-using EPiServer.Data;
 using EPiServer.SpecializedProperties;
-
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -31,7 +25,7 @@ partial class TExtensions
         var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
 
         if (jsonProps.Length > 8)
-            ssrId.Append(jsonProps[3] + "" + jsonProps[4]);
+            ssrId.Append(GetValidChar(jsonProps[3]) + "" + GetValidChar(jsonProps[4]));
 
         if (contentData != null)
         {
@@ -42,9 +36,10 @@ partial class TExtensions
             ssrId.Append(model.GetType()?.Name
                     .Replace("BlockViewModel", "BVM")
                     .Replace("ViewModel", "VM")
-                    .Replace("Model", "MM")
-                    .Replace("DynamicProxy", "DPX")
-                    .Replace("AnonymousType", "ATY")
+                    .Replace("Component", "C")
+                    .Replace("Model", "M")
+                    .Replace("DynamicProxy", "DP")
+                    .Replace("AnonymousType", "AT")
                     .Replace("<>", "")
                     .Replace("`", ""));
         }
@@ -53,7 +48,7 @@ partial class TExtensions
 
         for (int i = 0; i < propCount; i++)
         {
-            if (ssrId.Length > 128) break;
+            if (ssrId.Length > 92) break;
 
             var property = props.ElementAt(i);
 
@@ -69,11 +64,11 @@ partial class TExtensions
                 {
                     if (sb?.Length > 5)
                     {
-                        ssrId.Append("s" + sb.Length + "" + sb[3] + "" + sb[4] + "" + sb[sb.Length - 5]);
+                        ssrId.Append(GetValidString(sb.Length, sb[3], sb[4], sb[sb.Length - 5]));
                     }
                     else if (sb.Length > 1)
                     {
-                        ssrId.Append("s" + sb.Length + "" + sb[0] + "" + sb[1]);
+                        ssrId.Append(GetValidString(sb.Length, sb[0], sb[1], sb[sb.Length - 2]));
                     }
                     else
                         ssrId.Append("s");
@@ -84,11 +79,11 @@ partial class TExtensions
             {
                 if (txt?.Length > 5)
                 {
-                    ssrId.Append("t" + txt.Length + "" + txt[3] + "" + txt[4] + "" + txt[txt.Length - 5]);
+                    ssrId.Append(GetValidString(txt.Length, txt[3], txt[4], txt[txt.Length - 5]));
                 }
                 else if (txt.Length > 1)
                 {
-                    ssrId.Append("t" + txt?.Length + "" + txt[0] + "" + txt[1]);
+                    ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[txt.Length - 2]));
                 }
                 else
                     ssrId.Append("t");
@@ -101,25 +96,25 @@ partial class TExtensions
                 ssrId.Append("b" + (b ? "A" : "B"));
 
             else if (property.Value is ContentReference cr)
-                ssrId.Append("cr" + cr?.ID + +cr?.WorkID);
+                ssrId.Append("c" + cr?.ID + +cr?.WorkID);
 
             else if (property.Value is Url u)
                 ssrId.Append("u" + u?.OriginalString?.Length);
 
             else if (property.Value is ContentArea ca)
-                ssrId.Append("ca" + ca?.Count);
+                ssrId.Append("CA" + ca?.Count);
 
             else if (property.Value is LinkItemCollection lic)
-                ssrId.Append("c" + lic?.Count);
+                ssrId.Append("LC" + lic?.Count);
 
             else if (property.Value is LinkItem li)
-                ssrId.Append("li" + li.Href?.Length + li.Text?.Length);
+                ssrId.Append("LI" + li.Href?.Length + li.Text?.Length);
 
             else if (property.Value is IEnumerable en)
                 ssrId.Append("en" + property.Key[0]);
 
             else if (property.Value is DateTime dt)
-                ssrId.Append("dt" + dt.Month + "-" + dt.Day + "-" + dt.Hour);
+                ssrId.Append("DT" + dt.Day + "-" + dt.Hour);
 
             else
             {
@@ -127,21 +122,28 @@ partial class TExtensions
             }
         }
 
-        return ssrId
-            .Replace("<", "_")
-            .Replace("&", "W")
-            .Replace(">", "_")
-            .Replace("`", "")
-            .Replace("'", "")
-            .Replace("\n", "")
-            .Replace(" ", "z")
-            .Replace("/", "--")
-            .Replace("\\", "__")
-            .Replace(":", "Q")
-            .Replace(";", "Z")
-            .Replace(";", "_")
-            .Replace(Environment.NewLine, "")
-            .Replace("\"", ".")
-            .ToString();
+        return ssrId.ToString();
+    }
+
+    static string GetValidString(int l, char c1, char c2, char c3)
+    {
+        return l + "-" + GetValidChar(c1) + "" + GetValidChar(c2) + "" + GetValidChar(c3);
+    }
+
+    static char GetValidChar(char c)
+    {
+        if (c == '<') return '_';
+        if (c == '&') return 'Q';
+        if (c == '>') return '_';
+        if (c == '`') return 'Q';
+        if (c == '\n') return '-';
+        if (c == ' ') return 'Z';
+        if (c == '/') return '-';
+        if (c == '\\') return '_';
+        if (c == '"') return '.';
+        if (c == ':') return 'q';
+        if (c == ';') return 'z';
+
+        return c;
     }
 }

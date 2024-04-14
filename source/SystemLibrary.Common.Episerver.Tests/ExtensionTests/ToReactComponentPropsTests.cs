@@ -139,10 +139,10 @@ public class ToReactComponentPropsTests
         var html = result.ToString();
 
         // The tagName and id is properly generated followed by input hidden
-        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-3-33.QTestMMoi0E\"></div><input type='hidden'"), "Invalid beginning");
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-3-33.qTestMoi0E\"></div><input type='hidden' "), "Invalid beginning");
 
         // The hidden input with props is generated with same id
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.QTestMMoi0E"), "input");
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.qTestMoi0E\" "), "input");
 
         // The component fullName is generated, model, viewmodel is removed
         Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Test\""), "reactcomponents");
