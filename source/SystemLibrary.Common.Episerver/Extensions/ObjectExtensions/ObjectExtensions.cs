@@ -57,6 +57,8 @@ public static class ObjectExtensions
                         "ShouldBeImplicitlyExported",
                         "MixinInstance",
                         "Item",
+                        "Guid",
+                        "ContentReference",
                         "ContentTypeID",
                         "IsReadOnly",
                         "Property",

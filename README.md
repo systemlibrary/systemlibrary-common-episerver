@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.5
-- ReactServerSide optimized ssrId generation (less string copies)
+Release 7.10.0.6
+- ReactServerSide black-listing some custom names: Guid and ContentLinkReference ssrId generation
 
 #### Version history
 - View git history of this file if interested
