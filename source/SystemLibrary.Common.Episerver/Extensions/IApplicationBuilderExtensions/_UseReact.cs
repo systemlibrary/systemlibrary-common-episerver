@@ -57,6 +57,6 @@ partial class IApplicationBuilderExtensions
         Log.Error(message);
 
         if (!EnvironmentConfig.IsProd)
-            HttpContextInstance.Current.Response.WriteAsync("<p style=\"color:red;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + message + ". Check your browsers console.</p>");
+            HttpContextInstance.Current.Response.WriteAsync("<p style=\"color:red;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + message + ". Check your browsers console. Note: restart APP to reload your script changes after this error</p>");
     }
 }

@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>7.10.0.6</Version>
+		<Version>7.10.0.7</Version>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<DebugType>none</DebugType>
 		<PlatformTarget>x64</PlatformTarget>
@@ -32,12 +32,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="C:\syslib\Packages\episerver.cms.tinymce\4.7.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
-		<None Remove="C:\syslib\Packages\episerver.cms.ui.admin\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Admin\EPiServer.Cms.UI.Admin.zip" />
-		<None Remove="C:\syslib\Packages\episerver.cms.ui.settings\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Settings\EPiServer.Cms.UI.Settings.zip" />
-		<None Remove="C:\syslib\Packages\episerver.cms.ui.visitorgroups\12.26.0\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.VisitorGroups\EPiServer.Cms.UI.VisitorGroups.zip" />
-		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.26.0\contentFiles\any\any\modules\_protected\CMS\CMS.zip" />
-		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.26.0\contentFiles\any\any\modules\_protected\Shell\Shell.zip" />
 		<None Remove="Cms\Admin\GetLinksInText.sql" />
 		<None Remove="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
 		<None Remove="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />

@@ -240,7 +240,8 @@
                 }
 
                 let backgroundValue = getBackgroundColorValue(data);
-                if (backgroundValue !== null) {
+                if (backgroundValue) {
+                    backgroundValue = backgroundValue.toString();
                     if (backgroundValue.startsWith('#')) {
                         if (backgroundValue.length === 7) {
                             if (backgroundValue[1] <= 5 && backgroundValue[3] <= 5 && backgroundValue[5] <= 5) {
@@ -424,7 +425,7 @@
                                     console.warn("BoxSelection: value is an array from an onClick event from a box, this should never happen");
                                     return;
                                 } else {
-                                    if (selected.includes(v)) {
+                                    if (selected && v && selected.toString().includes(v.toString())) {
                                         if (this.allowUnselection) {
                                             selected = selected.filter(e => e !== v)
                                         } else {
@@ -510,7 +511,7 @@
                             let inline = getContainerInlineStyle(text, value, additional);
 
                             if (this.isMultiSelect) {
-                                if (selected.includes(value.toString())) {
+                                if (selected && selected.toString().includes(value.toString())) {
                                     css = css + ' ' + dojoAttachPointName + '--item-selected';
                                 } else {
                                     //console.warn("BoxSelection: multiselect deselecting a value");
@@ -614,7 +615,7 @@
                             }
 
                             if (value != "-1" && value != "0") {
-                                if (value.includes('__d_')) {
+                                if (value?.toString().includes('__d_')) {
                                     let tmp = value.split('__d_');
                                     value = tmp[0];
                                     if (tmp.length > 1) {
