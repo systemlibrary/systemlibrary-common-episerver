@@ -71,6 +71,11 @@ public static partial class TExtensions
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
+        if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+        {
+            Log.Debug(componentFullName + " serversiderendering at level " + level);
+        }
+
         var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
         var ssrId = GetSSRID(renderClientSide, id, model, props, jsonProps);
@@ -89,7 +94,7 @@ public static partial class TExtensions
         {
             Log.Error(ex);
 
-            root.Append("<div class='ssr-errored'>Exception: " + ex.Message + "</div>");
+            root.Append("<div class='ssr-errored' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">" + ex.Message + "<br/>Full component name: " + componentFullName + ". Check your browsers console. Note: restart APP to reload your script changes after this error</div>");
         }
         finally
         {
@@ -112,6 +117,10 @@ public static partial class TExtensions
 
         if (Globals.IsUnitTesting && renderClientSide) level = 0;
 
+        if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+        {
+            Log.Debug(componentFullName + " serversiderendering append input " + ssrId + " to output: " + level);
+        }
         AppendHiddenInput(level, ssrId, componentFullName, jsonProps, ssrIdStore, root);
 
         return root;

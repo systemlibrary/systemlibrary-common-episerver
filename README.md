@@ -61,9 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.7
-- BoxSelection: includes exception is invoked on an int, fix
-- ReactServerSide black-listing some custom names: Guid and ContentLinkReference ssrId generation
+Release 7.10.0.8
+- ReactServerSideRendering: added debug messages to debug why some scenarios the inputs are not appended to the "most outer root"
 
 #### Version history
 - View git history of this file if interested

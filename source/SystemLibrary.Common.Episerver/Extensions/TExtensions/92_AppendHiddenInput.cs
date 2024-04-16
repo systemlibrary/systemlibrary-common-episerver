@@ -13,6 +13,7 @@ using Microsoft.Identity.Client;
 
 using React;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -30,6 +31,12 @@ partial class TExtensions
         if(storage == null && level == 0)
         {
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
+            
+            if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+            {
+                Log.Debug(componentFullName + " serversiderendering append input to root as storage or level do not exist: " + level);
+            }
+
             return;
         }
 
@@ -56,17 +63,34 @@ partial class TExtensions
                 root.Append(dictionary[SysLibComponentStorageKey] as StringBuilder);
 
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
+
+            if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+            {
+                Log.Debug(componentFullName + " serversiderendering appended all inputs to root");
+            }
+
             return;
         }
 
-        if (ssrIdStore.TryGetValue(ssrId, out _))
+        // If ssr id input has already been printed, just return
+        if (ssrIdStore.ContainsKey(ssrId))
         {
+            if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+            {
+                Log.Debug(componentFullName + " serversiderendering ssrid already printed");
+            }
             return;
         }
 
-        // Printing each input type hidden only once
+        // Printing this input with the ssr id once
         ssrIdStore.TryAdd(ssrId, true);
 
+        if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
+        {
+            Log.Debug(componentFullName + " serversiderendering input with ssrid " + ssrId + " is appended");
+        }
+
+        // Adding or updating the string builder containing all inputs of type hidden
         dictionary.AddOrUpdate(
             SysLibComponentStorageKey,
             new StringBuilder($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />"),
