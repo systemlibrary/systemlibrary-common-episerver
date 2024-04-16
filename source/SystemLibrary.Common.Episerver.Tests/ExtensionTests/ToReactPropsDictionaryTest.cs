@@ -60,7 +60,7 @@ public class ToReactPropsDictionaryTest
 
         IDictionary<string, object> props = model.ToReactPropsDictionary();
 
-        Assert.IsTrue(props.Count == 3);
+        Assert.IsTrue(props.Count == 4, "Count " + props.Count);
         Assert.IsTrue(props["B"] == "Hello world");
         Assert.IsTrue(props["C"] + "" == "20000");
         Assert.IsTrue(((DateTimeOffset)(props["E"])).Year == DateTimeOffset.Now.Year);

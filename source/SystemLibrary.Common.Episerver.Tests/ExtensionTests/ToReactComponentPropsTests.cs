@@ -138,14 +138,16 @@ public class ToReactComponentPropsTests
 
         var html = result.ToString();
 
-        // The tagName and id is properly generated followed by input hidden
-        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-3-33.qTestMoi0E\"></div><input type='hidden' "), "Invalid beginning");
+        Dump.Write(html);
 
-        // The hidden input with props is generated with same id
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-3-33.qTestMoi0E\" "), "input");
+        // The tagName and id is properly generated followed by input hidden
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-57.qTestMoi0E1010-not\"></div><input type='hidden'"), "Invalid beginning");
+
+        // The hidden input with props is generated with same id a
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-4-57.qTestMoi0E1010-not\" data-rcssr="), "input");
 
         // The component fullName is generated, model, viewmodel is removed
-        Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Test\""), "reactcomponents");
+        Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Test\" data-rcssr-props="), "reactcomponents");
 
         // The object is converted to json and encoded
         Assert.IsTrue(html.Contains("&quot;B&quot;:null,&quot;C&quot;:0,&quot;E&quot;:&quot;0001-01-01&quot"));
@@ -164,7 +166,11 @@ public class ToReactComponentPropsTests
 
         var html = result.ToString();
 
-        Assert.IsTrue(!html.Contains("AAA"), "Field is part of the json");
+        Dump.Write(html);
+
+        Assert.IsTrue(!html.Contains("AAA"), "A field or property part of json changed");
+
+        Assert.IsTrue(html.Contains("?aaa"), "The 'another A' property as a 'getter' is not printed");
 
         Assert.IsTrue(html.Contains("BBB"), "Property is missing from output");
 

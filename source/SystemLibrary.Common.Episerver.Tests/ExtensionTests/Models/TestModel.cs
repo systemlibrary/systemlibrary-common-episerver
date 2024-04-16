@@ -12,4 +12,12 @@ public class TestModel
     private DateTimeOffset F { get; set; }
     string G { get; set; }
     internal static string H { get; set; }
+
+    public virtual string AnotherA
+    {
+        get
+        {
+            return "A?" + A?.ToLower() + "AnotherA";
+        }
+    }
 }

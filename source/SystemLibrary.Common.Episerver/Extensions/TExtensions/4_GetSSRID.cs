@@ -62,6 +62,8 @@ partial class TExtensions
             {
                 if (sb?.Length > 0)
                 {
+                    ssrId.Append(sb.Length);
+
                     if (sb?.Length > 5)
                     {
                         ssrId.Append(GetValidString(sb.Length, sb[3], sb[4], sb[sb.Length - 5]));
@@ -77,6 +79,7 @@ partial class TExtensions
 
             else if (property.Value is string txt)
             {
+                ssrId.Append(txt.Length);
                 if (txt?.Length > 5)
                 {
                     ssrId.Append(GetValidString(txt.Length, txt[3], txt[4], txt[txt.Length - 5]));
