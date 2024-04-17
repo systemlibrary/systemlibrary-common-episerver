@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.9
-- ReactServerSideRendering: key generation slightly more unique
+Release 7.10.0.10
+- ReactServerSideRendering: debug info removed
 
 #### Version history
 - View git history of this file if interested

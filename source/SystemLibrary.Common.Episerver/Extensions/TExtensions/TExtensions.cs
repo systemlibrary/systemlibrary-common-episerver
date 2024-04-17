@@ -71,11 +71,6 @@ public static partial class TExtensions
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
 
-        if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
-        {
-            Log.Debug(componentFullName + " serversiderendering at level " + level);
-        }
-
         var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
         var ssrId = GetSSRID(renderClientSide, id, model, props, jsonProps);
@@ -105,7 +100,7 @@ public static partial class TExtensions
             catch (Exception ex)
             {
                 if (!Globals.IsUnitTesting)
-                    Log.Error("React returning engine too pool failed, continue silently..." + ex.Message);
+                    Log.Error("React returning engine too pool failed, continue silently... " + ex.Message);
             }
         }
 
@@ -117,10 +112,6 @@ public static partial class TExtensions
 
         if (Globals.IsUnitTesting && renderClientSide) level = 0;
 
-        if (!Globals.IsUnitTesting && !EnvironmentConfig.IsProd)
-        {
-            Log.Debug(componentFullName + " serversiderendering append input " + ssrId + " to output: " + level);
-        }
         AppendHiddenInput(level, ssrId, componentFullName, jsonProps, ssrIdStore, root);
 
         return root;
