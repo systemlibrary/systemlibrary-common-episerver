@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.10
-- ReactServerSideRendering: debug info removed
+Release 7.10.0.14
+- Middleware: now actually checking "useRazorPages" and maps it if true. Also adds "MapControllers" above DefaultControllerRoutes()
 
 #### Version history
 - View git history of this file if interested

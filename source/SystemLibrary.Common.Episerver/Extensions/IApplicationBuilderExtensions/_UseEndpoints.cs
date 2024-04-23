@@ -14,7 +14,12 @@ partial class IApplicationBuilderExtensions
             {
                 endpoints.MapContent();
 
+                endpoints.MapControllers();
+
                 endpoints.MapDefaultControllerRoute();
+
+                if (options.UseRazorPages)
+                    endpoints.MapRazorPages();
 
                 if (options.UseApiControllers)
                     endpoints.MapControllerRoute("api/{controller}/{action}/{id?}", "api/{controller}/{action}/{id?}");
@@ -32,21 +37,65 @@ partial class IApplicationBuilderExtensions
         }
         else
         {
-            // CMS folder in this project
-            app.UseEndpoints(endpoints =>
+            if(options.UseControllers)
             {
-                endpoints.MapAreaControllerRoute(
-                    name: Globals.AreaFontAwesome,
-                    areaName: Globals.AreaFontAwesome,
-                    pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
 
-                endpoints.MapAreaControllerRoute(
-                    name: Globals.AreaCms,
-                    areaName: Globals.AreaCms,
-                    pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
-            });
+                    endpoints.MapDefaultControllerRoute();
+
+                    if (options.UseRazorPages)
+                        endpoints.MapRazorPages();
+
+                    endpoints.MapAreaControllerRoute(
+                        name: Globals.AreaFontAwesome,
+                        areaName: Globals.AreaFontAwesome,
+                        pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
+
+                    endpoints.MapAreaControllerRoute(
+                        name: Globals.AreaCms,
+                        areaName: Globals.AreaCms,
+                        pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+                });
+            }
+            else
+            {
+                if (options.UseRazorPages)
+                {
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapRazorPages();
+
+                        // CMS folder in this project
+                        endpoints.MapAreaControllerRoute(
+                            name: Globals.AreaFontAwesome,
+                            areaName: Globals.AreaFontAwesome,
+                            pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
+
+                        endpoints.MapAreaControllerRoute(
+                            name: Globals.AreaCms,
+                            areaName: Globals.AreaCms,
+                            pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+                    });
+                }
+                else
+                {
+                    // CMS folder in this project
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapAreaControllerRoute(
+                            name: Globals.AreaFontAwesome,
+                            areaName: Globals.AreaFontAwesome,
+                            pattern: Globals.AreaFontAwesome + "/{controller=Home}/{action=Index}/{id?}");
+
+                        endpoints.MapAreaControllerRoute(
+                            name: Globals.AreaCms,
+                            areaName: Globals.AreaCms,
+                            pattern: Globals.AreaCms + "/{controller=Home}/{action=Index}/{id?}");
+                    });
+                }
+            }
         }
-
-
     }
 }

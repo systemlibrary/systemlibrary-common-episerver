@@ -99,8 +99,9 @@ public class ToReactComponentPropsTests
             }
         };
 
-        var result = temp.ReactServerSideRender(new {
-                enumerableItems = temp.InnerBlocks.Where(x => x !=null)
+        var result = temp.ReactServerSideRender(new
+        {
+            enumerableItems = temp.InnerBlocks.Where(x => x != null)
         },
         renderClientOnly: true);
 
@@ -134,23 +135,48 @@ public class ToReactComponentPropsTests
     {
         var model = new TestModel();
 
-        var result = model.ReactServerSideRender(renderClientOnly: true);
-
-        var html = result.ToString();
-
-        Dump.Write(html);
+        var html = model.ReactServerSideRender(renderClientOnly: true).ToString();
 
         // The tagName and id is properly generated followed by input hidden
-        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-57.qTestMoi0E1010-not\"></div><input type='hidden'"), "Invalid beginning");
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-57.q"), "Key begin error1");
 
         // The hidden input with props is generated with same id a
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-4-57.qTestMoi0E1010-not\" data-rcssr="), "input");
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-4-57.q"), "input");
 
-        // The component fullName is generated, model, viewmodel is removed
+        //// The component fullName is generated, model, viewmodel is removed
         Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Test\" data-rcssr-props="), "reactcomponents");
 
-        // The object is converted to json and encoded
+        //// The object is converted to json and encoded
         Assert.IsTrue(html.Contains("&quot;B&quot;:null,&quot;C&quot;:0,&quot;E&quot;:&quot;0001-01-01&quot"));
+
+        var model2 = new TestModel();
+
+        var html2 = model2.ReactServerSideRender(renderClientOnly: true).ToString();
+
+        // The tagName and id is properly generated followed by input hidden
+        Assert.IsTrue(html2.StartsWith("<div data-rcssr-id=\"k-4-57.q"), "Key begin error2");
+
+        // The hidden input with props is generated with same id a
+        Assert.IsTrue(html2.Contains("<input type='hidden' id=\"k-4-57.q"), "input");
+
+        // Output twice is the same even though a new object
+        Assert.IsTrue(html == html2, "Not the same");
+
+        var model3 = new TestModel();
+
+        model3.B = "A";
+
+        var html3 = model3.ReactServerSideRender(renderClientOnly: true).ToString();
+
+        Assert.IsTrue(html != html3, "Key generated same, but a letter is changed");
+
+        var model4 = new TestModel();
+
+        model4.B = "A12345";
+
+        var html4 = model4.ReactServerSideRender(renderClientOnly: true).ToString();
+
+        Assert.IsTrue(html != html4 && html3 != html4, "Key generated same, but a letter is changed");
     }
 
     [TestMethod]
@@ -165,8 +191,6 @@ public class ToReactComponentPropsTests
         var result = model.ReactServerSideRender(renderClientOnly: true);
 
         var html = result.ToString();
-
-        Dump.Write(html);
 
         Assert.IsTrue(!html.Contains("AAA"), "A field or property part of json changed");
 
