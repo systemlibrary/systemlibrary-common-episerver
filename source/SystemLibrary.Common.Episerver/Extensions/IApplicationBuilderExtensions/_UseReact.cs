@@ -52,11 +52,11 @@ partial class IApplicationBuilderExtensions
 
     static void OnReactException(Exception arg1, string arg2, string arg3)
     {
-        var message = arg1.Message + " Component: " + arg2;
+        var message = arg1.Message + " Component: " + arg2 ;
 
-        Log.Error(message);
+        Log.Error(message + arg3 + "\n" + arg1.ToString());
 
         if (!EnvironmentConfig.IsProd)
-            HttpContextInstance.Current.Response.WriteAsync("<p style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">" + message + ". Check your browsers console. Note: restart APP to reload your script changes after this error</p>");
+            HttpContextInstance.Current.Response.WriteAsync("<p style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ". Tip: Check your browsers console. Note: restart APP to reload script changes after fix</p>");
     }
 }

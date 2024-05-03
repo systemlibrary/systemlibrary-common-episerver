@@ -9,13 +9,11 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static string GetComponentFullName(object model, string componentFullName)
+    static string GetComponentFullName(Type modelType, object model, string componentFullName)
     {
         if(componentFullName != null) return componentFullName;
 
-        var type = model.GetOriginalType();
-
-        var name = type.Name;
+        var name = modelType.Name;
 
         if(name.StartsWith("<"))
             name = name.Replace("<>", "").Replace("`", "").Replace(" ", "");

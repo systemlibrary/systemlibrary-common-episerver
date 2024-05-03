@@ -24,13 +24,13 @@ partial class TExtensions
 
         if (model is IContent icontent)
             return "c-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
-
-        var contentData = model as ContentData;
-
+        
         var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
 
-        if (jsonProps.Length > 8)
+        if (jsonProps.Length > 5)
             ssrId.Append(GetValidChar(jsonProps[3]) + "" + GetValidChar(jsonProps[4]));
+
+        var contentData = model as ContentData;
 
         if (contentData != null)
         {
@@ -38,20 +38,18 @@ partial class TExtensions
         }
         else
         {
-            ssrId.Append(model.GetType()?.Name.GetHashCode());
+            ssrId.Append(model.GetType().GetHashCode());
+        }
 
-            if (model is IContent content)
-            {
-                ssrId.Append("-" + content.Name.GetHashCode());
-            }
+        if (model is IContent content)
+        {
+            ssrId.Append("-" + content.Name?.GetHashCode());
         }
 
         var propCount = props.Count;
 
         for (int i = 0; i < propCount; i++)
         {
-            if (ssrId.Length > 128) break;
-
             var property = props.ElementAt(i);
 
             if (property.Value == null)
@@ -59,6 +57,31 @@ partial class TExtensions
                 ssrId.Append("o");
                 continue;
             }
+
+            if (property.Value is int number)
+            {
+                ssrId.Append("i" + number);
+                continue;
+            }
+
+            if (property.Value is bool b)
+            {
+                ssrId.Append("b" + (b ? "A" : "B"));
+                continue;
+            }
+
+            if (property.Value is Url u)
+            {
+                ssrId.Append("u" + u?.OriginalString?.Length);
+                continue;
+            }
+
+            if (ssrId.Length > 128)
+            {
+                continue;
+            }
+
+            if (ssrId.Length > 255) break;
 
             if (property.Value is StringBuilder sb)
             {
@@ -89,21 +112,16 @@ partial class TExtensions
                 }
                 else if (txt.Length > 5)
                     ssrId.Append(txt.GetHashCode() % 1000000);
+                else if (txt.Length >= 4)
+                    ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], txt[3]));
+                else if (txt.Length == 3)
+                    ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], '-'));
                 else
-                    ssrId.Append(txt.Length + "" + txt.GetHashCode() % 10000);
+                    ssrId.Append(txt.Length + "" + (txt.GetHashCode() % 10000));
             }
-
-            else if (property.Value is int number)
-                ssrId.Append("i" + number);
-
-            else if (property.Value is bool b)
-                ssrId.Append("b" + (b ? "A" : "B"));
 
             else if (property.Value is ContentReference cr)
                 ssrId.Append(cr?.ID + "c" + cr?.WorkID);
-
-            else if (property.Value is Url u)
-                ssrId.Append("u" + u?.OriginalString?.Length);
 
             else if (property.Value is ContentArea ca)
                 ssrId.Append("CA" + ca?.Count);
@@ -112,13 +130,13 @@ partial class TExtensions
                 ssrId.Append("LC" + lic?.Count);
 
             else if (property.Value is LinkItem li)
-                ssrId.Append(li.Href?.Length + "LI" + li.Text?.Length);
+                ssrId.Append(li.Href?.Length + "LI" + (li.Text.GetHashCode() % 100000));
 
             else if (property.Value is IEnumerable en)
-                ssrId.Append("en" + property.Key[0]);
+                ssrId.Append("E" + property.Key[0]);
 
             else if (property.Value is DateTime dt)
-                ssrId.Append("DT" + dt.Day + "-" + dt.Hour);
+                ssrId.Append("D" + dt.Day + "-" + dt.Hour);
 
             else
             {
@@ -131,7 +149,7 @@ partial class TExtensions
 
     static string GetValidString(int l, char c1, char c2, char c3, char c4)
     {
-        return l + "-" + GetValidChar(c1) + "" + GetValidChar(c2) + "" + GetValidChar(c3) + "" + GetValidChar(c4);
+        return GetValidChar(c3) + "" + GetValidChar(c1) + "-" + l + "" + GetValidChar(c2)  + "" + GetValidChar(c4);
     }
 
     static char GetValidChar(char c)
@@ -152,6 +170,8 @@ partial class TExtensions
         if (c == '(') return '.';
         if (c == ')') return '.';
 
-        return c;
+        if (c > 31 && c < 255) return c;
+
+        return 'X';
     }
 }

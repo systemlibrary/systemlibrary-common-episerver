@@ -1,7 +1,10 @@
 ﻿using System.Dynamic;
+using System.Reflection;
 using System.Text;
 
 using Org.BouncyCastle.Bcpg.OpenPgp;
+
+using SystemLibrary.Common.Net.Extensions;
 
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -16,7 +19,12 @@ partial class TExtensions
         {
             var additionalType = additionalProps.GetType();
 
-            var additionalProperties = additionalType.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
+            var hashCode = additionalType.GetHashCode();
+
+            var additionalProperties = Dictionaries.ModelToPropsPropertiesCache.TryGet(hashCode, () =>
+            {
+                return additionalType.GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.GetProperty);
+            });
 
             if (additionalProperties != null && additionalProperties.Length > 0)
             {

@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    static void Validate(object propsModel, object additionalProps, string tagName, string cssClass, bool renderClientOnly, bool renderServerOnly)
+    static Type Validate(object propsModel, object additionalProps, string tagName, string cssClass, bool renderClientOnly, bool renderServerOnly)
     {
         var type = propsModel.GetOriginalType();
 
@@ -37,5 +37,7 @@ partial class TExtensions
 
         if (renderServerOnly && renderClientOnly)
             throw new Exception("You cannot render 'client only' and 'server side only', it doesnt make any sense. Choose either client or server side or let both be false, to render on both sides: " + type.Name);
+
+        return type;
     }
 }

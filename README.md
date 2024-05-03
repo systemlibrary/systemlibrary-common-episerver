@@ -61,8 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.14
-- Middleware: now actually checking "useRazorPages" and maps it if true. Also adds "MapControllers" above DefaultControllerRoutes()
+Release 7.10.0.15
+- Updated deps
+- Using internal dictionaries for "GetType().GetProperties()" invocations (micro optimization)
+- SSR: key generation now always adds int and bool's to the key, even if "key max length" is reached (128 char), up to 255 chars (new max length)
 
 #### Version history
 - View git history of this file if interested

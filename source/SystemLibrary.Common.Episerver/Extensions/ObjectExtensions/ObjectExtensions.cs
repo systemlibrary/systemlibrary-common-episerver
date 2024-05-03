@@ -188,7 +188,11 @@ public static class ObjectExtensions
 
     static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable list, Type genericType)
     {
-        var properties = genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
+        var hashCode = genericType.GetHashCode();
+        var properties = Dictionaries.ReactPropPropertiesCache.TryGet(hashCode, () =>
+        {
+            return genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
+        });
 
         var contentList = new List<IDictionary<string, object>>();
 

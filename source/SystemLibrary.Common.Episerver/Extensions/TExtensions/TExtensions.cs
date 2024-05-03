@@ -60,7 +60,7 @@ public static partial class TExtensions
     /// </summary>
     public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool printNullValues = true) where T : class
     {
-        Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);
+        var modelType = Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);
 
         var renderServerSide = !renderClientOnly || renderServerOnly;
         var renderClientSide = renderClientOnly || !renderServerOnly;
@@ -75,7 +75,7 @@ public static partial class TExtensions
 
         var ssrId = GetSSRID(renderClientSide, id, model, props, jsonProps);
 
-        componentFullName = GetComponentFullName(model, componentFullName);
+        componentFullName = GetComponentFullName(modelType, model, componentFullName);
 
         var root = GetRootElementStart(componentFullName, id, cssClass, tagName, ssrId);
 
@@ -91,7 +91,16 @@ public static partial class TExtensions
 
             root.Append("<div class='ssr-errored' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">" + ex.Message + "<br/>Full component name: " + componentFullName + ". Check your browsers console. Note: restart APP to reload your script changes after this error</div>");
         }
-        finally
+
+        AppendRootElementEnd(root, tagName);
+
+        var ssrIdStore = GetSsrIdStore(renderClientSide);
+
+        level = DecrementLevel(renderClientSide);
+
+        if (Globals.IsUnitTesting && renderClientSide) level = 0;
+
+        if (level <= 0 && renderServerSide)
         {
             try
             {
@@ -103,14 +112,6 @@ public static partial class TExtensions
                     Log.Error("React returning engine too pool failed, continue silently... " + ex.Message);
             }
         }
-
-        AppendRootElementEnd(root, tagName);
-
-        var ssrIdStore = GetSsrIdStore(renderClientSide);
-
-        level = DecrementLevel(renderClientSide);
-
-        if (Globals.IsUnitTesting && renderClientSide) level = 0;
 
         AppendHiddenInput(level, ssrId, componentFullName, jsonProps, ssrIdStore, root);
 
