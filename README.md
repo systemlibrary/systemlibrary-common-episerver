@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.19
-- Removing a dump write, commenting out some "NotFoundResponse" (WIP)
+Release 7.10.0.21
+- Optimized SSR blacklisted properties check for IPrincipal and IdentityUser types
 
 #### Version history
 - View git history of this file if interested

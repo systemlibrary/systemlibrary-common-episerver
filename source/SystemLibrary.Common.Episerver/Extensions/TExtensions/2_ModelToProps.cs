@@ -17,6 +17,8 @@ partial class TExtensions
 
         if (additionalProps != null)
         {
+            // NOTE: Additional props hashCode should including current Model.Type hashCode
+            // converted to a BigInt
             var additionalType = additionalProps.GetType();
 
             var hashCode = additionalType.GetHashCode();

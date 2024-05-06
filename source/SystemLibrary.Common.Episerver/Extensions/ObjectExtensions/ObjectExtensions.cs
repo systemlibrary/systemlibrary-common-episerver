@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
@@ -8,9 +9,11 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 
 using EPiServer;
+using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 using EPiServer.Enterprise.Transfer.Internal;
 using EPiServer.Security.Internal;
@@ -35,23 +38,58 @@ public static class ObjectExtensions
     static Type CultureInfoType = typeof(CultureInfo);
     static Type PropertyUrlType = typeof(PropertyUrl);
 
-    static string[] _BlackListedPrincipalProperties;
-    static string[] BlackListedPrincipalProperties
+    static string[] WhiteListedCustomProperties = new string[]
+    {
+        "Id",
+        "Current",
+        "Comment",
+        "Email",
+        "PhoneNumber"
+    };
+
+    static string[] BlackListedCustomProperties = new string[]
+    {
+        "CurrentPage",
+        "CurrentBlock",
+        "Password",
+        "PasswordHash",
+        "PasswordQuestion",
+        "Properties",
+        "SecurityStamp",
+        "LastLoginDate",
+        "IdToken",
+        "IdTokenHint",
+        "PhoneNumberConfirmed",
+        "AccessFailedCount",
+        "ProviderName"
+    };
+
+    static string[] _BlackListedUserProperties;
+    public static string[] BlackListedUserProperties
     {
         get
         {
-            if(_BlackListedPrincipalProperties == null)
+            if (_BlackListedUserProperties == null)
             {
-                var claimsPrincipal = typeof(ClaimsPrincipal).GetProperties();
-                var genericPrincipal = typeof(GenericPrincipal).GetProperties();
-                var fallbackPrincipal = typeof(FallbackPrincipal).GetProperties();
-                var properties = claimsPrincipal.Select(x => x.Name)
-                    .Union(genericPrincipal.Select(x => x.Name))
-                    .Union(fallbackPrincipal.Select(x => x.Name))
+                var claimsPrincipalProps = typeof(ClaimsPrincipal).GetProperties();
+                var genericPrincipalProps = typeof(GenericPrincipal).GetProperties();
+
+                var fallbackPrincipalProps = typeof(FallbackPrincipal).GetProperties();
+
+                var appUserProps = typeof(ApplicationUser).GetProperties();
+
+                var principalProps = claimsPrincipalProps.Select(x => x.Name)
+                    .Union(genericPrincipalProps.Select(x => x.Name))
+                    .Union(appUserProps.Select(x => x.Name))
+                    .Union(fallbackPrincipalProps.Select(x => x.Name))
+                    .Concat(BlackListedCustomProperties)
                     .Distinct()
-                    .ToArray();
+                    .ToList();
+
+                _BlackListedUserProperties = principalProps.ToArray();
             }
-            return _BlackListedPrincipalProperties;
+
+            return _BlackListedUserProperties;
         }
     }
 
@@ -67,38 +105,21 @@ public static class ObjectExtensions
                 _BlackListedContentProperties = epiProperties.Select(p => p.Name)
                     .Concat(new string[]
                     {
-                        "Properties",
-                        "SortIndex",
-                        "CurrentPage",
-                        "CurrentBlock",
-                        "EPiServer.Core.IContent.ContentTypeID",
-                        "EPiServer.Core.IModifiedTrackable.IsModified",
                         "IModifiedTrackable.IsModified",
                         "ParentLinkReferenceProperty",
                         "ParentLinkReference",
                         "ShouldBeImplicitlyExported",
                         "MixinInstance",
-                        "Item",
                         "Guid",
                         "ContentReference",
                         "ContentTypeID",
                         "IsReadOnly",
                         "Property",
                         "ViewData",
-                        "ReferencedPermanentLinkIds",
-                        "CurrentUser",
-                        "SecurityStamp",
-                        "PasswordQuestion",
-                        "Password",
-                        "LastLoginDate",
-                        "UserName",
-                        "PasswordHash",
-                        "IdTokenHint",
-                        "IdToken",
-                        "PhoneNumberConfirmed",
-                        "AccessFailedCount",
-                        "ProviderName"
+                        "ReferencedPermanentLinkIds"
                     })
+                    .Concat(BlackListedCustomProperties)
+                    .Distinct()
                     .ToArray();
             }
 
@@ -120,14 +141,25 @@ public static class ObjectExtensions
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
-        var isContentDataModel = type.Inherits(Globals.ContentDataType);
+        var isContentDataType = type.Inherits(Globals.ContentDataType);
 
+        var isIdentityUserType = false;
+        var isIPrincipalType = false;
+
+        if (!isContentDataType)
+        {
+            isIdentityUserType = type.Inherits(Globals.IdentityUserType);
+            if (!isIdentityUserType)
+            {
+                isIPrincipalType = type.Inherits(Globals.IPrincipalType);
+            }
+        }
 
         foreach (var property in properties)
         {
             var name = property.Name;
 
-            if (!IsPropertyElligibleAsProp(isContentDataModel, property, name, ignorePropertyNames))
+            if (!IsPropertyElligibleAsProp(isContentDataType, isIdentityUserType, isIPrincipalType, property, name, ignorePropertyNames))
             {
                 continue;
             }
@@ -243,7 +275,7 @@ public static class ObjectExtensions
             {
                 var listPropName = listProp.Name;
 
-                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
+                if (!IsPropertyElligibleAsProp(true, false, false, listProp, listPropName, ignorePropertyNames))
                 {
                     continue;
                 }
@@ -304,26 +336,21 @@ public static class ObjectExtensions
         return contentList;
     }
 
-    static bool IsPropertyElligibleAsProp(bool isContentDataModel, PropertyInfo property, string name, string[] ignorePropertyNames)
+    static bool IsPropertyElligibleAsProp(bool isContentDataType, bool isIdentityUserType, bool isIPrincipalType, PropertyInfo property, string name, string[] ignorePropertyNames)
     {
         if (!property.CanRead) return false;
 
-        if (name == "AccessTokenIsValid" ||
-            name == "TwoFactorEnabled" ||
-            name == "LastLockoutDate" ||
-            name == "NormalizedUserName" ||
-            name == "LockoutEnabled" ||
-            name == "ProviderName" ||
-            name == "Password" ||
-            name == "PasswordHash" ||
-            name == "SecurityStamp" ||
-            name == "password_salt" ||
-            name == "PasswordSalt" ||
-            name == "password_salt_value" ||
-            name == "CurrentBlock" ||
-            name == "SecurityQuestion") return false;
+        if (name == "Property") return false;
 
-        if (isContentDataModel && BlackListedContentProperties.Contains(name)) return false;
+        if (name.StartsWith("EPiServer.")) return false;
+
+        if (WhiteListedCustomProperties.Contains(name)) return true;
+
+        if (isContentDataType && BlackListedContentProperties.Contains(name)) return false;
+
+        if (isIdentityUserType && BlackListedUserProperties.Contains(name)) return false;
+
+        if (isIPrincipalType && BlackListedUserProperties.Contains(name)) return false;
 
         if (ignorePropertyNames != null)
         {
@@ -333,13 +360,9 @@ public static class ObjectExtensions
             }
         }
 
-        if (name == "Property") return false;
-
         var propertyType = property.PropertyType;
 
         if (propertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia"))) return false;
-
-        if (name.StartsWith("EPiServer.")) return false;
 
         if (propertyType == MessageType ||
             propertyType == ParentLinkReferenceType ||
@@ -347,6 +370,8 @@ public static class ObjectExtensions
             propertyType == CultureInfoType ||
             propertyType == PropertyUrlType)
             return false;
+
+        if (property.GetCustomAttribute<JsonIgnoreAttribute>() != null) return false;
 
         return true;
     }

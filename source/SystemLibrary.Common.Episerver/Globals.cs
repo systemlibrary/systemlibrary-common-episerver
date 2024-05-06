@@ -1,4 +1,9 @@
-﻿using EPiServer.Core;
+﻿using System.Security.Principal;
+
+using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.Core;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace SystemLibrary.Common.Episerver;
 
@@ -21,4 +26,6 @@ internal static class Globals
     }
 
     internal static Type ContentDataType = typeof(ContentData);
+    internal static Type IPrincipalType = typeof(IPrincipal);
+    internal static Type IdentityUserType = typeof(IdentityUser);
 }
