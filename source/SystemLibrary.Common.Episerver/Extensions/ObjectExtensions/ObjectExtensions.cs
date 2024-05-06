@@ -5,12 +5,15 @@ using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Text;
 using System.Xml.Linq;
 
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Enterprise.Transfer.Internal;
+using EPiServer.Security.Internal;
 using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
@@ -32,6 +35,25 @@ public static class ObjectExtensions
     static Type CultureInfoType = typeof(CultureInfo);
     static Type PropertyUrlType = typeof(PropertyUrl);
 
+    static string[] _BlackListedPrincipalProperties;
+    static string[] BlackListedPrincipalProperties
+    {
+        get
+        {
+            if(_BlackListedPrincipalProperties == null)
+            {
+                var claimsPrincipal = typeof(ClaimsPrincipal).GetProperties();
+                var genericPrincipal = typeof(GenericPrincipal).GetProperties();
+                var fallbackPrincipal = typeof(FallbackPrincipal).GetProperties();
+                var properties = claimsPrincipal.Select(x => x.Name)
+                    .Union(genericPrincipal.Select(x => x.Name))
+                    .Union(fallbackPrincipal.Select(x => x.Name))
+                    .Distinct()
+                    .ToArray();
+            }
+            return _BlackListedPrincipalProperties;
+        }
+    }
 
     static string[] _BlackListedContentProperties;
     static string[] BlackListedContentProperties
@@ -63,7 +85,19 @@ public static class ObjectExtensions
                         "IsReadOnly",
                         "Property",
                         "ViewData",
-                        "ReferencedPermanentLinkIds"
+                        "ReferencedPermanentLinkIds",
+                        "CurrentUser",
+                        "SecurityStamp",
+                        "PasswordQuestion",
+                        "Password",
+                        "LastLoginDate",
+                        "UserName",
+                        "PasswordHash",
+                        "IdTokenHint",
+                        "IdToken",
+                        "PhoneNumberConfirmed",
+                        "AccessFailedCount",
+                        "ProviderName"
                     })
                     .ToArray();
             }
@@ -87,6 +121,7 @@ public static class ObjectExtensions
         if (properties == null || properties.Length == 0) return new ExpandoObject();
 
         var isContentDataModel = type.Inherits(Globals.ContentDataType);
+
 
         foreach (var property in properties)
         {
@@ -272,6 +307,21 @@ public static class ObjectExtensions
     static bool IsPropertyElligibleAsProp(bool isContentDataModel, PropertyInfo property, string name, string[] ignorePropertyNames)
     {
         if (!property.CanRead) return false;
+
+        if (name == "AccessTokenIsValid" ||
+            name == "TwoFactorEnabled" ||
+            name == "LastLockoutDate" ||
+            name == "NormalizedUserName" ||
+            name == "LockoutEnabled" ||
+            name == "ProviderName" ||
+            name == "Password" ||
+            name == "PasswordHash" ||
+            name == "SecurityStamp" ||
+            name == "password_salt" ||
+            name == "PasswordSalt" ||
+            name == "password_salt_value" ||
+            name == "CurrentBlock" ||
+            name == "SecurityQuestion") return false;
 
         if (isContentDataModel && BlackListedContentProperties.Contains(name)) return false;
 

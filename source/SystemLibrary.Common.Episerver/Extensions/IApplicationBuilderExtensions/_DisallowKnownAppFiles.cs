@@ -21,6 +21,11 @@ partial class IApplicationBuilderExtensions
                 {
                     if (path.EndsWith(".dll") ||
                         path.EndsWith(".cs") ||
+                        path.EndsWith(".ts") ||
+                        path.EndsWith(".tsx") ||
+                        path.EndsWith(".mdf") ||
+                        path.EndsWith(".sql") ||
+                        path.EndsWith(".db") ||
                         path.EndsWith(".cshtml") ||
                         path.EndsWith(".config") ||
                         path.EndsWith(".DLL") ||

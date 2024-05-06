@@ -61,10 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.15
-- Updated deps
-- Using internal dictionaries for "GetType().GetProperties()" invocations (micro optimization)
-- SSR: key generation now always adds int and bool's to the key, even if "key max length" is reached (128 char), up to 255 chars (new max length)
+Release 7.10.0.19
+- Removing a dump write, commenting out some "NotFoundResponse" (WIP)
 
 #### Version history
 - View git history of this file if interested
