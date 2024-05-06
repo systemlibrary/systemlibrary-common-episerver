@@ -21,6 +21,7 @@ using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc.Html;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Operations;
 
 using SystemLibrary.Common.Episerver.Cms.Properties;
@@ -143,23 +144,11 @@ public static class ObjectExtensions
 
         var isContentDataType = type.Inherits(Globals.ContentDataType);
 
-        var isIdentityUserType = false;
-        var isIPrincipalType = false;
-
-        if (!isContentDataType)
-        {
-            isIdentityUserType = type.Inherits(Globals.IdentityUserType);
-            if (!isIdentityUserType)
-            {
-                isIPrincipalType = type.Inherits(Globals.IPrincipalType);
-            }
-        }
-
         foreach (var property in properties)
         {
             var name = property.Name;
 
-            if (!IsPropertyElligibleAsProp(isContentDataType, isIdentityUserType, isIPrincipalType, property, name, ignorePropertyNames))
+            if (!IsPropertyElligibleAsProp(isContentDataType, property, name, ignorePropertyNames))
             {
                 continue;
             }
@@ -247,7 +236,15 @@ public static class ObjectExtensions
                 result.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
 
             else
-                result.Add(name, value);
+            {
+                if (value is IPrincipal || value is IdentityUser)
+                {
+                }
+                else
+                {
+                    result.Add(name, value);
+                }
+            }
         }
 
         return result;
@@ -275,7 +272,7 @@ public static class ObjectExtensions
             {
                 var listPropName = listProp.Name;
 
-                if (!IsPropertyElligibleAsProp(true, false, false, listProp, listPropName, ignorePropertyNames))
+                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
                 {
                     continue;
                 }
@@ -336,7 +333,7 @@ public static class ObjectExtensions
         return contentList;
     }
 
-    static bool IsPropertyElligibleAsProp(bool isContentDataType, bool isIdentityUserType, bool isIPrincipalType, PropertyInfo property, string name, string[] ignorePropertyNames)
+    static bool IsPropertyElligibleAsProp(bool isContentDataType, PropertyInfo property, string name, string[] ignorePropertyNames)
     {
         if (!property.CanRead) return false;
 
@@ -344,13 +341,11 @@ public static class ObjectExtensions
 
         if (name.StartsWith("EPiServer.")) return false;
 
+        if (name.StartsWith("EPi_")) return false;
+
         if (WhiteListedCustomProperties.Contains(name)) return true;
 
         if (isContentDataType && BlackListedContentProperties.Contains(name)) return false;
-
-        if (isIdentityUserType && BlackListedUserProperties.Contains(name)) return false;
-
-        if (isIPrincipalType && BlackListedUserProperties.Contains(name)) return false;
 
         if (ignorePropertyNames != null)
         {

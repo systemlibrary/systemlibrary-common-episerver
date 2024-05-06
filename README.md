@@ -55,14 +55,14 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - Contains 'CurrentUser' class, either new it up or inject it
 - Contains ReactServerSide rendering results to convert a Block to React
 
-
 ## Requirements
 - &gt;= .NET 7
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.21
-- Optimized SSR blacklisted properties check for IPrincipal and IdentityUser types
+Release 7.10.0.22
+- Optimized SSR blacklisted properties: not returning IPrincipal nor IdentityUser types on the Model passed to ReactServerSideRendering
+- If one wants to return data from those objects, set them to the model or pass only the properties needed as "AdditionalProps"
 
 #### Version history
 - View git history of this file if interested
