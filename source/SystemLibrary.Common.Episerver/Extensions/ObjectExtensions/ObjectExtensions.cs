@@ -62,11 +62,13 @@ public static class ObjectExtensions
         "IdTokenHint",
         "PhoneNumberConfirmed",
         "AccessFailedCount",
-        "ProviderName"
+        "ProviderName",
+        "IsAuthenticated",
+        "IsAdministrator"
     };
 
     static string[] _BlackListedUserProperties;
-    public static string[] BlackListedUserProperties
+    static string[] BlackListedUserProperties
     {
         get
         {
@@ -138,6 +140,10 @@ public static class ObjectExtensions
 
         if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties in your react component");
 
+        // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
+        // Store then PropertyInfo[] in a Dictionary based on Type.GetHashCode
+        // Do note: careful about anonmous types (inline "additional props"), in those types, just return GetProperties() ?
+        // as theres no jsonIgnore in those props, and they can be read, and filtering by name is skipped as its EXPLICIT set as returning, written by the consumer
         var properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
 
         if (properties == null || properties.Length == 0) return new ExpandoObject();
@@ -239,6 +245,53 @@ public static class ObjectExtensions
             {
                 if (value is IPrincipal || value is IdentityUser)
                 {
+                    // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
+                    var userProperties = Dictionaries.IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () => {
+                        return value.GetType()?.GetProperties();
+                    });
+
+                    if (userProperties?.Length > 0)
+                    {
+                        var userDictionary = new Dictionary<string, object>();
+
+                        foreach (var userProperty in userProperties)
+                        {
+                            if (!userProperty.CanRead) continue;
+
+                            var userPropertyName = userProperty.Name;
+
+                            if (userPropertyName == "Property") continue;
+
+                            if (userPropertyName.StartsWith("EPiServer")) continue;
+
+                            if (userPropertyName.StartsWith("EPi_")) continue;
+
+                            if (WhiteListedCustomProperties.Contains(userPropertyName)) continue;
+
+                            var userPropertyType = userProperty.PropertyType;
+
+                            if (userPropertyType == SystemType) continue;
+
+                            if (BlackListedUserProperties.Contains(userPropertyName)) continue;
+
+                            if (userProperty.GetCustomAttribute<JsonIgnoreAttribute>() != null) continue;
+
+                            try
+                            {
+                                var userPropertyValue = userProperty.GetValue(value);
+
+                                userDictionary.Add(userPropertyName, userPropertyValue);
+                            }
+                            catch(Exception ex)
+                            {
+                                Log.Error(ex);
+
+                                userDictionary.Add(userPropertyName, "errored");
+                            }
+                        }
+
+                        result.Add(name, userDictionary);
+                    }
                 }
                 else
                 {
@@ -462,22 +515,4 @@ public static class ObjectExtensions
             target = linkItem.Target,
         };
     }
-
-    //static StringBuilder RenderIListContentItems(this List<ContentData> list)
-    //{
-    //    if (list == null) return null;
-
-    //    var rendered = new StringBuilder();
-
-    //    var iContentHtmlHelper = HtmlHelperFactory.Build<IContent>();
-
-    //    foreach (var contentData in list)
-    //    {
-    //        if (contentData == null) continue;
-
-    //        rendered.Append(iContentHtmlHelper.PropertyFor(x => contentData).ToString());
-    //    }
-
-    //    return rendered;
-    //}
 }

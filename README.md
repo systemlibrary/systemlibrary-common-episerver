@@ -60,8 +60,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.1.1
-- FontAwesome updated and added icons from FontAwesome v6.5.2
+Release 7.11.0.1
+- CurrentUser.IsCmsUser and IsAdministrator are now properties not functions (breaking change)
+- ReactProperties: IPrincipal or IdentityUser is now converted to react properties if existing on the model/viewmodel, but its properties are going through a strict name filter, not exposing things like NormalizedUserName, SecurityStamp, etc.
 
 #### Version history
 - View git history of this file if interested

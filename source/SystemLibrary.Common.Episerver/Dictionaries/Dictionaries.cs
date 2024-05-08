@@ -14,6 +14,7 @@ internal static class Dictionaries
 {
     internal static ConcurrentDictionary<int, PropertyInfo[]> ReactPropPropertiesCache;
     internal static ConcurrentDictionary<int, PropertyInfo[]> ModelToPropsPropertiesCache;
+    internal static ConcurrentDictionary<int, PropertyInfo[]> IdentityUserProperties;
 
     static Dictionaries()
     {
