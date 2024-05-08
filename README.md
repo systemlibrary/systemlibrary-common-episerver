@@ -60,9 +60,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.22
-- Optimized SSR blacklisted properties: not returning IPrincipal nor IdentityUser types on the Model passed to ReactServerSideRendering
-- If one wants to return data from those objects, set them to the model or pass only the properties needed as "AdditionalProps"
+Release 7.10.1.1
+- FontAwesome updated and added icons from FontAwesome v6.5.2
 
 #### Version history
 - View git history of this file if interested
