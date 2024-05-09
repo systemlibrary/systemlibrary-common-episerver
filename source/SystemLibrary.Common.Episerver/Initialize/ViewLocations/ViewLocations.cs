@@ -13,6 +13,7 @@ internal class ViewLocations
     static string[] GetViewsForPages() => new string[]
     {
         // View locations for Pages
+        "/Pages/{0}/Index.cshtml",
         "/Pages/{1}/{0}.cshtml",
         "/Pages/{1}/Views/{0}.cshtml",
         "/Pages/Singleton/{1}/{0}.cshtml",

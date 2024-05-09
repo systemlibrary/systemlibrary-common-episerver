@@ -65,5 +65,5 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// NOTE: If IErrorPage is not implemented, this does nothing for CMS pages not found
     /// 
     /// </summary>
-    public bool UseNotFoundResponse;
+    public bool UseErrorPageResponse;
 }

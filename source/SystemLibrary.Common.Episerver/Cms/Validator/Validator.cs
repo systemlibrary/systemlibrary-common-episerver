@@ -183,7 +183,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
     /// </summary>
     public bool IsValid(object value)
     {
-        if (value == null || value == "" || value + "" == "0" || value == " " || value is DateTime dt && dt == DateTime.MinValue)
+        if (value == null || value == "" || value + "" == "0" || value == " " || (value is DateTime dt && dt == DateTime.MinValue))
         {
             return false;
         }

@@ -5,6 +5,7 @@ using System.Text;
 using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core;
+using EPiServer.Core.Internal;
 using EPiServer.Filters;
 using EPiServer.Security;
 using EPiServer.Web.Mvc.Html;
@@ -106,24 +107,23 @@ public static class ContentAreaExtensions
                 }
             }
         }
-
+        
         return rendered;
     }
 
     /// <summary>
-    /// Select ContentData  from 'ContentArea' based on what the current visitor has access to.
+    /// Select ContentData from 'ContentArea' filtered by current visitors access rights and personalization
     /// 
-    /// Optional: only return content that is published
+    /// Optional: force filterByPublished, even if current visitor have access to view unpublished content
     /// </summary>
-    /// <returns>Returns an IEnumerable of IContentData</returns>
-    public static IEnumerable<T> SelectFiltered<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
+    /// <returns>Returns an IEnumerable of ContentData</returns>
+    public static IEnumerable<T> To<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContent
     {
         if (contentArea.IsNot()) yield break;
 
         var references = contentArea.FilteredItems.Select(item => item.ContentLink);
 
-        var enumerable = references.SelectFiltered<T>(filterByPublished);
-
-        foreach(var item in enumerable) yield return item;
+        foreach (var item in references.To<T>(filterByPublished))
+            yield return item;
     }
 }

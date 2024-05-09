@@ -73,9 +73,8 @@ public static partial class IApplicationBuilderExtensions
 
         app.RedirectCmsLoginPath(options);
 
-        app.NotFoundResponse(options);
+        app.ErrorPageResponse(options);
         
         return app;
     }
 }
-

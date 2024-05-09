@@ -141,6 +141,10 @@
 	  <PackageReference Include="React.AspNet" Version="5.*" />
 	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.6.0.3" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Cms\Content\ISingleton\" />
+	</ItemGroup>
 
 	<PropertyGroup>
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>

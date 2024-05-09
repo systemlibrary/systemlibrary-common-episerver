@@ -1,4 +1,5 @@
 ﻿using EPiServer.Core;
+using EPiServer.Core.Internal;
 using EPiServer.Filters;
 using EPiServer.Security;
 using EPiServer.Web;
@@ -44,6 +45,8 @@ public static class ContentReferenceExtensions
     /// Convert content reference to content data of type T
     /// 
     /// T can be a block, page or media data
+    /// 
+    /// eturns content or null if not found
     /// </summary>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -56,7 +59,9 @@ public static class ContentReferenceExtensions
     {
         if (contentReference.IsNot()) return default;
 
-        return BaseCms.Get<T>(contentReference);
+        BaseCms.ContentRepository.TryGet(contentReference, out T content);
+
+        return content;
     }
 
     /// <summary>
