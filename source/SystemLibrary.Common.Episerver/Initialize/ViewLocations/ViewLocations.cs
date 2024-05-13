@@ -12,29 +12,35 @@ internal class ViewLocations
 
     static string[] GetViewsForPages() => new string[]
     {
-        // View locations for Pages
-        "/Pages/{0}/Index.cshtml",
         "/Pages/{1}/{0}.cshtml",
         "/Pages/{1}/Views/{0}.cshtml",
-        "/Pages/Singleton/{1}/{0}.cshtml",
-        "/Pages/Content/{1}/{0}.cshtml",
-        "/Pages/Container/{1}/{0}.cshtml",
         "/Pages/Setting/{1}/{0}.cshtml",
+        "/Pages/Singleton/{1}/{0}.cshtml",
+
         "/Content/Pages/{1}/{0}.cshtml",
         "/Content/Pages/{1}/Views/{0}.cshtml",
-        "/Content/Pages/Singleton/{1}/{0}.cshtml",
-        "/Content/Pages/Container/{1}/{0}.cshtml",
-        "/Content/Pages/Content/{1}/{0}.cshtml",
-        "/Content/Pages/Setting/{1}/{0}.cshtml"
+        "/Content/Pages/Setting/{1}/{0}.cshtml",
+        "/Content/Pages/Singleton/{1}/{0}.cshtml"
     };
 
-    // Blocks are empty in .NET 7, as "ViewComponents" are preferred way of creating "BlockControllers"
-    // and ViewComponents in >= .NET 6, has a hardcoded "Components/" path as prefix:
+    // Blocks are obsolete in >= .NET 6, as "ViewComponents" are preferred way of creating "BlockControllers"
+    // and ViewComponents in >= .NET 6, have a hardcoded "Components/" path as prefix:
     // https://github.com/aspnet/Mvc/blob/e985fa5d423968f36a651a354d9c953192c52532/src/Microsoft.AspNet.Mvc.ViewFeatures/ViewComponents/ViewViewComponentResult.cs
+    // NOTE: reading this a year later, I remember there was an issue with blocks rendered as components always looking at "Components/" no matter what we specified, but I do not see it anymore...
+    // has it maybe been fixed by .NET?
     static string[] GetViewsForBlocks() => new string[]
     {
         "/Content/Components/{1}/{0}.cshtml",
+        "/Content/Components/Content/{1}/{0}.cshtml",
+        "/Content/Components/Container/{1}/{0}.cshtml",
+        "/Content/Components/Element/{1}/{0}.cshtml",
+        "/Content/Components/Singleton/{1}/{0}.cshtml",
+
         "/Content/Blocks/{1}/{0}.cshtml",
+        "/Content/Blocks/Content/{1}/{0}.cshtml",
+        "/Content/Blocks/Container/{1}/{0}.cshtml",
+        "/Content/Blocks/Element/{1}/{0}.cshtml",
+        "/Content/Blocks/Singleton/{1}/{0}.cshtml",
         "/Content/Blocks/{1}/Views/{0}.cshtml",
     };
     

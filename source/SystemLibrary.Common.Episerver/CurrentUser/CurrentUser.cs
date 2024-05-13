@@ -12,9 +12,9 @@ using SystemLibrary.Common.Web.Extensions;
 namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
-/// CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it
+/// CurrentUser can be injected or 'new CurrentUser()' whenever you need it
 /// 
-/// Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself
+/// Remember: to use 'CurrentUser' as an injected object, you must call 'AddCommonCmsServices&lt;CurrentUser&gt;(...);' or similar
 /// </summary>
 /// <example>
 /// <code class="language-csharp hljs">
@@ -22,18 +22,13 @@ namespace SystemLibrary.Common.Episerver;
 /// 
 /// public class AppUser : CurrentUser 
 /// {
-///     public string PhoneNumber { get; set;}
-///     
-///     public override void OnAddClaims(ClaimsIdentity claimsIdentity)
-///     {
-///         claimsIdentity.AddClaim(new Claim(ClaimTypes.MobilePhone, PhoneNumber));
-///     }
+///     public string PhoneNumber => Claim&lt;string&gt;("PhoneNumber");
 /// }
 /// 
-/// // Remember to register your new user inside ConfigureServices() at startup of your app:
+/// // Register user class within ConfigureServices() at startup:
 /// public void ConfigureServices(IServiceCollection services)
 /// {
-///     services.CommonEpiserverServices&lt;AppUser&gt;(...);
+///     services.AddCommonCmsServices&lt;AppUser, ...&gt;(...);
 /// }
 /// </code>
 /// </example>

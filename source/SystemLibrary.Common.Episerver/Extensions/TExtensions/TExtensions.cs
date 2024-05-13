@@ -67,6 +67,12 @@ public static partial class TExtensions
 
         var level = IncrementLevel(renderClientSide);
 
+        if (level > 512)
+        {
+            level = DecrementLevel(renderClientSide);
+            return new StringBuilder("");
+        }
+
         if (Globals.IsUnitTesting && renderClientSide) level = 1;
 
         var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);

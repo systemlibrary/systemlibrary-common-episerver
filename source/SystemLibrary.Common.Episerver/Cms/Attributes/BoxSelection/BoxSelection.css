@@ -27,6 +27,10 @@
 .systemLibraryCommonEpiserverBoxSelection li > a > div > span {
   line-height: 1.24;
 }
+.systemLibraryCommonEpiserverBoxSelection li > a > div > span.small {
+  line-height: 1.1;
+  font-size: 10.5px;
+}
 
 .systemLibraryCommonEpiserverBoxSelection
   li
@@ -38,25 +42,25 @@
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item {
-    position: relative !important;
-    word-break: break-word !important;
-    border: 4px solid rgba(240, 240, 240, 1) !important;
-    font-size: 12px !important;
-    text-align: center;
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
-    background-position-x: center !important;
-    background-position-y: center !important;
-    min-height: 44px !important;
-    min-width: 76px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    border-radius: 0px !important;
+  position: relative !important;
+  word-break: break-word !important;
+  border: 4px solid rgba(240, 240, 240, 1) !important;
+  font-size: 12px !important;
+  text-align: center;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position-x: center !important;
+  background-position-y: center !important;
+  min-height: 44px !important;
+  min-width: 76px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  border-radius: 0px !important;
 }
 
 .systemLibraryCommonEpiserverBoxSelection-item:hover {

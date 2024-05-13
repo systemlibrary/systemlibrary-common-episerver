@@ -307,14 +307,12 @@
 
                 if (foundImage === false) {
                     if (is(value)) {
-                        value = value.toString();
-                        let temp = value.toLowerCase();
-
-                        if (value.startsWith('~')) {
-                            value = value.substring(1);
-                        }
+                        let temp = value.toString().toLowerCase();
 
                         if (isImageUrl(temp)) {
+                            if (value.startsWith('~')) {
+                                value = value.substring(1);
+                            }
                             inline += ' background-image:url(' + value + ');';
                         }
                     }
@@ -373,7 +371,9 @@
 
                 //always invoked on initial load by Epi, value is current value from the database
                 _setValueAttr: function (value) {
-                    this._setValue(value, true);
+                    if (this) {
+                        this._setValue(value, true);
+                    }
                 },
 
                 //Commented out: never invoked it seems
@@ -412,7 +412,7 @@
                         if (this.isMultiSelect) {
                             let selected = this.value;
 
-                            if (selected === null) {
+                            if (typeof (selected) === "undefined" || selected === "" || selected === null) {
                                 if (v !== null && Array.isArray(v)) {
                                     selected = v;
                                 }
@@ -638,7 +638,12 @@
                             let textLowered = text.toString().toLowerCase();
                             if (textLowered !== 'unset' && textLowered !== 'none' && textLowered !== 'no') {
                                 if (textLowered !== 'yes' && textLowered !== 'checked' && textLowered !== 'enabled') {
-                                    div.innerHTML = '<span>' + box.text + '</span>';
+                                    if (box.text.length > 32) {
+                                        div.innerHTML = '<span class="small">' + box.text + '</span>';
+                                    } else {
+                                        div.innerHTML = '<span>' + box.text + '</span>';
+                                    }
+
                                 }
                             }
 

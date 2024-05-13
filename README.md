@@ -60,9 +60,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.11.0.1
-- CurrentUser.IsCmsUser and IsAdministrator are now properties not functions (breaking change)
-- ReactProperties: IPrincipal or IdentityUser is now converted to react properties if existing on the model/viewmodel, but its properties are going through a strict name filter, not exposing things like NormalizedUserName, SecurityStamp, etc.
+Release 7.12.0.1
+- SelectFiltered func name > To (breaking change)
+- BaseCms.GetItems deleted, to get items from ContentArea or IEnumerable<ContentRef> use the extension methods instead (breaking change)
+- New middleware: ErrorPageResponse, implement IErrorPage on a PageData to use it
+
 
 #### Version history
 - View git history of this file if interested

@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Collections.Concurrent;
+using System.Net;
+using System.Reflection;
 using System.Text.Encodings.Web;
 
 using Azure;
@@ -33,6 +35,9 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
+    static ConcurrentDictionary<int, string> JsonErrorResponseCache = new ConcurrentDictionary<int, string>();
+    static ConcurrentDictionary<int, Type> ErrorControllerTypes = new ConcurrentDictionary<int, Type>();
+
     static void ErrorPageResponse(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
         if (options.UseErrorPageResponse) return;
@@ -41,133 +46,149 @@ partial class IApplicationBuilderExtensions
         {
             await next();
 
-            var statusCode = context?.Response?.StatusCode ?? 0;
-
-            if (statusCode <= 399 || statusCode == 503) return;
-
-            if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
-
-            var path = context?.Request?.Path.HasValue == true ? context.Request.Path.Value : null;
-
-            if (path.IsNot()) return;
-
-            if (path == "/" ||
-                path.StartsWith("/400") ||
-                path.StartsWith("/401") ||
-                path.StartsWith("/403") ||
-                path.StartsWith("/404") ||
-                path.StartsWith("/405") ||
-                path.StartsWith("/406") ||
-                path.StartsWith("/500") ||
-                path.StartsWith("/502") ||
-                path.StartsWith("/504") ||
-                path.StartsWith("/505"))
-                return;
-
-            if (path.IsFile()) return;
-
-            var pathLowered = path.ToLower();
-
-            if (pathLowered.StartsWith("/error")) return;
-
-            if (pathLowered.StartsWith("/util/login") || pathLowered.StartsWith("/episerver/"))
+            try
             {
-                if (pathLowered.Contains("stores/metadata/epi"))
-                    Log.Error(path + " not found, 404");
+                var statusCode = context?.Response?.StatusCode ?? 0;
 
-                return;
-            }
+                if (statusCode <= 399 || statusCode == 503) return;
 
-            if (pathLowered.StartsWithAny("/favicon", "/.env", "/etc/")) return;
+                if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
 
-            if (pathLowered.Contains("wp-includes") ||
-                pathLowered.Contains("phpinfo") ||
-                pathLowered.StartsWith("/.aws/")) return;
+                var path = context?.Request?.Path.HasValue == true ? context.Request.Path.Value : null;
 
-            if (pathLowered.StartsWith("/globalassets/") ||
-                pathLowered.StartsWith("/contentassets/") ||
-                pathLowered.StartsWith("/siteassets/"))
-            {
-                return;
-            }
+                if (path.IsNot()) return;
 
-            var expectJsonResponse = context.Request.IsAjaxRequest();
+                if (path == "/" ||
+                    path.StartsWith("/400") ||
+                    path.StartsWith("/401") ||
+                    path.StartsWith("/403") ||
+                    path.StartsWith("/404") ||
+                    path.StartsWith("/405") ||
+                    path.StartsWith("/406") ||
+                    path.StartsWith("/500") ||
+                    path.StartsWith("/502") ||
+                    path.StartsWith("/504") ||
+                    path.StartsWith("/505"))
+                    return;
 
-            if(!expectJsonResponse)
-            {
-                var accept = context.Request.Headers["Accept"].FirstOrDefault();
-                if (accept == null)
-                    accept = context.Request.Headers["accept"].FirstOrDefault();
+                if (path.IsFile()) return;
 
-                if (accept != null)
-                    expectJsonResponse = accept.ToLower().Contains("application/json");
-            }
+                var pathLowered = path.ToLower();
 
-            if (expectJsonResponse)
-            {
-                context.Response.ContentType = "application/json";
+                if (pathLowered.StartsWith("/error")) return;
 
-                var json = new
+                if (pathLowered.StartsWith("/util/login") || pathLowered.StartsWith("/episerver/"))
                 {
-                    statusCode = statusCode,
-                    path = path,
-                };
+                    if (pathLowered.Contains("stores/metadata/epi"))
+                        Log.Error(path + " not found, 404");
 
-                context.Response.WriteAsync(json.Json());
-                return;
-            }
-
-            var errorPages = BaseCms.GetLatestContentDataOfType<IErrorPage>();
-
-            if (errorPages == null) return;
-
-            foreach (var errorPage in errorPages)
-            {
-                if (errorPage?.StatusCodes?.Contains(statusCode) != true) continue;
-
-                if ((errorPage as IContent)?.IsPublished() != true) continue;
-
-                context.Response.Clear();
-                context.Response.StatusCode = 200;
-
-                var errorPageType = errorPage.GetOriginalType();
-
-                var errorControllerType = Type.GetType(errorPageType.Namespace + "." + errorPageType.Name + "Controller, " + errorPageType.Assembly.FullName);
-
-                if (errorControllerType == null)
-                {
-                    await context.Response.WriteAsync("Controller not found: " + errorPageType.Namespace + "." + errorPageType.Name + "Controller. Please create it as your 'error page' must have a controller");
+                    return;
                 }
-                else
-                {
-                    var controller = Activator.CreateInstance(errorControllerType) as ControllerBase;
 
-                    if (controller == null)
+                if (pathLowered.StartsWithAny("/favicon", "/.env", "/etc/")) return;
+
+                if (pathLowered.Contains("wp-includes") ||
+                    pathLowered.Contains("phpinfo") ||
+                    pathLowered.StartsWith("/.aws/")) return;
+
+                if (pathLowered.StartsWith("/globalassets/") ||
+                    pathLowered.StartsWith("/contentassets/") ||
+                    pathLowered.StartsWith("/siteassets/"))
+                {
+                    return;
+                }
+
+                var expectJsonResponse = context.Request.IsAjaxRequest();
+
+                if (!expectJsonResponse)
+                {
+                    var accept = context.Request.Headers["Accept"].FirstOrDefault();
+                    if (accept == null)
+                        accept = context.Request.Headers["accept"].FirstOrDefault();
+                    if (accept == null)
+                        accept = context.Request.Headers["ACCEPT"].FirstOrDefault();
+
+                    if (accept != null)
+                        expectJsonResponse = accept.ToLower().Contains("application/json");
+                }
+
+                if (expectJsonResponse)
+                {
+                    context.Response.ContentType = "application/json";
+
+                    var json = JsonErrorResponseCache.TryGet(statusCode, () =>
                     {
-                        await context.Response.WriteAsync("Controller was found, but wrong type, must be a ControllerBase: " + errorControllerType.Name);
+                        var json = new
+                        {
+                            statusCode = statusCode,
+                            statusMessage = ((HttpStatusCode)statusCode).ToString(),
+                        };
+
+                        return json.Json();
+                    });
+
+                    context.Response.WriteAsync(json);
+                    return;
+                }
+
+                var errorPages = BaseCms.GetLatestContentDataOfType<IErrorPage>();
+
+                if (errorPages == null) return;
+
+                foreach (var errorPage in errorPages)
+                {
+                    if (errorPage?.StatusCodes?.Contains(statusCode) != true) continue;
+
+                    if ((errorPage as IContent)?.IsPublished() != true) continue;
+
+                    context.Response.Clear();
+
+                    var errorPageType = errorPage.GetOriginalType();
+
+                    var errorControllerType = ErrorControllerTypes.TryGet(errorPageType.GetHashCode(), () =>
+                    {
+                        return Type.GetType(errorPageType.Namespace + "." + errorPageType.Name + "Controller, " + errorPageType.Assembly.FullName);
+                    });
+
+                    if (errorControllerType == null)
+                    {
+                        await context.Response.WriteAsync("Controller not found: " + errorPageType.Namespace + "." + errorPageType.Name + "Controller do not exist. Please create it as your 'error page' must have a controller");
                     }
                     else
                     {
-                        var routeData = new RouteData();
-                        routeData.Values["controller"] = errorPageType.Name;
+                        var controller = Activator.CreateInstance(errorControllerType) as ControllerBase;
 
-                        var actionContext = new ActionContext(context, routeData, new ControllerActionDescriptor());
-                        controller.ControllerContext = new ControllerContext(actionContext);
-
-                        var index = errorControllerType.GetMethod("Index");
-
-                        if (index == null)
+                        if (controller == null)
                         {
-                            await context.Response.WriteAsync("Controller must have a Index method that takes the 'error page' as first argument, the second argument is the erroring request path");
+                            await context.Response.WriteAsync("Controller was found, but wrong type, must be a ControllerBase: " + errorControllerType.Name);
                         }
                         else
                         {
-                            var view = index.Invoke(controller, new object[] { errorPage, path }) as ViewResult;
+                            var routeData = new RouteData();
+                            routeData.Values["controller"] = errorPageType.Name;
 
-                            await view.ExecuteResultAsync(actionContext);
+                            var actionContext = new ActionContext(context, routeData, new ControllerActionDescriptor());
+                            controller.ControllerContext = new ControllerContext(actionContext);
+
+                            var index = errorControllerType.GetMethod("Index");
+
+                            if (index == null)
+                            {
+                                await context.Response.WriteAsync("Controller must have a Index method that takes the 'error page' as first argument, the second argument is the erroring request path");
+                            }
+                            else
+                            {
+                                var view = index.Invoke(controller, new object[] { errorPage, path }) as ViewResult;
+
+                                await view.ExecuteResultAsync(actionContext);
+                            }
                         }
                     }
                 }
+            }
+            catch
+            {
+                // Swallow
             }
         });
     }
