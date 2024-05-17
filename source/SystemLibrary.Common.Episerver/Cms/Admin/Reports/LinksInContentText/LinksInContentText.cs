@@ -1,6 +1,6 @@
 ﻿//using SystemLibrary.Common.Net;
 
-//namespace SystemLibrary.Common.Episerver.Cms.Admin.Reports
+//namespace SystemLibrary.Common.Episerver.Admin.Reports
 //{
 //    //https://krompaco.nu/2022/10/identify-external-embedded-resources-in-cms-content/
 //    public class LinksInContentText

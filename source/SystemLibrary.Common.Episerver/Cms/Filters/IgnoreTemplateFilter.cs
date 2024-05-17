@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using EPiServer.Core;
 using EPiServer.Filters;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver;
 
 internal class IgnoreTemplateFilter : FilterTemplate
 {

@@ -64,10 +64,10 @@ public class JsonEditClassConverterTests
 
     static string InvokeGetPropertySchemaMethod(Type type)
     {
-        var testType = Type.GetType(typeName: "SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditPropertiesLoader, SystemLibrary.Common.Episerver");
+        var testType = Type.GetType(typeName: "SystemLibrary.Common.Episerver.Attributes.JsonEditPropertiesLoader, SystemLibrary.Common.Episerver");
 
         if (testType == null)
-            throw new Exception("SystemLibrary.Common.Episerver is not loaded or type is renamed");
+            throw new Exception("SystemLibrary.Common.Episerver.Attributes.JsonEditPropertiesLoader is not loaded or type is renamed");
 
         var method = testType.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
            .Where(x => x.Name == "GetPropertySchema")

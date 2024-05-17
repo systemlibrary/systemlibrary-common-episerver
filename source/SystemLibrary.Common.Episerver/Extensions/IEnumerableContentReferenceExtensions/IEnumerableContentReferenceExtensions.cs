@@ -8,7 +8,7 @@ using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Security;
 
-using SystemLibrary.Common.Episerver.Cms;
+using SystemLibrary.Common.Episerver;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;

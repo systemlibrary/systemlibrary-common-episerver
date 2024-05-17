@@ -2,12 +2,12 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using SystemLibrary.Common.Episerver.Cms.Abstract;
+using SystemLibrary.Common.Episerver.Abstract;
 using SystemLibrary.Common.Episerver.FontAwesome;
 
-using static SystemLibrary.Common.Episerver.Cms.Attributes.ContentIconAttribute;
+using static SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute;
 
-namespace SystemLibrary.Common.Episerver.Cms;
+namespace SystemLibrary.Common.Episerver;
 
 public partial class EditController : BaseController
 {

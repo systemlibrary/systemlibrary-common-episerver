@@ -5,11 +5,11 @@ using System.Reflection;
 
 using EPiServer.Shell.ObjectEditing;
 
-using SystemLibrary.Common.Episerver.Cms.Abstract;
+using SystemLibrary.Common.Episerver.Abstract;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 {

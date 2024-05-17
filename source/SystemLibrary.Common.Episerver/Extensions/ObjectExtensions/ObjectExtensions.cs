@@ -24,7 +24,7 @@ using EPiServer.Web.Mvc.Html;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Operations;
 
-using SystemLibrary.Common.Episerver.Cms.Properties;
+using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Net.Extensions;
 
 using static Azure.Core.HttpHeader;

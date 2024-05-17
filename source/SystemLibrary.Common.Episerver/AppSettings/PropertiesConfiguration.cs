@@ -1,4 +1,4 @@
-﻿using SystemLibrary.Common.Episerver.Cms.Properties;
+﻿using SystemLibrary.Common.Episerver.Properties;
 
 namespace SystemLibrary.Common.Episerver;
 

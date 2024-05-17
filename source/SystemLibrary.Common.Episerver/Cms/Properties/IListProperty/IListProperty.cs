@@ -1,6 +1,6 @@
 ﻿using EPiServer.Core;
 
-namespace SystemLibrary.Common.Episerver.Cms.Properties;
+namespace SystemLibrary.Common.Episerver.Properties;
 
 /// <summary>
 /// Enable your custom C# class to be stored as JSON in the DB through IList&lt;T&gt;

@@ -3,7 +3,7 @@
 using EPiServer.Core;
 using EPiServer.PlugIn;
 
-namespace SystemLibrary.Common.Episerver.Cms.Properties;
+namespace SystemLibrary.Common.Episerver.Properties;
 
 [PropertyDefinitionTypePlugIn(
     DisplayName = "[SystemLibrary] Parent Link Reference",

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Select multiple values form either a Enum based selection factory, or a free text input field where editors can add custom texts as they please

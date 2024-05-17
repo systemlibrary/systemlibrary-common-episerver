@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Add Json Edit attribute to a virtual string property to activate the simple Json Editor

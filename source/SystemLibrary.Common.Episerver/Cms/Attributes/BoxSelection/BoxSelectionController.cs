@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using SystemLibrary.Common.Episerver.Cms.Abstract;
+using SystemLibrary.Common.Episerver.Abstract;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 public partial class BoxSelectionController : BaseController
 {

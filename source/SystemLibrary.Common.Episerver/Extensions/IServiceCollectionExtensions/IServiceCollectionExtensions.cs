@@ -83,7 +83,7 @@ public static partial class IServiceCollectionExtensions
             services.AddReact();
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-            //ReactSiteConfiguration.Configuration.JsonSerializerSettings.ContractResolver = new DefaultContractResolver();
+            ReactSiteConfiguration.Configuration.JsonSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
         return services;

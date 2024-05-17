@@ -8,7 +8,7 @@ using EPiServer.Shell.ObjectEditing;
 using SystemLibrary.Common.Episerver.Extensions;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Abstract;
+namespace SystemLibrary.Common.Episerver.Abstract;
 
 public abstract class BaseMultiSelectionFactory
 {

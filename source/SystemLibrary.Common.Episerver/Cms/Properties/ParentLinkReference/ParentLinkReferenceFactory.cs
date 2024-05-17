@@ -10,7 +10,7 @@ using Microsoft.Data.SqlClient;
 
 using SystemLibrary.Common.Web;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 public class ParentLinkReferenceFactory : ISelectionFactory
 {

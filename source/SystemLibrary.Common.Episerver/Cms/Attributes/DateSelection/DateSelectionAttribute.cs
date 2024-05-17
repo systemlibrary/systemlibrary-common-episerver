@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Add Date Selection attribute to a public virtual DateTime property to activate a 'date picker', it will hide the 'time selection'

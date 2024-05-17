@@ -3,7 +3,7 @@
 using EPiServer.Core;
 using EPiServer.PlugIn;
 
-namespace SystemLibrary.Common.Episerver.Cms.Properties;
+namespace SystemLibrary.Common.Episerver.Properties;
 
 [PropertyDefinitionTypePlugIn(DisplayName = "[SystemLibrary] Message",
     Description = "This property display an information message that shows only in property view",

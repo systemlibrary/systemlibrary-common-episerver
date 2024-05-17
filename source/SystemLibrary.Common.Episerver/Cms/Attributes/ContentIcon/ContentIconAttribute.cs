@@ -5,7 +5,7 @@ using EPiServer.DataAnnotations;
 
 using SystemLibrary.Common.Episerver.FontAwesome;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Chose one of Font Awesome v. 6's free icons for your Blocks and Pages

@@ -4,7 +4,6 @@
         "dojo/query",
         "dojo/on",
         "dojo/_base/declare",
-        "dojo/_base/lang",
 
         "dijit/_CssStateMixin",
         "dijit/_Widget",
@@ -18,7 +17,6 @@
             query,
             on,
             declare,
-            lang,
 
             _CssStateMixin,
             _Widget,
@@ -31,37 +29,20 @@
             const moduleFullName = "systemLibraryCommonEpiserverBoxSelectionWidget";
             const dojoAttachPointName = "systemLibraryCommonEpiserverBoxSelection";
 
-            function initialValue(obj, value) {
-                if (typeof (value) === "undefined") {
-                    if (obj.isMultiSelect) {
-                        return '';
-                    }
-                    if (obj.propertyIsEnum) {
-                        return 0;
-                    }
-                    return null;
-                }
-                if (is(value)) {
-                    return value;
-                }
-                if (value === 0) {
-                    return value;
-                }
-                if (obj.isMultiSelect) {
-                    return '';
-                }
-                if (obj.propertyIsEnum) {
-                    return 0;
-                }
-                return null;
-            }
-
             function is(data) {
-                if (typeof (data) === 'undefined' || data === null || data === "" || data == -1 || (data.length && data.length === 0)) {
+                if (typeof (data) === 'undefined' || data === null || data === "" || data == -9999 || (data.length && data.length === 0)) {
                     return false;
                 }
                 return true;
             }
+
+            function getAdditionalValue(value) {
+                if (value?.toString().includes('__d_')) {
+                    return value.toString().split('__d_')[1];
+                }
+                return null;
+            }
+
 
             function isImageUrl(url) {
                 if (!is(url)) {
@@ -96,7 +77,7 @@
 
                 data = data.toString();
 
-                if (data.length && data.length > 22) {
+                if (data.length && data.length > 23) {
                     return false;
                 }
 
@@ -142,6 +123,29 @@
                 return link;
             }
 
+            function getInitialValue(storeAsEnum, isMultiSelect, value) {
+                if (typeof value === "undefined") {
+                    value = null;
+                }
+                if (value === null) {
+                    if (storeAsEnum) {
+                        if (isMultiSelect) {
+                            value = new Array();
+                        } else {
+                            value = 0;
+                        }
+                    } else {
+                        if (isMultiSelect) {
+                            value = new Array();
+                        } else {
+                            value = null;
+                        }
+                    }
+                }
+                // obj.additionalValue = getAdditionalValue(value);
+                return value;
+            }
+
             function getCssName(data) {
                 if (!is(data) || isImageUrl(data) || isHex(data) || isColorValue(data) || isRgbColor(data)) {
                     return null;
@@ -149,7 +153,7 @@
 
                 data = data.toString();
 
-                if (data.includes('[') || data.includes('(') || data.includes('#')) {
+                if (data.includes('"') || data.includes('<') || data.includes('[') || data.includes('(') || data.includes('#')) {
                     return null;
                 }
 
@@ -352,12 +356,10 @@
                 postCreate: function () {
                     try {
                         this._loadCssFile();
-
-                        this.value = initialValue(this, this.value);
-
-                        this._initWidgetProperties();
-                        this._bindEvents(this);
                         this.inherited(arguments);
+                        this._initWidgetProperties();
+                        this.value = getInitialValue(this.storeAsEnum, this.isMultiSelect, null);
+                        this._bindEvents(this);
                     }
                     catch (err) {
                         console.error(err);
@@ -370,114 +372,73 @@
                 },
 
                 //always invoked on initial load by Epi, value is current value from the database
-                _setValueAttr: function (value) {
-                    if (this) {
-                        this._setValue(value, true);
-                    }
+                _setValueAttr: function (v) {
+                    v = getInitialValue(this.storeAsEnum, this.isMultiSelect, v);
+                    this._set('value', v);
+                    this._selectBoxes();
                 },
-
-                //Commented out: never invoked it seems
-                // _setIntermediateChangesAttr: function (value) {
-                //     this._set("intermediateChanges", value);
-                // },
 
                 isValid: function () {
                     if (!this.required) {
                         return true;
                     }
 
-                    if (typeof (this.value) === 'undefined') return false;
+                    if (typeof (this.value) === 'undefined' || this.value === null) return false;
 
                     return true;
-
-                    //                    return (lang.isArray(this.value) && this.value.length && this.value.length > 0 && this.value.join() !== "") ||
-                    //                      (this.value !== "" && this.value.length && this.value.length > 0)
                 },
 
-                _setValue: function (v, initialLoad) {
+                _setValue: function (v) {
                     try {
                         if (!this._started) {
                             return;
                         }
 
                         if (typeof (v) === 'undefined') {
-                            if (this.propertyIsEnum) {
-                                v = 0;
-                            }
-                            else {
-                                v = null;
-                            }
+                            v = null;
+                        }
+                        if (this.storeAsEnum && (v === null || v === '')) {
+                            v = 0;
                         }
 
                         if (this.isMultiSelect) {
-                            let selected = this.value;
-
-                            if (typeof (selected) === "undefined" || selected === "" || selected === null) {
-                                if (v !== null && Array.isArray(v)) {
-                                    selected = v;
-                                }
-                                else {
-                                    selected = [];
-                                    selected.push(v);
-                                }
-                            } else {
-                                if (Array.isArray(v)) {
-                                    console.warn("BoxSelection: value is an array from an onClick event from a box, this should never happen");
-                                    return;
-                                } else {
-                                    if (selected && v && selected.toString().includes(v.toString())) {
-                                        if (this.allowUnselection) {
-                                            selected = selected.filter(e => e !== v)
-                                        } else {
-                                            if (selected.length === 1) {
-                                                console.warn("BoxSelection: allowUnselection is false, cannot unselect the value leaving the list empty");
-                                                return;
-                                            }
-                                            selected = selected.filter(e => e !== v)
-                                        }
-                                    } else {
-                                        selected.push(v);
+                            let storedValue = this.value;
+                            let isSelected = storedValue.toString().includes(v.toString());
+                            if (isSelected) {
+                                if (!this.allowUnselection) {
+                                    if (storedValue.length === 1) {
+                                        console.warn("BoxSelection: allowUnselection is false, cannot unselect the value leaving the list empty");
+                                        return;
                                     }
                                 }
+                                storedValue = storedValue.filter(boxValue => {
+                                    return boxValue?.toString() !== v?.toString()
+                                });
+                            } else {
+                                if (this.storeAsEnum) {
+                                    storedValue.push(Number(v));
+                                } else {
+                                    storedValue.push(v);
+                                }
                             }
-                            this._set('value', selected);
-
+                            this._set('value', storedValue);
                         } else {
-                            if (initialLoad) {
+                            if (this.storeAsEnum) {
+                                this._set('value', Number(v));
+                            } else {
                                 this._set('value', v);
                             }
-                            else {
-                                if (this.allowUnselection !== true) {
-                                    if (isEqual(this.value, v)) {
-                                        console.warn("BoxSelection: allowUnselection is false, cannot unselect the value");
-                                        return;
-                                    } else {
-                                        this._set('value', v);
-                                    }
-                                } else {
-                                    if (isEqual(this.value, v)) {
-                                        this._set('value', null);
-                                    } else {
-                                        this._set('value', v);
-                                    }
-                                }
-                            }
-                        }
-
-                        this._selectBoxes();
-
-                        if (initialLoad) {
-                            return;
-                        }
-
-                        if (this._started && this.validate()) {
-                            //invoke built-in onChange method to trigger epi events
-                            this.onChange(this.value);
                         }
                     }
                     catch (e) {
-                        console.error("BoxSelection: _setValue");
+                        console.error("BoxSelection: _setValue: ");
                         console.error(e);
+                        console.log(v);
+                    }
+                    this._selectBoxes();
+                    if (this._started && this.validate()) {
+                        //invoke built-in onChange method to trigger epi events
+                        this.onChange(this.value);
                     }
                 },
 
@@ -531,14 +492,16 @@
                                         if (value == 0 && selected === null) {
                                             css = css + ' ' + dojoAttachPointName + '--item-selected';
                                         }
+                                        else {
+                                            console.log("Does this ever occur ?");
+                                            // Still not selected any? Select first box as Unsleectedion is disabled or?
+                                        }
                                     }
                                 }
                             }
-
                             div.setAttribute('class', css);
                             div.setAttribute('style', inline);
-
-                            box.appendChild(div);
+                            // box.appendChild(div);
                         }
                     }
                     catch (e) {
@@ -594,7 +557,7 @@
                                 value = null;
                             }
 
-                            if (is(text)) {
+                            if (is(text) || text === 0) {
                                 text = text.toString();
                             }
 
@@ -607,14 +570,14 @@
                             }
 
                             if (!is(value) && value !== 0) {
-                                if (this.propertyIsEnum) {
+                                if (this.storeAsEnum) {
                                     value = 0;
                                 } else {
                                     value = "";
                                 }
                             }
 
-                            if (value != "-1" && value != "0") {
+                            if (is(value)) {
                                 if (value?.toString().includes('__d_')) {
                                     let tmp = value.split('__d_');
                                     value = tmp[0];
@@ -661,8 +624,6 @@
 
                             list.appendChild(li);
                         });
-
-                        this._selectBoxes();
                     }
                     catch (e) {
                         console.error("BoxSelection: _initWidgetProperties");

@@ -1,129 +1,197 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
+using EPiServer;
+using EPiServer.Cms.Shell.UI.UIDescriptors.Internal;
 using EPiServer.Shell.ObjectEditing;
 
-using SystemLibrary.Common.Episerver.Cms.Abstract;
+using MailKit;
+
+using SystemLibrary.Common.Episerver.Abstract;
 using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+using WeCantSpell.Hunspell;
+
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 {
+    const string IntDelimiter = "__d_";
+
+    enum StoreType
+    {
+        String,
+        Int,
+        Enum,
+        ListString,
+        ListInt,
+        ListEnum
+    }
+
     public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
     {
-        var items = new List<ISelectItem>();
+        var boxes = new List<ISelectItem>();
 
+        var propertyName = metadata.PropertyName;
+
+        if(metadata.EditorConfiguration.Count > 2)
+        {
+            return Enumerable.Empty<ISelectItem>();
+        }
         try
         {
             var options = GetOptions<BoxSelectionAttribute>(metadata);
 
-            var enumType = metadata.ModelType;
+            var modelType = metadata.ModelType;
 
-            var genericListType = enumType.GetFirstGenericType();
+            var genericType = modelType.GetFirstGenericType();
 
-            var propertyName = metadata.PropertyName;
+            var selectEnumType = options.EnumType;
 
-            if (genericListType == null)
+            if(selectEnumType == null)
             {
-                if (!enumType.IsEnum)
-                    enumType = options.EnumType;
-
-                if (enumType == null)
-                    throw new Exception("Property " + propertyName + " of type " + metadata.ModelType.Name + " must set the Type of an Enum, in the " + nameof(BoxSelectionAttribute));
-
-                if (!enumType.IsEnum)
-                    throw new Exception("Property " + propertyName + " of type " + enumType.Name + " must be an Enum or a String!");
-
-                metadata.EditorConfiguration.Add("isMultiSelect", false);
+                selectEnumType = modelType;
+                if(selectEnumType?.IsEnum != true)
+                {
+                    selectEnumType = genericType;
+                }
             }
-            else
+
+            if(selectEnumType?.IsEnum != true)
             {
-                if (options.EnumType == null)
-                    enumType = genericListType;
-                else
-                    enumType = options.EnumType;
-
-                if (!enumType.IsEnum)
-                    throw new Exception("Property " + propertyName + " has an invalid generic type: " + enumType.Name + ". It must be an Enum or a String");
-
-                metadata.EditorConfiguration.Add("isMultiSelect", true);
+                throw new Exception(propertyName + " must have an EnumType specified, either directly as the property type, or through the attribute's arguments. Type is not enum: " + selectEnumType?.Name);
             }
-            // If multiselect is false, then we pass wether or not enum is the type, controlling the Default Value on POST
-            metadata.EditorConfiguration.Add("propertyIsEnum", genericListType == null && metadata.ModelType.IsEnum);
 
-            //NOTE: metaData.AdditionalValues is not sent, so have to use EditorConfiguration
+            Type storeEnum = null;
+            if (modelType.IsEnum)
+                storeEnum = modelType;
+            else if (genericType?.IsEnum == true)
+                storeEnum = genericType;
+
+            var genericTypeDef = modelType.GetGenericTypeDefinition();
+
+            var isMultiSelect = modelType.IsListOrArray() || genericTypeDef == typeof(IList<>);
+
+            metadata.EditorConfiguration.Add(nameof(isMultiSelect), isMultiSelect);
+
+            var storeAsEnum = storeEnum?.IsEnum == true;
+            metadata.EditorConfiguration.Add(nameof(storeAsEnum), storeAsEnum);
+            
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
             (var Show, var Hide, var ShowExpiredItems) = GetAttributeOptions(options);
             
-            var keys = Enum.GetNames(enumType);
+            var keys = Enum.GetNames(selectEnumType);
 
-            foreach (var key in KeysFiltered(keys, Show, Hide))
+            List<string> keysStorable = null;
+            if(storeEnum?.IsEnum == true)
             {
-                items.Add(GetSelectItem(key, enumType, metadata.ModelType == SystemType.StringType));
+                var names = Enum.GetNames(storeEnum).ToList();
+
+                keysStorable = new List<string>();
+
+                foreach (var key in names)
+                {
+                    var e = AsEnum(key, storeEnum);
+                    keysStorable.Add(key);
+                    keysStorable.Add(e.ToValue());
+                    keysStorable.Add(e.ToText());
+                    keysStorable.Add(((int)(object)e).ToString());
+                }
+                keysStorable = keysStorable.Distinct().ToList();
             }
 
-            if (options.ShowExpiredItems && metadata.InitialValue != null && metadata.InitialValue != "" && metadata.InitialValue + "" != "0")
+            var storeAsString = modelType == SystemType.StringType || modelType.GetFirstGenericType() == SystemType.StringType;
+           
+            foreach (var selectKey in KeysFiltered(keys, Show, Hide))
             {
-                if (genericListType == null)
+                if (KeyEligibleForStorage(selectKey, selectEnumType, keysStorable, storeEnum))
+                {
+                    boxes.Add(GetSelectItem(selectKey, selectEnumType, storeAsString));
+                }
+            }
+
+            var hasSelectedValue = metadata.InitialValue != null && metadata.InitialValue != "" && metadata.InitialValue + "" != "0";
+
+            if (options.ShowExpiredItems && hasSelectedValue)
+            {
+                if (!isMultiSelect)
                 {
                     var found = false;
-                    foreach (var item in items)
+                    var selectedValue = metadata.InitialValue + "";
+                    foreach (var box in boxes)
                     {
-                        var val = item.Value + "";
-                        if (val.Contains("__d_"))
+                        var boxValue = box.Value + "";
+                        if (boxValue.Contains(IntDelimiter))
                         {
-                            val = val.Split("__d_")[0];
+                            boxValue = boxValue.Split(IntDelimiter)[0];
                         }
 
-                        if (val == metadata.InitialValue + "")
+                        if (boxValue == selectedValue)
                         {
                             found = true;
                             break;
                         }
-                        if(val == "0")
-                        {
-                            found = true;
-                            break;
-                        }
+                    }
+
+                    if(selectedValue== "" || selectedValue == "0")
+                    {
+                        found = true;
                     }
 
                     if (!found)
                     {
-                        items.Insert(0, new SelectItem { Text = "Expired: " + metadata.InitialValue, Value = metadata.InitialValue });
+                        boxes.Insert(0, new SelectItem { Text = "Expired: " + metadata.InitialValue, Value = metadata.InitialValue });
                     }
                 }
                 else
                 {
-                    var selected = metadata.InitialValue as IList;
+                    var selection = metadata.InitialValue as IList;
 
-                    if (selected != null && selected.Count > 0)
+                    if (selection?.Count > 0)
                     {
-                        foreach (var selection in selected)
+                        // List of Enum, int or strings
+                        foreach (var selected in selection)
                         {
                             var found = false;
-                            var selectedValue = selection + "";
-                            foreach (var item in items)
+
+                            var selectedValue = selected + "";
+
+                            if (storeAsEnum)
                             {
-                                var val = item.Value + "";
-                                if (val.Contains("__d_"))
+                                foreach (var box in boxes)
                                 {
-                                    val = val.Split("__d_")[0];
+                                    if((box.Value + "").Contains(selectedValue) || box.Text.Contains(selectedValue))
+                                    {
+                                        found = true;
+                                        break;
+                                    }
                                 }
-                                if (val == selectedValue)
+                            }
+                            else
+                            {
+                                foreach (var box in boxes)
                                 {
-                                    found = true;
-                                    break;
+                                    var boxValue = box.Value + "";
+                                    if (boxValue.Contains(IntDelimiter))
+                                    {
+                                        boxValue = boxValue.Split(IntDelimiter)[0];
+                                    }
+                                    if (boxValue == selectedValue)
+                                    {
+                                        found = true;
+                                        break;
+                                    }
                                 }
                             }
 
                             if (!found)
                             {
-                                items.Insert(0, new SelectItem { Text = "Expired: " + selectedValue, Value = selectedValue });
+                                boxes.Insert(0, new SelectItem { Text = "Expired: " + selectedValue, Value = selectedValue });
                             }
                         }
                     }
@@ -132,9 +200,11 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         }
         catch (Exception ex)
         {
-            items.Add(new SelectItem() { Text = "ERROR: " + ex.Message, Value = "-1" });
+            Log.Error(propertyName + ": " + ex);
+
+            boxes.Add(new SelectItem() { Text = "ERROR: " + ex.Message, Value = "-99999" });
         }
-        return items;
+        return boxes;
     }
 
     static SelectItem GetSelectItem(string key, Type type, bool isStoredAsString)
@@ -158,22 +228,50 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         {
             value = FontAwesomeLoader.GetFontAwesomeIconRequestUrl(brands);
         }
+        
+        if(value != null)
+        {
+            // FontAwesome url is sent with the value, but value should be stored as Int, so pass both as "value"
+            if (!isStoredAsString)
+                value = Convert.ToInt32(e) + IntDelimiter + value;
+        }
 
-        if(value == null)
+        text = e.ToText();
+
+        if (value == null)
         {
             if (isStoredAsString)
                 value = e.ToValue();
             else
-                value = Convert.ToInt32(e) + "__d_" + e.ToValue();
-
-            text = e.ToText();
-        }
-        else
-        {
-            if (!isStoredAsString)
-                value = Convert.ToInt32(e) + "__d_" + value;
+                value = Convert.ToInt32(e) + IntDelimiter + e.ToValue();
+            // Value is stored as Int, so pass both Int and Value to create proper css classes
         }
 
         return new SelectItem { Text = text, Value = value };
+    }
+
+    static bool KeyEligibleForStorage(string selectKey, Type selectEnum, List<string> storableValues, Type storeEnum)
+    {
+        if (storeEnum?.IsEnum != true) return true;
+
+        if (selectEnum == storeEnum) return true;
+
+        if (storableValues.Contains(selectKey)) return true;
+
+        var e = AsEnum(selectKey, selectEnum);
+        var v = e.ToValue();
+        var t = e.ToText();
+
+
+
+        if(storableValues.Contains(v)) return true;
+
+        if (storableValues.Contains(t)) return true;
+
+        var i = (int)(object)e;
+        if (storableValues.Contains(i.ToString())) return true;
+        
+
+        return false;
     }
 }

@@ -42,8 +42,8 @@ using System.ComponentModel.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 
-using SystemLibrary.Common.Episerver.Cms.Attributes;
-using SystemLibrary.Common.Episerver.Cms.Properties;
+using SystemLibrary.Common.Episerver.Attributes;
+using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Episerver.FontAwesome;
 
 namespace Demo;

@@ -13,7 +13,7 @@ using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Episerver.Initialize;
 using SystemLibrary.Common.Net;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 partial class ContentIconAttribute
 {

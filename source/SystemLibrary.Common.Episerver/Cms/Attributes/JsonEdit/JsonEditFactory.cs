@@ -10,7 +10,7 @@ using SystemLibrary.Common.Episerver.Extensions;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 public class JsonEditFactory : ISelectionFactory
 {

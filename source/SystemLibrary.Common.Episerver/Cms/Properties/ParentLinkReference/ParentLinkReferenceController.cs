@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using SystemLibrary.Common.Episerver.Cms.Abstract;
+using SystemLibrary.Common.Episerver.Abstract;
 
-namespace SystemLibrary.Common.Episerver.Cms.Properties;
+namespace SystemLibrary.Common.Episerver.Properties;
 
 public partial class ParentLinkReferenceController : BaseController
 {

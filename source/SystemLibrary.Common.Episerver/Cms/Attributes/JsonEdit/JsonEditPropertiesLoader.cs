@@ -9,7 +9,7 @@ using EPiServer.Core;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 internal static class JsonEditPropertiesLoader
 {

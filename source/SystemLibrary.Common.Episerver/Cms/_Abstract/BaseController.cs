@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SystemLibrary.Common.Episerver.Cms.Abstract;
+namespace SystemLibrary.Common.Episerver.Abstract;
 
 [Area(Globals.AreaCms)]
 [Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]

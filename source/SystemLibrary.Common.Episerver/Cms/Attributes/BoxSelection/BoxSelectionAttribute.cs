@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 using SystemLibrary.Common.Net.Extensions;
 
-namespace SystemLibrary.Common.Episerver.Cms.Attributes;
+namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Show a selection of items in boxes, where one can select one or more boxes

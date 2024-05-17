@@ -1,6 +1,6 @@
 ﻿using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 
-namespace SystemLibrary.Common.Episerver.Cms.Properties;
+namespace SystemLibrary.Common.Episerver.Properties;
 
 [EditorDescriptorRegistration(TargetType = typeof(Message))]
 public class MessageEditorDescriptor : EditorDescriptor

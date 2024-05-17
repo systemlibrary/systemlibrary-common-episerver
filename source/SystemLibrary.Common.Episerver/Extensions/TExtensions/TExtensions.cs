@@ -25,7 +25,7 @@ using Microsoft.Identity.Client.Extensions.Msal;
 
 using React;
 
-using SystemLibrary.Common.Episerver.Cms.Properties;
+using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;

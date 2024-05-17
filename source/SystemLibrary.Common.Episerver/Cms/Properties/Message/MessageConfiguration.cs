@@ -1,4 +1,4 @@
-﻿namespace SystemLibrary.Common.Episerver.Cms.Properties;
+﻿namespace SystemLibrary.Common.Episerver.Properties;
 
 public class MessageConfiguration
 {

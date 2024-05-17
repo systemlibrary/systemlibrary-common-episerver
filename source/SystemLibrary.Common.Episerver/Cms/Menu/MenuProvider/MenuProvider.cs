@@ -2,7 +2,7 @@
 
 //using EPiServer.Shell.Navigation;
 
-//namespace SystemLibrary.Common.Episerver.Cms.Menu;
+//namespace SystemLibrary.Common.Episerver.Menu;
 
 //[MenuProvider]
 //public class MenuProvider : IMenuProvider
