@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System.Collections.Concurrent;
+using System.Dynamic;
 using System.Reflection;
 using System.Text;
 
@@ -11,19 +12,22 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
+    static ConcurrentDictionary<int, PropertyInfo[]> ModelToPropsPropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
+
     static IDictionary<string, object> ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
     {
         List<string> ignorePropertyNames = null;
 
         if (additionalProps != null)
         {
-            // NOTE: Additional props hashCode should including current Model.Type hashCode
+            // NOTE: Additional props hashCode should include current Model.Type hashCode
             // converted to a BigInt
             var additionalType = additionalProps.GetType();
 
             var hashCode = additionalType.GetHashCode();
 
-            var additionalProperties = Dictionaries.ModelToPropsPropertiesCache.TryGet(hashCode, () =>
+            // NOTE: Optimize: return the ignorePropertyNames directly, instead of looping afterwards
+            var additionalProperties = ModelToPropsPropertiesCache.TryGet(hashCode, () =>
             {
                 return additionalType.GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.GetProperty);
             });

@@ -3,7 +3,7 @@
 namespace SystemLibrary.Common.Episerver.Properties;
 
 /// <summary>
-/// Enable your custom C# class to be stored as JSON in the DB through IList&lt;T&gt;
+/// Enables your custom C# class to be stored as JSON in the DB through IList&lt;T&gt;
 /// </summary>
 /// <example>
 /// <code>

@@ -33,11 +33,25 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class ObjectExtensions
 {
-    static Type SystemType = typeof(Type);
-    static Type MessageType = typeof(Message);
-    static Type ParentLinkReferenceType = typeof(ParentLinkReference);
-    static Type CultureInfoType = typeof(CultureInfo);
-    static Type PropertyUrlType = typeof(PropertyUrl);
+    static Type SystemType;
+    static Type MessageType ;
+    static Type ParentLinkReferenceType;
+    static Type CultureInfoType;
+    static Type PropertyUrlType;
+    static ConcurrentDictionary<int, PropertyInfo[]> ReactPropPropertiesCache;
+    static ConcurrentDictionary<int, PropertyInfo[]> IdentityUserProperties;
+
+    static ObjectExtensions()
+    {
+        SystemType = typeof(Type);
+        MessageType = typeof(Message);
+        ParentLinkReferenceType = typeof(ParentLinkReference);
+        CultureInfoType = typeof(CultureInfo);
+        PropertyUrlType = typeof(PropertyUrl);
+
+        ReactPropPropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
+        IdentityUserProperties = new ConcurrentDictionary<int, PropertyInfo[]>();
+    }
 
     static string[] WhiteListedCustomProperties = new string[]
     {
@@ -246,7 +260,7 @@ public static class ObjectExtensions
                 if (value is IPrincipal || value is IdentityUser)
                 {
                     // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
-                    var userProperties = Dictionaries.IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () => {
+                    var userProperties = IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () => {
                         return value.GetType()?.GetProperties();
                     });
 
@@ -306,7 +320,7 @@ public static class ObjectExtensions
     static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable list, Type genericType)
     {
         var hashCode = genericType.GetHashCode();
-        var properties = Dictionaries.ReactPropPropertiesCache.TryGet(hashCode, () =>
+        var properties = ReactPropPropertiesCache.TryGet(hashCode, () =>
         {
             return genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
         });

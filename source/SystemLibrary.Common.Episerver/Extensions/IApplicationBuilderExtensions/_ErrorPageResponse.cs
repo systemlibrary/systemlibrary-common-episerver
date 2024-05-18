@@ -1,34 +1,17 @@
 ﻿using System.Collections.Concurrent;
 using System.Net;
-using System.Reflection;
-using System.Text.Encodings.Web;
-
-using Azure;
 
 using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core;
-using EPiServer.Licensing.Services;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewComponents;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
 
-using React.AspNet;
-
-using SystemLibrary.Common.Episerver;
-using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
-using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
@@ -131,7 +114,7 @@ partial class IApplicationBuilderExtensions
                     return;
                 }
 
-                var errorPages = BaseCms.GetLatestContentDataOfType<IErrorPage>();
+                var errorPages = BaseCms.GetLatestVersionOfContentType<IErrorPage>();
 
                 if (errorPages == null) return;
 

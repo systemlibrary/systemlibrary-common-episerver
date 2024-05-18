@@ -315,7 +315,7 @@ public abstract class BaseCms
     /// Returns all 'ContentData' that inherits, implements or is of type T
     /// - Returns only the latest version based on WorkId per ID
     /// </summary>
-    public static IEnumerable<T> GetLatestContentDataOfType<T>() where T : class
+    public static IEnumerable<T> GetLatestVersionOfContentType<T>() where T : class
     {
         var contentTypes = GetContentTypesInheriting<T>();
 
