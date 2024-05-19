@@ -95,7 +95,7 @@ public static partial class TExtensions
         {
             Log.Error(ex);
 
-            root.Append("<div class='ssr-errored' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">" + ex.Message + "<br/>Full component name: " + componentFullName + ". Check your browsers console. Note: restart APP to reload your script changes after this error</div>");
+            root.Append("<div class='ssr-errored' data-error=\"" + ex.Message + "\" style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Exception: " + ex.Message + "<br/>Full component name: " + componentFullName + ". Check your browsers console. Note: restart APP to reload your script changes after this error</div>");
         }
 
         AppendRootElementEnd(root, tagName);

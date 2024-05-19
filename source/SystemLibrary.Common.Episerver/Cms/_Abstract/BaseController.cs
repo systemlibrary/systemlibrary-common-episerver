@@ -9,7 +9,7 @@ namespace SystemLibrary.Common.Episerver.Abstract;
 
 [Area(Globals.AreaCms)]
 [Authorize(Roles = "WebAdmins, Administrators, WebEditors, CmsAdmins, CmsEditors")]
-public abstract class BaseController : Controller
+internal abstract class BaseController : Controller
 {
     static int ClientCacheSeconds = 7200;
 

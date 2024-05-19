@@ -122,11 +122,13 @@ public static class HtmlHelperExtensions
 
         if (!EnvironmentConfig.IsProd)
         {
-            message = message.Replace(System.Environment.NewLine, "<br/>");
+            message = message.Replace("\r\n", "<br>");
+            message = message.Replace("\n", "<br>");
+            message = message.Replace("\r", "<br>");
 
             if (content?.ContentLink != null)
             {
-                message.Append("<br/><a style='color:blue;' target='_blank' href='/EPiServer/CMS/?#context=epi.cms.contentdata:///" + content.ContentLink.ID + "'>Erroring content " + content?.ContentLink.ID + "</a>");
+                message.Append("<br/><br/><a style='color:blue;font-size: 14px;' target='_blank' href='/EPiServer/CMS/?#context=epi.cms.contentdata:///" + content.ContentLink.ID + "'>Link to content ID: " + content?.ContentLink.ID + "</a>");
             }
             message.Append("</div>");
         }
@@ -137,6 +139,11 @@ public static class HtmlHelperExtensions
             error = "A call to View() returned null, make sure no controller/component returns null as 'the view', or a view file was not found for block/component/page. " + error;
         }
 
-        return new StringHtmlContent("<div style=\"min-width:320px;max-width:1920px;width:100%;color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">" + ExceptionPrefix + error);
+        if(error.Contains("was not found") && error.Contains("PartialContentController"))
+        {
+            error = "View is not found for a PartialContentController. If you are using 'BlockControllers' in C# 7 or newer, you must specify the full relative path to your block views, starting with ~/ and ending in .cshtml. Because there's a hardcoded path for all 'view components' (which block controllers use behind the scenes), that all views ends with Components/Default.cshtml. " + (model as Exception)?.Message;
+        }
+
+        return new HtmlString("<div style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
     }
 }

@@ -4,7 +4,7 @@ using SystemLibrary.Common.Episerver.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Properties;
 
-public partial class ParentLinkReferenceController : BaseController
+internal partial class ParentLinkReferenceController : BaseController
 {
     const string CurrentFolder = "Cms/Properties/ParentLinkReference";
 

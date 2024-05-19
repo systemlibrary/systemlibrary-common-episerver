@@ -9,7 +9,7 @@ using static SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute;
 
 namespace SystemLibrary.Common.Episerver;
 
-public partial class EditController : BaseController
+internal partial class EditController : BaseController
 {
     const string CurrentFolder = "Cms/Edit";
 

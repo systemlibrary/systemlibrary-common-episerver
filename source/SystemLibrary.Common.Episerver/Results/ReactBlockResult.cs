@@ -15,6 +15,21 @@ public class ReactBlockResult : ContentResult
     {
         ContentType = "text/html";
 
+        if (componentFullName.IsNot())
+        {
+            var name = model.GetOriginalType()?.Name;
+
+            if (name.StartsWith("<"))
+                componentFullName = name.Replace("<>", "").Replace("`", "").Replace(" ", "");
+
+            else if (name != "ViewModel" && name.EndsWith("ViewModel"))
+                componentFullName = "reactBlocks." + name.Substring(0, name.Length - "ViewModel".Length);
+
+            else if (name != "Model" && name.EndsWith("Model"))
+                componentFullName = "reactBlocks." + name.Substring(0, name.Length - "Model".Length);
+            else if (name.EndsWith("Block"))
+                componentFullName = "reactBlocks." + name;
+        }
         Content = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, printNullValues).ToString();
     }
 }

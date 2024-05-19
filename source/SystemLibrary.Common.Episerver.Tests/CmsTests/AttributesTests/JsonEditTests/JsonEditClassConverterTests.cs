@@ -13,16 +13,6 @@ namespace SystemLibrary.Common.Episerver.Tests;
 public class JsonEditClassConverterTests
 {
     [TestMethod]
-    public void Convert_Class_To_JsonEdit_Json_Datadd()
-    {
-        var s = "hello world";
-        var b = "hello world";
-
-        Dump.Write(s.GetHashCode());
-        Dump.Write(s.GetHashCode() % 100000);
-    }
-
-    [TestMethod]
     public void Convert_Class_To_JsonEdit_Json_Data()
     {
         var result = InvokeGetPropertySchemaMethod(typeof(JsonEditCar));
