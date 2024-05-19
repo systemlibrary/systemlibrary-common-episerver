@@ -4,7 +4,7 @@ using SystemLibrary.Common.Episerver.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 
-internal partial class MultiDropdownSelectionController : BaseController
+public partial class MultiDropdownSelectionController : InternalBaseController
 {
     const string CurrentFolder = "Cms/Attributes/MultiDropdownSelection";
 

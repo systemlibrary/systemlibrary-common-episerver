@@ -424,9 +424,26 @@
                             this._set('value', storedValue);
                         } else {
                             if (this.storeAsEnum) {
-                                this._set('value', Number(v));
+                                if (isEqual(this.value, v)) {
+                                    if (this.allowUnselection) {
+                                        this._set('value', 0);
+                                    } else {
+                                        console.warn("AllowUnselection: false, cannot deselect...");
+                                    }
+                                } else {
+                                    this._set('value', Number(v));
+                                }
                             } else {
-                                this._set('value', v);
+                                if (isEqual(this.value, v)) {
+                                    if (this.allowUnselection) {
+                                        this._set('value', null);
+                                    } else {
+                                        console.warn("AllowUnselection: false, cannot deselect...");
+                                    }
+                                }
+                                else {
+                                    this._set('value', v);
+                                }
                             }
                         }
                     }
@@ -475,7 +492,7 @@
                                 if (selected && selected.toString().includes(value.toString())) {
                                     css = css + ' ' + dojoAttachPointName + '--item-selected';
                                 } else {
-                                    //console.warn("BoxSelection: multiselect deselecting a value");
+                                    // deselecting/not selected item, continue...
                                 }
                             } else {
                                 if (isEqual(value, selected)) {
@@ -493,8 +510,7 @@
                                             css = css + ' ' + dojoAttachPointName + '--item-selected';
                                         }
                                         else {
-                                            console.log("Does this ever occur ?");
-                                            // Still not selected any? Select first box as Unsleectedion is disabled or?
+                                            // deselecting/not selected item, continue...
                                         }
                                     }
                                 }

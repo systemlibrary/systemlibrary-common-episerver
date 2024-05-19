@@ -4,7 +4,7 @@ using SystemLibrary.Common.Episerver.Abstract;
 
 namespace SystemLibrary.Common.Episerver.Properties;
 
-internal partial class MessageController : BaseController
+public partial class MessageController : InternalBaseController
 {
     const string CurrentFolder = "Cms/Properties/Message";
 

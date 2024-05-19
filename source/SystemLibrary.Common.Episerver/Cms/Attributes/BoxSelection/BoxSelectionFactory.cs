@@ -38,7 +38,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
         var propertyName = metadata.PropertyName;
 
-        if(metadata.EditorConfiguration.Count > 2)
+        if (metadata.EditorConfiguration.Count > 2)
         {
             return Enumerable.Empty<ISelectItem>();
         }
@@ -52,16 +52,16 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             var selectEnumType = options.EnumType;
 
-            if(selectEnumType == null)
+            if (selectEnumType == null)
             {
                 selectEnumType = modelType;
-                if(selectEnumType?.IsEnum != true)
+                if (selectEnumType?.IsEnum != true)
                 {
                     selectEnumType = genericType;
                 }
             }
 
-            if(selectEnumType?.IsEnum != true)
+            if (selectEnumType?.IsEnum != true)
             {
                 throw new Exception(propertyName + " must have an EnumType specified, either directly as the property type, or through the attribute's arguments. Type is not enum: " + selectEnumType?.Name);
             }
@@ -72,7 +72,10 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
             else if (genericType?.IsEnum == true)
                 storeEnum = genericType;
 
-            var genericTypeDef = modelType.GetGenericTypeDefinition();
+            Type genericTypeDef = null;
+
+            if (modelType.IsGenericType)
+                genericTypeDef = modelType.GetGenericTypeDefinition();
 
             var isMultiSelect = modelType.IsListOrArray() || genericTypeDef == typeof(IList<>);
 
@@ -80,15 +83,15 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             var storeAsEnum = storeEnum?.IsEnum == true;
             metadata.EditorConfiguration.Add(nameof(storeAsEnum), storeAsEnum);
-            
+
             metadata.EditorConfiguration.Add("allowUnselection", options.AllowUnselection);
 
             (var Show, var Hide, var ShowExpiredItems) = GetAttributeOptions(options);
-            
+
             var keys = Enum.GetNames(selectEnumType);
 
             List<string> keysStorable = null;
-            if(storeEnum?.IsEnum == true)
+            if (storeEnum?.IsEnum == true)
             {
                 var names = Enum.GetNames(storeEnum).ToList();
 
@@ -106,7 +109,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
             }
 
             var storeAsString = modelType == SystemType.StringType || modelType.GetFirstGenericType() == SystemType.StringType;
-           
+
             foreach (var selectKey in KeysFiltered(keys, Show, Hide))
             {
                 if (KeyEligibleForStorage(selectKey, selectEnumType, keysStorable, storeEnum))
@@ -138,9 +141,21 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                         }
                     }
 
-                    if(selectedValue== "" || selectedValue == "0")
+                    if (selectedValue == "" || selectedValue == "null" || selectedValue == "0")
                     {
                         found = true;
+                    }
+
+                    if (!found && storeAsEnum)
+                    {
+                        // Check if the selected value actually is the "First Enum" as then, it is selected and no need to add it as "expired"
+                        var e = AsEnum(selectedValue, storeEnum);
+                        var i = (int)(object)e;
+                        var v = e.ToValue();
+                        if (i == 0 || v == null || v == "" || v == "0")
+                        {
+                            found = true;
+                        }
                     }
 
                     if (!found)
@@ -165,7 +180,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                             {
                                 foreach (var box in boxes)
                                 {
-                                    if((box.Value + "").Contains(selectedValue) || box.Text.Contains(selectedValue))
+                                    if ((box.Value + "").Contains(selectedValue) || box.Text.Contains(selectedValue))
                                     {
                                         found = true;
                                         break;
@@ -186,6 +201,17 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                                         found = true;
                                         break;
                                     }
+                                }
+                            }
+
+                            if(!found && storeAsEnum)
+                            {
+                                var e = AsEnum(selectedValue, storeEnum);
+                                var i = (int)(object)e;
+                                var v = e.ToValue();
+                                if (i == 0 || v == null || v == "" || v == "0")
+                                {
+                                    found = true;
                                 }
                             }
 
@@ -228,8 +254,8 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         {
             value = FontAwesomeLoader.GetFontAwesomeIconRequestUrl(brands);
         }
-        
-        if(value != null)
+
+        if (value != null)
         {
             // FontAwesome url is sent with the value, but value should be stored as Int, so pass both as "value"
             if (!isStoredAsString)
@@ -264,13 +290,13 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
 
 
-        if(storableValues.Contains(v)) return true;
+        if (storableValues.Contains(v)) return true;
 
         if (storableValues.Contains(t)) return true;
 
         var i = (int)(object)e;
         if (storableValues.Contains(i.ToString())) return true;
-        
+
 
         return false;
     }
