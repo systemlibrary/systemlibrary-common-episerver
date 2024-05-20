@@ -26,7 +26,7 @@ partial class TExtensions
 
             var hashCode = additionalType.GetHashCode();
 
-            // NOTE: Optimize: return the ignorePropertyNames directly, instead of looping afterwards
+            // NOTE: Optimize: return the ignorePropertyNames as array directly, instead of looping afterwards
             var additionalProperties = ModelToPropsPropertiesCache.TryGet(hashCode, () =>
             {
                 return additionalType.GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.GetProperty);

@@ -360,6 +360,10 @@
                         this._initWidgetProperties();
                         this.value = getInitialValue(this.storeAsEnum, this.isMultiSelect, null);
                         this._bindEvents(this);
+
+                        if (this.value === 0) {
+                            this._selectBoxes();
+                        }
                     }
                     catch (err) {
                         console.error(err);

@@ -45,6 +45,7 @@ partial class TExtensions
         component.ContainerClass = renderClientSide ? null : cssClass;
         component.ContainerTag = renderClientSide ? null : tagName;
         component.ContainerId = null;
+
         _props.SetValue(component, props);
         _serializedProps.SetValue(component, jsonProps);
 

@@ -95,7 +95,14 @@ public static partial class TExtensions
         {
             Log.Error(ex);
 
-            root.Append("<div class='ssr-errored' data-error=\"" + ex.Message + "\" style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Exception: " + ex.Message + "<br/>Full component name: " + componentFullName + ". Check your browsers console. Note: restart APP to reload your script changes after this error</div>");
+            if (ex.Message.Contains("Could not find a component named "))
+            {
+                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName +"=your import;.  Or did you forget to add it to App_Start\\ReactConfig.cs?<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+            }
+            else
+            {
+                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+            }
         }
 
         AppendRootElementEnd(root, tagName);

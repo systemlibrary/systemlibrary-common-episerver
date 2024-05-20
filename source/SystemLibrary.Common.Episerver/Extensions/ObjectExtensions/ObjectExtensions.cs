@@ -186,7 +186,9 @@ public static class ObjectExtensions
             if (value == null)
             {
                 if (printNullValues)
+                {
                     result.Add(name, null);
+                }
             }
 
             else if (value is ContentArea contentArea)
