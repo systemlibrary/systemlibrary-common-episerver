@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using EPiServer;
@@ -65,6 +66,7 @@ public class ToReactPropsDictionaryTest
         Assert.IsTrue(props["C"] + "" == "20000");
         Assert.IsTrue(((DateTimeOffset)(props["E"])).Year == DateTimeOffset.Now.Year);
     }
+
 
     [TestMethod]
     public void Convert_BlockData_With_Nested_Blocks_ToExpando_Success()
@@ -140,5 +142,67 @@ public class ToReactPropsDictionaryTest
         {
             Assert.IsTrue(true, "List cannot be converted to expando object. Loop over the list yourself and convert each item");
         }
+    }
+
+    [TestMethod]
+    public void Convert_Model_With_Dynamic_IEnumerable_To_ReactPropsDictionary()
+    {
+        var model = new TestModelDynamic()
+        {
+            IEnumerableDynamic = GetDynamicData(),
+            IEnumerableStrings = GetDynamicStrings(),
+            IEnumerableInts = GetDynamicInts()
+        };
+
+        var result = model.ToReactPropsDictionary();
+
+        Assert.IsTrue(result["IEnumerableStrings"] != null);
+        Assert.IsTrue(result["IEnumerableDynamic"] != null);
+        Assert.IsTrue(result["IEnumerableInts"] != null);
+
+        var ienumerableDynamicList = (IList)result["IEnumerableDynamic"];
+
+        Assert.IsTrue(ienumerableDynamicList.Count == 3);
+
+        var ienumerableIntsList = (IList)result["IEnumerableInts"];
+
+        Assert.IsTrue(ienumerableIntsList.Count == 2);
+    }
+
+    static IEnumerable<int> GetDynamicInts()
+    {
+        yield return 50;
+        yield return 500;
+    }
+
+    static IEnumerable<string> GetDynamicStrings()
+    {
+        yield return "Hello";
+        yield return "World";
+    }
+
+    static IEnumerable<dynamic> GetDynamicData()
+    {
+        yield return new
+        {
+            Name = "Hello",
+            LastName = "World",
+            Age = 1001,
+            Flag = true
+        };
+        yield return new
+        {
+            Name = "Hello2",
+            LastName = "World2",
+            Age = 1002,
+            Flag = true
+        };
+        yield return new
+        {
+            Name = "Hello3",
+            LastName = "World3",
+            Age = 1003,
+            Flag = true
+        };
     }
 }

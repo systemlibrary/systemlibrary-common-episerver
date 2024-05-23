@@ -34,7 +34,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 public static class ObjectExtensions
 {
     static Type SystemType;
-    static Type MessageType ;
+    static Type MessageType;
     static Type ParentLinkReferenceType;
     static Type CultureInfoType;
     static Type PropertyUrlType;
@@ -200,6 +200,8 @@ public static class ObjectExtensions
             {
                 result.Add(name, xHtmlString.Render());
             }
+            else if (value is string str)
+                result.Add(name, str);
 
             else if (value is Url url)
                 result.Add(name, url.ToFriendlyUrl());
@@ -228,7 +230,7 @@ public static class ObjectExtensions
                 try
                 {
                     var genericType = iList.GetType().GetFirstGenericType();
-                    if (genericType.Inherits(Globals.ContentDataType))
+                    if (genericType?.Inherits(Globals.ContentDataType) == true)
                     {
                         var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
 
@@ -239,7 +241,7 @@ public static class ObjectExtensions
                         result.Add(name, iList);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     result.Add(name, null);
                     result.Add(name + "Error", ex.Message);
@@ -247,8 +249,11 @@ public static class ObjectExtensions
             }
             else if (value is IEnumerable enumerable)
             {
-                var genericType = enumerable.GetType().GetFirstGenericType();
-                if (genericType.Inherits(Globals.ContentDataType))
+                var enumerableType = enumerable.GetType();
+
+                var genericType = enumerableType.GetFirstGenericType();
+
+                if (genericType?.Inherits(Globals.ContentDataType) == true)
                 {
                     try
                     {
@@ -256,7 +261,7 @@ public static class ObjectExtensions
 
                         result.Add(name, enumerableItems);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         result.Add(name, null);
                         result.Add(name + "Error", ex.Message);
@@ -264,7 +269,36 @@ public static class ObjectExtensions
                 }
                 else
                 {
-                    result.Add(name, enumerable);
+                    if (enumerableType.IsClass &&
+                        !enumerableType.IsInterface &&
+                        !enumerableType.IsArray &&
+                        !enumerableType.IsGenericType &&
+                        !enumerableType.IsGenericParameter &&
+                        !enumerableType.IsInterface &&
+                        !enumerableType.IsListOrArray() &&
+                        !enumerableType.IsDictionary() &&
+                        !enumerableType.IsGenericTypeDefinition)
+                    {
+                        try
+                        {
+                            var enumerableList = new List<object>();
+
+                            foreach (var enumerableItem in enumerable)
+                            {
+                                enumerableList.Add(enumerableItem);
+                            }
+                            result.Add(name, enumerableList);
+                        }
+                        catch (Exception ex)
+                        {
+                            result.Add(name, null);
+                            result.Add(name + "Error", ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        result.Add(name, enumerable);
+                    }
                 }
             }
             else if (value is Enum en)
@@ -278,7 +312,8 @@ public static class ObjectExtensions
                 if (value is IPrincipal || value is IdentityUser)
                 {
                     // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
-                    var userProperties = IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () => {
+                    var userProperties = IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () =>
+                    {
                         return value.GetType()?.GetProperties();
                     });
 
@@ -314,7 +349,7 @@ public static class ObjectExtensions
 
                                 userDictionary.Add(userPropertyName, userPropertyValue);
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 Log.Error(ex);
 
@@ -371,7 +406,7 @@ public static class ObjectExtensions
                 }
 
                 object listPropValue = null;
-                
+
                 try
                 {
                     listPropValue = listProp.GetValue(content);
