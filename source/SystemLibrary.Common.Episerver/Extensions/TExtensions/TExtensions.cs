@@ -60,6 +60,11 @@ public static partial class TExtensions
     /// </summary>
     public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool printNullValues = true) where T : class
     {
+        if (model == null)
+        {
+            Log.Error("Model is null in ReactServerSideRender for cssclass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
+            return new StringBuilder("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + (componentFullName ?? id) + "<br/>Exception: Model passed to server side rendering is null, cannot continue... Do you have duplicate controllers? Have you used Controller instead of Component?<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+        }
         var modelType = Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);
 
         var renderServerSide = !renderClientOnly || renderServerOnly;
@@ -97,7 +102,7 @@ public static partial class TExtensions
 
             if (ex.Message.Contains("Could not find a component named "))
             {
-                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName +"=your import;.  Or did you forget to add it to App_Start\\ReactConfig.cs?<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName + "=your import;.  Or did you forget to add it to App_Start\\ReactConfig.cs?<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
             }
             else
             {

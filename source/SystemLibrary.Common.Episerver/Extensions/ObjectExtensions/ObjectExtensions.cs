@@ -225,16 +225,24 @@ public static class ObjectExtensions
 
             else if (value is IList iList)
             {
-                var genericType = iList.GetType().GetFirstGenericType();
-                if (genericType.Inherits(Globals.ContentDataType))
+                try
                 {
-                    var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
+                    var genericType = iList.GetType().GetFirstGenericType();
+                    if (genericType.Inherits(Globals.ContentDataType))
+                    {
+                        var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
 
-                    result.Add(name, listItems);
+                        result.Add(name, listItems);
+                    }
+                    else
+                    {
+                        result.Add(name, iList);
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    result.Add(name, iList);
+                    result.Add(name, null);
+                    result.Add(name + "Error", ex.Message);
                 }
             }
             else if (value is IEnumerable enumerable)
@@ -242,9 +250,17 @@ public static class ObjectExtensions
                 var genericType = enumerable.GetType().GetFirstGenericType();
                 if (genericType.Inherits(Globals.ContentDataType))
                 {
-                    var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
+                    try
+                    {
+                        var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
 
-                    result.Add(name, enumerableItems);
+                        result.Add(name, enumerableItems);
+                    }
+                    catch(Exception ex)
+                    {
+                        result.Add(name, null);
+                        result.Add(name + "Error", ex.Message);
+                    }
                 }
                 else
                 {
@@ -354,7 +370,17 @@ public static class ObjectExtensions
                         listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
                 }
 
-                var listPropValue = listProp.GetValue(content);
+                object listPropValue = null;
+                
+                try
+                {
+                    listPropValue = listProp.GetValue(content);
+                }
+                catch
+                {
+                    // Swallow
+                    continue;
+                }
 
                 if (listPropValue == null)
                 {

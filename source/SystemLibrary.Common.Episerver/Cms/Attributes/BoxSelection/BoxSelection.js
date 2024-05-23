@@ -157,7 +157,14 @@
                     return null;
                 }
 
-                return data.toString().toLowerCase().replaceAll(' ', '-').replaceAll('!', '-').replaceAll(',', '-').replaceAll('.', '-');
+                return data.toString().toLowerCase()
+                    .replaceAll(':', '')
+                    .replaceAll('?', '')
+                    .replaceAll('&', '')
+                    .replaceAll(' ', '-')
+                    .replaceAll('!', '-')
+                    .replaceAll(',', '-')
+                    .replaceAll('.', '-');
             }
 
             function appendCssClass(data) {
@@ -519,6 +526,7 @@
                                     }
                                 }
                             }
+
                             div.setAttribute('class', css);
                             div.setAttribute('style', inline);
                             // box.appendChild(div);
