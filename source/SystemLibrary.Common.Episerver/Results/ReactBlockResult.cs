@@ -17,7 +17,7 @@ public class ReactBlockResult : ContentResult
 
         if (componentFullName.IsNot())
         {
-            var name = model.GetOriginalType()?.Name;
+            var name = model?.GetOriginalType()?.Name ?? "";
 
             if (name.StartsWith("<"))
                 componentFullName = name.Replace("<>", "").Replace("`", "").Replace(" ", "");

@@ -327,6 +327,8 @@ public static class ObjectExtensions
 
                             var userPropertyName = userProperty.Name;
 
+                          
+
                             if (userPropertyName == "Property") continue;
 
                             if (userPropertyName.StartsWith("EPiServer")) continue;
@@ -342,6 +344,14 @@ public static class ObjectExtensions
                             if (BlackListedUserProperties.Contains(userPropertyName)) continue;
 
                             if (userProperty.GetCustomAttribute<JsonIgnoreAttribute>() != null) continue;
+
+                            if (forceCamelCase)
+                            {
+                                if (userPropertyName.Length <= 1)
+                                    userPropertyName = userPropertyName.ToLower();
+                                else
+                                    userPropertyName = char.ToLowerInvariant(userPropertyName[0]) + userPropertyName.Substring(1);
+                            }
 
                             try
                             {
@@ -404,7 +414,7 @@ public static class ObjectExtensions
                     else
                         listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
                 }
-
+                
                 object listPropValue = null;
 
                 try
@@ -453,7 +463,7 @@ public static class ObjectExtensions
                 else if (value is Enum en)
                     item.Add(listPropName, en.ToValue());
 
-                else if (listPropValue is int || listPropValue is bool || listPropValue is DateTime || listPropValue is string)
+                else if (listPropValue is int || listPropValue is float || listPropValue is double || listPropValue is bool || listPropValue is DateTime || listPropValue is DateTimeOffset || listPropValue is string)
                     item.Add(listPropName, listPropValue);
             }
 

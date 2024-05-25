@@ -29,6 +29,7 @@ using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Web.Extensions;
 
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -63,6 +64,13 @@ public static partial class TExtensions
         if (model == null)
         {
             Log.Error("Model is null in ReactServerSideRender for cssclass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
+
+            var path = HttpContextInstance.Current?.Request.Url();
+
+            if(path?.EndsWithAnyCaseInsensitive("Block", "Block/", "Component/", "Component") == true)
+            {
+                return new StringBuilder("");
+            }
             return new StringBuilder("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + (componentFullName ?? id) + "<br/>Exception: Model passed to server side rendering is null, cannot continue... Do you have duplicate controllers? Have you used Controller instead of Component?<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
         }
         var modelType = Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);

@@ -1,6 +1,8 @@
 ﻿using EPiServer.Web.Routing;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -16,7 +18,10 @@ partial class IApplicationBuilderExtensions
 
                 endpoints.MapControllers();
 
-                endpoints.MapDefaultControllerRoute();
+                // NOTE: This actually matches the route of a C# BlockController before the "Url" of a Page
+                // if the path matches, so for instance "/ButtonBlock" triggers directly the ButtonBlockController, even
+                // if a page has been created with /ButtonBlock as a path
+                //endpoints.MapDefaultControllerRoute();
 
                 if (options.UseRazorPages)
                     endpoints.MapRazorPages();
@@ -37,7 +42,7 @@ partial class IApplicationBuilderExtensions
         }
         else
         {
-            if(options.UseControllers)
+            if (options.UseControllers)
             {
                 app.UseEndpoints(endpoints =>
                 {
