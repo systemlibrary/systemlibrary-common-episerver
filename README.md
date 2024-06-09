@@ -64,6 +64,7 @@ Release 7.12.0.1
 - SelectFiltered func name > To (breaking change)
 - BaseCms.GetItems deleted, to get items from ContentArea or IEnumerable<ContentRef> use the extension methods instead (breaking change)
 - New middleware: ErrorPageResponse, implement IErrorPage on a PageData to use it
+- 
 
 
 #### Version history
