@@ -41,7 +41,7 @@ public static partial class IServiceCollectionExtensions
     {
         SetOptions(options);
 
-        services.AddCommonWebServices(Options);
+        services.AddCommonWebServices<TLogWriter>(Options);
 
         services.AddApplicationCookie(Options);
 
@@ -57,6 +57,8 @@ public static partial class IServiceCollectionExtensions
             opt.AutoPublishMediaOnUpload = Options.AutoPublishMediaOnUpload;
             opt.PreviewTimeout = 60000;
         });
+
+    
 
         services.Configure<UploadOptions>(x =>
         {

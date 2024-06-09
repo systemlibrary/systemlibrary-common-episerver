@@ -23,7 +23,7 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// 
     /// Example: ~/Blocks/
     /// </summary>
-    public Func<string, string> DefaultComponentPathPredicate = null;
+    public Func<Type, string> DefaultComponentPathPredicate = null;
 
     /// <summary>
     /// Disallow serving known application files:

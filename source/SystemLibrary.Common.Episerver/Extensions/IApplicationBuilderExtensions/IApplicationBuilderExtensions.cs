@@ -31,7 +31,7 @@ public static partial class IApplicationBuilderExtensions
     /// <code class="language-csharp hljs">
     /// public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     /// {
-    ///     app.UseCommonEpiserverApp();
+    ///     app.UseCommonCmsApp();
     /// }
     /// </code>
     /// </example>
