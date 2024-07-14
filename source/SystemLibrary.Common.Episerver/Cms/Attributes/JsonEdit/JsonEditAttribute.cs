@@ -108,13 +108,15 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
     {
-        var additionalMetadata = context?.DisplayMetadata?.AdditionalValues;
+        var additionalValues = context?.DisplayMetadata?.AdditionalValues;
 
-        if (additionalMetadata.IsNot()) return;
+        if (additionalValues.IsNot()) return;
+
+
 
         try
         {
-            foreach (var data in additionalMetadata)
+            foreach (var data in additionalValues)
             {
                 if (data.Value is ExtendedMetadata extendedMetadata)
                 {

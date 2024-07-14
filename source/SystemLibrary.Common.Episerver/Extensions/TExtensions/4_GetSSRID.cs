@@ -18,7 +18,7 @@ partial class TExtensions
     {
         if (!renderClientSide) return null;
 
-        // NOTE: We append suffix as this Key is used for "data-rcssr-id"
+        // NOTE: We append a prefix and a suffix as this Key is used for "data-rcssr-id"
         if (id.Is())
             return "i-" + id + "-" + jsonProps.Length;
 

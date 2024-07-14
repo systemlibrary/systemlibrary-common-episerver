@@ -156,7 +156,7 @@ public class Program
 	},
 
 	"systemLibraryCommonEpiserver": {
-		"appUrl": "https://localhost:50001",
+		"appUrl": "http://localhost:51010",
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
 			"allPropertiesScrollableDocumentHeader": false,

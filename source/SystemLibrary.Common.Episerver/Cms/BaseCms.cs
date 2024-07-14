@@ -227,6 +227,9 @@ public abstract class BaseCms
                 var appUrl = AppSettings.Current.SystemLibraryCommonEpiserver.AppUrl;
                 if (appUrl.Is())
                 {
+                    if (appUrl.EndsWith("/"))
+                        appUrl = appUrl.Substring(0, appUrl.Length - 1);
+
                     _PrimaryHostUrl = appUrl;
 
                     return _PrimaryHostUrl;
@@ -277,6 +280,10 @@ public abstract class BaseCms
                             _PrimaryHostUrl = scheme + "://" + siteUri.Host;
                     }
                 }
+
+                if (_PrimaryHostUrl.EndsWith("/"))
+                    _PrimaryHostUrl = _PrimaryHostUrl.Substring(0, _PrimaryHostUrl.Length - 1);
+
             }
             return _PrimaryHostUrl;
         }
@@ -339,7 +346,7 @@ public abstract class BaseCms
                         yield return page as T;
                     }
                 }
-                 
+
             }
         }
     }

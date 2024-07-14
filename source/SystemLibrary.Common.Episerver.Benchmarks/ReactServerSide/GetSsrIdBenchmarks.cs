@@ -26,8 +26,8 @@ public class GetSsrIdBenchmarks
         temp.InnerBlocks = new List<NestedTestBlock>() {
             new NestedTestBlock
             {
-                 Age = 12345,
-                 InnerTitle = "EnumerableTitle"
+                 Age = 666,
+                 InnerTitle = "WHAT"
             }
         };
 
@@ -37,6 +37,8 @@ public class GetSsrIdBenchmarks
         },
         renderClientOnly: true);
 
+
+        Dump.Write(result);
         return result;
     }
 }
