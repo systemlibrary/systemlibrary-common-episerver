@@ -15,17 +15,18 @@ public class ReactBlockResult : ContentResult
     {
         ContentType = "text/html";
 
+        // TODO: What is this? Looks like "GetComponentFullName", but it is the old version, instead of Component, its Block, so this will be deleted in 12-24 months
         if (componentFullName.IsNot())
         {
             var name = model?.GetOriginalType()?.Name ?? "";
 
-            if (name.StartsWith("<"))
+            if (name.Length > 0 && name[0] == '<')
                 componentFullName = name.Replace("<>", "").Replace("`", "").Replace(" ", "");
 
-            else if (name != "ViewModel" && name.EndsWith("ViewModel"))
+            else if (name != "ViewModel" && name.EndsWith("ViewModel", StringComparison.Ordinal))
                 componentFullName = "reactBlocks." + name.Substring(0, name.Length - "ViewModel".Length);
 
-            else if (name != "Model" && name.EndsWith("Model"))
+            else if (name != "Model" && name.EndsWith("Model", StringComparison.Ordinal))
                 componentFullName = "reactBlocks." + name.Substring(0, name.Length - "Model".Length);
             else if (name.EndsWith("Block"))
                 componentFullName = "reactBlocks." + name;

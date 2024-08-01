@@ -142,7 +142,7 @@ public partial class EditController : InternalBaseController
 
         if (ContentIconEditorDescriptorModule.ContentDescriptorSettings == null)
         {
-            Log.Info("ContentDescriptorSettings is null, backround image in PageTree wont show. Try a restart of APP");
+            Log.Information("ContentDescriptorSettings is null, backround image in PageTree wont show. Try a restart of APP");
             return;
         }
 

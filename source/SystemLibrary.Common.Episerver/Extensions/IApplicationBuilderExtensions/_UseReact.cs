@@ -40,7 +40,7 @@ partial class IApplicationBuilderExtensions
             {
                 if (script.Is())
                 {
-                    if (script.StartsWith("~"))
+                    if (script[0] == '~')
                         config.AddScriptWithoutTransform(script);
                     else
                         Log.Error("React script path invalid, must start with ~. " + script);

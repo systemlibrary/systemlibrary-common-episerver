@@ -37,7 +37,6 @@ public class ParentLinkReferenceFactory : ISelectionFactory
                 {
                     var cacheKey = nameof(ParentLinkReferenceFactory) + "GetSelections" + "ParentId" + parentLink.ID + "#" + parentLink.WorkID + "#" + owner.ContentLink?.ID;
                     var cached = Cache.Get<object>(cacheKey);
-
                     if (cached == null)
                     {
                         var query = GetQuery(parentId);

@@ -227,7 +227,7 @@ public abstract class BaseCms
                 var appUrl = AppSettings.Current.SystemLibraryCommonEpiserver.AppUrl;
                 if (appUrl.Is())
                 {
-                    if (appUrl.EndsWith("/"))
+                    if (appUrl.EndsWith("/", StringComparison.Ordinal))
                         appUrl = appUrl.Substring(0, appUrl.Length - 1);
 
                     _PrimaryHostUrl = appUrl;
@@ -281,7 +281,7 @@ public abstract class BaseCms
                     }
                 }
 
-                if (_PrimaryHostUrl.EndsWith("/"))
+                if (_PrimaryHostUrl.EndsWith("/", StringComparison.Ordinal))
                     _PrimaryHostUrl = _PrimaryHostUrl.Substring(0, _PrimaryHostUrl.Length - 1);
 
             }

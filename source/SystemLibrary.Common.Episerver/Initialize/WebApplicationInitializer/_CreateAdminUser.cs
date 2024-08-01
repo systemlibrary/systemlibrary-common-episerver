@@ -19,7 +19,7 @@ partial class WebApplicationInitializer
             .GetAwaiter()
             .GetResult();
 
-        Log.Info("Created a new admin user");
+        Log.Information("Created a new admin user");
 
         if (result.Status == UIUserCreateStatus.Success)
         {

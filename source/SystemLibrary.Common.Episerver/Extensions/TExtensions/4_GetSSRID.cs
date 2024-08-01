@@ -23,7 +23,13 @@ partial class TExtensions
             return "i-" + id + "-" + jsonProps.Length;
 
         if (model is IContent icontent)
+        {
+            if(icontent.ContentLink == null || icontent.ContentLink.ID <= 0)
+            {
+                return "c-" + icontent.Name + "-" + icontent.ContentTypeID + "-" + jsonProps.Length;
+            }
             return "c-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
+        }
         
         var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
 
@@ -98,7 +104,7 @@ partial class TExtensions
                 else if (sb.Length > 5)
                     ssrId.Append(sb.GetHashCode() % 1000000);
                 else
-                    ssrId.Append(sb.Length + "" + sb.GetHashCode() % 10000);
+                    ssrId.Append(sb.Length + sb.ToString());
             }
 
             else if (property.Value is string txt)
@@ -117,7 +123,7 @@ partial class TExtensions
                 else if (txt.Length == 3)
                     ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], '-'));
                 else
-                    ssrId.Append(txt.Length + "" + (txt.GetHashCode() % 10000));
+                    ssrId.Append(txt.Length + "" + txt);
             }
 
             else if (property.Value is ContentReference cr)

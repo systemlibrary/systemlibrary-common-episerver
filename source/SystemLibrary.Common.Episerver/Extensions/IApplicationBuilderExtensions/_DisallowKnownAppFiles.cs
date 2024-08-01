@@ -17,25 +17,34 @@ partial class IApplicationBuilderExtensions
             if (path != null)
             {
                 var l = path.Length;
-                if (l > 4 && path[l - 1] != '/' && !path.EndsWith(".js") && !path.EndsWith(".png") && !path.EndsWith(".jpg") && !path.EndsWith(".css"))
+                if (l > 4 && path[l - 1] != '/' && 
+                    !path.EndsWith(".js", StringComparison.Ordinal) &&
+                    !path.EndsWith(".png", StringComparison.Ordinal) && 
+                    !path.EndsWith(".jpg", StringComparison.Ordinal) &&
+                    !path.EndsWith(".html", StringComparison.Ordinal) &&
+                    !path.EndsWith(".gif", StringComparison.Ordinal) &&
+                    !path.EndsWith(".webp", StringComparison.Ordinal) &&
+                    !path.EndsWith(".json", StringComparison.Ordinal) &&
+                    !path.EndsWith(".svg", StringComparison.Ordinal) &&
+                    !path.EndsWith(".css", StringComparison.Ordinal))
                 {
-                    if (path.EndsWith(".dll") ||
-                        path.EndsWith(".cs") ||
-                        path.EndsWith(".ts") ||
-                        path.EndsWith(".tsx") ||
-                        path.EndsWith(".mdf") ||
-                        path.EndsWith(".sql") ||
-                        path.EndsWith(".db") ||
-                        path.EndsWith(".cshtml") ||
-                        path.EndsWith(".config") ||
-                        path.EndsWith(".DLL") ||
-                        path.EndsWith(".CS") ||
-                        path.EndsWith(".CSHTML") ||
-                        path.EndsWith(".CONFIG") ||
-                        path.EndsWith(".Dll") ||
-                        path.EndsWith(".Cs") ||
-                        path.EndsWith(".Config") ||
-                        path.EndsWith(".Cshtml"))
+                    if (path.EndsWith(".dll", StringComparison.Ordinal) ||
+                        path.EndsWith(".cs", StringComparison.Ordinal) ||
+                        path.EndsWith(".ts", StringComparison.Ordinal) ||
+                        path.EndsWith(".tsx", StringComparison.Ordinal) ||
+                        path.EndsWith(".mdf", StringComparison.Ordinal) ||
+                        path.EndsWith(".sql", StringComparison.Ordinal) ||
+                        path.EndsWith(".db", StringComparison.Ordinal) ||
+                        path.EndsWith(".cshtml", StringComparison.Ordinal) ||
+                        path.EndsWith(".config", StringComparison.Ordinal) ||
+                        path.EndsWith(".DLL", StringComparison.Ordinal) ||
+                        path.EndsWith(".CS", StringComparison.Ordinal) ||
+                        path.EndsWith(".CSHTML", StringComparison.Ordinal) ||
+                        path.EndsWith(".CONFIG", StringComparison.Ordinal) ||
+                        path.EndsWith(".Dll", StringComparison.Ordinal) ||
+                        path.EndsWith(".Cs", StringComparison.Ordinal) ||
+                        path.EndsWith(".Config", StringComparison.Ordinal) ||
+                        path.EndsWith(".Cshtml", StringComparison.Ordinal))
                     {
                         return;
                     }
@@ -46,11 +55,11 @@ partial class IApplicationBuilderExtensions
                             path[1] == 'c' || path[1] == 'C')
                         {
                             var p = path.ToLower();
-                            if (p.StartsWith("/appsettings.") ||
-                                    p.StartsWith("/configurations/") ||
-                                    p.StartsWith("/configuration/") ||
-                                    p.StartsWith("/config/") ||
-                                    p.StartsWith("/configs/"))
+                            if (p.StartsWith("/appsettings.", StringComparison.Ordinal) ||
+                                    p.StartsWith("/configurations/", StringComparison.Ordinal) ||
+                                    p.StartsWith("/configuration/", StringComparison.Ordinal) ||
+                                    p.StartsWith("/config/", StringComparison.Ordinal) ||
+                                    p.StartsWith("/configs/", StringComparison.Ordinal))
                             {
                                 return;
                             }
@@ -62,7 +71,7 @@ partial class IApplicationBuilderExtensions
                         if (path[1] == 'b' || path[1] == 'B')
                         {
                             var p = path.ToLower();
-                            if (p.StartsWith("/bin/"))
+                            if (p.StartsWith("/bin/", StringComparison.Ordinal))
                             {
                                 return;
                             }
@@ -70,7 +79,7 @@ partial class IApplicationBuilderExtensions
                     }
                 }
 
-                if (context.Response.StatusCode == 404 && path.StartsWith("/SystemLibrary/CommonEpiserverCms"))
+                if (context.Response.StatusCode == 404 && l > 34 && path.StartsWith("/SystemLibrary/CommonEpiserverCms", StringComparison.Ordinal))
                 {
                     context.Response.StatusCode = 200;
                     await context.Response.WriteAsync("");

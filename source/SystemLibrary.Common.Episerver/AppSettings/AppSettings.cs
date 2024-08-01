@@ -57,6 +57,8 @@ public partial class AppSettings : Config<AppSettings>
             Properties = new PropertiesConfiguration();
         }
 
+        public bool Debug { get; set; }
+
         public string AppUrl { get; set; }
 
         public EditConfiguration Edit { get; set; }

@@ -42,41 +42,41 @@ partial class IApplicationBuilderExtensions
                 if (path.IsNot()) return;
 
                 if (path == "/" ||
-                    path.StartsWith("/400") ||
-                    path.StartsWith("/401") ||
-                    path.StartsWith("/403") ||
-                    path.StartsWith("/404") ||
-                    path.StartsWith("/405") ||
-                    path.StartsWith("/406") ||
-                    path.StartsWith("/500") ||
-                    path.StartsWith("/502") ||
-                    path.StartsWith("/504") ||
-                    path.StartsWith("/505"))
+                    path.StartsWith("/400", StringComparison.Ordinal) ||
+                    path.StartsWith("/401", StringComparison.Ordinal) ||
+                    path.StartsWith("/403", StringComparison.Ordinal) ||
+                    path.StartsWith("/404", StringComparison.Ordinal) ||
+                    path.StartsWith("/405", StringComparison.Ordinal) ||
+                    path.StartsWith("/406", StringComparison.Ordinal) ||
+                    path.StartsWith("/500", StringComparison.Ordinal) ||
+                    path.StartsWith("/502", StringComparison.Ordinal) ||
+                    path.StartsWith("/504", StringComparison.Ordinal) ||
+                    path.StartsWith("/505", StringComparison.Ordinal))
                     return;
 
                 if (path.IsFile()) return;
 
                 var pathLowered = path.ToLower();
 
-                if (pathLowered.StartsWith("/error")) return;
+                if (pathLowered.StartsWith("/error", StringComparison.Ordinal)) return;
 
-                if (pathLowered.StartsWith("/util/login") || pathLowered.StartsWith("/episerver/"))
+                if (pathLowered.StartsWith("/util/login", StringComparison.Ordinal) || pathLowered.StartsWith("/episerver/", StringComparison.Ordinal))
                 {
-                    if (pathLowered.Contains("stores/metadata/epi"))
+                    if (pathLowered.Contains("stores/metadata/epi", StringComparison.Ordinal))
                         Log.Error(path + " not found, 404");
 
                     return;
                 }
 
-                if (pathLowered.StartsWithAny("/favicon", "/.env", "/etc/")) return;
+                if (pathLowered.StartsWithAny(StringComparison.Ordinal,"/favicon", "/.env", "/etc/")) return;
 
-                if (pathLowered.Contains("wp-includes") ||
-                    pathLowered.Contains("phpinfo") ||
-                    pathLowered.StartsWith("/.aws/")) return;
+                if (pathLowered.Contains("wp-includes", StringComparison.Ordinal) ||
+                    pathLowered.Contains("phpinfo", StringComparison.Ordinal) ||
+                    pathLowered.StartsWith("/.aws/", StringComparison.Ordinal)) return;
 
-                if (pathLowered.StartsWith("/globalassets/") ||
-                    pathLowered.StartsWith("/contentassets/") ||
-                    pathLowered.StartsWith("/siteassets/"))
+                if (pathLowered.StartsWith("/globalassets/", StringComparison.Ordinal) ||
+                    pathLowered.StartsWith("/contentassets/", StringComparison.Ordinal) ||
+                    pathLowered.StartsWith("/siteassets/", StringComparison.Ordinal))
                 {
                     return;
                 }
@@ -99,7 +99,7 @@ partial class IApplicationBuilderExtensions
                 {
                     context.Response.ContentType = "application/json";
 
-                    var json = JsonErrorResponseCache.TryGet(statusCode, () =>
+                    var json = JsonErrorResponseCache.Cache(statusCode, () =>
                     {
                         var json = new
                         {
@@ -128,7 +128,7 @@ partial class IApplicationBuilderExtensions
 
                     var errorPageType = errorPage.GetOriginalType();
 
-                    var errorControllerType = ErrorControllerTypes.TryGet(errorPageType.GetHashCode(), () =>
+                    var errorControllerType = ErrorControllerTypes.Cache(errorPageType.GetHashCode(), () =>
                     {
                         return Type.GetType(errorPageType.Namespace + "." + errorPageType.Name + "Controller, " + errorPageType.Assembly.FullName);
                     });

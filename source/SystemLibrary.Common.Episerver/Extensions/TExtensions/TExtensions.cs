@@ -67,7 +67,7 @@ public static partial class TExtensions
 
             var path = HttpContextInstance.Current?.Request.Url();
 
-            if(path?.EndsWithAnyCaseInsensitive("Block", "Block/", "Component/", "Component") == true)
+            if(path?.EndsWithAny(StringComparison.Ordinal, "Block", "Block/", "Component/", "Component") == true)
             {
                 return new StringBuilder("");
             }

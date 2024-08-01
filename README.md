@@ -60,12 +60,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.12.0.1
-- SelectFiltered func name > To (breaking change)
-- BaseCms.GetItems deleted, to get items from ContentArea or IEnumerable<ContentRef> use the extension methods instead (breaking change)
-- New middleware: ErrorPageResponse, implement IErrorPage on a PageData to use it
-- 
-
+- 7.13.0.1
+- Updated SystemLibrary.Common.Web dep which has breaking changes (breaking change)
+- StartsWith and EndsWith now uses internally StringComparison.Ordinal (optimization)
 
 #### Version history
 - View git history of this file if interested

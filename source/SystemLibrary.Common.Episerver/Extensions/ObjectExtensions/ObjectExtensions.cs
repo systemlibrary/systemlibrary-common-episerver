@@ -305,14 +305,14 @@ public static class ObjectExtensions
                 result.Add(name, en.ToValue());
 
             else if (value is MediaData mediaData)
-                result.Add(name, mediaData.ContentLink?.ToFriendlyUrl());
+                result.Add(name, mediaData?.ContentLink.ToFriendlyUrl());
 
             else
             {
                 if (value is IPrincipal || value is IdentityUser)
                 {
                     // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
-                    var userProperties = IdentityUserProperties.TryGet<PropertyInfo[]>(value.GetType().GetHashCode(), () =>
+                    var userProperties = IdentityUserProperties.Cache<PropertyInfo[]>(value.GetType().GetHashCode(), () =>
                     {
                         return value.GetType()?.GetProperties();
                     });
@@ -327,13 +327,11 @@ public static class ObjectExtensions
 
                             var userPropertyName = userProperty.Name;
 
-                          
-
                             if (userPropertyName == "Property") continue;
 
-                            if (userPropertyName.StartsWith("EPiServer")) continue;
+                            if (userPropertyName.StartsWith("EPiServer", StringComparison.Ordinal)) continue;
 
-                            if (userPropertyName.StartsWith("EPi_")) continue;
+                            if (userPropertyName.StartsWith("EPi_", StringComparison.Ordinal)) continue;
 
                             if (WhiteListedCustomProperties.Contains(userPropertyName)) continue;
 
@@ -383,7 +381,7 @@ public static class ObjectExtensions
     static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable list, Type genericType)
     {
         var hashCode = genericType.GetHashCode();
-        var properties = ReactPropPropertiesCache.TryGet(hashCode, () =>
+        var properties = ReactPropPropertiesCache.Cache(hashCode, () =>
         {
             return genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
         });
@@ -414,7 +412,7 @@ public static class ObjectExtensions
                     else
                         listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
                 }
-                
+
                 object listPropValue = null;
 
                 try
@@ -479,9 +477,9 @@ public static class ObjectExtensions
 
         if (name == "Property") return false;
 
-        if (name.StartsWith("EPiServer.")) return false;
+        if (name.StartsWith("EPiServer.", StringComparison.Ordinal)) return false;
 
-        if (name.StartsWith("EPi_")) return false;
+        if (name.StartsWith("EPi_", StringComparison.Ordinal)) return false;
 
         if (WhiteListedCustomProperties.Contains(name)) return true;
 
@@ -497,7 +495,7 @@ public static class ObjectExtensions
 
         var propertyType = property.PropertyType;
 
-        if (propertyType.IsClass && (name.StartsWith("CurrentBlock") || name.StartsWith("CurrentPage") || name.StartsWith("CurrentMedia"))) return false;
+        if (propertyType.IsClass && (name.StartsWith("CurrentBlock", StringComparison.Ordinal) || name.StartsWith("CurrentPage", StringComparison.Ordinal) || name.StartsWith("CurrentMedia", StringComparison.Ordinal))) return false;
 
         if (propertyType == MessageType ||
             propertyType == ParentLinkReferenceType ||

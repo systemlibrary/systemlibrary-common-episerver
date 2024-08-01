@@ -3,6 +3,7 @@ using System.Linq;
 
 using EPiServer.DataAbstraction;
 
+using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver;
@@ -15,7 +16,7 @@ partial class WebApplicationInitializer
 
         if (initialLanguagesEnabled.IsNot()) return;
 
-        Log.Info("Initializing languages: " + initialLanguagesEnabled);
+        Log.Information("Initializing languages: " + initialLanguagesEnabled);
 
         var initialLanguages = initialLanguagesEnabled.Split(',').Select(x => x.Replace(" ", "")).ToArray();
 

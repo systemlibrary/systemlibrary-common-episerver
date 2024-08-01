@@ -230,7 +230,10 @@ appSettings.json:
 {
 	...,
 	"systemLibraryCommonEpiserver": {
+		"debug": false,
+
 		"appUrl": "https://localhost:50001",
+
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
 			"allPropertiesScrollableDocumentHeader": false,
@@ -243,6 +246,7 @@ appSettings.json:
 			"pageTreeSelectedContentBorderColor": "",
 			"projectBarActiveProjectBackgroundColor": ""
 		},
+
 		"properties": {
 			"message": {
 				"backgroundColor": "#fff9e6",

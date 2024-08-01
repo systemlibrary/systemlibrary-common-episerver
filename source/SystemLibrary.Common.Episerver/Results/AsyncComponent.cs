@@ -28,7 +28,7 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
 
     protected async Task<IViewComponentResult> ResultAsync(object component, string viewName = "Index.cshtml")
     {
-        if (!viewName.StartsWith("~"))
+        if (viewName[0] != '~')
         {
             var componentName = component.GetType().Name;
 
@@ -37,15 +37,15 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
                 .Replace("ViewModel", "")
                 .Replace("Model", "");
 
-            if(componentName.Contains("Block"))
+            if(componentName.Contains("Block", StringComparison.Ordinal))
                 viewName = "~/Content/Blocks/" + componentType + "/" + viewName;
             else
                 viewName = "~/Content/Components/" + componentType + "/" + viewName;
         }
 
-        if (!viewName.EndsWith(".cshtml"))
+        if (!viewName.EndsWith(".cshtml", StringComparison.Ordinal))
         {
-            if (viewName.EndsWith("/"))
+            if (viewName.EndsWith("/", StringComparison.Ordinal))
                 return await Task.FromResult(View(viewName + "Index.cshtml", component));
             else
                 return await Task.FromResult(View(viewName + ".cshtml", component));
@@ -56,16 +56,16 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
 
     protected IViewComponentResult Result(object component, string viewName = "Index.cshtml")
     {
-        if (!viewName.StartsWith("~"))
+        if (viewName[0] != '~')
         {
             var componentType = component.GetType().Name.Replace("ViewModel", "").Replace("Model", "");
 
             viewName = "~/Content/Blocks/" + componentType + "/" + viewName;
         }
 
-        if (!viewName.EndsWith(".cshtml"))
+        if (!viewName.EndsWith(".cshtml", StringComparison.Ordinal))
         {
-            if (viewName.EndsWith("/"))
+            if (viewName.EndsWith("/", StringComparison.Ordinal))
                 return View(viewName + "Index.cshtml", component);
             else
                 return View(viewName + ".cshtml", component);
@@ -82,7 +82,6 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
     protected IViewComponentResult ReactServerSideResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null, bool printNullValues = true)
     {
         var data = model.ReactServerSideRender(additionalProps, tagName, camelCaseProps, cssClass, id, componentFullName, renderClientOnly, renderServerOnly, printNullValues);
-
         return new HtmlContentViewComponentResult(new HtmlString(data.ToString()));
     }
 }

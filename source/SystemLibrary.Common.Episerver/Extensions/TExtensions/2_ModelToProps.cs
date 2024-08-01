@@ -21,13 +21,13 @@ partial class TExtensions
         if (additionalProps != null)
         {
             // NOTE: Additional props hashCode should include current Model.Type hashCode
-            // converted to a BigInt
+            // converted to a BigInt. 2024: Why?
             var additionalType = additionalProps.GetType();
 
             var hashCode = additionalType.GetHashCode();
 
             // NOTE: Optimize: return the ignorePropertyNames as array directly, instead of looping afterwards
-            var additionalProperties = ModelToPropsPropertiesCache.TryGet(hashCode, () =>
+            var additionalProperties = ModelToPropsPropertiesCache.Cache(hashCode, () =>
             {
                 return additionalType.GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.GetProperty);
             });
