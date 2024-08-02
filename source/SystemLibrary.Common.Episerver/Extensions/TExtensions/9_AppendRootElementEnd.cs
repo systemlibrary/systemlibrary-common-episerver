@@ -1,16 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-
-using Microsoft.AspNetCore.Connections.Features;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-using Microsoft.Identity.Client;
-
-using React;
-
-using SystemLibrary.Common.Web;
+﻿using System.Text;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

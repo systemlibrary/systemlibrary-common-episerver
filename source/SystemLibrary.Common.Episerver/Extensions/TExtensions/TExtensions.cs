@@ -1,38 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
-using System.Web;
-
-using EPiServer;
-using EPiServer.Core;
-using EPiServer.Shell;
-using EPiServer.SpecializedProperties;
-
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Primitives;
-using Microsoft.Identity.Client.Extensions.Msal;
+﻿using System.Text;
 
 using React;
 
-using SystemLibrary.Common.Episerver.Properties;
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
-
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

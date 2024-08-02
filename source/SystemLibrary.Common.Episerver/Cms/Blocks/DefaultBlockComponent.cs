@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using EPiServer;
+﻿using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.DataAnnotations;
 

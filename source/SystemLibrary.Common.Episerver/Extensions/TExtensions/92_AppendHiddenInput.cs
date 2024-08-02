@@ -1,19 +1,7 @@
 ﻿using System.Collections.Concurrent;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
 
-using Microsoft.AspNetCore.Connections.Features;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-using Microsoft.Identity.Client;
-
-using React;
-
-using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;

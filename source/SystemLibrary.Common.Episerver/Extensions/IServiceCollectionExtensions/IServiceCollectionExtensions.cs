@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-using EPiServer.Cms.Shell.UI.Configurations;
+﻿using EPiServer.Cms.Shell.UI.Configurations;
 using EPiServer.Cms.TinyMce;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
@@ -9,18 +7,11 @@ using EPiServer.Web;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.V8;
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Razor.Language.Intermediate;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using Newtonsoft.Json.Serialization;
 
 using React;
 using React.AspNet;

@@ -1,13 +1,4 @@
-﻿using System.Text;
-
-using EPiServer.Core;
-using EPiServer.Web.Routing;
-
-using Microsoft.AspNetCore.Builder;
-
-using SystemLibrary.Common.Net.Extensions;
-
-namespace SystemLibrary.Common.Episerver.Extensions;
+﻿namespace SystemLibrary.Common.Episerver.Extensions;
 
 //public static class IListContentDataExtensions
 //{

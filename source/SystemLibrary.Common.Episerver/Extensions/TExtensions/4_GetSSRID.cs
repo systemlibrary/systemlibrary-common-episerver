@@ -1,14 +1,9 @@
 ﻿using System.Collections;
 using System.Text;
-using System.Xml.Linq;
 
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.SpecializedProperties;
-
-using Microsoft.Extensions.Primitives;
-
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

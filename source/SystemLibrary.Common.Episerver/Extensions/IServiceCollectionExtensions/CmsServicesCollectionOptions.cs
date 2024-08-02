@@ -1,8 +1,4 @@
-﻿using System;
-
-using JavaScriptEngineSwitcher.V8;
-
-namespace SystemLibrary.Common.Episerver.Extensions;
+﻿namespace SystemLibrary.Common.Episerver.Extensions;
 
 public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOptions
 {

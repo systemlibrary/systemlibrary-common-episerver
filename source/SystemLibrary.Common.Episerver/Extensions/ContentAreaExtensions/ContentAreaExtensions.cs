@@ -1,20 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core;
-using EPiServer.Core.Internal;
-using EPiServer.Filters;
-using EPiServer.Security;
 using EPiServer.Web.Mvc.Html;
-
-using Microsoft.AspNetCore.Components.RenderTree;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-using SystemLibrary.Common.Episerver;
-using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

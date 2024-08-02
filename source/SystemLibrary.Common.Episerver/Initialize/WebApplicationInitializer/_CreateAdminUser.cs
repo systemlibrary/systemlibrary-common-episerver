@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-using EPiServer.Shell.Security;
+﻿using EPiServer.Shell.Security;
 
 using SystemLibrary.Common.Episerver.Extensions;
 

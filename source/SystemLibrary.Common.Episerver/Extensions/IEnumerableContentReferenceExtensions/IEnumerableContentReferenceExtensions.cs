@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Security;
 
-using SystemLibrary.Common.Episerver;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;

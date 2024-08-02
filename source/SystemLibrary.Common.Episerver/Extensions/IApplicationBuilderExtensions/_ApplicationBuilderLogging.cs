@@ -1,6 +1,4 @@
-﻿using System.Net.Mime;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace SystemLibrary.Common.Episerver.Extensions;

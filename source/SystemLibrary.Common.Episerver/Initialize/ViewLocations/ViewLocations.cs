@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace SystemLibrary.Common.Episerver.Initialize;
+﻿namespace SystemLibrary.Common.Episerver.Initialize;
 
 internal class ViewLocations
 {

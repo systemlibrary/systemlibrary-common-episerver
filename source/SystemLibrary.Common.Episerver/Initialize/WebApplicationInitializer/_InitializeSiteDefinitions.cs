@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.Web;
 
 using Microsoft.AspNetCore.Http;

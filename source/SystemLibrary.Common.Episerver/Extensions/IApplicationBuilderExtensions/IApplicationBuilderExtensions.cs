@@ -1,19 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Net;
-
-using EPiServer.Events.Clients;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-
-using React.AspNet;
 
 using SystemLibrary.Common.Episerver.Components;
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;

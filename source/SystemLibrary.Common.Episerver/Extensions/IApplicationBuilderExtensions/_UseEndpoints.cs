@@ -1,8 +1,6 @@
 ﻿using EPiServer.Web.Routing;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

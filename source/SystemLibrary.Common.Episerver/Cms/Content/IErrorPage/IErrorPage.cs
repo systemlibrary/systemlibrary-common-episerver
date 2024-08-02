@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SystemLibrary.Common.Episerver;
+﻿namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
 /// Implement your own 'error page' look and feel for responses larger than 399, and for responses not equal to 503

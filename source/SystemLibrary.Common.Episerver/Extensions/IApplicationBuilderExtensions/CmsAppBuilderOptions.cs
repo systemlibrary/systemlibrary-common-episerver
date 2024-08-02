@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SystemLibrary.Common.Episerver.Extensions;
+﻿namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
 /// Contains application builder options that you can override if you want to

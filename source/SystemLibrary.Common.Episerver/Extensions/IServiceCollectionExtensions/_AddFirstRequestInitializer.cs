@@ -2,12 +2,8 @@
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using SystemLibrary.Common.Episerver.Initialize;
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

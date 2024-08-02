@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Collections;
 
-using EPiServer;
-using EPiServer.Cms.Shell.UI.UIDescriptors.Internal;
 using EPiServer.Shell.ObjectEditing;
-
-using MailKit;
 
 using SystemLibrary.Common.Episerver.Abstract;
 using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Extensions;
-
-using WeCantSpell.Hunspell;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 

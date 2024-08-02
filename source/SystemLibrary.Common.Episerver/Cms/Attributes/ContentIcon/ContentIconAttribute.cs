@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-using EPiServer.DataAnnotations;
+﻿using EPiServer.DataAnnotations;
 
 using SystemLibrary.Common.Episerver.FontAwesome;
 

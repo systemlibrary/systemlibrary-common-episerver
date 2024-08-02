@@ -1,9 +1,8 @@
-﻿namespace SystemLibrary.Common.Episerver.Display
+﻿namespace SystemLibrary.Common.Episerver.Display;
+
+internal class MobileResolution : BaseDisplayResolution
 {
-    internal class MobileResolution : BaseDisplayResolution
+    public MobileResolution() : base("Mobile", 414, 896)
     {
-        public MobileResolution() : base("Mobile", 414, 896)
-        {
-        }
     }
 }

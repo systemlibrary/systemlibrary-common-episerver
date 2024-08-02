@@ -1,6 +1,4 @@
-﻿using System;
-
-using EPiServer.Shell.ObjectEditing;
+﻿using EPiServer.Shell.ObjectEditing;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 

@@ -1,9 +1,8 @@
-﻿namespace SystemLibrary.Common.Episerver.Display
+﻿namespace SystemLibrary.Common.Episerver.Display;
+
+internal class TabletResolution : BaseDisplayResolution
 {
-    internal class TabletResolution : BaseDisplayResolution
+    public TabletResolution() : base("Tablet", 1366, 768)
     {
-        public TabletResolution() : base("Tablet", 1366, 768)
-        {
-        }
     }
 }

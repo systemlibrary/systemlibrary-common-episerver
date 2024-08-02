@@ -1,33 +1,23 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Xml.Linq;
 
 using EPiServer;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
-using EPiServer.Enterprise.Transfer.Internal;
 using EPiServer.Security.Internal;
 using EPiServer.Shell.Web;
 using EPiServer.SpecializedProperties;
-using EPiServer.Web.Mvc.Html;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.Operations;
 
 using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Net.Extensions;
-
-using static Azure.Core.HttpHeader;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

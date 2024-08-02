@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SystemLibrary.Common.Episerver;
+﻿namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
 /// Enables the ContentData to only be created once, then it will be hidden from the "New Content Dialogs" in the CMS.

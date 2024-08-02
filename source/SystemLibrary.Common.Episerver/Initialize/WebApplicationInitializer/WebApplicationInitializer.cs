@@ -1,15 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using EPiServer.Shell.Security;
+﻿using EPiServer.Shell.Security;
 using EPiServer.Web;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Web;
-using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver;
 

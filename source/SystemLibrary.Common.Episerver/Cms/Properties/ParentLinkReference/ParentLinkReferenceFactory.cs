@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using EPiServer.Cms.Shell.Extensions;
+﻿using EPiServer.Cms.Shell.Extensions;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.ObjectEditing;

@@ -1,14 +1,28 @@
-﻿using System.Text;
-
-using EPiServer;
+﻿using EPiServer;
 
 using Microsoft.AspNetCore.Mvc;
 
 using SystemLibrary.Common.Episerver.Extensions;
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver;
 
+/// <summary>
+/// React Block Result is for backward compatibility, Epi 11, if youre still using BlockControllers instead of Components
+/// </summary>
+/// <remarks>
+/// Assumes by default that all frontend react components is registered under DOM variable "window.reactBlocks."
+/// </remarks>
+/// <example>
+/// <code>
+/// public class CarBlockController : BlockController&lt;CarBlock&gt;
+/// {
+///     public override ActionResult Index(CarBlock currentBlock)
+///     {
+///         return new ReactBlockResult(currentBlock, renderClientOnly: true);
+///     }
+/// }
+/// </code>
+/// </example>
 public class ReactBlockResult : ContentResult
 {
     public ReactBlockResult(object model, object additionalProps = null, bool camelCaseProps = false, bool renderClientOnly = false, bool renderServerOnly = false, string tagName = "div", string cssClass = null, string id = null, string componentFullName = null, bool printNullValues = true)

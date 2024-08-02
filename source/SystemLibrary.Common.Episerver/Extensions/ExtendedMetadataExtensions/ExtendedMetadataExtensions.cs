@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Castle.Core.Internal;
+﻿using Castle.Core.Internal;
 
 using EPiServer.Shell.ObjectEditing;
 

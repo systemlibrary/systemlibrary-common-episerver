@@ -2,33 +2,15 @@
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
+		<OutputType>Library</OutputType>
 		<Configurations>Release</Configurations>
-		<LangVersion>latest</LangVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
 		<Version>7.13.0.1</Version>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<DebugType>none</DebugType>
-		<PlatformTarget>x64</PlatformTarget>
-		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-		<ErrorReport>none</ErrorReport>
-		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
-		<RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
-		<AnalysisLevel>latest-minimum</AnalysisLevel>
-		<EnableNETAnalyzers>False</EnableNETAnalyzers>
 	</PropertyGroup>
 	
 	<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<PackageOutputPath>..\$(MSBuildProjectName)</PackageOutputPath>
-		<Company>System Library</Company>
-		<Authors>System Library</Authors>
-		<Product>$(Version)</Product>
-		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-		<WarningLevel>0</WarningLevel>
-		<WarningsAsErrors>$(WarningsAsErrors);NU1605;</WarningsAsErrors>
-		<NoWarn>1701;1702;CS0252:CS8618;CS8602;CS8625;CS8619;CS8601;CS8604;CS8603</NoWarn>
-		<Deterministic>False</Deterministic>
-		<FileAlignment>4096</FileAlignment>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -161,7 +143,7 @@
 		<PackageIcon>nuget-icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>C# .NET 7.0 Episerver Optimizely Library</PackageTags>
-		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-version</PackageReleaseNotes>
+		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-release-notes</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
