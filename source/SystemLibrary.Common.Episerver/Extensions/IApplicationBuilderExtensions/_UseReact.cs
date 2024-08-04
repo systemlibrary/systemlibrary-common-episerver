@@ -31,7 +31,7 @@ partial class IApplicationBuilderExtensions
             {
                 config.SetReuseJavaScriptEngines(true);
                 config.SetUseDebugReact(false);
-                config.SetMaxUsagesPerEngine(2000);
+                config.SetMaxUsagesPerEngine(5000);
                 config.SetAllowJavaScriptPrecompilation(true);
             }
 

@@ -8,6 +8,9 @@ using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Episerver;
 
+/// <summary>
+/// Internal class only, but marked as Public due to test methods
+/// </summary>
 public partial class WebApplicationInitializer : IBlockingFirstRequestInitializer
 {
     UIUserProvider uIUserProvider;

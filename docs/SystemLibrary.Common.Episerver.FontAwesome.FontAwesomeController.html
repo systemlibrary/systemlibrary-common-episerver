@@ -831,6 +831,7 @@
   
   <div class="custom-container">
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_BrandsIcon_System_String_">
   		<span class="small pull-right mobile-hide">
   			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/FontAwesome/_BrandsIcon.cs/#L7">View Source</a>
@@ -889,7 +890,9 @@ public ActionResult BrandsIcon(string icon)</h4>
   
   
   
+  
   <div class="custom-container">
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_Fonts_System_String_">
   		<span class="small pull-right mobile-hide">
@@ -949,7 +952,9 @@ public ActionResult Fonts(string filePath)</h4>
   
   
   
+  
   <div class="custom-container">
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_RegularIcon_System_String_">
   		<span class="small pull-right mobile-hide">
@@ -1009,7 +1014,9 @@ public ActionResult RegularIcon(string icon)</h4>
   
   
   
+  
   <div class="custom-container">
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_FontAwesome_FontAwesomeController_SolidIcon_System_String_">
   		<span class="small pull-right mobile-hide">
@@ -1068,6 +1075,7 @@ public ActionResult SolidIcon(string icon)</h4>
   </div>
   
   
+  
   <h3 id="implements">Implements</h3>
   <div class="implements-content">
   	<span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span>
@@ -1083,7 +1091,10 @@ public ActionResult SolidIcon(string icon)</h4>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToExpandoObject_System_Object_System_Boolean_System_String___">ObjectExtensions.ToExpandoObject(Object, Boolean, String[])</a>
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
+  </div>
+  <div class="extensionmethods-content">
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>
   
   
@@ -1493,6 +1504,38 @@ public ActionResult SolidIcon(string icon)</h4>
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1709,6 +1752,9 @@ public ActionResult SolidIcon(string icon)</h4>
   	setTimeout(() => hideSourceLinksForDocfxHideAttribute(), 35);
   
   	setTimeout(addEventsToTabCloseButtons, 40);
+  
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
   
   	//setTimeout(removeEmptyPopups, 50);
   </script>

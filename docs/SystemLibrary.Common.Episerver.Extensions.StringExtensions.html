@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.EditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.Configuration,SystemLibrary.Common.Episerver.ConnectionStringsConfiguration,SystemLibrary.Common.Episerver.PropertiesConfiguration,SystemLibrary.Common.Episerver.EditConfiguration,SystemLibrary.Common.Episerver.Cms.Properties.MessageConfiguration,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory</div>
+        DocFx,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Properties.MessageProperty,SystemLibrary.Common.Episerver.Properties.MessageController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.EditController,SystemLibrary.Common.Episerver.Abstract.BaseController,SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.ConnectionStringsConfig,SystemLibrary.Common.Episerver.PropertiesConfig,SystemLibrary.Common.Episerver.EditConfig,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory,SystemLibrary.Common.Episerver.Abstract.InternalBaseController,WebApplicationInitializer</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -197,7 +197,8 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"></div>
+    <div class="markdown level0 summary h1-class-summary"><p>String extensions</p>
+</div>
   </div>
   
   <h1 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions" class="text-break h1-class-header">StringExtensions
@@ -237,88 +238,23 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if path is either relative or absolute path to a file</p>
-<p>File must be minimum 4 char long in total, including the extension and the dot</p>
-<p>Supports up to 6 characters in the extension</p>
-<p>Supports also query-params in the path</p>
-<p>Returns true or false</p>
+  		<div class="markdown level1 summary member-summary"><p>Convert the 'text', which is a string (json string) that comes from a 'public virtual' property marked with JsonEdit attribute</p>
+<p>Read that json data as a List of T, or a simple T</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_System_String_">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L74">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_IsFile_System_String_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.IsFile(System.String)" class="h4-custom-functionName">public static bool IsFile(this string path)</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
-  				<table class="table table-bordered table-striped table-condensed">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Name</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.String</span></td>
-  							<td><span class="parametername">path</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Boolean</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns a string array with data stored from a JsonEdit attribute back to a list of class in C#</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject__1_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L42">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L45">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject*"></a>
   
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_JsonEditAsObject__1_System_String_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.JsonEditAsObject``1(System.String)" class="h4-custom-functionName">public static T JsonEditAsObject&lt;T&gt;(this string text)
+
     where T : class</h4>
   		<div class="custom-menu-data-container">
   			<div class="custom-menu-data-name" style="display: none;">
@@ -392,7 +328,8 @@ public class Controller
   					<tbody>
   						<tr>
   							<td><span class="xref">T</span></td>
-  							<td></td>
+  							<td><p>Returns a simple object T or a List of T, based on the json string that comes from a 'public virtual' property marked with JsonEdit attribute</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -403,17 +340,18 @@ public class Controller
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Returns a friendly url version of the passed in url, usually a episerver content link or similar</p>
-<p>Returns never null even if input is null</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_System_String_System_Nullable_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L117">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L72">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_StringExtensions_ToFriendlyUrl_" data-uid="SystemLibrary.Common.Episerver.Extensions.StringExtensions.ToFriendlyUrl*"></a>
@@ -463,7 +401,8 @@ public class Controller
   					<tbody>
   						<tr>
   							<td><span class="xref">System.String</span></td>
-  							<td></td>
+  							<td><p>Returns friendly url, never null, minimum &quot;&quot;</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -471,6 +410,7 @@ public class Controller
   		</div>
   	</div>
   </div>
+  
   
   
   
@@ -881,6 +821,38 @@ public class Controller
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1098,6 +1070,9 @@ public class Controller
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1113,7 +1088,7 @@ public class Controller
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/StringExtensions/StringExtensions.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

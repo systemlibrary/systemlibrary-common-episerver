@@ -8,8 +8,7 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Show a selection of items in boxes, where one can select one or more boxes
-/// 
-/// 1. Create a simple color picker with 3-4-5 colors that Editors can choose from?
+/// <para>1. Create a simple color picker with 3-4-5 colors that Editors can choose from?</para>
 /// 2. Choose between a few choices instead of radiobuttons/dropdownlist/checkboxes?
 /// </summary>
 /// <example>

@@ -26,8 +26,10 @@ public static class PageDataExtensions
     }
 
     /// <summary>
-    /// Returns friendly url or null if pageData is null or the content link to the pageData is null
+    /// Returns the friendly url of a page
+    /// <para>Returns null if pageData is null or does not have a contentlink</para>
     /// </summary>
+    /// <returns>A friendly url or null</returns>
     public static string ToFriendlyUrl(this PageData pageData)
     {
         if (pageData.Is())

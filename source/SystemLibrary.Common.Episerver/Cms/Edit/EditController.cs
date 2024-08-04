@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SystemLibrary.Common.Episerver.Abstract;
 using SystemLibrary.Common.Episerver.FontAwesome;
 
+using static PackageConfig;
 using static SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute;
 
 namespace SystemLibrary.Common.Episerver;
@@ -51,7 +52,7 @@ public partial class EditController : InternalBaseController
         return (StyleCache = GetFileContentResult(css, "text/css"));
     }
 
-    void AppendProjectBarActiveProjectBackgroundColor(EditConfiguration edit, StringBuilder css)
+    void AppendProjectBarActiveProjectBackgroundColor(EditConfig edit, StringBuilder css)
     {
         if(edit.ProjectBarActiveProjectBackgroundColor.Is())
         {
@@ -62,7 +63,7 @@ public partial class EditController : InternalBaseController
         }
     }
 
-    void AppendNewContentDialogItemColors(EditConfiguration edit, StringBuilder css)
+    void AppendNewContentDialogItemColors(EditConfig edit, StringBuilder css)
     {
         if (edit.NewContentDialogItemBackgroundColor.Is() ||
             edit.NewContentDialogItemBorderColor.Is())
@@ -74,13 +75,13 @@ public partial class EditController : InternalBaseController
         }
     }
 
-    void AppendVersionGadgetHideLanguageColumn(EditConfiguration edit, StringBuilder css)
+    void AppendVersionGadgetHideLanguageColumn(EditConfig edit, StringBuilder css)
     {
         if (edit.VersionGadgetHideLanguageColumn)
             css.Append(GetEmbeddedResource(CurrentFolder, "VersionGadgetHideLanguageColumn.css"));
     }
 
-    void AppendAllPropertiesShowCheckBoxOnRightSide(EditConfiguration edit, StringBuilder css)
+    void AppendAllPropertiesShowCheckBoxOnRightSide(EditConfig edit, StringBuilder css)
     {
         if (edit.AllPropertiesShowCheckBoxOnRightSide)
         {
@@ -92,13 +93,13 @@ public partial class EditController : InternalBaseController
         
     }
 
-    void AppendAllPropertiesScrollableDocumentHeader(EditConfiguration edit, StringBuilder css)
+    void AppendAllPropertiesScrollableDocumentHeader(EditConfig edit, StringBuilder css)
     {
         if (edit.AllPropertiesScrollableDocumentHeader)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesScrollableDocumentHeader.css"));
     }
     
-    void AppendAllPropertiesShowPropertyDescriptions(EditConfiguration edit, StringBuilder css)
+    void AppendAllPropertiesShowPropertyDescriptions(EditConfig edit, StringBuilder css)
     {
         if (edit.AllPropertiesShowPropertyDescriptions)
         {
@@ -112,13 +113,13 @@ public partial class EditController : InternalBaseController
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertyDescriptions.css"));
     }
 
-    void AppendNewContentDialogHideRequiredTitle(EditConfiguration edit, StringBuilder css)
+    void AppendNewContentDialogHideRequiredTitle(EditConfig edit, StringBuilder css)
     {
         if(edit.NewContentDialogHideRequiredTitle)
             css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogHideRequiredTitle.css"));
     }
 
-    void AppendActiveProjectBarBackgroundColor(EditConfiguration edit, StringBuilder css)
+    void AppendActiveProjectBarBackgroundColor(EditConfig edit, StringBuilder css)
     {
         if (edit.ProjectBarActiveProjectBackgroundColor.IsNot()) return;
 
@@ -128,13 +129,13 @@ public partial class EditController : InternalBaseController
         css.Replace(nameof(edit.ProjectBarActiveProjectBackgroundColor), edit.ProjectBarActiveProjectBackgroundColor);
     }
 
-    void AppendAllPropertiesShowPropertiesAsColumns(EditConfiguration edit, StringBuilder css)
+    void AppendAllPropertiesShowPropertiesAsColumns(EditConfig edit, StringBuilder css)
     {
         if (edit.AllPropertiesShowPropertiesAsColumns)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertiesAsColumns.css"));
     }
 
-    void AppendCustomPageTreeIcons(EditConfiguration edit, StringBuilder css)
+    void AppendCustomPageTreeIcons(EditConfig edit, StringBuilder css)
     {
         css.Append(GetEmbeddedResource(CurrentFolder, "CustomPageTreeIcons.css"));
 

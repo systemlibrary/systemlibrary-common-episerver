@@ -1,4 +1,5 @@
 ﻿using EPiServer;
+using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.Web;
@@ -51,6 +52,14 @@ public abstract class BaseCms
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
+    protected internal static IContentVersionRepository ContentVersionRepository =>
+        _ContentVersionRepository != null ? _ContentVersionRepository :
+        (_ContentVersionRepository = Services.Get<IContentVersionRepository>());
+    static IContentVersionRepository _ContentVersionRepository;
+
+    /// <summary>
+    /// Protected member you can reuse if you inherit BaseCms
+    /// </summary>
     protected internal static ILanguageBranchRepository LanguageBranchRepository => _LanguageBranchRepository != null ? _LanguageBranchRepository :
         (_LanguageBranchRepository = Services.Get<ILanguageBranchRepository>());
     static ILanguageBranchRepository _LanguageBranchRepository;
@@ -97,7 +106,7 @@ public abstract class BaseCms
     }
 
     /// <summary>
-    /// Returns current block as T based on current request, or null
+    /// Returns current block as T based on current request and its context [route data], or null
     /// </summary>
     /// <example>
     /// <code>
@@ -209,27 +218,30 @@ public abstract class BaseCms
 
     static string _PrimaryHostUrl;
     /// <summary>
-    /// Returns the primary site registered in Episerver, or the SiteUrl defined, or if both are null, falls back to 'localhost', returns never null
-    /// 
-    /// Note: This requires you to register your primary url inside Web Site Settings, under Admin, within the CMS
+    /// The Primary Host Url for this Site registered inside 'Managed Websites' in Episerver CMS
+    /// <para>Gets the first primary host type that is not a wildcard and contains a dot</para>
+    /// <para>Fallback to first primary host type that is not a wildcard</para>
+    /// <para>Fallback to first undefined host type that is not a wildcard and contains a dot</para>
+    /// <para>Fallback to first undefined host type that is not a wildcard</para>
+    /// <para>Fallback to Url registered in the Url field of the 'Site'</para>
+    /// <para>Fallback to http://localhost in a non web context</para>
     /// </summary>
+    /// <remarks>
+    /// <list>
+    /// <item>Returns Primary Host if found</item>
+    /// <item>Fallback to first Undefined Type Host, that is not wildcard and contains a dot (.)</item>
+    /// <item>Fallback again to first Undefined Type Host, that is not wildcard, for instance "localhost:51011"</item>
+    /// <item>Fallback if no host was found, uses the Site Url configred</item>
+    /// <item>Last fallback, if no Site Url, for instance in a non web context (unit test/console), fall back to http://localhost</item>
+    /// </list>
+    /// Remember to register the proper site and hosts under 'Manage Websites' in Episerver CMS, which requires app restart after configuration changes to take affect
+    /// </remarks>
     public static string PrimaryHostUrl
     {
         get
         {
             if (_PrimaryHostUrl == null)
             {
-                var appUrl = AppSettings.Current.SystemLibraryCommonEpiserver.AppUrl;
-                if (appUrl.Is())
-                {
-                    if (appUrl.EndsWith("/", StringComparison.Ordinal))
-                        appUrl = appUrl.Substring(0, appUrl.Length - 1);
-
-                    _PrimaryHostUrl = appUrl;
-
-                    return _PrimaryHostUrl;
-                }
-
                 var siteDefinition = SiteDefinition.Current;
 
                 var scheme = HttpContextInstance.Current?.Request?.Scheme ?? "http";
@@ -250,7 +262,13 @@ public abstract class BaseCms
                 {
                     var siteUri = siteDefinition.SiteUrl;
 
-                    var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
+                    if (siteUri.Is() && siteUri.Scheme.Is())
+                        scheme = siteUri.Scheme;
+
+                    var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost() && h.Name.Contains("."));
+
+                    if (host == null)
+                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
 
                     if (host == null)
                         host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost() && h.Name.Contains("."));
@@ -269,7 +287,7 @@ public abstract class BaseCms
                         if (siteUri.Scheme.Is())
                             scheme = siteUri.Scheme;
 
-                        if (siteUri.Port != 0 && siteUri.Port != 80)
+                        if (siteUri.Port != 0 && siteUri.Port != 80 && siteUri.Port != 443)
                             _PrimaryHostUrl = scheme + "://" + siteUri.Host + ":" + siteUri.Port;
                         else
                             _PrimaryHostUrl = scheme + "://" + siteUri.Host;
@@ -280,6 +298,7 @@ public abstract class BaseCms
                     _PrimaryHostUrl = _PrimaryHostUrl.Substring(0, _PrimaryHostUrl.Length - 1);
 
             }
+
             return _PrimaryHostUrl;
         }
     }
@@ -298,9 +317,9 @@ public abstract class BaseCms
     }
 
     /// <summary>
-    /// Return all 'ContentType's that either inherits or implements or is the specified class or interface
+    /// Returns all 'ContentType' that either inherits, implements or that is of type T
     /// </summary>
-    public static IEnumerable<ContentType> GetContentTypesInheriting<T>() where T : class
+    public static IEnumerable<ContentType> GetContentTypes<T>() where T : class
     {
         var contentTypes = AllContentTypes;
 
@@ -308,18 +327,22 @@ public abstract class BaseCms
 
         foreach (var contentType in contentTypes)
         {
-            if (contentType.ModelType.Inherits(type))
+            if (contentType.ModelType == type)
+                yield return contentType;
+
+            else if (contentType.ModelType.Inherits(type))
                 yield return contentType;
         }
     }
 
     /// <summary>
-    /// Returns all 'ContentData' that inherits, implements or is of type T
-    /// - Returns only the latest version based on WorkId per ID
+    /// Returns all 'IContent' that either inherits, implements or that is of type T
+    /// <para>- Returns the latest version based on WorkId per ID</para>
+    /// <para>- It filters on Deleted, so no deleted items are returned, but if latest is a Draft, that is returned</para>
     /// </summary>
-    public static IEnumerable<T> GetLatestVersionOfContentType<T>() where T : class
+    public static IEnumerable<T> GetAllLatestVersionsOfContentType<T>() where T : class
     {
-        var contentTypes = GetContentTypesInheriting<T>();
+        var contentTypes = GetContentTypes<T>();
 
         foreach (var contentType in contentTypes)
         {
@@ -338,12 +361,17 @@ public abstract class BaseCms
                 {
                     foreach (var page in pages)
                     {
+                        if (page.IsDeleted) continue;
+
+                        if(!page.IsPublished())
+                        {
+                            // TODO: Implement a fallback if current work ID is larger than 0, then try get previous workID that was published, if any...
+                        }
+
                         yield return page as T;
                     }
                 }
-
             }
         }
     }
 }
-

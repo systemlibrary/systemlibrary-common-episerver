@@ -9,7 +9,7 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Registered the 'ApplicationCookie' to be the login cookie in the CMS
-    /// - CmsUsersSlidingExpiration handled the sliding expiartion
+    /// <para>- CmsUsersSlidingExpiration handled the sliding expiartion</para>
     /// - CmsUsersSignedInDurationMinutes handles cookie duration
     /// </summary>
     public bool AddApplicationCookie = true;
@@ -34,7 +34,7 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions
-    /// Defaults to: false
+    /// <para>Defaults to: false</para>
     /// 
     /// Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar
     /// </summary>
@@ -42,7 +42,7 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// The default email of the default admin user
-    /// - Only used if the DB is empty
+    /// <para>- Only used if the DB is empty</para>
     /// 
     /// Note: assuming the default value, 'demo' is used as username, the text before @
     /// </summary>
@@ -50,16 +50,16 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// The default password of the default admin user
-    /// - Only used if the DB is empty
+    /// <para>- Only used if the DB is empty</para>
     /// </summary>
     public string DefaultAdminPassword = "Demo123!";
 
     /// <summary>
     /// A comma separated list of languageId's that comes with Episerver
-    /// 
+    /// <para>
     /// Set to null or blank, if you do not want to do anything with languages, so the default that you were used to (15 default languages added, while sv and en is enabled, will then be the result)
-    /// 
-    /// Example of language id's:
+    /// </para>
+    /// <para>Example of language id's:</para>
     /// sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
     /// </summary>
     public string InitialLanguagesEnabled = "sv,en";
@@ -91,7 +91,7 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Adds all react services and the V8 engine for react server side rendering
-    /// - Set to false if you do not use react server side
+    /// <para>- Set to false if you do not use react server side</para>
     /// </summary>
     public bool AddReactServerSideServices = true;
 }

@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Chose one of Font Awesome v. 6's free icons for your Blocks and Pages
-/// - Font Awesome Icons will also display in Page Tree
+/// <para>- Font Awesome Icons will also display in Page Tree</para>
 /// - You can pass a custom path to your own image, but that wont, per now, show up in Page Tree
 /// </summary>
 /// <example>

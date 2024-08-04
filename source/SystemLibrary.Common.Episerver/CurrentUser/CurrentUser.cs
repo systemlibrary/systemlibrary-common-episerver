@@ -11,8 +11,7 @@ namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
 /// CurrentUser can be injected or 'new CurrentUser()' whenever you need it
-/// 
-/// Remember: to use 'CurrentUser' as an injected object, you must call 'AddCommonCmsServices&lt;CurrentUser&gt;(...);' or similar
+/// <para>Remember: to use 'CurrentUser' as an injected object, you must call 'AddCommonCmsServices&lt;CurrentUser&gt;(...);' or similar</para>
 /// </summary>
 /// <example>
 /// <code class="language-csharp hljs">
@@ -27,6 +26,13 @@ namespace SystemLibrary.Common.Episerver;
 /// public void ConfigureServices(IServiceCollection services)
 /// {
 ///     services.AddCommonCmsServices&lt;AppUser, ...&gt;(...);
+/// }
+/// 
+/// // Use your AppUser anywhere you'd like
+/// public ActionResult Index()
+/// {
+///     var user = new AppUser();
+///     user.IsAdministrator || user.IsCmsUser
 /// }
 /// </code>
 /// </example>

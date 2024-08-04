@@ -33,7 +33,7 @@ public static partial class IApplicationBuilderExtensions
         if (options == null)
             options = new CmsAppBuilderOptions();
 
-        DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
+        _DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
 
         app.DisallowKnownAppFiles(options);
 

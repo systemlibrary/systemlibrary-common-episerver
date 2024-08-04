@@ -12,6 +12,9 @@ using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Episerver;
 
+/// <summary>
+/// Html Helper factory, to create a HtmlHelper instance
+/// </summary>
 public class HtmlHelperFactory
 {
     //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
@@ -35,6 +38,9 @@ public class HtmlHelperFactory
         }
     }
 
+    /// <summary>
+    /// Create a generic Html Helper instance
+    /// </summary>
     public static IHtmlHelper<T> Build<T>() where T : class
     {
         var viewContext = GetViewContext<T>(HttpContextAccessor);
@@ -46,6 +52,9 @@ public class HtmlHelperFactory
         return htmlHelper;
     }
 
+    /// <summary>
+    /// Create a non-generic Html Helper instance
+    /// </summary>
     public static IHtmlHelper Build()
     {
         var viewContext = GetViewContext(HttpContextAccessor);

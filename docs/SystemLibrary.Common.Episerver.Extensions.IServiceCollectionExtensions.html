@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.EditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.Configuration,SystemLibrary.Common.Episerver.ConnectionStringsConfiguration,SystemLibrary.Common.Episerver.PropertiesConfiguration,SystemLibrary.Common.Episerver.EditConfiguration,SystemLibrary.Common.Episerver.Cms.Properties.MessageConfiguration,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory</div>
+        DocFx,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Properties.MessageProperty,SystemLibrary.Common.Episerver.Properties.MessageController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.EditController,SystemLibrary.Common.Episerver.Abstract.BaseController,SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.ConnectionStringsConfig,SystemLibrary.Common.Episerver.PropertiesConfig,SystemLibrary.Common.Episerver.EditConfig,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory,SystemLibrary.Common.Episerver.Abstract.InternalBaseController,WebApplicationInitializer</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -197,8 +197,7 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Service collection extensions</p>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
   <h1 id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions" class="text-break h1-class-header">IServiceCollectionExtensions
@@ -237,45 +236,38 @@
   </h3>
   
   <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Registers default web-application settings:</p>
-<ul>
-<li>Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...</li>
-</ul>
-<p>Note:
-This does not register an Identity (user), if you want that use the generic method  CommonEpiserverServices&lt;T&gt;()
-This creates an admin user if there's no users existing in the DB: demo/Demo123!
-Admin user's email and password can be changed by passing the option object</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_">
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L44">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L30">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)" class="h4-custom-functionName">public static IServiceCollection CommonEpiserverApplicationServices(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection AddCommonCmsServices&lt;TLogWriter&gt;(this IServiceCollection services, CmsServicesCollectionOptions options = null)
+
+    where TLogWriter : class, ILogWriter</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)</p>
-<pre><code>public void ConfigureServices(IServiceCollection services) 
-{
-    services.CommonEpiserverApplicationServices()
-        .AddCms()
-        .AddTinyMce()
-        .AddFind();
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Generic types</h5>
+  				<table class="table table-bordered table-striped table-condensed class-tmpl-partial-typeParameters-table">
+  					<thead>
+  						<tr>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="parametername">TLogWriter</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
   
   				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
   				<table class="table table-bordered table-striped table-condensed">
@@ -293,7 +285,7 @@ Admin user's email and password can be changed by passing the option object</p>
   							<td></td>
   						</tr>
   						<tr>
-  							<td><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html">CommonEpiserverApplicationServicesOptions</a></td>
+  							<td><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html">CmsServicesCollectionOptions</a></td>
   							<td><span class="parametername">options</span></td>
   							<td></td>
   						</tr>
@@ -325,43 +317,24 @@ Admin user's email and password can be changed by passing the option object</p>
   
   
   
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Register default web-application settings:</p>
-<ul>
-<li>Controllers, Mvc, RazorPages, Default View Locations, ApplicationCookie, Episervers 'Display Channels', Supported Media Types for your controllers to return json, xtml or csv...</li>
-</ul>
-<p>Note:
-This creates an admin user if there's no users existing in the DB: demo/Demo123!
-Admin user's email and password can be changed by passing the option object</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_">
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L83">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/IServiceCollectionExtensions.cs/#L87">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_CommonEpiserverApplicationServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CommonEpiserverApplicationServicesOptions_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.CommonEpiserverApplicationServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions)" class="h4-custom-functionName">public static IServiceCollection CommonEpiserverApplicationServices&lt;T&gt;(this IServiceCollection services, CommonEpiserverApplicationServicesOptions options = null)
-    where T : IdentityUser, IUIUser, new()</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_" data-uid="SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)" class="h4-custom-functionName">public static IServiceCollection AddCommonCmsServices&lt;T, TLogWriter&gt;(this IServiceCollection services, CmsServicesCollectionOptions options = null)
+
+    where T : IdentityUser, IUIUser, new()
+
+    where TLogWriter : class, ILogWriter</h4>
   		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>You must also manually call these ones after 'CommonEpiserverServices' as Common.Episerver does not have a dependency on the Cms, TinyMce, nor Find (yet)</p>
-<pre><code>public void ConfigureServices(IServiceCollection services) 
-{
-    services.CommonEpiserverApplicationServices()
-        .AddCms()
-        .AddTinyMce()
-        .AddFind();
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -378,6 +351,10 @@ Admin user's email and password can be changed by passing the option object</p>
   							<td><span class="parametername">T</span></td>
   							<td></td>
   						</tr>
+  						<tr>
+  							<td><span class="parametername">TLogWriter</span></td>
+  							<td></td>
+  						</tr>
   					</tbody>
   				</table>
   
@@ -397,7 +374,7 @@ Admin user's email and password can be changed by passing the option object</p>
   							<td></td>
   						</tr>
   						<tr>
-  							<td><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions.html">CommonEpiserverApplicationServicesOptions</a></td>
+  							<td><a class="xref" href="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html">CmsServicesCollectionOptions</a></td>
   							<td><span class="parametername">options</span></td>
   							<td></td>
   						</tr>
@@ -426,6 +403,7 @@ Admin user's email and password can be changed by passing the option object</p>
   		</div>
   	</div>
   </div>
+  
   
   
   
@@ -836,6 +814,38 @@ Admin user's email and password can be changed by passing the option object</p>
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1053,6 +1063,9 @@ Admin user's email and password can be changed by passing the option object</p>
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1068,7 +1081,7 @@ Admin user's email and password can be changed by passing the option object</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/_ServiceCollectionFirstTime.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/_AddFirstRequestInitializer.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

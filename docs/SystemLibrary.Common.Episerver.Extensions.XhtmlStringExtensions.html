@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.EditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.Configuration,SystemLibrary.Common.Episerver.ConnectionStringsConfiguration,SystemLibrary.Common.Episerver.PropertiesConfiguration,SystemLibrary.Common.Episerver.EditConfiguration,SystemLibrary.Common.Episerver.Cms.Properties.MessageConfiguration,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory</div>
+        DocFx,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Properties.MessageProperty,SystemLibrary.Common.Episerver.Properties.MessageController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.EditController,SystemLibrary.Common.Episerver.Abstract.BaseController,SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.ConnectionStringsConfig,SystemLibrary.Common.Episerver.PropertiesConfig,SystemLibrary.Common.Episerver.EditConfig,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory,SystemLibrary.Common.Episerver.Abstract.InternalBaseController,WebApplicationInitializer</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -239,9 +239,20 @@
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Returns true if the XhtmlString contains some value, else false</p>
-<p>Note: Does not throw exception on null</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Is_EPiServer_Core_XhtmlString__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Does not throw exception on null</p>
+</div>
+  		</div>
   	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Is_EPiServer_Core_XhtmlString_">
@@ -301,17 +312,29 @@
   
   
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Returns true if the XhtmlString is null or blank or 0 length, else false</p>
-<p>Note: Does not throw exception on null</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_IsNot_EPiServer_Core_XhtmlString__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Does not throw on null</p>
+</div>
+  		</div>
+  	</div>
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_IsNot_EPiServer_Core_XhtmlString_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L30">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L31">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_IsNot_" data-uid="SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.IsNot*"></a>
@@ -366,11 +389,18 @@
   
   
   
+  
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Render all data, media, blocks, components, inside the XhtmlString</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Render_EPiServer_Core_XhtmlString_System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L35">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L40">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_Render_" data-uid="SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.Render*"></a>
@@ -419,7 +449,8 @@
   					<tbody>
   						<tr>
   							<td><span class="xref">System.String</span></td>
-  							<td></td>
+  							<td><p>Returns the rendered version of the xhtmlString. Anything from TinyMce HTML text added, to Button Blocks and Accordion Blocks editors have dragged into this field, will be rendered and added to one huge HTML string</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -427,6 +458,80 @@
   		</div>
   	</div>
   </div>
+  
+  
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Render all data, media, blocks, components, inside the XhtmlString</p>
+<p>Use this if you want to add additional data to the string</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_RenderStringBuilder_EPiServer_Core_XhtmlString_System_Boolean_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L78">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_RenderStringBuilder_" data-uid="SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.RenderStringBuilder*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_XhtmlStringExtensions_RenderStringBuilder_EPiServer_Core_XhtmlString_System_Boolean_" data-uid="SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.RenderStringBuilder(EPiServer.Core.XhtmlString,System.Boolean)" class="h4-custom-functionName">public static StringBuilder RenderStringBuilder(this XhtmlString xhtmlString, bool skipWrapperTag = true)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">EPiServer.Core.XhtmlString</span></td>
+  							<td><span class="parametername">xhtmlString</span></td>
+  							<td></td>
+  						</tr>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td><span class="parametername">skipWrapperTag</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  			<div class="custom-menu-data-returntype" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<table class="table table-bordered table-striped table-condensed table-return">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.Text.StringBuilder</span></td>
+  							<td><p>Returns the rendered version of the xhtmlString. Anything from TinyMce HTML text added, to Button Blocks and Accordion Blocks editors have dragged into this field, will be rendered and added to one huge HTML StringBuilder, ready to be adjusted after</p>
+</td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  
   
   
   
@@ -837,6 +942,38 @@
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1054,6 +1191,9 @@
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1069,7 +1209,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/XhtmlStringExtensions/XhtmlStringExtensions.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

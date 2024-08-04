@@ -21,6 +21,9 @@ using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Object extensions
+/// </summary>
 public static class ObjectExtensions
 {
     static Type SystemType;
@@ -134,6 +137,15 @@ public static class ObjectExtensions
         }
     }
 
+    /// <summary>
+    /// Convert a model to a Dictionary, which is ready to be used as Props to a React Component
+    /// <para>For example it will render ContentAreas, or IList with various Episerver types, and the outputted rendered HTML of those types will be added as a Prop (name) in the Dictionary</para>
+    /// </summary>
+    /// <param name="model">A class with properties where each property will be converted, rendered, and validated, and then added as a Prop</param>
+    /// <param name="forceCamelCase">True or false, based on how you write your props in React. "firstName" or "FirstName"</param>
+    /// <param name="printNullValues">True or false, based on wether you want to pass data to the DOM, even if "firstName=null", or you want to skip it completely, possibly ending up as "undefined" in the Frontend World</param>
+    /// <param name="ignorePropertyNames">Certain properties you do not want to send to your React (frontend), for instance a Token, Secret? Instead of generating a new model and map over, simply add the name of the properties here</param>
+    /// <returns>A dictionary ready to be used as Props in React World</returns>
     public static IDictionary<string, object> ToReactPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
     {
         if (model == null) return new Dictionary<string, object>();

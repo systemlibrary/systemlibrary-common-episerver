@@ -8,6 +8,9 @@ using SystemLibrary.Common.Net;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// String extensions
+/// </summary>
 public static class StringExtensions
 {
     static IUrlResolver _IUrlResolver;
@@ -16,7 +19,8 @@ public static class StringExtensions
         (_IUrlResolver = Services.Get<IUrlResolver>());
 
     /// <summary>
-    /// Returns a string array with data stored from a JsonEdit attribute back to a list of class in C#
+    /// Convert the 'text', which is a string (json string) that comes from a 'public virtual' property marked with JsonEdit attribute
+    /// <para>Read that json data as a List of T, or a simple T</para>
     /// </summary>
     /// <example>
     /// Convert the stored value from a JsonEdit attribute, which is stored as a string, to a List of T
@@ -37,6 +41,7 @@ public static class StringExtensions
     /// }
     /// </code>
     /// </example>
+    /// <returns>Returns a simple object T or a List of T, based on the json string that comes from a 'public virtual' property marked with JsonEdit attribute</returns>
     public static T JsonEditAsObject<T>(this string text) where T : class
     {
         try
@@ -59,59 +64,11 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// Returns true if path is either relative or absolute path to a file
-    /// 
-    /// File must be minimum 4 char long in total, including the extension and the dot
-    /// 
-    /// Supports up to 6 characters in the extension
-    /// 
-    /// Supports also query-params in the path
-    /// 
-    /// Returns true or false
-    /// </summary>
-    public static bool IsFile(this string path)
-    {
-        if (path.IsNot()) return false;
-
-        var length = path.Length;
-        if (length <= 3) return false;
-
-        var hasInvalidPathChars = path.IndexOfAny(Path.GetInvalidPathChars()) != -1;
-        if (hasInvalidPathChars) return false;
-
-        var extensionIndex = path.LastIndexOf('.');
-
-        if (extensionIndex == -1) return false;
-
-        var queryIndex = path.IndexOf('?');
-
-        if (queryIndex == -1)
-        {
-            if (extensionIndex == length - 1) return false;
-
-            var lastIndexOfSlash = path.LastIndexOf('/');
-            if (lastIndexOfSlash > extensionIndex) return false;
-
-            return extensionIndex >= length - 7; // .config
-        }
-
-        if(extensionIndex > queryIndex)
-        {
-            var temp = path.Substring(0, queryIndex);
-            
-            return temp.LastIndexOf(".") >= temp.Length - 7; // .config
-        }
-
-        return queryIndex - 7 <= extensionIndex;
-    }
-
-    /// <summary>
     /// Returns a friendly url version of the passed in url, usually a episerver content link or similar
-    /// 
-    /// Returns never null even if input is null
     /// </summary>
     /// <param name="url"></param>
     /// <param name="convertToAbsolute">Pass null, which is default, to not convert, if input is absolute it returns absolute, else relative. Set to 'false' to force a relative return value, set to 'true' to force a absolute path based on CMS PrimaryDomain value</param>
+    /// <returns>Returns friendly url, never null, minimum ""</returns>
     public static string ToFriendlyUrl(this string url, bool? convertToAbsolute = null)
     {
         if (url.IsNot()) return "";

@@ -1,68 +1,32 @@
 ﻿using SystemLibrary.Common.Net;
 
+using static PackageConfig;
+
 namespace SystemLibrary.Common.Episerver;
 
-/// <summary>
-/// Override default configurations in 'SystemLibrary.Common.Episerver' by adding 'systemLibraryCommonEpiserver' object to 'appSettings.json'
-/// </summary>
-/// <example>
-/// 'appSettings.json'
-/// <code class="language-csharp hljs">
-/// {
-///    ...,
-///    "systemLibraryCommonEpiserver": {
-///        "appUrl": "https://localhost:50001",
-///        "edit": {
-///          "newContentDialogHideRequiredTitle": false,
-///          "allPropertiesScrollableDocumentHeader": false,
-///          "allPropertiesShowPropertyDescriptions": false,
-///          "allPropertiesShowPropertiesAsColumns": false,
-///          "allPropertiesShowCheckBoxOnRightSide": false,
-///          "versionGadgetHideLanguageColumn": false,
-///          "newContentDialogItemBackgroundColor": "",
-///          "newContentDialogItemBorderColor": "",
-///          "pageTreeSelectedContentBorderColor": "",
-///          "projectBarActiveProjectBackgroundColor": ""
-///        },
-///        "properties": {
-///           "message": {
-///              "backgroundColor": "#ededed",
-///              "textColor": "#080736"
-///           }
-///        }
-///     }
-///     ...
-/// }
-/// </code>
-/// </example>
-public partial class AppSettings : Config<AppSettings>
+internal class AppSettings : Config<AppSettings>
 {
-    public ConnectionStringsConfiguration ConnectionStrings { get; set; }
-    public Configuration SystemLibraryCommonEpiserver { get; set; }
-    
-    internal EditConfiguration Edit => SystemLibraryCommonEpiserver.Edit;
-    internal PropertiesConfiguration Properties => SystemLibraryCommonEpiserver.Properties;
-
     public AppSettings()
     {
-        SystemLibraryCommonEpiserver = new Configuration();
-        ConnectionStrings = new ConnectionStringsConfiguration();
+        SystemLibraryCommonEpiserver = new PackageConfig();
+        ConnectionStrings = new ConnectionStringsConfig();
     }
 
-    public class Configuration
+    public ConnectionStringsConfig ConnectionStrings { get; set; }
+    public PackageConfig SystemLibraryCommonEpiserver { get; set; }
+    
+    internal EditConfig Edit => SystemLibraryCommonEpiserver.Edit;
+    internal PropertiesConfig Properties => SystemLibraryCommonEpiserver.Properties;
+
+    internal class ConnectionStringsConfig
     {
-        public Configuration()
-        {
-            Edit = new EditConfiguration();
-            Properties = new PropertiesConfiguration();
-        }
+        public string EPiServerDB { get; set; }
 
-        public bool Debug { get; set; }
-
-        public string AppUrl { get; set; }
-
-        public EditConfiguration Edit { get; set; }
-
-        public PropertiesConfiguration Properties { get; set; }
+        /// <summary>
+        /// An additional optional db connection string in your appSettings.json file
+        /// - If you have a database next to the main episerver db, for instance some API data, customer data...
+        /// </summary>
+        public string ExternalDB { get; set; }
     }
+
 }

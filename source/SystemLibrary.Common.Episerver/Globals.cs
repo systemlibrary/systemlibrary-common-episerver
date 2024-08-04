@@ -1,6 +1,5 @@
 ﻿using System.Security.Principal;
 
-using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 
 using Microsoft.AspNetCore.Identity;

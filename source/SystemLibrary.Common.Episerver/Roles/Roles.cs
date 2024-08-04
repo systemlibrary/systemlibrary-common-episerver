@@ -2,6 +2,7 @@
 
 /// <summary>
 /// All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not
+/// - Plus those few additional like "administrator, admins, ..." that comes from SystemLibrary.Common.Web.Cache logic
 /// </summary>
 internal static class Roles
 {
@@ -22,6 +23,12 @@ internal static class Roles
             EPiServer.Authorization.Roles.Administrators,
             EPiServer.Authorization.Roles.WebAdmins,
             EPiServer.Authorization.Roles.CmsAdmins,
+            "admin",
+            "admins",
+            "administrators",
+            "Admin",
+            "Admins",
+            "Administrator"
     });
 
 }

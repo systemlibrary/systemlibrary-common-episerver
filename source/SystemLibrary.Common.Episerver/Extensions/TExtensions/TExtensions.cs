@@ -7,6 +7,9 @@ using SystemLibrary.Common.Web.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
+/// <summary>
+/// Extensions for Generic Types where T is a class
+/// </summary>
 public static partial class TExtensions
 {
     internal const string SysLibStorageLevel = "___" + nameof(SysLibStorageLevel);
@@ -15,21 +18,20 @@ public static partial class TExtensions
 
     /// <summary>
     /// Return 'Model' as a serer side rendered component or ready to be hydrated, or both.
-    /// 
-    /// Simply call ReactDOM.Hydrate or the React 18 version of hydration.
-    /// 
-    /// Throws exception if invalid combinations in arguments.
-    /// 
+    /// <para>Simply call ReactDOM.Hydrate or the React 18 version of hydration.</para>
+    /// <para>Throws exception if invalid combinations in arguments.</para>
     /// Should not throw if it executes, if a React rendering error occurs it is logged and printed in the DOM.
-    /// - The div rendered has a class 'ssr-errored' which can be used to hide it in non-dev environments
-    /// - The div only contains the message of the erorr, not stacktrace
-    /// 
-    /// NOTE: If 'Model' is of type ContentData from Optimizely CMS, then it skips the default Optimizely CMS properties, such as:
-    /// Name, Property, Item, IsReadOnly, IsModified, ContentTypeID, ViewData, ContentLink, 
-    /// ParentLink, ArchiveLink, Category and more... To bypass? Create your own viewmodel
-    /// 
-    /// NOTE: Always skipped property names: CurrentPage, CurrentBlock
+    /// <list>
+    /// <item>- The div rendered has a class 'ssr-errored' which can be used to hide it in non-dev environments</item>
+    /// <item>- The div only contains the message of the erorr, not stacktrace</item>
+    /// </list>
+    /// <para>Always skipped property names: CurrentPage, CurrentBlock</para>
     /// </summary>
+    /// <remarks>
+    /// If 'Model' is of type ContentData from Optimizely CMS, then it skips the default Optimizely CMS properties, such as:
+    /// <para>Name, Property, Item, IsReadOnly, IsModified, ContentTypeID, ViewData, ContentLink, 
+    /// ParentLink, ArchiveLink, Category and more... To bypass? Create your own viewmodel</para>
+    /// </remarks>
     public static StringBuilder ReactServerSideRender<T>(this T model, object additionalProps = null, string tagName = "div", bool camelCaseProps = false, string cssClass = null, string id = null, string componentFullName = null, bool renderClientOnly = false, bool renderServerOnly = false, bool printNullValues = true) where T : class
     {
         if (model == null)

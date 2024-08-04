@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 using EPiServer.Core;
 using EPiServer.Core.Html.StringParsing;
@@ -15,9 +13,10 @@ public static class XhtmlStringExtensions
 {
     /// <summary>
     /// Returns true if the XhtmlString contains some value, else false
-    /// 
-    /// Note: Does not throw exception on null
     /// </summary>
+    /// <remarks>
+    /// Does not throw exception on null
+    /// </remarks>
     public static bool Is(this XhtmlString xhtmlString)
     {
         return xhtmlString != null && !xhtmlString.IsEmpty;
@@ -25,14 +24,19 @@ public static class XhtmlStringExtensions
 
     /// <summary>
     /// Returns true if the XhtmlString is null or blank or 0 length, else false
-    /// 
-    /// Note: Does not throw exception on null
     /// </summary>
+    /// <remarks>
+    /// Does not throw on null
+    /// </remarks>
     public static bool IsNot(this XhtmlString xhtmlString)
     {
         return xhtmlString == null || xhtmlString.IsEmpty;
     }
 
+    /// <summary>
+    /// Render all data, media, blocks, components, inside the XhtmlString
+    /// </summary>
+    /// <returns>Returns the rendered version of the xhtmlString. Anything from TinyMce HTML text added, to Button Blocks and Accordion Blocks editors have dragged into this field, will be rendered and added to one huge HTML string</returns>
     public static string Render(this XhtmlString xhtmlString, bool skipWrapperTag = true)
     {
         if (xhtmlString.IsNot()) return "";
@@ -66,6 +70,11 @@ public static class XhtmlStringExtensions
         }
     }
 
+    /// <summary>
+    /// Render all data, media, blocks, components, inside the XhtmlString
+    /// <para>Use this if you want to add additional data to the string</para>
+    /// </summary>
+    /// <returns>Returns the rendered version of the xhtmlString. Anything from TinyMce HTML text added, to Button Blocks and Accordion Blocks editors have dragged into this field, will be rendered and added to one huge HTML StringBuilder, ready to be adjusted after</returns>
     public static StringBuilder RenderStringBuilder(this XhtmlString xhtmlString, bool skipWrapperTag = true)
     {
         if (xhtmlString.IsNot()) return new StringBuilder();

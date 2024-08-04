@@ -95,19 +95,17 @@ public class ContentAreaExtensionsTests
         c8.Middle = "w";
         c8.Last = "!";
         c8.Age = 10;
+        //Dump.Write(GetSsrId(c0));
+        //Dump.Write(GetSsrId(c1));
+        //Dump.Write(GetSsrId(c2));
+        //Dump.Write(GetSsrId(c3));
+        //Dump.Write(GetSsrId(c4));
+        //Dump.Write(GetSsrId(c5));
+        //Dump.Write(GetSsrId(c6));
+        //Dump.Write(GetSsrId(c7));
+        //Dump.Write(GetSsrId(c8));
 
-
-        Dump.Write(GetSsrId(c0));
-        Dump.Write(GetSsrId(c1));
-        Dump.Write(GetSsrId(c2));
-        Dump.Write(GetSsrId(c3));
-        Dump.Write(GetSsrId(c4));
-        Dump.Write(GetSsrId(c5));
-        Dump.Write(GetSsrId(c6));
-        Dump.Write(GetSsrId(c7));
-        Dump.Write(GetSsrId(c8));
-
-        Dump.Write(("1234567890123456".GetHashCode() % 100000));
+        //Dump.Write(("1234567890123456".GetHashCode() % 100000));
     }
 
 

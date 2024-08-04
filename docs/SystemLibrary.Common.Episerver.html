@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.EditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.Configuration,SystemLibrary.Common.Episerver.ConnectionStringsConfiguration,SystemLibrary.Common.Episerver.PropertiesConfiguration,SystemLibrary.Common.Episerver.EditConfiguration,SystemLibrary.Common.Episerver.Cms.Properties.MessageConfiguration,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory</div>
+        DocFx,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Properties.MessageProperty,SystemLibrary.Common.Episerver.Properties.MessageController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.EditController,SystemLibrary.Common.Episerver.Abstract.BaseController,SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.ConnectionStringsConfig,SystemLibrary.Common.Episerver.PropertiesConfig,SystemLibrary.Common.Episerver.EditConfig,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory,SystemLibrary.Common.Episerver.Abstract.InternalBaseController,WebApplicationInitializer</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -198,11 +198,6 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.AppSettings.html">AppSettings</a></h4>
-      <section id="SystemLibrary.Common.Episerver.AppSettings--description"><p>Override default configurations in 'SystemLibrary.Common.Episerver' by adding 'systemLibraryCommonEpiserver' object to 'appSettings.json'</p>
-</section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.AppSettings.Configuration.html"></a></h4>
-      <section id="SystemLibrary.Common.Episerver.AppSettings.Configuration--description" class='docfxhide-attribute'></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.BaseCms.html">BaseCms</a></h4>
       <section id="SystemLibrary.Common.Episerver.BaseCms--description"><p>Base Cms functions to use anywhere within your application</p>
 <ul>
@@ -210,20 +205,17 @@
 <li>No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class</li>
 </ul>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.ConnectionStringsConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Episerver.ConnectionStringsConfiguration--description" class='docfxhide-attribute'></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.CurrentUser.html">CurrentUser</a></h4>
-      <section id="SystemLibrary.Common.Episerver.CurrentUser--description"><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
-<p>Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
+      <section id="SystemLibrary.Common.Episerver.CurrentUser--description"><p>CurrentUser can be injected or 'new CurrentUser()' whenever you need it</p>
+<p>Remember: to use &apos;CurrentUser&apos; as an injected object, you must call &apos;AddCommonCmsServices&lt;CurrentUser>(...);&apos; or similar</p>
 </section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.EditConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Episerver.EditConfiguration--description" class='docfxhide-attribute'></section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.EditController.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.EditController--description" class='docfxhide-attribute'></section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.HtmlHelperFactory.html">HtmlHelperFactory</a></h4>
-      <section id="SystemLibrary.Common.Episerver.HtmlHelperFactory--description"></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.PropertiesConfiguration.html"></a></h4>
-      <section id="SystemLibrary.Common.Episerver.PropertiesConfiguration--description" class='docfxhide-attribute'></section>
-      <h4><a class="xref" href="SystemLibrary.Common.Episerver.Roles.html">Roles</a></h4>
-      <section id="SystemLibrary.Common.Episerver.Roles--description"><p>All roles that comes with the Episerver CMS which defines if the logged in user is a Cms User or not</p>
+      <section id="SystemLibrary.Common.Episerver.HtmlHelperFactory--description"><p>Html Helper factory, to create a HtmlHelper instance</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.ReactBlockResult.html">ReactBlockResult</a></h4>
+      <section id="SystemLibrary.Common.Episerver.ReactBlockResult--description"><p>React Block Result is for backward compatibility, Epi 11, if youre still using BlockControllers instead of Components</p>
 </section>
       <h4><a class="xref" href="SystemLibrary.Common.Episerver.Validator-1.html">Validator&lt;T&gt;</a></h4>
       <section id="SystemLibrary.Common.Episerver.Validator`1--description"><p>Validator class supports Error, Warning and Information messages displayed upon when editors in the CMS clicks 'Publish'</p>
@@ -231,6 +223,18 @@
 <li>Error messages prevents the content from being published</li>
 <li>Info and Warning messages does not prevent the content from being published</li>
 </ul>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.WebApplicationInitializer.html"></a></h4>
+      <section id="SystemLibrary.Common.Episerver.WebApplicationInitializer--description"><p>Internal class only, but marked as Public due to test methods</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.IErrorPage.html">IErrorPage</a></h4>
+      <section id="SystemLibrary.Common.Episerver.IErrorPage--description"><p>Implement your own 'error page' look and feel for responses larger than 399, and for responses not equal to 503</p>
+</section>
+      <h4><a class="xref" href="SystemLibrary.Common.Episerver.ISingleton.html">ISingleton</a></h4>
+      <section id="SystemLibrary.Common.Episerver.ISingleton--description"><p>Enables the ContentData to only be created once, then it will be hidden from the &quot;New Content Dialogs&quot; in the CMS.
+If you delete the content it will be visible again</p>
 </section>
 </article>
           </div>

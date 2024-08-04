@@ -11,13 +11,14 @@ partial class IApplicationBuilderExtensions
 
         app.UseExceptionHandler(appInError =>
         {
-            appInError.Run(async context =>
+            appInError.Run(context =>
             {
                 if (context?.Response?.StatusCode != 503 && context?.Response?.StatusCode != 404)
                 {
                     var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
                     Log.Error(contextFeature?.Error);
                 }
+                return null;
             });
         });
     }

@@ -54,6 +54,7 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - Contains extensions for XhtmlString, ContentReference, ContentArea, etc ... such as Is() and IsNot()
 - Contains 'CurrentUser' class, either new it up or inject it
 - Contains ReactServerSide rendering results to convert a Block to React
+- Contains a DefaultComponent so no need to create a AsyncComponent if all you need is the block available in the View as a Model
 
 ## Requirements
 - &gt;= .NET 7
@@ -62,7 +63,15 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 ## Latest Version
 - 7.13.0.1
 - Updated SystemLibrary.Common.Web dep which has breaking changes (breaking change)
-- StartsWith and EndsWith now uses internally StringComparison.Ordinal (optimization)
+- StartsWith and EndsWith now uses internally StringComparison.Ordinal (breaking change/optimization)
+- Removed "appUrl" from appSettings, only inside 'Manage Websettings' we can configure the primary "appUrl" per site (breaking change)
+- PrimaryHostUrl now returns scheme (http/s) based on Host Scheme, or Scheme in Site Url, instead of "current request", uses current request scheme as fallback (breaking change)
+- Made AppSettings internal (breaking change)
+- PackageConfigInstance.Current exposes a few reusable settings, like the connection string EPiserverDB (new)
+- StringExtension.IsFile removed, as SystemLibrary.Common.Net has it already (breaking change)
+- IErrorPages are cached for 300s, so a new ErrorPage might take up to 300s before responding (breaking change/optimization)
+- ViewContextExtensions.BlockIsInEditMode removed (breaking change)
+- GetLatestVersionOfContentType renamed GetAllLatestVersionsOfContentType and does not return deleted items (breaking change)
 
 #### Version history
 - View git history of this file if interested

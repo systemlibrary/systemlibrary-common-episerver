@@ -88,7 +88,7 @@
 
       
       <div id="custom-skipDocumentationFor" style="overflow: hidden;font-size: 1px;max-width: 1px; visibility: hidden; position: absolute; margin-left: -4000px;">
-        DocFx,SystemLibrary.Common.Episerver.Cms.Properties.MessageController,SystemLibrary.Common.Episerver.Cms.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.MessageProperty,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Cms.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Cms.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Cms.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Cms.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.Cms.EditController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseController,SystemLibrary.Common.Episerver.Cms.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.Configuration,SystemLibrary.Common.Episerver.ConnectionStringsConfiguration,SystemLibrary.Common.Episerver.PropertiesConfiguration,SystemLibrary.Common.Episerver.EditConfiguration,SystemLibrary.Common.Episerver.Cms.Properties.MessageConfiguration,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Cms.Attributes.ParentLinkReferenceFactory</div>
+        DocFx,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor,SystemLibrary.Common.Episerver.Properties.MessageProperty,SystemLibrary.Common.Episerver.Properties.MessageController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionController,SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory,SystemLibrary.Common.Episerver.Attributes.JsonEditController,SystemLibrary.Common.Episerver.Attributes.JsonEditFactory,SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor,SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController,SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory,SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationServicesOptions,SystemLibrary.Common.Episerver.Extensions.CommonEpiserverApplicationBuilderOptions,SystemLibrary.Common.Episerver.EditController,SystemLibrary.Common.Episerver.Abstract.BaseController,SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory,SystemLibrary.Common.Episerver.ConnectionStringsConfig,SystemLibrary.Common.Episerver.PropertiesConfig,SystemLibrary.Common.Episerver.EditConfig,SystemLibrary.Common.Episerver.Properties.MessageConfig,SystemLibrary.Common.Episerver.FontAwesome,SystemLibrary.Common.Episerver.AppSettings.Configuration,SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory,SystemLibrary.Common.Episerver.Abstract.InternalBaseController,WebApplicationInitializer</div>
       <div class="sidenav hide-when-search">
         <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
         <div class="sidetoggle collapse" id="sidetoggle">
@@ -197,8 +197,8 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>CurrentUser can be injected into your services or controllers as you'd like, or simply 'new CurrentUser()' anywhere you need it</p>
-<p>Remember: to use 'CurrentUser' as an injected object, you must call 'CommonEpiserverServices&lt;CurrentUser&gt;(...);', or register 'CurrentUser' as a 'service' yourself</p>
+    <div class="markdown level0 summary h1-class-summary"><p>CurrentUser can be injected or 'new CurrentUser()' whenever you need it</p>
+<p>Remember: to use &apos;CurrentUser&apos; as an injected object, you must call &apos;AddCommonCmsServices&lt;CurrentUser>(...);&apos; or similar</p>
 </div>
   </div>
   
@@ -308,18 +308,20 @@
 
 public class AppUser : CurrentUser 
 {
-    public string PhoneNumber { get; set;}
-
-    public override void OnAddClaims(ClaimsIdentity claimsIdentity)
-    {
-        claimsIdentity.AddClaim(new Claim(ClaimTypes.MobilePhone, PhoneNumber));
-    }
+    public string PhoneNumber => Claim&lt;string>(&quot;PhoneNumber&quot;);
 }
 
-// Remember to register your new user inside ConfigureServices() at startup of your app:
+// Register user class within ConfigureServices() at startup:
 public void ConfigureServices(IServiceCollection services)
 {
-    services.CommonEpiserverServices&lt;AppUser>(...);
+    services.AddCommonCmsServices&lt;AppUser, ...>(...);
+}
+
+// Use your AppUser anywhere you&apos;d like
+public ActionResult Index()
+{
+    var user = new AppUser();
+    user.IsAdministrator || user.IsCmsUser
 }</code></pre>
 </div>
         <div class="comment-examples-container-bottom"></div>
@@ -351,9 +353,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_GivenName">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L72">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L71">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_GivenName_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.GivenName*"></a>
@@ -388,11 +391,59 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L55">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator" class="h4-custom-functionName">public bool IsAdministrator { get; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsAuthenticated">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L46">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L45">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsAuthenticated_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated*"></a>
@@ -427,6 +478,53 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L50">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser" class="h4-custom-functionName">public bool IsCmsUser { get; }</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed propertyValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Name of the Principal Identity</p>
@@ -434,9 +532,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_Name">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L67">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L66">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_Name_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.Name*"></a>
@@ -471,6 +570,7 @@ public void ConfigureServices(IServiceCollection services)
   	</tbody>
   </table>
   
+  
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Last name taken from claim 'Surname'</p>
@@ -478,9 +578,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_Surname">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L77">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L76">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_Surname_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.Surname*"></a>
@@ -514,14 +615,16 @@ public void ConfigureServices(IServiceCollection services)
   		</tr>
   	</tbody>
   </table>
+  
   <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_Claim__1_System_String___0_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L79">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L78">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_Claim_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.Claim*"></a>
@@ -596,99 +699,6 @@ public void ConfigureServices(IServiceCollection services)
   
   
   
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L56">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator" class="h4-custom-functionName">public bool IsAdministrator()</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Boolean</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L51">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser" class="h4-custom-functionName">public bool IsCmsUser()</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  			<div class="custom-menu-data-returntype" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  				<table class="table table-bordered table-striped table-condensed table-return">
-  					<thead>
-  						<tr>
-  							<th>Type</th>
-  							<th>Description</th>
-  						</tr>
-  					</thead>
-  					<tbody>
-  						<tr>
-  							<td><span class="xref">System.Boolean</span></td>
-  							<td></td>
-  						</tr>
-  					</tbody>
-  				</table>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
@@ -700,9 +710,10 @@ public void ConfigureServices(IServiceCollection services)
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_CurrentUser_IsInRole_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L62">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L61">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_CurrentUser_IsInRole_" data-uid="SystemLibrary.Common.Episerver.CurrentUser.IsInRole*"></a>
@@ -756,13 +767,17 @@ public void ConfigureServices(IServiceCollection services)
   </div>
   
   
+  
   <h3 id="implements">Implements</h3>
   <div class="implements-content">
   	<span class="xref">EPiServer.Shell.Security.IUIUser</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToExpandoObject_System_Object_System_Boolean_System_String___">ObjectExtensions.ToExpandoObject(Object, Boolean, String[])</a>
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
+  </div>
+  <div class="extensionmethods-content">
+  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>
   
   
@@ -1172,6 +1187,38 @@ public void ConfigureServices(IServiceCollection services)
   		);
   	}
   
+  	function addRemarksOnClickEvent(className) {
+  		var remarks = document.getElementsByClassName(className);
+  		if (remarks) {
+  			for (var i = 0; i < remarks.length; i++) {
+  				var remark = remarks[i];
+  				if (remark && remark.classList) {
+  					var closeBtns = remark.parentNode.getElementsByClassName('custom-remarks-menu-data--close');
+  					if (closeBtns) {
+  						var closeBtn = closeBtns[0];
+  						if (closeBtn) {
+  							closeBtn.addEventListener("click", function (e) {
+  								e.target.parentNode.classList.toggle('visible');
+  							});
+  						}
+  					}
+  					remark.addEventListener("click", function (e) {
+  						var remarkTexts = e.target.parentNode.getElementsByClassName(className + ' text');
+  						if (!remarkTexts || !remarkTexts.length) {
+  							remarkTexts = e.target.parentNode.parentNode.getElementsByClassName(className + ' text');
+  						}
+  						if (remarkTexts && remarkTexts.length) {
+  							var remarkText = remarkTexts[0];
+  							if (remarkText) {
+  								remarkText.classList.toggle('visible');
+  							}
+  						}
+  					});
+  				}
+  			}
+  		}
+  	}
+  
   	function addEventDisplayMenuDataOnClickPart(partName) {
   		var i;
   
@@ -1389,6 +1436,9 @@ public void ConfigureServices(IServiceCollection services)
   
   	setTimeout(addEventsToTabCloseButtons, 40);
   
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks1'), 50);
+  	setTimeout(() => addRemarksOnClickEvent('custom-remarks2'), 55);
+  
   	//setTimeout(removeEmptyPopups, 50);
   </script>
   
@@ -1404,7 +1454,7 @@ public void ConfigureServices(IServiceCollection services)
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L40" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/CurrentUser/CurrentUser.cs/#L39" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

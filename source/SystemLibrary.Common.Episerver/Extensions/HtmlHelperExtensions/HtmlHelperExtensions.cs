@@ -15,21 +15,31 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static class HtmlHelperExtensions
 {
+    static string ExceptionPrefix = "Exception: ";
+
+    /// <summary>
+    /// Property for ContentArea renders all of the content area items
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    /// <param name="html"></param>
+    /// <param name="expression"></param>
+    /// <returns></returns>
     public static IHtmlContent PropertyForContentArea<TModel, TValue>(this IHtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression)
     {
         return html.PropertyFor(expression, new { SkipWrapperTag = true, HasContainer = false, HasItemContainer = false, CustomTag = "systemLibraryEpiserverContentAreaRender" });
     }
 
-    static string ExceptionPrefix = "Exception: ";
-
     /// <summary>
     /// Pass in the exception that occurs in rendering (in cshtml files).
-    /// - pass in either the exception, the string, or a tuple of the (Content Model, Exception)
-    /// 
-    /// This logs the error that occured
-    /// 
-    /// And if the environment is not "prod" it will display the error in HTML
+    /// <para>- pass in either the exception, the string, or a tuple of the (Content Model, Exception)</para>
     /// </summary>
+    /// <remarks>
+    /// Logs exceptions that occurs if any
+    /// <para>If environment is not "prod/production" it will add the error to the HTML Response</para>
+    /// <para>Useful if you want to show errors in local, dev, QA, stage, but not in production, but still logging it</para>
+    /// The div printed always has a class 'view-errored'
+    /// </remarks>
     public static IHtmlContent ViewException<TModel>(this IHtmlHelper<TModel> html, object model)
     {
         static string Print(Exception ex)
@@ -129,6 +139,7 @@ public static class HtmlHelperExtensions
             message.Append("</div>");
         }
 
+        // NOTE: Error ends with "</div>"
         var error = message.ToString();
         if (error.Contains("Object reference not set") && error.Contains("DisplayTemplate"))
         {
@@ -140,6 +151,6 @@ public static class HtmlHelperExtensions
             error = "View is not found for a PartialContentController. If you are using 'BlockControllers' in C# 7 or newer, you must specify the full relative path to your block views, starting with ~/ and ending in .cshtml. Because there's a hardcoded path for all 'view components' (which block controllers use behind the scenes), that all views ends with Components/Default.cshtml. " + (model as Exception)?.Message;
         }
 
-        return new HtmlString("<div style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
+        return new HtmlString("<div class=\"view-errored\" style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
     }
 }
