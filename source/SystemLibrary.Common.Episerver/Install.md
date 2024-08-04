@@ -93,7 +93,7 @@ namespace Demo.Content.Pages;
 [ContentIcon(SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.stop)]
 public class ErrorPage : PageData, IErrorPage
 {
-    public virtual IList<int> StatusCodes { get; set; }
+	public virtual IList<int> StatusCodes { get; set; }
 }
 ```
 
@@ -122,10 +122,10 @@ namespace Demo.Content.Pages;
 
 public class ErrorPageController : PageController<ErrorPage>
 {
-    public ViewResult Index(ErrorPage currentPage, string path)
-    {
-        return View("Index", currentPage);
-    }
+	public ViewResult Index(ErrorPage currentPage, string path)
+	{
+		return View("Index", currentPage);
+	}
 }
 ```
 
@@ -158,30 +158,30 @@ using SystemLibrary.Common.Web;
 
 public class LogWriter : ILogWriter
 {
-    public void Write(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Error(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Warning(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Debug(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Information(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Trace(string message)
-    {
-        Dump.Write(message);
-    }
+	public void Write(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Error(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Warning(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Debug(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Information(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Trace(string message)
+	{
+		Dump.Write(message);
+	}
 }
 ```
  
@@ -194,74 +194,74 @@ namespace Demo;
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
-        try
-        {
-            Cms.CreateHostBuilder<Program>(args, appSettingsPath)
-                .Build()
-                .Run();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex);
-        }
-    }
+	public static void Main(string[] args)
+	{
+		var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
+		try
+		{
+			Cms.CreateHostBuilder<Program>(args, appSettingsPath)
+				.Build()
+				.Run();
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex);
+		}
+	}
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var options = new CmsServicesCollectionOptions();
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var options = new CmsServicesCollectionOptions();
 
-        options.InitialLanguagesEnabled = "no";
+		options.InitialLanguagesEnabled = "no";
 
-        services.AddCommonCmsServices<CurrentUser, LogWriter>(options);
-    }
+		services.AddCommonCmsServices<CurrentUser, LogWriter>(options);
+	}
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        var options = new CmsAppBuilderOptions();
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+	{
+		var options = new CmsAppBuilderOptions();
 
-        options.UseHttpsRedirection = false;
+		options.UseHttpsRedirection = false;
 
-        app.UseCommonCmsApp(env, options);
-    }
+		app.UseCommonCmsApp(env, options);
+	}
 }
 ```
 
 ~/Content/Pages/_PageLayout.cshtml
-```html
+```xml 
 @model object
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body style="color: green;">
-    @try
-    {
-        @await Html.PartialAsync("~/Views/MainMenu.cshtml");
-    }
-    catch (Exception ex)
-    {
-        @Html.ViewException((Model as PageData, ex))
-    }
+	@try
+	{
+		@await Html.PartialAsync("~/Views/MainMenu.cshtml");
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
 
-    @try
-    {
-        @RenderBody()
-    }
-    catch (Exception ex)
-    {
-        @Html.ViewException((Model as PageData, ex))
-    }
+	@try
+	{
+		@RenderBody()
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
 </body>
 </html>
 ```
 
 ~/Views/_ViewImports_.cshtml
-```
+```xml 
 @using Demo;
 @using Demo.Content.Pages;
 @using EPiServer;
@@ -277,7 +277,7 @@ public class Program
 ```
 
 ~/Content/_ViewImports_.cshtml
-```
+```csharp 
 @using Demo;
 @using Demo.Content.Pages;
 @using EPiServer;
@@ -293,12 +293,12 @@ public class Program
 ```
 
 ~/Content/Pages/_ViewStart.cshtml
-```html
+```csharp 
 @{ Layout = "~/Content/Pages/_PageLayout.cshtml"; }
 ```
 
 ~/Views/MainMenu.cshtml
-```
+```xml 
 <h3>Main Menu</h3>
 ```
 
@@ -308,12 +308,36 @@ public class Program
 	"ConnectionStrings": {
 		"EPiServerDB": "Data Source=.\\sqlexpress;Initial Catalog=Demo;Connection Timeout=10;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=true;"
 	},
-	"systemLibraryCommonWeb": {
-		"log": {
-			"level": "Information"
+
+	"systemLibraryCommonNet": {
+		"dump": {
+			"folder": "%HomeDrive%/Logs/",
+			"fileName": "DumpWrite.log",
 		}
 	},
 
+	"systemLibraryCommonWeb": {
+		"log": {
+			"level": "Information"
+		},
+
+		"cache": {
+			"duration": 180,
+			"fallbackDuration": 600,
+			"containerSizeLimit": 60000
+		},
+		
+		"client": {
+			"timeout": 40001,
+			"retryTimeout": 10000,
+			"ignoreSslErrors": true,
+			"useRetryPolicy": true,
+			"throwOnUnsuccessful": true,
+			"useRequestBreakerPolicy": false,
+			"clientCacheDuration": 1200
+		},
+	},
+	
 	"systemLibraryCommonEpiserver": {
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
@@ -327,6 +351,7 @@ public class Program
 			"pageTreeSelectedContentBorderColor": "",
 			"projectBarActiveProjectBackgroundColor": ""
 		},
+
 		"properties": {
 			"message": {
 				"backgroundColor": "#fff9e6",
@@ -367,8 +392,8 @@ public class Program
   - Creates a new website with "domain" from launchSettings.json
   - Disables all languages except the enabled ones based on your startup configuration (Program.cs)
   - Adjusts all System Tabs, like "Settings" for properties, to be order "9000 + current", so 'Settings' is number 9030, instead of 30
-    - Resulting in all our tabs are "left sided", and all episerver tabs are "on the far right" 
-    - Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
+	- Resulting in all our tabs are "left sided", and all episerver tabs are "on the far right" 
+	- Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
 - SystemLibrary.Common.Web automatically redirect http to https by default, remember to set it off in the option in program.cs
 
 #### Run application

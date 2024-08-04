@@ -399,7 +399,7 @@
 * Search and install SystemLibrary.Common.Episerver
 
 ## Download demo
-Download a sample of the application parts of the setup below:
+Download a demo of the application parts of the setup below:
 [Download Demo.zip](https://systemlibrary.github.io/systemlibrary-common-episerver/demo.zip)
 
 
@@ -409,7 +409,7 @@ Download a sample of the application parts of the setup below:
 2. Delete appSettings.development.json
 3. Add nuget package Episerver.Cms &gt;= 12.26.0
 	- Last tested version is 12.26.0 which was fine
-4. Add nuget package SystemLibrary.Common.Episerver &gt;= 7.13.0.1
+4. Add nuget package SystemLibrary.Common.Episerver &gt;= 7.13.0.3
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 5. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
 6. Create !@@@@!~/Initialize/LogWriter/LogWriter.cs!@@@@!
@@ -427,7 +427,7 @@ Download a sample of the application parts of the setup below:
 17. Create !@@@@!~/Content/_ViewImports.cshtml!@@@@!
 18. Create !@@@@!~/Views/_ViewImports.cshtml!@@@@!
 19. Create !@@@@!~/Views/MainMenu.cshtml!@@@@!
-18. Copy paste code below, into their respective files
+20. Copy paste code below, into their respective files
 
 
 ~/Cms/Cms.cs:
@@ -484,7 +484,7 @@ namespace Demo.Content.Pages;
 [ContentIcon(SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.stop)]
 public class ErrorPage : PageData, IErrorPage
 {
-    public virtual IList&lt;int&gt; StatusCodes { get; set; }
+	public virtual IList&lt;int&gt; StatusCodes { get; set; }
 }
 !====!!====!!====!
 
@@ -513,10 +513,10 @@ namespace Demo.Content.Pages;
 
 public class ErrorPageController : PageController&lt;ErrorPage&gt;
 {
-    public ViewResult Index(ErrorPage currentPage, string path)
-    {
-        return View(!????!Index!????!, currentPage);
-    }
+	public ViewResult Index(ErrorPage currentPage, string path)
+	{
+		return View(!????!Index!????!, currentPage);
+	}
 }
 !====!!====!!====!
 
@@ -549,30 +549,30 @@ using SystemLibrary.Common.Web;
 
 public class LogWriter : ILogWriter
 {
-    public void Write(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Error(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Warning(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Debug(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Information(string message)
-    {
-        Dump.Write(message);
-    }
-    public void Trace(string message)
-    {
-        Dump.Write(message);
-    }
+	public void Write(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Error(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Warning(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Debug(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Information(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Trace(string message)
+	{
+		Dump.Write(message);
+	}
 }
 !====!!====!!====!
  
@@ -585,74 +585,74 @@ namespace Demo;
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        var appSettingsPath = AppContext.BaseDirectory + !????!appSettings.json!????!;
-        try
-        {
-            Cms.CreateHostBuilder&lt;Program&gt;(args, appSettingsPath)
-                .Build()
-                .Run();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex);
-        }
-    }
+	public static void Main(string[] args)
+	{
+		var appSettingsPath = AppContext.BaseDirectory + !????!appSettings.json!????!;
+		try
+		{
+			Cms.CreateHostBuilder&lt;Program&gt;(args, appSettingsPath)
+				.Build()
+				.Run();
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex);
+		}
+	}
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var options = new CmsServicesCollectionOptions();
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var options = new CmsServicesCollectionOptions();
 
-        options.InitialLanguagesEnabled = !????!no!????!;
+		options.InitialLanguagesEnabled = !????!no!????!;
 
-        services.AddCommonCmsServices&lt;CurrentUser, LogWriter&gt;(options);
-    }
+		services.AddCommonCmsServices&lt;CurrentUser, LogWriter&gt;(options);
+	}
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        var options = new CmsAppBuilderOptions();
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+	{
+		var options = new CmsAppBuilderOptions();
 
-        options.UseHttpsRedirection = false;
+		options.UseHttpsRedirection = false;
 
-        app.UseCommonCmsApp(env, options);
-    }
+		app.UseCommonCmsApp(env, options);
+	}
 }
 !====!!====!!====!
 
 ~/Content/Pages/_PageLayout.cshtml
-!====!!====!!====!html
+!====!!====!!====!xml 
 @model object
 &lt;!DOCTYPE html&gt;
 &lt;html lang=!????!en!????!&gt;
 &lt;head&gt;
-    &lt;meta charset=!????!utf-8!????! /&gt;
-    &lt;meta name=!????!viewport!????! content=!????!width=device-width, initial-scale=1!????! /&gt;
+	&lt;meta charset=!????!utf-8!????! /&gt;
+	&lt;meta name=!????!viewport!????! content=!????!width=device-width, initial-scale=1!????! /&gt;
 &lt;/head&gt;
 &lt;body style=!????!color: green;!????!&gt;
-    @try
-    {
-        @await Html.PartialAsync(!????!~/Views/MainMenu.cshtml!????!);
-    }
-    catch (Exception ex)
-    {
-        @Html.ViewException((Model as PageData, ex))
-    }
+	@try
+	{
+		@await Html.PartialAsync(!????!~/Views/MainMenu.cshtml!????!);
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
 
-    @try
-    {
-        @RenderBody()
-    }
-    catch (Exception ex)
-    {
-        @Html.ViewException((Model as PageData, ex))
-    }
+	@try
+	{
+		@RenderBody()
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
 &lt;/body&gt;
 &lt;/html&gt;
 !====!!====!!====!
 
 ~/Views/_ViewImports_.cshtml
-!====!!====!!====!
+!====!!====!!====!xml 
 @using Demo;
 @using Demo.Content.Pages;
 @using EPiServer;
@@ -668,7 +668,7 @@ public class Program
 !====!!====!!====!
 
 ~/Content/_ViewImports_.cshtml
-!====!!====!!====!
+!====!!====!!====!csharp 
 @using Demo;
 @using Demo.Content.Pages;
 @using EPiServer;
@@ -684,12 +684,12 @@ public class Program
 !====!!====!!====!
 
 ~/Content/Pages/_ViewStart.cshtml
-!====!!====!!====!html
+!====!!====!!====!csharp 
 @{ Layout = !????!~/Content/Pages/_PageLayout.cshtml!????!; }
 !====!!====!!====!
 
 ~/Views/MainMenu.cshtml
-!====!!====!!====!
+!====!!====!!====!xml 
 &lt;h3&gt;Main Menu&lt;/h3&gt;
 !====!!====!!====!
 
@@ -699,12 +699,36 @@ public class Program
 	!????!ConnectionStrings!????!: {
 		!????!EPiServerDB!????!: !????!Data Source=.\\sqlexpress;Initial Catalog=Demo;Connection Timeout=10;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=true;!????!
 	},
-	!????!systemLibraryCommonWeb!????!: {
-		!????!log!????!: {
-			!????!level!????!: !????!Information!????!
+
+	!????!systemLibraryCommonNet!????!: {
+		!????!dump!????!: {
+			!????!folder!????!: !????!%HomeDrive%/Logs/!????!,
+			!????!fileName!????!: !????!DumpWrite.log!????!,
 		}
 	},
 
+	!????!systemLibraryCommonWeb!????!: {
+		!????!log!????!: {
+			!????!level!????!: !????!Information!????!
+		},
+
+		!????!cache!????!: {
+			!????!duration!????!: 180,
+			!????!fallbackDuration!????!: 600,
+			!????!containerSizeLimit!????!: 60000
+		},
+		
+		!????!client!????!: {
+			!????!timeout!????!: 40001,
+			!????!retryTimeout!????!: 10000,
+			!????!ignoreSslErrors!????!: true,
+			!????!useRetryPolicy!????!: true,
+			!????!throwOnUnsuccessful!????!: true,
+			!????!useRequestBreakerPolicy!????!: false,
+			!????!clientCacheDuration!????!: 1200
+		},
+	},
+	
 	!????!systemLibraryCommonEpiserver!????!: {
 		!????!edit!????!: {
 			!????!newContentDialogHideRequiredTitle!????!: false,
@@ -718,6 +742,7 @@ public class Program
 			!????!pageTreeSelectedContentBorderColor!????!: !????!!????!,
 			!????!projectBarActiveProjectBackgroundColor!????!: !????!!????!
 		},
+
 		!????!properties!????!: {
 			!????!message!????!: {
 				!????!backgroundColor!????!: !????!#fff9e6!????!,
@@ -758,8 +783,8 @@ public class Program
   - Creates a new website with !????!domain!????! from launchSettings.json
   - Disables all languages except the enabled ones based on your startup configuration (Program.cs)
   - Adjusts all System Tabs, like !????!Settings!????! for properties, to be order !????!9000 + current!????!, so !@@@@!Settings!@@@@! is number 9030, instead of 30
-    - Resulting in all our tabs are !????!left sided!????!, and all episerver tabs are !????!on the far right!????! 
-    - Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
+	- Resulting in all our tabs are !????!left sided!????!, and all episerver tabs are !????!on the far right!????! 
+	- Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
 - SystemLibrary.Common.Web automatically redirect http to https by default, remember to set it off in the option in program.cs
 
 #### Run application
