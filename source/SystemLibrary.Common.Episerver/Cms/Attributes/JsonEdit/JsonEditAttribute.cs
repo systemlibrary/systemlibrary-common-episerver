@@ -51,15 +51,13 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 
     /// <summary>
     /// Optional: Give the Json Editor Window a simple title so its more editor friendly
-    /// 
-    /// If not filled out - the 'Type.Name' will be used as the title of the Json Editor Window
+    /// <para>If empty, the 'Type.Name' will be used as the title of the Json Editor Window</para>
     /// </summary>
     public string Title { get; set; }
 
     /// <summary>
     /// Optional: Set to name of a property that the Editor can sort by
-    /// 
-    /// If empty: the sort button 1 is hidden inside the 'Json Editor Window'
+    /// <para>If empty, the sort button 1 is hidden inside the 'Json Editor Window'</para>
     /// </summary>
     /// <example>
     /// Sorting by 'Age' the C# property name, and the friendly name "First Name":
@@ -82,8 +80,8 @@ public class JsonEditAttribute : Attribute, IDisplayMetadataProvider
 
     /// <summary>
     /// Optional: Set to name of a property that the Editor can sort by
-    /// 
-    /// If empty: the sort button 2 is hidden inside the 'Json Editor Window'
+    /// <para>If empty, the sort button 2 is hidden inside the 'Json Editor Window'
+    /// </para>
     /// </summary>
     /// <example>
     /// Sorting by 'Age' the C# property name, and the friendly name "First Name":

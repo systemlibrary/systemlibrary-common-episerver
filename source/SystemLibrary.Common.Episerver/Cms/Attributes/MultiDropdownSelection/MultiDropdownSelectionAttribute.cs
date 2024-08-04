@@ -49,12 +49,66 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class MultiDropdownSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
+    /// <summary>
+    /// Option to set your own selection factory type that will be invoked instead of the built-in one
+    /// </summary>
     public virtual Type SelectionFactoryType { get; set; }
 
+    /// <summary>
+    /// Specifically set the Enum Type to be the Selection
+    /// <para>Not needed to be set if the EnumType is the property type, as in 'public virtual SomeEnum ...'</para>
+    /// </summary>
     public Type EnumType { get; set; }
 
+    /// <summary>
+    /// Hide a range of items
+    /// <para>By default all items are shown, unless explicit setting Hide or Show</para>
+    /// <para>Hide can either be one value, or a new object[] { ... }</para>
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// enum Colors {
+    ///     None,
+    ///     White,
+    ///     Grey,
+    ///     Black,
+    /// }
+    /// 
+    /// 
+    /// Show = Color.White //would then show only one item to be select, white
+    /// 
+    /// Show = new object[] { Color.White, Color.Grey, Color.Black} //would show 3 items, would not show 'none'
+    /// 
+    /// Hide = Color.Grey //would hide only grey, show all other options
+    /// 
+    /// Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
+    /// </code>
+    /// </example>
     public object Hide { get; set; }
 
+    /// <summary>
+    /// Show a range of items
+    /// <para>By default all items are shown, unless explicit setting Hide or Show</para>
+    /// <para>Show can either be one value, or a new object[] { ... }</para>
+    /// </summary>
+    /// <example>
+    /// <code class="language-csharp hljs">
+    /// enum Colors {
+    ///     None,
+    ///     White,
+    ///     Grey,
+    ///     Black,
+    /// }
+    /// 
+    /// Show = Color.White //would then show only one item to be select, white
+    /// 
+    /// Show = new object[] { Color.White, Color.Grey, Color.Black} //would show 3 items, would not show 'none'
+    /// 
+    /// Hide = Color.Grey //would hide only grey, show all other options
+    /// 
+    /// Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
+    /// </code>
+    /// </example>
     public object Show { get; set; }
 
     public bool ShowExpiredItems { get; set; } = true;

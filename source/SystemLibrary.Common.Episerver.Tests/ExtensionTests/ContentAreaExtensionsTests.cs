@@ -27,14 +27,12 @@ public class ContentAreaExtensionsTests
         Assert.IsFalse(contentArea.IsNot(), "ContentArea has 1 item, but IsNot is true");
     }
 
-
     class Car
     {
         public string First { get; set; }
         public string Middle { get; set; }
         public string Last { get; set; }
         public int Age { get; set; }
-
     }
 
     [TestMethod]

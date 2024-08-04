@@ -61,17 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 7.13.0.1
-- Updated SystemLibrary.Common.Web dep which has breaking changes (breaking change)
-- StartsWith and EndsWith now uses internally StringComparison.Ordinal (breaking change/optimization)
-- Removed "appUrl" from appSettings, only inside 'Manage Websettings' we can configure the primary "appUrl" per site (breaking change)
-- PrimaryHostUrl now returns scheme (http/s) based on Host Scheme, or Scheme in Site Url, instead of "current request", uses current request scheme as fallback (breaking change)
-- Made AppSettings internal (breaking change)
-- PackageConfigInstance.Current exposes a few reusable settings, like the connection string EPiserverDB (new)
-- StringExtension.IsFile removed, as SystemLibrary.Common.Net has it already (breaking change)
-- IErrorPages are cached for 300s, so a new ErrorPage might take up to 300s before responding (breaking change/optimization)
-- ViewContextExtensions.BlockIsInEditMode removed (breaking change)
-- GetLatestVersionOfContentType renamed GetAllLatestVersionsOfContentType and does not return deleted items (breaking change)
+- 7.13.0.2
+- PrimaryHostUrl supports multi sites registered (feature)
+- BoxSelectionAttribute added comments (docs)
+- MultiDropdownSelectionAttribute added comments (docs)
 
 #### Version history
 - View git history of this file if interested

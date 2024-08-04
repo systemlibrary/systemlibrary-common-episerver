@@ -103,12 +103,21 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
 public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
 {
+    /// <summary>
+    /// Option to set your own selection factory instead of the built-in one
+    /// </summary>
     public virtual Type SelectionFactoryType { get; set; }
 
+    /// <summary>
+    /// Specifically set the Enum Type to be the Selection
+    /// <para>Not needed to be set if the EnumType is the property type, as in 'public virtual SomeEnum ...'</para>
+    /// </summary>
     public Type EnumType { get; set; }
 
     /// <summary>
     /// Hide a range of items
+    /// <para>By default all items are shown, unless explicit setting Hide or Show</para>
+    /// <para>Hide can either be one value, or a new object[] { ... }</para>
     /// </summary>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -133,6 +142,8 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
 
     /// <summary>
     /// Show a range of items
+    /// <para>By default all items are shown, unless explicit setting Hide or Show</para>
+    /// <para>Show can either be one value, or a new object[] { ... }</para>
     /// </summary>
     /// <example>
     /// <code class="language-csharp hljs">
@@ -155,25 +166,31 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
     public object Show { get; set; }
 
     /// <summary>
-    /// Allow a current selected value to be unselected if clicked on, as a result the property's 'default' value is stored into the property if no items are selected
+    /// Allow unselection of the currently selected value, leaving all options to be deselected 
+    /// <para>- if all items are deselected, and Content is Published, the default value is then stored in the property</para>
+    /// <para>- An enum has a default integer of 0 usually, a string is null</para>
     /// </summary>
     public bool AllowUnselection { get; set; } = true;
 
     /// <summary>
-    /// Control wether or not values that are no longer selectable, but tehir value is still stored in a property, will show up as 'Expired: ...'
-    /// 
-    /// Note: If property type is Enum, an Enum is never null, so value stored is the int of the Enum, which will always be sent to the View even though you've removed the Enum Key
-    /// 
-    /// Example:
+    /// Show expired (removed/deleted) options from the Factory in the user interface for Editors
+    /// <para>Items no longer existing, but are still selected in the DB on some properties, will then appear as 'Expired: ...'</para>
+    /// Do note that if property is an Enum, and an Enum is never null, so the value stored is the INT, which then will still be sent to the 'View/Frontend' even though the Enum does not contain that number anymore
+    /// </summary>
+    /// <example>
     /// public enum Products { A, B, C }
     /// 
-    /// A product block has stored "Products.B"
+    /// A ProductBlock.cs has a property 
+    /// <code>public virtual Products ProductSelected {get; set;} = Products.B;</code>
+    /// // Product B is selected/stored in DB
     /// 
-    /// You then delete B from the enum, ending up with only A and C
+    /// Then we delete B as an option from the Enum, it's obsolete/not for sale anymore
     /// 
-    /// This turned on will then display 'Expired: 1' as 1 is the int of B
-    /// - if property is a string, it would then show the Value of B, which in our scenario would be 'Expired: B'
-    /// </summary>
+    /// Products now contain only A and C
+    /// 
+    /// With this option turned on, B is displayed as 'Expired: 1'
+    /// - if property type is 'virtual string' it would show 'Expired: B' 
+    /// </example>
     public bool ShowExpiredItems { get; set; } = true;
 
     public void CreateDisplayMetadata(DisplayMetadataProviderContext context)
@@ -188,7 +205,10 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
             {
                 if (data.Value is ExtendedMetadata extendedMetadata && extendedMetadata.PropertyName.Is())
                 {
-                    extendedMetadata.SelectionFactoryType = typeof(BoxSelectionFactory);
+                    if (SelectionFactoryType == null)
+                        extendedMetadata.SelectionFactoryType = typeof(BoxSelectionFactory);
+                    else
+                        extendedMetadata.SelectionFactoryType = SelectionFactoryType;
 
                     extendedMetadata.ClientEditingClass = "/SystemLibrary/CommonEpiserverCms/BoxSelection/" + nameof(BoxSelectionController.Script);
                     break;

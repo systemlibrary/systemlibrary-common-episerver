@@ -15,12 +15,16 @@ public abstract class BaseMultiSelectionFactory
         return Enum.Parse(type, value) as Enum;
     }
 
+    /// <summary>
+    /// Usually all this with the Attribute that again uses the Factory that you've set in 'BaseMultiSelectionFactory'
+    /// <para>Example: GetOptions&lt;ColorSelectionAttribute&gt;(metadata);</para>
+    /// </summary>
     protected static T GetOptions<T>(ExtendedMetadata metadata) where T : Attribute
     {
         var options = metadata.GetAttribute<T>();
 
         if (options == null)
-            throw new Exception(typeof(T).Name + " can only be used by adding the attribute to the property: " + metadata.PropertyName);
+            throw new Exception(typeof(T).Name + " cannot GetOptions() for this attribute, as it's not an attribute on the property. Please add it to the property: " + metadata.PropertyName);
 
         return options;
     }

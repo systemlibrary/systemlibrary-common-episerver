@@ -28,5 +28,4 @@ internal class AppSettings : Config<AppSettings>
         /// </summary>
         public string ExternalDB { get; set; }
     }
-
 }

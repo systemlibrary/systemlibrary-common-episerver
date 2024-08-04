@@ -314,7 +314,9 @@ public virtual string ImagePath { get; set; }
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Allow a current selected value to be unselected if clicked on, as a result the property's 'default' value is stored into the property if no items are selected</p>
+  		<div class="markdown level1 summary member-summary"><p>Allow unselection of the currently selected value, leaving all options to be deselected</p>
+<p>- if all items are deselected, and Content is Published, the default value is then stored in the property</p>
+<p>- An enum has a default integer of 0 usually, a string is null</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -322,7 +324,7 @@ public virtual string ImagePath { get; set; }
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_AllowUnselection">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L160">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L173">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_AllowUnselection_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.AllowUnselection*"></a>
@@ -359,11 +361,17 @@ public virtual string ImagePath { get; set; }
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Specifically set the Enum Type to be the Selection</p>
+<p>Not needed to be set if the EnumType is the property type, as in &apos;public virtual SomeEnum ...&apos;</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_EnumType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L108">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L115">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_EnumType_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.EnumType*"></a>
@@ -402,6 +410,8 @@ public virtual string ImagePath { get; set; }
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Hide a range of items</p>
+<p>By default all items are shown, unless explicit setting Hide or Show</p>
+<p>Hide can either be one value, or a new object[] { ... }</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -409,7 +419,7 @@ public virtual string ImagePath { get; set; }
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_Hide">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L132">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L141">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_Hide_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.Hide*"></a>
@@ -466,11 +476,16 @@ Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Option to set your own selection factory instead of the built-in one</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_SelectionFactoryType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L106">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L109">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_SelectionFactoryType_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.SelectionFactoryType*"></a>
@@ -509,6 +524,8 @@ Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Show a range of items</p>
+<p>By default all items are shown, unless explicit setting Hide or Show</p>
+<p>Show can either be one value, or a new object[] { ... }</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -516,7 +533,7 @@ Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_Show">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L155">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L166">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_Show_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.Show*"></a>
@@ -573,16 +590,9 @@ Hide = new object[] { Color.White, Color.Black } //would show only None and Grey
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Control wether or not values that are no longer selectable, but tehir value is still stored in a property, will show up as 'Expired: ...'</p>
-<p>Note: If property type is Enum, an Enum is never null, so value stored is the int of the Enum, which will always be sent to the View even though you've removed the Enum Key</p>
-<p>Example:
-public enum Products { A, B, C }</p>
-<p>A product block has stored &quot;Products.B&quot;</p>
-<p>You then delete B from the enum, ending up with only A and C</p>
-<p>This turned on will then display 'Expired: 1' as 1 is the int of B</p>
-<ul>
-<li>if property is a string, it would then show the Value of B, which in our scenario would be 'Expired: B'</li>
-</ul>
+  		<div class="markdown level1 summary member-summary"><p>Show expired (removed/deleted) options from the Factory in the user interface for Editors</p>
+<p>Items no longer existing, but are still selected in the DB on some properties, will then appear as &apos;Expired: ...&apos;</p>
+Do note that if property is an Enum, and an Enum is never null, so the value stored is the INT, which then will still be sent to the &apos;View/Frontend&apos; even though the Enum does not contain that number anymore
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -590,7 +600,7 @@ public enum Products { A, B, C }</p>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_ShowExpiredItems">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L177">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L194">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_ShowExpiredItems_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.ShowExpiredItems*"></a>
@@ -598,6 +608,21 @@ public enum Products { A, B, C }</p>
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_ShowExpiredItems" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.ShowExpiredItems" class="h4-custom-functionName">public bool ShowExpiredItems { get; set; }</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><p>public enum Products { A, B, C }</p>
+<p>A ProductBlock.cs has a property</p>
+<pre><code>public virtual Products ProductSelected {get; set;} = Products.B;</code></pre>
+<p>// Product B is selected/stored in DB</p>
+<p>Then we delete B as an option from the Enum, it's obsolete/not for sale anymore</p>
+<p>Products now contain only A and C</p>
+<p>With this option turned on, B is displayed as 'Expired: 1'</p>
+<ul>
+<li>if property type is 'virtual string' it would show 'Expired: B'</li>
+</ul>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -633,7 +658,7 @@ public enum Products { A, B, C }</p>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L179">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/BoxSelection/BoxSelectionAttribute.cs/#L196">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_BoxSelectionAttribute_CreateDisplayMetadata_" data-uid="SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.CreateDisplayMetadata*"></a>

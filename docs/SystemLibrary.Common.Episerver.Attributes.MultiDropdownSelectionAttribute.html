@@ -241,11 +241,17 @@
   </h3>
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Specifically set the Enum Type to be the Selection</p>
+<p>Not needed to be set if the EnumType is the property type, as in &apos;public virtual SomeEnum ...&apos;</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_EnumType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L54">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L61">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_EnumType_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.EnumType*"></a>
@@ -282,11 +288,18 @@
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Hide a range of items</p>
+<p>By default all items are shown, unless explicit setting Hide or Show</p>
+<p>Hide can either be one value, or a new object[] { ... }</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Hide">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L56">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L87">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Hide_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.Hide*"></a>
@@ -294,6 +307,26 @@
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Hide" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.Hide" class="h4-custom-functionName">public object Hide { get; set; }</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><pre><code>enum Colors {
+    None,
+    White,
+    Grey,
+    Black,
+}
+
+
+Show = Color.White //would then show only one item to be select, white
+
+Show = new object[] { Color.White, Color.Grey, Color.Black} //would show 3 items, would not show &apos;none&apos;
+
+Hide = Color.Grey //would hide only grey, show all other options
+
+Hide = new object[] { Color.White, Color.Black } //would show only None and Grey</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -323,11 +356,16 @@
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Option to set your own selection factory type that will be invoked instead of the built-in one</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L52">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L55">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_SelectionFactoryType_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.SelectionFactoryType*"></a>
@@ -364,11 +402,18 @@
   
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Show a range of items</p>
+<p>By default all items are shown, unless explicit setting Hide or Show</p>
+<p>Show can either be one value, or a new object[] { ... }</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Show">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L58">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L112">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Show_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.Show*"></a>
@@ -376,6 +421,25 @@
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_Show" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.Show" class="h4-custom-functionName">public object Show { get; set; }</h4>
   		<div class="custom-menu-data-container">
+  			<div class="custom-menu-data-name" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  				<div class="codewrapper"><pre><code>enum Colors {
+    None,
+    White,
+    Grey,
+    Black,
+}
+
+Show = Color.White //would then show only one item to be select, white
+
+Show = new object[] { Color.White, Color.Grey, Color.Black} //would show 3 items, would not show &apos;none&apos;
+
+Hide = Color.Grey //would hide only grey, show all other options
+
+Hide = new object[] { Color.White, Color.Black } //would show only None and Grey</code></pre>
+</div>
+  				<div class="comment-examples-container-bottom"></div>
+  			</div>
   
   			<div class="custom-menu-data-arguments" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -409,7 +473,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L60">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L114">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_ShowExpiredItems_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.ShowExpiredItems*"></a>
@@ -452,7 +516,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L62">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/MultiDropdownSelection/MultiDropdownSelectionAttribute.cs/#L116">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Attributes_MultiDropdownSelectionAttribute_CreateDisplayMetadata_" data-uid="SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.CreateDisplayMetadata*"></a>

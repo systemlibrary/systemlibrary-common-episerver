@@ -1,4 +1,6 @@
-﻿using EPiServer;
+﻿using System.Collections.Concurrent;
+
+using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
@@ -216,9 +218,10 @@ public abstract class BaseCms
             .ConfigureCmsDefaults();
     }
 
-    static string _PrimaryHostUrl;
+    static ConcurrentDictionary<string, string> PrimaryHostUrlCache = new ConcurrentDictionary<string, string>();
+
     /// <summary>
-    /// The Primary Host Url for this Site registered inside 'Managed Websites' in Episerver CMS
+    /// The Primary Host Url for the current SIte based on Current Request registered inside 'Managed Websites' in Episerver CMS
     /// <para>Gets the first primary host type that is not a wildcard and contains a dot</para>
     /// <para>Fallback to first primary host type that is not a wildcard</para>
     /// <para>Fallback to first undefined host type that is not a wildcard and contains a dot</para>
@@ -240,10 +243,10 @@ public abstract class BaseCms
     {
         get
         {
-            if (_PrimaryHostUrl == null)
-            {
-                var siteDefinition = SiteDefinition.Current;
+            var siteDefinition = SiteDefinition.Current;
 
+            return PrimaryHostUrlCache.Cache(siteDefinition.Name, () =>
+            {
                 var scheme = HttpContextInstance.Current?.Request?.Scheme ?? "http";
 
                 var portNumber = "";
@@ -254,9 +257,10 @@ public abstract class BaseCms
                     portNumber = ":" + port.Value;
                 }
 
+                string temp;
                 if (siteDefinition == null)
                 {
-                    _PrimaryHostUrl = scheme + "://localhost" + portNumber;
+                    temp = scheme + "://localhost" + portNumber;
                 }
                 else
                 {
@@ -280,7 +284,7 @@ public abstract class BaseCms
                         siteUri = host.Url;
 
                     if (siteUri.IsNot())
-                        _PrimaryHostUrl = scheme + "://localhost" + portNumber;
+                        temp = scheme + "://localhost" + portNumber;
 
                     else
                     {
@@ -288,18 +292,17 @@ public abstract class BaseCms
                             scheme = siteUri.Scheme;
 
                         if (siteUri.Port != 0 && siteUri.Port != 80 && siteUri.Port != 443)
-                            _PrimaryHostUrl = scheme + "://" + siteUri.Host + ":" + siteUri.Port;
+                            temp = scheme + "://" + siteUri.Host + ":" + siteUri.Port;
                         else
-                            _PrimaryHostUrl = scheme + "://" + siteUri.Host;
+                            temp = scheme + "://" + siteUri.Host;
                     }
                 }
 
-                if (_PrimaryHostUrl.EndsWith("/", StringComparison.Ordinal))
-                    _PrimaryHostUrl = _PrimaryHostUrl.Substring(0, _PrimaryHostUrl.Length - 1);
+                if (temp.EndsWith("/", StringComparison.Ordinal))
+                    temp = temp.Substring(0, temp.Length - 1);
 
-            }
-
-            return _PrimaryHostUrl;
+                return temp;
+            });
         }
     }
 
@@ -363,7 +366,7 @@ public abstract class BaseCms
                     {
                         if (page.IsDeleted) continue;
 
-                        if(!page.IsPublished())
+                        if (!page.IsPublished())
                         {
                             // TODO: Implement a fallback if current work ID is larger than 0, then try get previous workID that was published, if any...
                         }
