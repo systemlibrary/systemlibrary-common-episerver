@@ -77,8 +77,11 @@ public static class HtmlHelperExtensions
         var message = new StringBuilder("", 1024);
 
         IContent content = null;
-
-        if (model is Exception ex)
+        if (model == null)
+        {
+            message.Append("ViewException() got a model that is null, continuing silently...");
+        }
+        else if (model is Exception ex)
         {
             message.Append(Print(ex));
         }

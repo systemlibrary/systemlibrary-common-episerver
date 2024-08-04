@@ -156,7 +156,7 @@ partial class IApplicationBuilderExtensions
 
                 if (errorControllerType == null)
                 {
-                    await context.Response.WriteAsync("Controller not found: " + errorPageType.Namespace + "." + errorPageType.Name + "Controller do not exist. Please create it as your 'error page' must have a controller").ConfigureAwait(false);
+                    await context.Response.WriteAsync("Controller not found, namespace + name: " + errorPageType.Namespace + "." + errorPageType.Name + ". Controller do not exist. Please create it as your 'error page' must have a controller, and double check the namespace.").ConfigureAwait(false);
                 }
                 else
                 {

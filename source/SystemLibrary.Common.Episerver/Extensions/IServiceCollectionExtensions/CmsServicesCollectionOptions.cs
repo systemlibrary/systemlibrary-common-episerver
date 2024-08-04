@@ -8,29 +8,21 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     public bool AddDisplays = true;
 
     /// <summary>
-    /// Registered the 'ApplicationCookie' to be the login cookie in the CMS
-    /// <para>- CmsUsersSlidingExpiration handled the sliding expiartion</para>
-    /// - CmsUsersSignedInDurationMinutes handles cookie duration
+    /// Register the 'ApplicationCookie' to be the login cookie in the CMS
+    /// <para>- CmsUsersSlidingExpiration handles the sliding expiration duration</para>
+    /// - CmsUsersSignedInDurationMinutes handles cookie duration, default 180 min
     /// </summary>
     public bool AddApplicationCookie = true;
 
     /// <summary>
-    /// Configure a custom login path
-    /// </summary>
-    /// <example>
-    /// Example: "hello/world", then www.systemlibrary.com/hello/world would the CMS login screen
-    /// </example>
-    public string CmsLoginPath = null;
-
-    /// <summary>
-    /// Note: required ConfigureApplicationCookie to be set to True
+    /// Note: requires ConfigureApplicationCookie to be set to True
     /// </summary>
     public bool CmsUsersSlidingExpiration = true;
 
     /// <summary>
-    /// Note: required ConfigureApplicationCookie to be set to True
+    /// Note: requires ConfigureApplicationCookie to be set to True
     /// </summary>
-    public int CmsUsersSignedInDurationMinutes = 120;
+    public int CmsUsersSignedInDurationMinutes = 180;
 
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions

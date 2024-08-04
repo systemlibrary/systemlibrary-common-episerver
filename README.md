@@ -61,10 +61,13 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-- 7.13.0.2
-- PrimaryHostUrl supports multi sites registered (feature)
-- BoxSelectionAttribute added comments (docs)
-- MultiDropdownSelectionAttribute added comments (docs)
+- 7.13.0.3
+- HtmlHelperExtensions.ViewException will print error if model is null (fix)
+- Install documentation followed through one time and updated accordingly (fix)
+- Install documentation added .cshtml files for practices for PageLayout, ViewImports and more 
+- CmsServicesCollectionOptions no longer has a CmsLoginPath, so no more custom login path (kind of a breaking change, but leaving it...) (fix)
+- ErrorPageResponse if ErrorPage and ErrorController lives in diff namespaces, error is shown (fix)
+- Install contains a demo.zip to download
 
 #### Version history
 - View git history of this file if interested

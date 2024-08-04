@@ -1245,12 +1245,6 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AutoPublishMediaOnUpload
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AutoPublishMediaOnUpload
   nameWithType: CmsServicesCollectionOptions.AutoPublishMediaOnUpload
-- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsLoginPath
-  name: CmsLoginPath
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsLoginPath
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsLoginPath
-  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsLoginPath
-  nameWithType: CmsServicesCollectionOptions.CmsLoginPath
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes
   name: CmsUsersSignedInDurationMinutes
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSignedInDurationMinutes

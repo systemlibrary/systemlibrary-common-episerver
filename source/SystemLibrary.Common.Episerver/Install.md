@@ -7,25 +7,36 @@
 * Open Nuget Project Manager
 * Search and install SystemLibrary.Common.Episerver
 
+## Download demo
+Download a demo of the application parts of the setup below:
+[Download Demo.zip](https://systemlibrary.github.io/systemlibrary-common-episerver/demo.zip)
+
+
 ## Setup new episerver website in 10 minutes
 0. Create new empty database named "Demo" on your local SQL instance
 1. Create a new project "AspNet Core Empty" for >= .NET 7
 2. Delete appSettings.development.json
 3. Add nuget package Episerver.Cms >= 12.26.0
 	- Last tested version is 12.26.0 which was fine
-4. Add nuget package SystemLibrary.Common.Episerver >= 7.13.0.1
+4. Add nuget package SystemLibrary.Common.Episerver >= 7.13.0.3
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 5. Create '~/module.config', set its build to 'Content' 
-6. Create '~/Cms/Cms.cs'
-7. Create '~/Properties/launchSettings.json' (it should exist already)
-8. Create '~/Content/Pages/StartPage/StartPage.cs'
-9. Create '~/Content/Pages/ErrorPage/ErrorPage.cs'
-10. Create '~/Content/Pages/StartPage/StartPageController.cs'
-11. Create '~/Content/Pages/ErrorPage/ErrorPageController.cs'
-11. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
-12. Create '~/Content/Pages/ErrorPage/Index.cshtml', set its build to 'Content'
-13. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
-14. Copy paste code below, into their respective files
+6. Create '~/Initialize/LogWriter/LogWriter.cs'
+7. Create '~/Cms/Cms.cs'
+8. Create '~/Properties/launchSettings.json' (it should exist already)
+9. Create '~/Content/Pages/StartPage/StartPage.cs'
+10. Create '~/Content/Pages/ErrorPage/ErrorPage.cs'
+11. Create '~/Content/Pages/StartPage/StartPageController.cs'
+12. Create '~/Content/Pages/ErrorPage/ErrorPageController.cs'
+13. Create '~/Content/Pages/StartPage/Index.cshtml', set its build to 'Content'
+14. Create '~/Content/Pages/ErrorPage/Index.cshtml', set its build to 'Content'
+15. Create '~/appSettings.json', set its build to 'Content' (it should exist already)
+16. Create '~/Content/Pages/_ViewStart.cshtml'
+16. Create '~/Content/Pages/_PageLayout.cshtml'
+17. Create '~/Content/_ViewImports.cshtml'
+18. Create '~/Views/_ViewImports.cshtml'
+19. Create '~/Views/MainMenu.cshtml'
+20. Copy paste code below, into their respective files
 
 
 ~/Cms/Cms.cs:
@@ -70,8 +81,16 @@ public class StartPage : PageData
 
 ~/Content/Pages/ErrorPage/ErrorPage.cs
 ```csharp
-[ContentType(DisplayName = "Error Page", Description = "Error", GUID = "10A8191B-C9AE-433A-860B-7B7EEE758A3C", GroupName = PageGroup.Element)]
-[ContentIcon(SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.eraser)]
+using EPiServer.Core;
+using EPiServer.DataAnnotations;
+
+using SystemLibrary.Common.Episerver;
+using SystemLibrary.Common.Episerver.Attributes;
+
+namespace Demo.Content.Pages;
+
+[ContentType(DisplayName = "Error Page", Description = "Error", GUID = "10A8191B-C9AE-433A-860B-7B7EEE758A3C", GroupName = "Single Pages")]
+[ContentIcon(SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.stop)]
 public class ErrorPage : PageData, IErrorPage
 {
     public virtual IList<int> StatusCodes { get; set; }
@@ -99,8 +118,6 @@ using EPiServer.Web.Mvc;
 
 using Microsoft.AspNetCore.Mvc;
 
-using SystemLibrary.Common.Episerver;
-
 namespace Demo.Content.Pages;
 
 public class ErrorPageController : PageController<ErrorPage>
@@ -110,7 +127,6 @@ public class ErrorPageController : PageController<ErrorPage>
         return View("Index", currentPage);
     }
 }
-
 ```
 
 ~/Content/Pages/StartPage/Index.cshtml
@@ -121,9 +137,7 @@ Startpage
 
 ~/Content/Pages/ErrorPage/Index.cshtml
 ```csharp 
-@{
-    Layout = null;
-}
+@{ Layout = null; }
 @model object
 <h1>Error page</h1>
 ```
@@ -137,11 +151,42 @@ Startpage
 	</clientResources>
 </module>
 ```
+
+~/Initialize/LogWriter/LogWriter.cs
+```csharp 
+using SystemLibrary.Common.Web;
+
+public class LogWriter : ILogWriter
+{
+    public void Write(string message)
+    {
+        Dump.Write(message);
+    }
+    public void Error(string message)
+    {
+        Dump.Write(message);
+    }
+    public void Warning(string message)
+    {
+        Dump.Write(message);
+    }
+    public void Debug(string message)
+    {
+        Dump.Write(message);
+    }
+    public void Information(string message)
+    {
+        Dump.Write(message);
+    }
+    public void Trace(string message)
+    {
+        Dump.Write(message);
+    }
+}
+```
  
 ~/Program.cs
 ```csharp 
-using EPiServer.Cms.TinyMce;
-
 using SystemLibrary.Common.Episerver;
 using SystemLibrary.Common.Episerver.Extensions;
 
@@ -149,37 +194,112 @@ namespace Demo;
 
 public class Program
 {
-	public static void Main(string[] args)
-	{
-		var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
-		try
-		{
-			Cms.CreateHostBuilder<Program>(args, appSettingsPath)
-				.Build()
-				.Run();
-		}
-		catch (Exception ex)
-		{
-			Log.Error(ex);
-		}
-	}
+    public static void Main(string[] args)
+    {
+        var appSettingsPath = AppContext.BaseDirectory + "appSettings.json";
+        try
+        {
+            Cms.CreateHostBuilder<Program>(args, appSettingsPath)
+                .Build()
+                .Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+        }
+    }
 
-	public void ConfigureServices(IServiceCollection services)
-	{
-		var options = new CmsServicesCollectionOptions();
+    public void ConfigureServices(IServiceCollection services)
+    {
+        var options = new CmsServicesCollectionOptions();
 
-		options.InitialLanguagesEnabled = "no";
+        options.InitialLanguagesEnabled = "no";
 
-		services.AddCommonCmsServices<CurrentUser>(options)
-				.AddFind();
-	}
+        services.AddCommonCmsServices<CurrentUser, LogWriter>(options);
+    }
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-	{
-		var options = new CmsAppBuilderOptions();
-		app.UseCommonCmsApp(options);
-	}
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        var options = new CmsAppBuilderOptions();
+
+        options.UseHttpsRedirection = false;
+
+        app.UseCommonCmsApp(env, options);
+    }
 }
+```
+
+~/Content/Pages/_PageLayout.cshtml
+```html
+@model object
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body style="color: green;">
+    @try
+    {
+        @await Html.PartialAsync("~/Views/MainMenu.cshtml");
+    }
+    catch (Exception ex)
+    {
+        @Html.ViewException((Model as PageData, ex))
+    }
+
+    @try
+    {
+        @RenderBody()
+    }
+    catch (Exception ex)
+    {
+        @Html.ViewException((Model as PageData, ex))
+    }
+</body>
+</html>
+```
+
+~/Views/_ViewImports_.cshtml
+```
+@using Demo;
+@using Demo.Content.Pages;
+@using EPiServer;
+@using EPiServer.Core;
+@using EPiServer.Web.Mvc.Html;
+@using React.AspNet;
+@using System.Diagnostics;
+@using SystemLibrary.Common.Net;
+@using SystemLibrary.Common.Web;
+@using SystemLibrary.Common.Episerver.Extensions;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+```
+
+~/Content/_ViewImports_.cshtml
+```
+@using Demo;
+@using Demo.Content.Pages;
+@using EPiServer;
+@using EPiServer.Core;
+@using EPiServer.Web.Mvc.Html;
+@using React.AspNet;
+@using System.Diagnostics;
+@using SystemLibrary.Common.Net;
+@using SystemLibrary.Common.Web;
+@using SystemLibrary.Common.Episerver.Extensions;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+```
+
+~/Content/Pages/_ViewStart.cshtml
+```html
+@{ Layout = "~/Content/Pages/_PageLayout.cshtml"; }
+```
+
+~/Views/MainMenu.cshtml
+```
+<h3>Main Menu</h3>
 ```
 
 ~/appSettings.json:
@@ -249,16 +369,19 @@ public class Program
   - Adjusts all System Tabs, like "Settings" for properties, to be order "9000 + current", so 'Settings' is number 9030, instead of 30
     - Resulting in all our tabs are "left sided", and all episerver tabs are "on the far right" 
     - Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
-
+- SystemLibrary.Common.Web automatically redirect http to https by default, remember to set it off in the option in program.cs
 
 #### Run application
 - Ctrl + F5 in Visual Studio, should start IIS Express and display an error on our startpage, as we have not created one yet
-- Visit http://localhost:51010/episerver
+- Visit http://localhost:51010/episerver/cms
 - Log in with demo/Demo123!
-- If redirected to a 404, navigate again to http://localhost:51010/episerver
+- Redirects possibly to 'start page', which still gives 404, navigate again to: http://localhost:51010/episerver/cms
 - Create a StartPage in Edit Mode and publish it
 - Register StartPage as the start for your site (Admin > Config > Manage Websites)
-- Visit http://localhost:51010 should now give 200 OK status code
+- Visit http://localhost:51010/ should now give 200 OK status code
+- Go to http://localhost:51010/episerver/cms
+- Create a Error Page, set status code to 404, and publish the page
+- Visit http://localhost:51010/do-not-exist should show the Error Page you've published
 
 ## Package Configurations
 * Below are the default and modifiable configurations for this package

@@ -10,7 +10,6 @@ partial class IServiceCollectionExtensions
      
         services.ConfigureApplicationCookie(o =>
         {
-            o.LoginPath = Options.CmsLoginPath ?? "/util/login";
             o.ExpireTimeSpan = TimeSpan.FromMinutes(Options.CmsUsersSignedInDurationMinutes);
             o.SlidingExpiration = Options.CmsUsersSlidingExpiration;
         });

@@ -311,9 +311,9 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Registered the 'ApplicationCookie' to be the login cookie in the CMS</p>
-<p>- CmsUsersSlidingExpiration handled the sliding expiartion</p>
-- CmsUsersSignedInDurationMinutes handles cookie duration
+  		<div class="markdown level1 summary member-summary"><p>Register the 'ApplicationCookie' to be the login cookie in the CMS</p>
+<p>- CmsUsersSlidingExpiration handles the sliding expiration duration</p>
+- CmsUsersSignedInDurationMinutes handles cookie duration, default 180 min
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -412,7 +412,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddReactServerSideServices">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L96">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L88">View Source</a>
   		</span>
   	</div>
   
@@ -457,7 +457,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AutoPublishMediaOnUpload">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L85">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L77">View Source</a>
   		</span>
   	</div>
   
@@ -494,58 +494,7 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Configure a custom login path</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsLoginPath">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L23">View Source</a>
-  		</span>
-  	</div>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsLoginPath" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsLoginPath" class="h4-custom-functionName">public string CmsLoginPath</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Example: &quot;hello/world&quot;, then <a href="http://www.systemlibrary.com/hello/world">www.systemlibrary.com/hello/world</a> would the CMS login screen</p>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed fieldValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Note: required ConfigureApplicationCookie to be set to True</p>
+  		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -553,7 +502,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSignedInDurationMinutes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L33">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L25">View Source</a>
   		</span>
   	</div>
   
@@ -590,7 +539,7 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Note: required ConfigureApplicationCookie to be set to True</p>
+  		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -598,7 +547,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSlidingExpiration">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L28">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L20">View Source</a>
   		</span>
   	</div>
   
@@ -645,7 +594,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_DefaultAdminEmail">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L49">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L41">View Source</a>
   		</span>
   	</div>
   
@@ -691,7 +640,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_DefaultAdminPassword">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L55">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L47">View Source</a>
   		</span>
   	</div>
   
@@ -736,7 +685,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_HidePropertyCategoryList">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L75">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L67">View Source</a>
   		</span>
   	</div>
   
@@ -781,7 +730,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_HideSuggestedContentTypes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L70">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L62">View Source</a>
   		</span>
   	</div>
   
@@ -831,7 +780,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_InitialLanguagesEnabled">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L65">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L57">View Source</a>
   		</span>
   	</div>
   
@@ -878,7 +827,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_SkipInitialization">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L41">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L33">View Source</a>
   		</span>
   	</div>
   
@@ -923,7 +872,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_UploadLimitBytes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L90">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L82">View Source</a>
   		</span>
   	</div>
   
@@ -968,7 +917,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_WebSocketEnabled">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L80">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L72">View Source</a>
   		</span>
   	</div>
   
