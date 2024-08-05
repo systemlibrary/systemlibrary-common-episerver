@@ -96,16 +96,17 @@ public static class ContentAreaExtensions
                 }
             }
         }
-        
+
         return rendered;
     }
 
     /// <summary>
-    /// Select ContentData from 'ContentArea' filtered by current visitors access rights and personalization
-    /// 
-    /// Optional: force filterByPublished, even if current visitor have access to view unpublished content
+    /// Convert items in ContentArea To T
+    /// <para>Filters on current user rights, personalization</para>
+    /// <para>Item must be castable to T to be yield</para>
     /// </summary>
-    /// <returns>Returns an IEnumerable of ContentData</returns>
+    /// <param name="filterByPublished">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</param>
+    /// <returns>Returns an IEnumerable of T</returns>
     public static IEnumerable<T> To<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContent
     {
         if (contentArea.IsNot()) yield break;

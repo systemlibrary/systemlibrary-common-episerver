@@ -504,8 +504,9 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Select ContentData from 'ContentArea' filtered by current visitors access rights and personalization</p>
-<p>Optional: force filterByPublished, even if current visitor have access to view unpublished content</p>
+  		<div class="markdown level1 summary member-summary"><p>Convert items in ContentArea To T</p>
+<p>Filters on current user rights, personalization</p>
+<p>Item must be castable to T to be yield</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -513,14 +514,13 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_To__1_EPiServer_Core_ContentArea_System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentAreaExtensions/ContentAreaExtensions.cs/#L109">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentAreaExtensions/ContentAreaExtensions.cs/#L110">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_To_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To*"></a>
   
   	<div class="custom-menu-data">
   		<h4 id="SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_To__1_EPiServer_Core_ContentArea_System_Boolean_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To``1(EPiServer.Core.ContentArea,System.Boolean)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; To&lt;T&gt;(this ContentArea contentArea, bool filterByPublished = false)
-
     where T : IContent</h4>
   		<div class="custom-menu-data-container">
   
@@ -560,7 +560,8 @@
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
   							<td><span class="parametername">filterByPublished</span></td>
-  							<td></td>
+  							<td><p>Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -579,7 +580,7 @@
   					<tbody>
   						<tr>
   							<td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
-  							<td><p>Returns an IEnumerable of ContentData</p>
+  							<td><p>Returns an IEnumerable of T</p>
 </td>
   						</tr>
   					</tbody>

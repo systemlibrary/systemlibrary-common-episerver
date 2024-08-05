@@ -42,16 +42,10 @@ public partial class WebApplicationInitializer : IBlockingFirstRequestInitialize
         {
             if(env.WebRootPath == null)
             {
-                env.WebRootPath = new DirectoryInfo(AppContext.BaseDirectory).FullName;
-                if (env.WebRootPath.Contains("\\bin\\"))
-                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-                if (env.WebRootPath.Contains("\\bin\\"))
-                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
-                if (env.WebRootPath.Contains("\\bin\\"))
-                    env.WebRootPath = new DirectoryInfo(env.WebRootPath).Parent.FullName;
+                env.WebRootPath = EnvironmentConfig.Current.ContentRootPath;
             }
 
-            if(SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
+            if(Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
                 return Task.FromResult(0);
 
             if (uIUserProvider == null)

@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using EPiServer;
 using EPiServer.Core;
 using EPiServer.Web.Routing;
 
@@ -139,6 +140,20 @@ public static class StringExtensions
 
         return ConvertToAbsolute();
     }
+
+    // TODO Test + consider blocks from a url?
+    //public static T ToContent<T>(this string url) where T : ContentData
+    //{
+    //    if (url.IsNot()) return default;
+
+    //    if (IUrlResolver == null) return default;
+
+    //    var urlBuilder = new UrlBuilder(url);
+
+    //    var content = IUrlResolver.Route(urlBuilder);
+
+    //    return content as T;
+    //}
 }
 
 internal class XhtmlStringJsonConverter : JsonConverter<XhtmlString>

@@ -60,14 +60,23 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= .NET 7
 - &gt;= Episerver 12.26.0
 
-## Latest Version
-- 7.13.0.3
-- HtmlHelperExtensions.ViewException will print error if model is null (fix)
-- Install documentation followed through one time and updated accordingly (fix)
-- Install documentation added .cshtml files for practices for PageLayout, ViewImports and more 
-- CmsServicesCollectionOptions no longer has a CmsLoginPath, so no more custom login path (kind of a breaking change, but leaving it...) (fix)
-- ErrorPageResponse if ErrorPage and ErrorController lives in diff namespaces, error is shown (fix)
-- Install contains a demo.zip to download
+## Latest Release Notes
+- 7.13.0.4
+- env.WebRootPath if null, it will use EnvironmentConfig.Current.ContentRootPath by default
+- Updated dependency which made ContentRootPath some times end up inside "\bin" folder which is not what we want in a web scenario
+- IEnumerableContentReferenceExtensions.To<> if filterByPublished it will also filter Bocks and Pages that has been deleted from code
+- ContentAreaExtensions.To if filterByPublished it will also filter Bocks and Pages that has been deleted from code
+- DisallowKnownAppFiles skips conditions if hitting a known file type like jpg/css earlier and it Log.Debug if a file is hit (optimization)
+
+#### Major Breaking Versions
+- 7.13.0.1
+- Updated SystemLibrary.Common.Web dep (breaking change)
+- Updated SystemLibrary.Common.Net dep where Encrypt() is rewritten and Config files are never read from 'bin' (breaking change)
+- Removed "appUrl" from appSettings, only inside 'Manage Websettings' we can configure the primary "appUrl" per site (breaking change)
+- AppSettings is now internal, use PackageCOnfigInstance.Current instead which exposes some settings (breaking change)
+- StringExtension.IsFile removed, as SystemLibrary.Common.Net has it already (breaking change)
+- IErrorPages are cached for 300s, so a new ErrorPage might take up to 300s before responding (breaking change/optimization)
+- GetLatestVersionOfContentType renamed to GetAllLatestVersionsOfContentType (breaking change)
 
 #### Version history
 - View git history of this file if interested
