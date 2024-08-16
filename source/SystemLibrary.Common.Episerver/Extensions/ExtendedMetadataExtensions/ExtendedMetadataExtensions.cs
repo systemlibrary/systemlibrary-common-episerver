@@ -11,9 +11,7 @@ public static class ExtendedMetadataExtensions
 {
     /// <summary>
     /// Return attribute of type that has been added to the property, or null if not added to the property
-    /// 
-    /// Finds for instance 'DisplayAttribute' on a public virtual property
-    /// 
+    /// <para>Finds for instance 'DisplayAttribute' on a public virtual property</para>
     /// Usually used within a ISelectionFactory in the method 'GetSelections'
     /// </summary>
     /// <example>

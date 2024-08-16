@@ -6,7 +6,7 @@
 		<Configurations>Release</Configurations>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
-		<Version>7.13.0.4</Version>
+		<Version>7.13.0.5</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -121,7 +121,7 @@
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
 	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.8.0.3" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.8.0.6" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -129,15 +129,14 @@
 		<Version>$(Version)</Version>
 		<Title>SystemLibrary Common Episerver</Title>
 		<Description>
-			Library with classes, methods and dijits for every .NET &gt;= 7 episerver web application
-			https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
+Library with classes, methods and dijits for every .NET &gt;= 7 episerver web application
+https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
 
-			Installation
-			https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
+Installation
+https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
 
-			Documentation with sample code
-			https://systemlibrary.github.io/systemlibrary-common-episerver/
-		</Description>
+Documentation with sample code
+https://systemlibrary.github.io/systemlibrary-common-episerver/</Description>
 		<Copyright>Copyright © System Library</Copyright>
 		<PackageProjectUrl>https://www.systemlibrary.com/#SystemLibraryCommonEpiserver</PackageProjectUrl>
 		<PackageIcon>nuget-icon.png</PackageIcon>
@@ -148,6 +147,7 @@
 		<FileVersion>$(Version)</FileVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 </Project>

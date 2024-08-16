@@ -61,12 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.13.0.4
-- env.WebRootPath if null, it will use EnvironmentConfig.Current.ContentRootPath by default
-- Updated dependency which made ContentRootPath some times end up inside "\bin" folder which is not what we want in a web scenario
-- IEnumerableContentReferenceExtensions.To<> if filterByPublished it will also filter Bocks and Pages that has been deleted from code
-- ContentAreaExtensions.To if filterByPublished it will also filter Bocks and Pages that has been deleted from code
-- DisallowKnownAppFiles skips conditions if hitting a known file type like jpg/css earlier and it Log.Debug if a file is hit (optimization)
+- 7.13.0.5
+- Updated patches of dependencies
+- Explicit set target to AnyCPU
+- Removed whitespace in nuget description while viewing it in Nuget Manager
 
 #### Major Breaking Versions
 - 7.13.0.1

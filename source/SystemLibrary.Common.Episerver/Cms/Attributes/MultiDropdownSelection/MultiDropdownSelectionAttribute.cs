@@ -8,10 +8,8 @@ namespace SystemLibrary.Common.Episerver.Attributes;
 
 /// <summary>
 /// Select multiple values form either a Enum based selection factory, or a free text input field where editors can add custom texts as they please
-/// <list>
-/// <item>If this attribute is used on a IList&lt;string&gt; without an Enum Type, then it will work as a input field where editors write any text they want.</item>
-/// <item>Each string value is stored witha comma as the delimiter, if editors writes a comma, it is stored as '&#44;' the html entity which you can either display "raw html" or replace it back to a comma</item>
-/// </list>
+/// <para>If this attribute is used on a IList&lt;string&gt; without an Enum Type, then it will work as a input field where editors write any text they want.</para>
+/// Each string value is stored witha comma as the delimiter, if editors writes a comma, it is stored as '&#44;' the html entity which you can either display "raw html" or replace it back to a comma
 /// </summary>
 /// <remarks>
 /// There's no current max limit on how many items you or editors can add to the dropdown, you can write so in the description field for editors if needed
