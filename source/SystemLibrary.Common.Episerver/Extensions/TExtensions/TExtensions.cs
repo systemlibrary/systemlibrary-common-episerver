@@ -61,7 +61,7 @@ public static partial class TExtensions
 
         if (Globals.IsUnitTesting && renderClientSide) level = 1;
 
-        var props = ModelToProps(model, additionalProps, camelCaseProps, printNullValues);
+        var props = ModelToProps(modelType, model, additionalProps, camelCaseProps, printNullValues);
 
         var jsonProps = PropsToJsonProps(props, camelCaseProps);
 

@@ -10,17 +10,21 @@ partial class TExtensions
 {
     static ConcurrentDictionary<int, PropertyInfo[]> ModelToPropsPropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
 
-    static IDictionary<string, object> ModelToProps(object model, object additionalProps, bool forceCamelCase, bool printNullValues)
+    static IDictionary<string, object> ModelToProps(Type modelType, object model, object additionalProps, bool forceCamelCase, bool printNullValues)
     {
         List<string> ignorePropertyNames = null;
 
         if (additionalProps != null)
         {
             // NOTE: Additional props hashCode should include current Model.Type hashCode
-            // converted to a BigInt. 2024: Why?
             var additionalType = additionalProps.GetType();
 
-            var hashCode = additionalType.GetHashCode();
+            int hashCode;
+
+            unchecked
+            {
+                hashCode = additionalType.GetHashCode() ^ modelType.Name.GetHashCode();
+            }
 
             // NOTE: Optimize: return the ignorePropertyNames as array directly, instead of looping afterwards
             var additionalProperties = ModelToPropsPropertiesCache.Cache(hashCode, () =>
@@ -37,11 +41,15 @@ partial class TExtensions
             }
         }
 
+        Dump.Write("To React...");
+
         var props = model.ToReactPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
         if (additionalProps != null)
         {
+            Debug.Log("Additionall props");
             IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase);
+            Dump.Write(additional);
 
             if (additional != null && additional.Count > 0)
             {

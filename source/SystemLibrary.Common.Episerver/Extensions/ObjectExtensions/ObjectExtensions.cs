@@ -31,8 +31,6 @@ public static class ObjectExtensions
     static Type ParentLinkReferenceType;
     static Type CultureInfoType;
     static Type PropertyUrlType;
-    static ConcurrentDictionary<int, PropertyInfo[]> ReactPropPropertiesCache;
-    static ConcurrentDictionary<int, PropertyInfo[]> IdentityUserProperties;
 
     static ObjectExtensions()
     {
@@ -41,9 +39,6 @@ public static class ObjectExtensions
         ParentLinkReferenceType = typeof(ParentLinkReference);
         CultureInfoType = typeof(CultureInfo);
         PropertyUrlType = typeof(PropertyUrl);
-
-        ReactPropPropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
-        IdentityUserProperties = new ConcurrentDictionary<int, PropertyInfo[]>();
     }
 
     static string[] WhiteListedCustomProperties = new string[]
@@ -137,345 +132,13 @@ public static class ObjectExtensions
         }
     }
 
-    /// <summary>
-    /// Convert a model to a Dictionary, which is ready to be used as Props to a React Component
-    /// <para>For example it will render ContentAreas, or IList with various Episerver types, and the outputted rendered HTML of those types will be added as a Prop (name) in the Dictionary</para>
-    /// </summary>
-    /// <param name="model">A class with properties where each property will be converted, rendered, and validated, and then added as a Prop</param>
-    /// <param name="forceCamelCase">True or false, based on how you write your props in React. "firstName" or "FirstName"</param>
-    /// <param name="printNullValues">True or false, based on wether you want to pass data to the DOM, even if "firstName=null", or you want to skip it completely, possibly ending up as "undefined" in the Frontend World</param>
-    /// <param name="ignorePropertyNames">Certain properties you do not want to send to your React (frontend), for instance a Token, Secret? Instead of generating a new model and map over, simply add the name of the properties here</param>
-    /// <returns>A dictionary ready to be used as Props in React World</returns>
-    public static IDictionary<string, object> ToReactPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
-    {
-        if (model == null) return new Dictionary<string, object>();
+    static ConcurrentDictionary<int, PropertyInfo[]> GetPublicInstancePropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
 
-        IDictionary<string, object> result = new Dictionary<string, object>();
-
-        var type = model.GetType();
-
-        if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties in your react component");
-
-        // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
-        // Store then PropertyInfo[] in a Dictionary based on Type.GetHashCode
-        // Do note: careful about anonmous types (inline "additional props"), in those types, just return GetProperties() ?
-        // as theres no jsonIgnore in those props, and they can be read, and filtering by name is skipped as its EXPLICIT set as returning, written by the consumer
-        var properties = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.GetProperty);
-
-        if (properties == null || properties.Length == 0) return new ExpandoObject();
-
-        var isContentDataType = type.Inherits(Globals.ContentDataType);
-
-        foreach (var property in properties)
-        {
-            var name = property.Name;
-
-            if (!IsPropertyElligibleAsProp(isContentDataType, property, name, ignorePropertyNames))
-            {
-                continue;
-            }
-
-            var value = property.GetValue(model);
-
-            if (forceCamelCase)
-            {
-                if (name.Length <= 1)
-                    name = name.ToLower();
-                else
-                    name = char.ToLowerInvariant(name[0]) + name.Substring(1);
-            }
-
-            if (value == null)
-            {
-                if (printNullValues)
-                {
-                    result.Add(name, null);
-                }
-            }
-
-            else if (value is ContentArea contentArea)
-            {
-                result.Add(name, contentArea.Render());
-            }
-
-            else if (value is XhtmlString xHtmlString)
-            {
-                result.Add(name, xHtmlString.Render());
-            }
-            else if (value is string str)
-                result.Add(name, str);
-
-            else if (value is Url url)
-                result.Add(name, url.ToFriendlyUrl());
-
-            else if (value is Uri uri)
-                result.Add(name, uri.ToFriendlyUrl());
-
-            else if (value is LinkItem linkItem)
-            {
-                result.Add(name, GetAttributesOfLinkItem(linkItem));
-            }
-            else if (value is IList<LinkItem> linkItems)
-            {
-                var linkItemAttributes = linkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
-
-                result.Add(name, linkItemAttributes);
-            }
-            else if (value is ContentReference contentReference)
-                result.Add(name, contentReference.ToFriendlyUrl());
-
-            else if (value is PageData page)
-                result.Add(name, page.ToFriendlyUrl());
-
-            else if (value is IList iList)
-            {
-                try
-                {
-                    var genericType = iList.GetType().GetFirstGenericType();
-                    if (genericType?.Inherits(Globals.ContentDataType) == true)
-                    {
-                        var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
-
-                        result.Add(name, listItems);
-                    }
-                    else
-                    {
-                        result.Add(name, iList);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    result.Add(name, null);
-                    result.Add(name + "Error", ex.Message);
-                }
-            }
-            else if (value is IEnumerable enumerable)
-            {
-                var enumerableType = enumerable.GetType();
-
-                var genericType = enumerableType.GetFirstGenericType();
-
-                if (genericType?.Inherits(Globals.ContentDataType) == true)
-                {
-                    try
-                    {
-                        var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
-
-                        result.Add(name, enumerableItems);
-                    }
-                    catch (Exception ex)
-                    {
-                        result.Add(name, null);
-                        result.Add(name + "Error", ex.Message);
-                    }
-                }
-                else
-                {
-                    if (enumerableType.IsClass &&
-                        !enumerableType.IsInterface &&
-                        !enumerableType.IsArray &&
-                        !enumerableType.IsGenericType &&
-                        !enumerableType.IsGenericParameter &&
-                        !enumerableType.IsInterface &&
-                        !enumerableType.IsListOrArray() &&
-                        !enumerableType.IsDictionary() &&
-                        !enumerableType.IsGenericTypeDefinition)
-                    {
-                        try
-                        {
-                            var enumerableList = new List<object>();
-
-                            foreach (var enumerableItem in enumerable)
-                            {
-                                enumerableList.Add(enumerableItem);
-                            }
-                            result.Add(name, enumerableList);
-                        }
-                        catch (Exception ex)
-                        {
-                            result.Add(name, null);
-                            result.Add(name + "Error", ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        result.Add(name, enumerable);
-                    }
-                }
-            }
-            else if (value is Enum en)
-                result.Add(name, en.ToValue());
-
-            else if (value is MediaData mediaData)
-                result.Add(name, mediaData?.ContentLink.ToFriendlyUrl());
-
-            else
-            {
-                if (value is IPrincipal || value is IdentityUser)
-                {
-                    // OPTIMIZE: Store only properties that can be read, that matches the name filter and does not contain JsonIgnore
-                    var userProperties = IdentityUserProperties.Cache<PropertyInfo[]>(value.GetType().GetHashCode(), () =>
-                    {
-                        return value.GetType()?.GetProperties();
-                    });
-
-                    if (userProperties?.Length > 0)
-                    {
-                        var userDictionary = new Dictionary<string, object>();
-
-                        foreach (var userProperty in userProperties)
-                        {
-                            if (!userProperty.CanRead) continue;
-
-                            var userPropertyName = userProperty.Name;
-
-                            if (userPropertyName == "Property") continue;
-
-                            if (userPropertyName.StartsWith("EPiServer", StringComparison.Ordinal)) continue;
-
-                            if (userPropertyName.StartsWith("EPi_", StringComparison.Ordinal)) continue;
-
-                            if (WhiteListedCustomProperties.Contains(userPropertyName)) continue;
-
-                            var userPropertyType = userProperty.PropertyType;
-
-                            if (userPropertyType == SystemType) continue;
-
-                            if (BlackListedUserProperties.Contains(userPropertyName)) continue;
-
-                            if (userProperty.GetCustomAttribute<JsonIgnoreAttribute>() != null) continue;
-
-                            if (forceCamelCase)
-                            {
-                                if (userPropertyName.Length <= 1)
-                                    userPropertyName = userPropertyName.ToLower();
-                                else
-                                    userPropertyName = char.ToLowerInvariant(userPropertyName[0]) + userPropertyName.Substring(1);
-                            }
-
-                            try
-                            {
-                                var userPropertyValue = userProperty.GetValue(value);
-
-                                userDictionary.Add(userPropertyName, userPropertyValue);
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-
-                                userDictionary.Add(userPropertyName, "errored");
-                            }
-                        }
-
-                        result.Add(name, userDictionary);
-                    }
-                }
-                else
-                {
-                    result.Add(name, value);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable list, Type genericType)
-    {
-        var hashCode = genericType.GetHashCode();
-        var properties = ReactPropPropertiesCache.Cache(hashCode, () =>
-        {
-            return genericType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
-        });
-
-        var contentList = new List<IDictionary<string, object>>();
-
-        if (properties == null || properties.Length == 0) return contentList;
-
-        foreach (var content in list)
-        {
-            if (content == model) continue;
-
-            IDictionary<string, object> item = new Dictionary<string, object>();
-
-            foreach (var listProp in properties)
-            {
-                var listPropName = listProp.Name;
-
-                if (!IsPropertyElligibleAsProp(true, listProp, listPropName, ignorePropertyNames))
-                {
-                    continue;
-                }
-
-                if (forceCamelCase)
-                {
-                    if (listPropName.Length <= 1)
-                        listPropName = listPropName.ToLower();
-                    else
-                        listPropName = char.ToLowerInvariant(listPropName[0]) + listPropName.Substring(1);
-                }
-
-                object listPropValue = null;
-
-                try
-                {
-                    listPropValue = listProp.GetValue(content);
-                }
-                catch
-                {
-                    // Swallow
-                    continue;
-                }
-
-                if (listPropValue == null)
-                {
-                    if (printNullValues)
-                        item.Add(listPropName, listPropValue);
-                }
-                else if (listPropValue is ContentArea listItemContentArea)
-                {
-                    item.Add(listPropName, listItemContentArea.Render());
-                }
-                else if (listPropValue is XhtmlString listItemXHtmlString)
-                {
-                    item.Add(listPropName, listItemXHtmlString.Render());
-                }
-                else if (listPropValue is Url listItemUrl)
-                    item.Add(listPropName, listItemUrl.ToFriendlyUrl());
-
-                else if (listPropValue is Uri listItemUri)
-                    item.Add(listPropName, listItemUri.ToFriendlyUrl());
-
-                else if (listPropValue is LinkItem listItemLinkItem)
-                {
-                    var attributes = GetAttributesOfLinkItem(listItemLinkItem);
-                    item.Add(listPropName, attributes);
-                }
-                else if (listPropValue is IList<LinkItem> listItemLinkItems)
-                {
-                    var listItemLinkItemAttributes = listItemLinkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
-
-                    item.Add(listPropName, listItemLinkItemAttributes);
-                }
-                else if (listPropValue is ContentReference listItemContentReference)
-                    item.Add(listPropName, listItemContentReference.ToFriendlyUrl());
-
-                else if (value is Enum en)
-                    item.Add(listPropName, en.ToValue());
-
-                else if (listPropValue is int || listPropValue is float || listPropValue is double || listPropValue is bool || listPropValue is DateTime || listPropValue is DateTimeOffset || listPropValue is string)
-                    item.Add(listPropName, listPropValue);
-            }
-
-            contentList.Add(item);
-        }
-
-        return contentList;
-    }
-
-    static bool IsPropertyElligibleAsProp(bool isContentDataType, PropertyInfo property, string name, string[] ignorePropertyNames)
+    static bool IsPropertyElligibleAsPropData(PropertyInfo property, bool isModelContentDataType, string[] ignorePropertyNames)
     {
         if (!property.CanRead) return false;
+
+        var name = property.Name;
 
         if (name == "Property") return false;
 
@@ -485,7 +148,7 @@ public static class ObjectExtensions
 
         if (WhiteListedCustomProperties.Contains(name)) return true;
 
-        if (isContentDataType && BlackListedContentProperties.Contains(name)) return false;
+        if (isModelContentDataType && BlackListedContentProperties.Contains(name)) return false;
 
         if (ignorePropertyNames != null)
         {
@@ -509,6 +172,279 @@ public static class ObjectExtensions
         if (property.GetCustomAttribute<JsonIgnoreAttribute>() != null) return false;
 
         return true;
+
+    }
+
+    static PropertyInfo[] GetPublicInstanceProperties(Type type, bool isModelContentDataType, string[] ignorePropertyNames)
+    {
+        return GetPublicInstancePropertiesCache.Cache(type.GetHashCode(), () =>
+        {
+            var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty);
+
+            var cache = new List<PropertyInfo>();
+
+            foreach (var property in properties)
+            {
+                if (IsPropertyElligibleAsPropData(property, isModelContentDataType, ignorePropertyNames))
+                    cache.Add(property);
+            }
+
+            return cache.ToArray();
+        });
+    }
+
+    /// <summary>
+    /// Convert a model to a Dictionary, which is ready to be used as Props to a React Component
+    /// <para>For example it will render ContentAreas, or IList with various Episerver types, and the outputted rendered HTML of those types will be added as a Prop (name) in the Dictionary</para>
+    /// </summary>
+    /// <param name="model">A class with properties where each property will be converted, rendered, and validated, and then added as a Prop</param>
+    /// <param name="forceCamelCase">True or false, based on how you write your props in React. "firstName" or "FirstName"</param>
+    /// <param name="printNullValues">True or false, based on wether you want to pass data to the DOM, even if "firstName=null", or you want to skip it completely, possibly ending up as "undefined" in the Frontend World</param>
+    /// <param name="ignorePropertyNames">Certain properties you do not want to send to your React (frontend), for instance a Token, Secret? Instead of generating a new model and map over, simply add the name of the properties here</param>
+    /// <returns>A dictionary ready to be used as Props in React World</returns>
+    public static IDictionary<string, object> ToReactPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
+    {
+        // TODO: Rename "ToPropsOrDataDictionary", converting and rendering most data in the Model, to a Dictionary, which can be used to Serialize/Whatever, manipulate the data, keys,... before sending to React/Whatever ...
+        if (model == null) return new Dictionary<string, object>();
+
+        var type = model.GetType();
+
+        if (!type.IsClass || type.IsInterface) throw new Exception("Cannot pass a non-class as model for react properties. Either create a class or an anonymous object and pass that with the variables you want as properties in your react component");
+
+        var isContentDataType = type.Inherits(Globals.ContentDataType);
+
+        var properties = GetPublicInstanceProperties(type, isContentDataType, ignorePropertyNames);
+
+        if (properties.Length == 0) return new ExpandoObject();
+
+        Dump.Write(type.Name);
+
+        var result = new Dictionary<string, object>();
+
+        foreach (var property in properties)
+        {
+            ConvertPropertyToDictionaryData(model, type, property, result, forceCamelCase, printNullValues, ignorePropertyNames);
+        }
+
+        return result;
+    }
+
+    static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames)
+    {
+        var name = property.Name;
+
+        object value;
+
+        try
+        {
+            value = property.GetValue(model);
+        }
+        catch
+        {
+            Debug.Log("Swallow: could not get value of property " + name + " on type " + modelType.Name);
+            return;
+        }
+
+
+        if (forceCamelCase)
+        {
+            if (name.Length <= 1)
+                name = name.ToLower();
+            else
+                name = char.ToLowerInvariant(name[0]) + name.Substring(1);
+        }
+
+        if (value == null)
+        {
+            if (printNullValues)
+            {
+                result.Add(name, null);
+            }
+        }
+
+        else if (value is ContentArea contentArea)
+            result.Add(name, contentArea.Render());
+
+        else if (value is XhtmlString xHtmlString)
+            result.Add(name, xHtmlString.Render());
+
+        else if (value is string str)
+            result.Add(name, str);
+
+        else if (value is Url url)
+            result.Add(name, url.ToFriendlyUrl());
+
+        else if (value is Uri uri)
+            result.Add(name, uri.ToFriendlyUrl());
+
+        else if (value is LinkItem linkItem)
+            result.Add(name, GetAttributesOfLinkItem(linkItem));
+
+        else if (value is IList<LinkItem> linkItems)
+        {
+            var linkItemAttributes = linkItems.Where(x => x.Attributes != null)?.Select(x => GetAttributesOfLinkItem(x));
+
+            result.Add(name, linkItemAttributes);
+        }
+        else if (value is ContentReference contentReference)
+            result.Add(name, contentReference.ToFriendlyUrl());
+
+        else if (value is PageData page)
+            result.Add(name, page.ToFriendlyUrl());
+
+        else if (value is MediaData media)
+            result.Add(name, media.ContentLink.ToFriendlyUrl());
+
+        else if (value is IList iList)
+        {
+            try
+            {
+                var genericType = iList.GetType().GetFirstGenericType();
+                if (genericType?.Inherits(Globals.ContentDataType) == true)
+                {
+                    var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
+
+                    result.Add(name, listItems);
+                }
+                else
+                {
+                    result.Add(name, iList);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
+                result.Add(name, null);
+                result.Add(name + "Error", ex.Message);
+            }
+        }
+        else if (value is IEnumerable enumerable)
+        {
+            var enumerableType = enumerable.GetType();
+
+            var genericType = enumerableType.GetFirstGenericType();
+
+            if (genericType?.Inherits(Globals.ContentDataType) == true)
+            {
+                try
+                {
+                    var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
+
+                    result.Add(name, enumerableItems);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
+                    result.Add(name, null);
+                    result.Add(name + "Error", ex.Message);
+                }
+            }
+            else
+            {
+                if (enumerableType.IsClass &&
+                    !enumerableType.IsInterface &&
+                    !enumerableType.IsArray &&
+                    !enumerableType.IsGenericType &&
+                    !enumerableType.IsGenericParameter &&
+                    !enumerableType.IsInterface &&
+                    !enumerableType.IsListOrArray() &&
+                    !enumerableType.IsDictionary() &&
+                    !enumerableType.IsGenericTypeDefinition)
+                {
+                    try
+                    {
+                        var enumerableList = new List<object>();
+
+                        foreach (var enumerableItem in enumerable)
+                        {
+                            enumerableList.Add(enumerableItem);
+                        }
+                        result.Add(name, enumerableList);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
+                        result.Add(name, null);
+                        result.Add(name + "Error", ex.Message);
+                    }
+                }
+                else
+                {
+                    result.Add(name, enumerable);
+                }
+            }
+        }
+        else if (value is Enum en)
+            result.Add(name, en.ToValue());
+
+        else if (value is MediaData mediaData)
+            result.Add(name, mediaData?.ContentLink.ToFriendlyUrl());
+
+        else
+        {
+            if (value is IPrincipal || value is IdentityUser)
+            {
+                var userProperties = GetPublicInstanceProperties(value.GetType(), true, ignorePropertyNames);
+
+                if (userProperties.Length == 0) return;
+
+                var userDictionary = new Dictionary<string, object>();
+
+                foreach (var userProperty in userProperties)
+                {
+                    var userPropertyName = userProperty.Name;
+
+                    if (forceCamelCase)
+                    {
+                        if (userPropertyName.Length <= 1)
+                            userPropertyName = userPropertyName.ToLower();
+                        else
+                            userPropertyName = char.ToLowerInvariant(userPropertyName[0]) + userPropertyName.Substring(1);
+                    }
+
+                    try
+                    {
+                        userDictionary.Add(userPropertyName, userProperty.GetValue(value));
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Converting " + userPropertyName + " to prop data failed: " + ex.Message);
+                        userDictionary.Add(userPropertyName, null);
+                        userDictionary.Add(userPropertyName + "Error", ex.Message);
+                    }
+                }
+                result.Add(name, userDictionary);
+            }
+            else
+            {
+                result.Add(name, value);
+            }
+        }
+    }
+
+    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable contentList, Type genericType)
+    {
+        var properties = GetPublicInstanceProperties(genericType, isModelContentDataType: true, ignorePropertyNames);
+
+        var result = new List<IDictionary<string, object>>();
+
+        if (properties.Length == 0) return result;
+
+        foreach (var contentData in contentList)
+        {
+            if (contentData == model) continue;
+
+            var data = new Dictionary<string, object>();
+
+            foreach (var property in properties)
+            {
+                ConvertPropertyToDictionaryData(model, genericType, property, data, forceCamelCase, printNullValues, ignorePropertyNames);
+            }
+
+            result.Add(data);
+        }
+
+        return result;
     }
 
     static object GetAttributesOfLinkItem(LinkItem linkItem)

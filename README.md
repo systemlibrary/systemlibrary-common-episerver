@@ -61,10 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.13.0.5
-- Updated patches of dependencies
-- Explicit set target to AnyCPU
-- Removed whitespace in nuget description while viewing it in Nuget Manager
+- 7.13.1.0
+- Added HideOnCreation attribute for properties that are required, but dont have to be filled out before content is created
 
 #### Major Breaking Versions
 - 7.13.0.1

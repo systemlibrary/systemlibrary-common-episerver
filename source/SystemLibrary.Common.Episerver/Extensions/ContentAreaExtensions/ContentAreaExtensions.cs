@@ -63,7 +63,11 @@ public static class ContentAreaExtensions
             {
                 var type = block.GetOriginalType();
 
-                if (type.Name == "BlockData") continue;
+                if (type.Name == "BlockData")
+                {
+                    Debug.Log("Skipping block data, most likely deleted: " + type.Name + " " + (block as IContent)?.IsDeleted);
+                    continue;
+                }
 
                 rendered.Append(iContentHtmlHelper.PropertyFor(x => block).ToString());
             }
@@ -107,7 +111,7 @@ public static class ContentAreaExtensions
     /// </summary>
     /// <param name="filterByPublished">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</param>
     /// <returns>Returns an IEnumerable of T</returns>
-    public static IEnumerable<T> To<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContent
+    public static IEnumerable<T> To<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
     {
         if (contentArea.IsNot()) yield break;
 
