@@ -137,7 +137,6 @@ public abstract class BaseMultiSelectionFactory
         return (Show, Hide, ShowExpiredItems);
     }
 
-
     static void PopulateSelectionItems(List<ISelectItem> items, Type enumType, bool showExpiredItems, object[] show, object[] hide, ExtendedMetadata metadata)
     {
         if (enumType?.IsEnum != true) return;

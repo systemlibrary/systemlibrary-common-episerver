@@ -8,6 +8,7 @@ using System.Security.Principal;
 using System.Text.Json.Serialization;
 
 using EPiServer;
+using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
 using EPiServer.Core;
 using EPiServer.Security.Internal;
@@ -134,7 +135,7 @@ public static class ObjectExtensions
 
     static ConcurrentDictionary<int, PropertyInfo[]> GetPublicInstancePropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
 
-    static bool IsPropertyElligibleAsPropData(PropertyInfo property, bool isModelContentDataType, string[] ignorePropertyNames)
+    static bool IsPropertyElligibleAsPropData(PropertyInfo property, bool isModelContentDataType)
     {
         if (!property.CanRead) return false;
 
@@ -149,14 +150,6 @@ public static class ObjectExtensions
         if (WhiteListedCustomProperties.Contains(name)) return true;
 
         if (isModelContentDataType && BlackListedContentProperties.Contains(name)) return false;
-
-        if (ignorePropertyNames != null)
-        {
-            if (ignorePropertyNames.Contains(name))
-            {
-                return false;
-            }
-        }
 
         var propertyType = property.PropertyType;
 
@@ -175,7 +168,7 @@ public static class ObjectExtensions
 
     }
 
-    static PropertyInfo[] GetPublicInstanceProperties(Type type, bool isModelContentDataType, string[] ignorePropertyNames)
+    static PropertyInfo[] GetPublicInstanceProperties(Type type, bool isModelContentDataType)
     {
         return GetPublicInstancePropertiesCache.Cache(type.GetHashCode(), () =>
         {
@@ -185,7 +178,7 @@ public static class ObjectExtensions
 
             foreach (var property in properties)
             {
-                if (IsPropertyElligibleAsPropData(property, isModelContentDataType, ignorePropertyNames))
+                if (IsPropertyElligibleAsPropData(property, isModelContentDataType))
                     cache.Add(property);
             }
 
@@ -213,11 +206,9 @@ public static class ObjectExtensions
 
         var isContentDataType = type.Inherits(Globals.ContentDataType);
 
-        var properties = GetPublicInstanceProperties(type, isContentDataType, ignorePropertyNames);
+        var properties = GetPublicInstanceProperties(type, isContentDataType);
 
         if (properties.Length == 0) return new ExpandoObject();
-
-        Dump.Write(type.Name);
 
         var result = new Dictionary<string, object>();
 
@@ -229,9 +220,19 @@ public static class ObjectExtensions
         return result;
     }
 
-    static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames)
+    static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, bool convertContentAreaToList = false)
     {
         var name = property.Name;
+
+        if (ignorePropertyNames != null)
+        {
+            if (ignorePropertyNames.Contains(name))
+            {
+                Debug.Log("Skipped property " + name);
+
+                return;
+            }
+        }
 
         object value;
 
@@ -241,7 +242,7 @@ public static class ObjectExtensions
         }
         catch
         {
-            Debug.Log("Swallow: could not get value of property " + name + " on type " + modelType.Name);
+            Debug.Log("Swallow: could not get value of property " + name + " on type " + modelType.Name + " " + model.GetType().Name + " " + property.DeclaringType?.Name + " (" + property.PropertyType.Name + ")");
             return;
         }
 
@@ -263,7 +264,32 @@ public static class ObjectExtensions
         }
 
         else if (value is ContentArea contentArea)
-            result.Add(name, contentArea.Render());
+        {
+            if (convertContentAreaToList)
+            {
+                Dump.Write("Convert the content area to a list, then loop and render each item seperately as a new Dict");
+
+                var contentData = contentArea.To<ContentData>();
+
+                if (contentData.Is())
+                {
+                    var items = GetLoopableContentDataAsDictionary(contentData, forceCamelCase, printNullValues, ignorePropertyNames, model);
+
+                    result.Add(name, items);
+                }
+                else
+                {
+                    if (printNullValues)
+                    {
+                        result.Add(name, null);
+                    }
+                }
+            }
+            else
+            {
+                result.Add(name, contentArea.Render());
+            }
+        }
 
         else if (value is XhtmlString xHtmlString)
             result.Add(name, xHtmlString.Render());
@@ -295,29 +321,6 @@ public static class ObjectExtensions
         else if (value is MediaData media)
             result.Add(name, media.ContentLink.ToFriendlyUrl());
 
-        else if (value is IList iList)
-        {
-            try
-            {
-                var genericType = iList.GetType().GetFirstGenericType();
-                if (genericType?.Inherits(Globals.ContentDataType) == true)
-                {
-                    var listItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, iList, genericType);
-
-                    result.Add(name, listItems);
-                }
-                else
-                {
-                    result.Add(name, iList);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
-                result.Add(name, null);
-                result.Add(name + "Error", ex.Message);
-            }
-        }
         else if (value is IEnumerable enumerable)
         {
             var enumerableType = enumerable.GetType();
@@ -328,20 +331,22 @@ public static class ObjectExtensions
             {
                 try
                 {
-                    var enumerableItems = GetLoopableContentDataAsDictionary(model, forceCamelCase, printNullValues, ignorePropertyNames, value, enumerable, genericType);
+                    var enumerableItems = GetLoopableContentDataAsDictionary(enumerable, forceCamelCase, printNullValues, ignorePropertyNames, model);
 
                     result.Add(name, enumerableItems);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
+                    Log.Error("Converting IEnumerable " + name + " to prop data failed: " + ex.Message);
                     result.Add(name, null);
                     result.Add(name + "Error", ex.Message);
                 }
             }
             else
             {
+                // Todo: What kind of "type" is this? Just a default "class"?
                 if (enumerableType.IsClass &&
+                    (enumerableType.IsPublic || enumerableType.IsNestedPublic) &&
                     !enumerableType.IsInterface &&
                     !enumerableType.IsArray &&
                     !enumerableType.IsGenericType &&
@@ -363,7 +368,7 @@ public static class ObjectExtensions
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("Converting " + name + " to prop data failed: " + ex.Message);
+                        Log.Error("Converting enumerable list " + name + " to prop data failed: " + ex.Message);
                         result.Add(name, null);
                         result.Add(name + "Error", ex.Message);
                     }
@@ -384,7 +389,7 @@ public static class ObjectExtensions
         {
             if (value is IPrincipal || value is IdentityUser)
             {
-                var userProperties = GetPublicInstanceProperties(value.GetType(), true, ignorePropertyNames);
+                var userProperties = GetPublicInstanceProperties(value.GetType(), true);
 
                 if (userProperties.Length == 0) return;
 
@@ -422,23 +427,36 @@ public static class ObjectExtensions
         }
     }
 
-    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(object model, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object value, IEnumerable contentList, Type genericType)
+    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(IEnumerable contentList, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object model)
     {
-        var properties = GetPublicInstanceProperties(genericType, isModelContentDataType: true, ignorePropertyNames);
-
         var result = new List<IDictionary<string, object>>();
-
-        if (properties.Length == 0) return result;
 
         foreach (var contentData in contentList)
         {
+            if (contentData == null) continue;
+
+            if (contentData is IContent icontent && (icontent.IsDeleted || !icontent.IsPublished())) continue;
+
             if (contentData == model) continue;
+
+            var type = contentData.GetType();
+
+            var properties = GetPublicInstanceProperties(type, true);
+
+            if (properties.Length == 0) continue;
 
             var data = new Dictionary<string, object>();
 
             foreach (var property in properties)
             {
-                ConvertPropertyToDictionaryData(model, genericType, property, data, forceCamelCase, printNullValues, ignorePropertyNames);
+                try
+                {
+                    ConvertPropertyToDictionaryData(contentData, type, property, data, forceCamelCase, printNullValues, ignorePropertyNames, true);
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(type.Name + " with property " + property.Name + " could not be converted, error " + ex.Message);
+                }
             }
 
             result.Add(data);

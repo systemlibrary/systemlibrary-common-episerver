@@ -41,14 +41,12 @@ partial class TExtensions
             }
         }
 
-        Dump.Write("To React...");
-
         var props = model.ToReactPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
         if (additionalProps != null)
         {
-            Debug.Log("Additionall props");
-            IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase);
+            Debug.Log("Additional props");
+            IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase, printNullValues);
             Dump.Write(additional);
 
             if (additional != null && additional.Count > 0)
