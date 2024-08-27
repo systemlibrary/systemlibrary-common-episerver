@@ -43,7 +43,6 @@ public static class IEnumerableContentReferenceExtensions
                     // A deleted block or page, if still part of the ContentReferences will be returned as their default type name, so filter it out
                     if (type.Name != "BlockData" && type.Name != "PageData")
                         yield return t;
-                    Dump.Write(type.Name);
                 }
             }
         }

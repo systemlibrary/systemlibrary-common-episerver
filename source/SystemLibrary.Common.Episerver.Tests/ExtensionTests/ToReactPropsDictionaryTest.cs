@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 using EPiServer;
 using EPiServer.Core;
@@ -8,7 +10,6 @@ using EPiServer.SpecializedProperties;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using SystemLibrary.Common.Episerver.Extensions;
 using SystemLibrary.Common.Net.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Tests;
@@ -16,11 +17,26 @@ namespace SystemLibrary.Common.Episerver.Tests;
 [TestClass]
 public class ToReactPropsDictionaryTest
 {
+    static MethodInfo ToPropsDictionary;
+    static ToReactPropsDictionaryTest()
+    {
+        var type = typeof(Extensions.ObjectExtensions);
+
+        var method = type.GetMethods(BindingFlags.Static | BindingFlags.NonPublic)
+                   .Where(x => x.Name == "ToPropsDictionary")
+                   .FirstOrDefault();
+
+        if (method == null)
+            throw new Exception("Method 'ToPropsDictionary' is not existing on type: " + type.Name);
+
+        ToPropsDictionary = method;
+    }
+
     [TestMethod]
     public void Convert_Null_To_Expando_Success()
     {
         TestBlock model = null;
-        IDictionary<string, object> props = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
         Assert.IsTrue(props.Count == 0);
     }
 
@@ -28,8 +44,60 @@ public class ToReactPropsDictionaryTest
     public void Convert_Simple_Poco_Returns_Properties_Success()
     {
         var model = new TestBlock();
-        IDictionary<string, object> props = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
         Assert.IsTrue(props.Count == 4, "Invalid count " + props.Count + ", did it include ignored properties?");
+    }
+
+    [TestMethod]
+    public void Convert_Simple_Poco_Force_Camel_Case_Properties_Returns_Properties_Success()
+    {
+        var model = new TestBlock();
+
+        model.Title = "Hello";
+
+        var forceCamelCase = true;
+
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, forceCamelCase, true, null }) as IDictionary<string, object>;
+        try
+        {
+            Assert.IsTrue(props["Title"] == null);
+            Assert.IsTrue(false, "Should throw, Title should not be in props as camelCase is forced");
+        }
+        catch
+        {
+            Assert.IsTrue(true, "Throws then 'Title' do not exist in props");
+        }
+        
+        Assert.IsTrue(props["title"] != null);
+    }
+
+    [TestMethod]
+    public void Convert_Simple_Poco_Skipping_Two_Properties_Returns_Properties_Success()
+    {
+        var model = new TestBlock();
+
+        var skip = new string[] { "Flag", "Title" };
+
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, skip }) as IDictionary<string, object>;
+
+        Assert.IsTrue(props.Count == 2, "Invalid count " + props.Count + ", did it include ignored properties?");
+    }
+
+
+    [TestMethod]
+    public void Convert_Simple_Poco_Skip_Print_Null_Properties_Returns_Properties_Success()
+    {
+        var model = new TestBlock();
+
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, false, null }) as IDictionary<string, object>;
+
+        Assert.IsTrue(props.Count == 2, "Invalid count " + props.Count + ", did it include null properties?");
+
+        model.Title = "Hello";
+
+        props = ToPropsDictionary.Invoke(null, new object[] { model, false, false, null }) as IDictionary<string, object>;
+
+        Assert.IsTrue(props.Count == 3, "Invalid count " + props.Count + ", did it include null properties?");
     }
 
     [TestMethod]
@@ -39,12 +107,12 @@ public class ToReactPropsDictionaryTest
         model.Title = "Hello world";
         model.Year = 20000;
         model.Age = -1;
-        
+
         // Ignored properties, built-in properties in epi is skipped by name
         model.SortIndex = 100;
         model.ShouldBeImplicitlyExported = "Ignored";
 
-        IDictionary<string, object> props = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
 
         // Skipped properties not returned hence 4
         Assert.IsTrue(props.Count == 4, "Invalid count, included ignored properties? Youve added new ones? " + props.Count);
@@ -59,7 +127,7 @@ public class ToReactPropsDictionaryTest
         model.C = 20000;
         model.E = DateTimeOffset.Now;
 
-        IDictionary<string, object> props = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
 
         Assert.IsTrue(props.Count == 4, "Count " + props.Count);
         Assert.IsTrue(props["B"] == "Hello world");
@@ -110,7 +178,7 @@ public class ToReactPropsDictionaryTest
             }
         };
 
-        IDictionary<string, object> props = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
 
         var json = props.Json();
 
@@ -135,7 +203,7 @@ public class ToReactPropsDictionaryTest
 
         try
         {
-            var exp1 = model.ToReactPropsDictionary();
+            var props = ToPropsDictionary.Invoke(null, [model]) as IDictionary<string, object>;
             Assert.IsTrue(false, "Expando should throw on list");
         }
         catch
@@ -143,6 +211,8 @@ public class ToReactPropsDictionaryTest
             Assert.IsTrue(true, "List cannot be converted to expando object. Loop over the list yourself and convert each item");
         }
     }
+
+
 
     [TestMethod]
     public void Convert_Model_With_Dynamic_IEnumerable_To_ReactPropsDictionary()
@@ -154,17 +224,28 @@ public class ToReactPropsDictionaryTest
             IEnumerableInts = GetDynamicInts()
         };
 
-        var result = model.ToReactPropsDictionary();
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, false, true, null }) as IDictionary<string, object>;
 
-        Assert.IsTrue(result["IEnumerableStrings"] != null);
-        Assert.IsTrue(result["IEnumerableDynamic"] != null);
-        Assert.IsTrue(result["IEnumerableInts"] != null);
+        Assert.IsTrue(props["IEnumerableStrings"] != null);
+        Assert.IsTrue(props["IEnumerableDynamic"] != null);
+        Assert.IsTrue(props["IEnumerableInts"] != null);
 
-        var ienumerableDynamicList = (IList)result["IEnumerableDynamic"];
+        var ienumerableDynamicList = (IList)props["IEnumerableDynamic"];
 
         Assert.IsTrue(ienumerableDynamicList.Count == 3);
 
-        var ienumerableIntsList = (IList)result["IEnumerableInts"];
+        foreach(var dynamicDataItem in ienumerableDynamicList)
+        {
+            dynamic casted = dynamicDataItem;
+            string[] strings = (string[])casted.Strings;
+
+            Assert.IsTrue(strings.Length == 2);
+
+            int age = (int)casted.Age;
+            Assert.IsTrue(age > 0);
+        }
+
+        var ienumerableIntsList = (IList)props["IEnumerableInts"];
 
         Assert.IsTrue(ienumerableIntsList.Count == 2);
     }
@@ -181,6 +262,13 @@ public class ToReactPropsDictionaryTest
         yield return "World";
     }
 
+    static IEnumerable<int> RandomInts()
+    {
+        yield return 10;
+        yield return 15;
+        yield return 20;
+    }
+
     static IEnumerable<dynamic> GetDynamicData()
     {
         yield return new
@@ -188,21 +276,30 @@ public class ToReactPropsDictionaryTest
             Name = "Hello",
             LastName = "World",
             Age = 1001,
-            Flag = true
+            Year = DateTime.Now,
+            Flag = true,
+            Strings = new string[] { "Hello", "World" },
+            IEnum = RandomInts()
         };
         yield return new
         {
             Name = "Hello2",
             LastName = "World2",
             Age = 1002,
-            Flag = true
+            Year = DateTime.Now,
+            Flag = true,
+            Strings = new string[] { "Hello", "World" },
+            IEnum = RandomInts()
         };
         yield return new
         {
             Name = "Hello3",
             LastName = "World3",
             Age = 1003,
-            Flag = true
+            Year = DateTime.Now,
+            Flag = true,
+            Strings = new string[] { "Hello", "World" },
+            IEnum = RandomInts()
         };
     }
 }

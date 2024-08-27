@@ -186,18 +186,9 @@ public static class ObjectExtensions
         });
     }
 
-    /// <summary>
-    /// Convert a model to a Dictionary, which is ready to be used as Props to a React Component
-    /// <para>For example it will render ContentAreas, or IList with various Episerver types, and the outputted rendered HTML of those types will be added as a Prop (name) in the Dictionary</para>
-    /// </summary>
-    /// <param name="model">A class with properties where each property will be converted, rendered, and validated, and then added as a Prop</param>
-    /// <param name="forceCamelCase">True or false, based on how you write your props in React. "firstName" or "FirstName"</param>
-    /// <param name="printNullValues">True or false, based on wether you want to pass data to the DOM, even if "firstName=null", or you want to skip it completely, possibly ending up as "undefined" in the Frontend World</param>
-    /// <param name="ignorePropertyNames">Certain properties you do not want to send to your React (frontend), for instance a Token, Secret? Instead of generating a new model and map over, simply add the name of the properties here</param>
-    /// <returns>A dictionary ready to be used as Props in React World</returns>
-    public static IDictionary<string, object> ToReactPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
+    internal static IDictionary<string, object> ToPropsDictionary(this object model, bool forceCamelCase = false, bool printNullValues = true, params string[] ignorePropertyNames)
     {
-        // TODO: Rename "ToPropsOrDataDictionary", converting and rendering most data in the Model, to a Dictionary, which can be used to Serialize/Whatever, manipulate the data, keys,... before sending to React/Whatever ...
+        // TODO: Name could be 'ToDictionary' as that's all it does, converting most data in to a decent dictionary format
         if (model == null) return new Dictionary<string, object>();
 
         var type = model.GetType();
@@ -212,16 +203,23 @@ public static class ObjectExtensions
 
         var result = new Dictionary<string, object>();
 
+        int level = 0;
         foreach (var property in properties)
         {
-            ConvertPropertyToDictionaryData(model, type, property, result, forceCamelCase, printNullValues, ignorePropertyNames);
+            ConvertPropertyToDictionaryData(model, type, property, result, forceCamelCase, printNullValues, ignorePropertyNames, false, level);
         }
 
         return result;
     }
 
-    static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, bool convertContentAreaToList = false)
+    static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, bool convertContentAreaToList, int level)
     {
+        if (level > 12)
+        {
+            Log.Warning("Skipping conversion to dictionary data, as we are deper than level 12 in the recursive method, for type: " + modelType.Name);
+            return;
+        }
+
         var name = property.Name;
 
         if (ignorePropertyNames != null)
@@ -229,7 +227,6 @@ public static class ObjectExtensions
             if (ignorePropertyNames.Contains(name))
             {
                 Debug.Log("Skipped property " + name);
-
                 return;
             }
         }
@@ -242,7 +239,7 @@ public static class ObjectExtensions
         }
         catch
         {
-            Debug.Log("Swallow: could not get value of property " + name + " on type " + modelType.Name + " " + model.GetType().Name + " " + property.DeclaringType?.Name + " (" + property.PropertyType.Name + ")");
+            Log.Warning("Could not get value of property " + name + " on type " + modelType.Name + " " + model.GetType().Name + " " + property.DeclaringType?.Name + " (" + property.PropertyType.Name + ")");
             return;
         }
 
@@ -267,13 +264,11 @@ public static class ObjectExtensions
         {
             if (convertContentAreaToList)
             {
-                Dump.Write("Convert the content area to a list, then loop and render each item seperately as a new Dict");
-
-                var contentData = contentArea.To<ContentData>();
+                var contentData = contentArea.SelectFiltered<ContentData>();
 
                 if (contentData.Is())
                 {
-                    var items = GetLoopableContentDataAsDictionary(contentData, forceCamelCase, printNullValues, ignorePropertyNames, model);
+                    var items = GetLoopableContentDataAsDictionary(contentData, forceCamelCase, printNullValues, ignorePropertyNames, model, level);
 
                     result.Add(name, items);
                 }
@@ -331,7 +326,7 @@ public static class ObjectExtensions
             {
                 try
                 {
-                    var enumerableItems = GetLoopableContentDataAsDictionary(enumerable, forceCamelCase, printNullValues, ignorePropertyNames, model);
+                    var enumerableItems = GetLoopableContentDataAsDictionary(enumerable, forceCamelCase, printNullValues, ignorePropertyNames, model, level);
 
                     result.Add(name, enumerableItems);
                 }
@@ -344,9 +339,8 @@ public static class ObjectExtensions
             }
             else
             {
-                // Todo: What kind of "type" is this? Just a default "class"?
+                // NOTE: Transforming dynamic IEnumerable when they yield 
                 if (enumerableType.IsClass &&
-                    (enumerableType.IsPublic || enumerableType.IsNestedPublic) &&
                     !enumerableType.IsInterface &&
                     !enumerableType.IsArray &&
                     !enumerableType.IsGenericType &&
@@ -427,7 +421,7 @@ public static class ObjectExtensions
         }
     }
 
-    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(IEnumerable contentList, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object model)
+    static List<IDictionary<string, object>> GetLoopableContentDataAsDictionary(IEnumerable contentList, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, object model, int level)
     {
         var result = new List<IDictionary<string, object>>();
 
@@ -451,7 +445,7 @@ public static class ObjectExtensions
             {
                 try
                 {
-                    ConvertPropertyToDictionaryData(contentData, type, property, data, forceCamelCase, printNullValues, ignorePropertyNames, true);
+                    ConvertPropertyToDictionaryData(contentData, type, property, data, forceCamelCase, printNullValues, ignorePropertyNames, true, level + 1);
                 }
                 catch (Exception ex)
                 {

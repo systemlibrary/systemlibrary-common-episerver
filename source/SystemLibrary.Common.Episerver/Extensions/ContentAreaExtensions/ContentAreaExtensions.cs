@@ -107,11 +107,14 @@ public static class ContentAreaExtensions
     /// <summary>
     /// Convert items in ContentArea To T
     /// <para>Filters on current user rights, personalization</para>
-    /// <para>Item must be castable to T to be yield</para>
+    /// Item must be castable to T to be yield
     /// </summary>
+    /// <remarks>
+    /// You can use 'SelectFiltered' to ReactServerSideRender as 'additional props' to bypass the way ContentArea are rendered, which in return will convert all properties in all content of the area to 'dictionary', which can easily be used as Props
+    /// </remarks>
     /// <param name="filterByPublished">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</param>
     /// <returns>Returns an IEnumerable of T</returns>
-    public static IEnumerable<T> To<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
+    public static IEnumerable<T> SelectFiltered<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
     {
         if (contentArea.IsNot()) yield break;
 

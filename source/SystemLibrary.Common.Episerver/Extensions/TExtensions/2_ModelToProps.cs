@@ -16,7 +16,6 @@ partial class TExtensions
 
         if (additionalProps != null)
         {
-            // NOTE: Additional props hashCode should include current Model.Type hashCode
             var additionalType = additionalProps.GetType();
 
             int hashCode;
@@ -41,13 +40,11 @@ partial class TExtensions
             }
         }
 
-        var props = model.ToReactPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
+        var props = model.ToPropsDictionary(forceCamelCase, printNullValues, ignorePropertyNames?.ToArray());
 
         if (additionalProps != null)
         {
-            Debug.Log("Additional props");
-            IDictionary<string, object> additional = additionalProps.ToReactPropsDictionary(forceCamelCase, printNullValues);
-            Dump.Write(additional);
+            IDictionary<string, object> additional = additionalProps.ToPropsDictionary(forceCamelCase, printNullValues);
 
             if (additional != null && additional.Count > 0)
             {

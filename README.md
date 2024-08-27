@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.13.1.0
-- Added HideOnCreation attribute for properties that are required, but dont have to be filled out before content is created
+- 7.14.0.1
+- ReactServerSideRender now converts all children up to a depth of 16 to Properties for IEnumerable/IList properties, easily use ContentArea as a means to create data for your React Component
 
 #### Major Breaking Versions
 - 7.13.0.1
