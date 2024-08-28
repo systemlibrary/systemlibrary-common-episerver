@@ -17,7 +17,7 @@ namespace SystemLibrary.Common.Episerver.Users;
 /// <code class="language-csharp hljs">
 /// // Implement your own CurrentUser object by inheriting 'CurrentUser'
 /// 
-/// public class AppUser : CurrentUser 
+/// public class AppUser : CurrentUser
 /// {
 ///     public string PhoneNumber => Claim&lt;string&gt;("PhoneNumber");
 /// }
@@ -39,8 +39,7 @@ namespace SystemLibrary.Common.Episerver.Users;
 public class CurrentUser : ApplicationUser
 {
     IPrincipal _Principal;
-    IPrincipal Principal => _Principal != null ? _Principal :
-        (_Principal = HttpContextInstance.Current?.User);
+    IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
 
     public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
     

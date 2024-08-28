@@ -48,11 +48,15 @@ public static class ObjectExtensions
         "Current",
         "Comment",
         "Email",
-        "PhoneNumber"
+        "PhoneNumber",
+        "IsAuthenticated"
     };
 
-    static string[] BlackListedCustomProperties = new string[]
+    static string[] ManualBlackListedContentProperties = new string[]
     {
+        "PrimaryIdentitySelector",
+        "ClaimsPrincipalSelector",
+        "IsApproved",
         "CurrentPage",
         "CurrentBlock",
         "Password",
@@ -60,44 +64,17 @@ public static class ObjectExtensions
         "PasswordQuestion",
         "Properties",
         "SecurityStamp",
+        "ConcurrencyStamp",
+        "TwoFactorEnabled",
+        "AnonymousPrincipal",
         "LastLoginDate",
         "IdToken",
         "IdTokenHint",
         "PhoneNumberConfirmed",
         "AccessFailedCount",
         "ProviderName",
-        "IsAuthenticated",
         "IsAdministrator"
     };
-
-    static string[] _BlackListedUserProperties;
-    static string[] BlackListedUserProperties
-    {
-        get
-        {
-            if (_BlackListedUserProperties == null)
-            {
-                var claimsPrincipalProps = typeof(ClaimsPrincipal).GetProperties();
-                var genericPrincipalProps = typeof(GenericPrincipal).GetProperties();
-
-                var fallbackPrincipalProps = typeof(FallbackPrincipal).GetProperties();
-
-                var appUserProps = typeof(ApplicationUser).GetProperties();
-
-                var principalProps = claimsPrincipalProps.Select(x => x.Name)
-                    .Union(genericPrincipalProps.Select(x => x.Name))
-                    .Union(appUserProps.Select(x => x.Name))
-                    .Union(fallbackPrincipalProps.Select(x => x.Name))
-                    .Concat(BlackListedCustomProperties)
-                    .Distinct()
-                    .ToList();
-
-                _BlackListedUserProperties = principalProps.ToArray();
-            }
-
-            return _BlackListedUserProperties;
-        }
-    }
 
     static string[] _BlackListedContentProperties;
     static string[] BlackListedContentProperties
@@ -124,7 +101,7 @@ public static class ObjectExtensions
                         "ViewData",
                         "ReferencedPermanentLinkIds"
                     })
-                    .Concat(BlackListedCustomProperties)
+                    .Concat(ManualBlackListedContentProperties)
                     .Distinct()
                     .ToArray();
             }
@@ -133,7 +110,43 @@ public static class ObjectExtensions
         }
     }
 
-    static ConcurrentDictionary<int, PropertyInfo[]> GetPublicInstancePropertiesCache = new ConcurrentDictionary<int, PropertyInfo[]>();
+    static string[] _BlackListedUserProperties;
+    static string[] BlackListedUserProperties
+    {
+        get
+        {
+            if (_BlackListedUserProperties == null)
+            {
+                var claimsPrincipalProps = typeof(ClaimsPrincipal).GetProperties();
+                var genericPrincipalProps = typeof(GenericPrincipal).GetProperties();
+
+                var fallbackPrincipalProps = typeof(FallbackPrincipal).GetProperties();
+
+                var appUserProps = typeof(ApplicationUser).GetProperties();
+
+                var principalProps = claimsPrincipalProps.Select(x => x.Name)
+                    .Union(genericPrincipalProps.Select(x => x.Name))
+                    .Union(appUserProps.Select(x => x.Name))
+                    .Union(fallbackPrincipalProps.Select(x => x.Name))
+                    .Concat(ManualBlackListedContentProperties)
+                    .Distinct()
+                    .ToList();
+
+                foreach (var whitelisted in WhiteListedCustomProperties)
+                    principalProps.Remove(whitelisted);
+
+                principalProps.Add("Id");
+                principalProps.Add("AuthenticationType");
+
+                _BlackListedUserProperties = principalProps.ToArray();
+            }
+
+            return _BlackListedUserProperties;
+        }
+    }
+
+    static ConcurrentDictionary<int, PropertyInfo[]> GetPublicInstancePropertiesCache = new();
+    static ConcurrentDictionary<int, PropertyInfo[]> GetPublicIdentityPropertiesCache = new();
 
     static bool IsPropertyElligibleAsPropData(PropertyInfo property, bool isModelContentDataType)
     {
@@ -165,7 +178,6 @@ public static class ObjectExtensions
         if (property.GetCustomAttribute<JsonIgnoreAttribute>() != null) return false;
 
         return true;
-
     }
 
     static PropertyInfo[] GetPublicInstanceProperties(Type type, bool isModelContentDataType)
@@ -180,6 +192,25 @@ public static class ObjectExtensions
             {
                 if (IsPropertyElligibleAsPropData(property, isModelContentDataType))
                     cache.Add(property);
+            }
+
+            return cache.ToArray();
+        });
+    }
+
+    static PropertyInfo[] GetPublicIdentityProperties(Type type)
+    {
+        return GetPublicIdentityPropertiesCache.Cache(type.GetHashCode(), () =>
+        {
+            var properties = GetPublicInstanceProperties(type, false);
+
+            var cache = new List<PropertyInfo>();
+
+            foreach (var property in properties)
+            {
+                if (BlackListedUserProperties.Contains(property.Name)) continue;
+
+                cache.Add(property);
             }
 
             return cache.ToArray();
@@ -203,7 +234,7 @@ public static class ObjectExtensions
 
         var result = new Dictionary<string, object>();
 
-        int level = 0;
+        const int level = 0;
         foreach (var property in properties)
         {
             ConvertPropertyToDictionaryData(model, type, property, result, forceCamelCase, printNullValues, ignorePropertyNames, false, level);
@@ -243,13 +274,12 @@ public static class ObjectExtensions
             return;
         }
 
-
         if (forceCamelCase)
         {
             if (name.Length <= 1)
                 name = name.ToLower();
             else
-                name = char.ToLowerInvariant(name[0]) + name.Substring(1);
+                name = char.ToLowerInvariant(name[0]) + name[1..];
         }
 
         if (value == null)
@@ -383,7 +413,7 @@ public static class ObjectExtensions
         {
             if (value is IPrincipal || value is IdentityUser)
             {
-                var userProperties = GetPublicInstanceProperties(value.GetType(), true);
+                var userProperties = GetPublicIdentityProperties(value.GetType());
 
                 if (userProperties.Length == 0) return;
 

@@ -2,8 +2,15 @@
 
 using EPiServer.Core;
 
+using SystemLibrary.Common.Episerver.Users;
+
 namespace SystemLibrary.Common.Episerver.Tests;
 
+public class TestBlockInheritAndIdentity : TestBlock
+{
+    public CurrentUser TriggeringUser { get; set; }
+    public int InheritedInt { get; set; }
+}
 
 public class TestBlock : BlockData
 {

@@ -52,10 +52,10 @@ public static class XhtmlStringExtensions
 
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
 
-            var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
+            var data = xhtmlStringHelper.PropertyFor(_ => xhtmlString, new { SkipWrapperTag = skipWrapperTag });
             if (data == null)
             {
-                var msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
+                const string msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
 
                 Log.Error(msg + xhtmlString.ToHtmlString());
 
@@ -90,10 +90,10 @@ public static class XhtmlStringExtensions
 
             var xhtmlStringHelper = HtmlHelperFactory.Build<XhtmlString>();
 
-            var data = xhtmlStringHelper.PropertyFor(x => xhtmlString, new { SkipWrapperTag = skipWrapperTag, HasContainer = false, HasItemContainer = false });
+            var data = xhtmlStringHelper.PropertyFor(_ => xhtmlString, new { SkipWrapperTag = skipWrapperTag, HasContainer = false, HasItemContainer = false });
             if (data == null)
             {
-                var msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
+                const string msg = "Exception: block inside xhtmlstring could not be rendered (missing controller? missing view? react-error? ";
 
                 Log.Error(msg + xhtmlString.ToHtmlString());
 

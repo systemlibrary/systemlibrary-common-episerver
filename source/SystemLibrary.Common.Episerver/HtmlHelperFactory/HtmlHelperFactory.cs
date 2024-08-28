@@ -15,13 +15,13 @@ namespace SystemLibrary.Common.Episerver;
 /// <summary>
 /// Html Helper factory, to create a HtmlHelper instance
 /// </summary>
-public class HtmlHelperFactory
+public static class HtmlHelperFactory
 {
     //Creds to: https://stackoverflow.com/questions/42039269/create-custom-html-helper-in-asp-net-core/51466436#51466436
-    static ModelStateDictionary ModelStateDictionary = new ModelStateDictionary();
-    static HtmlHelperOptions HtmlHelperOptions = new HtmlHelperOptions();
-    static ControllerActionDescriptor ControllerActionDescriptor = new ControllerActionDescriptor();
-    static DummyIndexView DummyIndex = new DummyIndexView();
+    static ModelStateDictionary ModelStateDictionary = new();
+    static HtmlHelperOptions HtmlHelperOptions = new();
+    static ControllerActionDescriptor ControllerActionDescriptor = new();
+    static DummyIndexView DummyIndex = new();
     static ITempDataProvider TempDataProvider;
 
     static IHttpContextAccessor _HttpContextAccessor;
@@ -30,11 +30,7 @@ public class HtmlHelperFactory
     {
         get
         {
-            if (_HttpContextAccessor == null)
-            {
-                _HttpContextAccessor = Services.Get<IHttpContextAccessor>();
-            }
-            return _HttpContextAccessor;
+            return _HttpContextAccessor ??= Services.Get<IHttpContextAccessor>();
         }
     }
 

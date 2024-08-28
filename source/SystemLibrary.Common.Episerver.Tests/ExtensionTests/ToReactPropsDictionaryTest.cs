@@ -41,6 +41,38 @@ public class ToReactPropsDictionaryTest
     }
 
     [TestMethod]
+    public void Convert_Inherited_And_CurrentUser_Props_Success()
+    {
+        TestBlockInheritAndIdentity model = new TestBlockInheritAndIdentity();
+
+        model.TriggeringUser = new Users.CurrentUser();
+        model.InheritedInt = 999;
+        model.Year = 888;
+
+        var props = ToPropsDictionary.Invoke(null, new object[] { model, true, true, null }) as IDictionary<string, object>;
+
+        Assert.IsTrue(props.Count == 6, "Inherited props missing? " + props.Count);
+
+        Assert.IsTrue(props["year"] != null);
+        Assert.IsTrue(props["inheritedInt"] != null);
+
+        Assert.IsTrue(props.ContainsKey("triggeringUser"), "TriggeringUser missing");
+
+        var triggeringUser = props["triggeringUser"] as IDictionary<string, object>;
+
+        Assert.IsTrue(triggeringUser != null, "TriggeringUser is null");
+
+        Assert.IsTrue(triggeringUser.ContainsKey("isCmsUser"), "1");
+        Assert.IsTrue(triggeringUser.ContainsKey("isCmsUser"), "2");
+        Assert.IsTrue(triggeringUser.ContainsKey("name"), "3");
+        Assert.IsTrue(triggeringUser.ContainsKey("givenName"), "4 ");
+        Assert.IsTrue(triggeringUser.ContainsKey("surname"), "5 ");
+        Assert.IsTrue(triggeringUser.ContainsKey("phoneNumber"), "6 ");
+        Assert.IsTrue(triggeringUser.ContainsKey("email"), "7");
+        Assert.IsTrue(triggeringUser.ContainsKey("comment"), "8");
+    }
+
+    [TestMethod]
     public void Convert_Simple_Poco_Returns_Properties_Success()
     {
         var model = new TestBlock();
