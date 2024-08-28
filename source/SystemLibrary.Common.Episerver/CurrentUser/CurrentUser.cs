@@ -7,7 +7,7 @@ using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Web;
 using SystemLibrary.Common.Web.Extensions;
 
-namespace SystemLibrary.Common.Episerver;
+namespace SystemLibrary.Common.Episerver.Users;
 
 /// <summary>
 /// CurrentUser can be injected or 'new CurrentUser()' whenever you need it

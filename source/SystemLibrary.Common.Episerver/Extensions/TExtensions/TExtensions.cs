@@ -21,10 +21,8 @@ public static partial class TExtensions
     /// <para>Simply call ReactDOM.Hydrate or the React 18 version of hydration.</para>
     /// <para>Throws exception if invalid combinations in arguments.</para>
     /// Should not throw if it executes, if a React rendering error occurs it is logged and printed in the DOM.
-    /// <list>
-    /// <item>- The div rendered has a class 'ssr-errored' which can be used to hide it in non-dev environments</item>
-    /// <item>- The div only contains the message of the erorr, not stacktrace</item>
-    /// </list>
+    /// <para>- The div rendered has a class 'ssr-errored' which can be used to hide it in non-dev environments</para>
+    /// <para>- The div only contains the message of the erorr, not stacktrace</para>
     /// <para>Always skipped property names: CurrentPage, CurrentBlock</para>
     /// </summary>
     /// <remarks>
@@ -36,7 +34,7 @@ public static partial class TExtensions
     {
         if (model == null)
         {
-            Log.Error("Model is null in ReactServerSideRender for cssclass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
+            Log.Error("Model is null in ReactServerSideRender for cssClass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
 
             var path = HttpContextInstance.Current?.Request.Url();
 
@@ -81,13 +79,13 @@ public static partial class TExtensions
         {
             Log.Error(ex);
 
-            if (ex.Message.Contains("Could not find a component named "))
+            if (ex.Message.Contains("not find a comp") || ex.Message.Contains("likely forgot to export"))
             {
-                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName + "=your import;.  Or did you forget to add it to App_Start\\ReactConfig.cs?<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName + "=your import;. Or did you forget to add it to App_Start\\ReactConfig.cs? Or a typo?<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
             }
             else
             {
-                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload your changes after this error<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
             }
         }
 

@@ -5,6 +5,7 @@ using System.Reflection;
 
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.SpecializedProperties;
 using EPiServer.Validation;
 
 using SystemLibrary.Common.Episerver.Extensions;
@@ -13,9 +14,8 @@ namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
 /// Validator class supports Error, Warning and Information messages displayed upon when editors in the CMS clicks 'Publish'
-/// 
-/// - Error messages prevents the content from being published
-/// - Info and Warning messages does not prevent the content from being published
+/// <para>- Error messages prevents the content from being published</para>
+/// <para>- Info and Warning messages does not prevent the content from being published</para>
 /// </summary>
 /// <example>
 /// <code>
@@ -100,13 +100,12 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     /// <summary>
     /// Display 'red error message' on publishing content
-    /// - This prevents the content from being published
-    /// 
+    /// <para>- This prevents the content from being published</para>
     /// Default 'message' is set to "must be set"
-    /// 
-    /// Note:
-    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
+    /// <remarks>
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
+    /// </remarks>
     /// <example>
     /// <code>
     /// public override void OnValidate(StartPage instance) 
@@ -125,14 +124,13 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     /// <summary>
     /// Display 'orange warning message' on publishing content
-    /// - This does not prevent the content from being published
-    /// 
+    /// <para>- This does not prevent the content from being published</para>
     /// Default 'message' is set to "should be set"
-    /// 
-    /// Note:
-    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
-    ///   /// <example>
+    /// <remarks>
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
+    /// </remarks>
+    /// <example>
     /// <code>
     /// public override void OnValidate(StartPage instance) 
     /// {
@@ -150,13 +148,12 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
 
     /// <summary>
     /// Display 'blue info message' on publishing content
-    /// - This does not prevent the content from being published
-    /// 
+    /// <para>- This does not prevent the content from being published</para>
     /// Default 'message' is set to "can be set"
-    /// 
-    /// Note:
-    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
     /// </summary>
+    /// <remarks>
+    /// Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already
+    /// </remarks>
     /// <example>
     /// <code>
     /// public override void OnValidate(StartPage instance) 
@@ -174,16 +171,29 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
     }
 
     /// <summary>
-    /// Returns true if the value has some content, else false
-    /// 
-    /// A simple check that they are not null and contains at least some value, for properties of type:
-    /// string, int, bool, ContentReference, ContentArea, XhtmlString, IList, DateTime, Uri and Url
+    /// Returns true if the value is something, else false
+    /// <para>A quick and simple validation to see that the 'value' is filled out with something, for properties of type:</para>
+    /// string, int, ContentReference, LinkItem, LinkItemCollection, ContentArea, XhtmlString, IList, DateTime, Uri, ContentLink, Url and Enums
     /// </summary>
+    /// <remarks>
+    /// Simple check to validate that input in string, xhtmlstring or similar is something more than a blank
+    /// <para>Simple check to validate that links at least have a href, does not force a title nor a name</para>
+    /// Simple check that content area has at least one item
+    /// <para>Simple check that an IList has at least one item</para>
+    /// </remarks>
     public bool IsValid(object value)
     {
         if (value == null || value == "" || value + "" == "0" || value == " " || (value is DateTime dt && dt == DateTime.MinValue))
         {
             return false;
+        }
+        else if (value is LinkItem li)
+        {
+            return li != null && li.Href != null;
+        }
+        else if (value is LinkItemCollection lic)
+        {
+            return lic?.Count > 0;
         }
         else if (value is ContentReference contentReference)
         {
@@ -196,10 +206,6 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
         else if (value is ContentArea contentArea)
         {
             return contentArea.Is();
-        }
-        else if (value is bool b)
-        {
-            return b;
         }
         else if (value is Uri uri)
         {
@@ -216,6 +222,15 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
         else if (value is IList ilist)
         {
             return ilist.Count > 0;
+        }
+
+        try
+        {
+            var i = int.Parse(value.ToString());
+            return i != 0;
+        }
+        catch
+        {
         }
         return true;
     }
@@ -249,7 +264,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
                 ValidationType = ValidationErrorType.AttributeMatched
             });
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Validations.Add(new ValidationError
             {

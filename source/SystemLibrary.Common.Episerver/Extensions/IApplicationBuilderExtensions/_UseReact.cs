@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 
 using React.AspNet;
 
-using SystemLibrary.Common.Net;
 using SystemLibrary.Common.Net.Configurations;
 using SystemLibrary.Common.Net.Extensions;
 using SystemLibrary.Common.Web;
@@ -57,6 +56,6 @@ partial class IApplicationBuilderExtensions
         Log.Error(message + arg3 + "\n" + arg1.ToString());
 
         if (!EnvironmentConfig.IsProd)
-            HttpContextInstance.Current.Response.WriteAsync("<p style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ".<br/>Tip: Check your browsers console. <br/>Note: might need to restart app to reload changes</p>");
+            HttpContextInstance.Current.Response.WriteAsync("<div class='ssr-errored' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ".<br/>Tip: Check browsers console.<br/>Note: might need to restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
     }
 }

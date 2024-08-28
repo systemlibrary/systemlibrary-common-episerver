@@ -21,7 +21,7 @@ namespace SystemLibrary.Common.Episerver;
 
 /// <summary>
 /// Base Cms functions to use anywhere within your application
-/// - No more injecting things that you always need 
+/// <para>- No more injecting things that you always need</para>
 /// - No more fiddling around with where and how do I get the ContentRepository? ServiceLocator? ... do it once, in a Cms class
 /// </summary>
 /// <example>
@@ -159,7 +159,7 @@ public abstract class BaseCms
 
     /// <summary>
     /// CreateHostBuilder()
-    /// Creates a default CMS host builder
+    /// <para>Creates a default CMS host builder</para>
     /// - the 'T' is usually your 'Program.cs' or 'Startup.cs'
     /// </summary>
     /// <example>
@@ -231,13 +231,11 @@ public abstract class BaseCms
     /// <para>Fallback to http://localhost in a non web context</para>
     /// </summary>
     /// <remarks>
-    /// <list>
-    /// <item>Returns Primary Host if found</item>
-    /// <item>Fallback to first Undefined Type Host, that is not wildcard and contains a dot (.)</item>
-    /// <item>Fallback again to first Undefined Type Host, that is not wildcard, for instance "localhost:51011"</item>
-    /// <item>Fallback if no host was found, uses the Site Url configred</item>
-    /// <item>Last fallback, if no Site Url, for instance in a non web context (unit test/console), fall back to http://localhost</item>
-    /// </list>
+    /// <para>Returns Primary Host if found</para>
+    /// <para>Fallback to first Undefined Type Host, that is not wildcard and contains a dot (.)</para>
+    /// <para>Fallback again to first Undefined Type Host, that is not wildcard, for instance "localhost:51011"</para>
+    /// <para>Fallback if no host was found, uses the Site Url configred</para>
+    /// <para>Last fallback, if no Site Url, for instance in a non web context (unit test/console), fall back to http://localhost</para>
     /// Remember to register the proper site and hosts under 'Manage Websites' in Episerver CMS, which requires app restart after configuration changes to take affect
     /// </remarks>
     public static string PrimaryHostUrl

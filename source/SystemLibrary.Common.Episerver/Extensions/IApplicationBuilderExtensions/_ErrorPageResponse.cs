@@ -78,6 +78,7 @@ partial class IApplicationBuilderExtensions
                 pathLowered.StartsWith("/contentassets/", StringComparison.Ordinal) ||
                 pathLowered.StartsWith("/siteassets/", StringComparison.Ordinal))
             {
+                // TODO: Consider returning a dummy image, blank...
                 return;
             }
 
@@ -128,7 +129,10 @@ partial class IApplicationBuilderExtensions
             //    return;
             //}
 
-            var errorPagesCacheKey = "ErrorPagesList" + nameof(IApplicationBuilderExtensions) + nameof(ErrorPageResponse) + "#ErrorPagesList#";
+            // TODO: Cache if request is a simple GET for a URL, less than 12chars in path?
+            // TODO: Cache first 100 errors, that are GET for a URL?
+
+            var errorPagesCacheKey = "SysLibEpiErrorPagesList" + nameof(IApplicationBuilderExtensions) + nameof(ErrorPageResponse);
 
             var errorPages = Cache.Get<List<IErrorPage>>(errorPagesCacheKey);
             if (errorPages == null)
@@ -164,7 +168,7 @@ partial class IApplicationBuilderExtensions
 
                     if (controller == null)
                     {
-                        await context.Response.WriteAsync("Controller was found, but wrong type, must be a ControllerBase: " + errorControllerType.Name).ConfigureAwait(false);
+                        await context.Response.WriteAsync("Controller was found, but it does not inherit ControllerBase: " + errorControllerType.Name).ConfigureAwait(false);
                     }
                     else
                     {
@@ -173,6 +177,7 @@ partial class IApplicationBuilderExtensions
                         routeData.Values["controller"] = errorPageType.Name;
 
                         var actionContext = new ActionContext(context, routeData, new ControllerActionDescriptor());
+
                         controller.ControllerContext = new ControllerContext(actionContext);
 
                         var index = errorControllerType.GetMethod("Index");
@@ -199,7 +204,6 @@ partial class IApplicationBuilderExtensions
                     }
                 }
             }
-
         });
     }
 }

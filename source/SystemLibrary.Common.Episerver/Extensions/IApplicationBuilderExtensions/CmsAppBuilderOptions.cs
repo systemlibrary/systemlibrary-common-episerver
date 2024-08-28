@@ -23,20 +23,18 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
 
     /// <summary>
     /// Disallow serving known application files:
-    /// <list>
-    /// <item>- everything under the path ~/config</item>
-    /// <item>- everything under the path /bin/</item>
-    /// <item>- appSettings.json</item>
-    /// <item>- any .config filev</item>
-    /// <item>- any .dll file</item>
-    /// <item>- any .cs file</item>
-    /// <item>- any .cshtml file</item>
-    /// <item>- any .tsx file</item>
-    /// <item>- any .ts file</item>
-    /// <item>- any .mdf file</item>
-    /// <item>- any .sql file</item>
-    /// <item>- any .db file</item>
-    /// </list>
+    /// <para>- everything under the path ~/config</para>
+    /// <para>- everything under the path /bin/</para>
+    /// <para>- appSettings.json</para>
+    /// <para>- any .config filev</para>
+    /// <para>- any .dll file</para>
+    /// <para>- any .cs file</para>
+    /// <para>- any .cshtml file</para>
+    /// <para>- any .tsx file</para>
+    /// <para>- any .ts file</para>
+    /// <para>- any .mdf file</para>
+    /// <para>- any .sql file</para>
+    /// <para>- any .db file</para>
     /// </summary>
     /// <remarks>
     /// If set to True, this stops the pipeline and returns blank, even before StaticFileHandler, so if you need to host any of these file types register your own static file handler for those file types before or disable this one
@@ -47,11 +45,9 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// Enables loading of React Server Side through Node (V8 engine)
     /// <para>- does not load babel nor react, so your build must come with a React version and the already transpiled files for Node (basically "dist" folder)</para>
     /// Example might be:
-    /// <list>
-    /// <item>~/static/dist/vendor-react.js</item>
-    /// <item>~/static/dist/vendor-others.js</item>
-    /// <item>~/static/dist/server-side-app.js</item>
-    /// </list>
+    /// <para>~/static/dist/vendor-react.js</para>
+    /// <para>~/static/dist/vendor-others.js</para>
+    /// <para>~/static/dist/server-side-app.js</para>
     /// Where all these files are transpiled and minimized already before being loaded by the C# code
     /// </summary>
     public string[] ReactSsrScriptsInOrder;

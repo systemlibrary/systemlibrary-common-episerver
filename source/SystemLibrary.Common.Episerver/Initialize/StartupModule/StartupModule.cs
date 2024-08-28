@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Episerver.Initialize;
 
 /// <summary>
 /// Create your own InitializableModule by inheriting InitModule
-/// - No need to create both Initialize and Uninitialize as they come with a default empty implementation, unless you need both of course
+/// <para>- No need to create both Initialize and Uninitialize as they come with a default empty implementation, unless you need both of course</para>
 /// - Override the method(s) you need to use in your InitializableModule
 /// </summary>
 /// <example>

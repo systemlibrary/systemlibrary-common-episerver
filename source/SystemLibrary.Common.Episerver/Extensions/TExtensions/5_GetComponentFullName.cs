@@ -5,6 +5,7 @@ partial class TExtensions
     const string ViewModel = "ViewModel";
     const string ReactComponents = "reactComponents.";
     const string Model = "Model";
+
     static string GetComponentFullName(Type modelType, object model, string componentFullName)
     {
         if (componentFullName != null) return componentFullName;
