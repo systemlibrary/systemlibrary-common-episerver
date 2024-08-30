@@ -39,32 +39,33 @@ namespace SystemLibrary.Common.Episerver;
 /// </example>
 public class CurrentUser : ApplicationUser
 {
-    IPrincipal _Principal;
-    IPrincipal Principal => _Principal != null ? _Principal :
-        (_Principal = HttpContextInstance.Current?.User);
+    IPrincipal Principal()
+    {
+        return HttpContextInstance.Current?.User;
+    } 
 
-    public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
+    public bool IsAuthenticated => Principal()?.Identity?.IsAuthenticated == true;
     
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
     /// </summary>
-    public bool IsCmsUser() => IsAuthenticated && Principal.IsInAnyRole(Roles.CmsRoles);
+    public bool IsCmsUser() => IsAuthenticated && Principal().IsInAnyRole(Roles.CmsRoles);
 
     /// <summary>
     /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
     /// </summary>
-    public bool IsAdministrator() => IsAuthenticated && Principal.IsInAnyRole(Roles.AdminRoles);
+    public bool IsAdministrator() => IsAuthenticated && Principal().IsInAnyRole(Roles.AdminRoles);
 
     /// <summary>
     /// Returns true if current user is logged in and is in the role specified
     /// - Checking for an 'unauthenticated role' does not work
     /// </summary>
-    public bool IsInRole(string roleName) => IsAuthenticated && Principal.IsInAnyRole(roleName);
+    public bool IsInRole(string roleName) => IsAuthenticated && Principal().IsInAnyRole(roleName);
 
     /// <summary>
     /// Name of the Principal Identity
     /// </summary>
-    public string Name => Principal?.Identity?.Name ?? GetClaim(ClaimTypes.Name);
+    public string Name => Principal()?.Identity?.Name ?? GetClaim(ClaimTypes.Name);
 
     /// <summary>
     /// First name taken from claim 'GivenName'
@@ -101,7 +102,9 @@ public class CurrentUser : ApplicationUser
 
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
     {
-        if (Principal is ClaimsPrincipal claimsPrincipal)
+        var principal = Principal();
+
+        if (principal is ClaimsPrincipal claimsPrincipal)
         {
             if (claimsPrincipal?.Claims == null) return defaultValue;
 

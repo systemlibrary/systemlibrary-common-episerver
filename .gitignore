@@ -15,3 +15,5 @@
 
 # docfx
 _site/
+
+BenchmarkDotNet.Artifacts/
