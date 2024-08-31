@@ -49,8 +49,6 @@ public static partial class IServiceCollectionExtensions
             opt.PreviewTimeout = 60000;
         });
 
-    
-
         services.Configure<UploadOptions>(x =>
         {
             x.FileSizeLimit = Options.UploadLimitBytes;

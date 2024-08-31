@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using SystemLibrary.Common.Episerver.Users;
 
@@ -14,15 +12,9 @@ public class CurrentUserTests
     {
         var user = new CurrentUser();
 
-        try
-        {
-            var result = user.IsCmsUser || user.IsAdministrator || user.IsAuthenticated || user.IsApproved || user.IsLockedOut || user.IsInRole("Hello world");
-            Assert.IsFalse(result, "Result is true, expected false");
-        }
-        catch(Exception ex)
-        {
-            Assert.IsTrue(false, ex.ToString());
-        }
+        var result = user.IsCmsUser || user.IsAdministrator || user.IsAuthenticated || user.IsApproved || user.IsLockedOut || user.IsInRole("Hello world");
+        
+        Assert.IsFalse(result, "Result is true, expected false");
     }
 
     [TestMethod]
@@ -30,14 +22,8 @@ public class CurrentUserTests
     {
         var user = new CurrentUser();
 
-        try
-        {
-            var result = user.Name + user.GivenName + user.Surname + user.PhoneNumber + user.PhoneNumberConfirmed + user.Email + user.EmailConfirmed;
-            Assert.IsTrue(result == "FalseFalse", "Result got data " + result);
-        }
-        catch(Exception ex)
-        {
-            Assert.IsTrue(false, ex.ToString());
-        }
+        var result = user.Name + user.GivenName + user.Surname + user.PhoneNumber + user.PhoneNumberConfirmed + user.Email + user.EmailConfirmed;
+        
+        Assert.IsTrue(result == "FalseFalse", "Result got data " + result);
     }
 }

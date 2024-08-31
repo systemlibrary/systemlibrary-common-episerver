@@ -417,7 +417,7 @@ public class Program
 	...,
 	"systemLibraryCommonEpiserver": {
 		"debug": false,
-
+		
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
 			"allPropertiesScrollableDocumentHeader": false,

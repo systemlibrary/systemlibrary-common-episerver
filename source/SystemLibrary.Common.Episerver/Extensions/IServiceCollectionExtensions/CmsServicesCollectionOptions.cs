@@ -27,7 +27,6 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions
     /// <para>Defaults to: false</para>
-    /// 
     /// Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar
     /// </summary>
     public bool SkipInitialization = false;
@@ -35,7 +34,6 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// <summary>
     /// The default email of the default admin user
     /// <para>- Only used if the DB is empty</para>
-    /// 
     /// Note: assuming the default value, 'demo' is used as username, the text before @
     /// </summary>
     public string DefaultAdminEmail = "demo@systemlibrary.com";

@@ -22,9 +22,9 @@ partial class IApplicationBuilderExtensions
 
             if (EnvironmentConfig.IsLocal)
             {
-                config.SetReuseJavaScriptEngines(false);
+                config.SetReuseJavaScriptEngines(true);
                 config.SetUseDebugReact(false);
-                config.SetMaxUsagesPerEngine(2);
+                config.SetMaxUsagesPerEngine(1);
                 config.SetAllowJavaScriptPrecompilation(false);
             }
             else
@@ -42,7 +42,7 @@ partial class IApplicationBuilderExtensions
                     if (script[0] == '~')
                         config.AddScriptWithoutTransform(script);
                     else
-                        Log.Error("React script path invalid, must start with ~. " + script);
+                        Log.Error("React script path invalid, must start with '~', yours is: " + script);
                 }
             }
             config.ExceptionHandler = OnReactException;
