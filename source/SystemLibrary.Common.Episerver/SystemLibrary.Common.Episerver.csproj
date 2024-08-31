@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Configurations>Release</Configurations>
 		<LangVersion>latest</LangVersion>
-		<Version>7.10.0.26</Version>
+		<Version>7.10.0.27</Version>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<DebugType>none</DebugType>
 		<PlatformTarget>x64</PlatformTarget>

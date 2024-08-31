@@ -60,8 +60,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.26
-- Updated deps which reimplements HttpContextInstance to fix async race condition (fix)
+Release 7.10.0.27
+- CurrentUser getting HttpContextInstance and user once in CTOR (optimization)
 
 #### Version history
 - View git history of this file if interested
