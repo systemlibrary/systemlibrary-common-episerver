@@ -40,7 +40,7 @@ public class CurrentUser : ApplicationUser
 {
     ClaimsPrincipal GetPrincipal()
     {
-        return HttpContextInstance2.Current?.User;
+        return HttpContextInstance.Current?.User;
     }
 
     public bool IsAuthenticated => GetPrincipal()?.Identity?.IsAuthenticated == true;
@@ -101,14 +101,15 @@ public class CurrentUser : ApplicationUser
 
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
     {
-        if (GetPrincipal()?.Claims == null) return defaultValue;
+        var p = GetPrincipal();
+        if (p?.Claims == null) return defaultValue;
 
-        var claim1 = GetPrincipal().Claims.FirstOrDefault(x => x.Type == type);
+        var claim1 = p.Claims.FirstOrDefault(x => x.Type == type);
         if (claim1 != null) return claim1.Value;
 
         if (typeFallback != null)
         {
-            var claim2 = GetPrincipal().Claims.FirstOrDefault(x => x.Type == typeFallback);
+            var claim2 = p.Claims.FirstOrDefault(x => x.Type == typeFallback);
             if (claim2 != null) return claim2.Value;
         }
 
