@@ -97,7 +97,7 @@ public static partial class IServiceCollectionExtensions
 
         services = AddCommonCmsServices<TLogWriter>(services, options);
 
-        services.AddScoped<T>();
+        services.AddTransient<T>();
 
         return services;
     }
