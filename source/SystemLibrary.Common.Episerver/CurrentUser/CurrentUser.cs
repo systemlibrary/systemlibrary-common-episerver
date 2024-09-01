@@ -38,37 +38,33 @@ namespace SystemLibrary.Common.Episerver;
 /// </example>
 public class CurrentUser : ApplicationUser
 {
-    ClaimsPrincipal Principal;
-    bool _IsAuthenticated;
-
-    public CurrentUser()
+    ClaimsPrincipal GetPrincipal()
     {
-        Principal = HttpContextInstance.Current?.User;
-        _IsAuthenticated = Principal?.Identity?.IsAuthenticated == true;
+        return HttpContextInstance2.Current?.User;
     }
 
-    public bool IsAuthenticated => _IsAuthenticated;
+    public bool IsAuthenticated => GetPrincipal()?.Identity?.IsAuthenticated == true;
     
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
     /// </summary>
-    public bool IsCmsUser() => IsAuthenticated && Principal.IsInAnyRole(Roles.CmsRoles);
+    public bool IsCmsUser() => IsAuthenticated && GetPrincipal().IsInAnyRole(Roles.CmsRoles);
 
     /// <summary>
     /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
     /// </summary>
-    public bool IsAdministrator() => IsAuthenticated && Principal.IsInAnyRole(Roles.AdminRoles);
+    public bool IsAdministrator() => IsAuthenticated && GetPrincipal().IsInAnyRole(Roles.AdminRoles);
 
     /// <summary>
     /// Returns true if current user is logged in and is in the role specified
     /// - Checking for an 'unauthenticated role' does not work
     /// </summary>
-    public bool IsInRole(string roleName) => IsAuthenticated && Principal.IsInAnyRole(roleName);
+    public bool IsInRole(string roleName) => IsAuthenticated && GetPrincipal().IsInAnyRole(roleName);
 
     /// <summary>
     /// Name of the Principal Identity
     /// </summary>
-    public string Name => IsAuthenticated ? Principal.Identity?.Name ?? GetClaim(ClaimTypes.Name) ?? "" : "";
+    public string Name => IsAuthenticated ? GetPrincipal().Identity?.Name ?? GetClaim(ClaimTypes.Name) ?? "" : "";
 
     /// <summary>
     /// First name taken from claim 'GivenName'
@@ -105,14 +101,14 @@ public class CurrentUser : ApplicationUser
 
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
     {
-        if (Principal?.Claims == null) return defaultValue;
+        if (GetPrincipal()?.Claims == null) return defaultValue;
 
-        var claim1 = Principal.Claims.FirstOrDefault(x => x.Type == type);
+        var claim1 = GetPrincipal().Claims.FirstOrDefault(x => x.Type == type);
         if (claim1 != null) return claim1.Value;
 
         if (typeFallback != null)
         {
-            var claim2 = Principal.Claims.FirstOrDefault(x => x.Type == typeFallback);
+            var claim2 = GetPrincipal().Claims.FirstOrDefault(x => x.Type == typeFallback);
             if (claim2 != null) return claim2.Value;
         }
 

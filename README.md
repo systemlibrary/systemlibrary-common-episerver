@@ -60,8 +60,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Version
-Release 7.10.0.28
-- Transient current user for thread safety as the CTOR now uses HttpContext (fix)
+Release 7.10.0.29
+- Updated dep trying to resolve a race condition/thread context switching with asynclocal/whatnot (fix)
 
 #### Version history
 - View git history of this file if interested
