@@ -19,13 +19,13 @@ partial class TExtensions
 
         if (model is IContent icontent)
         {
-            if(icontent.ContentLink == null || icontent.ContentLink.ID <= 0)
+            if (icontent.ContentLink == null || icontent.ContentLink.ID <= 0)
             {
                 return "c-" + icontent.Name + "-" + icontent.ContentTypeID + "-" + jsonProps.Length;
             }
             return "c-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
         }
-        
+
         var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
 
         if (jsonProps.Length > 5)
@@ -74,10 +74,14 @@ partial class TExtensions
             if (property.Value is Url u)
             {
                 ssrId.Append("u" + u?.OriginalString?.Length);
+                if(u?.OriginalString?.Length > 2)
+                {
+                    ssrId.Append(GetValidChar(u.OriginalString[u.OriginalString.Length - 2]));
+                }
                 continue;
             }
 
-            if (ssrId.Length > 128)
+            if (ssrId.Length > 148)
             {
                 continue;
             }
@@ -125,10 +129,24 @@ partial class TExtensions
                 ssrId.Append(cr?.ID + "c" + cr?.WorkID);
 
             else if (property.Value is ContentArea ca)
-                ssrId.Append("CA" + ca?.Count);
+            {
+                ssrId.Append("CA" + ca?.Count + "");
+                if (ca?.Count > 0)
+                {
+                    ssrId.Append("C" + ca.FilteredItems?.FirstOrDefault()?.ContentLink?.ID);
+
+                    if (ca?.Count > 1)
+                        ssrId.Append("C" + ca.FilteredItems?.LastOrDefault()?.ContentLink?.ID);
+                }
+            }
 
             else if (property.Value is LinkItemCollection lic)
+            {
                 ssrId.Append("LC" + lic?.Count);
+
+                if (lic?.Count > 0)
+                    ssrId.Append("L" + lic.FirstOrDefault()?.Href?.GetHashCode());
+            }
 
             else if (property.Value is LinkItem li)
                 ssrId.Append(li.Href?.Length + "LI" + (li.Text.GetHashCode() % 100000));
@@ -137,7 +155,7 @@ partial class TExtensions
                 ssrId.Append("E" + property.Key[0]);
 
             else if (property.Value is DateTime dt)
-                ssrId.Append("D" + dt.Day + "-" + dt.Hour);
+                ssrId.Append("D" + dt.Day + "-" + dt.Month + "-" + dt.Hour);
 
             else
             {
@@ -150,7 +168,7 @@ partial class TExtensions
 
     static string GetValidString(int l, char c1, char c2, char c3, char c4)
     {
-        return GetValidChar(c3) + "" + GetValidChar(c1) + "-" + l + "" + GetValidChar(c2)  + "" + GetValidChar(c4);
+        return GetValidChar(c3) + "" + GetValidChar(c1) + "-" + l + "" + GetValidChar(c2) + "" + GetValidChar(c4);
     }
 
     static char GetValidChar(char c)

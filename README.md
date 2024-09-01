@@ -64,6 +64,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - 7.14.0.1
 - Updated deps 
 - ReactServerSideRender now converts all children up to a depth of 16 to Properties for IEnumerable/IList properties, easily use ContentArea as a means to create data for your React Component (breaking change)
+- SsrId can be up to 148 char
+- SsrId adds a char or two additional from ContentArea, Url and LinkItemCollection
 
 #### Major Breaking Versions
 - 7.13.0.1

@@ -38,8 +38,11 @@ namespace SystemLibrary.Common.Episerver.Users;
 /// </example>
 public class CurrentUser : ApplicationUser
 {
-    IPrincipal _Principal;
-    IPrincipal Principal => _Principal ??= HttpContextInstance.Current?.User;
+    IPrincipal Principal;
+    public CurrentUser()
+    {
+         Principal = HttpContextInstance.Current?.User;
+    }
 
     public bool IsAuthenticated => Principal?.Identity?.IsAuthenticated == true;
     

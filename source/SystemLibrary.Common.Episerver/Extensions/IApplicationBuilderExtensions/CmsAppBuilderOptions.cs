@@ -53,6 +53,21 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     public string[] ReactSsrScriptsInOrder;
 
     /// <summary>
+    /// Allow javascript precompilation true or false
+    /// </summary>
+    public bool ReactSsrAllowJsPrecompilation = true;
+
+    /// <summary>
+    /// Max usages per engine when environment is 'local'
+    /// </summary>
+    public int ReactSsrMaxUsagesPerEngineLocal = 1;
+
+    /// <summary>
+    /// Max usages per engine before it resets when environment is not 'local'
+    /// </summary>
+    public int ReactSsrMaxUsagesPerEngineNonLocal = 5000;
+
+    /// <summary>
     /// Enable the IErrorPage interface middleware
     /// <para>Implement your own ErrorPage.cs and a View, and inherit/implement IErrorPage interface</para>
     /// <para>Set then the StatusCode on the ErrorPage.cs inside Epi UI to let that page respond to for instance any 404 in your whole application</para>

@@ -121,7 +121,7 @@
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
 	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.8.0.10" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.8.0.12" />
 	</ItemGroup>
 
 	<PropertyGroup>
