@@ -39,12 +39,12 @@ partial class TExtensions
         }
         else
         {
-            ssrId.Append(model.GetType().GetHashCode());
+            ssrId.Append(model.GetType().GetHashCode() % 1000000);
         }
 
         if (model is IContent content)
         {
-            ssrId.Append("-" + content.Name?.GetHashCode());
+            ssrId.Append("-" + content.Name?.GetHashCode() % 1000000);
         }
 
         var propCount = props.Count;
@@ -74,7 +74,7 @@ partial class TExtensions
             if (property.Value is Url u)
             {
                 ssrId.Append("u" + u?.OriginalString?.Length);
-                if(u?.OriginalString?.Length > 2)
+                if (u?.OriginalString?.Length > 2)
                 {
                     ssrId.Append(GetValidChar(u.OriginalString[u.OriginalString.Length - 2]));
                 }
@@ -101,7 +101,7 @@ partial class TExtensions
                     ssrId.Append(GetValidString(sb.Length, sb[index: 3], sb[4], sb[5], sb[sb.Length - 5]));
                 }
                 else if (sb.Length > 5)
-                    ssrId.Append(sb.GetHashCode() % 1000000);
+                    ssrId.Append(sb.GetHashCode() % 100000);
                 else
                     ssrId.Append(sb.Length + sb.ToString());
             }
@@ -116,7 +116,7 @@ partial class TExtensions
                     ssrId.Append(GetValidString(txt.Length, txt[3], txt[4], txt[5], txt[txt.Length - 5]));
                 }
                 else if (txt.Length > 5)
-                    ssrId.Append(txt.GetHashCode() % 1000000);
+                    ssrId.Append(txt.GetHashCode() % 100000);
                 else if (txt.Length >= 4)
                     ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], txt[3]));
                 else if (txt.Length == 3)
@@ -145,11 +145,16 @@ partial class TExtensions
                 ssrId.Append("LC" + lic?.Count);
 
                 if (lic?.Count > 0)
-                    ssrId.Append("L" + lic.FirstOrDefault()?.Href?.GetHashCode());
+                {
+                    ssrId.Append("L" + (lic.FirstOrDefault()?.Href?.GetHashCode() % 10000));
+
+                    if (lic.Count > 1)
+                        ssrId.Append("L" + lic.LastOrDefault()?.Href?.Length);
+                }
             }
 
             else if (property.Value is LinkItem li)
-                ssrId.Append(li.Href?.Length + "LI" + (li.Text.GetHashCode() % 100000));
+                ssrId.Append(li.Href?.Length + "LI" + (li.Text.GetHashCode() % 10000));
 
             else if (property.Value is IEnumerable en)
                 ssrId.Append("E" + property.Key[0]);
