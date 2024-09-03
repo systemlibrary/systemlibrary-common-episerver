@@ -50,7 +50,7 @@ public static class ContentReferenceExtensions
     /// var textBlock = contentReference.To&lt;TextBlock&gt;();
     /// </code>
     /// </example>
-    public static T To<T>(this ContentReference contentReference) where T : ContentData
+    public static T To<T>(this ContentReference contentReference) where T : IContentData
     {
         if (contentReference.IsNot()) return default;
 

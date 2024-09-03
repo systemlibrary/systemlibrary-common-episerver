@@ -121,6 +121,8 @@ public abstract class BaseCms
         throw new Exception("Not yet implemented");
     }
 
+
+
     /// <summary>
     /// Returns true if curent request is inside edit mode, else false
     /// </summary>
