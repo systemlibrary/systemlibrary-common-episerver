@@ -25,14 +25,14 @@ partial class IApplicationBuilderExtensions
                 config.SetReuseJavaScriptEngines(true);
                 config.SetUseDebugReact(false);
                 config.SetMaxUsagesPerEngine(options.ReactSsrMaxUsagesPerEngineLocal);
-                config.SetAllowJavaScriptPrecompilation(options.ReactSsrAllowJsPrecompilation);
+                config.SetAllowJavaScriptPrecompilation(false);
             }
             else
             {
                 config.SetReuseJavaScriptEngines(true);
                 config.SetUseDebugReact(false);
                 config.SetMaxUsagesPerEngine(options.ReactSsrMaxUsagesPerEngineNonLocal);
-                config.SetAllowJavaScriptPrecompilation(options.ReactSsrAllowJsPrecompilation);
+                config.SetAllowJavaScriptPrecompilation(true);
             }
 
             foreach (var script in options.ReactSsrScriptsInOrder)
