@@ -86,9 +86,9 @@ public static partial class IServiceCollectionExtensions
         where T : IdentityUser, IUIUser, new()
         where TLogWriter : class, ILogWriter
     {
-        services.AddCmsAspNetIdentity<T>();
-
         services = AddCommonCmsServices<TLogWriter>(services, options);
+
+        services.AddCmsAspNetIdentity<T>();
 
         services.AddScoped<T>();
 

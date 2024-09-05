@@ -61,10 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.1
-- ReactSsr options removed ReactSsrAllowJsPrecompilation (breaking change)
-- ReactSsr options reuse local bumped from 3 to 10 (optimization)
-
+- 7.15.0.2
+- Identity registered after CommonWebServices due to the DataProtection is added default by Optimizely CMS (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1
