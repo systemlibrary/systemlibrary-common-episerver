@@ -58,7 +58,6 @@ partial class IApplicationBuilderExtensions
 
             if (path.IsFile()) return;
 
-
             var pathLowered = path.ToLower();
 
             if (pathLowered.StartsWith("/error", StringComparison.Ordinal)) return;
@@ -71,10 +70,16 @@ partial class IApplicationBuilderExtensions
                 return;
             }
 
+            if (pathLowered.EndsWithAny(".php", ".html")) return;
+
+            if (pathLowered.StartsWith("/recycle-bin/", StringComparison.Ordinal)) return;
+
             if (pathLowered.StartsWithAny(StringComparison.Ordinal, "/favicon", "/.env", "/etc/")) return;
 
             if (pathLowered.Contains("wp-includes", StringComparison.Ordinal) ||
                 pathLowered.Contains("phpinfo", StringComparison.Ordinal) ||
+                pathLowered.EndsWith(".environment", StringComparison.Ordinal) ||
+                pathLowered.EndsWith("win.ini", StringComparison.Ordinal) ||
                 pathLowered.StartsWith("/.aws/", StringComparison.Ordinal)) return;
 
             if (pathLowered.StartsWith("/globalassets/", StringComparison.Ordinal) ||
@@ -85,7 +90,16 @@ partial class IApplicationBuilderExtensions
                 return;
             }
 
+            if (pathLowered.EndsWith(".yml", StringComparison.Ordinal)) return;
+            if (pathLowered.EndsWith(".ini", StringComparison.Ordinal)) return;
+
+            if (pathLowered.Contains("/util/errors", StringComparison.Ordinal)) return;
+
             var isAjaxRequest = context.Request.IsAjaxRequest();
+
+            // Ajax responsing methods in any conventional controllers for Pages, Blocks, Components, do nothing
+            if (isAjaxRequest && pathLowered.StartsWith("/content/", StringComparison.Ordinal)) return;
+
             var expectJsonResponse = isAjaxRequest;
             var expectXmlResponse = false;
 
@@ -234,3 +248,42 @@ partial class IApplicationBuilderExtensions
         });
     }
 }
+
+
+/*
+        if (path.EndsWith(".ttf") || path.EndsWith(".ttf?"))
+        {
+            context.Response.ContentType = "image/svg+xml";
+            context.Response.WriteAsync("").ConfigureAwait(false);
+context.Response.StatusCode = 200;
+            return;
+        }
+
+        if (path.EndsWith(".svg") || path.EndsWith(".svg?"))
+{
+    context.Response.ContentType = "image /svg+xml";
+    context.Response.WriteAsync("").ConfigureAwait(false);
+    return;
+}
+
+if (path.EndsWith(".css"))
+{
+    context.Response.ContentType = "text/css; charset=utf-8";
+    context.Response.WriteAsync("//404").ConfigureAwait(false);
+    return;
+}
+
+if (path.EndsWith(value: ".txt") || path.EndsWith(".md"))
+{
+    context.Response.ContentType = "text/plain; charset=utf-8";
+    context.Response.WriteAsync("404").ConfigureAwait(false);
+    return;
+}
+
+if (path.EndsWith(".js") || path.Contains(".js?"))
+{
+    context.Response.ContentType = "application/javascript; charset=utf-8";
+    context.Response.WriteAsync("// Not Found 404").ConfigureAwait(false);
+    return;
+}
+*/

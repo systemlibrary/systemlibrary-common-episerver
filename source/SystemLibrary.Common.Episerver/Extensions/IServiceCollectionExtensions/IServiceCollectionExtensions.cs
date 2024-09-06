@@ -27,14 +27,17 @@ public static partial class IServiceCollectionExtensions
 {
     internal static CmsServicesCollectionOptions Options;
 
-    public static IServiceCollection AddCommonCmsServices<TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
+    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
+        where T : IdentityUser, IUIUser, new()
         where TLogWriter : class, ILogWriter
     {
         SetOptions(options);
 
         services.AddCommonWebServices<TLogWriter>(Options);
 
-        services.AddApplicationCookie(Options);
+        services.AddCmsAspNetIdentity<T>();
+
+        services.AddApplicationCookie(options);
 
         services.AddCms();
 
@@ -79,16 +82,6 @@ public static partial class IServiceCollectionExtensions
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
-        return services;
-    }
-
-    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
-        where T : IdentityUser, IUIUser, new()
-        where TLogWriter : class, ILogWriter
-    {
-        services = AddCommonCmsServices<TLogWriter>(services, options);
-
-        services.AddCmsAspNetIdentity<T>();
 
         services.AddScoped<T>();
 

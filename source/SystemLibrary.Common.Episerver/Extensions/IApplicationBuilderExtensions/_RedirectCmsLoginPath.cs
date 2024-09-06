@@ -11,6 +11,9 @@ partial class IApplicationBuilderExtensions
 
         if (path.IsNot()) return;
 
+        if (path.StartsWith("/"))
+            path = path.Substring(1);
+
         app.UseRewriter(new RewriteOptions()
             .AddRedirect(path.ToPascalCase() + "$", "episerver/cms/")
             .AddRedirect(path.toCamelCase() + "$", "episerver/cms/")
