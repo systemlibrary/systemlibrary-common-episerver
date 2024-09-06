@@ -7,6 +7,8 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Text.Json.Serialization;
 
+using Castle.Core.Internal;
+
 using EPiServer;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
@@ -17,6 +19,7 @@ using EPiServer.SpecializedProperties;
 
 using Microsoft.AspNetCore.Identity;
 
+using SystemLibrary.Common.Episerver.Attributes;
 using SystemLibrary.Common.Episerver.Properties;
 using SystemLibrary.Common.Net.Extensions;
 
@@ -294,20 +297,30 @@ public static class ObjectExtensions
         {
             if (convertContentAreaToList)
             {
-                var contentData = contentArea.SelectFiltered<ContentData>();
-
-                if (contentData.Is())
+                var forceContentAreaRenderAsString = property.GetCustomAttribute<ServerSideRenderStringAttribute>();
+                if (forceContentAreaRenderAsString == null)
                 {
-                    var items = GetLoopableContentDataAsDictionary(contentData, forceCamelCase, printNullValues, ignorePropertyNames, model, level);
+                    var contentData = contentArea.SelectFiltered<ContentData>();
 
-                    result.Add(name, items);
+                    if (contentData.Is())
+                    {
+                        var items = GetLoopableContentDataAsDictionary(contentData, forceCamelCase, printNullValues, ignorePropertyNames, model, level);
+
+                        result.Add(name, items);
+                    }
+                    else
+                    {
+                        if (printNullValues)
+                        {
+                            result.Add(name, null);
+                        }
+                    }
                 }
                 else
                 {
-                    if (printNullValues)
-                    {
-                        result.Add(name, null);
-                    }
+                    Debug.Log("Property " + name + " is forced rendered as string due to attribute");
+
+                    result.Add(name, contentArea.Render());
                 }
             }
             else

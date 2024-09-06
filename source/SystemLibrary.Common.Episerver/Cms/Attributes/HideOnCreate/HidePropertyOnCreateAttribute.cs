@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SystemLibrary.Common.Episerver.Attributes;
+﻿namespace SystemLibrary.Common.Episerver.Attributes;
 
 // CREDS TO: https://www.david-tec.com/2017/07/hiding-required-properties-on-the-create-new-page-in-episerver/
 /// <summary>

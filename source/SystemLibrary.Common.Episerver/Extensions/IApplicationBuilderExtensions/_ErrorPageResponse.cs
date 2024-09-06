@@ -37,7 +37,6 @@ partial class IApplicationBuilderExtensions
 
             if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
 
-            Debug.Log("Error page response invoked on status " + statusCode);
 
             var path = context?.Request?.Path.HasValue == true ? context.Request.Path.Value : null;
 
@@ -121,6 +120,8 @@ partial class IApplicationBuilderExtensions
                     }
                 }
             }
+
+            Debug.Log("Error page response invoked on " + path + " status " + statusCode);
 
             if (expectJsonResponse)
             {

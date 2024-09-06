@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.6
-- Built-in ExceptionHandler now ignores null and less than 400 status codes (fix)
-- ErrorResponsePage now check equals on the accept header for XML and JSON responses
+- 7.15.0.7
+- ErrorResponsePage debug message moved further down, only occuring if response is triggering (fix)
+- Serversiderendering of contentareas, with SelectFiltered can now force nested ContentAreas to use the Normal String rendering through attribute ServerSideRenderString (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1
