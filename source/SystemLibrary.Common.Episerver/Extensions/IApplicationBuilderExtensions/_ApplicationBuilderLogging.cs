@@ -13,10 +13,13 @@ partial class IApplicationBuilderExtensions
         {
             appInError.Run(context =>
             {
-                if (context?.Response?.StatusCode != 503 && context?.Response?.StatusCode != 404)
+                var statusCode = context?.Response?.StatusCode ?? 0;
+                if (statusCode > 399 && statusCode != 404 && statusCode != 503)
                 {
                     var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
-                    Log.Error(contextFeature?.Error);
+
+                    if(contextFeature?.Error != null)
+                        Log.Error(contextFeature?.Error);
                 }
                 return null;
             });

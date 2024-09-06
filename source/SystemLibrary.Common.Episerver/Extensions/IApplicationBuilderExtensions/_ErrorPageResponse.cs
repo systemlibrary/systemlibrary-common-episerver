@@ -113,11 +113,11 @@ partial class IApplicationBuilderExtensions
 
                 if (accept != null)
                 {
-                    expectJsonResponse = accept.ToLower().Contains("application/json");
+                    expectJsonResponse = accept.ToLower() == "application/json";
 
                     if (!expectJsonResponse)
                     {
-                        expectXmlResponse = accept.ToLower().Contains("application/xml");
+                        expectXmlResponse = accept.ToLower() == "application/xml";
                     }
                 }
             }
@@ -144,7 +144,7 @@ partial class IApplicationBuilderExtensions
             // Only returned in a non-ajax request for now
             if (expectXmlResponse)
             {
-                context.Response.ContentType = "application/json";
+                context.Response.ContentType = "application/xml";
 
                 await context.Response.WriteAsync("<error><statusCode>" + statusCode + "</statusCode><statusMessage>" + ((HttpStatusCode)statusCode).ToString() + "</statusMessage></error>").ConfigureAwait(false);
                 return;
@@ -176,7 +176,11 @@ partial class IApplicationBuilderExtensions
                 Cache.Set(errorPagesCacheKey, errorPages, TimeSpan.FromSeconds(600));
             }
 
-            if (errorPages == null) return;
+            if (errorPages == null)
+            {
+                Debug.Log("UseErrorPageResponse is 'true', but no error pages were found");
+                return;
+            }
 
             foreach (var errorPage in errorPages)
             {
