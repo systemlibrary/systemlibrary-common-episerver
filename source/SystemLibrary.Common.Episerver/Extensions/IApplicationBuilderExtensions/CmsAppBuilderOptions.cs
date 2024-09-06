@@ -50,7 +50,7 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// <para>~/static/dist/server-side-app.js</para>
     /// Where all these files are transpiled and minimized already before being loaded by the C# code
     /// </summary>
-    public string[] ReactSsrScriptsInOrder;
+    public string[] ReactSsrScriptsInOrder = null;
 
     /// <summary>
     /// Max usages per engine when environment is 'local'
@@ -72,5 +72,5 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// <remarks>
     /// You can set it to true to enable the parts in the comment that does not involve IErrorPage, even if you do not have a single IErrorPage implementation
     /// </remarks>
-    public bool UseErrorPageResponse;
+    public bool UseErrorPageResponse = false;
 }

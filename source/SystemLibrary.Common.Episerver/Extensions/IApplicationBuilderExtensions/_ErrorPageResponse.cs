@@ -25,7 +25,7 @@ partial class IApplicationBuilderExtensions
 
     static void ErrorPageResponse(this IApplicationBuilder app, CmsAppBuilderOptions options)
     {
-        if (options.UseErrorPageResponse) return;
+        if (!options.UseErrorPageResponse) return;
 
         app.Use(async (context, next) =>
         {
@@ -36,6 +36,8 @@ partial class IApplicationBuilderExtensions
             if (statusCode <= 399 || statusCode == 503) return;
 
             if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
+
+            Debug.Log("Error page response invoked on status " + statusCode);
 
             var path = context?.Request?.Path.HasValue == true ? context.Request.Path.Value : null;
 
@@ -55,6 +57,7 @@ partial class IApplicationBuilderExtensions
                 return;
 
             if (path.IsFile()) return;
+
 
             var pathLowered = path.ToLower();
 
@@ -82,7 +85,9 @@ partial class IApplicationBuilderExtensions
                 return;
             }
 
-            var expectJsonResponse = context.Request.IsAjaxRequest();
+            var isAjaxRequest = context.Request.IsAjaxRequest();
+            var expectJsonResponse = isAjaxRequest;
+            var expectXmlResponse = false;
 
             if (!expectJsonResponse)
             {
@@ -93,7 +98,14 @@ partial class IApplicationBuilderExtensions
                     accept = context.Request.Headers["ACCEPT"].FirstOrDefault();
 
                 if (accept != null)
+                {
                     expectJsonResponse = accept.ToLower().Contains("application/json");
+
+                    if (!expectJsonResponse)
+                    {
+                        expectXmlResponse = accept.ToLower().Contains("application/xml");
+                    }
+                }
             }
 
             if (expectJsonResponse)
@@ -112,6 +124,15 @@ partial class IApplicationBuilderExtensions
                 });
 
                 await context.Response.WriteAsync(json).ConfigureAwait(false);
+                return;
+            }
+
+            // Only returned in a non-ajax request for now
+            if (expectXmlResponse)
+            {
+                context.Response.ContentType = "application/json";
+
+                await context.Response.WriteAsync("<error><statusCode>" + statusCode + "</statusCode><statusMessage>" + ((HttpStatusCode)statusCode).ToString() + "</statusMessage></error>").ConfigureAwait(false);
                 return;
             }
 
@@ -138,7 +159,7 @@ partial class IApplicationBuilderExtensions
             if (errorPages == null)
             {
                 errorPages = BaseCms.GetAllLatestVersionsOfContentType<IErrorPage>().ToList();
-                Cache.Set(errorPagesCacheKey, errorPages, TimeSpan.FromSeconds(300));
+                Cache.Set(errorPagesCacheKey, errorPages, TimeSpan.FromSeconds(600));
             }
 
             if (errorPages == null) return;
@@ -198,7 +219,13 @@ partial class IApplicationBuilderExtensions
                             }
                             catch (TargetParameterCountException e)
                             {
-                                throw new Exception(errorControllerType.Name + " and the Index method, does not have the right parameters. The first param should be 'currentPage' of your Error Page Type, and second parameter should be a string 'url'", e);
+                                var msg = errorControllerType.Name + " and the Index method, does not have the right parameters. The first param should be 'currentPage' of your Error Page Type, and second parameter should be a string 'url'. " + e.Message;
+                                
+                                Log.Error(msg);
+
+                                await context.Response.WriteAsync(msg).ConfigureAwait(false);
+
+                                //throw new Exception(errorControllerType.Name + " and the Index method, does not have the right parameters. The first param should be 'currentPage' of your Error Page Type, and second parameter should be a string 'url'", e);
                             }
                         }
                     }

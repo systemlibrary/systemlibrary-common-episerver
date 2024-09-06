@@ -61,8 +61,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.2
-- Identity registered after CommonWebServices due to the DataProtection is added default by Optimizely CMS (fix)
+- 7.15.0.4
+- ErrorPage response now returns an XML response if XML is missing (non ajax request for time being)
+- ErrorPageResponse now runs if the option is set to True and Not false (fix)
+- ErrorPages cached for 600 seconds, so take up to 600 seconds before New error pages will be part of a response (optimize)
+- GetSsrId now adds parent link id if the content has an id of <= 0, for newly generated non stored content
 
 #### Major Breaking Versions
 - 7.13.0.1

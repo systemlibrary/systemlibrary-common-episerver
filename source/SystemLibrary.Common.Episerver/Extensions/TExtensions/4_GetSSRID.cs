@@ -21,9 +21,9 @@ partial class TExtensions
         {
             if (icontent.ContentLink == null || icontent.ContentLink.ID <= 0)
             {
-                return "c-" + icontent.Name + "-" + icontent.ContentTypeID + "-" + jsonProps.Length;
+                return "c-" + (icontent.Name.GetHashCode() % 100000) + icontent.ParentLink?.ID + "-" + icontent.ContentTypeID + "-" + jsonProps.Length;
             }
-            return "c-" + icontent?.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
+            return "c-" + icontent.ContentLink?.ID + "-" + icontent.ContentLink?.WorkID + "-" + jsonProps.Length;
         }
 
         var ssrId = new StringBuilder("k-" + props.Count + "-" + jsonProps.Length);
@@ -42,36 +42,32 @@ partial class TExtensions
             ssrId.Append(model.GetType().GetHashCode() % 1000000);
         }
 
-        if (model is IContent content)
-        {
-            ssrId.Append("-" + content.Name?.GetHashCode() % 1000000);
-        }
-
         var propCount = props.Count;
 
         for (int i = 0; i < propCount; i++)
         {
             var property = props.ElementAt(i);
 
-            if (property.Value == null)
+            var value = property.Value;
+            if (value == null)
             {
                 ssrId.Append("o");
                 continue;
             }
 
-            if (property.Value is int number)
+            if (value is int number)
             {
                 ssrId.Append("i" + number);
                 continue;
             }
 
-            if (property.Value is bool b)
+            if (value is bool b)
             {
                 ssrId.Append("b" + (b ? "A" : "B"));
                 continue;
             }
 
-            if (property.Value is Url u)
+            if (value is Url u)
             {
                 ssrId.Append("u" + u?.OriginalString?.Length);
                 if (u?.OriginalString?.Length > 2)
@@ -88,7 +84,7 @@ partial class TExtensions
 
             if (ssrId.Length > 255) break;
 
-            if (property.Value is StringBuilder sb)
+            if (value is StringBuilder sb)
             {
                 if (sb == null)
                     continue;
@@ -106,7 +102,7 @@ partial class TExtensions
                     ssrId.Append(sb.Length + sb.ToString());
             }
 
-            else if (property.Value is string txt)
+            else if (value is string txt)
             {
                 if (txt.Length == 0)
                     ssrId.Append("X0");
@@ -125,10 +121,10 @@ partial class TExtensions
                     ssrId.Append(txt.Length + "" + txt);
             }
 
-            else if (property.Value is ContentReference cr)
+            else if (value is ContentReference cr)
                 ssrId.Append(cr?.ID + "c" + cr?.WorkID);
 
-            else if (property.Value is ContentArea ca)
+            else if (value is ContentArea ca)
             {
                 ssrId.Append("CA" + ca?.Count + "");
                 if (ca?.Count > 0)
@@ -140,7 +136,7 @@ partial class TExtensions
                 }
             }
 
-            else if (property.Value is LinkItemCollection lic)
+            else if (value is LinkItemCollection lic)
             {
                 ssrId.Append("LC" + lic?.Count);
 
@@ -153,13 +149,13 @@ partial class TExtensions
                 }
             }
 
-            else if (property.Value is LinkItem li)
+            else if (value is LinkItem li)
                 ssrId.Append(li.Href?.Length + "LI" + (li.Text.GetHashCode() % 10000));
 
-            else if (property.Value is IEnumerable en)
+            else if (value is IEnumerable en)
                 ssrId.Append("E" + property.Key[0]);
 
-            else if (property.Value is DateTime dt)
+            else if (value is DateTime dt)
                 ssrId.Append("D" + dt.Day + "-" + dt.Month + "-" + dt.Hour);
 
             else
