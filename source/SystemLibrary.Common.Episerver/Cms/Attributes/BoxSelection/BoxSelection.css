@@ -90,6 +90,12 @@
   top: -44% !important;
 }
 
+.systemLibraryCommonEpiserverBoxSelection--item-selected.systemLibraryCommonEpiserverBoxSelection-item.background-color--no:after,
+.systemLibraryCommonEpiserverBoxSelection--item-selected.systemLibraryCommonEpiserverBoxSelection-item.background-color--none:after,
+.systemLibraryCommonEpiserverBoxSelection--item-selected.systemLibraryCommonEpiserverBoxSelection-item.background-color--unset:after {
+  line-height: 88px !important;
+}
+
 .systemLibraryCommonEpiserverBoxSelection--item-selected.background-color--no:after,
 .systemLibraryCommonEpiserverBoxSelection--item-selected.background-color--none:after,
 .systemLibraryCommonEpiserverBoxSelection--item-selected.background-color--unset:after {

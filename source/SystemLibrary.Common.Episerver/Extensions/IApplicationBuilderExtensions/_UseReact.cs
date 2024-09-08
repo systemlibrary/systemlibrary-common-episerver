@@ -51,11 +51,11 @@ partial class IApplicationBuilderExtensions
 
     static void OnReactException(Exception arg1, string arg2, string arg3)
     {
-        var message = arg1.Message + " Component: " + arg2 ;
+        var message = arg1.Message + " Component: " + arg2;
 
         Log.Error(message + arg3 + "\n" + arg1.ToString());
 
         if (!EnvironmentConfig.IsProd)
-            HttpContextInstance.Current.Response.WriteAsync("<div class='ssr-errored' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ".<br/>Tip: Check browsers console.<br/>Note: might need to restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
+            HttpContextInstance.Current.Response.WriteAsync("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ".<br/>Tip: Check browsers console.<br/>Note: might need to restart APP to reload script changes<br/>Tip: Hide this error by css class '" + Globals.CssClassName.SsrError + "'</div>");
     }
 }

@@ -370,6 +370,8 @@
 
                         if (this.value === 0) {
                             this._selectBoxes();
+                        } else {
+                            console.warn("value is not 0, do not init select boxes");
                         }
                     }
                     catch (err) {

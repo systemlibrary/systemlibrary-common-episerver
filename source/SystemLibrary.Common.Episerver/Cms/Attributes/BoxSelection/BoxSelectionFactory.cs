@@ -29,9 +29,13 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
         var propertyName = metadata.PropertyName;
 
-        if (metadata.EditorConfiguration.Count > 2)
+        if (metadata.EditorConfiguration == null)
         {
-            return Enumerable.Empty<ISelectItem>();
+            Log.Error("metadata.EditorConfiguration is null for property " + propertyName + ", returning -99998 as value");
+            
+            boxes.Add(new SelectItem() { Text = "", Value = "-99998" });
+
+            return boxes;
         }
         try
         {

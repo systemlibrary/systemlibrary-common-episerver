@@ -22,4 +22,11 @@ internal static class Globals
     internal static Type ContentDataType = typeof(ContentData);
     internal static Type IPrincipalType = typeof(IPrincipal);
     internal static Type IdentityUserType = typeof(IdentityUser);
+
+    internal static class CssClassName
+    {
+        internal const string SsrError = "sle-ssr-error";
+        internal const string ViewExceptionError = "sle-view-error";
+        internal const string HtmlErrorResponse = "sle-html-error";
+    }
 }

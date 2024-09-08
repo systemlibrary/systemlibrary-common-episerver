@@ -21,7 +21,7 @@ public static partial class TExtensions
     /// <para>Simply call ReactDOM.Hydrate or the React 18 version of hydration.</para>
     /// <para>Throws exception if invalid combinations in arguments.</para>
     /// Should not throw if it executes, if a React rendering error occurs it is logged and printed in the DOM.
-    /// <para>- The div rendered has a class 'ssr-errored' which can be used to hide it in non-dev environments</para>
+    /// <para>- The div rendered has a class 'sle-ssr-error' which can be used to hide it in non-dev environments</para>
     /// <para>- The div only contains the message of the erorr, not stacktrace</para>
     /// <para>Always skipped property names: CurrentPage, CurrentBlock</para>
     /// </summary>
@@ -38,11 +38,11 @@ public static partial class TExtensions
 
             var path = HttpContextInstance.Current?.Request.Url();
 
-            if(path?.EndsWithAny(StringComparison.Ordinal, "Block", "Block/", "Component/", "Component") == true)
+            if (path?.EndsWithAny(StringComparison.Ordinal, "Block", "Block/", "Component/", "Component") == true)
             {
                 return new StringBuilder("");
             }
-            return new StringBuilder("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + (componentFullName ?? id) + "<br/>Exception: Model passed to server side rendering is null, cannot continue... Do you have duplicate controllers? Have you used Controller instead of Component?<br/>Tip: Hide this error through css class 'ssr-errored'</div>");
+            return new StringBuilder("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + (componentFullName ?? id) + "<br/>Exception: Model passed to server side rendering is null, cannot continue... Do you have duplicate controllers? Have you used Controller instead of Component?<br/>Tip: Hide this error through css class '" + Globals.CssClassName.SsrError + "'</div>");
         }
         var modelType = Validate(model, additionalProps, tagName, cssClass, renderClientOnly, renderServerOnly);
 
@@ -81,11 +81,11 @@ public static partial class TExtensions
 
             if (ex.Message.Contains("not find a comp") || ex.Message.Contains("likely forgot to export"))
             {
-                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName + "=your import;. Or did you forget to add it to App_Start\\ReactConfig.cs? Or a typo?<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
+                root.Append("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: Not found at server-side rendering. The component must be available from window object in your server-side script, so make sure you've exported it. Usually like this: window." + componentFullName + "=your import;. Or did you forget to add it to App_Start\\ReactConfig.cs? Or a typo?<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class '" + Globals.CssClassName.SsrError + "'</div>");
             }
             else
             {
-                root.Append("<div class='ssr-errored' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class 'ssr-errored'</div>");
+                root.Append("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class '" + Globals.CssClassName.SsrError + "'</div>");
             }
         }
 

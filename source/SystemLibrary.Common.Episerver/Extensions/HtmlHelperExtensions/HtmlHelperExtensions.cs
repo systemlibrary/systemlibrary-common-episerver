@@ -149,11 +149,11 @@ public static class HtmlHelperExtensions
             error = "A call to View() returned null, make sure no controller/component returns null as 'the view', or a view file was not found for block/component/page. " + error;
         }
 
-        if(error.Contains("was not found") && error.Contains("PartialContentController"))
+        if (error.Contains("was not found") && error.Contains("PartialContentController"))
         {
             error = "View is not found for a PartialContentController. If you are using 'BlockControllers' in C# 7 or newer, you must specify the full relative path to your block views, starting with ~/ and ending in .cshtml. Because there's a hardcoded path for all 'view components' (which block controllers use behind the scenes), that all views ends with Components/Default.cshtml. " + (model as Exception)?.Message;
         }
 
-        return new HtmlString("<div class=\"view-errored\" style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
+        return new HtmlString("<div class=\"" + Globals.CssClassName.ViewExceptionError + "\" style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
     }
 }

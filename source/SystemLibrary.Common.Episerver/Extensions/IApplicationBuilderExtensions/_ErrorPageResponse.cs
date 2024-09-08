@@ -37,70 +37,68 @@ partial class IApplicationBuilderExtensions
 
             if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
 
-
             var path = context?.Request?.Path.HasValue == true ? context.Request.Path.Value : null;
 
             if (path.IsNot()) return;
 
-            if (path == "/" ||
-                path.StartsWith("/400", StringComparison.Ordinal) ||
-                path.StartsWith("/401", StringComparison.Ordinal) ||
-                path.StartsWith("/403", StringComparison.Ordinal) ||
-                path.StartsWith("/404", StringComparison.Ordinal) ||
-                path.StartsWith("/405", StringComparison.Ordinal) ||
-                path.StartsWith("/406", StringComparison.Ordinal) ||
-                path.StartsWith("/500", StringComparison.Ordinal) ||
-                path.StartsWith("/502", StringComparison.Ordinal) ||
-                path.StartsWith("/504", StringComparison.Ordinal) ||
-                path.StartsWith("/505", StringComparison.Ordinal))
-                return;
+            var length = path.Length;
 
+            // No response for "/" nor "/a"
+            if (length <= 2) return;
+
+            if (length <= 4)
+            {
+                // No response for "/10", nor "/404", nor "/500"
+                if (char.IsDigit(path[1]) && char.IsDigit(path[2]))
+                {
+                    return;
+                }
+            }
+
+            // TODO Add option for a default Image, if set, we return that image on 404/500/502/504 for Images
             if (path.IsFile()) return;
 
             var pathLowered = path.ToLower();
 
-            if (pathLowered.StartsWith("/error", StringComparison.Ordinal)) return;
+            // Paths we just ignore errors on
+            if (pathLowered.StartsWith("/error", StringComparison.Ordinal) ||
+                pathLowered.StartsWith("/recycle-bin/", StringComparison.Ordinal) ||
+                pathLowered.StartsWith("/.aws/", StringComparison.Ordinal) ||
+                pathLowered.StartsWithAny(StringComparison.Ordinal, "/favicon", "/.env", "/etc/") ||
+                pathLowered.StartsWith("/util/", StringComparison.Ordinal) ||
+                pathLowered.StartsWith("/globalassets/", StringComparison.Ordinal) ||
+                pathLowered.StartsWith("/contentassets/", StringComparison.Ordinal) ||
+                pathLowered.StartsWith("/siteassets/", StringComparison.Ordinal)) return;
 
-            if (pathLowered.StartsWith("/util/login", StringComparison.Ordinal) || pathLowered.StartsWith("/episerver/", StringComparison.Ordinal))
+            // Paths we want to log errors on
+            if (pathLowered.StartsWith("/episerver/", StringComparison.Ordinal))
             {
-                if (pathLowered.Contains("stores/metadata/epi", StringComparison.Ordinal))
+                if (pathLowered.Contains("/metadata/", StringComparison.Ordinal))
                     Log.Error(path + " not found, 404");
 
                 return;
             }
 
-            if (pathLowered.EndsWithAny(".php", ".html")) return;
-
-            if (pathLowered.StartsWith("/recycle-bin/", StringComparison.Ordinal)) return;
-
-            if (pathLowered.StartsWithAny(StringComparison.Ordinal, "/favicon", "/.env", "/etc/")) return;
-
-            if (pathLowered.Contains("wp-includes", StringComparison.Ordinal) ||
-                pathLowered.Contains("phpinfo", StringComparison.Ordinal) ||
-                pathLowered.EndsWith(".environment", StringComparison.Ordinal) ||
-                pathLowered.EndsWith("win.ini", StringComparison.Ordinal) ||
-                pathLowered.StartsWith("/.aws/", StringComparison.Ordinal)) return;
-
-            if (pathLowered.StartsWith("/globalassets/", StringComparison.Ordinal) ||
-                pathLowered.StartsWith("/contentassets/", StringComparison.Ordinal) ||
-                pathLowered.StartsWith("/siteassets/", StringComparison.Ordinal))
+            // Paths we want to log debug info on
+            if (pathLowered.StartsWith("/systemlibrary"))
             {
-                // TODO: Consider returning a dummy image, blank...
+                Debug.Log(pathLowered + " " + statusCode);
                 return;
             }
 
-            if (pathLowered.EndsWith(".yml", StringComparison.Ordinal)) return;
-            if (pathLowered.EndsWith(".ini", StringComparison.Ordinal)) return;
-
-            if (pathLowered.Contains("/util/errors", StringComparison.Ordinal)) return;
+            // Paths that contains we just ignore
+            if (pathLowered.Contains("wp-includes", StringComparison.Ordinal) ||
+                pathLowered.Contains("phpinfo", StringComparison.Ordinal) ||
+                pathLowered.EndsWith(".environment", StringComparison.Ordinal)) return;
 
             var isAjaxRequest = context.Request.IsAjaxRequest();
 
-            // Ajax responsing methods in any conventional controllers for Pages, Blocks, Components, do nothing
+            // Ajax request towards Controllers for Pages, Blocks, Components, do nothing
             if (isAjaxRequest && pathLowered.StartsWith("/content/", StringComparison.Ordinal)) return;
 
             var expectJsonResponse = isAjaxRequest;
             var expectXmlResponse = false;
+            var expectHtmlResponse = false;
 
             if (!expectJsonResponse)
             {
@@ -117,11 +115,14 @@ partial class IApplicationBuilderExtensions
                     if (!expectJsonResponse)
                     {
                         expectXmlResponse = accept.ToLower() == "application/xml";
+
+                        if (!expectXmlResponse)
+                        {
+                            expectHtmlResponse = accept == "text/html";
+                        }
                     }
                 }
             }
-
-            Debug.Log("Error page response invoked on " + path + " status " + statusCode);
 
             if (expectJsonResponse)
             {
@@ -141,17 +142,23 @@ partial class IApplicationBuilderExtensions
                 await context.Response.WriteAsync(json).ConfigureAwait(false);
                 return;
             }
-
-            // Only returned in a non-ajax request for now
-            if (expectXmlResponse)
+            else if (expectXmlResponse)
             {
                 context.Response.ContentType = "application/xml";
 
                 await context.Response.WriteAsync("<error><statusCode>" + statusCode + "</statusCode><statusMessage>" + ((HttpStatusCode)statusCode).ToString() + "</statusMessage></error>").ConfigureAwait(false);
                 return;
             }
+            else if (expectHtmlResponse)
+            {
+                context.Response.ContentType = "text/html";
+
+                await context.Response.WriteAsync("<div class='" + Globals.CssClassName.HtmlErrorResponse + "'>" + statusCode + ": " + ((HttpStatusCode)statusCode).ToString() + "</div>").ConfigureAwait(false);
+                return;
+            }
 
             // TODO: Consider adding some kind of cache for some of the status codes based on path? only if query is blank?
+            // Add first 50 error responses to a Cache, any other is always recalc'd, but that means we easily serve top most errors rapidly
             //var relativeUrl = (pathLowered + context?.Request?.QueryString);
             //var viewCacheKey = nameof(ErrorPageResponse) + "ViewResult" + statusCode + (relativeUrl.GetHashCode() % 100).ToString() + Math.Min(relativeUrl.Length, 64);
             //var cachedViewData = Cache.Get<object[]>(viewCacheKey);
@@ -239,7 +246,7 @@ partial class IApplicationBuilderExtensions
                             catch (TargetParameterCountException e)
                             {
                                 var msg = errorControllerType.Name + " and the Index method, does not have the right parameters. The first param should be 'currentPage' of your Error Page Type, and second parameter should be a string 'url'. " + e.Message;
-                                
+
                                 Log.Error(msg);
 
                                 await context.Response.WriteAsync(msg).ConfigureAwait(false);
