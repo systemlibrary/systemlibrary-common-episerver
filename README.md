@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.7
-- ErrorResponsePage debug message moved further down, only occuring if response is triggering (fix)
-- Serversiderendering of contentareas, with SelectFiltered can now force nested ContentAreas to use the Normal String rendering through attribute ServerSideRenderString (fix)
+- 7.15.0.8
+- ErrorPageResponse ignoring paths with 1 char, and ignoring paths starting with two digits (/404...), and /systemlibrary (optimized)
+- ErrorPageREsponse if accept is HTML it returns a simple div with statusCode (feature)
 
 #### Major Breaking Versions
 - 7.13.0.1
