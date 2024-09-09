@@ -367,7 +367,7 @@ public static class ObjectExtensions
 
             if (genericType == Globals.ContentReferenceType || genericType.Inherits(Globals.ContentReferenceType))
             {
-                var list = new List<string>();
+                var list = new List<object>();
 
                 foreach (var contentRef in enumerable)
                 {
@@ -378,9 +378,30 @@ public static class ObjectExtensions
                         var crFriendlyUrl = cr.ToFriendlyUrl();
 
                         if(crFriendlyUrl.EndsWith(".jpg"))
-                            list.Add(crFriendlyUrl + "?quality=80");
+                            crFriendlyUrl = crFriendlyUrl + "?quality=80";
+
+                        var icontentData = cr.To<IContent>();
+
+                        var linkName = icontentData?.Name;
+
+                        if (forceCamelCase)
+                        {
+                            list.Add(new
+                            {
+                                id = cr.ID,
+                                linkName = linkName,
+                                url = crFriendlyUrl
+                            });
+                        }
                         else
-                            list.Add(crFriendlyUrl);
+                        {
+                            list.Add(new
+                            {
+                                Id = cr.ID,
+                                LinkName = linkName,
+                                Url = crFriendlyUrl
+                            });
+                        }
                     }
                 }
 

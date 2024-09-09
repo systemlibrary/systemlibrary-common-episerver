@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.9
-- IList<ContentReference> now converts to a list of Links in SSR (fix)
+- 7.15.0.10
+- IList<ContentReference> now converts to a list of objects in SSR (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1
