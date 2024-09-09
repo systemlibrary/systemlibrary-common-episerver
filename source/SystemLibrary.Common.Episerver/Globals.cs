@@ -22,6 +22,8 @@ internal static class Globals
     internal static Type ContentDataType = typeof(ContentData);
     internal static Type IPrincipalType = typeof(IPrincipal);
     internal static Type IdentityUserType = typeof(IdentityUser);
+    internal static Type ContentReferenceType = typeof(ContentReference);
+    internal static Type MediaDataType = typeof(MediaData);
 
     internal static class CssClassName
     {

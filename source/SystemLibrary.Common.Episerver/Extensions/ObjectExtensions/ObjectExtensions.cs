@@ -365,7 +365,28 @@ public static class ObjectExtensions
 
             var genericType = enumerableType.GetFirstGenericType();
 
-            if (genericType?.Inherits(Globals.ContentDataType) == true)
+            if (genericType == Globals.ContentReferenceType || genericType.Inherits(Globals.ContentReferenceType))
+            {
+                var list = new List<string>();
+
+                foreach (var contentRef in enumerable)
+                {
+                    if (contentRef == null) continue;
+
+                    if(contentRef is ContentReference cr)
+                    {
+                        var crFriendlyUrl = cr.ToFriendlyUrl();
+
+                        if(crFriendlyUrl.EndsWith(".jpg"))
+                            list.Add(crFriendlyUrl + "?quality=80");
+                        else
+                            list.Add(crFriendlyUrl);
+                    }
+                }
+
+                result.Add(name, list);
+            }
+            else if (genericType?.Inherits(Globals.ContentDataType) == true)
             {
                 try
                 {
