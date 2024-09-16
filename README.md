@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.10
-- IList<ContentReference> now converts to a list of objects in SSR (fix)
+- 7.15.0.11
+- IList<ContentReference> 'linkName' renamed to ContentName, now also checks if "IgnoredProperties" contains "ContentName" and it is then ignored (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1
