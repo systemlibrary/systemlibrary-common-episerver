@@ -7,14 +7,23 @@ partial class IServiceCollectionExtensions
 {
     static void AddApplicationCookie(this IServiceCollection services, CmsServicesCollectionOptions options)
     {
-        if (!options.AddApplicationCookie) return;
-     
-        services.ConfigureApplicationCookie(o =>
+        if (!options.AddApplicationCookies) return;
+
+        services.ConfigureApplicationCookie(opt =>
         {
-            o.ExpireTimeSpan = TimeSpan.FromMinutes(options.CmsUsersSignedInDurationMinutes);
-            o.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
-            o.Cookie.HttpOnly = true;
-            o.SlidingExpiration = options.CmsUsersSlidingExpiration;
+            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.UsersSignedInDuration);
+            opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+            opt.SlidingExpiration = options.UsersSlidingExpiration;
+            opt.Cookie.HttpOnly = true;
+        });
+
+        services.AddAuthentication()
+        .AddCookie("Cookies", opt =>
+        {
+            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.UsersSignedInDuration);
+            opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+            opt.SlidingExpiration = options.UsersSlidingExpiration;
+            opt.Cookie.HttpOnly = true;
         });
 
         if (options.CmsUsersMinimumPasswordLength > 0)

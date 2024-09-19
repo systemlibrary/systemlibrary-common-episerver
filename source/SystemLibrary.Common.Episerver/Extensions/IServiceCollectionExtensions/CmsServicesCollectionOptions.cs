@@ -9,11 +9,12 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Register the 'ApplicationCookie' to be the login cookie in the CMS
-    /// <para>- CmsUsersSlidingExpiration handles the sliding expiration duration</para>
-    /// - CmsUsersSignedInDurationMinutes handles cookie duration, default 180 min
+    /// <para>- Registered a service for cookie scheme "Cookies" to be used as a seperate login if wanted</para>
+    /// <para>- UsersSlidingExpiration handles the sliding expiration duration</para>
+    /// - UsersSignedInDuration handles cookie duration, default 180 min
     /// <para>- Sets sameSite as 'strict'</para>
     /// </summary>
-    public bool AddApplicationCookie = true;
+    public bool AddApplicationCookies = true;
 
     /// <summary>
     /// Minimum CMS users password length
@@ -23,13 +24,15 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Note: requires ConfigureApplicationCookie to be set to True
+    /// <para>- Sets both Cookies and Identity.Application scheme's sliding expiration flag</para>
     /// </summary>
-    public bool CmsUsersSlidingExpiration = true;
+    public bool UsersSlidingExpiration = false;
 
     /// <summary>
     /// Note: requires ConfigureApplicationCookie to be set to True
+    /// <para>- Sets both Cookies and Identity.Application scheme's signed in duration in minutes</para>
     /// </summary>
-    public int CmsUsersSignedInDurationMinutes = 180;
+    public int UsersSignedInDuration = 180;
 
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions

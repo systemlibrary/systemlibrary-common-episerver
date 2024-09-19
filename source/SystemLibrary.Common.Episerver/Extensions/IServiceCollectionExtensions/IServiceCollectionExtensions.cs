@@ -37,9 +37,9 @@ public static partial class IServiceCollectionExtensions
 
         services.AddCmsAspNetIdentity<T>();
 
-        services.AddApplicationCookie(Options);
-
         services.AddCms();
+
+        services.AddApplicationCookie(Options);
 
         services.AddTinyMce();
 
@@ -93,8 +93,8 @@ public static partial class IServiceCollectionExtensions
 
         Options = options ?? fallback;
 
-        if (Options.CmsUsersSignedInDurationMinutes == 0)
-            Options.CmsUsersSignedInDurationMinutes = fallback.CmsUsersSignedInDurationMinutes;
+        if (Options.UsersSignedInDuration == 0)
+            Options.UsersSignedInDuration = fallback.UsersSignedInDuration;
 
         if (Options.DefaultAdminEmail.IsNot())
             Options.DefaultAdminEmail = fallback.DefaultAdminEmail;

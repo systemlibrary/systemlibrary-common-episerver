@@ -61,10 +61,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.12
-- RevalidateSessionCookie middleware option added to the pipeline (feature)
-- Added Identity settings max 6 attempts before a 12 min lockout (feature)
-- Added option for minimum password length of 16 chars
+- 7.16.0.1
+- Updated deps
+- Adding Authentication "Cookies" as a Service with same user settings as the CMS user
+- Renamed CmsUsersSignedInDurationMinutes to UsersSignedInDurationMinutes (breaking change)
+- Renamed CmsUsersSlidingExpiration to UsersSlidingExpiration (breaking change)
 
 #### Major Breaking Versions
 - 7.13.0.1
