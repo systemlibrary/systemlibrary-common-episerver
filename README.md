@@ -61,8 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.15.0.11
-- IList<ContentReference> 'linkName' renamed to ContentName, now also checks if "IgnoredProperties" contains "ContentName" and it is then ignored (fix)
+- 7.15.0.12
+- RevalidateSessionCookie middleware option added to the pipeline (feature)
+- Added Identity settings max 6 attempts before a 12 min lockout (feature)
+- Added option for minimum password length of 16 chars
 
 #### Major Breaking Versions
 - 7.13.0.1

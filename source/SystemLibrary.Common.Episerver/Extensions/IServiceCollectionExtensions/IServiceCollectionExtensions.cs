@@ -37,7 +37,7 @@ public static partial class IServiceCollectionExtensions
 
         services.AddCmsAspNetIdentity<T>();
 
-        services.AddApplicationCookie(options);
+        services.AddApplicationCookie(Options);
 
         services.AddCms();
 
@@ -81,7 +81,6 @@ public static partial class IServiceCollectionExtensions
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
-
 
         services.AddScoped<T>();
 

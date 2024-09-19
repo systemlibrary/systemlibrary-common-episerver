@@ -73,4 +73,10 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// You can set it to true to enable the parts in the comment that does not involve IErrorPage, even if you do not have a single IErrorPage implementation
     /// </remarks>
     public bool UseErrorPageResponse = false;
+
+    /// <summary>
+    /// Enables the reevaluate of the session
+    /// <para>If session was created longer than 30 days ago, the cookie is deleted and user is redirected to root "/"</para>
+    /// </summary>
+    public bool UseRevalidateSessionMiddleware = true;
 }

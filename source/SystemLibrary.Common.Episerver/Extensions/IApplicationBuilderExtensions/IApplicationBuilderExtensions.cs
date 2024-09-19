@@ -55,6 +55,9 @@ public static partial class IApplicationBuilderExtensions
         options.UseRazorPages = useRazorPages;
         options.UseApiControllers = useApiControllers;
 
+        if(options.UseRevalidateSessionMiddleware)
+            app.UseMiddleware<RevalidateSessionMiddleware>();
+
         app.UseMapEndpoints(options);
 
         app.AddUseReact(options);

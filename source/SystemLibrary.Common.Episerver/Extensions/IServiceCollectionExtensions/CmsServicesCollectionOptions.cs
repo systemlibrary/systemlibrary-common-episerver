@@ -11,8 +11,15 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// Register the 'ApplicationCookie' to be the login cookie in the CMS
     /// <para>- CmsUsersSlidingExpiration handles the sliding expiration duration</para>
     /// - CmsUsersSignedInDurationMinutes handles cookie duration, default 180 min
+    /// <para>- Sets sameSite as 'strict'</para>
     /// </summary>
     public bool AddApplicationCookie = true;
+
+    /// <summary>
+    /// Minimum CMS users password length
+    /// <para>Required the AddApplicationCookie to be true </para>
+    /// </summary>
+    public int CmsUsersMinimumPasswordLength = 16;
 
     /// <summary>
     /// Note: requires ConfigureApplicationCookie to be set to True
