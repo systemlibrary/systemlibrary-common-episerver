@@ -17,7 +17,7 @@ partial class IServiceCollectionExtensions
             opt.Cookie.HttpOnly = true;
         });
 
-        services.AddAuthentication()
+        services.AddAuthentication("Cookies")
         .AddCookie("Cookies", opt =>
         {
             opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.UsersSignedInDuration);

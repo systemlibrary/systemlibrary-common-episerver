@@ -61,11 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.16.0.1
-- Updated deps
-- Adding Authentication "Cookies" as a Service with same user settings as the CMS user
-- Renamed CmsUsersSignedInDurationMinutes to UsersSignedInDurationMinutes (breaking change)
-- Renamed CmsUsersSlidingExpiration to UsersSlidingExpiration (breaking change)
+- 7.16.0.2
+- Adding Authentication Cookies scheme missing (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1
