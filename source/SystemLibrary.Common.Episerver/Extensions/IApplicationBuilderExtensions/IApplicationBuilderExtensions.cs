@@ -27,7 +27,7 @@ public static partial class IApplicationBuilderExtensions
     {
         if (!File.Exists("module.config"))
         {
-            throw new Exception("Module.config is not located at root, cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
+            throw new Exception("Module.config is not located at root using File.Exists('module.config'), cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
         if (options == null)

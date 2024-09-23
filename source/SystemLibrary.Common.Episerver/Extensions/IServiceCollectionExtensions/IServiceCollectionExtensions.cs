@@ -93,8 +93,11 @@ public static partial class IServiceCollectionExtensions
 
         Options = options ?? fallback;
 
-        if (Options.UsersSignedInDuration == 0)
-            Options.UsersSignedInDuration = fallback.UsersSignedInDuration;
+        if (Options.ApplicationCookieDuration == 0)
+            Options.ApplicationCookieDuration = fallback.ApplicationCookieDuration;
+
+        if(Options.CookieDuration == 0)
+            Options.CookieDuration = fallback.CookieDuration;
 
         if (Options.DefaultAdminEmail.IsNot())
             Options.DefaultAdminEmail = fallback.DefaultAdminEmail;

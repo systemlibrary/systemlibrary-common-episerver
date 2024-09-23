@@ -61,8 +61,10 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.16.0.2
-- Adding Authentication Cookies scheme missing (fix)
+- 7.17.0.1
+- Cookie scheme duration added as options, defaults to 58 minutes (breaking change)
+- IdentityApplication cookie scheme duration increases to 104 hours (breaking change)
+- ErrorPage now returns status code when reading content from IErrorPage (fix)
 
 #### Major Breaking Versions
 - 7.13.0.1

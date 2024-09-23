@@ -145,14 +145,12 @@ partial class IApplicationBuilderExtensions
             else if (expectXmlResponse)
             {
                 context.Response.ContentType = "application/xml";
-
                 await context.Response.WriteAsync("<error><statusCode>" + statusCode + "</statusCode><statusMessage>" + ((HttpStatusCode)statusCode).ToString() + "</statusMessage></error>").ConfigureAwait(false);
                 return;
             }
             else if (expectHtmlResponse)
             {
                 context.Response.ContentType = "text/html";
-
                 await context.Response.WriteAsync("<div class='" + Globals.CssClassName.HtmlErrorResponse + "'>" + statusCode + ": " + ((HttpStatusCode)statusCode).ToString() + "</div>").ConfigureAwait(false);
                 return;
             }
@@ -197,6 +195,8 @@ partial class IApplicationBuilderExtensions
                 if ((errorPage as IContent)?.IsPublished() != true) continue;
 
                 context.Response.Clear();
+
+                context.Response.StatusCode = statusCode;
 
                 var errorPageType = errorPage.GetOriginalType();
 

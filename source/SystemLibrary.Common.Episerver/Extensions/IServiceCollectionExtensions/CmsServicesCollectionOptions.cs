@@ -30,9 +30,17 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
 
     /// <summary>
     /// Note: requires ConfigureApplicationCookie to be set to True
-    /// <para>- Sets both Cookies and Identity.Application scheme's signed in duration in minutes</para>
+    /// <para>- Sets the 'Identity.Application' scheme's signed in duration in minutes which is the default Cookie for CMS users</para>
+    /// <para>Default duration is 104 hours, usually from monday 08:00 till friday 16:00</para>
     /// </summary>
-    public int UsersSignedInDuration = 180;
+    public int ApplicationCookieDuration = 6240;
+
+    /// <summary>
+    /// Note: requires ConfigureApplicationCookie to be set to True
+    /// <para>- Sets the 'Cookiess' signed in duration in minutes which is the default Cookies that you can use for non CMS users</para>
+    /// <para>Default duration is 58 minutes</para>
+    /// </summary>
+    public int CookieDuration = 58;
 
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions

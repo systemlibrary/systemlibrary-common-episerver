@@ -11,7 +11,7 @@ partial class IServiceCollectionExtensions
 
         services.ConfigureApplicationCookie(opt =>
         {
-            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.UsersSignedInDuration);
+            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.ApplicationCookieDuration);
             opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
             opt.SlidingExpiration = options.UsersSlidingExpiration;
             opt.Cookie.HttpOnly = true;
@@ -20,7 +20,7 @@ partial class IServiceCollectionExtensions
         services.AddAuthentication("Cookies")
         .AddCookie("Cookies", opt =>
         {
-            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.UsersSignedInDuration);
+            opt.ExpireTimeSpan = TimeSpan.FromMinutes(options.CookieDuration);
             opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
             opt.SlidingExpiration = options.UsersSlidingExpiration;
             opt.Cookie.HttpOnly = true;

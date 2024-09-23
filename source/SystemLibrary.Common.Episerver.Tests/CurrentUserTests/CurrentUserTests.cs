@@ -13,7 +13,7 @@ public class CurrentUserTests
         var user = new CurrentUser();
 
         var result = user.IsCmsUser || user.IsAdministrator || user.IsAuthenticated || user.IsApproved || user.IsLockedOut || user.IsInRole("Hello world");
-        
+
         Assert.IsFalse(result, "Result is true, expected false");
     }
 
@@ -23,7 +23,7 @@ public class CurrentUserTests
         var user = new CurrentUser();
 
         var result = user.Name + user.GivenName + user.Surname + user.PhoneNumber + user.PhoneNumberConfirmed + user.Email + user.EmailConfirmed;
-        
+
         Assert.IsTrue(result == "FalseFalse", "Result got data " + result);
     }
 }
