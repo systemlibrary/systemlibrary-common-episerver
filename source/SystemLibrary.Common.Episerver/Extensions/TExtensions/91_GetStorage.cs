@@ -16,6 +16,14 @@ partial class TExtensions
 
         if (dictionary == null)
         {
+            // NOTE: Might need to lock:
+            //var newDict = new ConcurrentDictionary...
+            //dictionary = Interlocked.CompareExchange(ref storage[SysLibStorageSsrId], newDict, null) as ConcurrentDictionary<string, bool>;
+            //if (dictionary == null)
+            //{
+            //    dictionary = newDict; // The first thread will create the dictionary
+            //}
+
             dictionary = new ConcurrentDictionary<string,bool>();
             // NOTE: in rare async scenarios, between null and adding the keys (creating the hashset), another thread might also create a HashSet
             // but that second hashSet during creation, the first thread (hopefully) manages to set it, so it is not null after creation

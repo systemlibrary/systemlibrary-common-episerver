@@ -106,7 +106,7 @@ public static partial class TExtensions
             catch (Exception ex)
             {
                 if (!Globals.IsUnitTesting)
-                    Log.Error("React returning engine too pool failed, continue silently... " + ex.Message);
+                    Log.Error("React returning engine to pool failed, continue silently... " + ex.Message);
             }
         }
 

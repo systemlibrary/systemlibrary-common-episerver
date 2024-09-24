@@ -40,11 +40,33 @@ public class CurrentUser : ApplicationUser
     ClaimsPrincipal Principal() => HttpContextInstance.Current?.User ?? new ClaimsPrincipal();
 
     public bool IsAuthenticated => Principal()?.Identity?.IsAuthenticated == true;
-    
+
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
     /// </summary>
-    public bool IsCmsUser => IsAuthenticated && Principal().IsInAnyRole(Roles.CmsRoles);
+    public bool IsCmsUser
+    {
+        get
+        {
+            if (!IsAuthenticated) return false;
+
+            if (!Principal().IsInAnyRole(Roles.CmsRoles)) return false;
+
+            var userAgent = HttpContextInstance.Current?.Request?.Headers["User-Agent"] + "";
+
+            if (userAgent.IsNot() ||
+                userAgent.Length < 24 ||
+                userAgent.Contains("Linux", StringComparison.OrdinalIgnoreCase) ||
+                userAgent.Contains("Android", StringComparison.OrdinalIgnoreCase) ||
+                userAgent.Contains("SamsungBrowser", StringComparison.OrdinalIgnoreCase) ||
+                userAgent.Contains("iPhone", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return userAgent.Contains("Chrome") || userAgent.Contains("Firefox");
+        }
+    }
 
     /// <summary>
     /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
@@ -78,7 +100,7 @@ public class CurrentUser : ApplicationUser
 
         var value = GetClaim(claim);
 
-        if(value == null) return defaultValue;
+        if (value == null) return defaultValue;
 
         if (value is T t) return t;
 
@@ -89,8 +111,8 @@ public class CurrentUser : ApplicationUser
         if (type == SystemType.DateTimeType)
             return (T)(object)DateTime.Parse(value);
 
-        if(type == SystemType.BoolType)
-            return (T)(object) bool.Parse(value);
+        if (type == SystemType.BoolType)
+            return (T)(object)bool.Parse(value);
 
         throw new Exception("Unsupported claim type " + type.Name + ". Supports only int, string, bool and datetime for now. Return the value as a string and convert it yourself.");
     }
