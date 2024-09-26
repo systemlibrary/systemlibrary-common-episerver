@@ -61,8 +61,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.17.0.2
-- IsCmsUser checks user agent for a legit chrome or firefox string, else returns false, also returns always false on android and iphone (security)
+- 7.17.0.3
+- IErrorPage now returns status code (fix)
+- Default application cookie lockout is now 4 min, down from 12, after 6 retries (1 per min)
+- Default CmsUsersMinimumPasswordLength is now 12 down from 16 (fix)
+- CmsUsersMinimumPasswordLength now must be larger than 3 to even register the IdentityOptions (security)
 
 #### Major Breaking Versions
 - 7.13.0.1

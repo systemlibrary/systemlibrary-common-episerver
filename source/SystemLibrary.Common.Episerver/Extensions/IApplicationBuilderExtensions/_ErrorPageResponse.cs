@@ -196,8 +196,6 @@ partial class IApplicationBuilderExtensions
 
                 context.Response.Clear();
 
-                context.Response.StatusCode = statusCode;
-
                 var errorPageType = errorPage.GetOriginalType();
 
                 var errorControllerType = ErrorControllerTypes.Cache(errorPageType.GetHashCode(), () =>
@@ -235,6 +233,8 @@ partial class IApplicationBuilderExtensions
                         }
                         else
                         {
+                            context.Response.StatusCode = statusCode;
+
                             try
                             {
                                 var view = index.Invoke(controller, [errorPage, context?.Request?.Url()]) as ViewResult;

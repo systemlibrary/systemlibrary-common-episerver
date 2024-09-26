@@ -20,7 +20,7 @@ public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOpt
     /// Minimum CMS users password length
     /// <para>Required the AddApplicationCookie to be true </para>
     /// </summary>
-    public int CmsUsersMinimumPasswordLength = 16;
+    public int CmsUsersMinimumPasswordLength = 12;
 
     /// <summary>
     /// Note: requires ConfigureApplicationCookie to be set to True

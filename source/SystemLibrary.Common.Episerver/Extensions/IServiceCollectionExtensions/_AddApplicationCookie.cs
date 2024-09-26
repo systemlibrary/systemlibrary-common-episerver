@@ -26,16 +26,19 @@ partial class IServiceCollectionExtensions
             opt.Cookie.HttpOnly = true;
         });
 
-        if (options.CmsUsersMinimumPasswordLength > 0)
+        if (options.CmsUsersMinimumPasswordLength > 3)
         {
             services.Configure<IdentityOptions>(o =>
             {
-                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(12);
+                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(4);
                 o.Lockout.MaxFailedAccessAttempts = 6;
                 o.Lockout.AllowedForNewUsers = true;
                 o.Password.RequireDigit = true;
                 o.Password.RequiredLength = options.CmsUsersMinimumPasswordLength;
                 o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequireLowercase = true;
+                o.Password.RequireUppercase = true;
+                o.Password.RequiredUniqueChars = 1;
             });
         }
     }

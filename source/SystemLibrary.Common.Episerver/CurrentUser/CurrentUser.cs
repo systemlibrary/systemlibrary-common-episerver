@@ -59,12 +59,13 @@ public class CurrentUser : ApplicationUser
                 userAgent.Contains("Linux", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("Android", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("SamsungBrowser", StringComparison.OrdinalIgnoreCase) ||
+                userAgent.Contains("iPad", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("iPhone", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
 
-            return userAgent.Contains("Chrome") || userAgent.Contains("Firefox");
+            return userAgent.Contains("Chrome", StringComparison.OrdinalIgnoreCase) || userAgent.Contains("Firefox", StringComparison.OrdinalIgnoreCase);
         }
     }
 
