@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>JsonEditAttribute
+    <title>HideOnCreateExtenderInitialization
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="JsonEditAttribute
+    <meta name="title" content="HideOnCreateExtenderInitialization
    ">
     <meta name="generator" content="docfx 2.59.4.0">
     
@@ -189,7 +189,7 @@
         <div class="article row grid-right">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute">
+            <article class="content wrap hideonload" id="_content" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization">
   
   
   <h6 style="margin-top: 10px; margin-bottom: 20px; visibility:hidden; display:none;"><strong style='visibility: hidden; display:none;'>Namespace</strong><a class="xref" href="SystemLibrary.Common.Episerver.Attributes.html">SystemLibrary.Common.Episerver.Attributes</a> <span class="h6-assembly-name" style="display: none; visibility: hidden;">SystemLibrary.Common.Episerver.dll</span></h6>
@@ -197,66 +197,36 @@
   <div class="markdown level0 conceptual h1-class-conceptual"></div>
   
   <div class="h1-class-summary-container">
-    <div class="markdown level0 summary h1-class-summary"><p>Add Json Edit attribute to a virtual string property to activate the simple Json Editor</p>
-</div>
+    <div class="markdown level0 summary h1-class-summary"></div>
   </div>
   
-  <h1 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute" class="text-break h1-class-header">JsonEditAttribute
+  <h1 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization" class="text-break h1-class-header">HideOnCreateExtenderInitialization
   </h1>
-  <h1 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute" class="h1-custom-display className">public class JsonEditAttribute : Attribute, IDisplayMetadataProvider, IMetadataDetailsProvider</h1>
+  <h1 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization" class="h1-custom-display className">[InitializableModule]
+[ModuleDependency(typeof(ServiceContainerInitialization))]
+public class HideOnCreateExtenderInitialization : IInitializableModule</h1>
   
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">JsonEditAttribute</span></div>
+    <div class="level1"><span class="xref">HideOnCreateExtenderInitialization</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider</span></div>
-    <div class="implements-content"><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider</span></div>
+    <div class="implements-content"><span class="xref">EPiServer.Framework.IInitializableModule</span></div>
   </div>
   
   
   <div class="custom-menu-data custom-menu-data-first">
-    <h5 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_examples"><span class="custom-class-example custom-class-example-onclick">Examples</span></h5>
   
     <div class="custom-menu-data-container custom-menu-data-container--example">
-      <div class="custom-menu-data-class-example" style="display: none;">
-        <div class="syslib-tab-menu-data--close">X</div>
-        <div class="codewrapper"><pre><code>public class StartPage : PageData 
-{
-    [JsonEdit(Title = &quot;Car Selection&quot;, Type = typeof(JsonCar),  SortByPropertyName2 = nameof(JsonCar.Age))]
-    public virtual string Cars { get; set; }
-}
-
-public class Car
-{
-    [Required(ErrorMessage = &quot;This shows as &apos;orange-red-ish&apos; below the input field and marks the field required with a *&quot;)]
-    [Display(Name = &quot;Override &apos;Name&apos; as the display name&quot;, Description = &quot;This shows up as the placeholder of the input field&quot;)]
-    public string Name { get; set; }
-
-    [Display(Name = &quot;Cars Age&quot;)]
-    public int Age { get; set; } 
-
-    [Display(Name = &quot;Is it sold?&quot;)]
-    public bool IsSold { get; set;}
-
-    [Required]
-    public DateTime Created { get; set; }
-}</code></pre>
-<p>Index.cshtml</p>
-<pre><code>var cars = @Model.CurrentPage.Cars.Json&lt;List&lt;Car>>();
-
-&lt;Car count: @cars.Count></code></pre>
-</div>
-        <div class="comment-examples-container-bottom"></div>
-      </div>
     </div>
   </div>
   
   
   <div class="custom-menu-data">
-    <h5 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
+    <h5 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_arguments"><span class="custom-class-arguments custom-class-arguments-onclick">Arguments</span></h5>
   
     <div class="custom-menu-data-container">
       <div class="custom-menu-data-class-arguments" style="display: none;">
@@ -268,247 +238,21 @@ public class Car
   </div>
   
   <div class='custom-class-content-inline'>
-  <h3 id="properties">Properties
-  </h3>
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Optional: Set to name of a property that the Editor can sort by</p>
-<p>If empty, the sort button 1 is hidden inside the &apos;Json Editor Window&apos;</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName1">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L79">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName1_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.SortByPropertyName1*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName1" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.SortByPropertyName1" class="h4-custom-functionName">public string SortByPropertyName1 { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Sorting by 'Age' the C# property name, and the friendly name &quot;First Name&quot;:</p>
-<pre><code>public class Car
-{
-    [Display(Name = &quot;First Name&quot;)]
-    public string FirstName { get; set; }
-    public int Age { get; set; }
-}
-
-public class StartPage : PageData
-{
-    [JsonEdit(Type = typeof(Car), SortByPropertyName1 = &quot;First Name&quot;, SortByPropertyName2 = nameof(Car.Age))]
-    public virtual string Cars { get; set ; }
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Optional: Set to name of a property that the Editor can sort by</p>
-<p>If empty, the sort button 2 is hidden inside the &apos;Json Editor Window&apos;
-</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName2">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L103">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName2_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.SortByPropertyName2*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_SortByPropertyName2" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.SortByPropertyName2" class="h4-custom-functionName">public string SortByPropertyName2 { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  			<div class="custom-menu-data-name" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  				<div class="codewrapper"><p>Sorting by 'Age' the C# property name, and the friendly name &quot;First Name&quot;:</p>
-<pre><code>public class Car
-{
-    [Display(Name = &quot;First Name&quot;)]
-    public string FirstName { get; set; }
-    public int Age { get; set; }
-}
-
-public class StartPage : PageData
-{
-    [JsonEdit(Type = typeof(Car), SortByPropertyName1 = &quot;First Name&quot;, SortByPropertyName2 = nameof(Car.Age))]
-    public virtual string Cars { get; set ; }
-}</code></pre>
-</div>
-  				<div class="comment-examples-container-bottom"></div>
-  			</div>
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Optional: Give the Json Editor Window a simple title so its more editor friendly</p>
-<p>If empty, the &apos;Type.Name&apos; will be used as the title of the Json Editor Window</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Title">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L56">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Title_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.Title*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Title" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.Title" class="h4-custom-functionName">public string Title { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">System.String</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
-  
-  <div class="custom-container">
-  	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>The c# class that is stored as a json string, and all its properties is editable through the Json Editor</p>
-</div>
-  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
-  	</div>
-  
-  
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Type">
-  		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L50">View Source</a>
-  		</span>
-  	</div>
-  	<a id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Type_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.Type*"></a>
-  
-  	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_Type" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.Type" class="h4-custom-functionName">public Type Type { get; set; }</h4>
-  		<div class="custom-menu-data-container">
-  
-  			<div class="custom-menu-data-arguments" style="display: none;">
-  				<div class="syslib-tab-menu-data--close">X</div>
-  
-  			</div>
-  
-  		</div>
-  	</div>
-  </div>
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed propertyValue-table">
-  	<thead>
-  		<tr>
-  			<th>Type</th>
-  			<th>Description</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-  		<tr>
-  			<td><span class="xref">Type</span></td>
-  			<td></td>
-  		</tr>
-  	</tbody>
-  </table>
-  
   <h3 id="methods">Methods
   </h3>
   
   <div class="custom-container">
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Initialize_EPiServer_Framework_Initialization_InitializationEngine_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L105">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/HideOnCreate/HideOnCreateExtenderInitialization.cs/#L13">View Source</a>
   		</span>
   	</div>
-  	<a id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_CreateDisplayMetadata_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.CreateDisplayMetadata*"></a>
+  	<a id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Initialize_" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Attributes_JsonEditAttribute_CreateDisplayMetadata_Microsoft_AspNetCore_Mvc_ModelBinding_Metadata_DisplayMetadataProviderContext_" data-uid="SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.CreateDisplayMetadata(Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext)" class="h4-custom-functionName">public void CreateDisplayMetadata(DisplayMetadataProviderContext context)</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Initialize_EPiServer_Framework_Initialization_InitializationEngine_" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize(EPiServer.Framework.Initialization.InitializationEngine)" class="h4-custom-functionName">public void Initialize(InitializationEngine context)</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -525,7 +269,93 @@ public class StartPage : PageData
   					</thead>
   					<tbody>
   						<tr>
-  							<td><span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadataProviderContext</span></td>
+  							<td><span class="xref">EPiServer.Framework.Initialization.InitializationEngine</span></td>
+  							<td><span class="parametername">context</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Preload_System_String___">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/HideOnCreate/HideOnCreateExtenderInitialization.cs/#L22">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Preload_" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Preload_System_String___" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload(System.String[])" class="h4-custom-functionName">public void Preload(string[] parameters)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">System.String</span>[]</td>
+  							<td><span class="parametername">parameters</span></td>
+  							<td></td>
+  						</tr>
+  					</tbody>
+  				</table>
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  
+  
+  <div class="custom-container">
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/HideOnCreate/HideOnCreateExtenderInitialization.cs/#L24">View Source</a>
+  		</span>
+  	</div>
+  	<a id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Uninitialize_" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize*"></a>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_" data-uid="SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)" class="h4-custom-functionName">public void Uninitialize(InitializationEngine context)</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  				<h5 class="typeParameters class-tmpl-partial-typeParameters">Methods arguments</h5>
+  				<table class="table table-bordered table-striped table-condensed">
+  					<thead>
+  						<tr>
+  							<th>Type</th>
+  							<th>Name</th>
+  							<th>Description</th>
+  						</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td><span class="xref">EPiServer.Framework.Initialization.InitializationEngine</span></td>
   							<td><span class="parametername">context</span></td>
   							<td></td>
   						</tr>
@@ -541,10 +371,7 @@ public class StartPage : PageData
   
   <h3 id="implements">Implements</h3>
   <div class="implements-content">
-  	<span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IDisplayMetadataProvider</span>
-  </div>
-  <div class="implements-content">
-  	<span class="xref">Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.IMetadataDetailsProvider</span>
+  	<span class="xref">EPiServer.Framework.IInitializableModule</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div class="extensionmethods-content">
@@ -1225,7 +1052,7 @@ public class StartPage : PageData
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/JsonEdit/JsonEditAttribute.cs/#L44" class="contribution-link">View Source</a>
+                    <a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Attributes/HideOnCreate/HideOnCreateExtenderInitialization.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

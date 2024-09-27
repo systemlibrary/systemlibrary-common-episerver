@@ -284,11 +284,16 @@
   </h3>
   
   <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Convert the 'model' to a react rendered result</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
   
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_ReactBlockResult__ctor_System_Object_System_Object_System_Boolean_System_Boolean_System_Boolean_System_String_System_String_System_String_System_String_System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Results/ReactBlockResult.cs/#L28">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Results/ReactBlockResult.cs/#L41">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_ReactBlockResult__ctor_" data-uid="SystemLibrary.Common.Episerver.ReactBlockResult.#ctor*"></a>
@@ -313,27 +318,32 @@
   						<tr>
   							<td><span class="xref">System.Object</span></td>
   							<td><span class="parametername">model</span></td>
-  							<td></td>
+  							<td><p>Current block or view model you want as props to your component</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.Object</span></td>
   							<td><span class="parametername">additionalProps</span></td>
-  							<td></td>
+  							<td><p>Add additional props without extending 'model'. Tip, want content area rendered as 'json object' instead of pre-rendered as a string? Use .SelectFiltered on the ContentArea and add the same name here</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
   							<td><span class="parametername">camelCaseProps</span></td>
-  							<td></td>
+  							<td><p>Force all properties to be camel cased</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
   							<td><span class="parametername">renderClientOnly</span></td>
-  							<td></td>
+  							<td><p>Render client only, will only render an empty div placeholder for the component</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
   							<td><span class="parametername">renderServerOnly</span></td>
-  							<td></td>
+  							<td><p>Render server only will not render the json props in hidden inputs</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.String</span></td>
@@ -353,12 +363,14 @@
   						<tr>
   							<td><span class="xref">System.String</span></td>
   							<td><span class="parametername">componentFullName</span></td>
-  							<td></td>
+  							<td><p>Specify the full component name if you do not use the default naming conventions</p>
+</td>
   						</tr>
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
   							<td><span class="parametername">printNullValues</span></td>
-  							<td></td>
+  							<td><p>Print properties that are null, or skip printing them, you will then receive undefined</p>
+</td>
   						</tr>
   					</tbody>
   				</table>
@@ -378,9 +390,6 @@
   	<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
-  <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
-  </div>
   <div class="extensionmethods-content">
   	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>

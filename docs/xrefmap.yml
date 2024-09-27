@@ -342,6 +342,60 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Attributes.DateSelectionAttribute.CreateDisplayMetadata
   nameWithType: DateSelectionAttribute.CreateDisplayMetadata
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization
+  name: HideOnCreateExtenderInitialization
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html
+  commentId: T:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization
+  nameWithType: HideOnCreateExtenderInitialization
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
+  name: Initialize(InitializationEngine)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Initialize_EPiServer_Framework_Initialization_InitializationEngine_
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize(EPiServer.Framework.Initialization.InitializationEngine)
+  nameWithType: HideOnCreateExtenderInitialization.Initialize(InitializationEngine)
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize*
+  name: Initialize
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Initialize_
+  commentId: Overload:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Initialize
+  nameWithType: HideOnCreateExtenderInitialization.Initialize
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload(System.String[])
+  name: Preload(String[])
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Preload_System_String___
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload(System.String[])
+  name.vb: Preload(String())
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload(System.String[])
+  fullName.vb: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload(System.String())
+  nameWithType: HideOnCreateExtenderInitialization.Preload(String[])
+  nameWithType.vb: HideOnCreateExtenderInitialization.Preload(String())
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload*
+  name: Preload
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Preload_
+  commentId: Overload:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Preload
+  nameWithType: HideOnCreateExtenderInitialization.Preload
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
+  name: Uninitialize(InitializationEngine)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Uninitialize_EPiServer_Framework_Initialization_InitializationEngine_
+  commentId: M:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize(EPiServer.Framework.Initialization.InitializationEngine)
+  nameWithType: HideOnCreateExtenderInitialization.Uninitialize(InitializationEngine)
+- uid: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize*
+  name: Uninitialize
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html#SystemLibrary_Common_Episerver_Attributes_HideOnCreateExtenderInitialization_Uninitialize_
+  commentId: Overload:SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.Uninitialize
+  nameWithType: HideOnCreateExtenderInitialization.Uninitialize
+- uid: SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute
+  name: HidePropertyOnCreateAttribute
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute.html
+  commentId: T:SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute
+  fullName: SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute
+  nameWithType: HidePropertyOnCreateAttribute
 - uid: SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute
   name: JsonEditAttribute
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.html
@@ -696,6 +750,12 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory.GetSelections
   nameWithType: ParentLinkReferenceFactory.GetSelections
+- uid: SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute
+  name: ServerSideRenderStringAttribute
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute.html
+  commentId: T:SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute
+  fullName: SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute
+  nameWithType: ServerSideRenderStringAttribute
 - uid: SystemLibrary.Common.Episerver.BaseCms
   name: BaseCms
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html
@@ -1001,119 +1061,6 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Components.AsyncComponent(Of T).ResultAsync
   nameWithType: AsyncComponent<T>.ResultAsync
   nameWithType.vb: AsyncComponent(Of T).ResultAsync
-- uid: SystemLibrary.Common.Episerver.CurrentUser
-  name: CurrentUser
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html
-  commentId: T:SystemLibrary.Common.Episerver.CurrentUser
-  fullName: SystemLibrary.Common.Episerver.CurrentUser
-  nameWithType: CurrentUser
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Claim*
-  name: Claim
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Claim_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.Claim
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Claim
-  nameWithType: CurrentUser.Claim
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Claim``1(System.String,``0)
-  name: Claim<T>(String, T)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Claim__1_System_String___0_
-  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.Claim``1(System.String,``0)
-  name.vb: Claim(Of T)(String, T)
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Claim<T>(System.String, T)
-  fullName.vb: SystemLibrary.Common.Episerver.CurrentUser.Claim(Of T)(System.String, T)
-  nameWithType: CurrentUser.Claim<T>(String, T)
-  nameWithType.vb: CurrentUser.Claim(Of T)(String, T)
-- uid: SystemLibrary.Common.Episerver.CurrentUser.GivenName
-  name: GivenName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GivenName
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.GivenName
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.GivenName
-  nameWithType: CurrentUser.GivenName
-- uid: SystemLibrary.Common.Episerver.CurrentUser.GivenName*
-  name: GivenName
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_GivenName_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.GivenName
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.GivenName
-  nameWithType: CurrentUser.GivenName
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
-  name: IsAdministrator
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
-  nameWithType: CurrentUser.IsAdministrator
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator*
-  name: IsAdministrator
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAdministrator_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAdministrator
-  nameWithType: CurrentUser.IsAdministrator
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
-  name: IsAuthenticated
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAuthenticated
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
-  nameWithType: CurrentUser.IsAuthenticated
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated*
-  name: IsAuthenticated
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsAuthenticated_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsAuthenticated
-  nameWithType: CurrentUser.IsAuthenticated
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser
-  name: IsCmsUser
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser
-  nameWithType: CurrentUser.IsCmsUser
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser*
-  name: IsCmsUser
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsCmsUser_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsCmsUser
-  nameWithType: CurrentUser.IsCmsUser
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsInRole(System.String)
-  name: IsInRole(String)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsInRole_System_String_
-  commentId: M:SystemLibrary.Common.Episerver.CurrentUser.IsInRole(System.String)
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsInRole(System.String)
-  nameWithType: CurrentUser.IsInRole(String)
-- uid: SystemLibrary.Common.Episerver.CurrentUser.IsInRole*
-  name: IsInRole
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_IsInRole_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.IsInRole
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.IsInRole
-  nameWithType: CurrentUser.IsInRole
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Name
-  name: Name
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Name
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.Name
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Name
-  nameWithType: CurrentUser.Name
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Name*
-  name: Name
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Name_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.Name
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Name
-  nameWithType: CurrentUser.Name
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Surname
-  name: Surname
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Surname
-  commentId: P:SystemLibrary.Common.Episerver.CurrentUser.Surname
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Surname
-  nameWithType: CurrentUser.Surname
-- uid: SystemLibrary.Common.Episerver.CurrentUser.Surname*
-  name: Surname
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.CurrentUser.html#SystemLibrary_Common_Episerver_CurrentUser_Surname_
-  commentId: Overload:SystemLibrary.Common.Episerver.CurrentUser.Surname
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.CurrentUser.Surname
-  nameWithType: CurrentUser.Surname
 - uid: SystemLibrary.Common.Episerver.Descriptors
   name: SystemLibrary.Common.Episerver.Descriptors
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Descriptors.html
@@ -1191,6 +1138,18 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.DisallowKnownAppFiles
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.DisallowKnownAppFiles
   nameWithType: CmsAppBuilderOptions.DisallowKnownAppFiles
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineLocal
+  name: ReactSsrMaxUsagesPerEngineLocal
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineLocal
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineLocal
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineLocal
+  nameWithType: CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineLocal
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineNonLocal
+  name: ReactSsrMaxUsagesPerEngineNonLocal
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineNonLocal
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineNonLocal
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineNonLocal
+  nameWithType: CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineNonLocal
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrScriptsInOrder
   name: ReactSsrScriptsInOrder
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrScriptsInOrder
@@ -1215,18 +1174,24 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseMapContentAndControllers
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseMapContentAndControllers
   nameWithType: CmsAppBuilderOptions.UseMapContentAndControllers
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseRevalidateSessionMiddleware
+  name: UseRevalidateSessionMiddleware
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_UseRevalidateSessionMiddleware
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseRevalidateSessionMiddleware
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseRevalidateSessionMiddleware
+  nameWithType: CmsAppBuilderOptions.UseRevalidateSessionMiddleware
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions
   name: CmsServicesCollectionOptions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html
   commentId: T:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions
   nameWithType: CmsServicesCollectionOptions
-- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookie
-  name: AddApplicationCookie
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookie
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookie
-  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookie
-  nameWithType: CmsServicesCollectionOptions.AddApplicationCookie
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookies
+  name: AddApplicationCookies
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookies
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookies
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookies
+  nameWithType: CmsServicesCollectionOptions.AddApplicationCookies
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddDisplays
   name: AddDisplays
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddDisplays
@@ -1239,24 +1204,30 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddReactServerSideServices
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddReactServerSideServices
   nameWithType: CmsServicesCollectionOptions.AddReactServerSideServices
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.ApplicationCookieDuration
+  name: ApplicationCookieDuration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_ApplicationCookieDuration
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.ApplicationCookieDuration
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.ApplicationCookieDuration
+  nameWithType: CmsServicesCollectionOptions.ApplicationCookieDuration
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AutoPublishMediaOnUpload
   name: AutoPublishMediaOnUpload
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AutoPublishMediaOnUpload
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AutoPublishMediaOnUpload
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AutoPublishMediaOnUpload
   nameWithType: CmsServicesCollectionOptions.AutoPublishMediaOnUpload
-- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes
-  name: CmsUsersSignedInDurationMinutes
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSignedInDurationMinutes
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes
-  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes
-  nameWithType: CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes
-- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSlidingExpiration
-  name: CmsUsersSlidingExpiration
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSlidingExpiration
-  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSlidingExpiration
-  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSlidingExpiration
-  nameWithType: CmsServicesCollectionOptions.CmsUsersSlidingExpiration
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersMinimumPasswordLength
+  name: CmsUsersMinimumPasswordLength
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersMinimumPasswordLength
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersMinimumPasswordLength
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersMinimumPasswordLength
+  nameWithType: CmsServicesCollectionOptions.CmsUsersMinimumPasswordLength
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CookieDuration
+  name: CookieDuration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CookieDuration
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CookieDuration
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CookieDuration
+  nameWithType: CmsServicesCollectionOptions.CookieDuration
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.DefaultAdminEmail
   name: DefaultAdminEmail
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_DefaultAdminEmail
@@ -1299,6 +1270,12 @@ references:
   commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UploadLimitBytes
   fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UploadLimitBytes
   nameWithType: CmsServicesCollectionOptions.UploadLimitBytes
+- uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UsersSlidingExpiration
+  name: UsersSlidingExpiration
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_UsersSlidingExpiration
+  commentId: F:SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UsersSlidingExpiration
+  fullName: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UsersSlidingExpiration
+  nameWithType: CmsServicesCollectionOptions.UsersSlidingExpiration
 - uid: SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.WebSocketEnabled
   name: WebSocketEnabled
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html#SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_WebSocketEnabled
@@ -1363,22 +1340,22 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.RenderStringBuilder
   nameWithType: ContentAreaExtensions.RenderStringBuilder
-- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To*
-  name: To
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_To_
-  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered*
+  name: SelectFiltered
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_SelectFiltered_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered
   isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To
-  nameWithType: ContentAreaExtensions.To
-- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To``1(EPiServer.Core.ContentArea,System.Boolean)
-  name: To<T>(ContentArea, Boolean)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_To__1_EPiServer_Core_ContentArea_System_Boolean_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To``1(EPiServer.Core.ContentArea,System.Boolean)
-  name.vb: To(Of T)(ContentArea, Boolean)
-  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To<T>(EPiServer.Core.ContentArea, System.Boolean)
-  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.To(Of T)(EPiServer.Core.ContentArea, System.Boolean)
-  nameWithType: ContentAreaExtensions.To<T>(ContentArea, Boolean)
-  nameWithType.vb: ContentAreaExtensions.To(Of T)(ContentArea, Boolean)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered
+  nameWithType: ContentAreaExtensions.SelectFiltered
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered``1(EPiServer.Core.ContentArea,System.Boolean)
+  name: SelectFiltered<T>(ContentArea, Boolean)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentAreaExtensions_SelectFiltered__1_EPiServer_Core_ContentArea_System_Boolean_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered``1(EPiServer.Core.ContentArea,System.Boolean)
+  name.vb: SelectFiltered(Of T)(ContentArea, Boolean)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered<T>(EPiServer.Core.ContentArea, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.SelectFiltered(Of T)(EPiServer.Core.ContentArea, System.Boolean)
+  nameWithType: ContentAreaExtensions.SelectFiltered<T>(ContentArea, Boolean)
+  nameWithType.vb: ContentAreaExtensions.SelectFiltered(Of T)(ContentArea, Boolean)
 - uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions
   name: ContentReferenceExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html
@@ -1418,15 +1395,15 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To
   nameWithType: ContentReferenceExtensions.To
-- uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference)
-  name: To<T>(ContentReference)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference)
-  name.vb: To(Of T)(ContentReference)
-  fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To<T>(EPiServer.Core.ContentReference)
-  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To(Of T)(EPiServer.Core.ContentReference)
-  nameWithType: ContentReferenceExtensions.To<T>(ContentReference)
-  nameWithType.vb: ContentReferenceExtensions.To(Of T)(ContentReference)
+- uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference,System.Boolean)
+  name: To<T>(ContentReference, Boolean)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_System_Boolean_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference,System.Boolean)
+  name.vb: To(Of T)(ContentReference, Boolean)
+  fullName: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To<T>(EPiServer.Core.ContentReference, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To(Of T)(EPiServer.Core.ContentReference, System.Boolean)
+  nameWithType: ContentReferenceExtensions.To<T>(ContentReference, Boolean)
+  nameWithType.vb: ContentReferenceExtensions.To(Of T)(ContentReference, Boolean)
 - uid: SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl(EPiServer.Core.ContentReference,System.Nullable{System.Boolean})
   name: ToFriendlyUrl(ContentReference, Nullable<Boolean>)
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html#SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_EPiServer_Core_ContentReference_System_Nullable_System_Boolean__
@@ -1471,6 +1448,22 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions
   fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions
   nameWithType: HtmlHelperExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink*
+  name: ComponentEditLink
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html#SystemLibrary_Common_Episerver_Extensions_HtmlHelperExtensions_ComponentEditLink_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink
+  nameWithType: HtmlHelperExtensions.ComponentEditLink
+- uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink``1(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},EPiServer.Core.BlockData)
+  name: ComponentEditLink<TModel>(IHtmlHelper<TModel>, BlockData)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html#SystemLibrary_Common_Episerver_Extensions_HtmlHelperExtensions_ComponentEditLink__1_Microsoft_AspNetCore_Mvc_Rendering_IHtmlHelper___0__EPiServer_Core_BlockData_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink``1(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper{``0},EPiServer.Core.BlockData)
+  name.vb: ComponentEditLink(Of TModel)(IHtmlHelper(Of TModel), BlockData)
+  fullName: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink<TModel>(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<TModel>, EPiServer.Core.BlockData)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.ComponentEditLink(Of TModel)(Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper(Of TModel), EPiServer.Core.BlockData)
+  nameWithType: HtmlHelperExtensions.ComponentEditLink<TModel>(IHtmlHelper<TModel>, BlockData)
+  nameWithType.vb: HtmlHelperExtensions.ComponentEditLink(Of TModel)(IHtmlHelper(Of TModel), BlockData)
 - uid: SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.PropertyForContentArea*
   name: PropertyForContentArea
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html#SystemLibrary_Common_Episerver_Extensions_HtmlHelperExtensions_PropertyForContentArea_
@@ -1522,6 +1515,51 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.UseCommonCmsApp
   nameWithType: IApplicationBuilderExtensions.UseCommonCmsApp
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions
+  name: IContentDataExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions
+  nameWithType: IContentDataExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink(EPiServer.Core.IContentData)
+  name: ContentLink(IContentData)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_ContentLink_EPiServer_Core_IContentData_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink(EPiServer.Core.IContentData)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink(EPiServer.Core.IContentData)
+  nameWithType: IContentDataExtensions.ContentLink(IContentData)
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink*
+  name: ContentLink
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_ContentLink_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.ContentLink
+  nameWithType: IContentDataExtensions.ContentLink
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted(EPiServer.Core.IContentData)
+  name: IsDeleted(IContentData)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_IsDeleted_EPiServer_Core_IContentData_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted(EPiServer.Core.IContentData)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted(EPiServer.Core.IContentData)
+  nameWithType: IContentDataExtensions.IsDeleted(IContentData)
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted*
+  name: IsDeleted
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_IsDeleted_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDeleted
+  nameWithType: IContentDataExtensions.IsDeleted
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable(EPiServer.Core.IContentData)
+  name: IsDisplayable(IContentData)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_IsDisplayable_EPiServer_Core_IContentData_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable(EPiServer.Core.IContentData)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable(EPiServer.Core.IContentData)
+  nameWithType: IContentDataExtensions.IsDisplayable(IContentData)
+- uid: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable*
+  name: IsDisplayable
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html#SystemLibrary_Common_Episerver_Extensions_IContentDataExtensions_IsDisplayable_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.IsDisplayable
+  nameWithType: IContentDataExtensions.IsDisplayable
 - uid: SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions
   name: IEnumerableContentReferenceExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.html
@@ -1544,6 +1582,28 @@ references:
   fullName.vb: SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.To(Of T)(IEnumerable(Of EPiServer.Core.ContentReference), System.Boolean)
   nameWithType: IEnumerableContentReferenceExtensions.To<T>(IEnumerable<ContentReference>, Boolean)
   nameWithType.vb: IEnumerableContentReferenceExtensions.To(Of T)(IEnumerable(Of ContentReference), Boolean)
+- uid: SystemLibrary.Common.Episerver.Extensions.IntExtensions
+  name: IntExtensions
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IntExtensions.html
+  commentId: T:SystemLibrary.Common.Episerver.Extensions.IntExtensions
+  fullName: SystemLibrary.Common.Episerver.Extensions.IntExtensions
+  nameWithType: IntExtensions
+- uid: SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent*
+  name: ToContent
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IntExtensions.html#SystemLibrary_Common_Episerver_Extensions_IntExtensions_ToContent_
+  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent
+  nameWithType: IntExtensions.ToContent
+- uid: SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent``1(System.Int32,System.Boolean)
+  name: ToContent<T>(Int32, Boolean)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IntExtensions.html#SystemLibrary_Common_Episerver_Extensions_IntExtensions_ToContent__1_System_Int32_System_Boolean_
+  commentId: M:SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent``1(System.Int32,System.Boolean)
+  name.vb: ToContent(Of T)(Int32, Boolean)
+  fullName: SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent<T>(System.Int32, System.Boolean)
+  fullName.vb: SystemLibrary.Common.Episerver.Extensions.IntExtensions.ToContent(Of T)(System.Int32, System.Boolean)
+  nameWithType: IntExtensions.ToContent<T>(Int32, Boolean)
+  nameWithType.vb: IntExtensions.ToContent(Of T)(Int32, Boolean)
 - uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions
   name: IServiceCollectionExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html
@@ -1557,15 +1617,6 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices
   nameWithType: IServiceCollectionExtensions.AddCommonCmsServices
-- uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)
-  name: AddCommonCmsServices<TLogWriter>(IServiceCollection, CmsServicesCollectionOptions)
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)
-  name.vb: AddCommonCmsServices(Of TLogWriter)(IServiceCollection, CmsServicesCollectionOptions)
-  fullName: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices<TLogWriter>(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)
-  fullName.vb: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices(Of TLogWriter)(Microsoft.Extensions.DependencyInjection.IServiceCollection, SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)
-  nameWithType: IServiceCollectionExtensions.AddCommonCmsServices<TLogWriter>(IServiceCollection, CmsServicesCollectionOptions)
-  nameWithType.vb: IServiceCollectionExtensions.AddCommonCmsServices(Of TLogWriter)(IServiceCollection, CmsServicesCollectionOptions)
 - uid: SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.AddCommonCmsServices``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions)
   name: AddCommonCmsServices<T, TLogWriter>(IServiceCollection, CmsServicesCollectionOptions)
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html#SystemLibrary_Common_Episerver_Extensions_IServiceCollectionExtensions_AddCommonCmsServices__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_
@@ -1581,22 +1632,6 @@ references:
   commentId: T:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
   fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions
   nameWithType: ObjectExtensions
-- uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary(System.Object,System.Boolean,System.Boolean,System.String[])
-  name: ToReactPropsDictionary(Object, Boolean, Boolean, String[])
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___
-  commentId: M:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary(System.Object,System.Boolean,System.Boolean,System.String[])
-  name.vb: ToReactPropsDictionary(Object, Boolean, Boolean, String())
-  fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary(System.Object, System.Boolean, System.Boolean, System.String[])
-  fullName.vb: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary(System.Object, System.Boolean, System.Boolean, System.String())
-  nameWithType: ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])
-  nameWithType.vb: ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String())
-- uid: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary*
-  name: ToReactPropsDictionary
-  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_
-  commentId: Overload:SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary
-  isSpec: "True"
-  fullName: SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.ToReactPropsDictionary
-  nameWithType: ObjectExtensions.ToReactPropsDictionary
 - uid: SystemLibrary.Common.Episerver.Extensions.PageDataExtensions
   name: PageDataExtensions
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.html
@@ -14840,6 +14875,125 @@ references:
   isSpec: "True"
   fullName: SystemLibrary.Common.Episerver.ReactBlockResult.ReactBlockResult
   nameWithType: ReactBlockResult.ReactBlockResult
+- uid: SystemLibrary.Common.Episerver.Users
+  name: SystemLibrary.Common.Episerver.Users
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.html
+  commentId: N:SystemLibrary.Common.Episerver.Users
+  fullName: SystemLibrary.Common.Episerver.Users
+  nameWithType: SystemLibrary.Common.Episerver.Users
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser
+  name: CurrentUser
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html
+  commentId: T:SystemLibrary.Common.Episerver.Users.CurrentUser
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser
+  nameWithType: CurrentUser
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Claim*
+  name: Claim
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Claim_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.Claim
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Claim
+  nameWithType: CurrentUser.Claim
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Claim``1(System.String,``0)
+  name: Claim<T>(String, T)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Claim__1_System_String___0_
+  commentId: M:SystemLibrary.Common.Episerver.Users.CurrentUser.Claim``1(System.String,``0)
+  name.vb: Claim(Of T)(String, T)
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Claim<T>(System.String, T)
+  fullName.vb: SystemLibrary.Common.Episerver.Users.CurrentUser.Claim(Of T)(System.String, T)
+  nameWithType: CurrentUser.Claim<T>(String, T)
+  nameWithType.vb: CurrentUser.Claim(Of T)(String, T)
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName
+  name: GivenName
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_GivenName
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName
+  nameWithType: CurrentUser.GivenName
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName*
+  name: GivenName
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_GivenName_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.GivenName
+  nameWithType: CurrentUser.GivenName
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator
+  name: IsAdministrator
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsAdministrator
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator
+  nameWithType: CurrentUser.IsAdministrator
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator*
+  name: IsAdministrator
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsAdministrator_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAdministrator
+  nameWithType: CurrentUser.IsAdministrator
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated
+  name: IsAuthenticated
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsAuthenticated
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated
+  nameWithType: CurrentUser.IsAuthenticated
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated*
+  name: IsAuthenticated
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsAuthenticated_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsAuthenticated
+  nameWithType: CurrentUser.IsAuthenticated
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser
+  name: IsCmsUser
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsCmsUser
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser
+  nameWithType: CurrentUser.IsCmsUser
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser*
+  name: IsCmsUser
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsCmsUser_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsCmsUser
+  nameWithType: CurrentUser.IsCmsUser
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole(System.String)
+  name: IsInRole(String)
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsInRole_System_String_
+  commentId: M:SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole(System.String)
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole(System.String)
+  nameWithType: CurrentUser.IsInRole(String)
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole*
+  name: IsInRole
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_IsInRole_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.IsInRole
+  nameWithType: CurrentUser.IsInRole
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Name
+  name: Name
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Name
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.Name
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Name
+  nameWithType: CurrentUser.Name
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Name*
+  name: Name
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Name_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.Name
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Name
+  nameWithType: CurrentUser.Name
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Surname
+  name: Surname
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Surname
+  commentId: P:SystemLibrary.Common.Episerver.Users.CurrentUser.Surname
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Surname
+  nameWithType: CurrentUser.Surname
+- uid: SystemLibrary.Common.Episerver.Users.CurrentUser.Surname*
+  name: Surname
+  href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html#SystemLibrary_Common_Episerver_Users_CurrentUser_Surname_
+  commentId: Overload:SystemLibrary.Common.Episerver.Users.CurrentUser.Surname
+  isSpec: "True"
+  fullName: SystemLibrary.Common.Episerver.Users.CurrentUser.Surname
+  nameWithType: CurrentUser.Surname
 - uid: SystemLibrary.Common.Episerver.Validator`1
   name: Validator<T>
   href: SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html

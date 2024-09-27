@@ -198,10 +198,8 @@
   
   <div class="h1-class-summary-container">
     <div class="markdown level0 summary h1-class-summary"><p>Validator class supports Error, Warning and Information messages displayed upon when editors in the CMS clicks 'Publish'</p>
-<ul>
-<li>Error messages prevents the content from being published</li>
-<li>Info and Warning messages does not prevent the content from being published</li>
-</ul>
+<p>- Error messages prevents the content from being published</p>
+<p>- Info and Warning messages does not prevent the content from being published</p>
 </div>
   </div>
   
@@ -304,20 +302,27 @@ public class StartPageValidator : Validator&lt;StartPage>
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Display 'red error message' on publishing content</p>
-<ul>
-<li>This prevents the content from being published</li>
-</ul>
-<p>Default 'message' is set to &quot;must be set&quot;</p>
-<p>Note:
-Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+<p>- This prevents the content from being published</p>
+Default &apos;message&apos; is set to &quot;must be set&quot;
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Validator_1_Error_System_String_System_String__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+</div>
+  		</div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Validator_1_Error_System_String_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L121">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L120">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Validator_1_Error_" data-uid="SystemLibrary.Common.Episerver.Validator`1.Error*"></a>
@@ -375,20 +380,27 @@ Message is prefixed with property name (or its display name if it has the displa
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Display 'blue info message' on publishing content</p>
-<ul>
-<li>This does not prevent the content from being published</li>
-</ul>
-<p>Default 'message' is set to &quot;can be set&quot;</p>
-<p>Note:
-Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+<p>- This does not prevent the content from being published</p>
+Default &apos;message&apos; is set to &quot;can be set&quot;
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Validator_1_Info_System_String_System_String__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+</div>
+  		</div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Validator_1_Info_System_String_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L171">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L168">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Validator_1_Info_" data-uid="SystemLibrary.Common.Episerver.Validator`1.Info*"></a>
@@ -445,17 +457,31 @@ Message is prefixed with property name (or its display name if it has the displa
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Returns true if the value has some content, else false</p>
-<p>A simple check that they are not null and contains at least some value, for properties of type:
-string, int, bool, ContentReference, ContentArea, XhtmlString, IList, DateTime, Uri and Url</p>
+  		<div class="markdown level1 summary member-summary"><p>Returns true if the value is something, else false</p>
+<p>A quick and simple validation to see that the &apos;value&apos; is filled out with something, for properties of type:</p>
+string, int, ContentReference, LinkItem, LinkItemCollection, ContentArea, XhtmlString, IList, DateTime, Uri, ContentLink, Url and Enums
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Validator_1_IsValid_System_Object__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Simple check to validate that input in string, xhtmlstring or similar is something more than a blank</p>
+<p>Simple check to validate that links at least have a href, does not force a title nor a name</p>
+Simple check that content area has at least one item
+<p>Simple check that an IList has at least one item</p>
+</div>
+  		</div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Validator_1_IsValid_System_Object_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L182">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L184">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Validator_1_IsValid_" data-uid="SystemLibrary.Common.Episerver.Validator`1.IsValid*"></a>
@@ -654,20 +680,27 @@ public class StartPageValidator : Validator&lt;StartPage>
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Display 'orange warning message' on publishing content</p>
-<ul>
-<li>This does not prevent the content from being published</li>
-</ul>
-<p>Default 'message' is set to &quot;should be set&quot;</p>
-<p>Note:
-Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+<p>- This does not prevent the content from being published</p>
+Default &apos;message&apos; is set to &quot;should be set&quot;
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Validator_1_Warning_System_String_System_String__remarks">Remarks</h5>
+  		</div>
+  
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>Message is prefixed with property name (or its display name if it has the display attribute), unless message contains the prefix value already</p>
+</div>
+  		</div>
+  	</div>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Validator_1_Warning_System_String_System_String_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L146">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Cms/Validator/Validator.cs/#L144">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Validator_1_Warning_" data-uid="SystemLibrary.Common.Episerver.Validator`1.Warning*"></a>
@@ -729,9 +762,6 @@ Message is prefixed with property name (or its display name if it has the displa
   	<span class="xref">EPiServer.Validation.IValidate</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
-  <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
-  </div>
   <div class="extensionmethods-content">
   	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>

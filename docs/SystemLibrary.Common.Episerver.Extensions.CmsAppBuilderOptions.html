@@ -393,6 +393,18 @@ Example: ~/Blocks/
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Disallow serving known application files:</p>
+<p>- everything under the path ~/config</p>
+<p>- everything under the path /bin/</p>
+<p>- appSettings.json</p>
+<p>- any .config filev</p>
+<p>- any .dll file</p>
+<p>- any .cs file</p>
+<p>- any .cshtml file</p>
+<p>- any .tsx file</p>
+<p>- any .ts file</p>
+<p>- any .mdf file</p>
+<p>- any .sql file</p>
+<p>- any .db file</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -411,7 +423,7 @@ Example: ~/Blocks/
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_DisallowKnownAppFiles">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L44">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L42">View Source</a>
   		</span>
   	</div>
   
@@ -448,10 +460,103 @@ Example: ~/Blocks/
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Max usages per engine when environment is 'local'</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineLocal">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L58">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineLocal" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineLocal" class="h4-custom-functionName">public int ReactSsrMaxUsagesPerEngineLocal</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Max usages per engine before it resets when environment is not 'local'</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineNonLocal">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L63">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrMaxUsagesPerEngineNonLocal" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.ReactSsrMaxUsagesPerEngineNonLocal" class="h4-custom-functionName">public int ReactSsrMaxUsagesPerEngineNonLocal</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Enables loading of React Server Side through Node (V8 engine)</p>
 <p>- does not load babel nor react, so your build must come with a React version and the already transpiled files for Node (basically &quot;dist&quot; folder)</p>
 Example might be:
-<p>Where all these files are transpiled and minimized already before being loaded by the C# code</p>
+<p>~/static/dist/vendor-react.js</p>
+<p>~/static/dist/vendor-others.js</p>
+<p>~/static/dist/server-side-app.js</p>
+Where all these files are transpiled and minimized already before being loaded by the C# code
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -459,7 +564,7 @@ Example might be:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_ReactSsrScriptsInOrder">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L57">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L53">View Source</a>
   		</span>
   	</div>
   
@@ -519,7 +624,7 @@ Example might be:
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_UseErrorPageResponse">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L69">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L75">View Source</a>
   		</span>
   	</div>
   
@@ -633,10 +738,53 @@ Example might be:
   	</tbody>
   </table>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Enables the reevaluate of the session</p>
+<p>If session was created longer than 30 days ago, the cookie is deleted and user is redirected to root &quot;/&quot;</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_UseRevalidateSessionMiddleware">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IApplicationBuilderExtensions/CmsAppBuilderOptions.cs/#L81">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsAppBuilderOptions_UseRevalidateSessionMiddleware" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.UseRevalidateSessionMiddleware" class="h4-custom-functionName">public bool UseRevalidateSessionMiddleware</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
   </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div class="extensionmethods-content">
   	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>

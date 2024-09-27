@@ -62,9 +62,11 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 
 ## Latest Release Notes
 - 7.18.0.1
-- New option ShowComponentEditLinkInSSR for React SSR, to render a 'Edit Link' for quickly editing current rendered block (new)
+- New option ShowComponentEditLink for React SSR, to render a 'Edit Link' for quickly editing current rendered block (new)
 - jpg, png, css, js, txt and svg gets a default 404 response to avoid "invalid" data, status code remains 404 (new)
 - linkName changed to contentName for SSR (breaking change)
+- filterByPublished argument is renamed  to filterByDisplayable to make it clear that it does not than just published state (breaking change)
+- 
 
 #### Major Breaking Versions
 - 7.13.0.1

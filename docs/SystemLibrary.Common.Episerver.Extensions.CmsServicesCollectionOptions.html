@@ -312,21 +312,23 @@
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Register the 'ApplicationCookie' to be the login cookie in the CMS</p>
-<p>- CmsUsersSlidingExpiration handles the sliding expiration duration</p>
-- CmsUsersSignedInDurationMinutes handles cookie duration, default 180 min
+<p>- Registered a service for cookie scheme &quot;Cookies&quot; to be used as a seperate login if wanted</p>
+<p>- UsersSlidingExpiration handles the sliding expiration duration</p>
+- UsersSignedInDuration handles cookie duration, default 180 min
+<p>- Sets sameSite as &apos;strict&apos;</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookie">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookies">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L15">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L17">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookie" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookie" class="h4-custom-functionName">public bool AddApplicationCookie</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddApplicationCookies" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.AddApplicationCookies" class="h4-custom-functionName">public bool AddApplicationCookies</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -412,7 +414,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AddReactServerSideServices">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L88">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L104">View Source</a>
   		</span>
   	</div>
   
@@ -449,6 +451,53 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
+<p>- Sets the &apos;Identity.Application&apos; scheme&apos;s signed in duration in minutes which is the default Cookie for CMS users</p>
+<p>Default duration is 104 hours, usually from monday 08:00 till friday 16:00</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_ApplicationCookieDuration">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L36">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_ApplicationCookieDuration" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.ApplicationCookieDuration" class="h4-custom-functionName">public int ApplicationCookieDuration</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Int32</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Auto publish on uploaded media, defaults to True</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -457,7 +506,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_AutoPublishMediaOnUpload">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L77">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L93">View Source</a>
   		</span>
   	</div>
   
@@ -494,20 +543,21 @@
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
-  		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
+  		<div class="markdown level1 summary member-summary"><p>Minimum CMS users password length</p>
+<p>Required the AddApplicationCookie to be true </p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSignedInDurationMinutes">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersMinimumPasswordLength">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L25">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L23">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSignedInDurationMinutes" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSignedInDurationMinutes" class="h4-custom-functionName">public int CmsUsersSignedInDurationMinutes</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersMinimumPasswordLength" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersMinimumPasswordLength" class="h4-custom-functionName">public int CmsUsersMinimumPasswordLength</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -540,19 +590,21 @@
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
+<p>- Sets the &apos;Cookiess&apos; signed in duration in minutes which is the default Cookies that you can use for non CMS users</p>
+<p>Default duration is 58 minutes</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSlidingExpiration">
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CookieDuration">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L20">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L43">View Source</a>
   		</span>
   	</div>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CmsUsersSlidingExpiration" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CmsUsersSlidingExpiration" class="h4-custom-functionName">public bool CmsUsersSlidingExpiration</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_CookieDuration" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.CookieDuration" class="h4-custom-functionName">public int CookieDuration</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -575,7 +627,7 @@
   	</thead>
   	<tbody>
   		<tr>
-  			<td><span class="xref">System.Boolean</span></td>
+  			<td><span class="xref">System.Int32</span></td>
   			<td></td>
   		</tr>
   	</tbody>
@@ -586,7 +638,7 @@
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>The default email of the default admin user</p>
 <p>- Only used if the DB is empty</p>
-<p>Note: assuming the default value, 'demo' is used as username, the text before @</p>
+Note: assuming the default value, &apos;demo&apos; is used as username, the text before @
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -594,7 +646,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_DefaultAdminEmail">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L41">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L57">View Source</a>
   		</span>
   	</div>
   
@@ -640,7 +692,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_DefaultAdminPassword">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L47">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L63">View Source</a>
   		</span>
   	</div>
   
@@ -685,7 +737,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_HidePropertyCategoryList">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L67">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L83">View Source</a>
   		</span>
   	</div>
   
@@ -730,7 +782,7 @@
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_HideSuggestedContentTypes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L62">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L78">View Source</a>
   		</span>
   	</div>
   
@@ -780,7 +832,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_InitialLanguagesEnabled">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L57">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L73">View Source</a>
   		</span>
   	</div>
   
@@ -819,7 +871,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions</p>
 <p>Defaults to: false</p>
-<p>Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar</p>
+Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
@@ -827,7 +879,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_SkipInitialization">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L33">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L50">View Source</a>
   		</span>
   	</div>
   
@@ -872,7 +924,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_UploadLimitBytes">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L82">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L98">View Source</a>
   		</span>
   	</div>
   
@@ -909,6 +961,52 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   <div class="custom-container">
   	<div class="custom-menu-summary-data">
+  		<div class="markdown level1 summary member-summary"><p>Note: requires ConfigureApplicationCookie to be set to True</p>
+<p>- Sets both Cookies and Identity.Application scheme&apos;s sliding expiration flag</p>
+</div>
+  		<div class="markdown level1 conceptual member-summary-conceptual"></div>
+  	</div>
+  
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_UsersSlidingExpiration">
+  		<span class="small pull-right mobile-hide">
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L29">View Source</a>
+  		</span>
+  	</div>
+  
+  	<div class="custom-menu-data">
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_UsersSlidingExpiration" data-uid="SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.UsersSlidingExpiration" class="h4-custom-functionName">public bool UsersSlidingExpiration</h4>
+  		<div class="custom-menu-data-container">
+  
+  			<div class="custom-menu-data-arguments" style="display: none;">
+  				<div class="syslib-tab-menu-data--close">X</div>
+  
+  			</div>
+  
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed fieldValue-table">
+  	<thead>
+  		<tr>
+  			<th>Type</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+  	<tbody>
+  		<tr>
+  			<td><span class="xref">System.Boolean</span></td>
+  			<td></td>
+  		</tr>
+  	</tbody>
+  </table>
+  
+  
+  <div class="custom-container">
+  	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Websockets enabled by default</p>
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
@@ -917,7 +1015,7 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_CmsServicesCollectionOptions_WebSocketEnabled">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L72">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/IServiceCollectionExtensions/CmsServicesCollectionOptions.cs/#L88">View Source</a>
   		</span>
   	</div>
   
@@ -952,9 +1050,6 @@ sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
   </table>
   
   <h3 id="extensionmethods">Extension Methods</h3>
-  <div class="extensionmethods-content">
-  	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html#SystemLibrary_Common_Episerver_Extensions_ObjectExtensions_ToReactPropsDictionary_System_Object_System_Boolean_System_Boolean_System_String___">ObjectExtensions.ToReactPropsDictionary(Object, Boolean, Boolean, String[])</a>
-  </div>
   <div class="extensionmethods-content">
   	<a class="xref" href="SystemLibrary.Common.Episerver.Extensions.TExtensions.html#SystemLibrary_Common_Episerver_Extensions_TExtensions_ReactServerSideRender__1___0_System_Object_System_String_System_Boolean_System_String_System_String_System_String_System_Boolean_System_Boolean_System_Boolean_">TExtensions.ReactServerSideRender&lt;T&gt;(T, Object, String, Boolean, String, String, String, Boolean, Boolean, Boolean)</a>
   </div>

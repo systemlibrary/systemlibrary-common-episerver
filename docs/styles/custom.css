@@ -1200,7 +1200,6 @@ article.content.wrap > h1.text-break {
 }
 .custom-remarks {
   position: absolute;
-  z-index: 990;
   margin-top: 1.25em;
   float: right;
   right: 0;
@@ -1255,7 +1254,7 @@ article.content.wrap > h1.text-break {
   max-width: 91%;
   padding: 1em;
   background: #f8f8f8;
-  z-index: 999;
+  z-index: 1001;
   position: absolute;
   min-width: 375px;
   border-radius: 4px;

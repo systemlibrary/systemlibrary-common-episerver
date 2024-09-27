@@ -372,22 +372,34 @@
   	<div class="custom-menu-summary-data">
   		<div class="markdown level1 summary member-summary"><p>Convert content reference to content data of type T</p>
 <p>T can be a block, page or media data</p>
-<p>eturns content or null if not found</p>
+Returns content or null if not found
 </div>
   		<div class="markdown level1 conceptual member-summary-conceptual"></div>
   	</div>
   
+  	<div class="custom-remarks-container">
+  		<div class="custom-remarks custom-remarks2">
+  			<h5 id="SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_System_Boolean__remarks">Remarks</h5>
+  		</div>
   
-  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_">
+  		<div class="custom-remarks custom-remarks2 text">
+  			<div class="custom-remarks-menu-data--close">X</div>
+  			<div class="markdown level1 remarks"><p>filterByDisplayable: content cannot be deleted, it must be published, current user must have read access and code of the content type must exist</p>
+</div>
+  		</div>
+  	</div>
+  
+  	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_System_Boolean_">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentReferenceExtensions/ContentReferenceExtensions.cs/#L53">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentReferenceExtensions/ContentReferenceExtensions.cs/#L54">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference)" class="h4-custom-functionName">public static T To&lt;T&gt;(this ContentReference contentReference)
-    where T : ContentData</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_To__1_EPiServer_Core_ContentReference_System_Boolean_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.To``1(EPiServer.Core.ContentReference,System.Boolean)" class="h4-custom-functionName">public static T To&lt;T&gt;(this ContentReference contentReference, bool filterByDisplayable = true)
+
+    where T : IContentData</h4>
   		<div class="custom-menu-data-container">
   			<div class="custom-menu-data-name" style="display: none;">
   				<div class="syslib-tab-menu-data--close">X</div>
@@ -431,6 +443,11 @@ var textBlock = contentReference.To&lt;TextBlock>();</code></pre>
   							<td><span class="parametername">contentReference</span></td>
   							<td></td>
   						</tr>
+  						<tr>
+  							<td><span class="xref">System.Boolean</span></td>
+  							<td><span class="parametername">filterByDisplayable</span></td>
+  							<td></td>
+  						</tr>
   					</tbody>
   				</table>
   			</div>
@@ -470,7 +487,7 @@ var textBlock = contentReference.To&lt;TextBlock>();</code></pre>
   
   	<div class="custom-source-code-link-container custom-source-code-link--SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_EPiServer_Core_ContentReference_System_Nullable_System_Boolean__">
   		<span class="small pull-right mobile-hide">
-  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentReferenceExtensions/ContentReferenceExtensions.cs/#L65">View Source</a>
+  			<a href="https://github.com/systemlibrary/systemlibrary-common-episerver/blob/main/source/SystemLibrary.Common.Episerver/Extensions/ContentReferenceExtensions/ContentReferenceExtensions.cs/#L72">View Source</a>
   		</span>
   	</div>
   	<a id="SystemLibrary_Common_Episerver_Extensions_ContentReferenceExtensions_ToFriendlyUrl_" data-uid="SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.ToFriendlyUrl*"></a>

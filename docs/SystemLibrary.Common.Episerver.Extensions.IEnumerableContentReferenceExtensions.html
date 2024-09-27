@@ -252,8 +252,9 @@
   	<a id="SystemLibrary_Common_Episerver_Extensions_IEnumerableContentReferenceExtensions_To_" data-uid="SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.To*"></a>
   
   	<div class="custom-menu-data">
-  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IEnumerableContentReferenceExtensions_To__1_IEnumerable_EPiServer_Core_ContentReference__System_Boolean_" data-uid="SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.To``1(IEnumerable{EPiServer.Core.ContentReference},System.Boolean)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; To&lt;T&gt;(this IEnumerable&lt;ContentReference&gt; contentReferences, bool filterByPublished = false)
-    where T : IContent</h4>
+  		<h4 id="SystemLibrary_Common_Episerver_Extensions_IEnumerableContentReferenceExtensions_To__1_IEnumerable_EPiServer_Core_ContentReference__System_Boolean_" data-uid="SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.To``1(IEnumerable{EPiServer.Core.ContentReference},System.Boolean)" class="h4-custom-functionName">public static IEnumerable&lt;T&gt; To&lt;T&gt;(this IEnumerable&lt;ContentReference&gt; contentReferences, bool filterByDisplayable = false)
+
+    where T : IContentData</h4>
   		<div class="custom-menu-data-container">
   
   			<div class="custom-menu-data-arguments" style="display: none;">
@@ -291,8 +292,8 @@
   						</tr>
   						<tr>
   							<td><span class="xref">System.Boolean</span></td>
-  							<td><span class="parametername">filterByPublished</span></td>
-  							<td><p>Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</p>
+  							<td><span class="parametername">filterByDisplayable</span></td>
+  							<td><p>Set to True to force filtering on Published Content, also filters away deleted content and deleted content types and user must have read access</p>
 </td>
   						</tr>
   					</tbody>

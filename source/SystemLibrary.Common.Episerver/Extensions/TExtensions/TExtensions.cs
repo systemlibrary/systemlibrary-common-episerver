@@ -18,7 +18,7 @@ public static partial class TExtensions
     internal const string SysLibStorageHiddenInputs = "___" + nameof(SysLibStorageHiddenInputs);
     internal const string SysLibStorageSsrId = "___" + nameof(SysLibStorageSsrId);
 
-    internal static bool ShowComponentEditLink = AppSettings.Current?.Edit?.ShowComponentEditLinkInSSR == true;
+    internal static bool ShowComponentEditLink = AppSettings.Current?.Edit?.ShowComponentEditLink == true;
 
     /// <summary>
     /// Return 'Model' as a serer side rendered component or ready to be hydrated, or both.
@@ -114,7 +114,7 @@ public static partial class TExtensions
             }
         }
 
-        if (ShowComponentEditLink && tagName != null && renderServerSide && level <= 1)
+        if (ShowComponentEditLink && tagName != null && level <= 1)
         {
             if (model is IContent content)
             {
