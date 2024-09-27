@@ -26,6 +26,8 @@ internal class PackageConfig
         public string NewContentDialogItemBorderColor { get; set; } = "";
         public string PageTreeSelectedContentBorderColor { get; set; } = "";
         public string ProjectBarActiveProjectBackgroundColor { get; set; } = "";
+
+        public bool ShowComponentEditLinkInSSR { get; set; } = false;
     }
 
     internal class PropertiesConfig

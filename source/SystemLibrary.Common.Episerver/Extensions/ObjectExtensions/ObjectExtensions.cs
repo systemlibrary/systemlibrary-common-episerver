@@ -380,16 +380,25 @@ public static class ObjectExtensions
                         if(crFriendlyUrl.EndsWith(".jpg"))
                             crFriendlyUrl = crFriendlyUrl + "?quality=80";
 
-                        var icontentData = cr.To<IContent>();
+                        string contentName = null;
 
-                        var linkName = icontentData?.Name;
+                        if(ignorePropertyNames?.Contains("contentName") == true ||
+                            ignorePropertyNames?.Contains("ContentName") == true)
+                        {
+                        }
+                        else
+                        {
+                            var icontentData = cr.To<IContent>();
+
+                            contentName = icontentData?.Name;
+                        }
 
                         if (forceCamelCase)
                         {
                             list.Add(new
                             {
                                 id = cr.ID,
-                                linkName = linkName,
+                                contentName = contentName,
                                 url = crFriendlyUrl
                             });
                         }
@@ -398,7 +407,7 @@ public static class ObjectExtensions
                             list.Add(new
                             {
                                 Id = cr.ID,
-                                LinkName = linkName,
+                                ContentName = contentName,
                                 Url = crFriendlyUrl
                             });
                         }

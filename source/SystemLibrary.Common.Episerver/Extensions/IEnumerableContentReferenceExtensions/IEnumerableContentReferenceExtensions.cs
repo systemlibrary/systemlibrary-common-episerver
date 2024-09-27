@@ -13,9 +13,9 @@ public static class IEnumerableContentReferenceExtensions
     /// Convert content references To T
     /// <para>Item must be castable to T to be yield</para>
     /// </summary>
-    /// <param name="filterByPublished">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</param>
+    /// <param name="filterByDisplayable">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types and user must have read access</param>
     /// <returns>Returns an IEnumerable of T</returns>
-    public static IEnumerable<T> To<T>(this IEnumerable<ContentReference> contentReferences, bool filterByPublished = false) where T : IContentData
+    public static IEnumerable<T> To<T>(this IEnumerable<ContentReference> contentReferences, bool filterByDisplayable = false) where T : IContentData
     {
         if (contentReferences.IsNot()) yield break;
 
@@ -23,7 +23,7 @@ public static class IEnumerableContentReferenceExtensions
 
         if (items.IsNot()) yield break;
 
-        if (filterByPublished)
+        if (filterByDisplayable)
         {
             var list = items.ToList();
 

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using SystemLibrary.Common.Net.Configurations;
+using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -155,5 +156,20 @@ public static class HtmlHelperExtensions
         }
 
         return new HtmlString("<div class=\"" + Globals.CssClassName.ViewExceptionError + "\" style=\"font-size: 14px !important;min-width:320px;max-width:1920px;width:100%;color:darkred;background-color:white;border-top:1px solid red; border-bottom:1px solid red;\">" + ExceptionPrefix + error);
+    }
+
+    /// <summary>
+    /// Display a blue edit link down right in the current container
+    /// </summary>
+    /// <param name="blockData">Block/component you want a short cut to edit for</param>
+    /// <returns></returns>
+    public static IHtmlContent ComponentEditLink<TModel>(this IHtmlHelper<TModel> html, BlockData blockData)
+    {
+        var link = Episerver.ComponentEditLink.Create(HttpContextInstance.Current?.User, blockData as IContent);
+        
+        if (link == null)
+            return HtmlString.Empty;
+
+        return new HtmlString(link);
     }
 }

@@ -82,6 +82,8 @@ public static partial class IServiceCollectionExtensions
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
+        // services.AddScoped<ContentAreaRenderer, CustomContentAreaRenderer>();
+
         services.AddScoped<T>();
 
         return services;

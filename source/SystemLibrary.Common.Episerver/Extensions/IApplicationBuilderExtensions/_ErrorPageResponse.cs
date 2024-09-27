@@ -56,7 +56,57 @@ partial class IApplicationBuilderExtensions
             }
 
             // TODO Add option for a default Image, if set, we return that image on 404/500/502/504 for Images
-            if (path.IsFile()) return;
+            if (path.IsFile())
+            {
+                if (path.EndsWith(".js") || path.Contains(".js?"))
+                {
+                    context.Response.ContentType = "application/javascript; charset=utf-8";
+                    await context.Response.WriteAsync("// 404").ConfigureAwait(false);
+                }
+
+                else if (path.EndsWith(".svg"))
+                {
+                    context.Response.ContentType = "image/svg+xml";
+                    await context.Response.WriteAsync("<svg viewBox=\"0 0 1 1\"><text>404</text></svg>").ConfigureAwait(false);
+                }
+
+                else if (path.EndsWith(".css") || path.Contains(".css?"))
+                {
+                    context.Response.ContentType = "text/css; charset=utf-8";
+                    await context.Response.WriteAsync("/* 404 */").ConfigureAwait(false);
+                }
+
+                else if (path.EndsWith(".txt") || path.Contains(".txt?"))
+                {
+                    context.Response.ContentType = "text/plain; charset=utf-8";
+                    await context.Response.WriteAsync("404").ConfigureAwait(false);
+                }
+
+                else if(path.EndsWith(".png") || path.Contains(".png?"))
+                {
+                    var transparentPngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=";
+
+                    var imageBytes = Convert.FromBase64String(transparentPngBase64);
+
+                    context.Response.StatusCode = 404;
+                    context.Response.ContentType = "image/png";
+                    await context.Response.Body.WriteAsync(imageBytes, 0, imageBytes.Length).ConfigureAwait(false);
+                }
+
+                else if(path.EndsWith(".jpg") || path.EndsWith(".jpg?"))
+                {
+                    var whiteJpegBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAACNbyblAAAAAElFTkSuQmCC";
+
+                    var imageBytes = Convert.FromBase64String(whiteJpegBase64);
+
+                    context.Response.ContentType = "image/jpeg";
+                    context.Response.StatusCode = 404;
+                    await context.Response.Body.WriteAsync(imageBytes, 0, imageBytes.Length);
+                }
+
+                return;
+            }
+
 
             var pathLowered = path.ToLower();
 
@@ -94,7 +144,13 @@ partial class IApplicationBuilderExtensions
             var isAjaxRequest = context.Request.IsAjaxRequest();
 
             // Ajax request towards Controllers for Pages, Blocks, Components, do nothing
-            if (isAjaxRequest && pathLowered.StartsWith("/content/", StringComparison.Ordinal)) return;
+            if (isAjaxRequest)
+            {
+                if (pathLowered.StartsWith("/content/", StringComparison.Ordinal)) return;
+                if (pathLowered.StartsWith("/pages/", StringComparison.Ordinal)) return;
+                if (pathLowered.StartsWith("/blocks/", StringComparison.Ordinal)) return;
+                if (pathLowered.StartsWith("/components/", StringComparison.Ordinal)) return;
+            }
 
             var expectJsonResponse = isAjaxRequest;
             var expectXmlResponse = false;
@@ -250,8 +306,6 @@ partial class IApplicationBuilderExtensions
                                 Log.Error(msg);
 
                                 await context.Response.WriteAsync(msg).ConfigureAwait(false);
-
-                                //throw new Exception(errorControllerType.Name + " and the Index method, does not have the right parameters. The first param should be 'currentPage' of your Error Page Type, and second parameter should be a string 'url'", e);
                             }
                         }
                     }
@@ -260,42 +314,3 @@ partial class IApplicationBuilderExtensions
         });
     }
 }
-
-
-/*
-        if (path.EndsWith(".ttf") || path.EndsWith(".ttf?"))
-        {
-            context.Response.ContentType = "image/svg+xml";
-            context.Response.WriteAsync("").ConfigureAwait(false);
-context.Response.StatusCode = 200;
-            return;
-        }
-
-        if (path.EndsWith(".svg") || path.EndsWith(".svg?"))
-{
-    context.Response.ContentType = "image /svg+xml";
-    context.Response.WriteAsync("").ConfigureAwait(false);
-    return;
-}
-
-if (path.EndsWith(".css"))
-{
-    context.Response.ContentType = "text/css; charset=utf-8";
-    context.Response.WriteAsync("//404").ConfigureAwait(false);
-    return;
-}
-
-if (path.EndsWith(value: ".txt") || path.EndsWith(".md"))
-{
-    context.Response.ContentType = "text/plain; charset=utf-8";
-    context.Response.WriteAsync("404").ConfigureAwait(false);
-    return;
-}
-
-if (path.EndsWith(".js") || path.Contains(".js?"))
-{
-    context.Response.ContentType = "application/javascript; charset=utf-8";
-    context.Response.WriteAsync("// Not Found 404").ConfigureAwait(false);
-    return;
-}
-*/

@@ -38,11 +38,12 @@ public static class ContentReferenceExtensions
 
     /// <summary>
     /// Convert content reference to content data of type T
-    /// 
-    /// T can be a block, page or media data
-    /// 
-    /// eturns content or null if not found
+    /// <para>T can be a block, page or media data</para>
+    /// Returns content or null if not found
     /// </summary>
+    /// <remarks>
+    /// filterByDisplayable: content cannot be deleted, it must be published, current user must have read access and code of the content type must exist
+    /// </remarks>
     /// <example>
     /// <code class="language-csharp hljs">
     /// var articlePage = contentReference.To&lt;ArticlePage&gt;();
@@ -50,13 +51,19 @@ public static class ContentReferenceExtensions
     /// var textBlock = contentReference.To&lt;TextBlock&gt;();
     /// </code>
     /// </example>
-    public static T To<T>(this ContentReference contentReference) where T : IContentData
+    public static T To<T>(this ContentReference contentReference, bool filterByDisplayable = true) where T : IContentData
     {
         if (contentReference.IsNot()) return default;
 
         BaseCms.ContentRepository.TryGet(contentReference, out T content);
 
-        return content;
+        if (!filterByDisplayable) return content;
+
+        if(filterByDisplayable && content.IsDisplayable())
+        {
+            return content;
+        }
+        return default;
     }
 
     /// <summary>

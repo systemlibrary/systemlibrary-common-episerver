@@ -19,7 +19,7 @@ partial class IApplicationBuilderExtensions
                 // NOTE: This actually matches the route of a C# BlockController before the "Url" of a Page
                 // if the path matches, so for instance "/ButtonBlock" triggers directly the ButtonBlockController, even
                 // if a page has been created with /ButtonBlock as a path
-                //endpoints.MapDefaultControllerRoute();
+                // endpoints.MapDefaultControllerRoute();
 
                 if (options.UseRazorPages)
                     endpoints.MapRazorPages();

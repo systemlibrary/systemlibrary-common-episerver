@@ -1,5 +1,7 @@
 ﻿using System.Text;
 
+using EPiServer.Core;
+
 using React;
 
 using SystemLibrary.Common.Web;
@@ -15,6 +17,8 @@ public static partial class TExtensions
     internal const string SysLibStorageLevel = "___" + nameof(SysLibStorageLevel);
     internal const string SysLibStorageHiddenInputs = "___" + nameof(SysLibStorageHiddenInputs);
     internal const string SysLibStorageSsrId = "___" + nameof(SysLibStorageSsrId);
+
+    internal static bool ShowComponentEditLink = AppSettings.Current?.Edit?.ShowComponentEditLinkInSSR == true;
 
     /// <summary>
     /// Return 'Model' as a serer side rendered component or ready to be hydrated, or both.
@@ -107,6 +111,18 @@ public static partial class TExtensions
             {
                 if (!Globals.IsUnitTesting)
                     Log.Error("React returning engine to pool failed, continue silently... " + ex.Message);
+            }
+        }
+
+        if (ShowComponentEditLink && tagName != null && renderServerSide && level <= 1)
+        {
+            if (model is IContent content)
+            {
+                var link = ComponentEditLink.Create(HttpContextInstance.Current.User, content);
+                if (link != null)
+                {
+                    root.Append(link);
+                }
             }
         }
 
