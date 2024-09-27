@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using SystemLibrary.Common.Net.Configurations;
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -165,7 +164,7 @@ public static class HtmlHelperExtensions
     /// <returns></returns>
     public static IHtmlContent ComponentEditLink<TModel>(this IHtmlHelper<TModel> html, BlockData blockData)
     {
-        var link = Episerver.ComponentEditLink.Create(HttpContextInstance.Current?.User, blockData as IContent);
+        var link = Episerver.ComponentEditLink.Create(blockData as IContent);
         
         if (link == null)
             return HtmlString.Empty;

@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.2
-- ShowComponentEditLink when react ssr component is display flex, disabling grow, shrink, and moving to right side without overflowing (fix)
+- 7.18.0.3
+- ShowComponentEditLink max width & height set within flex (fix)
+- ShowComponentEditLink now appends curr language from Epi (fix)
  
 #### Major Breaking Versions
 - 7.13.0.1

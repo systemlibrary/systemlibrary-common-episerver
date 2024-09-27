@@ -118,7 +118,7 @@ public static partial class TExtensions
         {
             if (model is IContent content)
             {
-                var link = ComponentEditLink.Create(HttpContextInstance.Current.User, content);
+                var link = ComponentEditLink.Create(content);
                 if (link != null)
                 {
                     root.Append(link);
