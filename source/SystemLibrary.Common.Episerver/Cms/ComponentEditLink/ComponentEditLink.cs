@@ -20,7 +20,7 @@ internal static class ComponentEditLink
 
         if (currentUser.IsCmsUser)
         {
-            return "<a href='/episerver/cms#context=epi.cms.contentdata:///" + content.ContentLink.ID + "&viewsetting=viewlanguage:///' style='position:relative;float:right;background:#0037FF;color:white;z-index:99999;border-radius:6px;display:flex;align-items:center;justify-content:center;text-decoration:none;height:14px;width:21px;font-size:14px;transform:rotate(130deg);top:-4px;right:-8px;' class='sle-component-edit'>&#9999;</a>";
+            return "<a href='/episerver/cms#context=epi.cms.contentdata:///" + content.ContentLink.ID + "&viewsetting=viewlanguage:///' style='position:relative!important;float:right!important;background:#0037FF!important;color:white;z-index:99999!important;border-radius:6px;display:flex;flex: 0 0 21px !important;margin-left:auto;align-items:center;justify-content:center;text-decoration:none;height:14px!important;width:21px!important;font-size:14px;transform:rotate(130deg);top:-6px!important;align-self:flex-end;right:8px!important;' class='sle-component-edit'>&#9999;</a>";
         }
         return null;
     }

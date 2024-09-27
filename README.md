@@ -61,19 +61,15 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.1
-- New option ShowComponentEditLink for React SSR, to render a 'Edit Link' for quickly editing current rendered block (new)
-- jpg, png, css, js, txt and svg gets a default 404 response to avoid "invalid" data, status code remains 404 (new)
-- linkName changed to contentName for SSR (breaking change)
-- filterByPublished argument is renamed  to filterByDisplayable to make it clear that it does not than just published state (breaking change)
-- 
-
+- 7.18.0.2
+- ShowComponentEditLink when react ssr component is display flex, disabling grow, shrink, and moving to right side without overflowing (fix)
+ 
 #### Major Breaking Versions
 - 7.13.0.1
 - Updated SystemLibrary.Common.Web dep (breaking change)
-- Updated SystemLibrary.Common.Net dep where Encrypt() is rewritten and Config files are never read from 'bin' (breaking change)
+- Updated SystemLibrary.Common.Net dep where Encrypt() is rewritten and Config files are never read from 'bin' if project name do not contain ".Tests" (breaking change)
 - Removed "appUrl" from appSettings, only inside 'Manage Websettings' we can configure the primary "appUrl" per site (breaking change)
-- AppSettings is now internal, use PackageCOnfigInstance.Current instead which exposes some settings (breaking change)
+- AppSettings is now internal, use PackageConfigInstance.Current instead which exposes some settings (breaking change)
 - StringExtension.IsFile removed, as SystemLibrary.Common.Net has it already (breaking change)
 - IErrorPages are cached for 300s, so a new ErrorPage might take up to 300s before responding (breaking change/optimization)
 - GetLatestVersionOfContentType renamed to GetAllLatestVersionsOfContentType (breaking change)

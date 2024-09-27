@@ -429,7 +429,8 @@ public class Program
 			"newContentDialogItemBackgroundColor": "",
 			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
-			"projectBarActiveProjectBackgroundColor": ""
+			"projectBarActiveProjectBackgroundColor": "",
+			"showComponentEditLink": false
 		},
 
 		"properties": {
