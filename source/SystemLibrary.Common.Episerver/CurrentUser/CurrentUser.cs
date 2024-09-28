@@ -39,7 +39,7 @@ public class CurrentUser : ApplicationUser
 {
     ClaimsPrincipal Principal() => HttpContextInstance.Current?.User ?? new ClaimsPrincipal();
 
-    public bool IsAuthenticated => Principal()?.Identity?.IsAuthenticated == true;
+    public bool IsAuthenticated => Principal().Identity?.IsAuthenticated == true;
 
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
@@ -83,7 +83,7 @@ public class CurrentUser : ApplicationUser
     /// <summary>
     /// Name of the Principal Identity
     /// </summary>
-    public string Name => Principal()?.Identity?.Name ?? GetClaim(ClaimTypes.Name);
+    public string Name => Principal().Identity?.Name ?? GetClaim(ClaimTypes.Name);
 
     /// <summary>
     /// First name taken from claim 'GivenName'

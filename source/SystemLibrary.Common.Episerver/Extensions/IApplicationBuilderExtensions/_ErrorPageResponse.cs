@@ -147,6 +147,7 @@ partial class IApplicationBuilderExtensions
             if (isAjaxRequest)
             {
                 if (pathLowered.StartsWith("/content/", StringComparison.Ordinal)) return;
+                if (pathLowered.StartsWith("/controllers/", StringComparison.Ordinal)) return;
                 if (pathLowered.StartsWith("/pages/", StringComparison.Ordinal)) return;
                 if (pathLowered.StartsWith("/blocks/", StringComparison.Ordinal)) return;
                 if (pathLowered.StartsWith("/components/", StringComparison.Ordinal)) return;
