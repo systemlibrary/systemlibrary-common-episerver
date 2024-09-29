@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace SystemLibrary.Common.Episerver;
 
-
 internal static class Globals
 {
     // Last part 'Cms' refers to the FolderName in root of this project and it matches any controller at any depth below it
