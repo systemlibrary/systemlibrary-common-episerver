@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.5
-- IsCmsUser also includes VisitorGroupAdmin role (fix)
-- IsAdministrator also includes VisitorGroupAdmins (fix)
+- 7.18.0.6
+- SSR error writing is now "sync" instead of Async without await (hotfix)
+
  
 #### Major Breaking Versions
 - 7.13.0.1
