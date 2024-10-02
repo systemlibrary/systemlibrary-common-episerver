@@ -17,7 +17,9 @@ internal static class ComponentEditLink
         var identity = httpContext?.User?.Identity;
 
         if (identity?.IsAuthenticated != true) return null;
-            
+
+        if (httpContext.Request?.QueryString.Value?.Contains("epieditmode=") == true) return null;
+
         var currentUser = new CurrentUser();
 
         if (currentUser.IsCmsUser)

@@ -28,6 +28,12 @@ partial class ContentIconAttribute
 
         static ContentIconEditorDescriptorModule()
         {
+            InitializeAllPageDataIcons();
+            InitializeAllBlockDataIcons();
+        }
+
+        static void InitializeAllPageDataIcons()
+        {
             var types = Assemblies.FindAllTypesInheritingWithAttribute<PageData, ContentIconAttribute>();
 
             if (types == null || types.Count() == 0) return;
@@ -45,6 +51,28 @@ partial class ContentIconAttribute
 
             foreach (var o in options)
                 ContentDescriptorSettings.Add(Tuple.Create(o.Type, o.Attribute, o.CssClass, o.IconRelativeUrl));
+
+        }
+        static void InitializeAllBlockDataIcons()
+        {
+            var types = Assemblies.FindAllTypesInheritingWithAttribute<BlockData, ContentIconAttribute>();
+
+            if (types == null || types.Count() == 0) return;
+
+            var options = from type in types
+                          select new
+                          {
+                              Type = type,
+                              Attribute = type.GetCustomAttribute<ContentIconAttribute>(),
+                              CssClass = "custom-common-episerver-page-tree-icon custom-common-episerver-page-tree-icon--" + type.Name.ToLower(),
+                              IconRelativeUrl = type.GetCustomAttribute<ContentIconAttribute>()?.IconRelativeUrl
+                          };
+
+            if (options == null) return;
+
+            foreach (var o in options)
+                ContentDescriptorSettings.Add(Tuple.Create(o.Type, o.Attribute, o.CssClass, o.IconRelativeUrl));
+
         }
 
         public override void Initialize(InitializationEngine context)

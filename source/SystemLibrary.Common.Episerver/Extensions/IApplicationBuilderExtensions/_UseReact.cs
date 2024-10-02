@@ -56,6 +56,11 @@ partial class IApplicationBuilderExtensions
         Log.Error(message + arg3 + "\n" + arg1.ToString());
 
         if (!EnvironmentConfig.IsProd)
-            HttpContextInstance.Current.Response.WriteAsync("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;\">ServerSide: " + message + ".<br/>Tip: Check browsers console.<br/>Note: might need to restart APP to reload script changes<br/>Tip: Hide this error by css class '" + Globals.CssClassName.SsrError + "'</div>");
+        {
+            HttpContextInstance.Current.Response.WriteAsync("<div class='" + Globals.CssClassName.SsrError + "' style='color:red;background-color:white;border-top:1px solid darkred; border-bottom:1px solid darkred;'>ServerSide: " + message.Replace("\"", "").Replace(Environment.NewLine, "<br>") + ".<br/>Tip: Check browsers console.<br/>Note: might need to restart APP to reload script changes<br/>Tip: Hide this error by css class " + Globals.CssClassName.SsrError + "</div>")
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+        }
     }
 }

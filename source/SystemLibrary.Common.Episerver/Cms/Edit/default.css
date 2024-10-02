@@ -9,9 +9,10 @@
     max-height: 730px;
 }
 
-.Sleek .dojoDndTarget.dojoDndContainer .dojoDndTarget.epi-linkItemEditor .epi-resourceName {
-    color: white;
-}
+/* 7.19.0.1: Disabled */
+/*.Sleek .dojoDndTarget.dojoDndContainer .dojoDndTarget.epi-linkItemEditor .epi-resourceName {
+    color: white; 
+}*/
 
 /* INT PROPERTY FIELD HEIGHT WHEN LARGE PROPERTYNAME */
 .Sleek .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitSpinner.dijitNumberTextBox.dijitValidationTextBox {

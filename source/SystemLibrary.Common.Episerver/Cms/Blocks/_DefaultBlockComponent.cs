@@ -12,7 +12,7 @@ namespace SystemLibrary.Common.Episerver.Components;
 /// Or; in other words-ish: In the same folder next to the "BlockData.cs" file, there should be a view file
 /// </summary>
 /// <remarks>
-/// Important to note that this is only in use if you do not bother creating your own Component.cs file (previously named BlockControllers)
+/// Important to note that this is only in use if you do not bother creating your own Component.cs file (previously named DefaultBlockController or similar)
 /// </remarks>
 /// <example>
 /// Components/Car/CarBlock.cs
@@ -47,7 +47,7 @@ public class _DefaultBlockComponent : AsyncComponent<BlockData>
         var type = currentBlock.GetOriginalType();
 
         if (DefaultComponentPathPredicate == null)
-            throw new Exception("DefaultComponentPathPredicate is null. It should be registered and result must start with ~/ and end with /. It must point to the parent folder of where your block " + type.Name + " lives. Example: ~/Buttons/ButtonBlock/Index.cshtml, then '~/Buttons/' should be returned, as the Type/Index.cshtml is always appended. Set the predicate method in the options parameter you pass to: app.UseCommonCmsApp(CommonEpiserverAppOptions)");
+            throw new Exception("DefaultComponentPathPredicate is null and we did not find a View for current block data. Register DefaultComponentPathPredicate and the return path must start with ~/ and end with /. It must point to the parent folder of where your block " + type.Name + " lives. Example: ~/Buttons/ButtonBlock/Index.cshtml, then '~/Buttons/' should be returned, as the Type/Index.cshtml is always inferred. Set the predicate method in the options parameter you pass to: app.UseCommonCmsApp(CommonEpiserverAppOptions)");
 
         var componentStartingPath = DefaultComponentPathPredicate(type);
 
