@@ -252,6 +252,7 @@ partial class IApplicationBuilderExtensions
                 if ((errorPage as IContent)?.IsPublished() != true) continue;
 
                 context.Response.Clear();
+                context.Response.StatusCode = statusCode;
 
                 var errorPageType = errorPage.GetOriginalType();
 
@@ -290,7 +291,6 @@ partial class IApplicationBuilderExtensions
                         }
                         else
                         {
-                            context.Response.StatusCode = statusCode;
 
                             try
                             {

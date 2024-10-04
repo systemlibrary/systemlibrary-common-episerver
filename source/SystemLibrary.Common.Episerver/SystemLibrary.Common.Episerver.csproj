@@ -6,7 +6,7 @@
 		<Configurations>Release</Configurations>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
-		<Version>7.18.0.6</Version>
+		<Version>7.18.0.7</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
