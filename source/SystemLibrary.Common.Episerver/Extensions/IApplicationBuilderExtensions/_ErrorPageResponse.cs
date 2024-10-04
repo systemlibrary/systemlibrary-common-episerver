@@ -251,6 +251,8 @@ partial class IApplicationBuilderExtensions
 
                 if ((errorPage as IContent)?.IsPublished() != true) continue;
 
+                Debug.Log("ErrorPage response matched a status code");
+
                 context.Response.Clear();
                 context.Response.StatusCode = statusCode;
 

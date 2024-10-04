@@ -72,6 +72,28 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// <remarks>
     /// You can set it to true to enable the parts in the comment that does not involve IErrorPage, even if you do not have a single IErrorPage implementation
     /// </remarks>
+    /// <example>
+    /// Example: Adding a middleware that triggers after 404, and after error page response, to for instance set status to 401 unauthorized or even a 301 redirect:
+    /// <code>
+    /// Program.cs:
+    /// app.UseCommonsCmsApp(options);  // This might return a custom 404 page as a response
+    /// app.Use&gt;RedirectMiddleware&lt;();    // We override the response for a particular url, to redirect instead of giving 404
+    /// 
+    /// class RedirectMiddleware
+    /// {
+    ///     public async Task InvokeAsync(HttpContext context)
+    ///     {
+    ///         await next(context);
+    ///          
+    ///         if(context.Request.Path == "/redirect-as-url-do-not-exist") {
+    ///             context.Response.Clear();       // Clear the previously set response, 404
+    ///             context.Response.StatusCode = 301;
+    ///             context.Response.Redirect("www.systemlibrary.com");
+    ///         }
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
     public bool UseErrorPageResponse = false;
 
     /// <summary>
