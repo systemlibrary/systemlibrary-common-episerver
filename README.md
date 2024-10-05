@@ -61,9 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.5
-- IsCmsUser also includes VisitorGroupAdmin role (fix)
-- IsAdministrator also includes VisitorGroupAdmins (fix)
+- 7.18.0.8
+- ErrorPageResponse: Debug message if a status code is hit and we server custom response (debug)
+
  
 #### Major Breaking Versions
 - 7.13.0.1

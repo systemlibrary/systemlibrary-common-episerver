@@ -251,7 +251,10 @@ partial class IApplicationBuilderExtensions
 
                 if ((errorPage as IContent)?.IsPublished() != true) continue;
 
+                Debug.Log("ErrorPage response matched a status code");
+
                 context.Response.Clear();
+                context.Response.StatusCode = statusCode;
 
                 var errorPageType = errorPage.GetOriginalType();
 
@@ -290,7 +293,6 @@ partial class IApplicationBuilderExtensions
                         }
                         else
                         {
-                            context.Response.StatusCode = statusCode;
 
                             try
                             {
