@@ -52,12 +52,12 @@ public static class StringExtensions
         {
             try
             {
-                Log.Warning("JsonEditAsObject() warning thrown, with XhtmlStringJsonConverter");
+                Log.Warning("[StringExtensions] JsonEditAsObject() warning thrown, with XhtmlStringJsonConverter");
                 return text.Json<T>();
             }
             catch(Exception ex)
             {
-                Log.Error("Could not convert '" + text + "' to " + typeof(T).Name + " in JsonEditAsObject(): " + ex.Message);
+                Log.Error("[StringExtensions] Could not convert '" + text + "' to " + typeof(T).Name + " in JsonEditAsObject(): " + ex.Message);
                 return Activator.CreateInstance<T>();
             }
         }

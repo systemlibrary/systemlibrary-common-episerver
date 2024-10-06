@@ -1,5 +1,6 @@
-﻿/* Hide "language" in version gadget as we only have NO */
+﻿/* Hide "language" in version gadget, if one only allows one lang in CMS */
 .Sleek .dgrid-row-table .dgrid-cell.dgrid-column-language:first-child {
     width: 0px;
     visibility: hidden;
+    display: none !important;
 }

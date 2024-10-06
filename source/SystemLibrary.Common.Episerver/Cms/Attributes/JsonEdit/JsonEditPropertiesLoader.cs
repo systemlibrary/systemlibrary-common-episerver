@@ -76,7 +76,7 @@ internal static class JsonEditPropertiesLoader
             }
             else
             {
-                Log.Error("Unsupported type: " + type.Name + ", for property: " + property.Name + ". The Json Editor supports only simple types: string, int, double, datetime, datetimeoffset, bool, Enum or a Class variable which only have any of those variable types");
+                Log.Error("[JsonEditPropertiesLoader] Unsupported type: " + type.Name + ", for property: " + property.Name + ". The Json Editor supports only simple types: string, int, double, datetime, datetimeoffset, bool, Enum or a Class variable which only have any of those variable types");
                 return null;
             }
         }

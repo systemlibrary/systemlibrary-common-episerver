@@ -4,18 +4,19 @@ internal class PackageConfig
 {
     public bool Debug { get; set; }
     public EditConfig Edit { get; set; }
+    public SsrConfig Ssr { get; set; }
     public PropertiesConfig Properties { get; set; }
 
     public PackageConfig()
     {
         Edit = new EditConfig();
+        Ssr = new SsrConfig();
         Properties = new PropertiesConfig();
     }
-    
+
     internal class EditConfig
     {
         public bool NewContentDialogHideRequiredTitle { get; set; } = false;
-        public bool AllPropertiesScrollableDocumentHeader { get; set; } = false;
         public bool AllPropertiesShowPropertyDescriptions { get; set; } = false;
         public bool AllPropertiesShowPropertiesAsColumns { get; set; } = false;
         public bool AllPropertiesShowCheckBoxOnRightSide { get; set; } = false;
@@ -26,7 +27,10 @@ internal class PackageConfig
         public string NewContentDialogItemBorderColor { get; set; } = "";
         public string PageTreeSelectedContentBorderColor { get; set; } = "";
         public string ProjectBarActiveProjectBackgroundColor { get; set; } = "";
+    }
 
+    internal class SsrConfig
+    {
         public bool ShowComponentEditLink { get; set; } = false;
     }
 

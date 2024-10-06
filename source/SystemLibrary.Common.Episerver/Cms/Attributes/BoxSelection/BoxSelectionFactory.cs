@@ -31,7 +31,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
         if (metadata.EditorConfiguration == null)
         {
-            Log.Error("metadata.EditorConfiguration is null for property " + propertyName + ", returning -99998 as value");
+            Log.Error("[BoxSelectionFactory] metadata.EditorConfiguration is null for property " + propertyName + ", returning -99998 as value");
             
             boxes.Add(new SelectItem() { Text = "", Value = "-99998" });
 
@@ -58,7 +58,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             if (selectEnumType?.IsEnum != true)
             {
-                throw new Exception(propertyName + " must have an EnumType specified, either directly as the property type, or through the attribute's arguments. Type is not enum: " + selectEnumType?.Name);
+                throw new Exception("[BoxSelectionFactory] " + propertyName + " must have an EnumType specified, either directly as the property type, or through the attribute's arguments. Type is not enum: " + selectEnumType?.Name);
             }
 
             Type storeEnum = null;

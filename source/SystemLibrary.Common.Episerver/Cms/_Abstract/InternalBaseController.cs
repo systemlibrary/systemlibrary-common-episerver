@@ -46,7 +46,7 @@ public abstract class InternalBaseController : Controller
             var sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(resourceFolder, resourceName, CurrentAssembly));
 
             if (sb.Length == 0)
-                Log.Error(this.GetType().Name + " could not find resource " + resourceName + " in folder " + resourceFolder);
+                Log.Error("[InternalBaseController] " + this.GetType().Name + " could not find resource " + resourceName + " in folder " + resourceFolder);
 
             return sb;
         }

@@ -48,14 +48,13 @@ public class ContentAreaExtensionsTests
 
         c1.First = "Hello";
         c1.Middle = "World";
-        c1.Age = 10;
+        c1.Age = 11;
 
         var c2 = new Car();
 
         c2.First = "Hello";
         c2.Middle = "World";
         c2.Age = 10;
-
 
         var c3 = new Car();
 
@@ -93,15 +92,30 @@ public class ContentAreaExtensionsTests
         c8.Middle = "w";
         c8.Last = "!";
         c8.Age = 10;
-        //Dump.Write(GetSsrId(c0));
-        //Dump.Write(GetSsrId(c1));
-        //Dump.Write(GetSsrId(c2));
-        //Dump.Write(GetSsrId(c3));
-        //Dump.Write(GetSsrId(c4));
-        //Dump.Write(GetSsrId(c5));
-        //Dump.Write(GetSsrId(c6));
-        //Dump.Write(GetSsrId(c7));
-        //Dump.Write(GetSsrId(c8));
+
+        var i1 = GetSsrId(c0);
+        var i2 = GetSsrId(c1);
+        var i3 = GetSsrId(c2);
+        var i4 = GetSsrId(c3);
+        var i5 = GetSsrId(c4);
+        var i6 = GetSsrId(c5);
+        var i7 = GetSsrId(c6);
+        var i8 = GetSsrId(c7);
+        var i9 = GetSsrId(c8);
+
+        Assert.IsTrue(i1 != i2);
+
+        Assert.IsTrue(i1 == i3);
+
+        //Dump.Write(i1);
+        //Dump.Write(i2);
+        //Dump.Write(i3);
+        //Dump.Write(i4);
+        //Dump.Write(i5);
+        //Dump.Write(i6);
+        //Dump.Write(i7);
+        //Dump.Write(i8);
+        //Dump.Write(i9);
 
         //Dump.Write(("1234567890123456".GetHashCode() % 100000));
     }

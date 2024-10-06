@@ -341,7 +341,6 @@ public class Program
 	"systemLibraryCommonEpiserver": {
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
-			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,
@@ -350,9 +349,10 @@ public class Program
 			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
 			"projectBarActiveProjectBackgroundColor": "",
-			"showComponentEditLink": false
 		},
-
+		"ssr": {
+			"showComponentEditLink": false
+	    },
 		"properties": {
 			"message": {
 				"backgroundColor": "#fff9e6",
@@ -421,7 +421,6 @@ public class Program
 		
 		"edit": {
 			"newContentDialogHideRequiredTitle": false,
-			"allPropertiesScrollableDocumentHeader": false,
 			"allPropertiesShowPropertyDescriptions": false,
 			"allPropertiesShowPropertiesAsColumns": false,
 			"allPropertiesShowCheckBoxOnRightSide": false,
@@ -430,9 +429,10 @@ public class Program
 			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
 			"projectBarActiveProjectBackgroundColor": "",
-			"showComponentEditLink": false
 		},
-
+		"ssr": {
+			"showComponentEditLink": false
+	    },
 		"properties": {
 			"message": {
 				"backgroundColor": "#fff9e6",

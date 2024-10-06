@@ -82,7 +82,7 @@ partial class IApplicationBuilderExtensions
                     await context.Response.WriteAsync("404").ConfigureAwait(false);
                 }
 
-                else if(path.EndsWith(".png") || path.Contains(".png?"))
+                else if (path.EndsWith(".png") || path.Contains(".png?"))
                 {
                     var transparentPngBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=";
 
@@ -93,7 +93,7 @@ partial class IApplicationBuilderExtensions
                     await context.Response.Body.WriteAsync(imageBytes, 0, imageBytes.Length).ConfigureAwait(false);
                 }
 
-                else if(path.EndsWith(".jpg") || path.EndsWith(".jpg?"))
+                else if (path.EndsWith(".jpg") || path.EndsWith(".jpg?"))
                 {
                     var whiteJpegBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAACNbyblAAAAAElFTkSuQmCC";
 
@@ -124,7 +124,7 @@ partial class IApplicationBuilderExtensions
             if (pathLowered.StartsWith("/episerver/", StringComparison.Ordinal))
             {
                 if (pathLowered.Contains("/metadata/", StringComparison.Ordinal))
-                    Log.Error(path + " not found, 404");
+                    Log.Error("[ErrorPageResponse] " + path + " not found, 404");
 
                 return;
             }

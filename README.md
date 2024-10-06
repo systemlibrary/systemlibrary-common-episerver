@@ -61,8 +61,19 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.8
-- ErrorPageResponse: Debug message if a status code is hit and we server custom response (debug)
+- 8.0.0.1
+- Updated target framework to net8 and updated deps
+- Configuration allPropertiesScrollableDocumentHeader removed 
+- Block icons pane shows images, in the same way Page tree does show icons
+- UseRevalidateSessionMiddleware renamed to UseIdentityCookieRevalidation to reflect it only evaluates the Identity Cookie
+- Internal error logging adds class name
+- DocumentHeader in Epi reduced by 24px height, more room for content
+- Removed HideRequiredTitle in new content dialog, as new content dialog do not appear anymore, finally Epi removed that redundant stupid modal dialog (hopefully)
+- Removed ScrollableDocumentHeader as it worked poorly
+- VersionGadgetHideLanguageColumn now also removes the empty space (3-4 px)
+- Renamed USeRevalidateSessionMiddleware to UseIdentityCookieRevalidation to reflect that it only checks the identity cookie
+- UseIdentityCookieRevalidation now also deletes if cookie name has been customized
+- appSettings: moved 'showComponentEditLink' to under 'ssr' config element
 
  
 #### Major Breaking Versions

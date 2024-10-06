@@ -18,3 +18,9 @@
 .Sleek .dijit.dijitReset.dijitInline.dijitLeft.dijitTextBox.dijitSpinner.dijitNumberTextBox.dijitValidationTextBox {
     max-height: 42px;
 }
+
+/* DOCUMENT HEADER USING LESS HEIGHT FROM 20PX to 8PX TOP AND BOT */
+.Sleek div.epi-documentHeader.dijitContainer {
+    border-bottom: 0;
+    padding: 8px 0;
+}

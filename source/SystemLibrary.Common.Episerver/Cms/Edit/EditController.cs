@@ -29,10 +29,8 @@ public partial class EditController : InternalBaseController
         css.Append(GetEmbeddedResource(CurrentFolder, "default.css"));
         css.Append(GetEmbeddedResource(CurrentFolder, "calendar-datetime-property-style.css"));
 
-        AppendNewContentDialogHideRequiredTitle(edit, css);
         AppendNewContentDialogItemColors(edit, css);
 
-        AppendAllPropertiesScrollableDocumentHeader(edit, css);
         AppendAllPropertiesShowPropertyDescriptions(edit, css);
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
         AppendAllPropertiesShowCheckBoxOnRightSide(edit, css);
@@ -93,30 +91,17 @@ public partial class EditController : InternalBaseController
         
     }
 
-    void AppendAllPropertiesScrollableDocumentHeader(EditConfig edit, StringBuilder css)
-    {
-        if (edit.AllPropertiesScrollableDocumentHeader)
-            css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesScrollableDocumentHeader.css"));
-    }
-    
     void AppendAllPropertiesShowPropertyDescriptions(EditConfig edit, StringBuilder css)
     {
         if (edit.AllPropertiesShowPropertyDescriptions)
         {
-            var note = "BREAKING: Optimizely/Episerver CMS has broken this in version 12.10, fixed in 12.19 and yet again broken in 12.20 and onwards - they've removed the hidden element that contained the description. Set this flag to false and restart app";
+            var note = "[EditController] BREAKING CHANGE: Optimizely CMS has broken 'allPropertiesShowPropertyDescriptions' in version 12.10, fixed in 12.19 and yet again broken in 12.20 and onwards - they've removed the hidden element that contained the description, I've opened up tickets, but they just go like 'sorry, cannot prioritize this now'. Set this flag to false and restart app";
             Log.Error(note);
-            throw new Exception(note);
+            return;
         }
-            
         
         if(edit.AllPropertiesShowPropertyDescriptions)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertyDescriptions.css"));
-    }
-
-    void AppendNewContentDialogHideRequiredTitle(EditConfig edit, StringBuilder css)
-    {
-        if(edit.NewContentDialogHideRequiredTitle)
-            css.Append(GetEmbeddedResource(CurrentFolder, "NewContentDialogHideRequiredTitle.css"));
     }
 
     void AppendActiveProjectBarBackgroundColor(EditConfig edit, StringBuilder css)

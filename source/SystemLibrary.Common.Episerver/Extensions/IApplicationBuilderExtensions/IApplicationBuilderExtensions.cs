@@ -55,8 +55,8 @@ public static partial class IApplicationBuilderExtensions
         options.UseRazorPages = useRazorPages;
         options.UseApiControllers = useApiControllers;
 
-        if(options.UseRevalidateSessionMiddleware)
-            app.UseMiddleware<RevalidateSessionMiddleware>();
+        if(options.UseIdentityCookieRevalidation)
+            app.UseMiddleware<IdentityCookieRevalidationMiddleware>();
 
         app.UseMapEndpoints(options);
 

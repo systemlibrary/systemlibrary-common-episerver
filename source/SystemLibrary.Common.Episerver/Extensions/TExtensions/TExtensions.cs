@@ -18,7 +18,7 @@ public static partial class TExtensions
     internal const string SysLibStorageHiddenInputs = "___" + nameof(SysLibStorageHiddenInputs);
     internal const string SysLibStorageSsrId = "___" + nameof(SysLibStorageSsrId);
 
-    internal static bool ShowComponentEditLink = AppSettings.Current?.Edit?.ShowComponentEditLink == true;
+    internal static bool ShowComponentEditLink = AppSettings.Current?.Ssr?.ShowComponentEditLink == true;
 
     /// <summary>
     /// Return 'Model' as a serer side rendered component or ready to be hydrated, or both.
@@ -38,7 +38,7 @@ public static partial class TExtensions
     {
         if (model == null)
         {
-            Log.Error("Model is null in ReactServerSideRender for cssClass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
+            Log.Error("[TExtensions] Model is null in ReactServerSideRender for cssClass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
 
             var path = HttpContextInstance.Current?.Request.Url();
 
@@ -110,7 +110,7 @@ public static partial class TExtensions
             catch (Exception ex)
             {
                 if (!Globals.IsUnitTesting)
-                    Log.Error("React returning engine to pool failed, continue silently... " + ex.Message);
+                    Log.Error("[TExtensions] React returning engine to pool failed, continue silently... " + ex.Message);
             }
         }
 

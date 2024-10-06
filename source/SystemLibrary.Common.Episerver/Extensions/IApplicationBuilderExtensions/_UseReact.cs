@@ -42,7 +42,7 @@ partial class IApplicationBuilderExtensions
                     if (script[0] == '~')
                         config.AddScriptWithoutTransform(script);
                     else
-                        Log.Error("React script path invalid, must start with '~', yours is: " + script);
+                        Log.Error("[IApplicationBuilderExtensions] React script path invalid, must start with '~', yours is: " + script);
                 }
             }
             config.ExceptionHandler = OnReactException;

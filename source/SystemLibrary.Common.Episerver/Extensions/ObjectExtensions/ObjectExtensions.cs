@@ -426,7 +426,7 @@ public static class ObjectExtensions
                 }
                 catch (Exception ex)
                 {
-                    Log.Error("Converting IEnumerable " + name + " to prop data failed: " + ex.Message);
+                    Log.Error("[ObjectExtensions] Converting IEnumerable " + name + " to prop data failed: " + ex.Message);
                     result.Add(name, null);
                     result.Add(name + "Error", ex.Message);
                 }
@@ -456,7 +456,7 @@ public static class ObjectExtensions
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("Converting enumerable list " + name + " to prop data failed: " + ex.Message);
+                        Log.Error("[ObjectExtensions] Converting enumerable list " + name + " to prop data failed: " + ex.Message);
                         result.Add(name, null);
                         result.Add(name + "Error", ex.Message);
                     }
@@ -501,7 +501,7 @@ public static class ObjectExtensions
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("Converting " + userPropertyName + " to prop data failed: " + ex.Message);
+                        Log.Error("[ObjectExtensions] Converting " + userPropertyName + " to prop data failed: " + ex.Message);
                         userDictionary.Add(userPropertyName, null);
                         userDictionary.Add(userPropertyName + "Error", ex.Message);
                     }

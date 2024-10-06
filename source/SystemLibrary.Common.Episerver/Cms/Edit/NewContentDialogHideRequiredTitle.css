@@ -1,5 +1,0 @@
-﻿/* Hide the title saying 'Required Properties' during new block dialog */
-.Sleek .epi-newContentContainer li.epi-form-container__section__row.epi-form-container__section__row--group > div.epi-containerLayout.dijitLayoutContainer.dijitContainer > div.epi-formsHeaderContainer {
-    visibility: hidden;
-    display: none;
-}

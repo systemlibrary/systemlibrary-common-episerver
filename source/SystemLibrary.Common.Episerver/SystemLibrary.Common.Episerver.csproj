@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<Configurations>Release</Configurations>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
-		<Version>7.19.0.1</Version>
+		<Version>8.0.0.1</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -25,14 +25,12 @@
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
-		<None Remove="Cms\Edit\AllPropertiesScrollableDocumentHeader.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<None Remove="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
 		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
 		<None Remove="Cms\Edit\default.css" />
-		<None Remove="Cms\Edit\NewContentDialogHideRequiredTitle.css" />
 		<None Remove="Cms\Edit\NewContentDialogItemColors.css" />
 		<None Remove="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
 		<None Remove="Cms\Edit\VersionGadgetHideLanguageColumn.css" />
@@ -58,7 +56,6 @@
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
 		<EmbeddedResource Include="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
-		<EmbeddedResource Include="Cms\Edit\AllPropertiesScrollableDocumentHeader.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
 		<EmbeddedResource Include="Cms\Edit\calendar-datetime-property-style.css" />
@@ -66,7 +63,6 @@
 		<EmbeddedResource Include="Cms\Edit\default.css" />
 		<EmbeddedResource Include="Cms\Edit\NewContentDialogItemColors.css" />
 		<EmbeddedResource Include="Cms\Edit\VersionGadgetHideLanguageColumn.css" />
-		<EmbeddedResource Include="Cms\Edit\NewContentDialogHideRequiredTitle.css" />
 		<EmbeddedResource Include="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
