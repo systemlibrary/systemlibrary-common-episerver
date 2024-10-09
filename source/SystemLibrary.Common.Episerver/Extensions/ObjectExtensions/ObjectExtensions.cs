@@ -373,16 +373,16 @@ public static class ObjectExtensions
                 {
                     if (contentRef == null) continue;
 
-                    if(contentRef is ContentReference cr)
+                    if (contentRef is ContentReference cr)
                     {
                         var crFriendlyUrl = cr.ToFriendlyUrl();
 
-                        if(crFriendlyUrl.EndsWith(".jpg"))
-                            crFriendlyUrl = crFriendlyUrl + "?quality=80";
+                        if (crFriendlyUrl.EndsWith(".jpg"))
+                            crFriendlyUrl += "?quality=80";
 
                         string contentName = null;
 
-                        if(ignorePropertyNames?.Contains("contentName") == true ||
+                        if (ignorePropertyNames?.Contains("contentName") == true ||
                             ignorePropertyNames?.Contains("ContentName") == true)
                         {
                         }

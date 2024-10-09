@@ -19,7 +19,7 @@ public partial class EditController : InternalBaseController
     public ActionResult Style()
     {
         AddCacheHeaders();
-     
+
         if (IsCached(StyleCache)) return StyleCache;
 
         var edit = AppSettings.Current.Edit;
@@ -37,7 +37,8 @@ public partial class EditController : InternalBaseController
 
         AppendVersionGadgetHideLanguageColumn(edit, css);
 
-        AppendCustomPageTreeIcons(edit, css);
+        AppendPageTreeIcons(edit, css);
+        AppendPageTreeHideSitesTab(edit, css);
 
         AppendProjectBarActiveProjectBackgroundColor(edit, css);
 
@@ -45,14 +46,14 @@ public partial class EditController : InternalBaseController
 
         AppendAllPropertiesShowPropertiesAsColumns(edit, css);
 
-        css.Append(System.Environment.NewLine + System.Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
+        css.Append(Environment.NewLine + Environment.NewLine + FontAwesomeLoader.FontAwesomeBundledMinCss);
 
         return (StyleCache = GetFileContentResult(css, "text/css"));
     }
 
     void AppendProjectBarActiveProjectBackgroundColor(EditConfig edit, StringBuilder css)
     {
-        if(edit.ProjectBarActiveProjectBackgroundColor.Is())
+        if (edit.ProjectBarActiveProjectBackgroundColor.Is())
         {
             css.Append(GetEmbeddedResource(CurrentFolder, "ProjectBarActiveProjectBackgroundColor.css"));
 
@@ -84,11 +85,10 @@ public partial class EditController : InternalBaseController
         if (edit.AllPropertiesShowCheckBoxOnRightSide)
         {
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowCheckBoxOnRightSide.css"));
-         
+
             if (edit.AllPropertiesShowPropertiesAsColumns)
                 css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css"));
         }
-        
     }
 
     void AppendAllPropertiesShowPropertyDescriptions(EditConfig edit, StringBuilder css)
@@ -99,8 +99,8 @@ public partial class EditController : InternalBaseController
             Log.Error(note);
             return;
         }
-        
-        if(edit.AllPropertiesShowPropertyDescriptions)
+
+        if (edit.AllPropertiesShowPropertyDescriptions)
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertyDescriptions.css"));
     }
 
@@ -120,9 +120,15 @@ public partial class EditController : InternalBaseController
             css.Append(GetEmbeddedResource(CurrentFolder, "AllPropertiesShowPropertiesAsColumns.css"));
     }
 
-    void AppendCustomPageTreeIcons(EditConfig edit, StringBuilder css)
+    void AppendPageTreeHideSitesTab(EditConfig edit, StringBuilder css)
     {
-        css.Append(GetEmbeddedResource(CurrentFolder, "CustomPageTreeIcons.css"));
+        if (edit.PageTreeHideSitesTab)
+            css.Append(GetEmbeddedResource(CurrentFolder, "PageTreeHideSitesTab.css"));
+    }
+
+    void AppendPageTreeIcons(EditConfig edit, StringBuilder css)
+    {
+        css.Append(GetEmbeddedResource(CurrentFolder, "PageTreeIcons.css"));
 
         css.Replace(nameof(edit.PageTreeSelectedContentBorderColor), edit.PageTreeSelectedContentBorderColor);
 

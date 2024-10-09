@@ -16,10 +16,10 @@ partial class TExtensions
 
         var storage = HttpContextInstance.Current?.Items;
 
-        if(storage == null && level == 0)
+        if (storage == null && level == 0)
         {
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
-            
+
             return;
         }
 
@@ -42,8 +42,8 @@ partial class TExtensions
         if (level == 0)
         {
             // All hidden inputs within "first parent component", is now appended to the bottom in the DOM
-            if(dictionary.ContainsKey(SysLibComponentStorageKey))
-                root.Append(dictionary[SysLibComponentStorageKey] as StringBuilder);
+            if (dictionary.ContainsKey(SysLibComponentStorageKey))
+                root.Append(dictionary[SysLibComponentStorageKey]);
 
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
             return;

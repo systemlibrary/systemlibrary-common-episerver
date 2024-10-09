@@ -26,6 +26,7 @@ internal class PackageConfig
         public string NewContentDialogItemBackgroundColor { get; set; } = "";
         public string NewContentDialogItemBorderColor { get; set; } = "";
         public string PageTreeSelectedContentBorderColor { get; set; } = "";
+        public bool PageTreeHideSitesTab { get; set; } = false;
         public string ProjectBarActiveProjectBackgroundColor { get; set; } = "";
     }
 

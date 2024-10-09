@@ -1,0 +1,6 @@
+﻿/* PAGE TREE: HIDE THE SITES TAB */
+.epi-pinnable-left .gridContainerTable div.nowrapTabStrip.dijitTabContainerTop-tabs[role="tablist"] >
+div.dijitTabInner:nth-child(3) {
+    display: none;
+    visibility: hidden;
+}

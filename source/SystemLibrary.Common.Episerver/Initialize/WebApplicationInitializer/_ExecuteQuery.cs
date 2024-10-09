@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 
 namespace SystemLibrary.Common.Episerver;
 

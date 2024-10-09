@@ -24,7 +24,7 @@ partial class TExtensions
             //    dictionary = newDict; // The first thread will create the dictionary
             //}
 
-            dictionary = new ConcurrentDictionary<string,bool>();
+            dictionary = new ConcurrentDictionary<string, bool>();
             // NOTE: in rare async scenarios, between null and adding the keys (creating the hashset), another thread might also create a HashSet
             // but that second hashSet during creation, the first thread (hopefully) manages to set it, so it is not null after creation
             // We do not want to use a lock here for time being

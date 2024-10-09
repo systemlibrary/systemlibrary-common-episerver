@@ -348,6 +348,7 @@ public class Program
 			"newContentDialogItemBackgroundColor": "",
 			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
+			"pageTreeHideSitesTab": false,
 			"projectBarActiveProjectBackgroundColor": "",
 		},
 		"ssr": {
@@ -428,6 +429,7 @@ public class Program
 			"newContentDialogItemBackgroundColor": "",
 			"newContentDialogItemBorderColor": "",
 			"pageTreeSelectedContentBorderColor": "",
+			"pageTreeHideSitesTab": false,
 			"projectBarActiveProjectBackgroundColor": "",
 		},
 		"ssr": {

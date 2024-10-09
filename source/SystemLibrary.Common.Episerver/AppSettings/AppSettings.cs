@@ -14,7 +14,7 @@ internal class AppSettings : Config<AppSettings>
 
     public ConnectionStringsConfig ConnectionStrings { get; set; }
     public PackageConfig SystemLibraryCommonEpiserver { get; set; }
-    
+
     internal EditConfig Edit => SystemLibraryCommonEpiserver.Edit;
 
     internal SsrConfig Ssr => SystemLibraryCommonEpiserver.Ssr;

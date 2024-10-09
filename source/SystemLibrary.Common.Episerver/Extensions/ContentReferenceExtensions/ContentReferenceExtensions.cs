@@ -12,9 +12,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 public static class ContentReferenceExtensions
 {
     static IUrlResolver _IUrlResolver;
-    static IUrlResolver IUrlResolver =>
-        _IUrlResolver != null ? _IUrlResolver :
-        (_IUrlResolver = Services.Get<IUrlResolver>());
+    static IUrlResolver IUrlResolver => _IUrlResolver ??= Services.Get<IUrlResolver>();
 
     /// <summary>
     /// Returns true if the contentReference is null, or have an ID less than 1, else false
@@ -59,7 +57,7 @@ public static class ContentReferenceExtensions
 
         if (!filterByDisplayable) return content;
 
-        if(filterByDisplayable && content.IsDisplayable())
+        if (filterByDisplayable && content.IsDisplayable())
         {
             return content;
         }

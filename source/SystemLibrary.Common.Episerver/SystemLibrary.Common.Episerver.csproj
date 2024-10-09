@@ -14,38 +14,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Cms\Admin\GetLinksInText.sql" />
-		<None Remove="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
-		<None Remove="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />
-		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.html" />
-		<None Remove="Cms\Attributes\JsonEdit\JsonEdit.js" />
-		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.css" />
-		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.html" />
-		<None Remove="Cms\Attributes\JsonEdit\JsonEditor.js" />
-		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.css" />
-		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.html" />
-		<None Remove="Cms\Attributes\MultiDropdownSelection\MultiDropdownSelection.js" />
-		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSide.css" />
-		<None Remove="Cms\Edit\AllPropertiesShowCheckBoxOnRightSideWhenPropertiesAreColumns.css" />
-		<None Remove="Cms\Edit\AllPropertiesShowPropertiesAsColumns.css" />
-		<None Remove="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
-		<None Remove="Cms\Edit\calendar-datetime-property-style.css" />
-		<None Remove="Cms\Edit\default.css" />
-		<None Remove="Cms\Edit\NewContentDialogItemColors.css" />
-		<None Remove="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
-		<None Remove="Cms\Edit\VersionGadgetHideLanguageColumn.css" />
-		<None Remove="Cms\Properties\Message\Message.css" />
-		<None Remove="Cms\Properties\Message\Message.html" />
-		<None Remove="Cms\Properties\Message\Message.js" />
-		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
-		<None Remove="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
-		<None Remove="Cms\Attributes\BoxSelection\BoxSelection.css" />
-		<None Remove="Cms\Attributes\BoxSelection\BoxSelection.js" />
-		<None Remove="Release.cmd" />
-		<None Remove="nuget-icon.png" />
-	</ItemGroup>
-	
-	<ItemGroup>
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\EasyEditorScript.js" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\EasyEditorStyle.css" />
 		<EmbeddedResource Include="Cms\Attributes\JsonEdit\JsonEditor.js" />
@@ -65,6 +33,9 @@
 		<EmbeddedResource Include="Cms\Edit\VersionGadgetHideLanguageColumn.css" />
 		<EmbeddedResource Include="Cms\Edit\ProjectBarActiveProjectBackgroundColor.css" />
 		<EmbeddedResource Include="Cms\Edit\AllPropertiesShowPropertyDescriptions.css" />
+		<EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.css" />
+		<EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.js" />
+		<EmbeddedResource Include="Cms\Edit\PageTreeHideSitesTab.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.css" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.js" />
 		<EmbeddedResource Include="Cms\Properties\Message\Message.html" />
@@ -72,27 +43,13 @@
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-brands-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-regular-400.woff2" />
 		<EmbeddedResource Include="FontAwesome\Fonts\fa-solid-900.woff2" />
-		<EmbeddedResource Include="Cms\Edit\CustomPageTreeIcons.css" />
+		<EmbeddedResource Include="Cms\Edit\PageTreeIcons.css" />
 		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <EmbeddedResource Include="Cms\Admin\Reports\LinksInContentText\GetLinksInContentText.sql" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.css" />
-	  <EmbeddedResource Include="Cms\Attributes\BoxSelection\BoxSelection.js" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
+		<EmbeddedResource Include="Cms\Admin\Reports\LinksInContentText\GetLinksInContentText.sql" />
+		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
+		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
 	</ItemGroup>
 	
 	<ItemGroup>

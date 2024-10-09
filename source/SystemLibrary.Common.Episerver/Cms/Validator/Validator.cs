@@ -81,8 +81,7 @@ public abstract class Validator<T> : IValidate<T> where T : IContentData
     /// </summary>
     public IEnumerable<ValidationError> Validate(T instance)
     {
-        if (Validations == null)
-            Validations = new List<ValidationError>();
+        Validations ??= new List<ValidationError>();
 
         Validations.Clear();
         try

@@ -22,8 +22,7 @@ partial class WebApplicationInitializer
             SiteUrl = new Uri(request.Scheme + "://" + host.Host + ":" + host.Port)
         };
 
-        if (site.Hosts == null)
-            site.Hosts = new List<HostDefinition>();
+        site.Hosts ??= new List<HostDefinition>();
 
         var primaryHostName = host.Host.GetPrimaryDomain();
 

@@ -32,7 +32,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         if (metadata.EditorConfiguration == null)
         {
             Log.Error("[BoxSelectionFactory] metadata.EditorConfiguration is null for property " + propertyName + ", returning -99998 as value");
-            
+
             boxes.Add(new SelectItem() { Text = "", Value = "-99998" });
 
             return boxes;
@@ -199,7 +199,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                                 }
                             }
 
-                            if(!found && storeAsEnum)
+                            if (!found && storeAsEnum)
                             {
                                 var e = AsEnum(selectedValue, storeEnum);
                                 var i = (int)(object)e;

@@ -127,16 +127,16 @@ public class ContentAreaExtensionsTests
 
         var sb = new StringBuilder();
 
-        foreach(var p in props)
+        foreach (var p in props)
         {
             var v = p.GetValue(c);
 
-            if(v == null)
+            if (v == null)
             {
                 sb.Append("x");
                 continue;
             }
-            if(v == "")
+            if (v == "")
             {
                 sb.Append("X");
                 continue;
@@ -144,24 +144,24 @@ public class ContentAreaExtensionsTests
 
             var type = p.PropertyType;
 
-            if(type == typeof(int))
+            if (type == typeof(int))
             {
                 sb.Append("&");
                 sb.Append(v.ToString());
                 continue;
             }
 
-            if(type == typeof(string))
+            if (type == typeof(string))
             {
                 var txt = v as string;
 
-                if(txt.Length > 255)
+                if (txt.Length > 255)
                 {
                     sb.Append(txt[txt.Length - 1] + (txt.Substring(0, 16).GetHashCode() % 10000) + txt.Length);
                 }
                 else
                 {
-                    if(txt.Length <= 6)
+                    if (txt.Length <= 6)
                     {
                         sb.Append(txt);
                     }
@@ -170,7 +170,7 @@ public class ContentAreaExtensionsTests
                         sb.Append(txt[0]);
                         sb.Append(txt[1]);
                         sb.Append(txt[2]);
-                        sb.Append(txt[txt.Length-1]);
+                        sb.Append(txt[txt.Length - 1]);
                         sb.Append(txt.Length.ToString());
                         sb.Append(txt.GetHashCode() % 1000000);
                     }

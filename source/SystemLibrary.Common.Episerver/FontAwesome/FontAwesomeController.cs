@@ -12,8 +12,7 @@ public partial class FontAwesomeController : Controller
 
     static Assembly _CurrentAssembly;
 
-    static Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
-        (_CurrentAssembly = Assembly.GetExecutingAssembly());
+    static Assembly CurrentAssembly => _CurrentAssembly ??= Assembly.GetExecutingAssembly();
 
     static ConcurrentDictionary<string, ActionResult> CacheActionResults;
 
@@ -30,7 +29,7 @@ public partial class FontAwesomeController : Controller
 
         var bytes = GetEmbeddedIcon(folder, icon);
 
-        if(bytes == null)
+        if (bytes == null)
             cached = new EmptyResult();
         else
             cached = new FileContentResult(bytes, "image/svg+xml");

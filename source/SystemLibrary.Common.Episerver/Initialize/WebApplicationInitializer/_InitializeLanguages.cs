@@ -30,7 +30,7 @@ partial class WebApplicationInitializer
 
             DeleteNotInitialLanguages(initialLanguages, languageBranchRepository, languageBranches);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex);
         }
@@ -62,11 +62,11 @@ partial class WebApplicationInitializer
                 }
             }
 
-            if(!enabled)
+            if (!enabled)
             {
                 var branch = new LanguageBranch(language);
 
-                if(enableMultipleLanguages)
+                if (enableMultipleLanguages)
                     branch.URLSegment = language.ToLower();
 
                 branch.RawIconPath = "~/app_themes/default/images/flags/" + language + ".gif";

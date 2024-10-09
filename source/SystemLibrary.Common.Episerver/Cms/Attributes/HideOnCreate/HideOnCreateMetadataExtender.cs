@@ -12,7 +12,7 @@ internal class HideOnCreateMetadataExtender : IMetadataExtender
         {
             foreach (var modelMetadata in metadata.Properties)
             {
-                var property = (ExtendedMetadata)modelMetadata;
+                var property = modelMetadata;
                 // The content is being created, so set required = false
                 if (property.Attributes.OfType<HidePropertyOnCreateAttribute>().Any())
                 {

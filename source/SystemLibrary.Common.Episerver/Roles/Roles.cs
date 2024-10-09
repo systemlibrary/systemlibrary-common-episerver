@@ -7,8 +7,7 @@ internal static class Roles
 {
     static string[] _CmsRoles;
 
-    public static string[] CmsRoles => _CmsRoles != null ? _CmsRoles :
-        (_CmsRoles = new[] {
+    public static string[] CmsRoles => _CmsRoles ??= new[] {
         EPiServer.Authorization.Roles.Administrators,
         EPiServer.Authorization.Roles.WebAdmins,
         EPiServer.Authorization.Roles.WebEditors,
@@ -18,11 +17,10 @@ internal static class Roles
         "administrators",
         "administrator",
         "Administrator"
-    });
+    };
 
     static string[] _AdminRoles;
-    public static string[] AdminRoles => _AdminRoles != null ? _AdminRoles :
-        (_AdminRoles = new[] {
+    public static string[] AdminRoles => _AdminRoles ??= new[] {
             EPiServer.Authorization.Roles.Administrators,
             EPiServer.Authorization.Roles.VisitorGroupAdmins,
             EPiServer.Authorization.Roles.WebAdmins,
@@ -34,6 +32,6 @@ internal static class Roles
             "Administrator",
             "administrator",
             "administrators"
-    });
+    };
 
 }

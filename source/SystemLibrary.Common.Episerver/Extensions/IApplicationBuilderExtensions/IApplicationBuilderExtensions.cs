@@ -30,8 +30,7 @@ public static partial class IApplicationBuilderExtensions
             throw new Exception("Module.config is not located at root using File.Exists('module.config'), cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
-        if (options == null)
-            options = new CmsAppBuilderOptions();
+        options ??= new CmsAppBuilderOptions();
 
         _DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
 
@@ -55,7 +54,7 @@ public static partial class IApplicationBuilderExtensions
         options.UseRazorPages = useRazorPages;
         options.UseApiControllers = useApiControllers;
 
-        if(options.UseIdentityCookieRevalidation)
+        if (options.UseIdentityCookieRevalidation)
             app.UseMiddleware<IdentityCookieRevalidationMiddleware>();
 
         app.UseMapEndpoints(options);
@@ -65,7 +64,7 @@ public static partial class IApplicationBuilderExtensions
         app.RedirectCmsLoginPath(options);
 
         app.ErrorPageResponse(options);
-        
+
         return app;
     }
 }

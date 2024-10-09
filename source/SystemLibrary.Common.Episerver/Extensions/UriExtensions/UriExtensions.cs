@@ -29,7 +29,7 @@ public static class UriExtensions
     /// Returns the Uri as a Friendly Url
     /// <para>Does not throw on null</para>
     /// </summary>
-    public static string ToFriendlyUrl(this Uri uri, bool? convertToAbsolute  =null)
+    public static string ToFriendlyUrl(this Uri uri, bool? convertToAbsolute = null)
     {
         if (uri == null) return null;
 

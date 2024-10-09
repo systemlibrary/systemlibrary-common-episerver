@@ -14,9 +14,9 @@ public static class Initialize
 
         var fields = globals.GetFields(BindingFlags.Static | BindingFlags.NonPublic);
 
-        foreach(var field in fields)
+        foreach (var field in fields)
         {
-            if(field.Name == isUnitTesting)
+            if (field.Name == isUnitTesting)
             {
                 field.SetValue(null, true);
             }

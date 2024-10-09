@@ -18,7 +18,7 @@ partial class IApplicationBuilderExtensions
                 {
                     var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                    if(contextFeature?.Error != null)
+                    if (contextFeature?.Error != null)
                         Log.Error(contextFeature?.Error);
                 }
                 return null;

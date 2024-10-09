@@ -160,10 +160,8 @@ partial class IApplicationBuilderExtensions
             if (!expectJsonResponse)
             {
                 var accept = context.Request.Headers["Accept"].FirstOrDefault();
-                if (accept == null)
-                    accept = context.Request.Headers["accept"].FirstOrDefault();
-                if (accept == null)
-                    accept = context.Request.Headers["ACCEPT"].FirstOrDefault();
+                accept ??= context.Request.Headers["accept"].FirstOrDefault();
+                accept ??= context.Request.Headers["ACCEPT"].FirstOrDefault();
 
                 if (accept != null)
                 {

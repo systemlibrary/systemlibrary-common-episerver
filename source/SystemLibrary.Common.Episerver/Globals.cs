@@ -17,7 +17,7 @@ internal static class Globals
     internal static bool IsUnitTesting = false;
 
     internal static string LibraryBasePath = "C:\\syslib\\systemlibrary-common-episerver\\source\\SystemLibrary.Common.Episerver\\";
-    
+
     internal static Type ContentDataType = typeof(ContentData);
     internal static Type IPrincipalType = typeof(IPrincipal);
     internal static Type IdentityUserType = typeof(IdentityUser);

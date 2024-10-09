@@ -41,9 +41,8 @@ internal class ViewLocations
 
     static string[] _AllViews;
 
-    internal static string[] AllViews = (_AllViews != null) ? _AllViews :
-        (_AllViews = GetViews()
+    internal static string[] AllViews = _AllViews ??= GetViews()
         .Concat(GetViewsForComponents())
         .Concat(GetViewsForPages())
-        .Concat(GetViewsForBlocks()).ToArray());
+        .Concat(GetViewsForBlocks()).ToArray();
 }

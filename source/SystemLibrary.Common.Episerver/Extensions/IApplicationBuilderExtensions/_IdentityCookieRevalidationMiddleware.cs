@@ -18,7 +18,7 @@ internal class IdentityCookieRevalidationMiddleware
     static IdentityCookieRevalidationMiddleware()
     {
         var cookieOptions = Services.Get<IOptionsMonitor<CookieAuthenticationOptions>>();
-        
+
         CmsUserCookieName = cookieOptions?.Get("Identity.Application")?.Cookie?.Name;
     }
 
@@ -67,7 +67,7 @@ internal class IdentityCookieRevalidationMiddleware
 
                                     return;
                                 }
-                            } 
+                            }
                             else
                             {
                                 Log.Debug("[IdentityCookieRevalidationMiddleware] Issued date was not set on the cookie, doing nothing...");

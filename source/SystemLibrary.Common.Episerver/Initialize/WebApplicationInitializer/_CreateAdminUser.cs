@@ -51,7 +51,7 @@ partial class WebApplicationInitializer
 
     bool IsAnyUserAlreadyRegisteredInDatabase()
     {
-        if(NoUsersExistsInDb() > 0)
+        if (NoUsersExistsInDb() > 0)
             return true;
 
         var email = IServiceCollectionExtensions.Options.DefaultAdminEmail;

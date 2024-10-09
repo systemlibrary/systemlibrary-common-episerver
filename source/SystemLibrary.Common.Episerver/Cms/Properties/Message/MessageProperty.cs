@@ -1,6 +1,4 @@
-﻿using System;
-
-using EPiServer.Core;
+﻿using EPiServer.Core;
 using EPiServer.PlugIn;
 
 namespace SystemLibrary.Common.Episerver.Properties;

@@ -1,8 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
-using SystemLibrary.Common.Net.Extensions;
-
 namespace SystemLibrary.Common.Episerver.Benchmarks;
 
 [SimpleJob(RuntimeMoniker.Net70, warmupCount: 2, launchCount: 2, iterationCount: 2, invocationCount: 150)]

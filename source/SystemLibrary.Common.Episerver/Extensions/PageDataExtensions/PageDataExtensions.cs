@@ -34,7 +34,7 @@ public static class PageDataExtensions
     {
         if (pageData.Is())
             return pageData.ContentLink.ToFriendlyUrl();
-        
+
         return null;
     }
 }

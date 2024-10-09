@@ -10,7 +10,7 @@ public partial class ParentLinkReferenceController : InternalBaseController
 
     static ActionResult ScriptCache;
     static ActionResult HtmlCache;
-    
+
     public ActionResult Html()
     {
         AddCacheHeaders();

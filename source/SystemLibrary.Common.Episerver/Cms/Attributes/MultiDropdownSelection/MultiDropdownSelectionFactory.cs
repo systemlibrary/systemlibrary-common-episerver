@@ -13,7 +13,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
     public IEnumerable<ISelectItem> GetSelections(ExtendedMetadata metadata)
     {
         var items = new List<ISelectItem>();
-    
+
         try
         {
             var propertyType = metadata.ModelType;
@@ -73,7 +73,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
                 PopulateSelectionItems(multiDropdownStoreOptions, options, propertyListType, metadata);
 
                 SetEditorConfiguration(metadata, "multiDropdownStoreOptions", multiDropdownStoreOptions);
-             
+
                 PopulateSelectionItems(items, options, selectionType, metadata);
             }
         }

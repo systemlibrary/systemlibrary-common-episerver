@@ -3,4 +3,4 @@
 static partial class Fakes
 {
 }
- 
+

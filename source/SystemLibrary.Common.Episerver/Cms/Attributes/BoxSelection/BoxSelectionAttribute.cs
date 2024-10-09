@@ -174,8 +174,8 @@ public class BoxSelectionAttribute : Attribute, IDisplayMetadataProvider
 
     /// <summary>
     /// Show expired (removed/deleted) options from the Factory in the user interface for Editors
-    /// <para>Items no longer existing, but are still selected in the DB on some properties, will then appear as 'Expired: ...'</para>
-    /// Do note that if property is an Enum, and an Enum is never null, so the value stored is the INT, which then will still be sent to the 'View/Frontend' even though the Enum does not contain that number anymore
+    /// <para>Items no longer existing, but are still selected in the DB, will then appear as 'Expired: ...'</para>
+    /// Do note that if property is an Enum (remember: enums are never null) the value stored is an Integer, which then will still be sent to the 'View/Frontend' even though the Enum does not contain that number anymore
     /// </summary>
     /// <example>
     /// public enum Products { A, B, C }

@@ -99,7 +99,7 @@ public class ToReactPropsDictionaryTest
         {
             Assert.IsTrue(true, "Throws then 'Title' do not exist in props");
         }
-        
+
         Assert.IsTrue(props["title"] != null);
     }
 
@@ -266,7 +266,7 @@ public class ToReactPropsDictionaryTest
 
         Assert.IsTrue(ienumerableDynamicList.Count == 3);
 
-        foreach(var dynamicDataItem in ienumerableDynamicList)
+        foreach (var dynamicDataItem in ienumerableDynamicList)
         {
             dynamic casted = dynamicDataItem;
             string[] strings = (string[])casted.Strings;

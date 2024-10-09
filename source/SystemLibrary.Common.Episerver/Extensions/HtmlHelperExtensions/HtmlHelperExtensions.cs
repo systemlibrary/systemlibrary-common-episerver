@@ -104,7 +104,7 @@ public static class HtmlHelperExtensions
                     try
                     {
                         var tupleModel = (ValueTuple<PageData, Exception>)model;
-                        content = tupleModel.Item1 as IContent;
+                        content = tupleModel.Item1;
                         message.Append(Print(tupleModel.Item2));
                     }
                     catch
@@ -165,7 +165,7 @@ public static class HtmlHelperExtensions
     public static IHtmlContent ComponentEditLink<TModel>(this IHtmlHelper<TModel> html, BlockData blockData)
     {
         var link = Episerver.ComponentEditLink.Create(blockData as IContent);
-        
+
         if (link == null)
             return HtmlString.Empty;
 

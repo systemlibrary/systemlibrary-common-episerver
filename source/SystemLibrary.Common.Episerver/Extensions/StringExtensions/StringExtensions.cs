@@ -14,9 +14,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 public static class StringExtensions
 {
     static IUrlResolver _IUrlResolver;
-    static IUrlResolver IUrlResolver =>
-        _IUrlResolver != null ? _IUrlResolver :
-        (_IUrlResolver = Services.Get<IUrlResolver>());
+    static IUrlResolver IUrlResolver => _IUrlResolver ??= Services.Get<IUrlResolver>();
 
     /// <summary>
     /// Convert the 'text', which is a string (json string) that comes from a 'public virtual' property marked with JsonEdit attribute
@@ -55,7 +53,7 @@ public static class StringExtensions
                 Log.Warning("[StringExtensions] JsonEditAsObject() warning thrown, with XhtmlStringJsonConverter");
                 return text.Json<T>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error("[StringExtensions] Could not convert '" + text + "' to " + typeof(T).Name + " in JsonEditAsObject(): " + ex.Message);
                 return Activator.CreateInstance<T>();
@@ -84,9 +82,9 @@ public static class StringExtensions
         {
             return (url.Contains(",,") && url.Contains("epieditmode")) ||   // www.epi.com/image.jpg,,12345?epieditmode=true
                 (url.Contains("/link/") && url.Contains(".aspx")) ||        // www.epi.com/Episerver/Cms/~/link/control.aspx
-                // NOTE: These formats are already "public available paths", not internal links, co commented out
-                // (url.Contains("globalassets/") && url.Contains(".")) ||    // www.epi.com/globalassets/image.jpg
-                // (url.Contains("contentassets/") && url.Contains(".")) ||   // www.epi.com/contentassets/image.jpg
+                                                                            // NOTE: These formats are already "public available paths", not internal links, co commented out
+                                                                            // (url.Contains("globalassets/") && url.Contains(".")) ||    // www.epi.com/globalassets/image.jpg
+                                                                            // (url.Contains("contentassets/") && url.Contains(".")) ||   // www.epi.com/contentassets/image.jpg
                 (url.Contains("/cms/") && url.Contains("/contentversion")) || // www.epi.com/EPiServer/cms/Stores/contentversion/?contentLink=5
                 (url.Contains("~/") && url.Contains("EPiServer/"));        //www.epi.com/Episerver/Cms/~/blockcontroller
         }

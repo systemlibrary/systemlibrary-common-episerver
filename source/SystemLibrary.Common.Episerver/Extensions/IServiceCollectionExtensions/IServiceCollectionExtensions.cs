@@ -98,7 +98,7 @@ public static partial class IServiceCollectionExtensions
         if (Options.ApplicationCookieDuration == 0)
             Options.ApplicationCookieDuration = fallback.ApplicationCookieDuration;
 
-        if(Options.CookieDuration == 0)
+        if (Options.CookieDuration == 0)
             Options.CookieDuration = fallback.CookieDuration;
 
         if (Options.DefaultAdminEmail.IsNot())

@@ -13,8 +13,7 @@ public abstract class InternalBaseController : Controller
     static int ClientCacheSeconds = 7200;
 
     static Assembly _CurrentAssembly;
-    protected Assembly CurrentAssembly => _CurrentAssembly != null ? _CurrentAssembly :
-        (_CurrentAssembly = Assembly.GetExecutingAssembly());
+    protected Assembly CurrentAssembly => _CurrentAssembly ??= Assembly.GetExecutingAssembly();
 
     protected bool IsCached(object data)
     {
@@ -50,7 +49,7 @@ public abstract class InternalBaseController : Controller
 
             return sb;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Log.Error(ex);
 

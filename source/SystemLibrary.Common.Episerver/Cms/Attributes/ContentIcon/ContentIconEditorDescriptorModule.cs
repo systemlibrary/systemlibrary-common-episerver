@@ -86,7 +86,7 @@ partial class ContentIconAttribute
                 //Note: on a rare occasion this has thrown an exception in a production environment, try catching it
                 //- swallow error, as we do not want app to crash for this
                 var descriptorRegistry = context.Locate?.Advanced?.GetInstance<UIDescriptorRegistry>();
-                
+
                 if (descriptorRegistry?.UIDescriptors == null) return;
 
                 if (ContentDescriptorSettings.Count == 0) return;
@@ -127,7 +127,7 @@ partial class ContentIconAttribute
         static void SetDescriptorClassForFontAwesomeIcons(UIDescriptor descriptor, Tuple<Type, ContentIconAttribute, string, string> contentType)
         {
             if (contentType.Item2.Value == null || contentType.Item4.Is()) return;
-            
+
             var fontAwesomeIconName = contentType.Item2.Value.GetType();
 
             var iconName = contentType.Item2.Value.ToString();
@@ -160,7 +160,7 @@ partial class ContentIconAttribute
             else
             {
                 var isSetting = contentType.Item2.IsSettings();
-                if(isSetting)
+                if (isSetting)
                     descriptor.IconClass += " custom-common-episerver-page-tree-icon__setting";
             }
         }

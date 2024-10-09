@@ -47,40 +47,31 @@ public abstract class BaseCms
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
-    protected internal static IContentRepository ContentRepository =>
-        _ContentRepository != null ? _ContentRepository :
-        (_ContentRepository = Services.Get<IContentRepository>());
+    protected internal static IContentRepository ContentRepository => _ContentRepository ??= Services.Get<IContentRepository>();
     static IContentRepository _ContentRepository;
 
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
-    protected internal static IContentVersionRepository ContentVersionRepository =>
-        _ContentVersionRepository != null ? _ContentVersionRepository :
-        (_ContentVersionRepository = Services.Get<IContentVersionRepository>());
+    protected internal static IContentVersionRepository ContentVersionRepository => _ContentVersionRepository ??= Services.Get<IContentVersionRepository>();
     static IContentVersionRepository _ContentVersionRepository;
 
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
-    protected internal static ILanguageBranchRepository LanguageBranchRepository => _LanguageBranchRepository != null ? _LanguageBranchRepository :
-        (_LanguageBranchRepository = Services.Get<ILanguageBranchRepository>());
+    protected internal static ILanguageBranchRepository LanguageBranchRepository => _LanguageBranchRepository ??= Services.Get<ILanguageBranchRepository>();
     static ILanguageBranchRepository _LanguageBranchRepository;
 
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
-    protected internal static IContentTypeRepository ContentTypeRepository =>
-        _ContentTypeRepository != null ? _ContentTypeRepository :
-        (_ContentTypeRepository = Services.Get<IContentTypeRepository>());
+    protected internal static IContentTypeRepository ContentTypeRepository => _ContentTypeRepository ??= Services.Get<IContentTypeRepository>();
     static IContentTypeRepository _ContentTypeRepository;
 
     /// <summary>
     /// Protected member you can reuse if you inherit BaseCms
     /// </summary>
-    protected internal static ProjectRepository ProjectRepository =>
-        _ProjectRepository != null ? _ProjectRepository :
-        (_ProjectRepository = Services.Get<ProjectRepository>());
+    protected internal static ProjectRepository ProjectRepository => _ProjectRepository ??= Services.Get<ProjectRepository>();
     static ProjectRepository _ProjectRepository;
 
     /// <summary>
@@ -272,14 +263,11 @@ public abstract class BaseCms
 
                     var host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost() && h.Name.Contains("."));
 
-                    if (host == null)
-                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
+                    host ??= siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Primary && !h.IsWildcardHost());
 
-                    if (host == null)
-                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost() && h.Name.Contains("."));
+                    host ??= siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost() && h.Name.Contains("."));
 
-                    if (host == null)
-                        host = siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost());
+                    host ??= siteDefinition.Hosts?.FirstOrDefault(h => h.Type == HostDefinitionType.Undefined && !h.IsWildcardHost());
 
                     if (host != null)
                         siteUri = host.Url;
@@ -312,10 +300,7 @@ public abstract class BaseCms
     {
         get
         {
-            if (_AllContentTypes == null)
-            {
-                _AllContentTypes = ContentTypeRepository.List();
-            }
+            _AllContentTypes ??= ContentTypeRepository.List();
             return _AllContentTypes;
         }
     }

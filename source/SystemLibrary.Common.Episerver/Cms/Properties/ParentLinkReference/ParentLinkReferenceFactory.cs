@@ -16,7 +16,7 @@ public class ParentLinkReferenceFactory : ISelectionFactory
         var items = new List<ISelectItem>();
 
         var parentId = 0;
-        
+
         try
         {
             if (metadata?.EditorConfiguration?.ContainsKey("parentLinkReferenceId") == true)

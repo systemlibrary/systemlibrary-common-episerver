@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 using SystemLibrary.Common.Episerver.Extensions;
-using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver.Components;
 
@@ -45,7 +44,7 @@ public abstract class AsyncComponent<T> : AsyncBlockComponent<T> where T : Block
                 .Replace("ViewModel", "")
                 .Replace("Model", "");
 
-            if(componentName.Contains("Block", StringComparison.Ordinal))
+            if (componentName.Contains("Block", StringComparison.Ordinal))
                 viewName = "~/Content/Blocks/" + componentType + "/" + viewName;
             else
                 viewName = "~/Content/Components/" + componentType + "/" + viewName;

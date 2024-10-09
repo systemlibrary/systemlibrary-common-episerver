@@ -84,7 +84,7 @@ partial class IApplicationBuilderExtensions
                         }
                     }
 
-                    if (l > 34 &&context.Response.StatusCode == 404  && path.StartsWith("/SystemLibrary/CommonEpiserverCms", StringComparison.Ordinal))
+                    if (l > 34 && context.Response.StatusCode == 404 && path.StartsWith("/SystemLibrary/CommonEpiserverCms", StringComparison.Ordinal))
                     {
                         context.Response.StatusCode = 200;
                         await context.Response.WriteAsync("");

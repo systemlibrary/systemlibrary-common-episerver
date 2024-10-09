@@ -17,7 +17,7 @@ public class LogTests
         {
             Log.Write("OK");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Assert.IsTrue(false, "Error occured: " + ex.Message);
             return;

@@ -20,7 +20,7 @@ public class PageDataExtensionsTests
         expected = false;
         Assert.IsTrue(data.IsNot() == expected);
 
-        data = (PageData)null;
+        data = null;
         expected = false;
         Assert.IsTrue(data.Is() == expected);
 
@@ -28,7 +28,7 @@ public class PageDataExtensionsTests
         expected = true;
         Assert.IsTrue(data.Is() == expected);
 
-        data = (PageData)null;
+        data = null;
         Assert.IsTrue(data.ToFriendlyUrl() == null);
 
         data = new PageData(new PageReference(5));

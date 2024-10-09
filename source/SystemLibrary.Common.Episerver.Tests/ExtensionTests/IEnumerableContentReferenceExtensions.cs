@@ -15,13 +15,13 @@ public class IEnumerableContentReferenceExtensions
         ContentArea contentArea = null;
 
         var filtered = contentArea.SelectFiltered<IContent>();
-        
+
         Assert.IsNotNull(filtered);
-        
+
         contentArea = new ContentArea();
-        
+
         filtered = contentArea.SelectFiltered<IContent>();
 
-        Assert.IsNotNull(filtered); 
+        Assert.IsNotNull(filtered);
     }
 }

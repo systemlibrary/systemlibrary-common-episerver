@@ -41,12 +41,9 @@ public partial class WebApplicationInitializer : IBlockingFirstRequestInitialize
     {
         try
         {
-            if(env.WebRootPath == null)
-            {
-                env.WebRootPath = EnvironmentConfig.Current.ContentRootPath;
-            }
+            env.WebRootPath ??= EnvironmentConfig.Current.ContentRootPath;
 
-            if(Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
+            if (Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
                 return Task.FromResult(0);
 
             if (uIUserProvider == null)

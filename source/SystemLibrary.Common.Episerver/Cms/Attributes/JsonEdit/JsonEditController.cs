@@ -95,5 +95,5 @@ public partial class JsonEditController : InternalBaseController
         return (EditorStyleCache = GetFileContentResult(editorStyle, "text/css"));
     }
 
-   
+
 }
