@@ -360,35 +360,29 @@
                 intermediateChanges: false,
                 value: null,
 
-                postCreate: function () {
-                    try {
-                        this._loadCssFile();
-                        this.inherited(arguments);
-                        this._initWidgetProperties();
-                        this.value = getInitialValue(this.storeAsEnum, this.isMultiSelect, null);
-                        this._bindEvents(this);
-
-                        if (this.value === 0) {
-                            this._selectBoxes();
-                        } else {
-                            console.warn("value is not 0, do not init select boxes");
-                        }
-                    }
-                    catch (err) {
-                        console.error(err);
-                    }
-                },
-
                 //always invoked on initial load by Epi, value is true if 'readonly' attribute has been added to the property
                 _setReadOnlyAttr: function (value) {
                     this._set("readOnly", value);
                 },
 
-                //always invoked on initial load by Epi, value is current value from the database
+                //always invoked on initial load by Epi before postCreate(), value is current value from the database
                 _setValueAttr: function (v) {
                     v = getInitialValue(this.storeAsEnum, this.isMultiSelect, v);
                     this._set('value', v);
                     this._selectBoxes();
+                },
+
+                postCreate: function () {
+                    try {
+                        this._loadCssFile();
+                        this.inherited(arguments);
+                        this._initWidgetProperties();
+                        this._bindEvents(this);
+                        this._selectBoxes();
+                    }
+                    catch (err) {
+                        console.error(err);
+                    }
                 },
 
                 isValid: function () {
