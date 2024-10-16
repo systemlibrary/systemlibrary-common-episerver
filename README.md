@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - &gt;= Episerver 12.26.0
 
 ## Latest Release Notes
-- 7.18.0.9
-- BoxSelection: default values now works in New Block in Content Area dialog (fix)
+- 7.18.0.10
+- SSR OnException prints className of the component (feature)
  
 #### Major Breaking Versions
 - 7.13.0.1
