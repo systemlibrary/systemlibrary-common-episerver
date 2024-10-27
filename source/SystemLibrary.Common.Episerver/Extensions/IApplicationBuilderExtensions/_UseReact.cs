@@ -51,9 +51,9 @@ partial class IApplicationBuilderExtensions
 
     static void OnReactException(Exception arg1, string arg2, string arg3)
     {
-        var message = arg1.Message + " Component: " + arg2;
+        var message = arg1.Message + "\nComponent: " + arg2;
 
-        Log.Error(message + arg3 + "\n" + arg1.ToString());
+        Log.Error(message + " " + arg3 + "\n" + arg1.ToString());
 
         if (!EnvironmentConfig.IsProd)
         {

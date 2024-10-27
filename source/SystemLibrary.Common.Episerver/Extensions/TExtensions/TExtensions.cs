@@ -81,7 +81,8 @@ public static partial class TExtensions
         }
         catch (Exception ex)
         {
-            Log.Error(ex);
+            var message = "Component: " + componentFullName + ", tagName: " + tagName + ", hasProps: " + (props.Count > 0) + "\nException: ";
+            Log.Error(message + ex.ToString());
 
             if (ex.Message.Contains("not find a comp") || ex.Message.Contains("likely forgot to export"))
             {
