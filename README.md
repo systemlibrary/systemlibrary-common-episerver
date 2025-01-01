@@ -61,32 +61,23 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.2
 
 ## Latest Release Notes
+- 8.0.0.2
+- Updated deps (fix)
+- Internal debug message format changed (cosmetic)
+- Using context.services instead if Services from Library on removal of IContentTypeAdvisor (fix)
+
+#### Major Breaking Versions
 - 8.0.0.1
 - Updated target framework to net8 (breaking change)
 - Updated Episerver.CMS minimum dep version to 12.32.2 (breaking change)
-- Configuration allPropertiesScrollableDocumentHeader removed  (breaking change)
-- Block icons pane shows images, in the same way Page tree does show icons (new)
-- UseRevalidateSessionMiddleware renamed to UseIdentityCookieRevalidation to reflect it only evaluates the Identity Cookie (breaking change)
-- Internal error logging adds class name (fix)
-- DocumentHeader in Epi reduced by 24px height, more room for content (fix)
-- Removed HideRequiredTitle in new content dialog, as new content dialog do not appear anymore, finally Epi removed that redundant stupid modal dialog (fix)
-- Removed ScrollableDocumentHeader as it worked poorly (fix)
-- VersionGadgetHideLanguageColumn now also removes the empty 4px empty space (fix)
-- UseIdentityCookieRevalidation now also deletes if cookie name has been customized (fix)
-- appSettings: moved 'showComponentEditLink' to under 'ssr' config element (breaking change)
-- SsrId shortened slightly, and also added float, double and datetimeoffset (breaking change)
-- ReactServerSideRendering does not output duplicated hidden inputs with same ID (optimization)
 - CreateHostBuilder has new argument Hosting (breaking change)
+- appSettings: moved 'showComponentEditLink' to under 'ssr' config element (breaking change)
 
-#### Major Breaking Versions
 - 7.13.0.1
-- Updated SystemLibrary.Common.Web dep (breaking change)
-- Updated SystemLibrary.Common.Net dep where Encrypt() is rewritten and Config files are never read from 'bin' if project name do not contain ".Tests" (breaking change)
+- Updated SystemLibrary.Common.Net dep where Encrypt() is rewritten and Config files are never read from 'bin', unless project name contains '.Test' (breaking change)
 - Removed "appUrl" from appSettings, only inside 'Manage Websettings' we can configure the primary "appUrl" per site (breaking change)
 - AppSettings is now internal, use PackageConfigInstance.Current instead which exposes some settings (breaking change)
 - StringExtension.IsFile removed, as SystemLibrary.Common.Net has it already (breaking change)
-- IErrorPages are cached for 300s, so a new ErrorPage might take up to 300s before responding (breaking change/optimization)
-- GetLatestVersionOfContentType renamed to GetAllLatestVersionsOfContentType (breaking change)
 
 #### Version history
 - View git history of this file if interested

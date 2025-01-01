@@ -6,7 +6,7 @@
 		<Configurations>Release</Configurations>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
-		<Version>8.0.0.1</Version>
+		<Version>8.0.0.2</Version>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -80,7 +80,7 @@
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
 	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="8.4.0.2" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="8.4.0.4" />
 	</ItemGroup>
 
 	<PropertyGroup>

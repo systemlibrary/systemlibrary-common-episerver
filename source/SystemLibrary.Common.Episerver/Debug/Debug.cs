@@ -19,7 +19,7 @@ internal static class Debug
     {
         if (Debugging)
         {
-            Dump.Write("Epi debug is 'true': " + msg);
+            global::Log.Debug("Debug Epi 'true': " + msg);
         }
     }
 }

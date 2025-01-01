@@ -33,11 +33,11 @@ public static partial class IServiceCollectionExtensions
     {
         SetOptions(options);
 
+        services.AddCms();
+
         services.AddCmsAspNetIdentity<T>();
 
         services.AddCommonWebServices<TLogWriter>(Options);
-
-        services.AddCms();
 
         services.AddApplicationCookie(Options);
 
