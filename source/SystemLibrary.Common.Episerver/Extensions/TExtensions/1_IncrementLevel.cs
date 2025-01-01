@@ -6,7 +6,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
 {
-    const string SysLibComponentStorageKey = "1";
+    const string SysLibComponentStorageKey = "_1";
 
     static int IncrementLevel(bool renderClientSide)
     {

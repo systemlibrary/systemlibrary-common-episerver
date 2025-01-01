@@ -19,6 +19,22 @@ using SystemLibrary.Common.Web;
 
 namespace SystemLibrary.Common.Episerver;
 
+public enum Hosting
+{
+    /// <summary>
+    /// IIS or IIS Express
+    /// </summary>
+    IIS,
+    /// <summary>
+    /// Kestrel
+    /// </summary>
+    Kestrel,
+    /// <summary>
+    /// Unknown returns a default app builder only
+    /// </summary>
+    Unknown = 9999
+}
+
 /// <summary>
 /// Base Cms functions to use anywhere within your application
 /// <para>- No more injecting things that you always need</para>
@@ -112,8 +128,6 @@ public abstract class BaseCms
         throw new Exception("Not yet implemented");
     }
 
-
-
     /// <summary>
     /// Returns true if curent request is inside edit mode, else false
     /// </summary>
@@ -155,6 +169,11 @@ public abstract class BaseCms
     /// <para>Creates a default CMS host builder</para>
     /// - the 'T' is usually your 'Program.cs' or 'Startup.cs'
     /// </summary>
+    /// <param name="hosting">
+    /// IIS returns host builder configured for IIS/IIS express
+    /// <para>Kestrel returns a host builder configured for Kestrel</para>
+    /// <para>Unknown returns a host builder without configuring defaults for the CMS nor hosting</para>
+    /// </param>
     /// <example>
     /// Program.cs/Startup.cs
     /// <code>
@@ -174,7 +193,7 @@ public abstract class BaseCms
     /// }
     /// </code>
     /// </example>
-    public static IHostBuilder CreateHostBuilder<T>(string[] args, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, Hosting hosting, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
     {
         if (appSettingsFullPath.IsNot())
             appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
@@ -184,7 +203,7 @@ public abstract class BaseCms
         if (environment.IsNot())
             environment = EnvironmentConfig.Current.Name;
 
-        return Host.CreateDefaultBuilder(args)
+        var hostBuilder = Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config.AddJsonFile(appSettingsFullPath);
@@ -201,8 +220,20 @@ public abstract class BaseCms
                             config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
                     }
                 }
+            });
+
+        if (hosting == Hosting.Kestrel)
+        {
+            hostBuilder.ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseKestrel();
+                webBuilder.UseStartup<T>();
             })
-            .ConfigureWebHostDefaults(webBuilder =>
+             .ConfigureCmsDefaults();
+        }
+        else if (hosting == Hosting.IIS)
+        {
+            hostBuilder.ConfigureWebHostDefaults(webBuilder =>
             {
                 if (environment.Is())
                     webBuilder.UseEnvironment(environment);
@@ -210,6 +241,9 @@ public abstract class BaseCms
                 webBuilder.UseStartup<T>();
             })
             .ConfigureCmsDefaults();
+        }
+
+        return hostBuilder;
     }
 
     static ConcurrentDictionary<string, string> PrimaryHostUrlCache = new ConcurrentDictionary<string, string>();

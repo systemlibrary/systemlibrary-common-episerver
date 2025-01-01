@@ -33,7 +33,7 @@ partial class IApplicationBuilderExtensions
 
             var statusCode = context?.Response?.StatusCode ?? 0;
 
-            if (statusCode <= 399 || statusCode == 503) return;
+            if (statusCode <= 399 || statusCode == 503 || statusCode == 401 || statusCode == 402 || statusCode == 403) return;
 
             if (BaseCms.IsInPreviewMode || BaseCms.IsInEditMode) return;
 
@@ -48,7 +48,7 @@ partial class IApplicationBuilderExtensions
 
             if (length <= 4)
             {
-                // No response for "/10", nor "/404", nor "/500"
+                // No custom response for "/10", nor "/404", nor "/500"
                 if (char.IsDigit(path[1]) && char.IsDigit(path[2]))
                 {
                     return;
@@ -61,25 +61,26 @@ partial class IApplicationBuilderExtensions
                 if (path.EndsWith(".js") || path.Contains(".js?"))
                 {
                     context.Response.ContentType = "application/javascript; charset=utf-8";
-                    await context.Response.WriteAsync("// 404").ConfigureAwait(false);
+
+                    await context.Response.WriteAsync("// " + statusCode).ConfigureAwait(false);
                 }
 
                 else if (path.EndsWith(".svg"))
                 {
                     context.Response.ContentType = "image/svg+xml";
-                    await context.Response.WriteAsync("<svg viewBox=\"0 0 1 1\"><text>404</text></svg>").ConfigureAwait(false);
+                    await context.Response.WriteAsync("<svg viewBox=\"0 0 1 1\"><text>" + statusCode + "</text></svg>").ConfigureAwait(false);
                 }
 
                 else if (path.EndsWith(".css") || path.Contains(".css?"))
                 {
                     context.Response.ContentType = "text/css; charset=utf-8";
-                    await context.Response.WriteAsync("/* 404 */").ConfigureAwait(false);
+                    await context.Response.WriteAsync("/* " + statusCode + " */").ConfigureAwait(false);
                 }
 
                 else if (path.EndsWith(".txt") || path.Contains(".txt?"))
                 {
                     context.Response.ContentType = "text/plain; charset=utf-8";
-                    await context.Response.WriteAsync("404").ConfigureAwait(false);
+                    await context.Response.WriteAsync(statusCode.ToString()).ConfigureAwait(false);
                 }
 
                 else if (path.EndsWith(".png") || path.Contains(".png?"))
@@ -88,7 +89,7 @@ partial class IApplicationBuilderExtensions
 
                     var imageBytes = Convert.FromBase64String(transparentPngBase64);
 
-                    context.Response.StatusCode = 404;
+                    context.Response.StatusCode = statusCode;
                     context.Response.ContentType = "image/png";
                     await context.Response.Body.WriteAsync(imageBytes, 0, imageBytes.Length).ConfigureAwait(false);
                 }
@@ -100,13 +101,12 @@ partial class IApplicationBuilderExtensions
                     var imageBytes = Convert.FromBase64String(whiteJpegBase64);
 
                     context.Response.ContentType = "image/jpeg";
-                    context.Response.StatusCode = 404;
+                    context.Response.StatusCode = statusCode;
                     await context.Response.Body.WriteAsync(imageBytes, 0, imageBytes.Length);
                 }
 
                 return;
             }
-
 
             var pathLowered = path.ToLower();
 
@@ -124,7 +124,7 @@ partial class IApplicationBuilderExtensions
             if (pathLowered.StartsWith("/episerver/", StringComparison.Ordinal))
             {
                 if (pathLowered.Contains("/metadata/", StringComparison.Ordinal))
-                    Log.Error("[ErrorPageResponse] " + path + " not found, 404");
+                    Log.Error("[ErrorPageResponse] " + path + " status code: " + statusCode);
 
                 return;
             }
@@ -136,10 +136,15 @@ partial class IApplicationBuilderExtensions
                 return;
             }
 
-            // Paths that contains we just ignore
-            if (pathLowered.Contains("wp-includes", StringComparison.Ordinal) ||
-                pathLowered.Contains("phpinfo", StringComparison.Ordinal) ||
-                pathLowered.EndsWith(".environment", StringComparison.Ordinal)) return;
+            // Paths we ignore
+            if (pathLowered.Contains("wp-includes", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains("wp-admin", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains("phpinfo", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains("phpmyadmin", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains(".env", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.EndsWith(".environment", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains(".htaccess", StringComparison.OrdinalIgnoreCase) ||
+                pathLowered.Contains(".php", StringComparison.OrdinalIgnoreCase)) return;
 
             var isAjaxRequest = context.Request.IsAjaxRequest();
 
@@ -209,21 +214,20 @@ partial class IApplicationBuilderExtensions
                 await context.Response.WriteAsync("<div class='" + Globals.CssClassName.HtmlErrorResponse + "'>" + statusCode + ": " + ((HttpStatusCode)statusCode).ToString() + "</div>").ConfigureAwait(false);
                 return;
             }
-
-            // TODO: Consider adding some kind of cache for some of the status codes based on path? only if query is blank?
+            // TODO: Consider adding some kind of cache for some of the status codes based on path? only if query is blank? For non aut'd users?
             // Add first 50 error responses to a Cache, any other is always recalc'd, but that means we easily serve top most errors rapidly
-            //var relativeUrl = (pathLowered + context?.Request?.QueryString);
-            //var viewCacheKey = nameof(ErrorPageResponse) + "ViewResult" + statusCode + (relativeUrl.GetHashCode() % 100).ToString() + Math.Min(relativeUrl.Length, 64);
-            //var cachedViewData = Cache.Get<object[]>(viewCacheKey);
-            //if (cachedViewData != null)
-            //{
-            //    var routeData = new RouteData();
-            //    routeData.Values["controller"] = cachedViewData[1].ToString();
-            //    var actionContext = new ActionContext(context, routeData, new ControllerActionDescriptor());
-            //    var view = cachedViewData[0] as ViewResult;
-            //    await view.ExecuteResultAsync(actionContext).ConfigureAwait(false);
-            //    return;
-            //}
+            // var relativeUrl = (pathLowered + context?.Request?.QueryString);
+            // var viewCacheKey = nameof(ErrorPageResponse) + "ViewResult" + statusCode + (relativeUrl.GetHashCode() % 100).ToString() + Math.Min(relativeUrl.Length, 64);
+            // var cachedViewData = Cache.Get<object[]>(viewCacheKey);
+            // if (cachedViewData != null)
+            // {
+            //     var routeData = new RouteData();
+            //     routeData.Values["controller"] = cachedViewData[1].ToString();
+            //     var actionContext = new ActionContext(context, routeData, new ControllerActionDescriptor());
+            //     var view = cachedViewData[0] as ViewResult;
+            //     await view.ExecuteResultAsync(actionContext).ConfigureAwait(false);
+            //     return;
+            // }
 
             // TODO: Cache if request is a simple GET for a URL, less than 12chars in path?
             // TODO: Cache first 100 errors, that are GET for a URL?

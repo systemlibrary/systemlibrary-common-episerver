@@ -18,7 +18,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
         {
             var propertyType = metadata.ModelType;
 
-            var propertyListType = propertyType.GetFirstGenericType();
+            var propertyListType = propertyType.GetTypeArgument();
 
             if (propertyListType == null)
                 throw new Exception("Property " + metadata.PropertyName + ": Must be of type IList<string> or IList<Enum> (Enum is your own custom type 'public enum Colors ...'");
@@ -47,7 +47,7 @@ public class MultiDropdownSelectionFactory : BaseMultiSelectionFactory, ISelecti
 
             var type = metadata.ModelType;
 
-            var selectionType = options.EnumType ?? type.GetFirstGenericType();
+            var selectionType = options.EnumType ?? type.GetTypeArgument();
 
             if (options.SelectionFactoryType != null)
             {

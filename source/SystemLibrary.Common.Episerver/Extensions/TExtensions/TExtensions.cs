@@ -65,9 +65,11 @@ public static partial class TExtensions
 
         var props = ModelToProps(modelType, model, additionalProps, camelCaseProps, printNullValues);
 
-        var jsonProps = PropsToJsonProps(props, camelCaseProps);
+        // TODO: Optimize, an existing SSR ID has already been printed, so theres no need to re-render it, even though the same component is shown multiple places in one page load
+        // - A storage of the StringBuilder and which SSR ID component has been rendered and a simple duplicate of the same StringBuilder as 'curr location' would do
+        var ssrId = GetSSRID(renderClientSide, id, model, modelType, props);
 
-        var ssrId = GetSSRID(renderClientSide, id, model, props, jsonProps);
+        var jsonProps = PropsToJsonProps(props, camelCaseProps);
 
         componentFullName = GetComponentFullName(modelType, model, componentFullName);
 
@@ -82,6 +84,7 @@ public static partial class TExtensions
         catch (Exception ex)
         {
             var message = "Component: " + componentFullName + ", tagName: " + tagName + ", hasProps: " + (props.Count > 0) + "\nException: ";
+
             Log.Error(message + ex.ToString());
 
             if (ex.Message.Contains("not find a comp") || ex.Message.Contains("likely forgot to export"))

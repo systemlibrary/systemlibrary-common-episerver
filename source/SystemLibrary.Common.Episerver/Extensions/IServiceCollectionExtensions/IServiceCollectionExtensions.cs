@@ -33,9 +33,9 @@ public static partial class IServiceCollectionExtensions
     {
         SetOptions(options);
 
-        services.AddCommonWebServices<TLogWriter>(Options);
-
         services.AddCmsAspNetIdentity<T>();
+
+        services.AddCommonWebServices<TLogWriter>(Options);
 
         services.AddCms();
 

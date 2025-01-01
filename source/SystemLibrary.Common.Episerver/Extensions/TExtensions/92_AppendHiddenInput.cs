@@ -16,53 +16,62 @@ partial class TExtensions
 
         var storage = HttpContextInstance.Current?.Items;
 
-        if (storage == null && level == 0)
+        if (storage == null)
         {
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
 
             return;
         }
 
+        // hidden input for the ssrId already printed
+        if (ssrIdStore.ContainsKey(ssrId))
+        {
+            Debug.Log("hidden input already printed for ssr-id " + ssrId);
+            return;
+        }
+
+        ssrIdStore.TryAdd(ssrId, true);
+
+        // NOTE:
+        // In heavy aync scenarios: first thread sees storage as null, a second thread comes before first thread has set the storage
+        // leaving both threads with null and wanting to create a new storage (dictionary)
+        // After creating the dictionary, we check the store again, if still null, we set it
+        // For time being we do not want a lock here
         var dictionary = storage[SysLibStorageHiddenInputs] as ConcurrentDictionary<string, StringBuilder>;
 
         if (dictionary == null)
         {
             dictionary = new ConcurrentDictionary<string, StringBuilder>();
-            // NOTE: in rare async scenarios, between null and adding the keys (creating the hashset), another thread might also create a HashSet
-            // but that second hashSet during creation, the first thread (hopefully) manages to set it, so it is not null after creation
-            // We do not want to use a lock here for time being
+
             if (storage[SysLibStorageHiddenInputs] == null)
             {
                 storage[SysLibStorageHiddenInputs] = dictionary;
             }
             else
+            {
                 dictionary = storage[SysLibStorageHiddenInputs] as ConcurrentDictionary<string, StringBuilder>;
+            }
         }
 
         if (level == 0)
         {
             // All hidden inputs within "first parent component", is now appended to the bottom in the DOM
             if (dictionary.ContainsKey(SysLibComponentStorageKey))
+            {
                 root.Append(dictionary[SysLibComponentStorageKey]);
+            }
 
             root.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />");
             return;
         }
 
-        // If ssr id input has already been printed, just return
-        if (ssrIdStore.ContainsKey(ssrId))
-        {
-            return;
-        }
-
-        // Printing this input with the ssr id once
-        ssrIdStore.TryAdd(ssrId, true);
-
         // Adding or updating the string builder containing all inputs of type hidden
+        var hidden = $"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />";
+
         dictionary.AddOrUpdate(
             SysLibComponentStorageKey,
-            new StringBuilder($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />"),
-            (key, oldValue) => oldValue.Append($"<input type='hidden' id=\"" + ssrId + $"\" data-rcssr=\"{componentFullName}\" data-rcssr-props=\"{HttpUtility.HtmlAttributeEncode(jsonProps)}\" />")
+            new StringBuilder(hidden),
+            (key, oldValue) => oldValue.Append(hidden)
         );
     }
 }

@@ -47,6 +47,12 @@
 		<EmbeddedResource Include="FontAwesome\Icons\Regular\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />
+		<None Remove="C:\syslib\Packages\episerver.cms.tinymce\4.8.1\contentFiles\any\any\modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.admin\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Admin\EPiServer.Cms.UI.Admin.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.settings\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Settings\EPiServer.Cms.UI.Settings.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.visitorgroups\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.VisitorGroups\EPiServer.Cms.UI.VisitorGroups.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.2\contentFiles\any\any\modules\_protected\CMS\CMS.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.2\contentFiles\any\any\modules\_protected\Shell\Shell.zip" />
 		<EmbeddedResource Include="Cms\Admin\Reports\LinksInContentText\GetLinksInContentText.sql" />
 		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
 		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
@@ -68,13 +74,13 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.31.2" />
+	  <PackageReference Include="EPiServer.CMS" Version="12.32.2" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.24.1" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.24.2" />
 	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
 	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
 	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="7.8.1.6" />
+	  <PackageReference Include="SystemLibrary.Common.Web" Version="8.4.0.2" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -82,7 +88,7 @@
 		<Version>$(Version)</Version>
 		<Title>SystemLibrary Common Episerver</Title>
 		<Description>
-Library with classes, methods and dijits for every .NET &gt;= 7 episerver web application
+Library with classes, methods and dijits for every .NET &gt;= 8 episerver web application
 https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
 
 Installation
@@ -94,7 +100,7 @@ https://systemlibrary.github.io/systemlibrary-common-episerver/</Description>
 		<PackageProjectUrl>https://www.systemlibrary.com/#SystemLibraryCommonEpiserver</PackageProjectUrl>
 		<PackageIcon>nuget-icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageTags>C# .NET 7.0 Episerver Optimizely Library</PackageTags>
+		<PackageTags>C# .NET 8.0 Episerver Optimizely Library</PackageTags>
 		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-release-notes</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>

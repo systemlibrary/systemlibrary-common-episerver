@@ -1,7 +1,7 @@
 # SystemLibrary Common Episerver
 
 ## Description
-Library with classes, methods and dijits for every &gt;= .NET 7 episerver application
+Library with classes, methods and dijits for every &gt;= .NET 8 episerver application
 
 ### Features
 ##### BoxSelection
@@ -57,25 +57,27 @@ Library with classes, methods and dijits for every &gt;= .NET 7 episerver applic
 - Contains a DefaultComponent so no need to create a AsyncComponent if all you need is the block available in the View as a Model
 
 ## Requirements
-- &gt;= .NET 7
-- &gt;= Episerver 12.26.0
+- &gt;= .NET 8
+- &gt;= Episerver 12.32.2
 
 ## Latest Release Notes
 - 8.0.0.1
-- Updated target framework to net8 and updated deps
-- Configuration allPropertiesScrollableDocumentHeader removed 
-- Block icons pane shows images, in the same way Page tree does show icons
-- UseRevalidateSessionMiddleware renamed to UseIdentityCookieRevalidation to reflect it only evaluates the Identity Cookie
-- Internal error logging adds class name
-- DocumentHeader in Epi reduced by 24px height, more room for content
-- Removed HideRequiredTitle in new content dialog, as new content dialog do not appear anymore, finally Epi removed that redundant stupid modal dialog (hopefully)
-- Removed ScrollableDocumentHeader as it worked poorly
-- VersionGadgetHideLanguageColumn now also removes the empty space (3-4 px)
-- Renamed USeRevalidateSessionMiddleware to UseIdentityCookieRevalidation to reflect that it only checks the identity cookie
-- UseIdentityCookieRevalidation now also deletes if cookie name has been customized
-- appSettings: moved 'showComponentEditLink' to under 'ssr' config element
+- Updated target framework to net8 (breaking change)
+- Updated Episerver.CMS minimum dep version to 12.32.2 (breaking change)
+- Configuration allPropertiesScrollableDocumentHeader removed  (breaking change)
+- Block icons pane shows images, in the same way Page tree does show icons (new)
+- UseRevalidateSessionMiddleware renamed to UseIdentityCookieRevalidation to reflect it only evaluates the Identity Cookie (breaking change)
+- Internal error logging adds class name (fix)
+- DocumentHeader in Epi reduced by 24px height, more room for content (fix)
+- Removed HideRequiredTitle in new content dialog, as new content dialog do not appear anymore, finally Epi removed that redundant stupid modal dialog (fix)
+- Removed ScrollableDocumentHeader as it worked poorly (fix)
+- VersionGadgetHideLanguageColumn now also removes the empty 4px empty space (fix)
+- UseIdentityCookieRevalidation now also deletes if cookie name has been customized (fix)
+- appSettings: moved 'showComponentEditLink' to under 'ssr' config element (breaking change)
+- SsrId shortened slightly, and also added float, double and datetimeoffset (breaking change)
+- ReactServerSideRendering does not output duplicated hidden inputs with same ID (optimization)
+- CreateHostBuilder has new argument Hosting (breaking change)
 
- 
 #### Major Breaking Versions
 - 7.13.0.1
 - Updated SystemLibrary.Common.Web dep (breaking change)

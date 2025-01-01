@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using EPiServer;
+using EPiServer.Core;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 using SystemLibrary.Common.Episerver.Components;
 using SystemLibrary.Common.Web.Extensions;
@@ -38,26 +42,16 @@ public static partial class IApplicationBuilderExtensions
 
         app.ExceptionHandler(options);
 
-        var useControllers = options.UseControllers;
-        var useRazorPages = options.UseRazorPages;
-        var useApiControllers = options.UseApiControllers;
-
-        // Disable all endpoints in "CommonWeb", OptimizelyCMS is picky in the order
-        // and for "performance" we want to register Content early
-        options.UseControllers = false;
+        if (options.UseCmsIdentityCookieRevalidation)
+            app.UseMiddleware<CmsIdentityCookieRevalidationMiddleware>();
+        
         options.UseRazorPages = false;
-        options.UseApiControllers = false;
+
+        options.PrecededEndpoints = CmsPrecededEndpoints;
 
         app.UseCommonWebApp(env, options);
-
-        options.UseControllers = useControllers;
-        options.UseRazorPages = useRazorPages;
-        options.UseApiControllers = useApiControllers;
-
-        if (options.UseIdentityCookieRevalidation)
-            app.UseMiddleware<IdentityCookieRevalidationMiddleware>();
-
-        app.UseMapEndpoints(options);
+        
+        app.UseMapEndpoints();
 
         app.AddUseReact(options);
 
@@ -67,4 +61,20 @@ public static partial class IApplicationBuilderExtensions
 
         return app;
     }
+}
+
+public class WarmupHostedService : IHostedService
+{
+    private readonly IContentLoader _contentLoader;
+
+    public WarmupHostedService(IContentLoader contentLoader) => _contentLoader = contentLoader;
+
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        // Preload Start Page
+        var startPage = _contentLoader.Get<PageData>(ContentReference.StartPage);
+        return Task.CompletedTask;
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 }

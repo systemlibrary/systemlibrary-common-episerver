@@ -248,9 +248,9 @@ public static class ObjectExtensions
 
     static void ConvertPropertyToDictionaryData(object model, Type modelType, PropertyInfo property, Dictionary<string, object> result, bool forceCamelCase, bool printNullValues, string[] ignorePropertyNames, bool convertContentAreaToList, int level)
     {
-        if (level > 12)
+        if (level > 16)
         {
-            Log.Warning("Skipping conversion to dictionary data, as we are deper than level 12 in the recursive method, for type: " + modelType.Name);
+            Log.Warning("Skipping conversion to dictionary data, as we are deeper than level 16 in the recursive method, for type: " + modelType.Name);
             return;
         }
 
@@ -260,7 +260,7 @@ public static class ObjectExtensions
         {
             if (ignorePropertyNames.Contains(name))
             {
-                Debug.Log("Skipped property " + name);
+                Debug.Log("Ignored property " + name + " on " + modelType.Name);
                 return;
             }
         }
@@ -363,7 +363,7 @@ public static class ObjectExtensions
         {
             var enumerableType = enumerable.GetType();
 
-            var genericType = enumerableType.GetFirstGenericType();
+            var genericType = enumerableType.GetTypeArgument();
 
             if (genericType == Globals.ContentReferenceType || genericType.Inherits(Globals.ContentReferenceType))
             {

@@ -43,7 +43,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
 
             var modelType = metadata.ModelType;
 
-            var genericType = modelType.GetFirstGenericType();
+            var genericType = modelType.GetTypeArgument();
 
             var selectEnumType = options.EnumType;
 
@@ -103,7 +103,7 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
                 keysStorable = keysStorable.Distinct().ToList();
             }
 
-            var storeAsString = modelType == SystemType.StringType || modelType.GetFirstGenericType() == SystemType.StringType;
+            var storeAsString = modelType == SystemType.StringType || modelType.GetTypeArgument() == SystemType.StringType;
 
             foreach (var selectKey in KeysFiltered(keys, Show, Hide))
             {
@@ -282,8 +282,6 @@ public class BoxSelectionFactory : BaseMultiSelectionFactory, ISelectionFactory
         var e = AsEnum(selectKey, selectEnum);
         var v = e.ToValue();
         var t = e.ToText();
-
-
 
         if (storableValues.Contains(v)) return true;
 

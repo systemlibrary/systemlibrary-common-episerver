@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 
+using SystemLibrary.Common.Web.Extensions;
+
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
@@ -20,6 +22,9 @@ partial class IApplicationBuilderExtensions
 
                     if (contextFeature?.Error != null)
                         Log.Error(contextFeature?.Error);
+                    else
+                        Log.Error(context?.Request.Url() + " " + statusCode);
+
                 }
                 return null;
             });

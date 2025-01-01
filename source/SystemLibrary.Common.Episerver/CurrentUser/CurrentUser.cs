@@ -37,9 +37,21 @@ namespace SystemLibrary.Common.Episerver.Users;
 /// </example>
 public class CurrentUser : ApplicationUser
 {
-    ClaimsPrincipal Principal() => HttpContextInstance.Current?.User ?? new ClaimsPrincipal();
+    ClaimsPrincipal Principal()
+    {
+        var u1 = HttpContextInstance.Current?.User;
+        var u2 = HttpContextInstance.Current?.User;
 
-    public bool IsAuthenticated => Principal().Identity?.IsAuthenticated == true;
+        return u1 == u2 ? u1 : null;
+    }
+
+    public bool IsAuthenticated
+    {
+        get
+        {
+            return Principal()?.Identity?.IsAuthenticated == true;
+        }
+    }
 
     /// <summary>
     /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
@@ -54,18 +66,20 @@ public class CurrentUser : ApplicationUser
 
             var userAgent = HttpContextInstance.Current?.Request?.Headers["User-Agent"] + "";
 
-            if (userAgent.IsNot() ||
-                userAgent.Length < 24 ||
+            // Black list
+            if (userAgent.Length < 12 ||
                 userAgent.Contains("Linux", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("Android", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("SamsungBrowser", StringComparison.OrdinalIgnoreCase) ||
                 userAgent.Contains("iPad", StringComparison.OrdinalIgnoreCase) ||
-                userAgent.Contains("iPhone", StringComparison.OrdinalIgnoreCase))
+                userAgent.Contains("iPhone", StringComparison.OrdinalIgnoreCase) ||
+                userAgent.Contains("Brave", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
 
-            return userAgent.Contains("Chrome", StringComparison.OrdinalIgnoreCase) || userAgent.Contains("Firefox", StringComparison.OrdinalIgnoreCase);
+            // White list
+            return userAgent.Contains("Chrome", StringComparison.OrdinalIgnoreCase) || userAgent.Contains("Firefox", StringComparison.OrdinalIgnoreCase) || userAgent.Contains("Edg", StringComparison.OrdinalIgnoreCase);
         }
     }
 
@@ -83,7 +97,7 @@ public class CurrentUser : ApplicationUser
     /// <summary>
     /// Name of the Principal Identity
     /// </summary>
-    public string Name => Principal().Identity?.Name ?? GetClaim(ClaimTypes.Name);
+    public string Name => Principal()?.Identity?.Name ?? GetClaim(ClaimTypes.Name);
 
     /// <summary>
     /// First name taken from claim 'GivenName'
@@ -120,11 +134,13 @@ public class CurrentUser : ApplicationUser
 
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
     {
-        if (Principal() is ClaimsPrincipal claimsPrincipal)
+        var principal = Principal();
+        if(principal != null && principal is ClaimsPrincipal claimsPrincipal)
         {
             if (claimsPrincipal?.Claims == null) return defaultValue;
 
             var claim1 = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == type);
+
             if (claim1 != null) return claim1.Value;
 
             if (typeFallback != null)

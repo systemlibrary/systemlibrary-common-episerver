@@ -7,8 +7,6 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
 {
     public bool UseExceptionHandler = true;
 
-    public bool UseMapContentAndControllers = true;
-
     /// <summary>
     /// If you want a custom login path like "SignIn", set this
     /// </summary>
@@ -17,7 +15,7 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// <summary>
     /// Return a path of where to look for components view files.
     /// <para>Components that do not have a Controller nor a Component class defined, will use this path as the base path of where to look for views</para>
-    /// Example: ~/Blocks/
+    /// Example: ~/Content/Components/
     /// </summary>
     public Func<Type, string> DefaultComponentPathPredicate = null;
 
@@ -100,5 +98,5 @@ public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
     /// Enables the revalidation of the session
     /// <para>If session was created longer than 30 days ago, the cookie is deleted and user is redirected to root "/"</para>
     /// </summary>
-    public bool UseIdentityCookieRevalidation = true;
+    public bool UseCmsIdentityCookieRevalidation = true;
 }
