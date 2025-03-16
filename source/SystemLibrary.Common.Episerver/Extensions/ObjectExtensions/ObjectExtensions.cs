@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Identity;
 
 using SystemLibrary.Common.Episerver.Attributes;
 using SystemLibrary.Common.Episerver.Properties;
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -475,7 +475,7 @@ public static class ObjectExtensions
 
         else
         {
-            if (value is IPrincipal || value is IdentityUser)
+            if (value != null && value is IPrincipal ip || value is IdentityUser iu)
             {
                 var userProperties = GetPublicIdentityProperties(value.GetType());
 
@@ -486,6 +486,9 @@ public static class ObjectExtensions
                 foreach (var userProperty in userProperties)
                 {
                     var userPropertyName = userProperty.Name;
+
+                    if (userPropertyName == "PasswordHash") continue;
+                    if (userPropertyName == "SecurityStamp") continue;
 
                     if (forceCamelCase)
                     {
@@ -501,7 +504,7 @@ public static class ObjectExtensions
                     }
                     catch (Exception ex)
                     {
-                        Log.Error("[ObjectExtensions] Converting " + userPropertyName + " to prop data failed: " + ex.Message);
+                        Log.Error("[ObjectExtensions] Converting IPrincipal/IdentityUser's" + userPropertyName + " to prop data failed: " + ex.Message);
                         userDictionary.Add(userPropertyName, null);
                         userDictionary.Add(userPropertyName + "Error", ex.Message);
                     }

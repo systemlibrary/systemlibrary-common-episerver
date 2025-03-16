@@ -5,7 +5,7 @@ using EPiServer.Shell.ObjectEditing;
 
 using Microsoft.Data.SqlClient;
 
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 
@@ -40,7 +40,7 @@ public class ParentLinkReferenceFactory : ISelectionFactory
 
                         parentId = ExecuteQuery(query);
 
-                        Cache.Set(cacheKey, parentId, TimeSpan.FromMinutes(30));
+                        Cache.Set(cacheKey, parentId, CacheDuration.M);
                     }
                     else
                     {

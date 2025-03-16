@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Http;
 
 using React.AspNet;
 
-using SystemLibrary.Common.Net.Configurations;
-using SystemLibrary.Common.Net.Extensions;
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

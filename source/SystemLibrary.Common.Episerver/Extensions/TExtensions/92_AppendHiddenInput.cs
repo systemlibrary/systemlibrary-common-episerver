@@ -2,7 +2,7 @@
 using System.Text;
 using System.Web;
 
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

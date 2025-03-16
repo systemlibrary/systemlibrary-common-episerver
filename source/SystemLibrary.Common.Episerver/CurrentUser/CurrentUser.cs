@@ -2,9 +2,8 @@
 
 using EPiServer.Cms.UI.AspNetIdentity;
 
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Web;
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Users;
 
@@ -64,7 +63,7 @@ public class CurrentUser : ApplicationUser
 
             if (!Principal().IsInAnyRole(Roles.CmsRoles)) return false;
 
-            var userAgent = HttpContextInstance.Current?.Request?.Headers["User-Agent"] + "";
+            var userAgent = HttpContextInstance.Current.Request?.Headers["User-Agent"] + "";
 
             // Black list
             if (userAgent.Length < 12 ||

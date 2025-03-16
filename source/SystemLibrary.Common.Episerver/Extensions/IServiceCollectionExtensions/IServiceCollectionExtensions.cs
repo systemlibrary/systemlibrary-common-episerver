@@ -1,8 +1,12 @@
-﻿using EPiServer.Cms.Shell.UI.Configurations;
+﻿using EPiServer.Cms.Shell;
+using EPiServer.Cms.Shell.UI.Configurations;
 using EPiServer.Cms.TinyMce;
+using EPiServer.Cms.UI.Admin;
+using EPiServer.Cms.UI.VisitorGroups;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
+using EPiServer.Web.Mvc.Html;
 
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.V8;
@@ -17,9 +21,9 @@ using React;
 using React.AspNet;
 
 using SystemLibrary.Common.Episerver.Initialize;
-using SystemLibrary.Common.Net.Extensions;
-using SystemLibrary.Common.Web;
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.App.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -33,11 +37,18 @@ public static partial class IServiceCollectionExtensions
     {
         SetOptions(options);
 
-        services.AddCms();
+        // services.AddCms();
 
-        services.AddCmsAspNetIdentity<T>();
+        services.AddCmsHost()
+            .AddCmsHtmlHelpers()
+            .AddCmsTagHelpers()
+            .AddCmsUI()
+            .AddAdmin()
+            .AddVisitorGroupsUI()
+            .AddTinyMce()
+            .AddCmsAspNetIdentity<T>();
 
-        services.AddCommonWebServices<TLogWriter>(Options);
+        services.AddFrameworkServices<TLogWriter>(Options);
 
         services.AddApplicationCookie(Options);
 

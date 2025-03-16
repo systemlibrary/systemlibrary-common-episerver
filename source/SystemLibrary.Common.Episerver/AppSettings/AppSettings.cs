@@ -1,4 +1,4 @@
-﻿using SystemLibrary.Common.Net;
+﻿using SystemLibrary.Common.Framework;
 
 using static PackageConfig;
 

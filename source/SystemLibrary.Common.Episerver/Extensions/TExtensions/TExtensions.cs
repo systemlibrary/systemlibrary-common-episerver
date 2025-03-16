@@ -4,8 +4,8 @@ using EPiServer.Core;
 
 using React;
 
-using SystemLibrary.Common.Web;
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.App.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -40,7 +40,7 @@ public static partial class TExtensions
         {
             Log.Error("[TExtensions] Model is null in ReactServerSideRender for cssClass, id and componentFullname: " + cssClass + ", " + id + ", " + componentFullName);
 
-            var path = HttpContextInstance.Current?.Request.Url();
+            var path = HttpContextInstance.Current.Request.Url();
 
             if (path?.EndsWithAny(StringComparison.Ordinal, "Block", "Block/", "Component/", "Component") == true)
             {

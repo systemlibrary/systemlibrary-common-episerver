@@ -1,9 +1,11 @@
-﻿namespace SystemLibrary.Common.Episerver.Extensions;
+﻿using SystemLibrary.Common.Framework;
+
+namespace SystemLibrary.Common.Episerver.Extensions;
 
 /// <summary>
 /// Contains application builder options that you can override if you want to
 /// </summary>
-public class CmsAppBuilderOptions : Web.Extensions.AppBuilderOptions
+public class CmsAppBuilderOptions : FrameworkOptions
 {
     public bool UseExceptionHandler = true;
 

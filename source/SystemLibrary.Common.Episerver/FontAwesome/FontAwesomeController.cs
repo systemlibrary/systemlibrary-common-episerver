@@ -4,6 +4,8 @@ using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
 
+using SystemLibrary.Common.Framework;
+
 namespace SystemLibrary.Common.Episerver.FontAwesome;
 
 public partial class FontAwesomeController : Controller
@@ -45,7 +47,7 @@ public partial class FontAwesomeController : Controller
 
         try
         {
-            var image = Net.Assemblies.GetEmbeddedResource("FontAwesome/Icons/" + iconsFolder, name, CurrentAssembly);
+            var image = Assemblies.GetEmbeddedResource("FontAwesome/Icons/" + iconsFolder + "/" + name, CurrentAssembly);
             if (image.IsNot())
             {
                 Log.Warning("FontAwesome icon not found: " + name);

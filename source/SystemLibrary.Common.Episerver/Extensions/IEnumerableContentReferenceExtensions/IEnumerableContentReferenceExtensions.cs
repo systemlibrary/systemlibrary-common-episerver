@@ -3,7 +3,7 @@ using EPiServer.Core;
 using EPiServer.Filters;
 using EPiServer.Security;
 
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
+using System.Threading;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SystemLibrary.Common.Episerver.Tests;
 
 [TestClass]
-public class LogTests
+public class LogTests 
 {
-    static string FullPath = @"C:\Logs\systemlibrary-common-episerver-unit-tests.txt";
+    static string FullPath = @"C:\Logs\systemlibrary-common-framework-episerver-tests.log";
 
     [TestMethod]
     public void Log_Write_Dumps_Success()
     {
-        Dump.Clear();
+        Log.Clear();
         try
         {
             Log.Write("OK");
@@ -26,10 +25,12 @@ public class LogTests
         }
         Log.Error("Hello world");
 
-        Assert.IsTrue(System.IO.File.Exists(FullPath));
+        Thread.Sleep(33);
 
-        Assert.IsTrue(System.IO.File.ReadAllText(FullPath).Contains("Hello world"));
+        Assert.IsTrue(System.IO.File.Exists(FullPath), "File not found");
 
-        Dump.Clear();
+        Assert.IsTrue(System.IO.File.ReadAllText(FullPath).Contains("Hello world"), "Missing text");
+
+        Log.Clear();
     }
 }

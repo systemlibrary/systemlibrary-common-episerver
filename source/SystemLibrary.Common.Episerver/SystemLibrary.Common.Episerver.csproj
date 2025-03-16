@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<Configurations>Release</Configurations>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<Product>SystemLibrary.Common.Episerver $(Version)</Product>
-		<Version>8.0.0.2</Version>
+		<Version>9.0.0.1</Version>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);Release.cmd;**\*.nupkg;nuget-icon.png;</DefaultItemExcludes>
 	</PropertyGroup>
@@ -48,16 +48,22 @@
 		<EmbeddedResource Include="FontAwesome\Icons\Solid\*.svg" />
 		<EmbeddedResource Include="FontAwesome\Icons\Brands\*.svg" />
 		<None Remove="C:\syslib\Packages\episerver.cms.tinymce\4.8.1\contentFiles\any\any\modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.tinymce\4.8.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.TinyMce\EPiServer.Cms.TinyMce.zip" />
 		<None Remove="C:\syslib\Packages\episerver.cms.ui.admin\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Admin\EPiServer.Cms.UI.Admin.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.admin\12.32.4\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Admin\EPiServer.Cms.UI.Admin.zip" />
 		<None Remove="C:\syslib\Packages\episerver.cms.ui.settings\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Settings\EPiServer.Cms.UI.Settings.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.settings\12.32.4\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.Settings\EPiServer.Cms.UI.Settings.zip" />
 		<None Remove="C:\syslib\Packages\episerver.cms.ui.visitorgroups\12.32.2\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.VisitorGroups\EPiServer.Cms.UI.VisitorGroups.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui.visitorgroups\12.32.4\contentFiles\any\any\modules\_protected\EPiServer.Cms.UI.VisitorGroups\EPiServer.Cms.UI.VisitorGroups.zip" />
 		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.2\contentFiles\any\any\modules\_protected\CMS\CMS.zip" />
 		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.2\contentFiles\any\any\modules\_protected\Shell\Shell.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.4\contentFiles\any\any\modules\_protected\CMS\CMS.zip" />
+		<None Remove="C:\syslib\Packages\episerver.cms.ui\12.32.4\contentFiles\any\any\modules\_protected\Shell\Shell.zip" />
 		<EmbeddedResource Include="Cms\Admin\Reports\LinksInContentText\GetLinksInContentText.sql" />
 		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.html" />
 		<EmbeddedResource Include="Cms\Properties\ParentLinkReference\ParentLinkReference.js" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Include="..\..\readme.md">
 			<Pack>True</Pack>
@@ -70,17 +76,35 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" ExcludeAssets="all" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <PackageReference Include="EPiServer.CMS" Version="12.32.2" />
-	  <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.24.1" />
-	  <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.24.2" />
-	  <PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.24.2" />
-	  <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.5" />
-	  <PackageReference Include="React.AspNet" Version="5.*" />
-	  <PackageReference Include="SystemLibrary.Common.Web" Version="8.4.0.4" />
+		<PackageReference Include="EPiServer.CMS.AspNetCore.HtmlHelpers" Version="12.22.1" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		<PackageReference Include="EPiServer.CMS.AspNetCore.TagHelpers" Version="12.22.1" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		<PackageReference Include="EPiServer.CMS.TinyMce" Version="4.8.2" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		<PackageReference Include="EPiServer.CMS.UI.AspNetIdentity" Version="12.32.4" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		<PackageReference Include="EPiServer.CMS.UI.VisitorGroups" Version="12.32.4" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		<PackageReference Include="EPiServer.Hosting" Version="12.22.5" ExcludeAssets="contentFiles;analyzers;">
+			<Private>false</Private>
+		</PackageReference>
+		
+		<PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.29.1" />
+		<PackageReference Include="JavaScriptEngineSwitcher.V8.Native.win-x64" Version="3.29.0" />
+		<PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.5.0" />
+		<PackageReference Include="React.AspNet" Version="5.2.12" />
+		<PackageReference Include="SystemLibrary.Common.Framework" Version="9.0.0.9" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -88,19 +112,20 @@
 		<Version>$(Version)</Version>
 		<Title>SystemLibrary Common Episerver</Title>
 		<Description>
-Library with classes, methods and dijits for every .NET &gt;= 8 episerver web application
-https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
+			Library with classes, methods and dijits for every .NET &gt;= 8 episerver web application
+			https://github.com/systemlibrary/systemlibrary-common-episerver/#Description
 
-Installation
-https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
+			Installation
+			https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html
 
-Documentation with sample code
-https://systemlibrary.github.io/systemlibrary-common-episerver/</Description>
+			Documentation with sample code
+			https://systemlibrary.github.io/systemlibrary-common-episerver/
+		</Description>
 		<Copyright>Copyright © System Library</Copyright>
 		<PackageProjectUrl>https://www.systemlibrary.com/#SystemLibraryCommonEpiserver</PackageProjectUrl>
 		<PackageIcon>nuget-icon.png</PackageIcon>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<PackageTags>C# .NET 8.0 Episerver Optimizely Library</PackageTags>
+		<PackageTags>C# .NET 9.0 Episerver Optimizely Library</PackageTags>
 		<PackageReleaseNotes>Latest version: https://github.com/systemlibrary/systemlibrary-common-episerver#latest-release-notes</PackageReleaseNotes>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>

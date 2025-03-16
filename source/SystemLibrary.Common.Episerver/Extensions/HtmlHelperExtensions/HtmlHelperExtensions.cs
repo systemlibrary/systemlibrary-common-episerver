@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Html;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using SystemLibrary.Common.Net.Configurations;
+using SystemLibrary.Common.Framework;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

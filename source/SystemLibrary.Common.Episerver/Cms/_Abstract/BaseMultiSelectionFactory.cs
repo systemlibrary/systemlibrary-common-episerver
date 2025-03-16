@@ -4,7 +4,7 @@ using System.Reflection;
 using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Extensions;
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Abstract;
 

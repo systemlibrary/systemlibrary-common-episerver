@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 

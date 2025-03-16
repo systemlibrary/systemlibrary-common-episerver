@@ -8,7 +8,7 @@ using EPiServer.Shell;
 
 using SystemLibrary.Common.Episerver.FontAwesome;
 using SystemLibrary.Common.Episerver.Initialize;
-using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Framework;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 

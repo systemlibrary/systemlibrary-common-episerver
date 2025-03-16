@@ -4,6 +4,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using SystemLibrary.Common.Framework;
+
 namespace SystemLibrary.Common.Episerver.Abstract;
 
 [Area(Globals.AreaCms)]
@@ -42,7 +44,7 @@ public abstract class InternalBaseController : Controller
                 return new StringBuilder(System.IO.File.ReadAllText(Globals.LibraryBasePath + resourceFolder + "\\" + resourceName));
             }
 
-            var sb = new StringBuilder(Net.Assemblies.GetEmbeddedResource(resourceFolder, resourceName, CurrentAssembly));
+            var sb = new StringBuilder(Assemblies.GetEmbeddedResource(resourceFolder + "\\" + resourceName, CurrentAssembly));
 
             if (sb.Length == 0)
                 Log.Error("[InternalBaseController] " + this.GetType().Name + " could not find resource " + resourceName + " in folder " + resourceFolder);

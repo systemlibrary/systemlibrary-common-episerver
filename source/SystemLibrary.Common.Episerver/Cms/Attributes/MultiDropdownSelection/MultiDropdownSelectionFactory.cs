@@ -3,8 +3,8 @@
 using EPiServer.Shell.ObjectEditing;
 
 using SystemLibrary.Common.Episerver.Abstract;
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Attributes;
 

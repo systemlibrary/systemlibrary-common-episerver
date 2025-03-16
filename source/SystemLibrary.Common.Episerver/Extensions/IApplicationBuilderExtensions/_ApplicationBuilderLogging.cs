@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework.App.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 

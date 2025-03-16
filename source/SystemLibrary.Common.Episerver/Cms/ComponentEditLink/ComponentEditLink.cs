@@ -1,8 +1,8 @@
 ﻿using EPiServer.Core;
 
 using SystemLibrary.Common.Episerver.Users;
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver;
 

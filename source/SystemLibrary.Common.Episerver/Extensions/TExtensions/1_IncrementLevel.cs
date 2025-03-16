@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -12,7 +12,7 @@ partial class TExtensions
     {
         if (!renderClientSide) return -9;
 
-        var storage = HttpContextInstance.Current?.Items;
+        var storage = HttpContextInstance.Current.Items;
 
         if (storage == null) return -9;
 

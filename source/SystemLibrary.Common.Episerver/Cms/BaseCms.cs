@@ -12,10 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 using SystemLibrary.Common.Episerver.Extensions;
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Net.Configurations;
-using SystemLibrary.Common.Net.Extensions;
-using SystemLibrary.Common.Web;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.App;
+using SystemLibrary.Common.Framework.Extensions;
+
+using ContentType = EPiServer.DataAbstraction.ContentType;
 
 namespace SystemLibrary.Common.Episerver;
 
@@ -273,14 +274,19 @@ public abstract class BaseCms
 
             return PrimaryHostUrlCache.Cache(siteDefinition.Name, () =>
             {
-                var scheme = HttpContextInstance.Current?.Request?.Scheme ?? "http";
+                var scheme = HttpContextInstance.Current.Request?.Scheme;
+
+                if (scheme.IsNot())
+                    scheme = "http";
 
                 var portNumber = "";
-                var port = HttpContextInstance.Current?.Request?.Host;
+                var port = HttpContextInstance.Current.Request?.Host;
 
                 if (port.HasValue && port.Value.Port != 0 && port.Value.Port != 80)
                 {
                     portNumber = ":" + port.Value;
+                    if (portNumber.Length == 1)
+                        portNumber = "";
                 }
 
                 string temp;

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using EPiServer.Core;
 using EPiServer.Web.Routing;
 
-using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -97,7 +97,7 @@ public static class StringExtensions
 
         bool IsAbsolute()
         {
-            return url.StartsWithAny("http:", "https:", "HTTP:", "HTTPS:", "Http:", "Https:");
+            return url.StartsWith("http", StringComparison.OrdinalIgnoreCase);
         }
 
         string ConvertToAbsolute()

@@ -4,8 +4,8 @@ using EPiServer.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-using SystemLibrary.Common.Net;
-using SystemLibrary.Common.Net.Configurations;
+using SystemLibrary.Common.Framework;
+using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver;
 
@@ -41,7 +41,7 @@ public partial class WebApplicationInitializer : IBlockingFirstRequestInitialize
     {
         try
         {
-            env.WebRootPath ??= EnvironmentConfig.Current.ContentRootPath;
+            env.WebRootPath ??= EnvironmentConfig.ContentRootPath;
 
             if (Extensions.IServiceCollectionExtensions.Options.SkipInitialization)
                 return Task.FromResult(0);

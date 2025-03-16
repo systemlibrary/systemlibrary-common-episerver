@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 
+using SystemLibrary.Common.Framework;
+
 namespace SystemLibrary.Common.Episerver.FontAwesome;
 
 internal class FontAwesomeLoader
@@ -15,13 +17,13 @@ internal class FontAwesomeLoader
 
         var cssFolder = "FontAwesome/Css";
 
-        FontAwesomeBundledMinCss = Net.Assemblies.GetEmbeddedResource(cssFolder, "fontawesome-bundled.css", currentAssembly);
+        FontAwesomeBundledMinCss = Assemblies.GetEmbeddedResource(cssFolder + "/fontawesome-bundled.css", currentAssembly);
 
         var fontFolder = "FontAwesome/Fonts";
 
-        Brands400Woff2 = Net.Assemblies.GetEmbeddedResourceAsBytes(fontFolder, "fa-brands-400.woff2", currentAssembly);
-        Regular400Woff2 = Net.Assemblies.GetEmbeddedResourceAsBytes(fontFolder, "fa-regular-400.woff2", currentAssembly);
-        Solid900Woff2 = Net.Assemblies.GetEmbeddedResourceAsBytes(fontFolder, "fa-solid-900.woff2", currentAssembly);
+        Brands400Woff2 = Assemblies.GetEmbeddedResourceAsBytes(fontFolder + "/fa-brands-400.woff2", currentAssembly);
+        Regular400Woff2 = Assemblies.GetEmbeddedResourceAsBytes(fontFolder + "/fa-regular-400.woff2", currentAssembly);
+        Solid900Woff2 = Assemblies.GetEmbeddedResourceAsBytes(fontFolder + "/fa-solid-900.woff2", currentAssembly);
     }
 
     internal static string GetFontAwesomeIconRequestUrl(Enum icon)

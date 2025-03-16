@@ -1,6 +1,6 @@
 ﻿using EPiServer.DataAbstraction;
 
-using SystemLibrary.Common.Net;
+using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver;
 

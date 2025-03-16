@@ -5,6 +5,8 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.SpecializedProperties;
 
+using SystemLibrary.Common.Framework.Extensions;
+
 namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class TExtensions
@@ -20,7 +22,7 @@ partial class TExtensions
         {
             if (icontent.ContentLink == null || icontent.ContentLink.ID <= 0)
             {
-                return "c-" + (icontent.Name.GetHashCode() % 10000) + icontent.ParentLink?.ID + "-" + icontent.ContentTypeID + "-" + props.Count;
+                return "c-" + (icontent.Name.GetHashCode() % 100000) + icontent.ParentLink?.ID + "-" + icontent.ContentTypeID + "-" + props.Count;
             }
             return "c-" + icontent.ContentLink.ID + "-" + icontent.ContentLink.WorkID + "-" + props.Count;
         }
@@ -51,9 +53,9 @@ partial class TExtensions
         return ssrId.ToString();
     }
 
-    static void AppendValue(object value, StringBuilder ssrId, Char c)
+    static void AppendValue(object value, StringBuilder ssrId, char c)
     {
-        if (ssrId.Length > 1024) return;
+        if (ssrId.Length > 512) return;
 
         if (value == null)
         {
@@ -63,22 +65,22 @@ partial class TExtensions
 
         if (value is int number)
         {
-            ssrId.Append("i" + number);
+            ssrId.Append(number);
         }
 
         else if (value is float f)
         {
-            ssrId.Append("f" + f);
+            ssrId.Append(f);
         }
 
         else if (value is double d)
         {
-            ssrId.Append("d" + d);
+            ssrId.Append(d);
         }
 
         else if (value is bool b)
         {
-            ssrId.Append("b" + (b ? "A" : "B"));
+            ssrId.Append("B" + (b ? "A" : "B"));
         }
 
         else if (value is Url u)
@@ -96,32 +98,14 @@ partial class TExtensions
         {
             if (sb.Length == 0) ssrId.Append("X1");
 
-            else if (sb.Length > 255)
-            {
-                ssrId.Append(GetValidString(sb.Length, sb[index: 3], sb[4], sb[5], sb[sb.Length - 5]));
-            }
-            else if (sb.Length > 5)
-                ssrId.Append(sb.GetHashCode() % 10000);
-            else
-                ssrId.Append(sb.Length + sb.ToString());
+            ssrId.Append(sb.GetCompressedKey());
         }
 
         else if (value is string txt)
         {
             if (txt.Length == 0) ssrId.Append("X0");
 
-            else if (txt.Length > 255)
-            {
-                ssrId.Append(GetValidString(txt.Length, txt[3], txt[4], txt[5], txt[txt.Length - 5]));
-            }
-            else if (txt.Length > 5)
-                ssrId.Append(txt.GetHashCode() % 10000);
-            else if (txt.Length >= 4)
-                ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], txt[3]));
-            else if (txt.Length == 3)
-                ssrId.Append(GetValidString(txt.Length, txt[0], txt[1], txt[2], '-'));
-            else
-                ssrId.Append(txt);
+            ssrId.Append(txt.GetCompressedKey());
         }
 
         else if (value is ContentReference cr)
@@ -129,13 +113,19 @@ partial class TExtensions
 
         else if (value is ContentArea ca)
         {
-            ssrId.Append("CA" + ca?.Count + "");
-            if (ca?.Count > 0)
+            var count = ca?.Count;
+            if (count > 0)
             {
-                ssrId.Append("C" + ca.FilteredItems?.FirstOrDefault()?.ContentLink?.ID);
+                var sum = 0;
+                var filteredItems = ca.FilteredItems;
+                foreach (var item in filteredItems)
+                    sum += ((ca.FilteredItems?.FirstOrDefault()?.ContentLink?.ID) ?? 0) * 11;
 
-                if (ca?.Count > 1)
-                    ssrId.Append("C" + ca.FilteredItems?.LastOrDefault()?.ContentLink?.ID);
+                ssrId.Append("CA" + sum);
+            }
+            else
+            {
+                ssrId.Append("CA0");
             }
         }
 
@@ -159,11 +149,10 @@ partial class TExtensions
             ssrId.Append("E" + c);
 
         else if (value is DateTime dt)
-            ssrId.Append("D" + dt.Day + "-" + dt.Month + "-" + dt.Hour);
+            ssrId.Append(dt.Day + "D" + dt.Month + "-" + dt.Hour);
 
         else if (value is DateTimeOffset dto)
-            ssrId.Append("DO" + dto.Day + "-" + dto.Hour);
-
+            ssrId.Append(dto.Day + "DO" + dto.Month + "-" + dto.Hour);
         else
         {
             ssrId.Append(c);

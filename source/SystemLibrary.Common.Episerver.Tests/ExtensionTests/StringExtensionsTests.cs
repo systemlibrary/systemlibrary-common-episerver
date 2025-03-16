@@ -20,15 +20,15 @@ public class StringExtensionsTests
 
         url = "a";
         result = url.ToFriendlyUrl();
-        Assert.IsTrue(result == "a");
+        Assert.IsTrue(result == "a", "Wrong single a " + result);
 
         url = "a";
         result = url.ToFriendlyUrl(false);
-        Assert.IsTrue(result == "a");
+        Assert.IsTrue(result == "a", "Wrong A");
 
         url = "a";
         result = url.ToFriendlyUrl(true);
-        Assert.IsTrue(result == "http://localhost/a", result);
+        Assert.IsTrue(result == "http://localhost/a", "Wrong protocol? " + result);
 
         url = "/relative-path/image.jpg/?quality=90";
         result = url.ToFriendlyUrl(true);
@@ -88,15 +88,15 @@ public class StringExtensionsTests
 
         data = "a";
         expected = false;
-        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+        Assert.IsTrue(data.IsFile() == expected, "Wrong 1: " + data);
 
         data = "A";
         expected = false;
-        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+        Assert.IsTrue(data.IsFile() == expected, "Wrong 2: " + data);
 
         data = "a/a/a/a/a";
         expected = false;
-        Assert.IsTrue(data.IsFile() == expected, "Wrong: " + data);
+        Assert.IsTrue(data.IsFile() == expected, "Wrong 3: " + data);
 
         data = "C:/Hello/World/";
         expected = false;

@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 
-using SystemLibrary.Common.Net.Extensions;
-using SystemLibrary.Common.Web;
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework.App;
+using SystemLibrary.Common.Framework.App.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -238,7 +238,7 @@ partial class IApplicationBuilderExtensions
             if (errorPages == null)
             {
                 errorPages = BaseCms.GetAllLatestVersionsOfContentType<IErrorPage>().ToList();
-                Cache.Set(errorPagesCacheKey, errorPages, TimeSpan.FromSeconds(600));
+                Cache.Set(errorPagesCacheKey, errorPages, CacheDuration.M);
             }
 
             if (errorPages == null)

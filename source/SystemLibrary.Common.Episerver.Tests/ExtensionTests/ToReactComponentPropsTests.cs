@@ -123,7 +123,7 @@ public class ToReactComponentPropsTests
 
         var html = result.ToString();
 
-        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-110oobBFi0Y\"></div><input type='hidden' id=\"k-4-110oobBFi0Y\" "), "Beginning failed: " + html);
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-110ooBBF0Y\"></div><input type='hidden' id=\"k-4-110ooBBF0Y\" "), "Beginning failed: " + html);
 
         Assert.IsTrue(html.Contains("data-rcssr=\"A Brand New Component<>Name\""), "Component full name has been tweaked internally");
 
@@ -138,10 +138,10 @@ public class ToReactComponentPropsTests
         var html = model.ReactServerSideRender(renderClientOnly: true).ToString();
 
         // The tagName and id is properly generated followed by input hidden
-        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-1986oi0CDO1-0"), "Key begin error1 " + html);
+        Assert.IsTrue(html.StartsWith("<div data-rcssr-id=\"k-4-1853o0C1DO1-0"), "Key begin error1 " + html);
 
         // The hidden input with props is generated with same id a
-        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-4-1986oi0CDO1-0"), "input");
+        Assert.IsTrue(html.Contains("<input type='hidden' id=\"k-4-1853o0C1DO1-0"), "input");
 
         //// The component fullName is generated, model, viewmodel is removed
         Assert.IsTrue(html.Contains(" data-rcssr=\"reactComponents.Test\" data-rcssr-props="), "reactcomponents");
@@ -154,10 +154,10 @@ public class ToReactComponentPropsTests
         var html2 = model2.ReactServerSideRender(renderClientOnly: true).ToString();
 
         // The tagName and id is properly generated followed by input hidden
-        Assert.IsTrue(html2.StartsWith("<div data-rcssr-id=\"k-4-1986oi0CDO1-0"), "Key begin error2");
+        Assert.IsTrue(html2.StartsWith("<div data-rcssr-id=\"k-4-1853o0C1DO1-0"), "Key begin error2");
 
         // The hidden input with props is generated with same id a
-        Assert.IsTrue(html2.Contains("<input type='hidden' id=\"k-4-1986oi0CDO1-0"), "input");
+        Assert.IsTrue(html2.Contains("<input type='hidden' id=\"k-4-1853o0C1DO1-0"), "input");
 
         // Output twice is the same even though a new object
         Assert.IsTrue(html == html2, "Not the same");

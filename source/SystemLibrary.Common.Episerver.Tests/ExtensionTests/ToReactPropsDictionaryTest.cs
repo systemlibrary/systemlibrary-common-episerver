@@ -10,7 +10,7 @@ using EPiServer.SpecializedProperties;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using SystemLibrary.Common.Net.Extensions;
+using SystemLibrary.Common.Framework.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Tests;
 

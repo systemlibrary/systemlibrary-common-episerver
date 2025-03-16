@@ -1,6 +1,8 @@
-﻿namespace SystemLibrary.Common.Episerver.Extensions;
+﻿using SystemLibrary.Common.Framework;
 
-public class CmsServicesCollectionOptions : Web.Extensions.ServicesCollectionOptions
+namespace SystemLibrary.Common.Episerver.Extensions;
+
+public class CmsServicesCollectionOptions : FrameworkOptions
 {
     /// <summary>
     /// Add mobile, tablet and desktop resolutions for the CMS in Edit

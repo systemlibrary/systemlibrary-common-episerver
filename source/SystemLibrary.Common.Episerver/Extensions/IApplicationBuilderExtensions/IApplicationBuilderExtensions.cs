@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 using SystemLibrary.Common.Episerver.Components;
-using SystemLibrary.Common.Web.Extensions;
+using SystemLibrary.Common.Framework.App.Extensions;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
@@ -45,11 +45,11 @@ public static partial class IApplicationBuilderExtensions
         if (options.UseCmsIdentityCookieRevalidation)
             app.UseMiddleware<CmsIdentityCookieRevalidationMiddleware>();
         
-        options.UseRazorPages = false;
+        options.UseMvc = false;
 
-        options.PrecededEndpoints = CmsPrecededEndpoints;
+        options.BeforeDefaultEndpoints = CmsPrecededEndpoints;
 
-        app.UseCommonWebApp(env, options);
+        app.UseFrameworkMiddlewares(env, options);
         
         app.UseMapEndpoints();
 
