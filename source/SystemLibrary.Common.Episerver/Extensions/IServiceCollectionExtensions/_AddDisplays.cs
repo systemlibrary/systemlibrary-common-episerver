@@ -2,6 +2,7 @@
 using EPiServer.Web;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using SystemLibrary.Common.Episerver.Display;
 
@@ -9,10 +10,8 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IServiceCollectionExtensions
 {
-    static void AddDisplays(this IServiceCollection services, CmsServicesCollectionOptions options)
+    static void AddDisplays(this IServiceCollection services, CmsFrameworkOptions options)
     {
-        if (!Options.AddDisplays) return;
-
         services.Configure<DisplayOptions>(displayOption =>
         {
             displayOption.Add("desktop", "Desktop", "col-12", "", "epi-icon__layout--full");
@@ -20,8 +19,8 @@ partial class IServiceCollectionExtensions
             displayOption.Add("mobile", "Mobile", "col-4", "", "epi-icon__layout--one-third");
         });
 
-        services.AddSingleton<DesktopResolution>();
-        services.AddSingleton<TabletResolution>();
-        services.AddSingleton<MobileResolution>();
+        services.TryAddSingleton<DesktopResolution>();
+        services.TryAddSingleton<TabletResolution>();
+        services.TryAddSingleton<MobileResolution>();
     }
 }

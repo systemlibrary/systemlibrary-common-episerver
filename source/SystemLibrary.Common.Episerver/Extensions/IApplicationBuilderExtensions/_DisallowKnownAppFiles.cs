@@ -5,7 +5,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void DisallowKnownAppFiles(this IApplicationBuilder app, CmsAppBuilderOptions options)
+    static void DisallowKnownAppFiles(this IApplicationBuilder app, CmsFrameworkOptions options)
     {
         if (!options.DisallowKnownAppFiles) return;
 

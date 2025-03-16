@@ -29,15 +29,13 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 public static partial class IServiceCollectionExtensions
 {
-    internal static CmsServicesCollectionOptions Options;
+    internal static CmsFrameworkOptions Options;
 
-    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CmsServicesCollectionOptions options = null)
+    public static IServiceCollection AddCommonCmsServices<T, TLogWriter>(this IServiceCollection services, CmsFrameworkOptions options = null)
         where T : IdentityUser, IUIUser, new()
         where TLogWriter : class, ILogWriter
     {
         SetOptions(options);
-
-        // services.AddCms();
 
         services.AddCmsHost()
             .AddCmsHtmlHelpers()
@@ -51,8 +49,6 @@ public static partial class IServiceCollectionExtensions
         services.AddFrameworkServices<TLogWriter>(Options);
 
         services.AddApplicationCookie(Options);
-
-        services.AddTinyMce();
 
         services.AddDisplays(Options);
 
@@ -93,24 +89,22 @@ public static partial class IServiceCollectionExtensions
             ReactSiteConfiguration.Configuration.JsonSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
-        // services.AddScoped<ContentAreaRenderer, CustomContentAreaRenderer>();
-
         services.AddScoped<T>();
 
         return services;
     }
 
-    static void SetOptions(CmsServicesCollectionOptions options)
+    static void SetOptions(CmsFrameworkOptions options)
     {
-        var fallback = new CmsServicesCollectionOptions();
+        var fallback = new CmsFrameworkOptions();
 
         Options = options ?? fallback;
 
         if (Options.ApplicationCookieDuration == 0)
             Options.ApplicationCookieDuration = fallback.ApplicationCookieDuration;
 
-        if (Options.CookieDuration == 0)
-            Options.CookieDuration = fallback.CookieDuration;
+        if (Options.ApplicationCookieDuration == 0)
+            Options.ApplicationCookieDuration = fallback.ApplicationCookieDuration;
 
         if (Options.DefaultAdminEmail.IsNot())
             Options.DefaultAdminEmail = fallback.DefaultAdminEmail;

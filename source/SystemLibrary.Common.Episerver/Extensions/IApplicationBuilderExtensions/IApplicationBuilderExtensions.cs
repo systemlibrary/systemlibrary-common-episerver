@@ -27,14 +27,14 @@ public static partial class IApplicationBuilderExtensions
     /// }
     /// </code>
     /// </example>
-    public static IApplicationBuilder UseCommonCmsApp(this IApplicationBuilder app, IWebHostEnvironment env, CmsAppBuilderOptions options = null)
+    public static IApplicationBuilder UseCommonCmsApp(this IApplicationBuilder app, IWebHostEnvironment env, CmsFrameworkOptions options = null)
     {
         if (!File.Exists("module.config"))
         {
             throw new Exception("Module.config is not located at root using File.Exists('module.config'), cannot continue with Common Episerver Initialization. Remember: follow the instructions at https://systemlibrary.github.io/systemlibrary-common-episerver/Install.html");
         }
 
-        options ??= new CmsAppBuilderOptions();
+        options ??= new CmsFrameworkOptions();
 
         _DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
 

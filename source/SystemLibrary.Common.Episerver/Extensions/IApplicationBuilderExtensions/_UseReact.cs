@@ -10,7 +10,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void AddUseReact(this IApplicationBuilder app, CmsAppBuilderOptions options)
+    static void AddUseReact(this IApplicationBuilder app, CmsFrameworkOptions options)
     {
         if (options.ReactSsrScriptsInOrder.IsNot()) return;
 

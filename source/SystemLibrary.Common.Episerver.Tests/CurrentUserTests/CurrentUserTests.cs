@@ -10,7 +10,7 @@ public class CurrentUserTests
     [TestMethod]
     public void CurrentUser_Flags_And_Role_Check_Do_Not_Throw()
     {
-        var user = new CurrentUser();
+        var user = new AppCurrentUser();
 
         var result = user.IsCmsUser || user.IsAdministrator || user.IsAuthenticated || user.IsApproved || user.IsLockedOut || user.IsInRole("Hello world");
 
@@ -20,7 +20,7 @@ public class CurrentUserTests
     [TestMethod]
     public void CurrentUser_String_Properties_Does_Not_Throw()
     {
-        var user = new CurrentUser();
+        var user = new AppCurrentUser();
 
         var result = user.Name + user.GivenName + user.Surname + user.PhoneNumber + user.PhoneNumberConfirmed + user.Email + user.EmailConfirmed;
 

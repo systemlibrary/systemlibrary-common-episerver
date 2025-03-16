@@ -15,7 +15,7 @@ namespace SystemLibrary.Common.Episerver.Users;
 /// <code class="language-csharp hljs">
 /// // Implement your own CurrentUser object by inheriting 'CurrentUser'
 /// 
-/// public class AppUser : CurrentUser
+/// public class AppUser : AppCurrentUser
 /// {
 ///     public string PhoneNumber => Claim&lt;string&gt;("PhoneNumber");
 /// }
@@ -34,9 +34,37 @@ namespace SystemLibrary.Common.Episerver.Users;
 /// }
 /// </code>
 /// </example>
-public class CurrentUser : ApplicationUser
+public static class CurrentUser
 {
-    ClaimsPrincipal Principal()
+    public static string Id => new AppCurrentUser().Id;
+
+    public static string GivenName => new AppCurrentUser().GivenName;
+    public static string Surname => new AppCurrentUser().Surname;
+
+    public static string PhoneNumber => new AppCurrentUser().PhoneNumber;
+
+    public static string Email => new AppCurrentUser().Email;
+
+    public static bool IsCmsUser => new AppCurrentUser().IsCmsUser;
+    public static bool IsAuthenticated => new AppCurrentUser().IsAuthenticated;
+
+    public static bool IsInRole(string roleName) => new AppCurrentUser().IsInRole(roleName);
+
+    /// <summary>
+    /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
+    /// </summary>
+    public static bool IsAdministrator => new AppCurrentUser().IsAdministrator;
+
+    public static string UserName => new AppCurrentUser().UserName;
+
+    public static T Claim<T>(string claim, T defaultValue = default) => new AppCurrentUser().Claim(claim, defaultValue);
+
+    public static ClaimsPrincipal GetClaimsPrincipal() => new AppCurrentUser().Principal();
+}
+
+public class AppCurrentUser : ApplicationUser
+{
+    internal ClaimsPrincipal Principal()
     {
         var u1 = HttpContextInstance.Current?.User;
         var u2 = HttpContextInstance.Current?.User;
@@ -52,9 +80,6 @@ public class CurrentUser : ApplicationUser
         }
     }
 
-    /// <summary>
-    /// Returns true if current user is logged in and is in any of the roles: CmsAdmin, WebAdmins, Administrators, CmsEditors, WebEditors
-    /// </summary>
     public bool IsCmsUser
     {
         get
@@ -82,9 +107,6 @@ public class CurrentUser : ApplicationUser
         }
     }
 
-    /// <summary>
-    /// Returns true if current user is logged in and is in any of the admin roles: CmsAdmins, WebAdmins, Administrators
-    /// </summary>
     public bool IsAdministrator => IsAuthenticated && Principal().IsInAnyRole(Roles.AdminRoles);
 
     /// <summary>
@@ -134,7 +156,8 @@ public class CurrentUser : ApplicationUser
     string GetClaim(string type, string typeFallback = null, string defaultValue = null)
     {
         var principal = Principal();
-        if(principal != null && principal is ClaimsPrincipal claimsPrincipal)
+
+        if (principal != null && principal is ClaimsPrincipal claimsPrincipal)
         {
             if (claimsPrincipal?.Claims == null) return defaultValue;
 

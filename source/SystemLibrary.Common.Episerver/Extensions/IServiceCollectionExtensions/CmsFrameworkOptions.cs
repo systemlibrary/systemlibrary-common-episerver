@@ -2,11 +2,89 @@
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
-/// <summary>
-/// Contains application builder options that you can override if you want to
-/// </summary>
-public class CmsAppBuilderOptions : FrameworkOptions
+public class CmsFrameworkOptions : FrameworkOptions
 {
+    /// <summary>
+    /// Set the minimum password length for the default CMS DB login
+    /// <para>Defaults to 12</para>
+    /// </summary>
+    public int ApplicationCookieMimumPasswordLength = 12;
+
+    /// <summary>
+    /// Sets the application cookies sliding expiration
+    /// <para>Defaults to true</para>
+    /// <para>This is the CMS identity cookie that must exist to have access to the CMS UI</para>
+    /// </summary>
+    public bool ApplicationCookieSlidingExpiration = true;
+
+    /// <summary>
+    /// Set the application cookie duration in minutes
+    /// <para>Defaults to 1200 (20 hours)</para>
+    /// <para>This is the CMS identity cookie that must exist to have access to the CMS UI</para>
+    /// </summary>
+    public int ApplicationCookieDuration = 1200;
+
+    /// <summary>
+    /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions
+    /// <para>Defaults to: false</para>
+    /// Set to true if you always want 0 users in the DB your application might use an identity from Azure AD or similar
+    /// </summary>
+    public bool SkipInitialization = false;
+
+    /// <summary>
+    /// The default email of the default admin user
+    /// <para>- Only used if the DB is empty</para>
+    /// Note: assuming the default value, 'demo' is used as username, the text before @
+    /// </summary>
+    public string DefaultAdminEmail = "demo@systemlibrary.com";
+
+    /// <summary>
+    /// The default password of the default admin user
+    /// <para>- Only used if the DB is empty</para>
+    /// </summary>
+    public string DefaultAdminPassword = "Demo123!";
+
+    /// <summary>
+    /// A comma separated list of languageId's that comes with Episerver
+    /// <para>
+    /// Set to null or blank, if you do not want to do anything with languages, so the default that you were used to (15 default languages added, while sv and en is enabled, will then be the result)
+    /// </para>
+    /// <para>Example of language id's:</para>
+    /// sv, en, da, fr, de, fi, no, nn, nl-BE, nl, en-AU, it-IT
+    /// </summary>
+    public string InitialLanguagesEnabled = "sv,en";
+
+    /// <summary>
+    /// Hide the suggested content types at the top of the "New creation dialog"
+    /// </summary>
+    public bool HideSuggestedContentTypes = true;
+
+    /// <summary>
+    /// Hide the Category Property that all content comes with from Optimizely CMS
+    /// </summary>
+    public bool HidePropertyCategoryList = true;
+
+    /// <summary>
+    /// Websockets enabled by default
+    /// </summary>
+    public bool WebSocketEnabled = true;
+
+    /// <summary>
+    /// Auto publish on uploaded media, defaults to True
+    /// </summary>
+    public bool AutoPublishMediaOnUpload = true;
+
+    /// <summary>
+    /// Maximum upload size in bytes, defaults to 1GB
+    /// </summary>
+    public long UploadLimitBytes = 1073741824;
+
+    /// <summary>
+    /// Adds all react services and the V8 engine for react server side rendering
+    /// <para>- Set to false if you do not use react server side</para>
+    /// </summary>
+    public bool AddReactServerSideServices = true;
+
     public bool UseExceptionHandler = true;
 
     /// <summary>

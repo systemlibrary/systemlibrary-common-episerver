@@ -57,7 +57,7 @@ internal class CmsIdentityCookieRevalidationMiddleware
 
                                     if (cookieAge > Threshold)
                                     {
-                                        var currentUser = new CurrentUser();
+                                        var currentUser = new AppCurrentUser();
 
                                         Log.Warning("[IdentityCookieRevalidationMiddleware] Cookie expired by threshold (timespan): " + Threshold + ". Deleting cookie and redirect to start for user: " + currentUser.Id + " " + currentUser.GivenName);
 

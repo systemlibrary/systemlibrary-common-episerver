@@ -23,7 +23,7 @@ partial class IApplicationBuilderExtensions
     static ConcurrentDictionary<int, string> JsonErrorResponseCache = new ConcurrentDictionary<int, string>();
     static ConcurrentDictionary<int, Type> ErrorControllerTypes = new ConcurrentDictionary<int, Type>();
 
-    static void ErrorPageResponse(this IApplicationBuilder app, CmsAppBuilderOptions options)
+    static void ErrorPageResponse(this IApplicationBuilder app, CmsFrameworkOptions options)
     {
         if (!options.UseErrorPageResponse) return;
 

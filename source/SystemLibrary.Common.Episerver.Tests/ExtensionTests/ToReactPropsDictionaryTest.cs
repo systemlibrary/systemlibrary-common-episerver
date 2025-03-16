@@ -45,7 +45,7 @@ public class ToReactPropsDictionaryTest
     {
         TestBlockInheritAndIdentity model = new TestBlockInheritAndIdentity();
 
-        model.TriggeringUser = new Users.CurrentUser();
+        model.TriggeringUser = new Users.AppCurrentUser();
         model.InheritedInt = 999;
         model.Year = 888;
 

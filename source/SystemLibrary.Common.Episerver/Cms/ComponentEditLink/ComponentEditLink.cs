@@ -20,7 +20,7 @@ internal static class ComponentEditLink
 
         if (httpContext.Request?.QueryString.Value?.Contains("epieditmode=") == true) return null;
 
-        var currentUser = new CurrentUser();
+        var currentUser = new AppCurrentUser();
 
         if (currentUser.IsCmsUser)
         {

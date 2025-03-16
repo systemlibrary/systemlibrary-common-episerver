@@ -7,7 +7,7 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 partial class IApplicationBuilderExtensions
 {
-    static void ExceptionHandler(this IApplicationBuilder app, CmsAppBuilderOptions options)
+    static void ExceptionHandler(this IApplicationBuilder app, CmsFrameworkOptions options)
     {
         if (!options.UseExceptionHandler) return;
 
