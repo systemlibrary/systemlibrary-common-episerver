@@ -297,7 +297,7 @@ public static class ObjectExtensions
         {
             if (convertContentAreaToList)
             {
-                var forceContentAreaRenderAsString = property.GetCustomAttribute<ServerSideRenderStringAttribute>();
+                var forceContentAreaRenderAsString = property.GetCustomAttribute<ServerSideComponentAttribute>();
                 if (forceContentAreaRenderAsString == null)
                 {
                     var contentData = contentArea.SelectFiltered<ContentData>();

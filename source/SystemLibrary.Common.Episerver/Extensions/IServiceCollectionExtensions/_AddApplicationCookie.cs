@@ -19,11 +19,11 @@ partial class IServiceCollectionExtensions
             opt.LoginPath = "/util/login/";
         });
 
-        if (options.ApplicationCookieMimumPasswordLength > 3)
+        if (options.ApplicationCookieMimumPasswordLength > 0)
         {
             services.Configure<IdentityOptions>(o =>
             {
-                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
                 o.Lockout.MaxFailedAccessAttempts = 10;
                 o.Lockout.AllowedForNewUsers = true;
                 o.Password.RequireDigit = false;
@@ -31,7 +31,7 @@ partial class IServiceCollectionExtensions
                 o.Password.RequireNonAlphanumeric = false;
                 o.Password.RequireLowercase = true;
                 o.Password.RequireUppercase = true;
-                o.Password.RequiredUniqueChars = 1;
+                o.Password.RequiredUniqueChars = 0;
             });
         }
     }

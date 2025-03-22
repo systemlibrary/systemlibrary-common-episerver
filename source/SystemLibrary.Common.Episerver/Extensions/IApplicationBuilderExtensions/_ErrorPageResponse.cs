@@ -27,6 +27,8 @@ partial class IApplicationBuilderExtensions
     {
         if (!options.UseErrorPageResponse) return;
 
+        // TODO: Add metrics... 
+
         app.Use(async (context, next) =>
         {
             await next();

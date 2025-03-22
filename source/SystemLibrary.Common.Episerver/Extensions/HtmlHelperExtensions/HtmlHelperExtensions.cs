@@ -158,13 +158,13 @@ public static class HtmlHelperExtensions
     }
 
     /// <summary>
-    /// Display a blue edit link down right in the current container
+    /// Display a blue edit link down right in the current container or light blue if level is 1 (nested)
     /// </summary>
     /// <param name="blockData">Block/component you want a short cut to edit for</param>
     /// <returns></returns>
-    public static IHtmlContent ComponentEditLink<TModel>(this IHtmlHelper<TModel> html, BlockData blockData)
+    public static IHtmlContent ComponentEditLink<TModel>(this IHtmlHelper<TModel> html, BlockData blockData, int level = 0)
     {
-        var link = Episerver.ComponentEditLink.Create(blockData as IContent);
+        var link = Episerver.ComponentEditLink.Create(blockData as IContent, level);
 
         if (link == null)
             return HtmlString.Empty;

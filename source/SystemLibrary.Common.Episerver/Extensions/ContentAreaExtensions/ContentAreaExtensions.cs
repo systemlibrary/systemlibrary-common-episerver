@@ -112,15 +112,15 @@ public static class ContentAreaExtensions
     /// <remarks>
     /// You can use 'SelectFiltered' to ReactServerSideRender as 'additional props' to bypass the way ContentArea are rendered, which in return will convert all properties in all content of the area to 'dictionary', which can easily be used as Props
     /// </remarks>
-    /// <param name="filterByPublished">Set to True to force filtering on Published Content, also filters away deleted content and deleted content types</param>
+    /// <param name="filterByDisplayable">False filters by permission, published and personalization. True also checks that the content model exists in code</param>
     /// <returns>Returns an IEnumerable of T</returns>
-    public static IEnumerable<T> SelectFiltered<T>(this ContentArea contentArea, bool filterByPublished = false) where T : IContentData
+    public static IEnumerable<T> SelectFiltered<T>(this ContentArea contentArea, bool filterByDisplayable = false) where T : IContentData
     {
         if (contentArea.IsNot()) yield break;
 
         var references = contentArea.FilteredItems.Select(item => item.ContentLink);
 
-        foreach (var item in references.To<T>(filterByPublished))
+        foreach (var item in references.To<T>(filterByDisplayable))
             yield return item;
     }
 }

@@ -7,22 +7,32 @@ public class CmsFrameworkOptions : FrameworkOptions
     /// <summary>
     /// Set the minimum password length for the default CMS DB login
     /// <para>Defaults to 12</para>
+    /// <para>Passwords do not require a digit nor a special char, only minimum one lower and one upper cased char in the password</para>
+    /// <para>Wrong passwords attempts are 10, with a 15 minute locked out time</para>
     /// </summary>
     public int ApplicationCookieMimumPasswordLength = 12;
 
     /// <summary>
     /// Sets the application cookies sliding expiration
     /// <para>Defaults to true</para>
-    /// <para>This is the CMS identity cookie that must exist to have access to the CMS UI</para>
+    /// <para>This is the CMS identity cookie that must exist to have access to the CMS UI, allowing up to 20 hours of inactivity and still be logged in</para>
     /// </summary>
     public bool ApplicationCookieSlidingExpiration = true;
 
     /// <summary>
     /// Set the application cookie duration in minutes
     /// <para>Defaults to 1200 (20 hours)</para>
-    /// <para>This is the CMS identity cookie that must exist to have access to the CMS UI</para>
+    /// <para>Sliding expiration: always on</para>
+    /// <para>Maximum</para>
+    /// <para>This is the CMS cookie that is required to have to be granted access to the CMS UI</para>
     /// </summary>
     public int ApplicationCookieDuration = 1200;
+
+    /// <summary>
+    /// Enables session revalidation. 
+    /// <para>If the session is older than 30 days, the cookie is deleted, and the user is redirected to "/", forcing the user to always log in again at least once per 30 days.</para>
+    /// </summary>
+    public bool UseApplicationCookieMaxSessionDuration = true;
 
     /// <summary>
     /// Toggle on/off the DB initialization of a new admin user, updating property order, language enabled and site definitions
@@ -42,7 +52,7 @@ public class CmsFrameworkOptions : FrameworkOptions
     /// The default password of the default admin user
     /// <para>- Only used if the DB is empty</para>
     /// </summary>
-    public string DefaultAdminPassword = "Demo123!";
+    public string DefaultAdminPassword = "Demo123456!!";
 
     /// <summary>
     /// A comma separated list of languageId's that comes with Episerver
@@ -174,9 +184,4 @@ public class CmsFrameworkOptions : FrameworkOptions
     /// </example>
     public bool UseErrorPageResponse = false;
 
-    /// <summary>
-    /// Enables the revalidation of the session
-    /// <para>If session was created longer than 30 days ago, the cookie is deleted and user is redirected to root "/"</para>
-    /// </summary>
-    public bool UseCmsIdentityCookieRevalidation = true;
 }

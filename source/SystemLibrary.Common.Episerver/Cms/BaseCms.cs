@@ -143,7 +143,7 @@ public abstract class BaseCms
         {
             var mode = Services.Get<IContextModeResolver>();
 
-            return mode.CurrentMode == ContextMode.Edit;
+            return mode?.CurrentMode == ContextMode.Edit;
         }
     }
 
@@ -161,7 +161,7 @@ public abstract class BaseCms
         {
             var mode = Services.Get<IContextModeResolver>();
 
-            return mode.CurrentMode == ContextMode.Preview;
+            return mode?.CurrentMode == ContextMode.Preview;
         }
     }
 
@@ -169,6 +169,7 @@ public abstract class BaseCms
     /// CreateHostBuilder()
     /// <para>Creates a default CMS host builder</para>
     /// - the 'T' is usually your 'Program.cs' or 'Startup.cs'
+    /// <para>Pass in unknown hosting to get the builder setup without any calls to Optimizely CMS's ConfigureCmsDefaults, which you have to invoke yourself</para>
     /// </summary>
     /// <param name="hosting">
     /// IIS returns host builder configured for IIS/IIS express
@@ -194,23 +195,22 @@ public abstract class BaseCms
     /// }
     /// </code>
     /// </example>
-    public static IHostBuilder CreateHostBuilder<T>(string[] args, Hosting hosting, string appSettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
+    public static IHostBuilder CreateHostBuilder<T>(string[] args, Hosting hosting, string appsettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
     {
-        if (appSettingsFullPath.IsNot())
-            appSettingsFullPath = AppContext.BaseDirectory + "appSettings.json";
+        if (appsettingsFullPath.IsNot())
+            appsettingsFullPath = AppContext.BaseDirectory + "appsettings.json";
 
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-        if (environment.IsNot())
-            environment = EnvironmentConfig.Current.Name;
+        var environment = "";
 
         var hostBuilder = Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
-                config.AddJsonFile(appSettingsFullPath);
+                environment = EnvironmentConfig.Current.Name;
+
+                config.AddJsonFile(appsettingsFullPath);
 
                 if (environment.Is())
-                    config.AddJsonFile(appSettingsFullPath.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+                    config.AddJsonFile(appsettingsFullPath.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
 
                 if (additionalConfigurationsFullPath.Is())
                 {
@@ -218,7 +218,7 @@ public abstract class BaseCms
                     {
                         config.AddJsonFile(additionalConfig);
                         if (environment.Is())
-                            config.AddJsonFile(additionalConfig.Replace(".json", "") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+                            config.AddJsonFile(additionalConfig.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
                     }
                 }
             });

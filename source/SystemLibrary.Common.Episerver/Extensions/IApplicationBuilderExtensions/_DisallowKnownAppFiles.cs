@@ -13,6 +13,8 @@ partial class IApplicationBuilderExtensions
         {
             var path = context?.Request?.Path.Value;
 
+            // TODO: Move parts to the Framework
+
             if (path != null)
             {
                 var l = path.Length;

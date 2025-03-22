@@ -42,7 +42,7 @@ public static partial class IApplicationBuilderExtensions
 
         app.ExceptionHandler(options);
 
-        if (options.UseCmsIdentityCookieRevalidation)
+        if (options.UseApplicationCookieMaxSessionDuration)
             app.UseMiddleware<CmsIdentityCookieRevalidationMiddleware>();
         
         options.UseMvc = false;

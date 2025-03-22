@@ -20,11 +20,7 @@ partial class IApplicationBuilderExtensions
                 {
                     var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                    if (contextFeature?.Error != null)
-                        Log.Error(contextFeature?.Error);
-                    else
-                        Log.Error(context?.Request.Url() + " " + statusCode);
-
+                    Log.Error(context?.Request.Url() + " - "  + statusCode + ": " + contextFeature?.Error);
                 }
                 return null;
             });

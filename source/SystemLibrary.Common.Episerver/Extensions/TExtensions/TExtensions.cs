@@ -55,7 +55,7 @@ public static partial class TExtensions
 
         var level = IncrementLevel(renderClientSide);
 
-        if (level > 512)
+        if (level > 255)
         {
             level = DecrementLevel(renderClientSide);
             return new StringBuilder("");
@@ -122,7 +122,7 @@ public static partial class TExtensions
         {
             if (model is IContent content)
             {
-                var link = ComponentEditLink.Create(content);
+                var link = ComponentEditLink.Create(content, level);
                 if (link != null)
                 {
                     root.Append(link);
