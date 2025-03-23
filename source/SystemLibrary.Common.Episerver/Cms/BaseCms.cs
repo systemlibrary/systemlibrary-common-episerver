@@ -26,14 +26,22 @@ public enum Hosting
     /// IIS or IIS Express
     /// </summary>
     IIS,
+
     /// <summary>
-    /// Kestrel
+    /// Kestrel web server
     /// </summary>
     Kestrel,
+
     /// <summary>
-    /// Unknown returns a default app builder only
+    /// Returns a default app builder with Startup registered. 
+    /// Requires at least .ConfigureCmsDefaults() to function
     /// </summary>
-    Unknown = 9999
+    Startup,
+
+    /// <summary>
+    /// Returns a minimal app builder without Startup or Cms Defaults
+    /// </summary>
+    Minimum = 9999
 }
 
 /// <summary>
@@ -200,28 +208,27 @@ public abstract class BaseCms
         if (appsettingsFullPath.IsNot())
             appsettingsFullPath = AppContext.BaseDirectory + "appsettings.json";
 
-        var environment = "";
+        var hostBuilder = Host.CreateDefaultBuilder(args);
+        
+        var environment = EnvironmentConfig.Current.Name;
 
-        var hostBuilder = Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((hostingContext, config) =>
+        hostBuilder.ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config.AddJsonFile(appsettingsFullPath);
+
+            if (environment.Is())
+                config.AddJsonFile(appsettingsFullPath.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+
+            if (additionalConfigurationsFullPath.Is())
             {
-                environment = EnvironmentConfig.Current.Name;
-
-                config.AddJsonFile(appsettingsFullPath);
-
-                if (environment.Is())
-                    config.AddJsonFile(appsettingsFullPath.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
-
-                if (additionalConfigurationsFullPath.Is())
+                foreach (var additionalConfig in additionalConfigurationsFullPath)
                 {
-                    foreach (var additionalConfig in additionalConfigurationsFullPath)
-                    {
-                        config.AddJsonFile(additionalConfig);
-                        if (environment.Is())
-                            config.AddJsonFile(additionalConfig.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
-                    }
+                    config.AddJsonFile(additionalConfig);
+                    if (environment.Is())
+                        config.AddJsonFile(additionalConfig.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
                 }
-            });
+            }
+        });
 
         if (hosting == Hosting.Kestrel)
         {
@@ -242,6 +249,13 @@ public abstract class BaseCms
                 webBuilder.UseStartup<T>();
             })
             .ConfigureCmsDefaults();
+        }
+        else
+        {
+            hostBuilder.ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<T>();
+            });
         }
 
         return hostBuilder;

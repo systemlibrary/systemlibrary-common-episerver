@@ -1,5 +1,5 @@
 ﻿# Installation
-* Create a new Episerver Web Application and have it running on your local machine in no time with >= .NET 7
+* Create a new Episerver Web Application and have it running on your local machine in no time with >= .NET 8
 
 ## Install nuget package
 
@@ -14,11 +14,11 @@ Download a demo of the application parts of the setup below:
 
 ## Setup new episerver website in 10 minutes
 0. Create new empty database named "Demo" on your local SQL instance
-1. Create a new project "AspNet Core Empty" for >= .NET 7
+1. Create a new project "AspNet Core Empty" for >= .NET 8
 2. Delete appSettings.development.json
-3. Add nuget package Episerver.Cms >= 12.26.0
-	- Last tested version is 12.26.0 which was fine
-4. Add nuget package SystemLibrary.Common.Episerver >= 7.13.0.3
+3. Add nuget package Episerver.Cms >= 12.34.2
+	- Last tested version is 12.34.2 which was fine
+4. Add nuget package SystemLibrary.Common.Framework >= 8.0.0.10
 	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
 5. Create '~/module.config', set its build to 'Content' 
 6. Create '~/Initialize/LogWriter/LogWriter.cs'

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-
-using EPiServer.Core;
-
-using SystemLibrary.Common.Episerver.Users;
+﻿using EPiServer.Core;
 
 namespace SystemLibrary.Common.Episerver.Tests;
 

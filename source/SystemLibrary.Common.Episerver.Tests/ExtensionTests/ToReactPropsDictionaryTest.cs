@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
 
 using EPiServer;
@@ -45,7 +42,7 @@ public class ToReactPropsDictionaryTest
     {
         TestBlockInheritAndIdentity model = new TestBlockInheritAndIdentity();
 
-        model.TriggeringUser = new Users.AppCurrentUser();
+        model.TriggeringUser = new AppCurrentUser();
         model.InheritedInt = 999;
         model.Year = 888;
 
