@@ -61,17 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.4
 
 ## Latest Release Notes
-- 8.1.0.1
-- Removed SystemLibrary.Common.Net and SystemLibrary.Common.Web for SystemLibrary.Common.Framework (breaking change)
-- Removed EPiServer.CMS and added instead 6 various nuget packages as dependencies, avoiding additional bloated modules when installing this nupkg (breaking change)
-- Removed call to AddCms() but making sure all services that AddCms() does, it also done (optimization)
-- SSRID now uses GetCompressedKey() from the SystemLibrary.Common.Framework for speed (optimization)
-- CurrentUser renamed to AppCurrentUser (breaking change)
-- CurrentUser created and made static, creating a new AppCurrentUser on every invocation (at time being) (breaking change)
-- CmsServiceCollectionOptions deleted (breaking change)
-- CmsAppBuilderOptions renamed to CmsFrameworkOptions, one options object for both Services and Middlewares (breaking change)
-- Removed call to services.AddAuthentication("Cookies"), this library only registered the ApplicationCookie used for the CMS UI (breaking change)
-- Removed options "AddDisplay", it is always added (breaking change)
+- 8.1.0.3
+- Updated SystemLibrary.Common.Framework dependency (fix)
 
 #### Major Breaking Versions
 - 8.1.0.1
