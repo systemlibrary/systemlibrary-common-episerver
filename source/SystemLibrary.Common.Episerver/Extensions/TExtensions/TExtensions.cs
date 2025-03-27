@@ -94,6 +94,8 @@ public static partial class TExtensions
             else
             {
                 root.Append("<div class='" + Globals.CssClassName.SsrError + "' style=\"color:darkred;background-color:white;width:100%;max-width:1920px;border-top:1px solid red; border-bottom:1px solid red;\">Component: " + componentFullName + "<br/>Exception: " + ex.Message + "<br/>Note: restart APP to reload script changes<br/>Tip: Hide this error by css class '" + Globals.CssClassName.SsrError + "'</div>");
+                if (EnvironmentConfig.Current.EnvironmentName == EnvironmentName.Integration)
+                    root.Append("<div class='" + Globals.CssClassName.SsrError + "' style=\"font-size:9px;color:darkred;background-color:white;width:100%;max-width:1920px;border-top:0px solid red; border-bottom:2px solid red;\">Stacktrace: " + ex.ToString() + "</div>");
             }
         }
 

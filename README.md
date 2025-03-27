@@ -61,8 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.4
 
 ## Latest Release Notes
-- 8.1.0.3
-- Updated SystemLibrary.Common.Framework dependency (fix)
+- 8.1.0.4
+- Builder now contains options to add appsettings.json config and its transformations files as DXP loads it later in the "Services" one must opt-out if hosting in DXP (fix)
 
 #### Major Breaking Versions
 - 8.1.0.1
