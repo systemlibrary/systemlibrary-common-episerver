@@ -33,13 +33,18 @@ public enum Hosting
     Kestrel,
 
     /// <summary>
-    /// Returns a default app builder with Startup registered. 
-    /// Requires at least .ConfigureCmsDefaults() to function
+    /// Returns a default app builder with Startup registered for Linux Container in the DXP
     /// </summary>
-    Startup,
+    DxpLinux,
+
+    /// <summary>
+    /// Returns a default app builder with Startup registered for Windows Container in the DXP
+    /// </summary>
+    DxpWindows,
 
     /// <summary>
     /// Returns a minimal app builder without Startup or Cms Defaults
+    /// <para>Instead: you can invoke Host.CreateDefaultBuilder(args) yourself as that is the only line currently being invoked, but could change in the future</para>
     /// </summary>
     Minimum = 9999
 }
@@ -178,6 +183,7 @@ public abstract class BaseCms
     /// <para>Creates a default CMS host builder</para>
     /// - the 'T' is usually your 'Program.cs' or 'Startup.cs'
     /// <para>Pass in unknown hosting to get the builder setup without any calls to Optimizely CMS's ConfigureCmsDefaults, which you have to invoke yourself</para>
+    /// <para>Pass in null as appsettingsFullPath if you have it at root of the project which is the default convention</para>
     /// </summary>
     /// <param name="hosting">
     /// IIS returns host builder configured for IIS/IIS express
@@ -205,30 +211,41 @@ public abstract class BaseCms
     /// </example>
     public static IHostBuilder CreateHostBuilder<T>(string[] args, Hosting hosting, string appsettingsFullPath = null, string[] additionalConfigurationsFullPath = null, bool reloadOnConfigChange = false) where T : class
     {
-        if (appsettingsFullPath.IsNot())
-            appsettingsFullPath = AppContext.BaseDirectory + "appsettings.json";
-
         var hostBuilder = Host.CreateDefaultBuilder(args);
-        
-        var environment = EnvironmentConfig.Current.Name;
 
-        hostBuilder.ConfigureAppConfiguration((hostingContext, config) =>
+        var env = EnvironmentConfig.Current;
+
+        var isDxp = (hosting == Hosting.DxpWindows || hosting == Hosting.DxpLinux) && (
+            env.EnvironmentName == Framework.EnvironmentName.Integration ||
+            env.EnvironmentName == Framework.EnvironmentName.PreProduction ||
+            env.EnvironmentName == Framework.EnvironmentName.Production
+        );
+
+        if (!isDxp)
         {
-            config.AddJsonFile(appsettingsFullPath);
+            var environment = env.Name;
 
-            if (environment.Is())
-                config.AddJsonFile(appsettingsFullPath.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+            if (appsettingsFullPath.IsNot())
+                appsettingsFullPath = AppContext.BaseDirectory + "appsettings.json";
 
-            if (additionalConfigurationsFullPath.Is())
+            hostBuilder.ConfigureAppConfiguration((hostingContext, config) =>
             {
-                foreach (var additionalConfig in additionalConfigurationsFullPath)
+                config.AddJsonFile(appsettingsFullPath);
+
+                if (environment.Is())
+                    config.AddJsonFile(appsettingsFullPath.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+
+                if (additionalConfigurationsFullPath.Is())
                 {
-                    config.AddJsonFile(additionalConfig);
-                    if (environment.Is())
-                        config.AddJsonFile(additionalConfig.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+                    foreach (var additionalConfig in additionalConfigurationsFullPath)
+                    {
+                        config.AddJsonFile(additionalConfig);
+                        if (environment.Is())
+                            config.AddJsonFile(additionalConfig.Replace(".json", ".") + environment + ".json", optional: true, reloadOnChange: reloadOnConfigChange);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         if (hosting == Hosting.Kestrel)
         {
@@ -243,19 +260,31 @@ public abstract class BaseCms
         {
             hostBuilder.ConfigureWebHostDefaults(webBuilder =>
             {
-                if (environment.Is())
-                    webBuilder.UseEnvironment(environment);
+                // NOTE: Uncommented out march 2025 as ASPNETCORE_ENVIRONMENT or -e or --environment arg are the only way to pass the env to the APP
+                //if (environment.Is())
+                //    webBuilder.UseEnvironment(environment);
 
                 webBuilder.UseStartup<T>();
             })
             .ConfigureCmsDefaults();
         }
-        else
+        else if (hosting == Hosting.DxpLinux)
         {
             hostBuilder.ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<T>();
             });
+
+            hostBuilder.ConfigureCmsDefaults();
+        }
+        else if (hosting == Hosting.DxpWindows)
+        {
+            hostBuilder.ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<T>();
+            });
+
+            hostBuilder.ConfigureCmsDefaults();
         }
 
         return hostBuilder;
