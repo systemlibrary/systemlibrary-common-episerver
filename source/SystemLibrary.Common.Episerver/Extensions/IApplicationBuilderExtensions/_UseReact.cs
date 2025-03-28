@@ -38,10 +38,14 @@ partial class IApplicationBuilderExtensions
             {
                 if (script.Is())
                 {
-                    if (script[0] == '~')
+                    try
+                    {
                         config.AddScriptWithoutTransform(script);
-                    else
-                        Log.Error("[IApplicationBuilderExtensions] options.ReactSsrScriptsInOrder contains an invalid path, they all must start with '~', yours is: " + script);
+                    }
+                    catch
+                    {
+                        Log.Error("[IApplicationBuilderExtensions] options.ReactSsrScriptsInOrder contains an invalid path, they all must start with '~' or be full path to the file, yours is: " + script);
+                    }
                 }
             }
             config.ExceptionHandler = OnReactException;

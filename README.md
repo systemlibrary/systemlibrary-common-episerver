@@ -61,10 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.4
 
 ## Latest Release Notes
-- 8.1.0.5
-- Based on environment and hosting option we adjust the registration of appsettings.json, its opted out for in DXP (fix)
-- Removed direct dependency on MicrosoftClearScript
-- Added dep to JavaScriptEngineSwitcher.V8.Native.linux-x64 for hosting in DXP with Linux containers (feature)
+- 8.1.0.7
+- Updated dependency (fix)
 
 #### Major Breaking Versions
 - 8.1.0.1
