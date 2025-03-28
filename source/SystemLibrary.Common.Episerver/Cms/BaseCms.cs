@@ -293,7 +293,7 @@ public abstract class BaseCms
     static ConcurrentDictionary<string, string> PrimaryHostUrlCache = new ConcurrentDictionary<string, string>();
 
     /// <summary>
-    /// The Primary Host Url for the current SIte based on Current Request registered inside 'Managed Websites' in Episerver CMS
+    /// The Primary Host Url for the current Site based on Current Request registered inside 'Managed Websites' in Episerver CMS
     /// <para>Gets the first primary host type that is not a wildcard and contains a dot</para>
     /// <para>Fallback to first primary host type that is not a wildcard</para>
     /// <para>Fallback to first undefined host type that is not a wildcard and contains a dot</para>
