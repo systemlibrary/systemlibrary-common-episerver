@@ -61,8 +61,9 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.4
 
 ## Latest Release Notes
-- 8.1.0.7
+- 8.1.0.8
 - Updated dependency (fix)
+- SSR on linux containers hosting files outside of wwwroot support by overriding AspNetFileSystem from React.Core nuget package (feature)
 
 #### Major Breaking Versions
 - 8.1.0.1

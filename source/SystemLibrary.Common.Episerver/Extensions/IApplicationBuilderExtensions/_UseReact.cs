@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
+using React;
 using React.AspNet;
 
 using SystemLibrary.Common.Framework;
@@ -50,6 +51,12 @@ partial class IApplicationBuilderExtensions
             }
             config.ExceptionHandler = OnReactException;
         });
+
+        var container = React.AssemblyRegistration.Container;
+
+        container.Unregister<IFileSystem>();
+
+        container.Register<IFileSystem, LinuxAndWindowsAspNetFileSystem>().AsSingleton(); // NOTE: Is AsSingletonPerRequest in the nuget package
     }
 
     static void OnReactException(Exception arg1, string arg2, string arg3)
