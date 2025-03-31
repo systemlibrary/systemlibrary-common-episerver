@@ -61,11 +61,8 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 - &gt;= Episerver 12.32.4
 
 ## Latest Release Notes
-- 8.1.0.9
-- Updated dependency (fix)
-- SSR on linux and windows now properly checking the MapPath for both OS's by overriding the AspnetFileSystem from React.Core package (fix)
-- Removed option to DisallowKnownAppFiles, as it is already built-in from the Framework (optimize)
-- 
+- 8.1.0.10
+- Linux and Windows aspnet filesystem null check on Environment and content root fallback tolower as a last resort (fix)
 
 #### Major Breaking Versions
 - 8.1.0.1

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 
 using React.AspNet;
 
@@ -49,14 +48,15 @@ internal class LinuxAndWindowsAspNetFileSystem : AspNetFileSystem
 
     string ReturnMappedWebRootOrConentRoot(string path)
     {
-        if (path[0] == '/')
+        var tmp = path;
+        if (tmp[0] == '/')
         {
-            path = path.Substring(1);
+            tmp = tmp.Substring(1);
         }
 
-        if (env.WebRootPath != null)
+        if (env?.WebRootPath != null)
         {
-            var webRooted = Path.Combine(env.WebRootPath, path);
+            var webRooted = Path.Combine(env.WebRootPath, tmp);
 
             if (SafeFileExists(webRooted))
             {
@@ -64,14 +64,19 @@ internal class LinuxAndWindowsAspNetFileSystem : AspNetFileSystem
             }
         }
 
-        var contentRooted = Path.Combine(EnvironmentConfig.ContentRootPath, path);
+        var contentRooted = Path.Combine(EnvironmentConfig.ContentRootPath, tmp);
 
         if (SafeFileExists(contentRooted))
         {
             return contentRooted;
         }
 
-        return path;
+        if (SafeFileExists(contentRooted.ToLower()))
+            return contentRooted.ToLower();
+
+        Log.Error("[AspnetFileSystem] could not find the SSR script, remember case sensitive paths on Linux, returning content rooted path " + contentRooted);
+
+        return contentRooted;
     }
 
     static bool SafeFileExists(string path)
