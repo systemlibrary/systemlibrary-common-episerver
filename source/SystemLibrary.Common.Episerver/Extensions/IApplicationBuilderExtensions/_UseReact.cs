@@ -55,7 +55,6 @@ partial class IApplicationBuilderExtensions
         var container = React.AssemblyRegistration.Container;
 
         container.Unregister<IFileSystem>();
-
         container.Register<IFileSystem, LinuxAndWindowsAspNetFileSystem>().AsSingleton(); // NOTE: Is AsSingletonPerRequest in the nuget package
     }
 

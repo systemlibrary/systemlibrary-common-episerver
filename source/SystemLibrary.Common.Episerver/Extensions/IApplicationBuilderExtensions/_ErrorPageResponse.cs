@@ -27,7 +27,7 @@ partial class IApplicationBuilderExtensions
     {
         if (!options.UseErrorPageResponse) return;
 
-        // TODO: Add metrics... 
+        // TODO: Add metrics... [Gold Tier]
 
         app.Use(async (context, next) =>
         {

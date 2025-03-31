@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 using React.AspNet;
 
@@ -8,38 +9,80 @@ namespace SystemLibrary.Common.Episerver.Extensions;
 
 internal class LinuxAndWindowsAspNetFileSystem : AspNetFileSystem
 {
-    readonly IWebHostEnvironment _hostingEnv;
+    readonly IWebHostEnvironment env;
 
-    public LinuxAndWindowsAspNetFileSystem(IWebHostEnvironment hostingEnv) : base(hostingEnv)
+    static string CurrDir;
+
+    static LinuxAndWindowsAspNetFileSystem()
     {
-        _hostingEnv = hostingEnv;
+        CurrDir = Directory.GetCurrentDirectory();
     }
 
-    public override string MapPath(string relativePath)
+    public LinuxAndWindowsAspNetFileSystem(IWebHostEnvironment env) : base(env)
     {
-        if (relativePath.StartsWith(_hostingEnv.WebRootPath))
+        this.env = env;
+    }
+
+    public override string MapPath(string path)
+    {
+        if (path == null) return null;
+        if (path == "") return "";
+        if (path == "~/") return "~/";
+        if (path == "/") return "/";
+
+        if (path == null || path == "") return "/";
+
+        if (path.StartsWith("~"))
         {
-            return relativePath;
+            path = path.Substring(1);
         }
 
-        relativePath = relativePath.TrimStart('~');
+        // Try checking if file exists 'as is', an absolute path was registered
+        if (SafeFileExists(path))
+        {
+            return path;
+        }
 
+        // Convert path to webroot or content rooted path, depending on which file lookup succeeded
+        return ReturnMappedWebRootOrConentRoot(path);
+    }
+
+    string ReturnMappedWebRootOrConentRoot(string path)
+    {
+        if (path[0] == '/')
+        {
+            path = path.Substring(1);
+        }
+
+        if (env.WebRootPath != null)
+        {
+            var webRooted = Path.Combine(env.WebRootPath, path);
+
+            if (SafeFileExists(webRooted))
+            {
+                return webRooted;
+            }
+        }
+
+        var contentRooted = Path.Combine(EnvironmentConfig.ContentRootPath, path);
+
+        if (SafeFileExists(contentRooted))
+        {
+            return contentRooted;
+        }
+
+        return path;
+    }
+
+    static bool SafeFileExists(string path)
+    {
         try
         {
-            if (File.Exists(relativePath)) return relativePath;
+            return File.Exists(path);
         }
         catch
         {
-            // Swallow: exception on no access in case path isnt a file, we continue trying
+            return false;
         }
-
-        relativePath = relativePath.TrimStart('/').TrimStart('\\');
-
-        if (_hostingEnv.WebRootPath == null)
-        {
-            return Path.GetFullPath(Path.Combine(EnvironmentConfig.ContentRootPath, relativePath));
-        }
-
-        return Path.GetFullPath(Path.Combine(_hostingEnv.WebRootPath, relativePath));
     }
 }

@@ -7,7 +7,7 @@ using SystemLibrary.Common.Framework.App;
 
 namespace SystemLibrary.Common.Episerver.Extensions;
 
-internal class CmsIdentityCookieRevalidationMiddleware
+internal class ApplicationCookieMaxSessionDurationMiddleware
 {
     RequestDelegate next;
 
@@ -15,14 +15,14 @@ internal class CmsIdentityCookieRevalidationMiddleware
 
     static string CmsUserCookieName;
 
-    static CmsIdentityCookieRevalidationMiddleware()
+    static ApplicationCookieMaxSessionDurationMiddleware()
     {
         var cookieOptions = Services.Get<IOptionsMonitor<CookieAuthenticationOptions>>();
 
         CmsUserCookieName = cookieOptions?.Get("Identity.Application")?.Cookie?.Name;
     }
 
-    public CmsIdentityCookieRevalidationMiddleware(RequestDelegate next)
+    public ApplicationCookieMaxSessionDurationMiddleware(RequestDelegate next)
     {
         this.next = next;
     }
@@ -31,9 +31,10 @@ internal class CmsIdentityCookieRevalidationMiddleware
     {
         if (CmsUserCookieName != null)
         {
-            var path = context?.Request?.Path.Value?.ToLower();
+            var path = context?.Request?.Path.Value;
 
-            if (path?.StartsWith("/EPiServer/CMS", StringComparison.OrdinalIgnoreCase) == true)
+            if (path?.StartsWith("/EPiServer/CMS", StringComparison.OrdinalIgnoreCase) == true ||
+                path?.StartsWith("/EPiServer/EPiServer.Cms.UI.Admin", StringComparison.OrdinalIgnoreCase) == true)
             {
                 if (!path.IsFile())
                 {
@@ -58,7 +59,7 @@ internal class CmsIdentityCookieRevalidationMiddleware
                                     {
                                         var currentUser = new AppCurrentUser();
 
-                                        Log.Warning("[IdentityCookieRevalidationMiddleware] Cookie expired by threshold (timespan): " + Threshold + ". Deleting cookie and redirect to start for user: " + currentUser.Id + " " + currentUser.GivenName);
+                                        Log.Warning("[ApplicationCookieMaxSessionDurationMiddleware] Cookie expired by threshold (timespan): " + Threshold + ". Deleting cookie and redirect to start for user: " + currentUser.Id + " " + currentUser.GivenName);
 
                                         context.Response.Cookies.Delete(CmsUserCookieName);
                                         context.Response.Redirect("/");
@@ -68,7 +69,7 @@ internal class CmsIdentityCookieRevalidationMiddleware
                                 }
                                 else
                                 {
-                                    Log.Debug("[IdentityCookieRevalidationMiddleware] Issued date was not set on the cookie, doing nothing...");
+                                    Log.Debug("[ApplicationCookieMaxSessionDurationMiddleware] Issued date was not set on the cookie, doing nothing...");
                                 }
                             }
                         }

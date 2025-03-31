@@ -16,11 +16,16 @@ partial class IApplicationBuilderExtensions
             appInError.Run(context =>
             {
                 var statusCode = context?.Response?.StatusCode ?? 0;
-                if (statusCode > 399 && statusCode != 404 && statusCode != 503)
+                if (statusCode > 399 &&
+                    statusCode != 401 &&
+                    statusCode != 403 &&
+                    statusCode != 404 &&
+                    statusCode != 410 &&
+                    statusCode != 503)
                 {
                     var contextFeature = context?.Features?.Get<IExceptionHandlerFeature>();
 
-                    Log.Error(context?.Request.Url() + " - "  + statusCode + ": " + contextFeature?.Error);
+                    Log.Error(context?.Request.Url() + " - " + statusCode + ": " + contextFeature?.Error);
                 }
                 return null;
             });

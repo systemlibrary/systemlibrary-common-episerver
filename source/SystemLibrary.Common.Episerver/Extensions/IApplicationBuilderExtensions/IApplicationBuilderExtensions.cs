@@ -38,19 +38,19 @@ public static partial class IApplicationBuilderExtensions
 
         _DefaultBlockComponent.DefaultComponentPathPredicate = options.DefaultComponentPathPredicate;
 
-        app.DisallowKnownAppFiles(options);
+        app.SkipStaticLibraryRequestErrors(options);
 
         app.ExceptionHandler(options);
 
         if (options.UseApplicationCookieMaxSessionDuration)
-            app.UseMiddleware<CmsIdentityCookieRevalidationMiddleware>();
+            app.UseMiddleware<ApplicationCookieMaxSessionDurationMiddleware>();
         
         options.UseMvc = false;
 
         options.BeforeDefaultEndpoints = CmsPrecededEndpoints;
 
         app.UseFrameworkMiddlewares(env, options);
-        
+
         app.UseMapEndpoints();
 
         app.AddUseReact(options);
@@ -63,9 +63,10 @@ public static partial class IApplicationBuilderExtensions
     }
 }
 
+// TODO: Is this even in use? How?
 public class WarmupHostedService : IHostedService
 {
-    private readonly IContentLoader _contentLoader;
+    readonly IContentLoader _contentLoader;
 
     public WarmupHostedService(IContentLoader contentLoader) => _contentLoader = contentLoader;
 

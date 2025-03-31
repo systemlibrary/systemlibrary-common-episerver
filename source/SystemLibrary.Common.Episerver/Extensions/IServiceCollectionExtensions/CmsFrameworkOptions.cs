@@ -29,8 +29,8 @@ public class CmsFrameworkOptions : FrameworkOptions
     public int ApplicationCookieDuration = 1200;
 
     /// <summary>
-    /// Enables session revalidation. 
-    /// <para>If the session is older than 30 days, the cookie is deleted, and the user is redirected to "/", forcing the user to always log in again at least once per 30 days.</para>
+    /// Enforce a session deletion of session if session was created more than 30 days ago
+    /// <para>Set to true to enable a deletion of Application.Cookie and a redirect to startpage if session has laster for more than 30 days</para>
     /// </summary>
     public bool UseApplicationCookieMaxSessionDuration = true;
 
@@ -108,26 +108,6 @@ public class CmsFrameworkOptions : FrameworkOptions
     /// Example: ~/Content/Components/
     /// </summary>
     public Func<Type, string> DefaultComponentPathPredicate = null;
-
-    /// <summary>
-    /// Disallow serving known application files:
-    /// <para>- everything under the path ~/config</para>
-    /// <para>- everything under the path /bin/</para>
-    /// <para>- appSettings.json</para>
-    /// <para>- any .config filev</para>
-    /// <para>- any .dll file</para>
-    /// <para>- any .cs file</para>
-    /// <para>- any .cshtml file</para>
-    /// <para>- any .tsx file</para>
-    /// <para>- any .ts file</para>
-    /// <para>- any .mdf file</para>
-    /// <para>- any .sql file</para>
-    /// <para>- any .db file</para>
-    /// </summary>
-    /// <remarks>
-    /// If set to True, this stops the pipeline and returns blank, even before StaticFileHandler, so if you need to host any of these file types register your own static file handler for those file types before or disable this one
-    /// </remarks>
-    public bool DisallowKnownAppFiles = true;
 
     /// <summary>
     /// Enables loading of React Server Side through Node (V8 engine)
