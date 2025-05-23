@@ -1,0 +1,954 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/syslib/systemlibrary-common-episerver/source/SystemLibrary.Common.Episerver",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.BaseMultiSelectionFactory.html",
+          "hash": "4cBWp/Bj2aj2l5ekYvvEanv6UZrdJMaCzWoJyK9/7lQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.InternalBaseController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.InternalBaseController.html",
+          "hash": "Mfk7EYaGwyfhkm9NwdshmNiq/JSlQGUrhNg8yEN3VT4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Abstract.html",
+          "hash": "w3r2cwHChF30YCK4PhH9svi8yTv19NGbIJ39OKnqG4E="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionAttribute.html",
+          "hash": "7hwKppROIc7eLgkEFDie5qs0NAhdfH1O1tqvIsrisOc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionController.html",
+          "hash": "JRnrv4tnNaG2cwqNRu0VDIfI028BL/YYfAnHgkA+7xI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.BoxSelectionFactory.html",
+          "hash": "qXSZzk46Qaq37AffnRxM1oqYvpzOJ5zpg3TjdvKw1K0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ContentIconAttribute.html",
+          "hash": "/idqBBkt2d1Y/B0jnoBtlOs/ckCf2lB22MHZsWFkKYc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.DateSelectionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.DateSelectionAttribute.html",
+          "hash": "cMZ3p8tJmSsjNlnMMco2QUnIvlsaathuZ4SBrnlMXnY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HideOnCreateExtenderInitialization.html",
+          "hash": "A3LQadgnZyTsW5nXoEPzzDmWqwMVpxwJgcQ51B1p+Co="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.HidePropertyOnCreateAttribute.html",
+          "hash": "pZ7//qoFn5ov4/Bwg2kaY5VLzpbKjovfO2PazmOPhIU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditAttribute.html",
+          "hash": "1XCH+JbTq+NHW/4S4rxc2milp/+yvsKl7D6BNPG+IfQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditController.html",
+          "hash": "Z9MspjV3C+kxJcp4kEhSh+BdjS+1IwoVytdyHV38y38="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.JsonEditFactory.html",
+          "hash": "HodpBYi4Lx4+VuHVBMtjZkSAdmgHeNeBFOTaBTzuZ7U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionAttribute.html",
+          "hash": "ee1uzEjeWSPS+lQAUfJVyy2+EayWUMTKBoXgbNcqwoA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionController.html",
+          "hash": "W9RmjvD3fBfOrW2Np+0Jp3OTtIhfGg8yZ/4muR9gGak="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.MultiDropdownSelectionFactory.html",
+          "hash": "vABjw93TS2B+LzVaHdyp2e26Eyt+swKZNO0XqHVzocI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ParentLinkReferenceFactory.html",
+          "hash": "IJ+ml0cYZ+QQmn7JiKpBF467QMTWBN6ZPGaAMnGlxgc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.ServerSideRenderStringAttribute.html",
+          "hash": "byC1tv9TEVmmgQsrPtJmB0e+zCq41Qybbs9o4Cfy9zc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Attributes.html",
+          "hash": "OJKxSHjKRAoy8yLeZWy49iaV22YfRlavv2Kz5loSBZw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.BaseCms.html",
+          "hash": "Cva1OWAWwz2S0X4QgSCNo7nhu2v8XTsoixAteC423Fw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components.AsyncComponent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components.AsyncComponent-1.html",
+          "hash": "POBmL4RDLCdfYRVXMZ9TiIOg8CiBiuy6yLp+hSbA8Bc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components._DefaultBlockComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components._DefaultBlockComponent.html",
+          "hash": "GXT2JmL3In5zEk4ohgus55gpkFCNSUXqURVkBasuibI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Components.html",
+          "hash": "RLTZ5Cmz0h2ONU6EJxiVOb2Ib/U/RSs0MITO6BPTuls="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Descriptors.HideCategoryListDescriptor.html",
+          "hash": "MCTn3UpnbO45qJkvWSefag23C3N/ekS4CT+pmrKoA0U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Descriptors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Descriptors.html",
+          "hash": "HLrVQwA04b9tKqHqPTvUMjZOsQGl/KjPCB0eM6vkj+0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.EditController.html",
+          "hash": "q4GHaQwnRcglNHQNzSRVq1IKL6DEcLSk2x5M7uUA7p8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsAppBuilderOptions.html",
+          "hash": "5qFPIyxqXZCtu3Kb9GlSxj3EosksHGAIP2/SNfzogOE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.CmsServicesCollectionOptions.html",
+          "hash": "wcLR3ccPixVl2yGacHnyFeskNzRet1eeNx5fD8951Jo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentAreaExtensions.html",
+          "hash": "krtz//2O1MUkQ0cqBzLjTTgBzbOPHMDs1V90BlC/y7s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ContentReferenceExtensions.html",
+          "hash": "XfmgAkpmzJGtN3vWgU67lV1Ma2CU3d/AkVAGYcaHAME="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ExtendedMetadataExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ExtendedMetadataExtensions.html",
+          "hash": "kSU+qbV4+eyA9rbegp7DmIe/8Nr+piC+s2sTX8E4pf8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.HtmlHelperExtensions.html",
+          "hash": "r/COlJJ+DZhmzBbPHQZD5ebUri4VqMnm4uGyn8rt8aU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IApplicationBuilderExtensions.html",
+          "hash": "xOlbjQmNZRquZb612BTW6lZUsKY/GzJTlAhZJ7xrGng="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IContentDataExtensions.html",
+          "hash": "kqUB5FBMdHZK0CnAeFvi4Hp9uA+VrryhF5QI68i1Ozk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IEnumerableContentReferenceExtensions.html",
+          "hash": "q0iTdWbuY9AXlPV/mRXyGG7ucZhmDEtzZbfhDxEXHE4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IServiceCollectionExtensions.html",
+          "hash": "CVpv+9tciiQh+SZg2TxASEpjc4OUQT87OVdIHQjbBXg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IntExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.IntExtensions.html",
+          "hash": "Br2H90+ci8pNUCNnDUdwcJi91Mt1YugaK1UhPiZ2Ao8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.ObjectExtensions.html",
+          "hash": "rflZAW4NHCTOZyjryMQoIEMM6X1OOVSZctGWwKlpQjE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.PageDataExtensions.html",
+          "hash": "8adXDs942fiX+vrPq+eyl64ZhiV15OvcXufD6LxM+Do="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.StringExtensions.html",
+          "hash": "6u8P/yDZut7zspB2QbnwJSGnVHiY+xLmJLVvnnoXZCA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.TExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.TExtensions.html",
+          "hash": "3Zm04AB7cqIe6IQzSiPJbMPsTFy3q6d5mh7Un6ToQCo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UriExtensions.html",
+          "hash": "RdgE39jfD24gEF4P6OPj3jS0ldijxgrSo1+JE0Apf8o="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.UrlExtensions.html",
+          "hash": "B9PBt1XJ0zNcFcK1xoVvfDVxZWUKrNuS2JLYyiAFlHk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.XhtmlStringExtensions.html",
+          "hash": "F7lsdt9pwB1Xa695BCsy5G8LZy6MSteVZXr3lmCevSE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Extensions.html",
+          "hash": "obi7lIPPOdM5ap6lw9UtchTHETtki1mBO5EsWMMxoSY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeBrands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeBrands.html",
+          "hash": "TjVOo3y01MLDakgNM1X05wijApGiOZQMw6FBilT4eGo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeController.html",
+          "hash": "9ormR0cqFStQGd/Xu1STJ6MShUmTMpZZPzy8ZL8F30Y="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeRegular.html",
+          "hash": "lmf1X0LXmyWcnAjda3HATea7u/DcBlYUF7v9OrLgpVE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.html",
+          "hash": "0KK0Ra71/I7p9L/1gVxL6xmKup6ocDsxoyo+rZgW20U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.FontAwesome.html",
+          "hash": "pHngrcF7/+c8e5UFfBcFiVjxMcpdhGLCkyr/ELh4+YE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.HtmlHelperFactory.html",
+          "hash": "ckyHmzkqu3nfbNMLI3HaLsWT5x+LHH1IQeXjhuSyavk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.IErrorPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.IErrorPage.html",
+          "hash": "l1bBAQ/wOQgf1avY7sdD3N+TmHvvSXkSKEMzXdxYq+Q="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ISingleton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ISingleton.html",
+          "hash": "xpyAkrxKbwdrHDsmjq5759p64wUfwqZ4/Y0V+pzf0nA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.RemoveSuggestedContentTypes.html",
+          "hash": "Tqnvz8/pzTH8p6sOeDP7FIXzTSN71rTCNpXl+86dRkI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.StartupModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.StartupModule.html",
+          "hash": "PWE+035A6yQC3YsdNLXhIQqR3V7DiRGXisbmXbOg6N0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Initialize.html",
+          "hash": "PViHE5SgoEKNF0dhu9YYPdSQ9cZnDLhzZUhj6acwGCE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.IListProperty-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.IListProperty-1.html",
+          "hash": "ZyT2DH050NDpY70L8hkwfgWxuGFk+6L5CQEPhL0LV+c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.Message.html",
+          "hash": "D5+/7jQabXTNgNDgsSaZf/JMcBs+kwBgXt9WflP0u5M="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageConfig.html",
+          "hash": "NkWohTWt/AZvloW1EPO2xb1sveX6wYdINBCEFflMK0I="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageController.html",
+          "hash": "uIP+Xzb8dK6cZpNsH7AmZBxyVjZxYtZTwYALye+lyU0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageEditorDescriptor.html",
+          "hash": "eJveU4Mj2Ljq4KaleVPeB+7IGPCBIHJG2FpBh55Ws5c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.MessageProperty.html",
+          "hash": "JhKI9j6dbHxIIVnABTeO154V91p6g6TpIg611fljAMQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReference.html",
+          "hash": "RPXuu+aQt4t4L7T4qLY4pmmTBOVHrWTh0ZVCulP4HSc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceController.html",
+          "hash": "GEwoZnvW7qNdLsBERRkPaL5L0a6jyr/tQmhPcsoG5/U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceEditorDescriptor.html",
+          "hash": "4CGCVmKZwDQ8YMPsqXmMmgEhrErBwFGfYk5mxEN8kSo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.ParentLinkReferenceProperty.html",
+          "hash": "kpfbf6qomziND32Iiujl3emQKqa+vB1Gb8Fd4RLDFUQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Properties.html",
+          "hash": "xG+NqPK94nbvMmVG/OwMRMh2IFOo6FYIV8KNWkHcaYU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ReactBlockResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.ReactBlockResult.html",
+          "hash": "pGnnSdnpmG/N2MUmeJ2y/2j5FqX3p+yp774mj6fWKoI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.CurrentUser.html",
+          "hash": "m6OfthjnIlSGZd8X/tf/hOei9XPyDxmRmUpkClFmDHU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Users.html",
+          "hash": "exSXdCknxNwovLuKM2/TxtffyYUkQr+g22VcxeCscRI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.Validator-1.html",
+          "hash": "CFyP6uS0GD/YFZ2rsJppmoONuQQp9w4BLSSQ4+r+NAM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.WebApplicationInitializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.WebApplicationInitializer.html",
+          "hash": "nyfH2iTtcSNhlY/SEqKUCEW/0eg6J52QO1slR2IjXks="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/SystemLibrary.Common.Episerver.html",
+          "hash": "/jg44eBwtZXtY4T0hsjWck6vbkIEhAQruF9LAuxPTww="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "SystemLibrary.Common.Episerver/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver/toc.html",
+          "hash": "OR10TMLLxLBNBxU6JaR2qqJBtKlija6iApLgtClAlHw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "SystemLibrary.Common.Episerver_index.md",
+      "output": {
+        ".html": {
+          "relative_path": "SystemLibrary.Common.Episerver_index.html",
+          "hash": "KBTRfU5AKSKE3V9RDKQXZlKlsN2RZta6iw9WMOCW0mM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 73,
+          "skipped_file_count": 73
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

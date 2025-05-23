@@ -1,0 +1,894 @@
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <meta name='viewport' content='width=device-width'>
+    <!--<script src='https://unpkg.com/showdown@2.0.0/dist/showdown.min.js'></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>-->
+    <!-- <script src="https://cdn.jsdelivr.net/remarkable/1.7.1/remarkable.min.js"></script> -->
+    <!-- <script src="https://jonschlinkert.github.io/remarkable/dist/remarkable.js"></script> -->
+
+    <script src="remarkable.js"></script>
+
+    <!-- <link rel="shortcut icon" href="favicon.ico"> -->
+    <!-- <link rel="stylesheet" href="styles/docfx.vendor.css">-->
+    <!-- <link rel="stylesheet" href="styles/docfx.css"> -->
+    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+    <!-- <link rel="stylesheet" href="styles/custom.css"> -->
+
+    <style>
+        :root {
+            --red: #cf222e;
+            --purple: #8250df;
+            --grey: #6e7781;
+            --green: #0aa336;
+            --dark-blue: #0a3069;
+            --black: #24292f;
+            --yellow: #fff8c5;
+            --font-code: monospace;
+            --font-text: "Segoe UI", Tahoma, Helvetica, sans-serif;
+
+            --pink: #b84d8c;
+            --brown: #b88d4d;
+            --blue: #5c94c4;
+
+            --light-black: #414141;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: var(--font-text);
+            color: var(--black);
+            line-height: 140%;
+            font-size: 14px;
+        }
+
+
+        /* Parts of css from : https://gist.github.com/timblair/1171018*/
+        body {
+            width: 100%;
+            margin: 0 auto;
+            height: 100%;
+            background-color: white;
+        }
+
+        #autocollapse {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
+            border: 0;
+        }
+
+        #wrapper>header .navbar-inverse {
+            color: var(--black);
+            background-color: white;
+        }
+
+
+        span.hljs-string {
+            font-weight: 600 !important;
+        }
+
+        #md-content {
+            background-color: #fafafa;
+            min-height: unset;
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0;
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            padding-bottom: 3em;
+        }
+
+        @media screen and (max-width: 580px) {
+            #md-content {
+                max-width: 100%;
+                overflow-x: hidden;
+                padding-left: 1em;
+                padding-right: 1em;
+                padding-bottom: 2em;
+            }
+        }
+
+        h1 {
+            padding-top: 12px !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 400;
+        }
+
+        h1 {
+            margin-bottom: 18px;
+            padding: 0;
+        }
+
+        h2,
+        h3,
+        h4,
+        h5,
+        p {
+            padding: 0;
+            margin-bottom: 0.25em;
+        }
+
+        a {
+            color: #0099ff;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+        }
+
+        ul,
+        ol {
+            padding: 0;
+            margin: 0;
+            margin-bottom: 0.5em;
+            margin-top: 0.25em;
+        }
+
+        li {
+            line-height: 24px;
+        }
+
+        li ul,
+        li ul {
+            margin-left: 24px;
+        }
+
+        p,
+        ul,
+        ol {
+            font-size: 16px;
+            line-height: 24px;
+            max-width: 1000px;
+        }
+
+        pre {
+            padding: 0px 16px;
+            margin: 0;
+            max-width: 1000px;
+            width: 100%;
+            white-space: pre-wrap;
+            background-color: #f3f3f3;
+            margin-bottom: 1.5em;
+        }
+
+        @media screen and (max-width: 520px) {
+            pre {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        code {
+            font-family: Consolas, Monaco, Andale Mono, monospace;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        code * {
+            font-family: Consolas, Monaco, Andale Mono, monospace;
+        }
+
+        @media screen and (max-width: 520px) {
+            pre code.hljs {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            code {
+                font-size: 11.5px !important;
+            }
+
+            code * {
+                font-size: 11.5px !important;
+            }
+        }
+
+        aside {
+            display: block;
+            float: right;
+            width: 390px;
+        }
+
+        blockquote {
+            margin: 1em 2em;
+            border-left: 3px solid #01ff70;
+            padding-left: 1rem;
+        }
+
+        blockquote p {
+            color: #666;
+            max-width: 460px;
+        }
+
+        hr {
+            width: 540px;
+            text-align: left;
+            margin: 0 auto 0 0;
+            color: #999;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 1em 1em;
+            border: 1px solid #CCC;
+        }
+
+        table thead {
+            background-color: #EEE;
+        }
+
+        table thead td {
+            color: #666;
+        }
+
+        table td {
+            padding: 0.5em 1em;
+            border: 1px solid #CCC;
+        }
+
+        #md-content>ol {
+            padding-left: 1.5em;
+        }
+
+        #md-content>ul {
+            padding-left: 1.5em;
+        }
+
+        body {
+            margin: 0 auto !important;
+        }
+
+        a.navbar-brand {
+            align-items: center;
+            display: flex !important;
+            width: 100%;
+            padding: 0;
+            line-height: 0;
+            margin: 0;
+
+            text-decoration: none;
+        }
+
+        a.navbar-brand>img#logo {
+            display: inline !important;
+            min-height: 24px;
+            min-width: 24px;
+
+            width: 100%;
+            height: 100%;
+            max-width: 72px;
+            max-height: 56px;
+        }
+
+        a.navbar-brand>span.navbar-title {
+            text-decoration: unset;
+            display: inline;
+            font-size: 20px;
+            padding-left: 14px;
+            cursor: pointer;
+        }
+
+        a,
+        a:visited {
+            color: var(--purple);
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: var(--purple);
+            border-bottom: solid 1px var(--pink);
+        }
+
+        .subnav.navbar.navbar-default {
+            background-color: var(--light-black);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 50;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        h5 {
+            font-size: 18px;
+        }
+
+        h6 {
+            font-size: 14px;
+        }
+
+        small {
+            font-size: 12px;
+        }
+
+        img,
+        canvas,
+        iframe,
+        video,
+        svg,
+        select,
+        textarea {
+            max-width: 100%;
+        }
+
+        pre>code.hljs {
+            padding: 10px;
+            line-height: 1;
+        }
+
+        @media screen and (max-width: 520px) {
+            pre>code.hljs {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .hljs-title {
+            color: rgb(130, 80, 223) !important;
+        }
+
+        pre>code>.hljs-attr {
+            color: #444;
+            font-weight: 700;
+        }
+
+        pre>code>.hljs-punctuation {
+            color: rgb(130, 80, 223);
+        }
+
+        .language-csharp.hljs .hljs-comment {
+            color: #006800;
+        }
+
+        .language-csharp.hljs .hljs-keyword {
+            color: rgb(207, 34, 46);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">
+                            <img id="logo" class="svg" src="logo.png" alt="">
+                            <span class="navbar-title">Back</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div class="subnav navbar navbar-default">
+                <div class="container hide-when-search" id="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div id='md-content'></div>
+    </div>
+    <script>var mdcontent = `# Installation
+* Create a new Episerver Web Application and have it running on your local machine in no time with &gt;= .NET 7
+
+## Install nuget package
+
+* Open your project/solution in Visual Studio
+* Open Nuget Project Manager
+* Search and install SystemLibrary.Common.Episerver
+
+## Download demo
+Download a demo of the application parts of the setup below:
+[Download Demo.zip](https://systemlibrary.github.io/systemlibrary-common-episerver/demo.zip)
+
+
+## Setup new episerver website in 10 minutes
+0. Create new empty database named !????!Demo!????! on your local SQL instance
+1. Create a new project !????!AspNet Core Empty!????! for &gt;= .NET 7
+2. Delete appSettings.development.json
+3. Add nuget package Episerver.Cms &gt;= 12.26.0
+	- Last tested version is 12.26.0 which was fine
+4. Add nuget package SystemLibrary.Common.Episerver &gt;= 7.13.0.3
+	- Note: Try compiling. If error in package versions, very often Episerver.Cms has some deps that arent updated. Simply view output in console in Visual Studio and update/add the package/version that is being complained about
+5. Create !@@@@!~/module.config!@@@@!, set its build to !@@@@!Content!@@@@! 
+6. Create !@@@@!~/Initialize/LogWriter/LogWriter.cs!@@@@!
+7. Create !@@@@!~/Cms/Cms.cs!@@@@!
+8. Create !@@@@!~/Properties/launchSettings.json!@@@@! (it should exist already)
+9. Create !@@@@!~/Content/Pages/StartPage/StartPage.cs!@@@@!
+10. Create !@@@@!~/Content/Pages/ErrorPage/ErrorPage.cs!@@@@!
+11. Create !@@@@!~/Content/Pages/StartPage/StartPageController.cs!@@@@!
+12. Create !@@@@!~/Content/Pages/ErrorPage/ErrorPageController.cs!@@@@!
+13. Create !@@@@!~/Content/Pages/StartPage/Index.cshtml!@@@@!, set its build to !@@@@!Content!@@@@!
+14. Create !@@@@!~/Content/Pages/ErrorPage/Index.cshtml!@@@@!, set its build to !@@@@!Content!@@@@!
+15. Create !@@@@!~/appSettings.json!@@@@!, set its build to !@@@@!Content!@@@@! (it should exist already)
+16. Create !@@@@!~/Content/Pages/_ViewStart.cshtml!@@@@!
+16. Create !@@@@!~/Content/Pages/_PageLayout.cshtml!@@@@!
+17. Create !@@@@!~/Content/_ViewImports.cshtml!@@@@!
+18. Create !@@@@!~/Views/_ViewImports.cshtml!@@@@!
+19. Create !@@@@!~/Views/MainMenu.cshtml!@@@@!
+20. Copy paste code below, into their respective files
+
+
+~/Cms/Cms.cs:
+!====!!====!!====!csharp 
+using SystemLibrary.Common.Episerver;
+
+namespace Demo;
+
+public class Cms : BaseCms
+{
+}
+!====!!====!!====!
+
+~/Content/Pages/StartPage/StartPage.cs
+!====!!====!!====!csharp 
+using System.ComponentModel.DataAnnotations;
+
+using EPiServer.Core;
+using EPiServer.DataAnnotations;
+
+using SystemLibrary.Common.Episerver.Attributes;
+using SystemLibrary.Common.Episerver.Properties;
+using SystemLibrary.Common.Episerver.FontAwesome;
+
+namespace Demo;
+
+[ContentType(DisplayName = !????!Start Page!????!, GUID = !????!7C3BBD03-5D83-4E75-A1E9-BCF5DF5F99B2!????!)]
+[ContentIcon(FontAwesomeSolid.house)]
+public class StartPage : PageData
+{
+	[Display(Name = !????!Tip!????!, Description = !????!Welcome to your brand new website!????!)]
+	public virtual Message Tip { get; set; }
+
+	[Display(Name = !????!Parent!????!, Description = !????!A link to the parent, where !@@@@!this!@@@@! is created/living under!????!)]
+	public virtual ParentLinkReference ParentRef { get; set;}
+
+	[Display(Name = !????!Expires!????!, Description = !????!A date time property, but only date can be selected, time is hidden!????!)]
+	[DateSelection]
+	public virtual DateTime Expires { get; set; }
+}
+!====!!====!!====!
+
+~/Content/Pages/ErrorPage/ErrorPage.cs
+!====!!====!!====!csharp
+using EPiServer.Core;
+using EPiServer.DataAnnotations;
+
+using SystemLibrary.Common.Episerver;
+using SystemLibrary.Common.Episerver.Attributes;
+
+namespace Demo.Content.Pages;
+
+[ContentType(DisplayName = !????!Error Page!????!, Description = !????!Error!????!, GUID = !????!10A8191B-C9AE-433A-860B-7B7EEE758A3C!????!, GroupName = !????!Single Pages!????!)]
+[ContentIcon(SystemLibrary.Common.Episerver.FontAwesome.FontAwesomeSolid.stop)]
+public class ErrorPage : PageData, IErrorPage
+{
+	public virtual IList&lt;int&gt; StatusCodes { get; set; }
+}
+!====!!====!!====!
+
+~/Content/Pages/StartPage/StartPageController.cs
+!====!!====!!====!csharp 
+using EPiServer.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+namespace Demo;
+
+public class StartPageController : PageController&lt;StartPage&gt;
+{
+	public ActionResult Index(StartPage currentContent)
+	{
+		return View();
+	}
+}
+!====!!====!!====!
+
+~/Content/Pages/ErrorPage/ErrorPageController.cs
+!====!!====!!====!csharp 
+using EPiServer.Web.Mvc;
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace Demo.Content.Pages;
+
+public class ErrorPageController : PageController&lt;ErrorPage&gt;
+{
+	public ViewResult Index(ErrorPage currentPage, string path)
+	{
+		return View(!????!Index!????!, currentPage);
+	}
+}
+!====!!====!!====!
+
+~/Content/Pages/StartPage/Index.cshtml
+!====!!====!!====!csharp 
+@model object
+Startpage
+!====!!====!!====!
+
+~/Content/Pages/ErrorPage/Index.cshtml
+!====!!====!!====!csharp 
+@{ Layout = null; }
+@model object
+&lt;h1&gt;Error page&lt;/h1&gt;
+!====!!====!!====!
+
+~/module.config:
+!====!!====!!====!xml 
+&lt;?xml version=!????!1.0!????! encoding=!????!utf-8!????!?&gt;
+&lt;module&gt;
+	&lt;clientResources&gt;
+		&lt;add name=!????!epi-cms.widgets.base!????! path=!????!/SystemLibrary/CommonEpiserverCms/Edit/Style!????! resourceType=!????!Style!????! /&gt; 
+	&lt;/clientResources&gt;
+&lt;/module&gt;
+!====!!====!!====!
+
+~/Initialize/LogWriter/LogWriter.cs
+!====!!====!!====!csharp 
+using SystemLibrary.Common.Web;
+
+public class LogWriter : ILogWriter
+{
+	public void Write(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Error(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Warning(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Debug(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Information(string message)
+	{
+		Dump.Write(message);
+	}
+	public void Trace(string message)
+	{
+		Dump.Write(message);
+	}
+}
+!====!!====!!====!
+ 
+~/Program.cs
+!====!!====!!====!csharp 
+using SystemLibrary.Common.Episerver;
+using SystemLibrary.Common.Episerver.Extensions;
+
+namespace Demo;
+
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		var appSettingsPath = AppContext.BaseDirectory + !????!appSettings.json!????!;
+		try
+		{
+			Cms.CreateHostBuilder&lt;Program&gt;(args, appSettingsPath)
+				.Build()
+				.Run();
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex);
+		}
+	}
+
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var options = new CmsServicesCollectionOptions();
+
+		options.InitialLanguagesEnabled = !????!no!????!;
+
+		services.AddCommonCmsServices&lt;CurrentUser, LogWriter&gt;(options);
+	}
+
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+	{
+		var options = new CmsAppBuilderOptions();
+
+		options.UseHttpsRedirection = false;
+
+		app.UseCommonCmsApp(env, options);
+	}
+}
+!====!!====!!====!
+
+~/Content/Pages/_PageLayout.cshtml
+!====!!====!!====!xml 
+@model object
+&lt;!DOCTYPE html&gt;
+&lt;html lang=!????!en!????!&gt;
+&lt;head&gt;
+	&lt;meta charset=!????!utf-8!????! /&gt;
+	&lt;meta name=!????!viewport!????! content=!????!width=device-width, initial-scale=1!????! /&gt;
+&lt;/head&gt;
+&lt;body style=!????!color: green;!????!&gt;
+	@try
+	{
+		@await Html.PartialAsync(!????!~/Views/MainMenu.cshtml!????!);
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
+
+	@try
+	{
+		@RenderBody()
+	}
+	catch (Exception ex)
+	{
+		@Html.ViewException((Model as PageData, ex))
+	}
+&lt;/body&gt;
+&lt;/html&gt;
+!====!!====!!====!
+
+~/Views/_ViewImports_.cshtml
+!====!!====!!====!xml 
+@using Demo;
+@using Demo.Content.Pages;
+@using EPiServer;
+@using EPiServer.Core;
+@using EPiServer.Web.Mvc.Html;
+@using React.AspNet;
+@using System.Diagnostics;
+@using SystemLibrary.Common.Net;
+@using SystemLibrary.Common.Web;
+@using SystemLibrary.Common.Episerver.Extensions;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+!====!!====!!====!
+
+~/Content/_ViewImports_.cshtml
+!====!!====!!====!csharp 
+@using Demo;
+@using Demo.Content.Pages;
+@using EPiServer;
+@using EPiServer.Core;
+@using EPiServer.Web.Mvc.Html;
+@using React.AspNet;
+@using System.Diagnostics;
+@using SystemLibrary.Common.Net;
+@using SystemLibrary.Common.Web;
+@using SystemLibrary.Common.Episerver.Extensions;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+!====!!====!!====!
+
+~/Content/Pages/_ViewStart.cshtml
+!====!!====!!====!csharp 
+@{ Layout = !????!~/Content/Pages/_PageLayout.cshtml!????!; }
+!====!!====!!====!
+
+~/Views/MainMenu.cshtml
+!====!!====!!====!xml 
+&lt;h3&gt;Main Menu&lt;/h3&gt;
+!====!!====!!====!
+
+~/appSettings.json:
+!====!!====!!====!json 
+{
+	!????!ConnectionStrings!????!: {
+		!????!EPiServerDB!????!: !????!Data Source=.\\sqlexpress;Initial Catalog=Demo;Connection Timeout=10;Integrated Security=True;MultipleActiveResultSets=True;TrustServerCertificate=true;!????!
+	},
+
+	!????!systemLibraryCommonNet!????!: {
+		!????!dump!????!: {
+			!????!folder!????!: !????!%HomeDrive%/Logs/!????!,
+			!????!fileName!????!: !????!DumpWrite.log!????!,
+		}
+	},
+
+	!????!systemLibraryCommonWeb!????!: {
+		!????!log!????!: {
+			!????!level!????!: !????!Information!????!
+		},
+
+		!????!cache!????!: {
+			!????!duration!????!: 180,
+			!????!fallbackDuration!????!: 600,
+			!????!containerSizeLimit!????!: 60000
+		},
+		
+		!????!client!????!: {
+			!????!timeout!????!: 40001,
+			!????!retryTimeout!????!: 10000,
+			!????!ignoreSslErrors!????!: true,
+			!????!useRetryPolicy!????!: true,
+			!????!throwOnUnsuccessful!????!: true,
+			!????!useRequestBreakerPolicy!????!: false,
+			!????!clientCacheDuration!????!: 1200
+		},
+	},
+	
+	!????!systemLibraryCommonEpiserver!????!: {
+		!????!edit!????!: {
+			!????!newContentDialogHideRequiredTitle!????!: false,
+			!????!allPropertiesScrollableDocumentHeader!????!: false,
+			!????!allPropertiesShowPropertyDescriptions!????!: false,
+			!????!allPropertiesShowPropertiesAsColumns!????!: false,
+			!????!allPropertiesShowCheckBoxOnRightSide!????!: false,
+			!????!versionGadgetHideLanguageColumn!????!: false,
+			!????!newContentDialogItemBackgroundColor!????!: !????!!????!,
+			!????!newContentDialogItemBorderColor!????!: !????!!????!,
+			!????!pageTreeSelectedContentBorderColor!????!: !????!!????!,
+			!????!projectBarActiveProjectBackgroundColor!????!: !????!!????!,
+			!????!showComponentEditLink!????!: false
+		},
+
+		!????!properties!????!: {
+			!????!message!????!: {
+				!????!backgroundColor!????!: !????!#fff9e6!????!,
+				!????!textColor!????!: !????!#000!????!
+			}
+		}
+	}
+}
+!====!!====!!====!
+
+~/Properties/launchSettings.json
+!====!!====!!====!json 
+{
+	!????!iisSettings!????!: {
+		!????!windowsAuthentication!????!: false,
+		!????!anonymousAuthentication!????!: true,
+		!????!iisExpress!????!: {
+			!????!applicationUrl!????!: !????!http://localhost:51010/!????!,
+			!????!sslPort!????!: 0
+		}
+	},
+	
+	!????!profiles!????!: {
+		!????!Demo (local IISExpress)!????!: {
+			!????!commandName!????!: !????!IISExpress!????!,
+			!????!launchBrowser!????!: true
+		}
+	}
+}
+!====!!====!!====!
+
+#### Pit falls
+- EpiserverDb connection string targets SqlExpress instance and the database named !????!Demo!????! with your !????!Windows Credentials!????!
+- Index.cshtml not found - typos in your paths/files and folders are most likely the cause
+- Forgotten to set !@@@@!build!@@@@! as !@@@@!Content!@@@@! on module.config/Index.cshtml
+- SystemLibrary.Common.Episerver runs its initialization if, and only if, there are 0 users in the DB
+  - Creates a user !????!demo/Demo123!!????! as administrator
+  - Creates a new website with !????!domain!????! from launchSettings.json
+  - Disables all languages except the enabled ones based on your startup configuration (Program.cs)
+  - Adjusts all System Tabs, like !????!Settings!????! for properties, to be order !????!9000 + current!????!, so !@@@@!Settings!@@@@! is number 9030, instead of 30
+	- Resulting in all our tabs are !????!left sided!????!, and all episerver tabs are !????!on the far right!????! 
+	- Order takes affect after a restart of IIS as the very first initialization has already loaded the orders in memory by the CMS
+- SystemLibrary.Common.Web automatically redirect http to https by default, remember to set it off in the option in program.cs
+
+#### Run application
+- Ctrl + F5 in Visual Studio, should start IIS Express and display an error on our startpage, as we have not created one yet
+- Visit http://localhost:51010/episerver/cms
+- Log in with demo/Demo123!
+- Redirects possibly to !@@@@!start page!@@@@!, which still gives 404, navigate again to: http://localhost:51010/episerver/cms
+- Create a StartPage in Edit Mode and publish it
+- Register StartPage as the start for your site (Admin &gt; Config &gt; Manage Websites)
+- Visit http://localhost:51010/ should now give 200 OK status code
+- Go to http://localhost:51010/episerver/cms
+- Create a Error Page, set status code to 404, and publish the page
+- Visit http://localhost:51010/do-not-exist should show the Error Page you!@@@@!ve published
+
+## Package Configurations
+* Below are the default and modifiable configurations for this package
+
+###### appSettings.json:
+!====!!====!!====!json  
+{
+	...,
+	!????!systemLibraryCommonEpiserver!????!: {
+		!????!debug!????!: false,
+		
+		!????!edit!????!: {
+			!????!newContentDialogHideRequiredTitle!????!: false,
+			!????!allPropertiesScrollableDocumentHeader!????!: false,
+			!????!allPropertiesShowPropertyDescriptions!????!: false,
+			!????!allPropertiesShowPropertiesAsColumns!????!: false,
+			!????!allPropertiesShowCheckBoxOnRightSide!????!: false,
+			!????!versionGadgetHideLanguageColumn!????!: false,
+			!????!newContentDialogItemBackgroundColor!????!: !????!!????!,
+			!????!newContentDialogItemBorderColor!????!: !????!!????!,
+			!????!pageTreeSelectedContentBorderColor!????!: !????!!????!,
+			!????!projectBarActiveProjectBackgroundColor!????!: !????!!????!,
+			!????!showComponentEditLink!????!: false
+		},
+
+		!????!properties!????!: {
+			!????!message!????!: {
+				!????!backgroundColor!????!: !????!#fff9e6!????!,
+				!????!textColor!????!: !????!#000!????!
+			}
+		}
+	}
+	...
+}
+!====!!====!!====!  
+`;
+        mdcontent = mdcontent.replaceAll('!????!', '"')
+            .replaceAll("!@@@@!", "'")
+            .replaceAll("!====!", '`');
+    </script>
+
+    <script>
+        var decodeHTML = function (html) {
+            var txt = document.createElement('textarea');
+            txt.innerHTML = html;
+            return txt.value;
+        };
+        var mdContentClean = mdcontent.replaceAll('  ', '\n');
+        var text = decodeHTML(mdContentClean);
+
+        var md = new Remarkable({
+            html: true, /* Enable HTML tags in source*/
+            xhtmlOut: true, /* Use '/' to close single tags (<br />)*/
+            breaks: true, /*Convert '\n' in paragraphs into <br>*/
+            linkify: true, /*Autoconvert URL-like text to links*/
+
+            /* Enable some language-neutral replacement + quotes beautification*/
+            typographer: false,
+        });
+
+        /*var html = marked.parse(text);*/
+        html = md.render(text);
+
+        var container = document.getElementById('md-content');
+        container.innerHTML = html;
+    </script>
+
+    <!-- was https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css -->
+    <link rel="stylesheet" href="highlight.11.4.0.min.css">
+    <!-- was https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js -->
+    <script src="highlight.11.4.0.min.js"></script>
+
+    <script>
+        var allCodes = document.getElementsByTagName('code');
+        if (allCodes !== null && allCodes.length && allCodes.length > 0) {
+            for (var i = 0; i < allCodes.length; i++) {
+                var code = allCodes[i];
+                if (code && code.classList === null || code.classList.length === 0) {
+                    var parent = code.parentNode;
+                    var pre = document.createElement('pre');
+                    var div = document.createElement('div');
+                    parent.replaceChild(pre, code);
+                    pre.appendChild(code);
+                    code.classList.add('language-csharp'); code.classList.add('hljs');
+                }
+            }
+            setTimeout(() => hljs.highlightAll(), 10);
+        }
+
+        /*var converter = new showdown.Converter();
+        html = converter.makeHtml(text);*/
+    </script>
+</body>
