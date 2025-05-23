@@ -100,4 +100,4 @@ Free
 - [SystemLibrary.Common.Framework](https://github.com/systemlibrary/systemlibrary-common-framework), Free with Tiered Pricing for additional features
 - [Chart.js](https://github.com/chartjs/Chart.js), licensed under the MIT License.
 - [Prometheus-net](https://www.nuget.org/packages/prometheus-net), licensed under the MIT License.
-- [FontAwesome] - Font Awesome Free icons are used under Creative Commons Attribution 4.0. Please ensure appropriate attribution is maintained in your use.
+- [FontAwesome](https://fontawesome.com/), Used under Creative Commons Attribution 4.0. Please ensure appropriate attribution is maintained in your use.
