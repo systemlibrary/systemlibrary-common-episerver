@@ -15,7 +15,7 @@ View full source code or contribute, email [support@systemlibrary.com](mailto:su
 ### Features
 
 #### 📦 BoxSelection  
-![Box Selection Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png "")  
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" width="75%" />
 Pick icons, images, or colors — ideal for visual choices and content tagging.
 Supports a custom background color, a custom image or select any of the built-in font-awesome images.
 
