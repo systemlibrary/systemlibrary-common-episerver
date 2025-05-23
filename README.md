@@ -10,6 +10,7 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 
 ## Access & Contributing
 View full source code or contribute, email [support@systemlibrary.com](mailto:support@systemlibrary.com) to request access with your github username. Read-only access is granted upon request.
+- Forking, cloning, and submitting pull requests are possible once access is granted  
 
 ### Features
 
