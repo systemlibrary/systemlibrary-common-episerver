@@ -15,34 +15,34 @@ View full source code or contribute, email [support@systemlibrary.com](mailto:su
 ### Features
 
 #### 📦 BoxSelection
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" style="max-width: 75%; height: auto;" />
 Pick icons, images, or colors — ideal for visual choices and content tagging.
 Supports a custom background color, a custom image or select any of the built-in font-awesome images.
 
 #### 📅 DateSelection
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-dateselection.png" alt="Date Selection Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-dateselection.png" alt="Date Selection Preview" style="max-width: 75%; height: auto;" />
 The built-in datetime selection morphed to date selection, with refined styling.
 
 #### 🔽 MultidropdownSelection
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-multidropdownselection.png" alt="MUlti Dropdown Selection Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-multidropdownselection.png" alt="MUlti Dropdown Selection Preview" style="max-width: 75%; height: auto;" />
 Select from enums or add custom text — supports both structured and free-form lists.
 
 #### 💬 Message
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-message.png" alt="Message Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-message.png" alt="Message Preview" style="max-width: 75%; height: auto;" />
 Inline help text with auto-toggle for long content — guide editors directly in the UI.
 
 #### 🧩 ContentIcon
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-contenticon.png" alt="Content Icon Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-contenticon.png" alt="Content Icon Preview" style="max-width: 75%; height: auto;" />
 Show icons in the Page Tree, Block Tree and "New Content" — choose from FontAwesome or custom images.
 Supports custom images and built-in font-awesome images.
 
 #### 🔗 Parent Link Reference
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-parentlinkreference.png" alt="Parent Link Reference Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-parentlinkreference.png" alt="Parent Link Reference Preview" style="max-width: 75%; height: auto;" />
 Auto-link to the parent container — always know where content lives.
 
 #### ⚙️ JsonEdit
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsonedit.png" alt="Json Edit Preview" width="92%" />
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Preview" width="92%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsonedit.png" alt="Json Edit Preview" style="max-width: 75%; height: auto;" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Preview" style="max-width: 75%; height: auto;" />
 Edit and preview simple JSON objects with support for placeholders, required fields, and rich text (via `XhtmlString`). Deserialize using `.Json()` or `.JsonEditAsObject()`.
 
 #### 👤 CurrentUser  
