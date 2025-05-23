@@ -15,12 +15,12 @@ View full source code or contribute, email [support@systemlibrary.com](mailto:su
 ### Features
 
 #### 📦 BoxSelection  
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" width="75%" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" width="88%" />
 Pick icons, images, or colors — ideal for visual choices and content tagging.
 Supports a custom background color, a custom image or select any of the built-in font-awesome images.
 
 #### 📅 DateSelection  
-![Date Selection Preview](https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-dateselection.png "")  
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-dateselection.png" alt="Date Selection Preview" width="88%" />
 The built-in datetime selection morphed to date selection, with refined styling.
 
 #### 🔽 MultidropdownSelection  
