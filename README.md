@@ -6,6 +6,7 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 
 ## Requirements
 &gt;= .NET 8
+
 &gt;= Episerver 12.33.0
 
 ## Access & Contributing
@@ -17,6 +18,7 @@ View full source code or contribute, email [support@systemlibrary.com](mailto:su
 #### 📦 BoxSelection
 <img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-boxselection.png" alt="Box Selection Preview" style="max-width: 75%; height: auto;" />
 Pick icons, images, or colors — ideal for visual choices and content tagging.
+
 Supports a custom background color, a custom image or select any of the built-in font-awesome images.
 
 #### 📅 DateSelection
@@ -34,6 +36,7 @@ Inline help text with auto-toggle for long content — guide editors directly in
 #### 🧩 ContentIcon
 <img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-contenticon.png" alt="Content Icon Preview" style="max-width: 75%; height: auto;" />
 Show icons in the Page Tree, Block Tree and "New Content" — choose from FontAwesome or custom images.
+
 Supports custom images and built-in font-awesome images.
 
 #### 🔗 Parent Link Reference
@@ -42,8 +45,11 @@ Auto-link to the parent container — always know where content lives.
 
 #### ⚙️ JsonEdit
 <img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsonedit.png" alt="Json Edit Preview" style="max-width: 75%; height: auto;" />
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Preview" style="max-width: 75%; height: auto;" />
-Edit and preview simple JSON objects with support for placeholders, required fields, and rich text (via `XhtmlString`). Deserialize using `.Json()` or `.JsonEditAsObject()`.
+
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Preview"style="max-width: 75%; height: auto;" />
+Edit and preview simple JSON objects with support for placeholders, required fields, and rich text (via `XhtmlString`). 
+
+Deserialize using `.Json()` or `.JsonEditAsObject()`.
 
 #### 👤 CurrentUser  
 Static global `CurrentUser` class for user-specific data access  
