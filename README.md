@@ -10,8 +10,9 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 &gt;= Episerver 12.33.0
 
 ## Access & Contributing
-View full source code or contribute, email [support@systemlibrary.com](mailto:support@systemlibrary.com) to request access with your github username. Read-only access is granted upon request.
-- Forking, cloning, and submitting pull requests are possible once access is granted  
+View full source code or contribute, email [support@systemlibrary.com](mailto:support@systemlibrary.com) to request access with your github username. Read-only access is granted upon request, no questions asked.
+- Forking, cloning, and submitting pull requests are possible once access is granted
+[Github Source](https://github.com/systemlibrary/systemlibrary-common-episerver-private)
 
 ### Features
 
@@ -94,12 +95,6 @@ Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Nuget
 - [Nuget package page](https://www.nuget.org/packages/SystemLibrary.Common.Episerver/)
-
-## Source
-- [Github](https://github.com/systemlibrary/systemlibrary-common-episerver)
-
-## Suggestions and feedback
-- [Send us an email](mailto:support@systemlibrary.com)
 
 ## License
 Free
