@@ -9,10 +9,13 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 
 &gt;= Episerver 12.33.0
 
-## Access & Contributing
-View full source code or contribute, email [support@systemlibrary.com](mailto:support@systemlibrary.com) to request access with your github username. Read-only access is granted upon request, no questions asked.
-- Forking, cloning, and submitting pull requests are possible once access is granted
-[Github Source](https://github.com/systemlibrary/systemlibrary-common-episerver-private)
+## Access & Contribute
+[**GitHub Source**](https://github.com/systemlibrary/systemlibrary-common-episerver-private)
+
+To request access, email `support@systemlibrary.com` with your GitHub username and specify the repo.
+
+Read-only access is granted on request — no questions asked.  
+Once approved, you can fork, clone, and submit pull requests.
 
 ### Features
 
