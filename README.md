@@ -44,9 +44,10 @@ Supports custom images and built-in font-awesome images.
 Auto-link to the parent container — always know where content lives.
 
 #### ⚙️ JsonEdit
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsonedit.png" alt="Json Edit Preview" style="max-width: 75%; height: auto;" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsonedit.png" alt="Json Edit Property Preview" style="max-width: 
+75%; height: auto;" />
 
-<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Preview"style="max-width: 75%; height: auto;" />
+<img src="https://raw.githubusercontent.com/systemlibrary/systemlibrary-common-episerver/main/assets/images/cms-property-jsoneditor-view.png" alt="Json Edit Property Preview" style="max-width: 75%; height: auto;" />
 Edit and preview simple JSON objects with support for placeholders, required fields, and rich text (via `XhtmlString`). 
 
 Deserialize using `.Json()` or `.JsonEditAsObject()`.
