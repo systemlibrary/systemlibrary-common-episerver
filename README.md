@@ -80,11 +80,9 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.1
-- ContentReference, removed one if-statement which never is true in SSR (fix)
-- Dep, SystemLibrary.Common.Framework from 8.0.0.33 to 8.3.0.1 (breaking change)
-- Dep, Episerver CMS from 12.32.4 to 12.33.0 (breaking change)
-- Dep, Episerver TinyMce from 4.8.3 to 5.0.1 (breaking change)
+- 8.3.0.2
+- SSR: Local reload changed from 10 to 3 (fix)
+- Updated deps (fix)
 
 #### Version history
 - View git history of this file if interested
