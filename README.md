@@ -80,8 +80,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.4
-- Episerver deps patch (fix)
+- 8.3.0.5
+- RequestExtensions.IsEpiserverRequest() added (new)
 
 #### Version history
 - View git history of this file if interested
