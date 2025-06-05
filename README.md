@@ -80,8 +80,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.3
-- BoxSelection: multiselect was not working with v. 12.34 of epi, fixed (fix)
+- 8.3.0.4
+- Episerver deps patch (fix)
 
 #### Version history
 - View git history of this file if interested
