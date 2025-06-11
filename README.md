@@ -7,7 +7,7 @@ Library with classes, methods and dijits for every &gt;= .NET 8 episerver applic
 ## Requirements
 &gt;= .NET 8
 
-&gt;= Episerver 12.33.0
+&gt;= Episerver 12.33.1
 
 ## Access & Contribute
 [**GitHub Source**](https://github.com/systemlibrary/systemlibrary-common-episerver-private)
@@ -80,8 +80,9 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.5
-- RequestExtensions.IsEpiserverRequest() added (new)
+- 8.3.0.7
+- SSR: IEnumerable values are appended as their value up to a depth of 3 (feature)
+- Updated deps (fix)
 
 #### Version history
 - View git history of this file if interested
