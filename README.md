@@ -81,10 +81,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.7
-- SSR: IDictionary values appended (feature)
-- SSR: Depth to generate ssr id increased from 2 to 3 (feature)
-- Updated deps (fix)
+- 8.3.0.8
+- SSR: The ssr id contains now length of json props and some of its chars (fix)
 
 #### Version history
 - View git history of this file if interested
