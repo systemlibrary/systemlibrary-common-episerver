@@ -1,4 +1,5 @@
 
+
 # SystemLibrary Common Episerver
 
 ## Description
@@ -81,7 +82,8 @@ Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
 - 8.3.0.7
-- SSR: IEnumerable values are appended as their value up to a depth of 3 (feature)
+- SSR: IDictionary values appended (feature)
+- SSR: Depth to generate ssr id increased from 2 to 3 (feature)
 - Updated deps (fix)
 
 #### Version history
