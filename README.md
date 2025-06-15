@@ -1,3 +1,4 @@
+
 # SystemLibrary Common Episerver
 
 ## Description
@@ -79,8 +80,11 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.3.0.10
-- SSR: removed GetCompressedKey, its too slow, went back to GetValidString (fix)
+- 8.4.0.1
+- SSR: PageData is no longer just friendly url, it is an object with name and url (breaking change)
+- SSR ID: Properties of an Anonomous type is partially added to the SSR ID (feature)
+- SSR ID: decimal and double's precision of 1 is added to the SSR ID (feature)
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
@@ -100,6 +104,7 @@ Free
 
 ### Dependencies
 - [SystemLibrary.Common.Framework](https://github.com/systemlibrary/systemlibrary-common-framework), Free with Tiered Pricing for additional features
+- [Optimizely CMS](https://www.optimizely.com/products/content-management/), commercial licensed 
 - [Chart.js](https://github.com/chartjs/Chart.js), licensed under the MIT License.
 - [Prometheus-net](https://www.nuget.org/packages/prometheus-net), licensed under the MIT License.
 - [FontAwesome](https://fontawesome.com/), Used under Creative Commons Attribution 4.0. Please ensure appropriate attribution is maintained in your use.
