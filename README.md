@@ -80,11 +80,9 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.1
-- SSR: PageData is no longer just friendly url, it is an object with name and url (breaking change)
-- SSR ID: Properties of an Anonomous type is partially added to the SSR ID (feature)
-- SSR ID: decimal and double's precision of 1 is added to the SSR ID (feature)
-- Updated deps
+- 8.4.0.2
+- ParentLinkReference: logic reversed, simplified as the parent id most likely is directly from backend through Owner (optimization)
+- SSR ID: Samples more of the data, but only within the range of long, should have little to no collisions and avoid bloated ID's (optimization)
 
 #### Version history
 - View git history of this file if interested
