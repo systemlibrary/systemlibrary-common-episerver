@@ -80,9 +80,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.2
-- ParentLinkReference: logic reversed, simplified as the parent id most likely is directly from backend through Owner (optimization)
-- SSR ID: Samples more of the data, but only within the range of long, should have little to no collisions and avoid bloated ID's (optimization)
+- 8.4.0.3
+- SSR ID: Anonymous type datetime overwrote instead of appended fingerprint (fix)
 
 #### Version history
 - View git history of this file if interested
