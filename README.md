@@ -80,8 +80,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.4
-- IsCmsUser: user-agent containing spider is ignored (fix)
+- 8.4.0.5
+- ErrorPageResponse: ignores autodiscover.xml requests (fix)
 - Updated deps
 
 #### Version history
