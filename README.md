@@ -80,8 +80,9 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.3
-- SSR ID: Anonymous type datetime overwrote instead of appended fingerprint (fix)
+- 8.4.0.4
+- IsCmsUser: user-agent containing spider is ignored (fix)
+- Updated deps
 
 #### Version history
 - View git history of this file if interested
