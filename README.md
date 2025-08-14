@@ -80,10 +80,8 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.6
-- ParentLinkFactory in DXP uses the con string not from AppSettings (fix)
-- RenderServerSideComponent displays stack trace on site if in QA and Test too (fix) 
-- Updated deps
+- 8.4.0.7
+- MultidropdownSelection: list allows up to 1024px length before wrapping, and hovering button increase the X slightly (fix)
 
 #### Version history
 - View git history of this file if interested
