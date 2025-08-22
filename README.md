@@ -80,8 +80,9 @@ Registers common services and middlewares for Optimizely CMS in one line each
 Includes cache, auth, CMS, TinyMCE, routing, cookies, and shared view locations
 
 ## Latest Release Notes
-- 8.4.0.7
-- MultidropdownSelection: list allows up to 1024px length before wrapping, and hovering button increase the X slightly (fix)
+- 8.4.1.1
+- Principal properties like comment and email are now hidden in SSR (fix)
+- Principal properties marked with NotMapped attribute are also not exposed in SSR (feature)
 
 #### Version history
 - View git history of this file if interested
